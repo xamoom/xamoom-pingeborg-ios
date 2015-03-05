@@ -1,23 +1,23 @@
 //
-//  MainViewController.m
+//  MapViewController.m
 //  xamoom-pingeborg-ios
 //
 //  Created by Raphael Seher on 05/03/15.
 //  Copyright (c) 2015 xamoom GmbH. All rights reserved.
 //
 
-#import "MainViewController.h"
+#import "MapViewController.h"
 #import <SWRevealViewController/SWRevealViewController.h>
 
-@interface MainViewController ()
+@interface MapViewController ()
 
 @end
 
-@implementation MainViewController
+@implementation MapViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
+    
     SWRevealViewController *revealViewController = self.revealViewController;
     if ( revealViewController )
     {

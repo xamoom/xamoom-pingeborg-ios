@@ -64,6 +64,8 @@
 		88BA02AE1AA85C430091A43C /* NSString+XMLEntities.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA02A31AA85C430091A43C /* NSString+XMLEntities.m */; };
 		88BA02AF1AA85C430091A43C /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA02A51AA85C430091A43C /* RootViewController.m */; };
 		88BA02B21AA86EA00091A43C /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA02B11AA86EA00091A43C /* MainViewController.m */; };
+		88BA02B51AA88B9E0091A43C /* SidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA02B41AA88B9E0091A43C /* SidebarViewController.m */; };
+		88BA02B81AA88F320091A43C /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA02B71AA88F320091A43C /* MapViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -190,6 +192,10 @@
 		88BA02A51AA85C430091A43C /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		88BA02B01AA86EA00091A43C /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		88BA02B11AA86EA00091A43C /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		88BA02B31AA88B9E0091A43C /* SidebarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarViewController.h; sourceTree = "<group>"; };
+		88BA02B41AA88B9E0091A43C /* SidebarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarViewController.m; sourceTree = "<group>"; };
+		88BA02B61AA88F320091A43C /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		88BA02B71AA88F320091A43C /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		C530CDEFFEDDFCABBEC918B0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -240,10 +246,14 @@
 				88BA01F71AA859F90091A43C /* AppDelegate.m */,
 				88BA01F91AA859F90091A43C /* ViewController.h */,
 				88BA01FA1AA859F90091A43C /* ViewController.m */,
-				88BA01FC1AA859F90091A43C /* Main.storyboard */,
+				88BA02B31AA88B9E0091A43C /* SidebarViewController.h */,
+				88BA02B41AA88B9E0091A43C /* SidebarViewController.m */,
 				88BA02B01AA86EA00091A43C /* MainViewController.h */,
 				88BA02B11AA86EA00091A43C /* MainViewController.m */,
+				88BA02B61AA88F320091A43C /* MapViewController.h */,
+				88BA02B71AA88F320091A43C /* MapViewController.m */,
 				88BA01FF1AA859F90091A43C /* Images.xcassets */,
+				88BA01FC1AA859F90091A43C /* Main.storyboard */,
 				88BA02011AA859F90091A43C /* LaunchScreen.xib */,
 				88BA01F21AA859F90091A43C /* Supporting Files */,
 			);
@@ -596,6 +606,7 @@
 				88BA02AD1AA85C430091A43C /* NSString+HTML.m in Sources */,
 				88BA02831AA85C060091A43C /* XMMResponseContentBlockType8.m in Sources */,
 				88BA01F81AA859F90091A43C /* AppDelegate.m in Sources */,
+				88BA02B81AA88F320091A43C /* MapViewController.m in Sources */,
 				88BA027B1AA85C060091A43C /* XMMResponseContentBlockType0.m in Sources */,
 				88BA02821AA85C060091A43C /* XMMResponseContentBlockType7.m in Sources */,
 				88BA026E1AA85C060091A43C /* _XMMCoreDataGetByLocationItem.m in Sources */,
@@ -616,6 +627,7 @@
 				88BA02A81AA85C430091A43C /* MWFeedInfo.m in Sources */,
 				88BA02711AA85C060091A43C /* Model.xcdatamodeld in Sources */,
 				88BA02741AA85C060091A43C /* XMMCoreDataGetById.m in Sources */,
+				88BA02B51AA88B9E0091A43C /* SidebarViewController.m in Sources */,
 				88BA02771AA85C060091A43C /* XMMCoreDataMenuItem.m in Sources */,
 				88BA02861AA85C060091A43C /* XMMResponseGetByLocation.m in Sources */,
 				88BA02B21AA86EA00091A43C /* MainViewController.m in Sources */,
