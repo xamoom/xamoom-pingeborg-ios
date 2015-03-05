@@ -9,7 +9,7 @@
 #import "MapViewController.h"
 #import <SWRevealViewController/SWRevealViewController.h>
 
-@interface MapViewController ()
+@interface MapViewController () <SWRevealViewControllerDelegate>
 
 @end
 
@@ -25,6 +25,8 @@
         [self.sidebarButton setAction: @selector( revealToggle: )];
         [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     }
+    
+    [revealViewController setDelegate:self];
 }
 
 - (void)didReceiveMemoryWarning {
