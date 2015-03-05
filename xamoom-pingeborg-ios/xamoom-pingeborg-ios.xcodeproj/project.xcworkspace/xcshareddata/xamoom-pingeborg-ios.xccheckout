@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>F2EC196C-F2C6-4714-BFF2-74BDF2A51281</string>
+	<key>IDESourceControlProjectName</key>
+	<string>xamoom-pingeborg-ios</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>B9556834361E3562FAF53130D9E5F3A8ECDAD5F2</key>
+		<string>https://github.com/xamoom/xamoom-pingeborg-ios.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>xamoom-pingeborg-ios/xamoom-pingeborg-ios.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>B9556834361E3562FAF53130D9E5F3A8ECDAD5F2</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/xamoom/xamoom-pingeborg-ios.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>B9556834361E3562FAF53130D9E5F3A8ECDAD5F2</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>B9556834361E3562FAF53130D9E5F3A8ECDAD5F2</string>
+			<key>IDESourceControlWCCName</key>
+			<string>xamoom-pingeborg-ios</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -1,0 +1,5 @@
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.0'
+pod 'RestKit', '~> 0.24'
+pod 'QRCodeReaderViewController', '~> 2.0.0'
+pod 'SWRevealViewController', '~> 2.3.0'
