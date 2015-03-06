@@ -66,10 +66,11 @@
 		88BA02B21AA86EA00091A43C /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA02B11AA86EA00091A43C /* MainViewController.m */; };
 		88BA02B51AA88B9E0091A43C /* SidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA02B41AA88B9E0091A43C /* SidebarViewController.m */; };
 		88BA02B81AA88F320091A43C /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA02B71AA88F320091A43C /* MapViewController.m */; };
-		88CBAED01AA9D4CD000E480A /* Menu-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CBAECF1AA9D4CD000E480A /* Menu-50.png */; };
-		88CBAED21AA9D850000E480A /* Menu-44.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CBAED11AA9D850000E480A /* Menu-44.png */; };
-		88CBAED41AA9D8A0000E480A /* Menu-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CBAED31AA9D8A0000E480A /* Menu-40.png */; };
-		88CBAED61AA9D8CB000E480A /* Menu-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CBAED51AA9D8CB000E480A /* Menu-32.png */; };
+		88CBAEDD1AA9E8AF000E480A /* AnLaKa_845_321-845x321.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 88CBAEDA1AA9E8AF000E480A /* AnLaKa_845_321-845x321.jpg */; };
+		88CBAEDE1AA9E8AF000E480A /* KlemmGertraud_845_321px-845x321.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 88CBAEDB1AA9E8AF000E480A /* KlemmGertraud_845_321px-845x321.jpg */; };
+		88CBAEDF1AA9E8AF000E480A /* Rubinowitz_Tex_C-Hertha-Hurnaus_845_321--845x321.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 88CBAEDC1AA9E8AF000E480A /* Rubinowitz_Tex_C-Hertha-Hurnaus_845_321--845x321.jpg */; };
+		88CBAEE11AA9EC9E000E480A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88CBAEE01AA9EC9E000E480A /* MapKit.framework */; };
+		88CBAEE41AA9EE93000E480A /* MainTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CBAEE31AA9EE93000E480A /* MainTabViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -200,10 +201,12 @@
 		88BA02B41AA88B9E0091A43C /* SidebarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarViewController.m; sourceTree = "<group>"; };
 		88BA02B61AA88F320091A43C /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		88BA02B71AA88F320091A43C /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
-		88CBAECF1AA9D4CD000E480A /* Menu-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Menu-50.png"; path = "../../../Downloads/Menu-50.png"; sourceTree = "<group>"; };
-		88CBAED11AA9D850000E480A /* Menu-44.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Menu-44.png"; path = "../../../Downloads/Menu-44.png"; sourceTree = "<group>"; };
-		88CBAED31AA9D8A0000E480A /* Menu-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Menu-40.png"; path = "../../../Downloads/Menu-40.png"; sourceTree = "<group>"; };
-		88CBAED51AA9D8CB000E480A /* Menu-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Menu-32.png"; path = "../../../Downloads/Menu-32.png"; sourceTree = "<group>"; };
+		88CBAEDA1AA9E8AF000E480A /* AnLaKa_845_321-845x321.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "AnLaKa_845_321-845x321.jpg"; path = "../../../Downloads/AnLaKa_845_321-845x321.jpg"; sourceTree = "<group>"; };
+		88CBAEDB1AA9E8AF000E480A /* KlemmGertraud_845_321px-845x321.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "KlemmGertraud_845_321px-845x321.jpg"; path = "../../../Downloads/KlemmGertraud_845_321px-845x321.jpg"; sourceTree = "<group>"; };
+		88CBAEDC1AA9E8AF000E480A /* Rubinowitz_Tex_C-Hertha-Hurnaus_845_321--845x321.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Rubinowitz_Tex_C-Hertha-Hurnaus_845_321--845x321.jpg"; path = "../../../Downloads/Rubinowitz_Tex_C-Hertha-Hurnaus_845_321--845x321.jpg"; sourceTree = "<group>"; };
+		88CBAEE01AA9EC9E000E480A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		88CBAEE21AA9EE93000E480A /* MainTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabViewController.h; sourceTree = "<group>"; };
+		88CBAEE31AA9EE93000E480A /* MainTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabViewController.m; sourceTree = "<group>"; };
 		C530CDEFFEDDFCABBEC918B0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -212,6 +215,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88CBAEE11AA9EC9E000E480A /* MapKit.framework in Frameworks */,
 				594E123E6C9FD768422C1CEE /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -229,7 +233,7 @@
 		88BA01E61AA859F90091A43C = {
 			isa = PBXGroup;
 			children = (
-				88CBAECA1AA9D399000E480A /* Artwork */,
+				88CBAED91AA9E82D000E480A /* Images */,
 				88BA02181AA85BF30091A43C /* xamoom-ios-sdk */,
 				88BA01F11AA859F90091A43C /* xamoom-pingeborg-ios */,
 				88BA020B1AA859F90091A43C /* xamoom-pingeborg-iosTests */,
@@ -265,6 +269,8 @@
 				88BA01FC1AA859F90091A43C /* Main.storyboard */,
 				88BA02011AA859F90091A43C /* LaunchScreen.xib */,
 				88BA01F21AA859F90091A43C /* Supporting Files */,
+				88CBAEE21AA9EE93000E480A /* MainTabViewController.h */,
+				88CBAEE31AA9EE93000E480A /* MainTabViewController.m */,
 			);
 			path = "xamoom-pingeborg-ios";
 			sourceTree = "<group>";
@@ -442,20 +448,20 @@
 			path = MWFeedParser;
 			sourceTree = "<group>";
 		};
-		88CBAECA1AA9D399000E480A /* Artwork */ = {
+		88CBAED91AA9E82D000E480A /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				88CBAECF1AA9D4CD000E480A /* Menu-50.png */,
-				88CBAED11AA9D850000E480A /* Menu-44.png */,
-				88CBAED31AA9D8A0000E480A /* Menu-40.png */,
-				88CBAED51AA9D8CB000E480A /* Menu-32.png */,
+				88CBAEDA1AA9E8AF000E480A /* AnLaKa_845_321-845x321.jpg */,
+				88CBAEDB1AA9E8AF000E480A /* KlemmGertraud_845_321px-845x321.jpg */,
+				88CBAEDC1AA9E8AF000E480A /* Rubinowitz_Tex_C-Hertha-Hurnaus_845_321--845x321.jpg */,
 			);
-			name = Artwork;
+			name = Images;
 			sourceTree = "<group>";
 		};
 		B091DC0989CBE4B0B40B108B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				88CBAEE01AA9EC9E000E480A /* MapKit.framework */,
 				C530CDEFFEDDFCABBEC918B0 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -521,6 +527,11 @@
 				TargetAttributes = {
 					88BA01EE1AA859F90091A43C = {
 						CreatedOnToolsVersion = 6.1.1;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					88BA02071AA859F90091A43C = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -552,13 +563,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88CBAEDE1AA9E8AF000E480A /* KlemmGertraud_845_321px-845x321.jpg in Resources */,
 				88BA01FE1AA859F90091A43C /* Main.storyboard in Resources */,
-				88CBAED01AA9D4CD000E480A /* Menu-50.png in Resources */,
-				88CBAED41AA9D8A0000E480A /* Menu-40.png in Resources */,
 				88BA02031AA859F90091A43C /* LaunchScreen.xib in Resources */,
-				88CBAED61AA9D8CB000E480A /* Menu-32.png in Resources */,
+				88CBAEDD1AA9E8AF000E480A /* AnLaKa_845_321-845x321.jpg in Resources */,
+				88CBAEDF1AA9E8AF000E480A /* Rubinowitz_Tex_C-Hertha-Hurnaus_845_321--845x321.jpg in Resources */,
 				88BA02001AA859F90091A43C /* Images.xcassets in Resources */,
-				88CBAED21AA9D850000E480A /* Menu-44.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -640,6 +650,7 @@
 				88BA027C1AA85C060091A43C /* XMMResponseContentBlockType1.m in Sources */,
 				88BA01F51AA859F90091A43C /* main.m in Sources */,
 				88BA02AF1AA85C430091A43C /* RootViewController.m in Sources */,
+				88CBAEE41AA9EE93000E480A /* MainTabViewController.m in Sources */,
 				88BA02811AA85C060091A43C /* XMMResponseContentBlockType6.m in Sources */,
 				88BA028C1AA85C060091A43C /* XMMResponseStyle.m in Sources */,
 				88BA026D1AA85C060091A43C /* _XMMCoreDataGetByLocation.m in Sources */,

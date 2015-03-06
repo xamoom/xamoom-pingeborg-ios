@@ -73,10 +73,18 @@
                                             <segue destination="D5b-Ah-FHM" kind="custom" customClass="SWRevealViewControllerSeguePushController" id="tux-iO-NPQ"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="TGB-Eh-WYK">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="map" id="utP-rB-vi5">
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TGB-Eh-WYK" id="C2M-r8-moX">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="utP-rB-vi5" id="ARk-d0-RFC">
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bottom Bar" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eAf-G7-c8Y">
+                                                    <rect key="frame" x="31" y="9" width="89" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -91,7 +99,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dyl-sI-Inw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="11.5" y="1314.5"/>
+            <point key="canvasLocation" x="11.5" y="1313.5"/>
         </scene>
         <!--Pingeb.org-->
         <scene sceneID="nzA-Iw-AGg">
@@ -105,20 +113,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="irq-dg-Pj1">
-                                <rect key="frame" x="0.0" y="64" width="375" height="220"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AnLaKa_845_321-845x321.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="irq-dg-Pj1">
+                                <rect key="frame" x="0.0" y="65" width="375" height="214"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Em3-aR-5R9">
-                                <rect key="frame" x="0.0" y="286" width="375" height="220"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="KlemmGertraud_845_321px-845x321.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="HFM-FV-goT">
+                                <rect key="frame" x="0.0" y="281" width="375" height="214"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Ao-eU-1fK">
-                                <rect key="frame" x="0.0" y="508" width="375" height="220"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Rubinowitz_Tex_C-Hertha-Hurnaus_845_321--845x321.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="3AR-MQ-J7J">
+                                <rect key="frame" x="0.0" y="497" width="375" height="214"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Pingeb.org" id="Qdt-iI-T0O">
-                        <barButtonItem key="leftBarButtonItem" image="Menu-32.png" style="plain" id="3hp-1e-9rh"/>
+                        <barButtonItem key="leftBarButtonItem" image="burgerbutton" style="plain" id="3hp-1e-9rh"/>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
@@ -127,7 +135,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BBo-TV-PbU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1174.5" y="928.5"/>
+            <point key="canvasLocation" x="1176.5" y="928.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Req-X2-RDg">
@@ -148,6 +156,63 @@
             </objects>
             <point key="canvasLocation" x="675.5" y="1754.5"/>
         </scene>
+        <!--Item 2-->
+        <scene sceneID="KzW-mF-euO">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7DK-ki-A9N" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="AtN-5m-gBG" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="XTy-9s-Zq4"/>
+                        <viewControllerLayoutGuide type="bottom" id="Zfa-2l-O3q"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FgB-g3-XH4">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 2" id="Ngk-UO-rH9"/>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="771" y="3319"/>
+        </scene>
+        <!--Item 1-->
+        <scene sceneID="eWi-5F-6Lr">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uZ2-qx-87R" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="Jxr-ZY-rMW" customClass="MainTabViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fdE-DG-gVL"/>
+                        <viewControllerLayoutGuide type="bottom" id="Dh0-kT-U2B"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bDZ-FA-M76">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 1" id="ONu-W2-VKW"/>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="771" y="2657"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="C8n-8Q-wTB">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HWm-0u-ljJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tabBarController id="sFb-T4-HRk" sceneMemberID="viewController">
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="Rsd-qN-3vf">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="Jxr-ZY-rMW" kind="relationship" relationship="viewControllers" id="0d9-Ez-Cg9"/>
+                        <segue destination="AtN-5m-gBG" kind="relationship" relationship="viewControllers" id="T3e-oM-dTu"/>
+                    </connections>
+                </tabBarController>
+            </objects>
+            <point key="canvasLocation" x="-49" y="2987"/>
+        </scene>
         <!--Map View-->
         <scene sceneID="1zH-in-GhH">
             <objects>
@@ -159,10 +224,15 @@
                     <view key="view" contentMode="scaleToFill" id="4dY-qq-KMj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" showsBuildings="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dKi-07-GDf">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Map View" id="ZFm-a9-C1K">
-                        <barButtonItem key="leftBarButtonItem" image="Menu-32.png" id="5Rp-ZO-aBy"/>
+                        <barButtonItem key="leftBarButtonItem" image="burgerbutton" id="5Rp-ZO-aBy"/>
                     </navigationItem>
                     <connections>
                         <outlet property="sidebarButton" destination="5Rp-ZO-aBy" id="9Bt-6U-Yjd"/>
@@ -193,7 +263,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Menu-32.png" width="32" height="32"/>
+        <image name="AnLaKa_845_321-845x321.jpg" width="845" height="321"/>
+        <image name="KlemmGertraud_845_321px-845x321.jpg" width="845" height="321"/>
+        <image name="Rubinowitz_Tex_C-Hertha-Hurnaus_845_321--845x321.jpg" width="845" height="321"/>
+        <image name="burgerbutton" width="28" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="nD3-ql-zb7"/>
