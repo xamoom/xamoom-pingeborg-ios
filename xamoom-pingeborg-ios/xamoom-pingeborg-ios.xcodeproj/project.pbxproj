@@ -66,6 +66,10 @@
 		88BA02B21AA86EA00091A43C /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA02B11AA86EA00091A43C /* MainViewController.m */; };
 		88BA02B51AA88B9E0091A43C /* SidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA02B41AA88B9E0091A43C /* SidebarViewController.m */; };
 		88BA02B81AA88F320091A43C /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA02B71AA88F320091A43C /* MapViewController.m */; };
+		88CBAED01AA9D4CD000E480A /* Menu-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CBAECF1AA9D4CD000E480A /* Menu-50.png */; };
+		88CBAED21AA9D850000E480A /* Menu-44.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CBAED11AA9D850000E480A /* Menu-44.png */; };
+		88CBAED41AA9D8A0000E480A /* Menu-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CBAED31AA9D8A0000E480A /* Menu-40.png */; };
+		88CBAED61AA9D8CB000E480A /* Menu-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 88CBAED51AA9D8CB000E480A /* Menu-32.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -196,6 +200,10 @@
 		88BA02B41AA88B9E0091A43C /* SidebarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarViewController.m; sourceTree = "<group>"; };
 		88BA02B61AA88F320091A43C /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		88BA02B71AA88F320091A43C /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		88CBAECF1AA9D4CD000E480A /* Menu-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Menu-50.png"; path = "../../../Downloads/Menu-50.png"; sourceTree = "<group>"; };
+		88CBAED11AA9D850000E480A /* Menu-44.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Menu-44.png"; path = "../../../Downloads/Menu-44.png"; sourceTree = "<group>"; };
+		88CBAED31AA9D8A0000E480A /* Menu-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Menu-40.png"; path = "../../../Downloads/Menu-40.png"; sourceTree = "<group>"; };
+		88CBAED51AA9D8CB000E480A /* Menu-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Menu-32.png"; path = "../../../Downloads/Menu-32.png"; sourceTree = "<group>"; };
 		C530CDEFFEDDFCABBEC918B0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -221,6 +229,7 @@
 		88BA01E61AA859F90091A43C = {
 			isa = PBXGroup;
 			children = (
+				88CBAECA1AA9D399000E480A /* Artwork */,
 				88BA02181AA85BF30091A43C /* xamoom-ios-sdk */,
 				88BA01F11AA859F90091A43C /* xamoom-pingeborg-ios */,
 				88BA020B1AA859F90091A43C /* xamoom-pingeborg-iosTests */,
@@ -433,6 +442,17 @@
 			path = MWFeedParser;
 			sourceTree = "<group>";
 		};
+		88CBAECA1AA9D399000E480A /* Artwork */ = {
+			isa = PBXGroup;
+			children = (
+				88CBAECF1AA9D4CD000E480A /* Menu-50.png */,
+				88CBAED11AA9D850000E480A /* Menu-44.png */,
+				88CBAED31AA9D8A0000E480A /* Menu-40.png */,
+				88CBAED51AA9D8CB000E480A /* Menu-32.png */,
+			);
+			name = Artwork;
+			sourceTree = "<group>";
+		};
 		B091DC0989CBE4B0B40B108B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -533,8 +553,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				88BA01FE1AA859F90091A43C /* Main.storyboard in Resources */,
+				88CBAED01AA9D4CD000E480A /* Menu-50.png in Resources */,
+				88CBAED41AA9D8A0000E480A /* Menu-40.png in Resources */,
 				88BA02031AA859F90091A43C /* LaunchScreen.xib in Resources */,
+				88CBAED61AA9D8CB000E480A /* Menu-32.png in Resources */,
 				88BA02001AA859F90091A43C /* Images.xcassets in Resources */,
+				88CBAED21AA9D850000E480A /* Menu-44.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

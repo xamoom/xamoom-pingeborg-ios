@@ -104,10 +104,21 @@
                     <view key="view" contentMode="scaleToFill" id="jBj-EH-t5F">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="irq-dg-Pj1">
+                                <rect key="frame" x="0.0" y="64" width="375" height="220"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Em3-aR-5R9">
+                                <rect key="frame" x="0.0" y="286" width="375" height="220"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Ao-eU-1fK">
+                                <rect key="frame" x="0.0" y="508" width="375" height="220"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Pingeb.org" id="Qdt-iI-T0O">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="3hp-1e-9rh"/>
+                        <barButtonItem key="leftBarButtonItem" image="Menu-32.png" style="plain" id="3hp-1e-9rh"/>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
@@ -126,6 +137,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Dcn-V9-hCL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="barTintColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
@@ -150,7 +162,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Map View" id="ZFm-a9-C1K">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="5Rp-ZO-aBy"/>
+                        <barButtonItem key="leftBarButtonItem" image="Menu-32.png" id="5Rp-ZO-aBy"/>
                     </navigationItem>
                     <connections>
                         <outlet property="sidebarButton" destination="5Rp-ZO-aBy" id="9Bt-6U-Yjd"/>
@@ -168,6 +180,8 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Diw-Ee-h3W">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="hAq-0j-IfU" kind="relationship" relationship="rootViewController" id="mSF-8A-pZ1"/>
@@ -178,7 +192,10 @@
             <point key="canvasLocation" x="675.5" y="928.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Menu-32.png" width="32" height="32"/>
+    </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Pvh-YC-fMZ"/>
+        <segue reference="nD3-ql-zb7"/>
     </inferredMetricsTieBreakers>
 </document>
