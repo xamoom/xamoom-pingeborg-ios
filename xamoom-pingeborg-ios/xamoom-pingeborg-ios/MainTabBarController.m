@@ -1,28 +1,33 @@
 //
-//  MainTabViewController.m
+//  MainTabBarControllerViewController.m
 //  xamoom-pingeborg-ios
 //
-//  Created by Raphael Seher on 06/03/15.
+//  Created by Raphael Seher on 09/03/15.
 //  Copyright (c) 2015 xamoom GmbH. All rights reserved.
 //
 
-#import "MainTabViewController.h"
+#import "MainTabBarController.h"
 
-@interface MainTabViewController ()
+@interface MainTabBarController ()
 
 @end
 
-@implementation MainTabViewController
+@implementation MainTabBarController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.parentViewController.navigationItem setTitle:@"Title"];
-    //self.parentViewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(myRightButton)];
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
+    if (item.tag == 2) {
+        NSLog(@"HELLYEAH");
+    }
 }
 
 /*

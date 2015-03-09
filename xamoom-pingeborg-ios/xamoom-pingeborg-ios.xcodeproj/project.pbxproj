@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		594E123E6C9FD768422C1CEE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C530CDEFFEDDFCABBEC918B0 /* libPods.a */; };
+		885BFCF81AADC23F0047340C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 885BFCF71AADC23F0047340C /* Main.storyboard */; };
+		885BFCFE1AADD3950047340C /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 885BFCFD1AADD3950047340C /* MainTabBarController.m */; };
 		88BA01F51AA859F90091A43C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA01F41AA859F90091A43C /* main.m */; };
 		88BA01F81AA859F90091A43C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA01F71AA859F90091A43C /* AppDelegate.m */; };
-		88BA01FB1AA859F90091A43C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA01FA1AA859F90091A43C /* ViewController.m */; };
-		88BA01FE1AA859F90091A43C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88BA01FC1AA859F90091A43C /* Main.storyboard */; };
 		88BA02001AA859F90091A43C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88BA01FF1AA859F90091A43C /* Images.xcassets */; };
 		88BA02031AA859F90091A43C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88BA02011AA859F90091A43C /* LaunchScreen.xib */; };
 		88BA020F1AA859F90091A43C /* xamoom_pingeborg_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA020E1AA859F90091A43C /* xamoom_pingeborg_iosTests.m */; };
@@ -63,14 +63,7 @@
 		88BA02AD1AA85C430091A43C /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA02A11AA85C430091A43C /* NSString+HTML.m */; };
 		88BA02AE1AA85C430091A43C /* NSString+XMLEntities.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA02A31AA85C430091A43C /* NSString+XMLEntities.m */; };
 		88BA02AF1AA85C430091A43C /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA02A51AA85C430091A43C /* RootViewController.m */; };
-		88BA02B21AA86EA00091A43C /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA02B11AA86EA00091A43C /* MainViewController.m */; };
-		88BA02B51AA88B9E0091A43C /* SidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA02B41AA88B9E0091A43C /* SidebarViewController.m */; };
-		88BA02B81AA88F320091A43C /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA02B71AA88F320091A43C /* MapViewController.m */; };
-		88CBAEDD1AA9E8AF000E480A /* AnLaKa_845_321-845x321.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 88CBAEDA1AA9E8AF000E480A /* AnLaKa_845_321-845x321.jpg */; };
-		88CBAEDE1AA9E8AF000E480A /* KlemmGertraud_845_321px-845x321.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 88CBAEDB1AA9E8AF000E480A /* KlemmGertraud_845_321px-845x321.jpg */; };
-		88CBAEDF1AA9E8AF000E480A /* Rubinowitz_Tex_C-Hertha-Hurnaus_845_321--845x321.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 88CBAEDC1AA9E8AF000E480A /* Rubinowitz_Tex_C-Hertha-Hurnaus_845_321--845x321.jpg */; };
 		88CBAEE11AA9EC9E000E480A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88CBAEE01AA9EC9E000E480A /* MapKit.framework */; };
-		88CBAEE41AA9EE93000E480A /* MainTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CBAEE31AA9EE93000E480A /* MainTabViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,14 +79,14 @@
 /* Begin PBXFileReference section */
 		081CE084B2E648F4E71D7D2A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		48251170F65DFEEAACD48338 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		885BFCF71AADC23F0047340C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		885BFCFC1AADD3950047340C /* MainTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabBarController.h; sourceTree = "<group>"; };
+		885BFCFD1AADD3950047340C /* MainTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabBarController.m; sourceTree = "<group>"; };
 		88BA01EF1AA859F90091A43C /* xamoom-pingeborg-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "xamoom-pingeborg-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		88BA01F31AA859F90091A43C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88BA01F41AA859F90091A43C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		88BA01F61AA859F90091A43C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		88BA01F71AA859F90091A43C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		88BA01F91AA859F90091A43C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		88BA01FA1AA859F90091A43C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		88BA01FD1AA859F90091A43C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		88BA01FF1AA859F90091A43C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		88BA02021AA859F90091A43C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		88BA02081AA859F90091A43C /* xamoom-pingeborg-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "xamoom-pingeborg-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -195,18 +188,7 @@
 		88BA02A31AA85C430091A43C /* NSString+XMLEntities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+XMLEntities.m"; sourceTree = "<group>"; };
 		88BA02A41AA85C430091A43C /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		88BA02A51AA85C430091A43C /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		88BA02B01AA86EA00091A43C /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		88BA02B11AA86EA00091A43C /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		88BA02B31AA88B9E0091A43C /* SidebarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarViewController.h; sourceTree = "<group>"; };
-		88BA02B41AA88B9E0091A43C /* SidebarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarViewController.m; sourceTree = "<group>"; };
-		88BA02B61AA88F320091A43C /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
-		88BA02B71AA88F320091A43C /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
-		88CBAEDA1AA9E8AF000E480A /* AnLaKa_845_321-845x321.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "AnLaKa_845_321-845x321.jpg"; path = "../../../Downloads/AnLaKa_845_321-845x321.jpg"; sourceTree = "<group>"; };
-		88CBAEDB1AA9E8AF000E480A /* KlemmGertraud_845_321px-845x321.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "KlemmGertraud_845_321px-845x321.jpg"; path = "../../../Downloads/KlemmGertraud_845_321px-845x321.jpg"; sourceTree = "<group>"; };
-		88CBAEDC1AA9E8AF000E480A /* Rubinowitz_Tex_C-Hertha-Hurnaus_845_321--845x321.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Rubinowitz_Tex_C-Hertha-Hurnaus_845_321--845x321.jpg"; path = "../../../Downloads/Rubinowitz_Tex_C-Hertha-Hurnaus_845_321--845x321.jpg"; sourceTree = "<group>"; };
 		88CBAEE01AA9EC9E000E480A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		88CBAEE21AA9EE93000E480A /* MainTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabViewController.h; sourceTree = "<group>"; };
-		88CBAEE31AA9EE93000E480A /* MainTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabViewController.m; sourceTree = "<group>"; };
 		C530CDEFFEDDFCABBEC918B0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -230,10 +212,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		885BFCEB1AADB67F0047340C /* UserInterface */ = {
+			isa = PBXGroup;
+			children = (
+				885BFCF71AADC23F0047340C /* Main.storyboard */,
+				885BFCFC1AADD3950047340C /* MainTabBarController.h */,
+				885BFCFD1AADD3950047340C /* MainTabBarController.m */,
+			);
+			name = UserInterface;
+			sourceTree = "<group>";
+		};
 		88BA01E61AA859F90091A43C = {
 			isa = PBXGroup;
 			children = (
-				88CBAED91AA9E82D000E480A /* Images */,
 				88BA02181AA85BF30091A43C /* xamoom-ios-sdk */,
 				88BA01F11AA859F90091A43C /* xamoom-pingeborg-ios */,
 				88BA020B1AA859F90091A43C /* xamoom-pingeborg-iosTests */,
@@ -257,20 +248,10 @@
 			children = (
 				88BA01F61AA859F90091A43C /* AppDelegate.h */,
 				88BA01F71AA859F90091A43C /* AppDelegate.m */,
-				88BA01F91AA859F90091A43C /* ViewController.h */,
-				88BA01FA1AA859F90091A43C /* ViewController.m */,
-				88BA02B31AA88B9E0091A43C /* SidebarViewController.h */,
-				88BA02B41AA88B9E0091A43C /* SidebarViewController.m */,
-				88BA02B01AA86EA00091A43C /* MainViewController.h */,
-				88BA02B11AA86EA00091A43C /* MainViewController.m */,
-				88BA02B61AA88F320091A43C /* MapViewController.h */,
-				88BA02B71AA88F320091A43C /* MapViewController.m */,
+				885BFCEB1AADB67F0047340C /* UserInterface */,
 				88BA01FF1AA859F90091A43C /* Images.xcassets */,
-				88BA01FC1AA859F90091A43C /* Main.storyboard */,
 				88BA02011AA859F90091A43C /* LaunchScreen.xib */,
 				88BA01F21AA859F90091A43C /* Supporting Files */,
-				88CBAEE21AA9EE93000E480A /* MainTabViewController.h */,
-				88CBAEE31AA9EE93000E480A /* MainTabViewController.m */,
 			);
 			path = "xamoom-pingeborg-ios";
 			sourceTree = "<group>";
@@ -448,16 +429,6 @@
 			path = MWFeedParser;
 			sourceTree = "<group>";
 		};
-		88CBAED91AA9E82D000E480A /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				88CBAEDA1AA9E8AF000E480A /* AnLaKa_845_321-845x321.jpg */,
-				88CBAEDB1AA9E8AF000E480A /* KlemmGertraud_845_321px-845x321.jpg */,
-				88CBAEDC1AA9E8AF000E480A /* Rubinowitz_Tex_C-Hertha-Hurnaus_845_321--845x321.jpg */,
-			);
-			name = Images;
-			sourceTree = "<group>";
-		};
 		B091DC0989CBE4B0B40B108B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -527,6 +498,7 @@
 				TargetAttributes = {
 					88BA01EE1AA859F90091A43C = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = 55MDUF7392;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
 								enabled = 1;
@@ -563,11 +535,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88CBAEDE1AA9E8AF000E480A /* KlemmGertraud_845_321px-845x321.jpg in Resources */,
-				88BA01FE1AA859F90091A43C /* Main.storyboard in Resources */,
+				885BFCF81AADC23F0047340C /* Main.storyboard in Resources */,
 				88BA02031AA859F90091A43C /* LaunchScreen.xib in Resources */,
-				88CBAEDD1AA9E8AF000E480A /* AnLaKa_845_321-845x321.jpg in Resources */,
-				88CBAEDF1AA9E8AF000E480A /* Rubinowitz_Tex_C-Hertha-Hurnaus_845_321--845x321.jpg in Resources */,
 				88BA02001AA859F90091A43C /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -619,7 +588,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88BA01FB1AA859F90091A43C /* ViewController.m in Sources */,
 				88BA02801AA85C060091A43C /* XMMResponseContentBlockType5.m in Sources */,
 				88BA02AE1AA85C430091A43C /* NSString+XMLEntities.m in Sources */,
 				88BA02AB1AA85C430091A43C /* MWFeedParserAppDelegate.m in Sources */,
@@ -640,17 +608,16 @@
 				88BA02AD1AA85C430091A43C /* NSString+HTML.m in Sources */,
 				88BA02831AA85C060091A43C /* XMMResponseContentBlockType8.m in Sources */,
 				88BA01F81AA859F90091A43C /* AppDelegate.m in Sources */,
-				88BA02B81AA88F320091A43C /* MapViewController.m in Sources */,
 				88BA027B1AA85C060091A43C /* XMMResponseContentBlockType0.m in Sources */,
 				88BA02821AA85C060091A43C /* XMMResponseContentBlockType7.m in Sources */,
 				88BA026E1AA85C060091A43C /* _XMMCoreDataGetByLocationItem.m in Sources */,
 				88BA02AA1AA85C430091A43C /* MWFeedParser.m in Sources */,
 				88BA026A1AA85C060091A43C /* _XMMCoreDataContent.m in Sources */,
 				88BA02841AA85C060091A43C /* XMMResponseContentBlockType9.m in Sources */,
+				885BFCFE1AADD3950047340C /* MainTabBarController.m in Sources */,
 				88BA027C1AA85C060091A43C /* XMMResponseContentBlockType1.m in Sources */,
 				88BA01F51AA859F90091A43C /* main.m in Sources */,
 				88BA02AF1AA85C430091A43C /* RootViewController.m in Sources */,
-				88CBAEE41AA9EE93000E480A /* MainTabViewController.m in Sources */,
 				88BA02811AA85C060091A43C /* XMMResponseContentBlockType6.m in Sources */,
 				88BA028C1AA85C060091A43C /* XMMResponseStyle.m in Sources */,
 				88BA026D1AA85C060091A43C /* _XMMCoreDataGetByLocation.m in Sources */,
@@ -662,10 +629,8 @@
 				88BA02A81AA85C430091A43C /* MWFeedInfo.m in Sources */,
 				88BA02711AA85C060091A43C /* Model.xcdatamodeld in Sources */,
 				88BA02741AA85C060091A43C /* XMMCoreDataGetById.m in Sources */,
-				88BA02B51AA88B9E0091A43C /* SidebarViewController.m in Sources */,
 				88BA02771AA85C060091A43C /* XMMCoreDataMenuItem.m in Sources */,
 				88BA02861AA85C060091A43C /* XMMResponseGetByLocation.m in Sources */,
-				88BA02B21AA86EA00091A43C /* MainViewController.m in Sources */,
 				88BA02751AA85C060091A43C /* XMMCoreDataGetByLocation.m in Sources */,
 				88BA02731AA85C060091A43C /* XMMCoreDataContentBlocks.m in Sources */,
 				88BA028D1AA85C060091A43C /* XMMRSSEntry.m in Sources */,
@@ -696,14 +661,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		88BA01FC1AA859F90091A43C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				88BA01FD1AA859F90091A43C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		88BA02011AA859F90091A43C /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -796,6 +753,7 @@
 			baseConfigurationReference = 081CE084B2E648F4E71D7D2A /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "xamoom-pingeborg-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -807,6 +765,7 @@
 			baseConfigurationReference = 48251170F65DFEEAACD48338 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "xamoom-pingeborg-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
