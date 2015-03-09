@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xLe-gR-03r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -12,9 +13,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="1" green="1" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
-                        <segue destination="ln3-at-QtN" kind="relationship" relationship="rootViewController" id="Xgv-Gs-8zK"/>
+                        <segue destination="ln3-at-QtN" kind="relationship" relationship="rootViewController" id="4Bh-ng-ipE"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F9o-6A-ik2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -40,6 +44,55 @@
             </objects>
             <point key="canvasLocation" x="1477" y="589"/>
         </scene>
+        <!--pingeb.org-->
+        <scene sceneID="3Bc-4c-4Jk">
+            <objects>
+                <viewController id="g8c-6b-oU9" customClass="ScanResultViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Z0U-oo-y1q"/>
+                        <viewControllerLayoutGuide type="bottom" id="aIP-f4-IDE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4gp-YQ-mv2">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jze-UN-4mA">
+                                <rect key="frame" x="16" y="72" width="568" height="45"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZXf-ZN-lsM">
+                                <rect key="frame" x="16" y="125" width="568" height="222"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ZXf-ZN-lsM" firstAttribute="trailing" secondItem="4gp-YQ-mv2" secondAttribute="trailingMargin" id="7Zp-J4-n0G"/>
+                            <constraint firstItem="Jze-UN-4mA" firstAttribute="trailing" secondItem="4gp-YQ-mv2" secondAttribute="trailingMargin" id="7aa-UE-eQe"/>
+                            <constraint firstItem="ZXf-ZN-lsM" firstAttribute="top" secondItem="Jze-UN-4mA" secondAttribute="bottom" constant="8" id="94W-SR-XNw"/>
+                            <constraint firstItem="Jze-UN-4mA" firstAttribute="leading" secondItem="4gp-YQ-mv2" secondAttribute="leadingMargin" id="ESZ-yC-1LJ"/>
+                            <constraint firstItem="Jze-UN-4mA" firstAttribute="leading" secondItem="4gp-YQ-mv2" secondAttribute="leadingMargin" id="PMK-24-jWc"/>
+                            <constraint firstItem="Jze-UN-4mA" firstAttribute="trailing" secondItem="4gp-YQ-mv2" secondAttribute="trailingMargin" id="PZr-Qm-LQn"/>
+                            <constraint firstItem="aIP-f4-IDE" firstAttribute="top" secondItem="ZXf-ZN-lsM" secondAttribute="bottom" constant="204" id="R7V-0Q-SSJ"/>
+                            <constraint firstItem="Jze-UN-4mA" firstAttribute="top" secondItem="Z0U-oo-y1q" secondAttribute="bottom" constant="8" id="UaG-3N-hlT"/>
+                            <constraint firstItem="ZXf-ZN-lsM" firstAttribute="leading" secondItem="4gp-YQ-mv2" secondAttribute="leadingMargin" id="oI9-I2-vhZ"/>
+                            <constraint firstItem="Jze-UN-4mA" firstAttribute="top" secondItem="Z0U-oo-y1q" secondAttribute="bottom" constant="8" id="oey-Rg-UHR"/>
+                            <constraint firstItem="ZXf-ZN-lsM" firstAttribute="top" secondItem="Jze-UN-4mA" secondAttribute="bottom" constant="8" id="v6M-xO-qHI"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="pingeb.org" id="M96-y9-eDA">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="POC-FR-6tt"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="testImage" destination="ZXf-ZN-lsM" id="GqW-yi-R1R"/>
+                        <outlet property="testLabel" destination="Jze-UN-4mA" id="B7Y-xw-n41"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m6r-7N-IFa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1283" y="1756"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="qEf-v5-WpB">
             <objects>
@@ -48,7 +101,7 @@
                         <viewControllerLayoutGuide type="top" id="hAp-rX-tg1"/>
                         <viewControllerLayoutGuide type="bottom" id="4uI-RW-hYl"/>
                     </layoutGuides>
-                    <view key="view" hidden="YES" contentMode="scaleToFill" id="bKd-Ua-hIb" customClass="QRCodeReaderView">
+                    <view key="view" contentMode="scaleToFill" id="bKd-Ua-hIb" customClass="QRCodeReaderView">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -113,6 +166,7 @@
                         <segue destination="TrX-Pn-Qt4" kind="relationship" relationship="viewControllers" id="eUh-Xe-XpM"/>
                         <segue destination="wda-of-8Qb" kind="relationship" relationship="viewControllers" id="95r-xL-Jxf"/>
                         <segue destination="evs-Oh-Jun" kind="relationship" relationship="viewControllers" id="7Z6-7b-f6d"/>
+                        <segue destination="g8c-6b-oU9" kind="push" identifier="showScanResult" id="TM5-d9-Bxu"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nmp-ce-SUF" userLabel="First Responder" sceneMemberID="firstResponder"/>
