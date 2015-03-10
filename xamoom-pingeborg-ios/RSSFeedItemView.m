@@ -10,6 +10,8 @@
 
 @implementation RSSFeedItemView
 
+@synthesize delegate;
+
 - (instancetype)init {
     self.frame = CGRectMake(0, 0, self.frame.size.width, 200.0f);
     
@@ -22,5 +24,13 @@
 
 }
 */
+
+- (IBAction)viewTouched:(id)sender {
+    if ( [delegate respondsToSelector:@selector(touchedRSSFeedItem)] ) {
+        [delegate performSelector:@selector(touchedRSSFeedItem)];
+    }
+}
+
+
 
 @end

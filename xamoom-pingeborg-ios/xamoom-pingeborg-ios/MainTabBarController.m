@@ -64,7 +64,7 @@ BOOL isFirstTime;
     if( isFirstTime ) {
         [self performSegueWithIdentifier:@"showScanResult" sender:self];
         isFirstTime = NO;
-    }    
+    }
 }
 
 #pragma mark - Navigation

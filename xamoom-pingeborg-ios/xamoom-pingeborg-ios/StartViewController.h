@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RSSFeedItemView.h"
+#import "XMMEnduserApi.h"
 
-@interface StartViewController : UIViewController
+@interface StartViewController : UIViewController <RSSFeedItemViewDelegate, XMMEnderuserApiDelegate>
 
 @end

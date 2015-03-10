@@ -134,7 +134,7 @@
                     </navigationItem>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1011" y="1267"/>
+            <point key="canvasLocation" x="1477" y="-853"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="qEf-v5-WpB">
@@ -202,6 +202,7 @@
                     <connections>
                         <outlet property="scrollView" destination="C1d-xc-YTh" id="pnY-lf-AK3"/>
                         <outlet property="view" destination="gJa-l2-6vM" id="BAs-pt-dcl"/>
+                        <segue destination="PQH-Gt-PqN" kind="show" identifier="showRSSItem" id="HiV-Ei-2EC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zh6-Vk-TxC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -225,7 +226,6 @@
                         <segue destination="wda-of-8Qb" kind="relationship" relationship="viewControllers" id="95r-xL-Jxf"/>
                         <segue destination="evs-Oh-Jun" kind="relationship" relationship="viewControllers" id="7Z6-7b-f6d"/>
                         <segue destination="g8c-6b-oU9" kind="show" identifier="showScanResult" id="TM5-d9-Bxu"/>
-                        <segue destination="PQH-Gt-PqN" kind="show" id="3ye-kq-kaq"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nmp-ce-SUF" userLabel="First Responder" sceneMemberID="firstResponder"/>

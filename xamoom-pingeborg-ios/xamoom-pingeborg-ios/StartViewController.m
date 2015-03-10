@@ -7,13 +7,8 @@
 //
 
 #import "StartViewController.h"
-#import "XMMEnduserApi.h"
-#import "RSSFeedItemView.h"
 
-#include <stdlib.h>
-
-
-@interface StartViewController () <XMMEnderuserApiDelegate>
+@interface StartViewController () 
 
 @property (strong, nonatomic) IBOutlet UIView *view;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -72,11 +67,8 @@ NSMutableArray *images;
         mainView.title.text = entry.title;
         mainView.image.image = [self randomImage];
         mainView.frame = CGRectMake(0, y, mainView.frame.size.width, mainView.frame.size.height);
+        [mainView setDelegate:self];
         
-        //The setup code (in viewDidLoad in your view controller)
-        UITapGestureRecognizer *singleFingerTap = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                                          action:@selector(handleSingleTap:)];
-        [self.view addGestureRecognizer:singleFingerTap];
         [self.scrollView addSubview:mainView];
         
         y += 210;
@@ -85,23 +77,20 @@ NSMutableArray *images;
     
 }
 
-
-
-//The event handling method
-- (void)handleSingleTap:(UITapGestureRecognizer *)recognizer {
-    CGPoint location = [recognizer locationInView:[recognizer.view superview]];
-    
-    NSLog(@"Hellyeah");
+- (void)touchedRSSFeedItem {
+    [self performSegueWithIdentifier:@"showRSSItem" sender:self];
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ( [[segue identifier] isEqualToString:@"showRSSItem"] ) {
+        
+        //HERE
+    }
 }
-*/
+
 
 @end
