@@ -7,6 +7,7 @@
 //
 
 #import "StartViewController.h"
+#import "RSSItemViewController.h"
 
 @interface StartViewController () 
 
@@ -19,6 +20,7 @@
 
 int y;
 NSMutableArray *images;
+XMMRSSEntry *_rssEntry;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -64,9 +66,15 @@ NSMutableArray *images;
         //create RSSFeedItemView from .xib
         NSArray *subviewArray = [[NSBundle mainBundle] loadNibNamed:@"RSSFeedItemView" owner:self options:nil];
         RSSFeedItemView *mainView = [subviewArray objectAtIndex:0];
+        
+        mainView.rssEntry = entry;
+        
         mainView.title.text = entry.title;
+        
         mainView.image.image = [self randomImage];
+        
         mainView.frame = CGRectMake(0, y, mainView.frame.size.width, mainView.frame.size.height);
+        
         [mainView setDelegate:self];
         
         [self.scrollView addSubview:mainView];
@@ -77,7 +85,8 @@ NSMutableArray *images;
     
 }
 
-- (void)touchedRSSFeedItem {
+- (void)touchedRSSFeedItem:(XMMRSSEntry *)rssEntry {
+    _rssEntry = rssEntry;
     [self performSegueWithIdentifier:@"showRSSItem" sender:self];
 }
 
@@ -87,8 +96,8 @@ NSMutableArray *images;
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ( [[segue identifier] isEqualToString:@"showRSSItem"] ) {
-        
-        //HERE
+        RSSItemViewController *vc = [segue destinationViewController];
+        [vc setRssEntry:_rssEntry];
     }
 }
 

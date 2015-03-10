@@ -68,6 +68,7 @@
 		88CE0CF61AAEDA6D0014EE77 /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CE0CF51AAEDA6D0014EE77 /* StartViewController.m */; };
 		88CE0CFB1AAEF7610014EE77 /* RSSFeedItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CE0CFA1AAEF7610014EE77 /* RSSFeedItemView.m */; };
 		88CE0CFD1AAEF7740014EE77 /* RSSFeedItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88CE0CFC1AAEF7740014EE77 /* RSSFeedItemView.xib */; };
+		88CE0D0D1AAF40B30014EE77 /* RSSItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CE0D0C1AAF40B30014EE77 /* RSSItemViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -200,6 +201,8 @@
 		88CE0CF91AAEF7610014EE77 /* RSSFeedItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSSFeedItemView.h; path = ../RSSFeedItemView.h; sourceTree = "<group>"; };
 		88CE0CFA1AAEF7610014EE77 /* RSSFeedItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSSFeedItemView.m; path = ../RSSFeedItemView.m; sourceTree = "<group>"; };
 		88CE0CFC1AAEF7740014EE77 /* RSSFeedItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RSSFeedItemView.xib; sourceTree = "<group>"; };
+		88CE0D0B1AAF40B30014EE77 /* RSSItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSItemViewController.h; sourceTree = "<group>"; };
+		88CE0D0C1AAF40B30014EE77 /* RSSItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSItemViewController.m; sourceTree = "<group>"; };
 		C530CDEFFEDDFCABBEC918B0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -236,6 +239,8 @@
 				88CE0CF91AAEF7610014EE77 /* RSSFeedItemView.h */,
 				88CE0CFA1AAEF7610014EE77 /* RSSFeedItemView.m */,
 				88CE0CFC1AAEF7740014EE77 /* RSSFeedItemView.xib */,
+				88CE0D0B1AAF40B30014EE77 /* RSSItemViewController.h */,
+				88CE0D0C1AAF40B30014EE77 /* RSSItemViewController.m */,
 			);
 			name = UserInterface;
 			sourceTree = "<group>";
@@ -655,6 +660,7 @@
 				88BA02751AA85C060091A43C /* XMMCoreDataGetByLocation.m in Sources */,
 				88BA02731AA85C060091A43C /* XMMCoreDataContentBlocks.m in Sources */,
 				88BA028D1AA85C060091A43C /* XMMRSSEntry.m in Sources */,
+				88CE0D0D1AAF40B30014EE77 /* RSSItemViewController.m in Sources */,
 				88BA028E1AA85C060091A43C /* XMMEnduserApi.m in Sources */,
 				88BA027F1AA85C060091A43C /* XMMResponseContentBlockType4.m in Sources */,
 				885BFD071AADD9FF0047340C /* ScanResultViewController.m in Sources */,

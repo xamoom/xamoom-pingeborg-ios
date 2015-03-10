@@ -26,8 +26,8 @@
 */
 
 - (IBAction)viewTouched:(id)sender {
-    if ( [delegate respondsToSelector:@selector(touchedRSSFeedItem)] ) {
-        [delegate performSelector:@selector(touchedRSSFeedItem)];
+    if ( [delegate respondsToSelector:@selector(touchedRSSFeedItem:)] ) {
+        [delegate performSelector:@selector(touchedRSSFeedItem:) withObject:self.rssEntry];
     }
 }
 

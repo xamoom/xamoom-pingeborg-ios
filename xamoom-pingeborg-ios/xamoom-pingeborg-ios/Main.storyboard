@@ -96,7 +96,7 @@
         <scene sceneID="5WF-ex-a2S">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="twR-Cm-8K5" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="PQH-Gt-PqN" sceneMemberID="viewController">
+                <viewController id="PQH-Gt-PqN" customClass="RSSItemViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qH4-if-dtc"/>
                         <viewControllerLayoutGuide type="bottom" id="Lro-OS-QOb"/>
@@ -132,6 +132,9 @@
                     <navigationItem key="navigationItem" title="pingeb.org" id="Bqi-dy-1g0">
                         <barButtonItem key="backBarButtonItem" title="Back" id="vSo-o2-DJd"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="labelForTitle" destination="1VY-cy-w9q" id="rHr-uZ-TvY"/>
+                    </connections>
                 </viewController>
             </objects>
             <point key="canvasLocation" x="1477" y="-853"/>

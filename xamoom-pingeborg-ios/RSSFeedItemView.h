@@ -7,20 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "XMMRSSEntry.h"
 
 @protocol RSSFeedItemViewDelegate <NSObject>
 
 @optional
 
-- (void)touchedRSSFeedItem;
+- (void)touchedRSSFeedItem:(XMMRSSEntry*)rssEntry;
 
 @end
 
 @interface RSSFeedItemView : UIView
 
+@property XMMRSSEntry* rssEntry;
+@property id<RSSFeedItemViewDelegate> delegate;
+
 @property (weak, nonatomic) IBOutlet UILabel *title;
 @property (weak, nonatomic) IBOutlet UIImageView *image;
-@property id<RSSFeedItemViewDelegate> delegate;
 
 - (IBAction)viewTouched:(id)sender;
 
