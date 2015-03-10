@@ -65,6 +65,9 @@
 		88BA02AE1AA85C430091A43C /* NSString+XMLEntities.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA02A31AA85C430091A43C /* NSString+XMLEntities.m */; };
 		88BA02AF1AA85C430091A43C /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA02A51AA85C430091A43C /* RootViewController.m */; };
 		88CBAEE11AA9EC9E000E480A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88CBAEE01AA9EC9E000E480A /* MapKit.framework */; };
+		88CE0CF61AAEDA6D0014EE77 /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CE0CF51AAEDA6D0014EE77 /* StartViewController.m */; };
+		88CE0CFB1AAEF7610014EE77 /* RSSFeedItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CE0CFA1AAEF7610014EE77 /* RSSFeedItemView.m */; };
+		88CE0CFD1AAEF7740014EE77 /* RSSFeedItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88CE0CFC1AAEF7740014EE77 /* RSSFeedItemView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -192,6 +195,11 @@
 		88BA02A41AA85C430091A43C /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		88BA02A51AA85C430091A43C /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		88CBAEE01AA9EC9E000E480A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		88CE0CF41AAEDA6D0014EE77 /* StartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartViewController.h; sourceTree = "<group>"; };
+		88CE0CF51AAEDA6D0014EE77 /* StartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartViewController.m; sourceTree = "<group>"; };
+		88CE0CF91AAEF7610014EE77 /* RSSFeedItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSSFeedItemView.h; path = ../RSSFeedItemView.h; sourceTree = "<group>"; };
+		88CE0CFA1AAEF7610014EE77 /* RSSFeedItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSSFeedItemView.m; path = ../RSSFeedItemView.m; sourceTree = "<group>"; };
+		88CE0CFC1AAEF7740014EE77 /* RSSFeedItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RSSFeedItemView.xib; sourceTree = "<group>"; };
 		C530CDEFFEDDFCABBEC918B0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -219,10 +227,15 @@
 			isa = PBXGroup;
 			children = (
 				885BFCF71AADC23F0047340C /* Main.storyboard */,
+				88CE0CF41AAEDA6D0014EE77 /* StartViewController.h */,
+				88CE0CF51AAEDA6D0014EE77 /* StartViewController.m */,
 				885BFD041AADD9FF0047340C /* ScanResultViewController.h */,
 				885BFD051AADD9FF0047340C /* ScanResultViewController.m */,
 				885BFCFC1AADD3950047340C /* MainTabBarController.h */,
 				885BFCFD1AADD3950047340C /* MainTabBarController.m */,
+				88CE0CF91AAEF7610014EE77 /* RSSFeedItemView.h */,
+				88CE0CFA1AAEF7610014EE77 /* RSSFeedItemView.m */,
+				88CE0CFC1AAEF7740014EE77 /* RSSFeedItemView.xib */,
 			);
 			name = UserInterface;
 			sourceTree = "<group>";
@@ -542,6 +555,7 @@
 			files = (
 				885BFCF81AADC23F0047340C /* Main.storyboard in Resources */,
 				88BA02031AA859F90091A43C /* LaunchScreen.xib in Resources */,
+				88CE0CFD1AAEF7740014EE77 /* RSSFeedItemView.xib in Resources */,
 				88BA02001AA859F90091A43C /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -603,6 +617,7 @@
 				88BA028B1AA85C060091A43C /* XMMResponseMenuItem.m in Sources */,
 				88BA027D1AA85C060091A43C /* XMMResponseContentBlockType2.m in Sources */,
 				88BA027E1AA85C060091A43C /* XMMResponseContentBlockType3.m in Sources */,
+				88CE0CFB1AAEF7610014EE77 /* RSSFeedItemView.m in Sources */,
 				88BA02701AA85C060091A43C /* _XMMCoreDataStyle.m in Sources */,
 				88BA027A1AA85C060091A43C /* XMMResponseContentBlock.m in Sources */,
 				88BA02871AA85C060091A43C /* XMMResponseGetByLocationIdentifier.m in Sources */,
@@ -629,6 +644,7 @@
 				88BA02761AA85C060091A43C /* XMMCoreDataGetByLocationItem.m in Sources */,
 				88BA026B1AA85C060091A43C /* _XMMCoreDataContentBlocks.m in Sources */,
 				88BA02721AA85C060091A43C /* XMMCoreDataContent.m in Sources */,
+				88CE0CF61AAEDA6D0014EE77 /* StartViewController.m in Sources */,
 				88BA02851AA85C060091A43C /* XMMResponseGetById.m in Sources */,
 				88BA02A61AA85C430091A43C /* DetailTableViewController.m in Sources */,
 				88BA02A81AA85C430091A43C /* MWFeedInfo.m in Sources */,
@@ -763,6 +779,7 @@
 				INFOPLIST_FILE = "xamoom-pingeborg-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -775,6 +792,7 @@
 				INFOPLIST_FILE = "xamoom-pingeborg-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

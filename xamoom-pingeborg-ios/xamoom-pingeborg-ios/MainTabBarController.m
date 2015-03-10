@@ -16,17 +16,15 @@
 
 @implementation MainTabBarController
 
-XMMEnduserApi *api;
 XMMResponseGetByLocationIdentifier *_result;
 BOOL isFirstTime;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    api = [[XMMEnduserApi alloc] init];
-    [api setDelegate:self];
     isFirstTime = YES;
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -39,7 +37,8 @@ BOOL isFirstTime;
 
 -(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
     if (item.tag == 2) {
-        [api startQRCodeReader:self withAPIRequest:YES withLanguage:api.systemLanguage];
+        [[XMMEnduserApi sharedInstance] setDelegate:self];
+        [[XMMEnduserApi sharedInstance] startQRCodeReader:self withAPIRequest:YES withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
     }
 }
 
@@ -60,12 +59,12 @@ BOOL isFirstTime;
 
 - (void)didLoadDataByLocationIdentifier:(XMMResponseGetByLocationIdentifier *)result {
     NSLog(@"finishedLoadDataByLocationIdentifier: %@", result);
+    
     _result = result;
     if( isFirstTime ) {
         [self performSegueWithIdentifier:@"showScanResult" sender:self];
         isFirstTime = NO;
-    }
-    
+    }    
 }
 
 #pragma mark - Navigation

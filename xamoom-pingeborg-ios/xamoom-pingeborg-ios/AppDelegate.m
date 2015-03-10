@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "XMMEnduserApi.h"
 
 @interface AppDelegate ()
 
@@ -14,9 +15,11 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    XMMEnduserApi *api;
+    api = [[XMMEnduserApi alloc] init];
+    [XMMEnduserApi sharedInstance].rssBaseUrl = @"http://pingeb.org/feed/";
     return YES;
 }
 
