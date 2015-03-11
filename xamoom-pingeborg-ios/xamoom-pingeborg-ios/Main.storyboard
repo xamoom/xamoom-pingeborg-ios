@@ -105,7 +105,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1VY-cy-w9q">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1VY-cy-w9q">
                                 <rect key="frame" x="16" y="72" width="568" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="toq-3f-j8U"/>
@@ -124,8 +124,13 @@
                             <constraint firstItem="1VY-cy-w9q" firstAttribute="top" secondItem="qH4-if-dtc" secondAttribute="bottom" constant="8" symbolic="YES" id="45I-w1-qwx"/>
                             <constraint firstAttribute="trailingMargin" secondItem="F1y-Re-Ay3" secondAttribute="trailing" constant="-16" id="7or-sR-Dsg"/>
                             <constraint firstItem="Lro-OS-QOb" firstAttribute="top" secondItem="F1y-Re-Ay3" secondAttribute="bottom" id="9d3-fi-iWP"/>
+                            <constraint firstItem="1VY-cy-w9q" firstAttribute="top" secondItem="qH4-if-dtc" secondAttribute="bottom" constant="8" id="AkF-gn-b0m"/>
                             <constraint firstItem="F1y-Re-Ay3" firstAttribute="leading" secondItem="TfH-Gh-1yT" secondAttribute="leadingMargin" constant="-16" id="FUe-Jv-glz"/>
                             <constraint firstItem="F1y-Re-Ay3" firstAttribute="top" secondItem="1VY-cy-w9q" secondAttribute="bottom" constant="8" id="GlZ-DW-fsi"/>
+                            <constraint firstItem="1VY-cy-w9q" firstAttribute="leading" secondItem="TfH-Gh-1yT" secondAttribute="leadingMargin" id="Lse-Ly-wdg"/>
+                            <constraint firstItem="1VY-cy-w9q" firstAttribute="leading" secondItem="TfH-Gh-1yT" secondAttribute="leadingMargin" id="Ocf-jq-d0l"/>
+                            <constraint firstItem="1VY-cy-w9q" firstAttribute="trailing" secondItem="TfH-Gh-1yT" secondAttribute="trailingMargin" id="cEr-Ds-Dhl"/>
+                            <constraint firstItem="1VY-cy-w9q" firstAttribute="trailing" secondItem="TfH-Gh-1yT" secondAttribute="trailingMargin" id="pRl-S8-3n6"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="pingeb.org" id="Bqi-dy-1g0">
