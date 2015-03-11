@@ -29,9 +29,8 @@
     
     [[XMMEnduserApi sharedInstance] setDelegate:self];
     
-    NSString *lat = [[NSNumber numberWithDouble:self.locationManager.location.coordinate.latitude] stringValue];
-    NSString *lon = [[NSNumber numberWithDouble:self.locationManager.location.coordinate.longitude] stringValue];
-    [[XMMEnduserApi sharedInstance] getContentFromApiWithLat:lat withLon:lon withLanguage:@"de"];
+    
+    [[XMMEnduserApi sharedInstance] getSpotMapWithSystemId:@"6588702901927936" withMapTag:@"stw" withLanguage:@"de"];
     
 }
 
@@ -49,28 +48,26 @@
     
     //View Area
     MKCoordinateRegion region = { { 0.0, 0.0 }, { 0.0, 0.0 } };
-    region.center.latitude = self.locationManager.location.coordinate.latitude;
-    region.center.longitude = self.locationManager.location.coordinate.longitude;
-    region.span.longitudeDelta = 0.005f;
-    region.span.longitudeDelta = 0.005f;
+    region.center.latitude = 46.6247222;
+    region.center.longitude = 14.3052778;
+    region.span.longitudeDelta = 0.09f;
+    region.span.longitudeDelta = 0.09f;
     [mapView setRegion:region animated:YES];
     
 }
 
-- (void)didLoadDataByLocation:(XMMResponseGetByLocation *)result {
-    NSLog(@"Hellyeah: %@", result);
-    
-    for (XMMResponseGetByLocationItem *item in result.items) {
+
+- (void)didLoadDataBySpotMap:(XMMResponseGetSpotMap *)result {
+    for (XMMResponseGetSpotMapItem *item in result.items) {
         
         // Add an annotation
         MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
         point.coordinate = CLLocationCoordinate2DMake([item.lat doubleValue], [item.lon doubleValue]);
-        point.title = item.systemName;
-        point.subtitle = item.title;
+        point.title = item.displayName;
+        point.subtitle = item.descriptionOfContent;
         [self.mapView addAnnotation:point];
     }
 }
-
 /*
 #pragma mark - Navigation
 
