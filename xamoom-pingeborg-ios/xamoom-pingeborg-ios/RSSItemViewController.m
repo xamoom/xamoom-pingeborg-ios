@@ -16,6 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.labelForTitle.text = self.rssEntry.title;
     [self.webViewForContent loadHTMLString:self.rssEntry.content baseURL:nil];
 }

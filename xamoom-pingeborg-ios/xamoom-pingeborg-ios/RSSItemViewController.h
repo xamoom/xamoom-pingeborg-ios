@@ -12,9 +12,7 @@
 @interface RSSItemViewController : UIViewController
 
 @property XMMRSSEntry* rssEntry;
-
 @property (weak, nonatomic) IBOutlet UILabel *labelForTitle;
 @property (weak, nonatomic) IBOutlet UIWebView *webViewForContent;
-
 
 @end

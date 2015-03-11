@@ -23,7 +23,9 @@ XMMRSSEntry *_rssEntry;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[XMMEnduserApi sharedInstance]setDelegate:self];
+    self.parentViewController.navigationItem.title = @"Home";
+
+    [[XMMEnduserApi sharedInstance] setDelegate:self];
     [[XMMEnduserApi sharedInstance] getContentFromRSSFeed];
     
     //set view height to 1000
@@ -47,17 +49,27 @@ XMMRSSEntry *_rssEntry;
         NSArray *subviewArray = [[NSBundle mainBundle] loadNibNamed:@"RSSFeedItemView" owner:self options:nil];
         RSSFeedItemView *mainView = [subviewArray objectAtIndex:0];
         
-        mainView.rssEntry = entry;
-        mainView.title.text = entry.title;
-        mainView.image.image = [UIImage imageWithData: [NSData dataWithContentsOfURL: [NSURL URLWithString: entry.titleImageUrl ]]];
-        mainView.frame = CGRectMake(0, y, mainView.frame.size.width, mainView.frame.size.height);
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString: entry.titleImageUrl ]];
+        [NSURLConnection sendAsynchronousRequest:request
+                                           queue:[NSOperationQueue mainQueue]
+                               completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                                   NSLog(@"Data: %@", [UIImage imageWithData:data]);
+                                   
+                                   mainView.rssEntry = entry;
+                                   mainView.title.text = entry.title;
+                                   mainView.image.image = [UIImage imageWithData:data];
+                                   mainView.frame = CGRectMake(0, y, mainView.frame.size.width, mainView.frame.size.height);
+                                   
+                                   [mainView setDelegate:self];
+                                   
+                                   [self.scrollView addSubview:mainView];
+                                   
+                                   y += 210;
+                                   //scrollViewHeight += y;
+                               }];
         
-        [mainView setDelegate:self];
+        //mainView.image.image = [UIImage imageWithData: [NSData dataWithContentsOfURL: [NSURL URLWithString: entry.titleImageUrl ]]];
         
-        [self.scrollView addSubview:mainView];
-        
-        y += 210;
-        scrollViewHeight += y;
     }
     
 }

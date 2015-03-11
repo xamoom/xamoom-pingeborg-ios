@@ -19,7 +19,10 @@
     // Override point for customization after application launch.
     XMMEnduserApi *api;
     api = [[XMMEnduserApi alloc] init];
-    [XMMEnduserApi sharedInstance].rssBaseUrl = @"http://pingeb.org/feed/";
+    [XMMEnduserApi sharedInstance].rssBaseUrl = @"http://pingeb.org/category/artists/feed/";
+    
+    [[UITabBar appearance] setTintColor:[UIColor blackColor]];
+    
     return YES;
 }
 

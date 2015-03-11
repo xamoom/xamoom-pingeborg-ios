@@ -14,18 +14,54 @@
 
 @implementation ScanResultViewController
 
+int y;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.testLabel.text = self.result.content.title;
+    self.parentViewController.navigationItem.title = self.result.systemName;
     
-    UIImage* myImage = [UIImage imageWithData: [NSData dataWithContentsOfURL: [NSURL URLWithString: self.result.content.imagePublicUrl]]];
+    //set view height to 1000
+    CGRect frame = self.view.frame;
+    frame.size.height = 1000;
+    [self.view setFrame:frame];
+    //set scrollViewHeight to 2000
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, 2000.0);
+    y = 45;
     
-    [self.testImage setImage:myImage];
+    //self.testLabel.text = self.result.content.title;
+    
+    //UIImage* myImage = [UIImage imageWithData: [NSData dataWithContentsOfURL: [NSURL URLWithString: self.result.content.imagePublicUrl]]];
+    //[self.testImage setImage:myImage];
+    
+    [self addContentBlocks];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)addContentBlocks {
+    
+    NSArray *contentBlocks = self.result.content.contentBlocks;
+    
+    for (XMMResponseContentBlock* block in contentBlocks) {
+        switch ([block.contentBlockType integerValue]) {
+            case 0:
+                [self showContentBlockText:(XMMResponseContentBlockType0*)block];
+                break;
+                
+            default:
+                break;
+        }
+    }
+}
+
+- (void)showContentBlockText:(XMMResponseContentBlockType0*)block {
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(5,y,self.view.frame.size.width,45)];
+    label.text= [block.text stringByDecodingHTMLEntities];
+    [self.scrollView addSubview:label];
+    y += 45;
 }
 
 /*

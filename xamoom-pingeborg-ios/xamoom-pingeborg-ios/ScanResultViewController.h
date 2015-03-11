@@ -13,7 +13,6 @@
 
 @property (nonatomic, strong) XMMResponseGetByLocationIdentifier *result;
 
-@property (weak, nonatomic) IBOutlet UILabel *testLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *testImage;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @end

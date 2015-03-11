@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		594E123E6C9FD768422C1CEE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C530CDEFFEDDFCABBEC918B0 /* libPods.a */; };
+		8835747E1AB06C950099DF4A /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835747D1AB06C950099DF4A /* MapViewController.m */; };
 		885BFCF81AADC23F0047340C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 885BFCF71AADC23F0047340C /* Main.storyboard */; };
 		885BFCFE1AADD3950047340C /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 885BFCFD1AADD3950047340C /* MainTabBarController.m */; };
 		885BFD071AADD9FF0047340C /* ScanResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 885BFD051AADD9FF0047340C /* ScanResultViewController.m */; };
@@ -84,6 +85,8 @@
 /* Begin PBXFileReference section */
 		081CE084B2E648F4E71D7D2A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		48251170F65DFEEAACD48338 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		8835747C1AB06C950099DF4A /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		8835747D1AB06C950099DF4A /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		885BFCF71AADC23F0047340C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		885BFCFC1AADD3950047340C /* MainTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabBarController.h; sourceTree = "<group>"; };
 		885BFCFD1AADD3950047340C /* MainTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabBarController.m; sourceTree = "<group>"; };
@@ -301,8 +304,8 @@
 		88BA02181AA85BF30091A43C /* xamoom-ios-sdk */ = {
 			isa = PBXGroup;
 			children = (
-				88BA02191AA85C060091A43C /* coredata */,
 				88BA028F1AA85C430091A43C /* lib */,
+				88BA02191AA85C060091A43C /* coredata */,
 				88BA023B1AA85C060091A43C /* mapping */,
 				88BA02641AA85C060091A43C /* RSS */,
 				88BA02671AA85C060091A43C /* XMMEnduserApi.h */,
@@ -464,6 +467,8 @@
 				885BFD051AADD9FF0047340C /* ScanResultViewController.m */,
 				88CE0D0B1AAF40B30014EE77 /* RSSItemViewController.h */,
 				88CE0D0C1AAF40B30014EE77 /* RSSItemViewController.m */,
+				8835747C1AB06C950099DF4A /* MapViewController.h */,
+				8835747D1AB06C950099DF4A /* MapViewController.m */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -655,6 +660,7 @@
 				88BA02AA1AA85C430091A43C /* MWFeedParser.m in Sources */,
 				88BA026A1AA85C060091A43C /* _XMMCoreDataContent.m in Sources */,
 				88BA02841AA85C060091A43C /* XMMResponseContentBlockType9.m in Sources */,
+				8835747E1AB06C950099DF4A /* MapViewController.m in Sources */,
 				885BFCFE1AADD3950047340C /* MainTabBarController.m in Sources */,
 				88BA027C1AA85C060091A43C /* XMMResponseContentBlockType1.m in Sources */,
 				88BA01F51AA859F90091A43C /* main.m in Sources */,
