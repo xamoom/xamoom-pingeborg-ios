@@ -18,7 +18,7 @@ int y;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.parentViewController.navigationItem.title = self.result.systemName;
+    self.navigationController.navigationItem.backBarButtonItem.title = @"Back";
     
     //set view height to 1000
     CGRect frame = self.view.frame;
@@ -64,6 +64,10 @@ int y;
     y += 45;
 }
 
+
+- (void)viewDidAppear:(BOOL)animated {
+    self.parentViewController.navigationItem.title = self.result.systemName;
+}
 /*
  #pragma mark - Navigation
  

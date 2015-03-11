@@ -79,6 +79,9 @@ XMMRSSEntry *_rssEntry;
     [self performSegueWithIdentifier:@"showRSSItem" sender:self];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    self.parentViewController.navigationItem.title = @"Home";
+}
 
 #pragma mark - Navigation
 

@@ -67,9 +67,7 @@
                             <constraint firstItem="psw-LP-VNn" firstAttribute="top" secondItem="Amh-QJ-HKK" secondAttribute="bottom" id="hpb-ie-dQX"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="pingeb.org" id="M96-y9-eDA">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="POC-FR-6tt"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="pingeb.org" id="M96-y9-eDA"/>
                     <connections>
                         <outlet property="scrollView" destination="psw-LP-VNn" id="yKj-8F-zzj"/>
                     </connections>

@@ -18,7 +18,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.parentViewController.navigationItem.title = @"Map";
     
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
@@ -41,6 +40,7 @@
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:YES];
+    self.parentViewController.navigationItem.title = @"Map";
     
     self.locationManager.distanceFilter = kCLDistanceFilterNone;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
