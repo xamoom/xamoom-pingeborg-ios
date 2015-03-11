@@ -105,7 +105,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1VY-cy-w9q">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1VY-cy-w9q">
                                 <rect key="frame" x="16" y="72" width="568" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="toq-3f-j8U"/>
@@ -114,19 +114,18 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hrc-Wg-Ynb">
-                                <rect key="frame" x="16" y="125" width="568" height="254"/>
-                            </imageView>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F1y-Re-Ay3">
+                                <rect key="frame" x="0.0" y="125" width="600" height="426"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="1VY-cy-w9q" firstAttribute="top" secondItem="qH4-if-dtc" secondAttribute="bottom" constant="8" symbolic="YES" id="45I-w1-qwx"/>
-                            <constraint firstItem="hrc-Wg-Ynb" firstAttribute="trailing" secondItem="TfH-Gh-1yT" secondAttribute="trailingMargin" id="98y-GE-TfU"/>
-                            <constraint firstItem="hrc-Wg-Ynb" firstAttribute="top" secondItem="1VY-cy-w9q" secondAttribute="bottom" constant="8" symbolic="YES" id="H4b-7W-ZRr"/>
-                            <constraint firstItem="1VY-cy-w9q" firstAttribute="trailing" secondItem="hrc-Wg-Ynb" secondAttribute="trailing" id="YVi-Rf-tUr"/>
-                            <constraint firstItem="hrc-Wg-Ynb" firstAttribute="leading" secondItem="TfH-Gh-1yT" secondAttribute="leadingMargin" id="gPN-BA-hH1"/>
-                            <constraint firstItem="Lro-OS-QOb" firstAttribute="top" secondItem="hrc-Wg-Ynb" secondAttribute="bottom" constant="172" id="j8r-c4-jcj"/>
-                            <constraint firstItem="hrc-Wg-Ynb" firstAttribute="leading" secondItem="1VY-cy-w9q" secondAttribute="leading" id="uwq-Bp-tiK"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="F1y-Re-Ay3" secondAttribute="trailing" constant="-16" id="7or-sR-Dsg"/>
+                            <constraint firstItem="Lro-OS-QOb" firstAttribute="top" secondItem="F1y-Re-Ay3" secondAttribute="bottom" id="9d3-fi-iWP"/>
+                            <constraint firstItem="F1y-Re-Ay3" firstAttribute="leading" secondItem="TfH-Gh-1yT" secondAttribute="leadingMargin" constant="-16" id="FUe-Jv-glz"/>
+                            <constraint firstItem="F1y-Re-Ay3" firstAttribute="top" secondItem="1VY-cy-w9q" secondAttribute="bottom" constant="8" id="GlZ-DW-fsi"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="pingeb.org" id="Bqi-dy-1g0">
@@ -134,6 +133,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="labelForTitle" destination="1VY-cy-w9q" id="rHr-uZ-TvY"/>
+                        <outlet property="webViewForContent" destination="F1y-Re-Ay3" id="KeB-Mh-3WL"/>
                     </connections>
                 </viewController>
             </objects>

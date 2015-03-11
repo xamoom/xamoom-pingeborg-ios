@@ -230,17 +230,10 @@
 			isa = PBXGroup;
 			children = (
 				885BFCF71AADC23F0047340C /* Main.storyboard */,
-				88CE0CF41AAEDA6D0014EE77 /* StartViewController.h */,
-				88CE0CF51AAEDA6D0014EE77 /* StartViewController.m */,
-				885BFD041AADD9FF0047340C /* ScanResultViewController.h */,
-				885BFD051AADD9FF0047340C /* ScanResultViewController.m */,
+				88CE0D0E1AB035470014EE77 /* Custom Views */,
+				88CE0D0F1AB0356C0014EE77 /* View Controller */,
 				885BFCFC1AADD3950047340C /* MainTabBarController.h */,
 				885BFCFD1AADD3950047340C /* MainTabBarController.m */,
-				88CE0CF91AAEF7610014EE77 /* RSSFeedItemView.h */,
-				88CE0CFA1AAEF7610014EE77 /* RSSFeedItemView.m */,
-				88CE0CFC1AAEF7740014EE77 /* RSSFeedItemView.xib */,
-				88CE0D0B1AAF40B30014EE77 /* RSSItemViewController.h */,
-				88CE0D0C1AAF40B30014EE77 /* RSSItemViewController.m */,
 			);
 			name = UserInterface;
 			sourceTree = "<group>";
@@ -450,6 +443,29 @@
 				88BA02A51AA85C430091A43C /* RootViewController.m */,
 			);
 			path = MWFeedParser;
+			sourceTree = "<group>";
+		};
+		88CE0D0E1AB035470014EE77 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				88CE0CF91AAEF7610014EE77 /* RSSFeedItemView.h */,
+				88CE0CFA1AAEF7610014EE77 /* RSSFeedItemView.m */,
+				88CE0CFC1AAEF7740014EE77 /* RSSFeedItemView.xib */,
+			);
+			name = "Custom Views";
+			sourceTree = "<group>";
+		};
+		88CE0D0F1AB0356C0014EE77 /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				88CE0CF41AAEDA6D0014EE77 /* StartViewController.h */,
+				88CE0CF51AAEDA6D0014EE77 /* StartViewController.m */,
+				885BFD041AADD9FF0047340C /* ScanResultViewController.h */,
+				885BFD051AADD9FF0047340C /* ScanResultViewController.m */,
+				88CE0D0B1AAF40B30014EE77 /* RSSItemViewController.h */,
+				88CE0D0C1AAF40B30014EE77 /* RSSItemViewController.m */,
+			);
+			name = "View Controller";
 			sourceTree = "<group>";
 		};
 		B091DC0989CBE4B0B40B108B /* Frameworks */ = {
