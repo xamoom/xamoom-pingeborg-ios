@@ -12,4 +12,7 @@
 
 @interface StartViewController : UIViewController <RSSFeedItemViewDelegate, XMMEnderuserApiDelegate>
 
+@property (strong, nonatomic) IBOutlet UIView *view;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+
 @end

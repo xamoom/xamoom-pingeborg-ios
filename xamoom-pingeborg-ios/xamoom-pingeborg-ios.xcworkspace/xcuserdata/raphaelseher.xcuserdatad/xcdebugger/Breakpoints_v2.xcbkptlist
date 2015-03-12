@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "xamoom-pingeborg-ios/ScanResultViewController.m"
-            timestampString = "447781510.587009"
+            timestampString = "447841015.099811"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
             landmarkName = "-addContentBlocks"
             landmarkType = "5">
          </BreakpointContent>

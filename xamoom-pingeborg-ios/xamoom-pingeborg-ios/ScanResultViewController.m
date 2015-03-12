@@ -18,7 +18,6 @@ int y;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationController.navigationItem.backBarButtonItem.title = @"Back";
     
     //set view height to 1000
     CGRect frame = self.view.frame;

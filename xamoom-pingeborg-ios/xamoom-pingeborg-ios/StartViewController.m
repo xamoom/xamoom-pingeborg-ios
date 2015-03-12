@@ -9,10 +9,10 @@
 #import "StartViewController.h"
 #import "RSSItemViewController.h"
 
-@interface StartViewController () 
+static int const rssFeedMargin = 10;
 
-@property (strong, nonatomic) IBOutlet UIView *view;
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+
+@interface StartViewController () 
 
 @end
 
@@ -20,58 +20,77 @@
 
 int y;
 XMMRSSEntry *_rssEntry;
+NSMutableArray *itemsToDisplay;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.parentViewController.navigationItem.title = @"Home";
-
+    
     [[XMMEnduserApi sharedInstance] setDelegate:self];
     [[XMMEnduserApi sharedInstance] getContentFromRSSFeed];
     
-    //set view height to 1000
-    CGRect frame = self.view.frame;
-    frame.size.height = 1000;
-    [self.view setFrame:frame];
-    //set scrollViewHeight to 2000
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, 2000.0);
+    itemsToDisplay = [[NSMutableArray alloc]init];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)didLoadRSS:(NSMutableArray *)result {
-    float scrollViewHeight = 0;
-    
     for (XMMRSSEntry* entry in result) {
         //create RSSFeedItemView from .xib
         NSArray *subviewArray = [[NSBundle mainBundle] loadNibNamed:@"RSSFeedItemView" owner:self options:nil];
         RSSFeedItemView *mainView = [subviewArray objectAtIndex:0];
         
+        
         NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString: entry.titleImageUrl ]];
         [NSURLConnection sendAsynchronousRequest:request
                                            queue:[NSOperationQueue mainQueue]
                                completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                                   NSLog(@"Data: %@", [UIImage imageWithData:data]);
                                    
+                                   //init mainView
                                    mainView.rssEntry = entry;
                                    mainView.title.text = entry.title;
                                    mainView.image.image = [UIImage imageWithData:data];
-                                   mainView.frame = CGRectMake(0, y, mainView.frame.size.width, mainView.frame.size.height);
-                                   
                                    [mainView setDelegate:self];
+
+                                   [itemsToDisplay addObject:mainView];
                                    
-                                   [self.scrollView addSubview:mainView];
                                    
-                                   y += 210;
-                                   //scrollViewHeight += y;
+                                   NSArray *sortedArray;
+                                   sortedArray = [itemsToDisplay sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+                                       NSDate *first = [[(RSSFeedItemView*)a rssEntry] pubDate];
+                                       NSDate *second = [[(RSSFeedItemView*)b rssEntry] pubDate];
+                                       return [second compare:first];
+                                   }];
+                                   
+                                   for (UIView *subView in self.scrollView.subviews) {
+                                       [subView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:YES];
+                                   }
+                                   
+                                   y = 0;
+                                   for (RSSFeedItemView *item in sortedArray) {
+                                       item.frame = CGRectMake(0, y, self.view.frame.size.width, (self.view.frame.size.width * 0.3799));
+                                       y += item.frame.size.height + rssFeedMargin;
+                                       
+                                       //add shadow to view
+                                       CALayer *layer = item.layer;
+                                       layer.shadowOffset = CGSizeMake(0, 1);
+                                       layer.shadowColor = [[UIColor blackColor] CGColor];
+                                       layer.shadowRadius = 2.5f;
+                                       layer.shadowOpacity = 0.80f;
+                                       layer.shadowPath = [[UIBezierPath bezierPathWithRect:layer.bounds] CGPath];
+                                       
+                                       [self.scrollView addSubview:item];
+                                   }
+                                   
+                                   CGSize scrollViewSize = self.scrollView.contentSize;
+                                   scrollViewSize.height = y + self.tabBarController.tabBar.frame.size.height -10;
+                                   self.scrollView.contentSize = scrollViewSize;
                                }];
         
-        //mainView.image.image = [UIImage imageWithData: [NSData dataWithContentsOfURL: [NSURL URLWithString: entry.titleImageUrl ]]];
-        
     }
-    
 }
 
 - (void)touchedRSSFeedItem:(XMMRSSEntry *)rssEntry {

@@ -13,10 +13,10 @@
 @synthesize delegate;
 
 - (instancetype)init {
-    self.frame = CGRectMake(0, 0, self.frame.size.width, 200.0f);
     
     return self;
 }
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

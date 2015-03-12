@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		594E123E6C9FD768422C1CEE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C530CDEFFEDDFCABBEC918B0 /* libPods.a */; };
 		8835747E1AB06C950099DF4A /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835747D1AB06C950099DF4A /* MapViewController.m */; };
+		883574801AB1CCF40099DF4A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8835747F1AB1CCF40099DF4A /* QuartzCore.framework */; };
 		885BFCF81AADC23F0047340C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 885BFCF71AADC23F0047340C /* Main.storyboard */; };
 		885BFCFE1AADD3950047340C /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 885BFCFD1AADD3950047340C /* MainTabBarController.m */; };
 		885BFD071AADD9FF0047340C /* ScanResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 885BFD051AADD9FF0047340C /* ScanResultViewController.m */; };
@@ -87,6 +88,7 @@
 		48251170F65DFEEAACD48338 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		8835747C1AB06C950099DF4A /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		8835747D1AB06C950099DF4A /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		8835747F1AB1CCF40099DF4A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		885BFCF71AADC23F0047340C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		885BFCFC1AADD3950047340C /* MainTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabBarController.h; sourceTree = "<group>"; };
 		885BFCFD1AADD3950047340C /* MainTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabBarController.m; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				883574801AB1CCF40099DF4A /* QuartzCore.framework in Frameworks */,
 				88CBAEE11AA9EC9E000E480A /* MapKit.framework in Frameworks */,
 				594E123E6C9FD768422C1CEE /* libPods.a in Frameworks */,
 			);
@@ -451,9 +454,9 @@
 		88CE0D0E1AB035470014EE77 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				88CE0CFC1AAEF7740014EE77 /* RSSFeedItemView.xib */,
 				88CE0CF91AAEF7610014EE77 /* RSSFeedItemView.h */,
 				88CE0CFA1AAEF7610014EE77 /* RSSFeedItemView.m */,
-				88CE0CFC1AAEF7740014EE77 /* RSSFeedItemView.xib */,
 			);
 			name = "Custom Views";
 			sourceTree = "<group>";
@@ -476,6 +479,7 @@
 		B091DC0989CBE4B0B40B108B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8835747F1AB1CCF40099DF4A /* QuartzCore.framework */,
 				88CBAEE01AA9EC9E000E480A /* MapKit.framework */,
 				C530CDEFFEDDFCABBEC918B0 /* libPods.a */,
 			);

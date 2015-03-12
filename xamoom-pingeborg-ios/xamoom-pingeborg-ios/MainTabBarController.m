@@ -23,8 +23,11 @@ BOOL isFirstTime;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     isFirstTime = YES;
+    
+    for (UITabBarItem *item in self.tabBar.items) {
+        [item setImageInsets:UIEdgeInsetsMake(4,0,-4,0)];
+    }
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -42,6 +45,16 @@ BOOL isFirstTime;
     }
 }
 
+- (void)viewWillLayoutSubviews
+{
+    /*
+    CGRect tabFrame = self.tabBar.frame; //self.TabBar is IBOutlet of your TabBar
+    tabFrame.size.height = 40;
+    tabFrame.origin.y = self.view.frame.size.height - 40;
+    self.tabBar.frame = tabFrame;
+     */
+}
+
 #pragma mark - QRCodeReader Delegate Methods
 
 - (void)reader:(QRCodeReaderViewController *)reader didScanResult:(NSString *)result
@@ -54,7 +67,7 @@ BOOL isFirstTime;
 - (void)readerDidCancel:(QRCodeReaderViewController *)reader
 {
     NSLog(@"readerDidCancel");
-    [self dismissViewControllerAnimated:YES completion:NULL];
+    [self dismissViewControllerAnimated:YES completion:NULL];   
 }
 
 - (void)didLoadDataByLocationIdentifier:(XMMResponseGetByLocationIdentifier *)result {
