@@ -8,22 +8,45 @@
 
 #import "RSSItemViewController.h"
 
-@interface RSSItemViewController ()
+@interface RSSItemViewController () <UIWebViewDelegate>
 
 @end
 
 @implementation RSSItemViewController
 
+NSString *cssString;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    NSString *cssPath = [[NSBundle mainBundle] pathForResource:@"styles" ofType:@"css"];
+    NSData *loadedData = [NSData dataWithContentsOfFile:cssPath];
+    if (loadedData) {
+        cssString = [[NSString alloc] initWithData:loadedData encoding:NSUTF8StringEncoding];
+    }
+    
+    [self.webViewForContent setDelegate:self];
     self.labelForTitle.text = self.rssEntry.title;
+    
+    self.rssEntry.content = [NSString stringWithFormat:@"%@ <br /> %@", cssString, self.rssEntry.content];
     [self.webViewForContent loadHTMLString:self.rssEntry.content baseURL:nil];
+    
+    //add shadow to view
+    CALayer *layer = self.labelForTitle.layer;
+    layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
+    layer.shadowColor = [[UIColor blackColor] CGColor];
+    layer.shadowRadius = 4.0f;
+    layer.shadowOpacity = 0.20f;
+    layer.shadowPath = [[UIBezierPath bezierPathWithRect:layer.bounds] CGPath];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)webViewDidFinishLoad:(UIWebView *)webView {
+    NSLog(@"%@", self.rssEntry.content);
 }
 
 /*

@@ -88,8 +88,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aA3-Qj-h1s">
-                                <rect key="frame" x="16" y="72" width="568" height="45"/>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F1y-Re-Ay3">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aA3-Qj-h1s">
+                                <rect key="frame" x="0.0" y="64" width="600" height="53"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="7Td-JJ-aiF"/>
                                 </constraints>
@@ -97,20 +102,16 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F1y-Re-Ay3">
-                                <rect key="frame" x="0.0" y="125" width="600" height="426"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="aA3-Qj-h1s" firstAttribute="trailing" secondItem="TfH-Gh-1yT" secondAttribute="trailingMargin" id="1Rx-9l-nDI"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="F1y-Re-Ay3" secondAttribute="trailing" constant="-16" id="7or-sR-Dsg"/>
-                            <constraint firstItem="Lro-OS-QOb" firstAttribute="top" secondItem="F1y-Re-Ay3" secondAttribute="bottom" id="9d3-fi-iWP"/>
-                            <constraint firstItem="F1y-Re-Ay3" firstAttribute="leading" secondItem="TfH-Gh-1yT" secondAttribute="leadingMargin" constant="-16" id="FUe-Jv-glz"/>
-                            <constraint firstItem="aA3-Qj-h1s" firstAttribute="top" secondItem="qH4-if-dtc" secondAttribute="bottom" constant="8" id="QQA-Qc-AKB"/>
-                            <constraint firstItem="aA3-Qj-h1s" firstAttribute="leading" secondItem="TfH-Gh-1yT" secondAttribute="leadingMargin" id="dX7-mW-6BI"/>
-                            <constraint firstItem="F1y-Re-Ay3" firstAttribute="top" secondItem="aA3-Qj-h1s" secondAttribute="bottom" constant="8" id="jC2-h9-Z03"/>
+                            <constraint firstItem="F1y-Re-Ay3" firstAttribute="top" secondItem="TfH-Gh-1yT" secondAttribute="topMargin" id="4Kb-X7-kvl"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="F1y-Re-Ay3" secondAttribute="trailing" constant="-16" id="F8r-Yz-TTl"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="aA3-Qj-h1s" secondAttribute="trailing" constant="-16" id="Vgf-Gj-bhB"/>
+                            <constraint firstItem="Lro-OS-QOb" firstAttribute="top" secondItem="F1y-Re-Ay3" secondAttribute="bottom" id="Z2a-PQ-1Ne"/>
+                            <constraint firstItem="F1y-Re-Ay3" firstAttribute="leading" secondItem="TfH-Gh-1yT" secondAttribute="leadingMargin" constant="-16" id="bA2-uC-94T"/>
+                            <constraint firstItem="aA3-Qj-h1s" firstAttribute="top" secondItem="qH4-if-dtc" secondAttribute="bottom" id="bf3-KO-xeF"/>
+                            <constraint firstItem="aA3-Qj-h1s" firstAttribute="leading" secondItem="TfH-Gh-1yT" secondAttribute="leadingMargin" constant="-16" id="l9W-a3-9Nq"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="pingeb.org" id="Bqi-dy-1g0">
