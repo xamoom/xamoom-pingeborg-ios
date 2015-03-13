@@ -19,15 +19,22 @@ NSString *cssString;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //hide scrollbars
+    self.webViewForContent.scrollView.showsHorizontalScrollIndicator = NO;
+    self.webViewForContent.scrollView.showsVerticalScrollIndicator = NO;
+    
+    //load css from bundle file
     NSString *cssPath = [[NSBundle mainBundle] pathForResource:@"styles" ofType:@"css"];
     NSData *loadedData = [NSData dataWithContentsOfFile:cssPath];
     if (loadedData) {
         cssString = [[NSString alloc] initWithData:loadedData encoding:NSUTF8StringEncoding];
     }
     
+    //set delegate and labelForTitle
     [self.webViewForContent setDelegate:self];
     self.labelForTitle.text = self.rssEntry.title;
     
+    //add css to content and display content
     self.rssEntry.content = [NSString stringWithFormat:@"%@ <br /> %@", cssString, self.rssEntry.content];
     [self.webViewForContent loadHTMLString:self.rssEntry.content baseURL:nil];
     
@@ -43,10 +50,6 @@ NSString *cssString;
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
--(void)webViewDidFinishLoad:(UIWebView *)webView {
-    NSLog(@"%@", self.rssEntry.content);
 }
 
 /*

@@ -54,9 +54,18 @@ NSMutableArray *itemsToDisplay;
                                    mainView.title.text = entry.title;
                                    mainView.image.image = [UIImage imageWithData:data];
                                    [mainView setDelegate:self];
+                                   
+                                   //styling the label
+                                   NSMutableParagraphStyle *style =  [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+                                   style.alignment = NSTextAlignmentJustified;
+                                   style.firstLineHeadIndent = 10.0f;
+                                   style.headIndent = 10.0f;
+                                   style.tailIndent = -10.0f;
+                                   style.lineBreakMode = NSLineBreakByTruncatingTail;
+                                   NSAttributedString *attrText = [[NSAttributedString alloc] initWithString:entry.title attributes:@{ NSParagraphStyleAttributeName : style}];
+                                   mainView.title.attributedText = attrText;
 
                                    [itemsToDisplay addObject:mainView];
-                                   
                                    
                                    NSArray *sortedArray;
                                    sortedArray = [itemsToDisplay sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
