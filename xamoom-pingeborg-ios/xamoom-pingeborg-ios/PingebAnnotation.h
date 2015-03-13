@@ -13,7 +13,7 @@
     CLLocationCoordinate2D coordinate;
 }
 
-@property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
+@property (nonatomic, copy) NSString *title;
 
 - (id)initWithLocation:(CLLocationCoordinate2D)coord;
 

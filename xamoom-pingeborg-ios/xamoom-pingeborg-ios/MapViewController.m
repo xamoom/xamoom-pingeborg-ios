@@ -58,29 +58,43 @@
 }
 
 - (void)didLoadDataBySpotMap:(XMMResponseGetSpotMap *)result {
+    
     for (XMMResponseGetSpotMapItem *item in result.items) {
-        
-        
         // Add an annotation
-        MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
-        point.coordinate = CLLocationCoordinate2DMake([item.lat doubleValue], [item.lon doubleValue]);
+        PingebAnnotation *point = [[PingebAnnotation alloc] initWithLocation: CLLocationCoordinate2DMake([item.lat doubleValue], [item.lon doubleValue])];
         point.title = item.displayName;
-        point.subtitle = item.descriptionOfContent;
-        
+        //point.subtitle = item.descriptionOfContent;
         [self.mapView addAnnotation:point];
     }
 }
 
-- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id < MKAnnotation >)annotation {
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
     
+    //do not touch userLocation
     if ([annotation isKindOfClass:[MKUserLocation class]])
         return nil;
     
+    //change mapMarker
     MKAnnotationView* aView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"PingebAnnotation"];
     aView.image = [UIImage imageNamed:@"Map"];
+    aView.canShowCallout = YES;
+    
+    
+    // Image and two labels
+    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
+    imageView.backgroundColor = [UIColor greenColor];
+    imageView.image = [UIImage imageNamed:@"Map"];
+    
+    //aView.leftCalloutAccessoryView = imageView;
+    aView.annotation = annotation;
+    
+    //aView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
     return aView;
 }
 
+
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
+}
 
 /*
 #pragma mark - Navigation
