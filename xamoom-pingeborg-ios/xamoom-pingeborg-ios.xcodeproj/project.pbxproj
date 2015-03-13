@@ -67,6 +67,7 @@
 		88BA02AD1AA85C430091A43C /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA02A11AA85C430091A43C /* NSString+HTML.m */; };
 		88BA02AE1AA85C430091A43C /* NSString+XMLEntities.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA02A31AA85C430091A43C /* NSString+XMLEntities.m */; };
 		88BA02AF1AA85C430091A43C /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA02A51AA85C430091A43C /* RootViewController.m */; };
+		88C858E81AB2E6E5008D3EA0 /* PingebAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C858E71AB2E6E5008D3EA0 /* PingebAnnotation.m */; };
 		88CBAEE11AA9EC9E000E480A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88CBAEE01AA9EC9E000E480A /* MapKit.framework */; };
 		88CE0CF61AAEDA6D0014EE77 /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CE0CF51AAEDA6D0014EE77 /* StartViewController.m */; };
 		88CE0CFB1AAEF7610014EE77 /* RSSFeedItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CE0CFA1AAEF7610014EE77 /* RSSFeedItemView.m */; };
@@ -202,6 +203,8 @@
 		88BA02A31AA85C430091A43C /* NSString+XMLEntities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+XMLEntities.m"; sourceTree = "<group>"; };
 		88BA02A41AA85C430091A43C /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		88BA02A51AA85C430091A43C /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		88C858E61AB2E6E5008D3EA0 /* PingebAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingebAnnotation.h; sourceTree = "<group>"; };
+		88C858E71AB2E6E5008D3EA0 /* PingebAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PingebAnnotation.m; sourceTree = "<group>"; };
 		88CBAEE01AA9EC9E000E480A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		88CE0CF41AAEDA6D0014EE77 /* StartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartViewController.h; sourceTree = "<group>"; };
 		88CE0CF51AAEDA6D0014EE77 /* StartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartViewController.m; sourceTree = "<group>"; };
@@ -483,6 +486,8 @@
 				88CE0D0C1AAF40B30014EE77 /* RSSItemViewController.m */,
 				8835747C1AB06C950099DF4A /* MapViewController.h */,
 				8835747D1AB06C950099DF4A /* MapViewController.m */,
+				88C858E61AB2E6E5008D3EA0 /* PingebAnnotation.h */,
+				88C858E71AB2E6E5008D3EA0 /* PingebAnnotation.m */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -696,6 +701,7 @@
 				88BA02771AA85C060091A43C /* XMMCoreDataMenuItem.m in Sources */,
 				88BA02861AA85C060091A43C /* XMMResponseGetByLocation.m in Sources */,
 				88BA02751AA85C060091A43C /* XMMCoreDataGetByLocation.m in Sources */,
+				88C858E81AB2E6E5008D3EA0 /* PingebAnnotation.m in Sources */,
 				88BA02731AA85C060091A43C /* XMMCoreDataContentBlocks.m in Sources */,
 				88BA028D1AA85C060091A43C /* XMMRSSEntry.m in Sources */,
 				88CE0D0D1AAF40B30014EE77 /* RSSItemViewController.m in Sources */,

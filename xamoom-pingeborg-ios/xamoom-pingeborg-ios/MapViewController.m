@@ -7,8 +7,10 @@
 //
 
 #import "MapViewController.h"
+#import <MapKit/MKAnnotation.h>
+#import "PingebAnnotation.h"
 
-@interface MapViewController () <CLLocationManagerDelegate, XMMEnderuserApiDelegate>
+@interface MapViewController ()
 
 @end
 
@@ -26,11 +28,10 @@
         [self.locationManager requestWhenInUseAuthorization];
     }
     
+    self.mapView.delegate = self;
+    
     [[XMMEnduserApi sharedInstance] setDelegate:self];
-    
-    
     [[XMMEnduserApi sharedInstance] getSpotMapWithSystemId:@"6588702901927936" withMapTag:@"stw" withLanguage:@"de"];
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,18 +57,31 @@
     
 }
 
-
 - (void)didLoadDataBySpotMap:(XMMResponseGetSpotMap *)result {
     for (XMMResponseGetSpotMapItem *item in result.items) {
+        
         
         // Add an annotation
         MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
         point.coordinate = CLLocationCoordinate2DMake([item.lat doubleValue], [item.lon doubleValue]);
         point.title = item.displayName;
         point.subtitle = item.descriptionOfContent;
+        
         [self.mapView addAnnotation:point];
     }
 }
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id < MKAnnotation >)annotation {
+    
+    if ([annotation isKindOfClass:[MKUserLocation class]])
+        return nil;
+    
+    MKAnnotationView* aView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"PingebAnnotation"];
+    aView.image = [UIImage imageNamed:@"Map"];
+    return aView;
+}
+
+
 /*
 #pragma mark - Navigation
 

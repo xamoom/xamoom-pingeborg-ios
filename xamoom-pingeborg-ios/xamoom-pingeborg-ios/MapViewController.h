@@ -11,7 +11,7 @@
 #import <MapKit/MKAnnotation.h>
 #import "XMMEnduserApi.h"
 
-@interface MapViewController : UIViewController
+@interface MapViewController : UIViewController <CLLocationManagerDelegate, XMMEnderuserApiDelegate, MKMapViewDelegate>
 
 @property CLLocationManager *locationManager;
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
