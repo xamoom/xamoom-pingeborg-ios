@@ -48,7 +48,7 @@ NSMutableArray *itemsToDisplay;
         [NSURLConnection sendAsynchronousRequest:request
                                            queue:[NSOperationQueue mainQueue]
                                completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                                   
+
                                    //init mainView
                                    mainView.rssEntry = entry;
                                    mainView.title.text = entry.title;
@@ -74,6 +74,7 @@ NSMutableArray *itemsToDisplay;
                                        return [second compare:first];
                                    }];
                                    
+                                   //delete all views
                                    for (UIView *subView in self.scrollView.subviews) {
                                        [subView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:YES];
                                    }
@@ -97,8 +98,7 @@ NSMutableArray *itemsToDisplay;
                                    CGSize scrollViewSize = self.scrollView.contentSize;
                                    scrollViewSize.height = y + self.tabBarController.tabBar.frame.size.height -10;
                                    self.scrollView.contentSize = scrollViewSize;
-                               }];
-        
+                            }];
     }
 }
 

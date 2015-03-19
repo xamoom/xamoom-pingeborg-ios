@@ -9,14 +9,13 @@
 #import "MapViewController.h"
 #import <MapKit/MKAnnotation.h>
 #import "PingebAnnotation.h"
+#import "PingeborgAnnotationView.h"
 
 @interface MapViewController ()
 
 @end
 
 @implementation MapViewController
-
-@synthesize mapView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -53,17 +52,15 @@
     region.center.longitude = 14.3052778;
     region.span.longitudeDelta = 0.09f;
     region.span.longitudeDelta = 0.09f;
-    [mapView setRegion:region animated:YES];
+    [self.mapView setRegion:region animated:YES];
     
 }
 
 - (void)didLoadDataBySpotMap:(XMMResponseGetSpotMap *)result {
-    
     for (XMMResponseGetSpotMapItem *item in result.items) {
         // Add an annotation
         PingebAnnotation *point = [[PingebAnnotation alloc] initWithLocation: CLLocationCoordinate2DMake([item.lat doubleValue], [item.lon doubleValue])];
         point.title = item.displayName;
-        //point.subtitle = item.descriptionOfContent;
         [self.mapView addAnnotation:point];
     }
 }
@@ -74,26 +71,37 @@
     if ([annotation isKindOfClass:[MKUserLocation class]])
         return nil;
     
-    //change mapMarker
-    MKAnnotationView* aView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"PingebAnnotation"];
-    aView.image = [UIImage imageNamed:@"Map"];
-    aView.canShowCallout = YES;
+    static NSString *identifier = @"PingebAnnotation";
+    if ([annotation isKindOfClass:[PingebAnnotation class]]) {
+        
+        MKAnnotationView *annotationView = (MKAnnotationView *) [_mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
+        if (annotationView == nil) {
+            annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+            annotationView.enabled = YES;
+            annotationView.canShowCallout = NO;
+            annotationView.image = [UIImage imageNamed:@"mappoint"];//here we use a nice image instead of the default pins
+        } else {
+            annotationView.annotation = annotation;
+        }
+        
+        return annotationView;
+    }
     
-    
-    // Image and two labels
-    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
-    imageView.backgroundColor = [UIColor greenColor];
-    imageView.image = [UIImage imageNamed:@"Map"];
-    
-    //aView.leftCalloutAccessoryView = imageView;
-    aView.annotation = annotation;
-    
-    //aView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-    return aView;
+    return nil;
 }
 
-
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
+    NSLog(@"Hellyeah");
+
+    NSArray *subviewArray = [[NSBundle mainBundle] loadNibNamed:@"PingeborgCalloutView" owner:self options:nil];
+    PingeborgAnnotationView *mainView = [subviewArray objectAtIndex:0];
+    
+    [view addSubview:mainView];
+}
+
+-(void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
+    NSArray *subviews = view.subviews;
+    [subviews[0] removeFromSuperview];
 }
 
 /*

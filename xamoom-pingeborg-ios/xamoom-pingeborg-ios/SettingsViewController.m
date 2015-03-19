@@ -20,6 +20,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     locations = [[NSArray alloc] initWithObjects:@"Klagenfurt",@"Villach", @"Wien", @"Graz", nil];
+    
+    //get and set the saved location
     NSInteger savedRow = [[NSUserDefaults standardUserDefaults] integerForKey:@"location"];
     [self.locationPicker selectRow:savedRow inComponent:0 animated:YES];
 }
@@ -48,11 +50,15 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row   inComponent:(NSInteger)component
 {
-    NSLog(@"Selected Row %d", row);
+    //save picked value to userDefaults
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setInteger:row
                       forKey:@"location"];
     [userDefaults synchronize];
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    self.parentViewController.navigationItem.title = @"Settings";
 }
 
 /*

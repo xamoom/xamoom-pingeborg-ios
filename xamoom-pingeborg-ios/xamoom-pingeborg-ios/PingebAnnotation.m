@@ -2,7 +2,7 @@
 //  PingebAnnotation.m
 //  xamoom-pingeborg-ios
 //
-//  Created by Raphael Seher on 13/03/15.
+//  Created by Raphael Seher on 19.03.15.
 //  Copyright (c) 2015 xamoom GmbH. All rights reserved.
 //
 
@@ -19,6 +19,5 @@
     }
     return self;
 }
-
 
 @end

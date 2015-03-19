@@ -126,10 +126,10 @@
             </objects>
             <point key="canvasLocation" x="1477" y="-853"/>
         </scene>
-        <!--View Controller-->
+        <!--Scanner View Controller-->
         <scene sceneID="qEf-v5-WpB">
             <objects>
-                <viewController id="wda-of-8Qb" sceneMemberID="viewController">
+                <viewController id="wda-of-8Qb" customClass="ScannerViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ype-wx-0oP"/>
                         <viewControllerLayoutGuide type="bottom" id="ntR-gj-hWM"/>
@@ -139,7 +139,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="2" title="" image="QR" id="Vcg-w0-tv5"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="" image="qr" id="Vcg-w0-tv5"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GHE-vJ-7Mb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -157,12 +157,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choose your pingeb.org" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fSU-0I-xzR">
-                                <rect key="frame" x="16" y="72" width="185" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <pickerView contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aAo-MJ-TcX">
                                 <rect key="frame" x="0.0" y="99" width="600" height="162"/>
                                 <connections>
@@ -170,6 +164,12 @@
                                     <outlet property="delegate" destination="evs-Oh-Jun" id="NlZ-i7-ryt"/>
                                 </connections>
                             </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Wähle dein pingeb.org" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fSU-0I-xzR">
+                                <rect key="frame" x="16" y="72" width="173" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -246,9 +246,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Map" width="22" height="28"/>
-        <image name="QR" width="24" height="25"/>
+        <image name="Map" width="36" height="37"/>
         <image name="Settings" width="27" height="27"/>
         <image name="Start" width="30" height="24"/>
+        <image name="qr" width="36" height="36"/>
     </resources>
 </document>

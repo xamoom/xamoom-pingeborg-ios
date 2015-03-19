@@ -8,12 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		594E123E6C9FD768422C1CEE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C530CDEFFEDDFCABBEC918B0 /* libPods.a */; };
+		8827D8E41ABB057B002F632C /* ScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8827D8E31ABB057B002F632C /* ScannerViewController.m */; };
+		8827D8E71ABB0E7C002F632C /* PingebAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8827D8E61ABB0E7C002F632C /* PingebAnnotation.m */; };
+		8827D8ED1ABB0F1C002F632C /* PingeborgAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8827D8EC1ABB0F1C002F632C /* PingeborgAnnotationView.m */; };
 		8835747E1AB06C950099DF4A /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835747D1AB06C950099DF4A /* MapViewController.m */; };
 		883574801AB1CCF40099DF4A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8835747F1AB1CCF40099DF4A /* QuartzCore.framework */; };
 		883574831AB1D4AD0099DF4A /* styles.css in Resources */ = {isa = PBXBuildFile; fileRef = 883574821AB1D4AD0099DF4A /* styles.css */; };
 		885BFCF81AADC23F0047340C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 885BFCF71AADC23F0047340C /* Main.storyboard */; };
 		885BFCFE1AADD3950047340C /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 885BFCFD1AADD3950047340C /* MainTabBarController.m */; };
 		885BFD071AADD9FF0047340C /* ScanResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 885BFD051AADD9FF0047340C /* ScanResultViewController.m */; };
+		8897A9FD1ABB1C710003C3FA /* PingeborgCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8897A9FC1ABB1C710003C3FA /* PingeborgCalloutView.xib */; };
 		88BA01F51AA859F90091A43C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA01F41AA859F90091A43C /* main.m */; };
 		88BA01F81AA859F90091A43C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA01F71AA859F90091A43C /* AppDelegate.m */; };
 		88BA02001AA859F90091A43C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88BA01FF1AA859F90091A43C /* Images.xcassets */; };
@@ -67,7 +71,6 @@
 		88BA02AD1AA85C430091A43C /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA02A11AA85C430091A43C /* NSString+HTML.m */; };
 		88BA02AE1AA85C430091A43C /* NSString+XMLEntities.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA02A31AA85C430091A43C /* NSString+XMLEntities.m */; };
 		88BA02AF1AA85C430091A43C /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA02A51AA85C430091A43C /* RootViewController.m */; };
-		88C858E81AB2E6E5008D3EA0 /* PingebAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C858E71AB2E6E5008D3EA0 /* PingebAnnotation.m */; };
 		88CBAEE11AA9EC9E000E480A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88CBAEE01AA9EC9E000E480A /* MapKit.framework */; };
 		88CE0CF61AAEDA6D0014EE77 /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CE0CF51AAEDA6D0014EE77 /* StartViewController.m */; };
 		88CE0CFD1AAEF7740014EE77 /* RSSFeedItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88CE0CFC1AAEF7740014EE77 /* RSSFeedItemView.xib */; };
@@ -89,6 +92,12 @@
 /* Begin PBXFileReference section */
 		081CE084B2E648F4E71D7D2A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		48251170F65DFEEAACD48338 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		8827D8E21ABB057B002F632C /* ScannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScannerViewController.h; sourceTree = "<group>"; };
+		8827D8E31ABB057B002F632C /* ScannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScannerViewController.m; sourceTree = "<group>"; };
+		8827D8E51ABB0E7C002F632C /* PingebAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingebAnnotation.h; sourceTree = "<group>"; };
+		8827D8E61ABB0E7C002F632C /* PingebAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PingebAnnotation.m; sourceTree = "<group>"; };
+		8827D8EB1ABB0F1C002F632C /* PingeborgAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingeborgAnnotationView.h; sourceTree = "<group>"; };
+		8827D8EC1ABB0F1C002F632C /* PingeborgAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PingeborgAnnotationView.m; sourceTree = "<group>"; };
 		8835747C1AB06C950099DF4A /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		8835747D1AB06C950099DF4A /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		8835747F1AB1CCF40099DF4A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -98,6 +107,7 @@
 		885BFCFD1AADD3950047340C /* MainTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabBarController.m; sourceTree = "<group>"; };
 		885BFD041AADD9FF0047340C /* ScanResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanResultViewController.h; sourceTree = "<group>"; };
 		885BFD051AADD9FF0047340C /* ScanResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanResultViewController.m; sourceTree = "<group>"; };
+		8897A9FC1ABB1C710003C3FA /* PingeborgCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PingeborgCalloutView.xib; sourceTree = "<group>"; };
 		88BA01EF1AA859F90091A43C /* xamoom-pingeborg-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "xamoom-pingeborg-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		88BA01F31AA859F90091A43C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88BA01F41AA859F90091A43C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -204,8 +214,6 @@
 		88BA02A31AA85C430091A43C /* NSString+XMLEntities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+XMLEntities.m"; sourceTree = "<group>"; };
 		88BA02A41AA85C430091A43C /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		88BA02A51AA85C430091A43C /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		88C858E61AB2E6E5008D3EA0 /* PingebAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingebAnnotation.h; sourceTree = "<group>"; };
-		88C858E71AB2E6E5008D3EA0 /* PingebAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PingebAnnotation.m; sourceTree = "<group>"; };
 		88CBAEE01AA9EC9E000E480A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		88CE0CF41AAEDA6D0014EE77 /* StartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartViewController.h; sourceTree = "<group>"; };
 		88CE0CF51AAEDA6D0014EE77 /* StartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartViewController.m; sourceTree = "<group>"; };
@@ -489,10 +497,15 @@
 				88CE0D0C1AAF40B30014EE77 /* RSSItemViewController.m */,
 				8835747C1AB06C950099DF4A /* MapViewController.h */,
 				8835747D1AB06C950099DF4A /* MapViewController.m */,
-				88C858E61AB2E6E5008D3EA0 /* PingebAnnotation.h */,
-				88C858E71AB2E6E5008D3EA0 /* PingebAnnotation.m */,
 				88D8F09F1ABACD2400ACFBE4 /* SettingsViewController.h */,
 				88D8F0A01ABACD2400ACFBE4 /* SettingsViewController.m */,
+				8827D8E21ABB057B002F632C /* ScannerViewController.h */,
+				8827D8E31ABB057B002F632C /* ScannerViewController.m */,
+				8827D8E51ABB0E7C002F632C /* PingebAnnotation.h */,
+				8827D8E61ABB0E7C002F632C /* PingebAnnotation.m */,
+				8827D8EB1ABB0F1C002F632C /* PingeborgAnnotationView.h */,
+				8827D8EC1ABB0F1C002F632C /* PingeborgAnnotationView.m */,
+				8897A9FC1ABB1C710003C3FA /* PingeborgCalloutView.xib */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -605,6 +618,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				885BFCF81AADC23F0047340C /* Main.storyboard in Resources */,
+				8897A9FD1ABB1C710003C3FA /* PingeborgCalloutView.xib in Resources */,
 				88BA02031AA859F90091A43C /* LaunchScreen.xib in Resources */,
 				88CE0CFD1AAEF7740014EE77 /* RSSFeedItemView.xib in Resources */,
 				883574831AB1D4AD0099DF4A /* styles.css in Resources */,
@@ -668,7 +682,9 @@
 				88BA026F1AA85C060091A43C /* _XMMCoreDataMenuItem.m in Sources */,
 				88BA028B1AA85C060091A43C /* XMMResponseMenuItem.m in Sources */,
 				88BA027D1AA85C060091A43C /* XMMResponseContentBlockType2.m in Sources */,
+				8827D8E41ABB057B002F632C /* ScannerViewController.m in Sources */,
 				88BA027E1AA85C060091A43C /* XMMResponseContentBlockType3.m in Sources */,
+				8827D8ED1ABB0F1C002F632C /* PingeborgAnnotationView.m in Sources */,
 				88BA02701AA85C060091A43C /* _XMMCoreDataStyle.m in Sources */,
 				88BA027A1AA85C060091A43C /* XMMResponseContentBlock.m in Sources */,
 				88BA02871AA85C060091A43C /* XMMResponseGetByLocationIdentifier.m in Sources */,
@@ -676,6 +692,7 @@
 				88BA02A91AA85C430091A43C /* MWFeedItem.m in Sources */,
 				88BA02781AA85C060091A43C /* XMMCoreDataStyle.m in Sources */,
 				88BA02891AA85C060091A43C /* XMMResponseGetSpotMap.m in Sources */,
+				8827D8E71ABB0E7C002F632C /* PingebAnnotation.m in Sources */,
 				88BA02AD1AA85C430091A43C /* NSString+HTML.m in Sources */,
 				88BA02831AA85C060091A43C /* XMMResponseContentBlockType8.m in Sources */,
 				88BA01F81AA859F90091A43C /* AppDelegate.m in Sources */,
@@ -707,7 +724,6 @@
 				88BA02771AA85C060091A43C /* XMMCoreDataMenuItem.m in Sources */,
 				88BA02861AA85C060091A43C /* XMMResponseGetByLocation.m in Sources */,
 				88BA02751AA85C060091A43C /* XMMCoreDataGetByLocation.m in Sources */,
-				88C858E81AB2E6E5008D3EA0 /* PingebAnnotation.m in Sources */,
 				88BA02731AA85C060091A43C /* XMMCoreDataContentBlocks.m in Sources */,
 				88BA028D1AA85C060091A43C /* XMMRSSEntry.m in Sources */,
 				88CE0D0D1AAF40B30014EE77 /* RSSItemViewController.m in Sources */,
@@ -832,9 +848,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "xamoom-pingeborg-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -845,9 +863,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "xamoom-pingeborg-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

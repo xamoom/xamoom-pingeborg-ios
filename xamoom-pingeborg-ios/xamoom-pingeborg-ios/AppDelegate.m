@@ -22,7 +22,7 @@
     [XMMEnduserApi sharedInstance].rssBaseUrl = @"http://pingeb.org/category/artists/feed/";
     
     [[UITabBar appearance] setTintColor:[UIColor blackColor]];
-    
+
     return YES;
 }
 

@@ -2,18 +2,17 @@
 //  PingebAnnotation.h
 //  xamoom-pingeborg-ios
 //
-//  Created by Raphael Seher on 13/03/15.
+//  Created by Raphael Seher on 19.03.15.
 //  Copyright (c) 2015 xamoom GmbH. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import <MapKit/MKAnnotation.h>
+#import <MapKit/MapKit.h>
 
-@interface PingebAnnotation : NSObject <MKAnnotation> {
-    CLLocationCoordinate2D coordinate;
-}
+@interface PingebAnnotation : NSObject <MKAnnotation>
 
-@property (nonatomic, copy) NSString *title;
+@property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
+@property NSString *title;
 
 - (id)initWithLocation:(CLLocationCoordinate2D)coord;
 
