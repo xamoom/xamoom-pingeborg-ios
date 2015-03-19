@@ -70,9 +70,10 @@
 		88C858E81AB2E6E5008D3EA0 /* PingebAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C858E71AB2E6E5008D3EA0 /* PingebAnnotation.m */; };
 		88CBAEE11AA9EC9E000E480A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88CBAEE01AA9EC9E000E480A /* MapKit.framework */; };
 		88CE0CF61AAEDA6D0014EE77 /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CE0CF51AAEDA6D0014EE77 /* StartViewController.m */; };
-		88CE0CFB1AAEF7610014EE77 /* RSSFeedItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CE0CFA1AAEF7610014EE77 /* RSSFeedItemView.m */; };
 		88CE0CFD1AAEF7740014EE77 /* RSSFeedItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88CE0CFC1AAEF7740014EE77 /* RSSFeedItemView.xib */; };
 		88CE0D0D1AAF40B30014EE77 /* RSSItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CE0D0C1AAF40B30014EE77 /* RSSItemViewController.m */; };
+		88D8F09E1ABACC6200ACFBE4 /* RSSFeedItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D8F09D1ABACC6200ACFBE4 /* RSSFeedItemView.m */; };
+		88D8F0A11ABACD2400ACFBE4 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D8F0A01ABACD2400ACFBE4 /* SettingsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -208,11 +209,13 @@
 		88CBAEE01AA9EC9E000E480A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		88CE0CF41AAEDA6D0014EE77 /* StartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartViewController.h; sourceTree = "<group>"; };
 		88CE0CF51AAEDA6D0014EE77 /* StartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartViewController.m; sourceTree = "<group>"; };
-		88CE0CF91AAEF7610014EE77 /* RSSFeedItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RSSFeedItemView.h; path = ../RSSFeedItemView.h; sourceTree = "<group>"; };
-		88CE0CFA1AAEF7610014EE77 /* RSSFeedItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RSSFeedItemView.m; path = ../RSSFeedItemView.m; sourceTree = "<group>"; };
 		88CE0CFC1AAEF7740014EE77 /* RSSFeedItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RSSFeedItemView.xib; sourceTree = "<group>"; };
 		88CE0D0B1AAF40B30014EE77 /* RSSItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSItemViewController.h; sourceTree = "<group>"; };
 		88CE0D0C1AAF40B30014EE77 /* RSSItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSItemViewController.m; sourceTree = "<group>"; };
+		88D8F09C1ABACC6200ACFBE4 /* RSSFeedItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSFeedItemView.h; sourceTree = "<group>"; };
+		88D8F09D1ABACC6200ACFBE4 /* RSSFeedItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSFeedItemView.m; sourceTree = "<group>"; };
+		88D8F09F1ABACD2400ACFBE4 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		88D8F0A01ABACD2400ACFBE4 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		C530CDEFFEDDFCABBEC918B0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -469,8 +472,8 @@
 			isa = PBXGroup;
 			children = (
 				88CE0CFC1AAEF7740014EE77 /* RSSFeedItemView.xib */,
-				88CE0CF91AAEF7610014EE77 /* RSSFeedItemView.h */,
-				88CE0CFA1AAEF7610014EE77 /* RSSFeedItemView.m */,
+				88D8F09C1ABACC6200ACFBE4 /* RSSFeedItemView.h */,
+				88D8F09D1ABACC6200ACFBE4 /* RSSFeedItemView.m */,
 			);
 			name = "Custom Views";
 			sourceTree = "<group>";
@@ -488,6 +491,8 @@
 				8835747D1AB06C950099DF4A /* MapViewController.m */,
 				88C858E61AB2E6E5008D3EA0 /* PingebAnnotation.h */,
 				88C858E71AB2E6E5008D3EA0 /* PingebAnnotation.m */,
+				88D8F09F1ABACD2400ACFBE4 /* SettingsViewController.h */,
+				88D8F0A01ABACD2400ACFBE4 /* SettingsViewController.m */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -664,7 +669,6 @@
 				88BA028B1AA85C060091A43C /* XMMResponseMenuItem.m in Sources */,
 				88BA027D1AA85C060091A43C /* XMMResponseContentBlockType2.m in Sources */,
 				88BA027E1AA85C060091A43C /* XMMResponseContentBlockType3.m in Sources */,
-				88CE0CFB1AAEF7610014EE77 /* RSSFeedItemView.m in Sources */,
 				88BA02701AA85C060091A43C /* _XMMCoreDataStyle.m in Sources */,
 				88BA027A1AA85C060091A43C /* XMMResponseContentBlock.m in Sources */,
 				88BA02871AA85C060091A43C /* XMMResponseGetByLocationIdentifier.m in Sources */,
@@ -689,10 +693,12 @@
 				88BA02811AA85C060091A43C /* XMMResponseContentBlockType6.m in Sources */,
 				88BA028C1AA85C060091A43C /* XMMResponseStyle.m in Sources */,
 				88BA026D1AA85C060091A43C /* _XMMCoreDataGetByLocation.m in Sources */,
+				88D8F09E1ABACC6200ACFBE4 /* RSSFeedItemView.m in Sources */,
 				88BA02761AA85C060091A43C /* XMMCoreDataGetByLocationItem.m in Sources */,
 				88BA026B1AA85C060091A43C /* _XMMCoreDataContentBlocks.m in Sources */,
 				88BA02721AA85C060091A43C /* XMMCoreDataContent.m in Sources */,
 				88CE0CF61AAEDA6D0014EE77 /* StartViewController.m in Sources */,
+				88D8F0A11ABACD2400ACFBE4 /* SettingsViewController.m in Sources */,
 				88BA02851AA85C060091A43C /* XMMResponseGetById.m in Sources */,
 				88BA02A61AA85C430091A43C /* DetailTableViewController.m in Sources */,
 				88BA02A81AA85C430091A43C /* MWFeedInfo.m in Sources */,

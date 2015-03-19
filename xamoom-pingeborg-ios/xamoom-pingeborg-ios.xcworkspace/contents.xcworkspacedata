@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:xamoom-pingeborg-ios/SettingsViewController.h">
+   </FileRef>
+   <FileRef
+      location = "group:xamoom-pingeborg-ios/SettingsViewController.m">
+   </FileRef>
+   <FileRef
       location = "group:xamoom-pingeborg-ios.xcodeproj">
    </FileRef>
    <FileRef
