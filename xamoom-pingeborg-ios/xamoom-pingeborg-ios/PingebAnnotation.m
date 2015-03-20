@@ -7,6 +7,7 @@
 //
 
 #import "PingebAnnotation.h"
+#import <MapKit/MapKit.h>
 
 @implementation PingebAnnotation
 
@@ -18,6 +19,15 @@
         coordinate = coord;
     }
     return self;
+}
+
+- (MKMapItem*)mapItem {
+    MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:coordinate addressDictionary:nil];
+
+    MKMapItem *mapItem = [[MKMapItem alloc] initWithPlacemark:placemark];
+    mapItem.name = self.title;
+    
+    return mapItem;
 }
 
 @end

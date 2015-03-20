@@ -13,7 +13,10 @@
 
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 @property NSString *title;
+@property NSString *image;
 
 - (id)initWithLocation:(CLLocationCoordinate2D)coord;
+
+- (MKMapItem*)mapItem;
 
 @end
