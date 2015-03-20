@@ -95,6 +95,20 @@
 
     NSArray *subviewArray = [[NSBundle mainBundle] loadNibNamed:@"PingeborgCalloutView" owner:self options:nil];
     PingeborgAnnotationView *mainView = [subviewArray objectAtIndex:0];
+    mainView.center = CGPointMake(view.bounds.size.width*0.5f, -mainView.bounds.size.height*0.5f);
+    
+    // border radius
+    [mainView.layer setCornerRadius:30.0f];
+    
+    // border
+    [mainView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+    [mainView.layer setBorderWidth:1.5f];
+    
+    // drop shadow
+    [mainView.layer setShadowColor:[UIColor blackColor].CGColor];
+    [mainView.layer setShadowOpacity:0.8];
+    [mainView.layer setShadowRadius:3.0];
+    [mainView.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
     
     [view addSubview:mainView];
 }

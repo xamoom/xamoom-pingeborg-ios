@@ -15,12 +15,6 @@
     self = [super initWithAnnotation:annotation reuseIdentifier:reuseIdentifier];
     if (self)
     {
-        // Set the frame size to the appropriate values.
-        CGRect  myFrame = self.frame;
-        myFrame.size.width = 400;
-        myFrame.size.height = 400;
-        self.frame = myFrame;
-        
         // The opaque property is YES by default. Setting it to
         // NO allows map content to show through any unrendered parts of your view.
         self.opaque = NO;
