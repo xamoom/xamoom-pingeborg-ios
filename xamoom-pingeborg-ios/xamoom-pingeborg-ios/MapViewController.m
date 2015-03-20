@@ -53,7 +53,6 @@
     region.span.longitudeDelta = 0.09f;
     region.span.longitudeDelta = 0.09f;
     [self.mapView setRegion:region animated:YES];
-    
 }
 
 - (void)didLoadDataBySpotMap:(XMMResponseGetSpotMap *)result {
@@ -61,6 +60,12 @@
         // Add an annotation
         PingebAnnotation *point = [[PingebAnnotation alloc] initWithLocation: CLLocationCoordinate2DMake([item.lat doubleValue], [item.lon doubleValue])];
         point.title = item.displayName;
+        point.image = item.image;
+        
+        CLLocation *pointLocation = [[CLLocation alloc] initWithLatitude:point.coordinate.latitude longitude:point.coordinate.longitude];
+        CLLocationDistance distance = [self.locationManager.location distanceFromLocation:pointLocation];
+        point.subtitle = [NSString stringWithFormat:@"Entfernung: %d Meter", (int)distance];
+
         [self.mapView addAnnotation:point];
     }
 }
@@ -74,12 +79,31 @@
     static NSString *identifier = @"PingebAnnotation";
     if ([annotation isKindOfClass:[PingebAnnotation class]]) {
         
-        MKAnnotationView *annotationView = (MKAnnotationView *) [_mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
+        PingeborgAnnotationView *annotationView = (PingeborgAnnotationView *) [_mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
         if (annotationView == nil) {
-            annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+            annotationView = [[PingeborgAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
             annotationView.enabled = YES;
-            annotationView.canShowCallout = NO;
+            annotationView.canShowCallout = YES;
             annotationView.image = [UIImage imageNamed:@"mappoint"];//here we use a nice image instead of the default pins
+            
+            /*
+            UIImageView *imageView = [[UIImageView alloc] init];
+            PingebAnnotation *pinAnnotation = annotation;
+            NSURL *url = [NSURL URLWithString:pinAnnotation.image];
+            NSData *data = [NSData dataWithContentsOfURL:url];
+            imageView.image = [UIImage imageWithData:data];
+            
+            annotationView.leftCalloutAccessoryView = imageView;
+            */
+            
+            UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+            [rightButton setFrame:CGRectMake(0,0,50,50)];
+            [rightButton setImage:[[UIImage imageNamed:@"direction"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+            //UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+            [rightButton setTintColor:[UIColor whiteColor]];
+            [rightButton setBackgroundColor:[UIColor blueColor]];
+            [rightButton setAutoresizingMask:UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleTopMargin];
+            annotationView.rightCalloutAccessoryView = rightButton;
         } else {
             annotationView.annotation = annotation;
         }
@@ -90,9 +114,18 @@
     return nil;
 }
 
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
+{
+    //opens maps with direction to the mappin
+    PingebAnnotation *pinAnn = view.annotation;
+    NSDictionary *launchOptions = @{MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving};
+    [pinAnn.mapItem openInMapsWithLaunchOptions:launchOptions];
+}
+
+/*
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
     NSLog(@"Hellyeah");
-
+    
     NSArray *subviewArray = [[NSBundle mainBundle] loadNibNamed:@"PingeborgCalloutView" owner:self options:nil];
     PingeborgAnnotationView *mainView = [subviewArray objectAtIndex:0];
     mainView.center = CGPointMake(view.bounds.size.width*0.5f, -mainView.bounds.size.height*0.5f);
@@ -112,12 +145,14 @@
     
     [view addSubview:mainView];
 }
+ */
 
+/*
 -(void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
     NSArray *subviews = view.subviews;
     [subviews[0] removeFromSuperview];
 }
-
+*/
 /*
 #pragma mark - Navigation
 
