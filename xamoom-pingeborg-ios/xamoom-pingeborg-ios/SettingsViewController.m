@@ -7,6 +7,7 @@
 //
 
 #import "SettingsViewController.h"
+#import "XMMEnduserApi.h"
 
 @interface SettingsViewController ()
 
@@ -19,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    locations = [[NSArray alloc] initWithObjects:@"Klagenfurt",@"Villach", @"Wien", @"Graz", nil];
+    locations = [[NSArray alloc] initWithObjects:@"Graz",@"Klagenfurt", @"Salzburg", @"Villach", nil];
     
     //get and set the saved location
     NSInteger savedRow = [[NSUserDefaults standardUserDefaults] integerForKey:@"location"];
@@ -54,8 +55,11 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setInteger:row
                       forKey:@"location"];
+    [userDefaults setBool:YES
+                   forKey:@"isPingeborgSystemChanged"];
     [userDefaults synchronize];
 }
+
 
 -(void)viewDidAppear:(BOOL)animated {
     self.parentViewController.navigationItem.title = @"Settings";

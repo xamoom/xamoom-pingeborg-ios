@@ -28,6 +28,7 @@ NSMutableArray *itemsToDisplay;
     self.parentViewController.navigationItem.title = @"Home";
     
     [[XMMEnduserApi sharedInstance] setDelegate:self];
+    [self pingeborgSystemFeedUrl];
     [[XMMEnduserApi sharedInstance] getContentFromRSSFeed];
     
     itemsToDisplay = [[NSMutableArray alloc]init];
@@ -109,6 +110,24 @@ NSMutableArray *itemsToDisplay;
 
 - (void)viewDidAppear:(BOOL)animated {
     self.parentViewController.navigationItem.title = @"Home";
+    
+    if ([[NSUserDefaults standardUserDefaults] integerForKey:@"isPingeborgSystemChanged"]) {
+        //delete all views
+        for (UIView *subView in self.scrollView.subviews) {
+            [subView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:YES];
+        }
+        
+        itemsToDisplay = nil;
+        itemsToDisplay = [[NSMutableArray alloc] init];
+        
+        [self pingeborgSystemFeedUrl];
+        [[XMMEnduserApi sharedInstance] getContentFromRSSFeed];
+        
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setBool:NO
+                       forKey:@"isPingeborgSystemChanged"];
+        [userDefaults synchronize];
+    }
 }
 
 #pragma mark - Navigation
@@ -119,6 +138,26 @@ NSMutableArray *itemsToDisplay;
     if ( [[segue identifier] isEqualToString:@"showRSSItem"] ) {
         RSSItemViewController *vc = [segue destinationViewController];
         [vc setRssEntry:_rssEntry];
+    }
+}
+
+-(void)pingeborgSystemFeedUrl {
+    NSInteger row = [[NSUserDefaults standardUserDefaults] integerForKey:@"location"];
+    switch (row) {
+        case 0:
+            [XMMEnduserApi sharedInstance].rssBaseUrl = @"http://graz.pingeb.org/kategorie/artists/feed/";
+            break;
+        case 1:
+            [XMMEnduserApi sharedInstance].rssBaseUrl = @"http://pingeb.org/category/artists/feed/";
+            break;
+        case 2:
+            [XMMEnduserApi sharedInstance].rssBaseUrl = @"http://salzburg.pingeb.org/category/artists/feed/";
+            break;
+        case 3:
+            [XMMEnduserApi sharedInstance].rssBaseUrl = @"http://villach.pingeb.org/category/artists/feed/";
+            break;
+        default:
+            break;
     }
 }
 
