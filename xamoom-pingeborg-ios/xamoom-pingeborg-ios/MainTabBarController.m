@@ -27,6 +27,56 @@ BOOL isFirstTime;
     for (UITabBarItem *item in self.tabBar.items) {
         [item setImageInsets:UIEdgeInsetsMake(4,0,-4,0)];
     }
+    
+    [self.tabBar.subviews[3] setHidden:YES];
+    
+    
+    /*
+    UIImage *buttonImage = [UIImage imageNamed:@"QR"];
+    UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = CGRectMake(0.0, 0.0, buttonImage.size.width, buttonImage.size.height);
+    [button setBackgroundImage:buttonImage forState:UIControlStateNormal];
+    [button setBackgroundImage:[UIImage imageNamed:@"QR"] forState:UIControlStateHighlighted];
+    
+    CGFloat heightDifference = buttonImage.size.height - self.tabBar.frame.size.height;
+    if (heightDifference < 0)
+        button.center = self.tabBar.center;
+    else
+    {
+        CGPoint center = self.tabBar.center;
+        center.y = center.y - heightDifference/2.0;
+        button.center = center;
+    }
+    
+    [self.view addSubview:button];
+    
+     */
+    
+    UIButton *middleButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [middleButton addTarget:self action:@selector(tappedMiddleButton:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIImage *buttonImage = [UIImage imageNamed:@"QR"];
+    [middleButton setImage:buttonImage forState:UIControlStateNormal];
+    [middleButton setTintColor:[UIColor whiteColor]];
+    
+    CGRect frame;
+    frame.size.height = 49;
+    frame.size.width = [self.tabBar.subviews[3] size].width;
+    frame.origin.x = (self.tabBar.frame.size.width/4) * 3 + ([self.tabBar.subviews[3] size].width / 2 ) - ([self.tabBar.subviews[3] size].width / 2 ) ;
+    frame.origin.y = (self.tabBar.frame.size.height/2) - 24.5;
+    [middleButton setFrame:frame];
+    
+    NSLog(@"Hellyeah: %f", self.tabBar.frame.size.height);
+    
+    [self.tabBar addSubview:middleButton];
+}
+
+-(void)tappedMiddleButton:(id)sender {
+    NSLog(@"Hellyeah");
+    
+    [[XMMEnduserApi sharedInstance] setDelegate:self];
+    [[XMMEnduserApi sharedInstance] setQrCodeViewControllerCancelButtonTitle:@"Abbrechen"];
+    [[XMMEnduserApi sharedInstance] startQRCodeReader:self withAPIRequest:YES withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,21 +89,13 @@ BOOL isFirstTime;
 }
 
 -(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
+    /*
     if (item.tag == 2) {
         [[XMMEnduserApi sharedInstance] setDelegate:self];
         [[XMMEnduserApi sharedInstance] setQrCodeViewControllerCancelButtonTitle:@"Abbrechen"];
         [[XMMEnduserApi sharedInstance] startQRCodeReader:self withAPIRequest:YES withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
     }
-}
-
-- (void)viewWillLayoutSubviews
-{
-    /*
-    CGRect tabFrame = self.tabBar.frame; //self.TabBar is IBOutlet of your TabBar
-    tabFrame.size.height = 40;
-    tabFrame.origin.y = self.view.frame.size.height - 40;
-    self.tabBar.frame = tabFrame;
-     */
+    */
 }
 
 #pragma mark - QRCodeReader Delegate Methods

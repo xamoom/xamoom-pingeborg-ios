@@ -128,6 +128,7 @@
         <!--Scanner View Controller-->
         <scene sceneID="qEf-v5-WpB">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GHE-vJ-7Mb" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="wda-of-8Qb" customClass="ScannerViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ype-wx-0oP"/>
@@ -138,9 +139,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="2" title="" image="QR" id="Vcg-w0-tv5"/>
+                    <tabBarItem key="tabBarItem" tag="3" title="" image="QR" id="Vcg-w0-tv5"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GHE-vJ-7Mb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2193" y="-153.99999999999997"/>
         </scene>
@@ -176,7 +176,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="aAo-MJ-TcX" secondAttribute="trailing" constant="-16" id="g8d-N2-o61"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="3" title="" image="Settings" id="fBt-P2-bzm"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="" image="Settings" id="fBt-P2-bzm"/>
                     <connections>
                         <outlet property="locationPicker" destination="aAo-MJ-TcX" id="tab-Wz-PTf"/>
                     </connections>
@@ -232,11 +232,11 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
+                        <segue destination="g8c-6b-oU9" kind="show" identifier="showScanResult" id="TM5-d9-Bxu"/>
                         <segue destination="yb1-AW-VOp" kind="relationship" relationship="viewControllers" id="CvR-JY-RwO"/>
                         <segue destination="TrX-Pn-Qt4" kind="relationship" relationship="viewControllers" id="eUh-Xe-XpM"/>
-                        <segue destination="wda-of-8Qb" kind="relationship" relationship="viewControllers" id="95r-xL-Jxf"/>
                         <segue destination="evs-Oh-Jun" kind="relationship" relationship="viewControllers" id="7Z6-7b-f6d"/>
-                        <segue destination="g8c-6b-oU9" kind="show" identifier="showScanResult" id="TM5-d9-Bxu"/>
+                        <segue destination="wda-of-8Qb" kind="relationship" relationship="viewControllers" id="95r-xL-Jxf"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nmp-ce-SUF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -246,7 +246,7 @@
     </scenes>
     <resources>
         <image name="Map" width="31" height="31"/>
-        <image name="QR" width="24" height="25"/>
+        <image name="QR" width="30" height="30"/>
         <image name="Settings" width="30" height="30"/>
         <image name="Start" width="30" height="30"/>
     </resources>
