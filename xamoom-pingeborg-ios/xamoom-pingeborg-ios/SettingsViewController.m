@@ -20,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    locations = [[NSArray alloc] initWithObjects:@"Graz",@"Klagenfurt", @"Salzburg", @"Villach", nil];
+    locations = [[NSArray alloc] initWithObjects:@"Klagenfurt", @"Salzburg", @"Villach", @"Vorarlberg", nil];
     
     //get and set the saved location
     NSInteger savedRow = [[NSUserDefaults standardUserDefaults] integerForKey:@"location"];

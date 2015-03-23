@@ -97,13 +97,14 @@
             */
             
             UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
-            [rightButton setFrame:CGRectMake(0,0,50,50)];
-            [rightButton setImage:[[UIImage imageNamed:@"direction"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+            [rightButton setFrame:CGRectMake(0,0,50,80)];
+            [rightButton setImage:[[UIImage imageNamed:@"car"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+            rightButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 25, 0);
             //UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
             [rightButton setTintColor:[UIColor whiteColor]];
             [rightButton setBackgroundColor:[UIColor blueColor]];
             [rightButton setAutoresizingMask:UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleTopMargin];
-            annotationView.rightCalloutAccessoryView = rightButton;
+            annotationView.leftCalloutAccessoryView = rightButton;
         } else {
             annotationView.annotation = annotation;
         }

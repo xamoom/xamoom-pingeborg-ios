@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "XMMEnduserApi.h"
+#import "StartViewController.h"
 
 @interface AppDelegate ()
 
@@ -19,9 +20,9 @@
     // Override point for customization after application launch.
     XMMEnduserApi *api;
     api = [[XMMEnduserApi alloc] init];
-    
     [[UITabBar appearance] setTintColor:[UIColor blackColor]];
-
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:255.0/255.0 green:238.0/255.0 blue:0/255.0 alpha:1]];
+    
     return YES;
 }
 

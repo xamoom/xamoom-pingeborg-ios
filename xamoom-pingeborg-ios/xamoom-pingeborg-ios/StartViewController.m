@@ -145,16 +145,16 @@ NSMutableArray *itemsToDisplay;
     NSInteger row = [[NSUserDefaults standardUserDefaults] integerForKey:@"location"];
     switch (row) {
         case 0:
-            [XMMEnduserApi sharedInstance].rssBaseUrl = @"http://graz.pingeb.org/kategorie/artists/feed/";
-            break;
-        case 1:
             [XMMEnduserApi sharedInstance].rssBaseUrl = @"http://pingeb.org/category/artists/feed/";
             break;
-        case 2:
+        case 1:
             [XMMEnduserApi sharedInstance].rssBaseUrl = @"http://salzburg.pingeb.org/category/artists/feed/";
             break;
-        case 3:
+        case 2:
             [XMMEnduserApi sharedInstance].rssBaseUrl = @"http://villach.pingeb.org/category/artists/feed/";
+            break;
+        case 3:
+            [XMMEnduserApi sharedInstance].rssBaseUrl = @"http://vorarlberg.pingeb.org/category/artists/feed/";
             break;
         default:
             break;

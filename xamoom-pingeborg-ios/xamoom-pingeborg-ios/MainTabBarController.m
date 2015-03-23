@@ -41,6 +41,7 @@ BOOL isFirstTime;
 -(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
     if (item.tag == 2) {
         [[XMMEnduserApi sharedInstance] setDelegate:self];
+        [[XMMEnduserApi sharedInstance] setQrCodeViewControllerCancelButtonTitle:@"Abbrechen"];
         [[XMMEnduserApi sharedInstance] startQRCodeReader:self withAPIRequest:YES withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
     }
 }
