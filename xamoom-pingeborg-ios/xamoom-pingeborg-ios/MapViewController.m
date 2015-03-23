@@ -26,7 +26,6 @@
     if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
         [self.locationManager requestWhenInUseAuthorization];
     }
-    
     self.mapView.delegate = self;
     
     [[XMMEnduserApi sharedInstance] setDelegate:self];
@@ -121,6 +120,16 @@
     PingebAnnotation *pinAnn = view.annotation;
     NSDictionary *launchOptions = @{MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving};
     [pinAnn.mapItem openInMapsWithLaunchOptions:launchOptions];
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    //create direction button in navbar
+    MKUserTrackingBarButtonItem *buttonItem = [[MKUserTrackingBarButtonItem alloc] initWithMapView:self.mapView];
+    self.parentViewController.navigationItem.rightBarButtonItem = buttonItem;
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    self.parentViewController.navigationItem.rightBarButtonItem = nil;
 }
 
 /*
