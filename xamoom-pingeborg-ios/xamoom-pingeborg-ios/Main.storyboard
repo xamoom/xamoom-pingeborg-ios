@@ -5,10 +5,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
+        <!--Navigation View Controller-->
         <scene sceneID="yIo-UF-KLW">
             <objects>
-                <navigationController id="xLe-gR-03r" sceneMemberID="viewController">
+                <navigationController id="xLe-gR-03r" customClass="NavigationViewController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="UMV-yg-V7g">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -220,11 +220,11 @@
             </objects>
             <point key="canvasLocation" x="1475" y="-155"/>
         </scene>
-        <!--pingeborg.org-->
+        <!--Main Tab Bar Controller-->
         <scene sceneID="dSe-9y-ton">
             <objects>
                 <tabBarController id="ln3-at-QtN" customClass="MainTabBarController" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" title="pingeborg.org" id="wFz-WY-oY7"/>
+                    <navigationItem key="navigationItem" id="wFz-WY-oY7"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="3wJ-8M-eMu">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>

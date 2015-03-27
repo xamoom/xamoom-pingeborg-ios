@@ -8,10 +8,11 @@
 
 #import "StartViewController.h"
 #import "RSSItemViewController.h"
+#import "NavigationViewController.h"
 
 static int const rssFeedMargin = 10;
 
-@interface StartViewController () 
+@interface StartViewController ()
 
 @end
 
@@ -24,13 +25,29 @@ NSMutableArray *itemsToDisplay;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.parentViewController.navigationItem.title = @"Home";
+    //self.parentViewController.navigationItem.title = @"Home";
     
     [[XMMEnduserApi sharedInstance] setDelegate:self];
     [self pingeborgSystemFeedUrl];
     [[XMMEnduserApi sharedInstance] getContentFromRSSFeed];
     
+    //set dropDownMenuDelegate
+    NavigationViewController* navController = (NavigationViewController*) self.parentViewController.parentViewController;
+    navController.delegate = self;
+    
+    UIView *iv = [[UIView alloc] initWithFrame:CGRectMake(0,0,200,32)];
+    [iv setBackgroundColor:[UIColor whiteColor]];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0,0,200,32)];
+    label.text = @"Hellyeah";
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0,0,200,32)];
+    [button addTarget:navController action:@selector(toggleMenu) forControlEvents:UIControlEventTouchUpInside];
+    [iv addSubview:label];
+    [iv addSubview:button];
+    self.parentViewController.navigationItem.titleView = iv;
+    
     itemsToDisplay = [[NSMutableArray alloc]init];
+    
+    //self.parentViewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStyleBordered target:self.navigationController action:@selector(toggleMenu)];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -48,7 +65,7 @@ NSMutableArray *itemsToDisplay;
         [NSURLConnection sendAsynchronousRequest:request
                                            queue:[NSOperationQueue mainQueue]
                                completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-
+                                   
                                    //init mainView
                                    mainView.rssEntry = entry;
                                    mainView.title.text = entry.title;
@@ -64,7 +81,7 @@ NSMutableArray *itemsToDisplay;
                                    style.lineBreakMode = NSLineBreakByTruncatingTail;
                                    NSAttributedString *attrText = [[NSAttributedString alloc] initWithString:entry.title attributes:@{ NSParagraphStyleAttributeName : style}];
                                    mainView.title.attributedText = attrText;
-
+                                   
                                    [itemsToDisplay addObject:mainView];
                                    
                                    NSArray *sortedArray;
@@ -98,13 +115,26 @@ NSMutableArray *itemsToDisplay;
                                    CGSize scrollViewSize = self.scrollView.contentSize;
                                    scrollViewSize.height = y + self.tabBarController.tabBar.frame.size.height -10;
                                    self.scrollView.contentSize = scrollViewSize;
-                            }];
+                               }];
     }
 }
 
 - (void)touchedRSSFeedItem:(XMMRSSEntry *)rssEntry {
     _rssEntry = rssEntry;
     [self performSegueWithIdentifier:@"showRSSItem" sender:self];
+}
+
+-(void)didChangeSystem {
+    //delete all views
+    for (UIView *subView in self.scrollView.subviews) {
+        [subView performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:YES];
+    }
+    
+    itemsToDisplay = nil;
+    itemsToDisplay = [[NSMutableArray alloc] init];
+    
+    [self pingeborgSystemFeedUrl];
+    [[XMMEnduserApi sharedInstance] getContentFromRSSFeed];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

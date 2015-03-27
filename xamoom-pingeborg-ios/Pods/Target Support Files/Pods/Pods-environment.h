@@ -24,6 +24,12 @@
 #define COCOAPODS_VERSION_MINOR_QRCodeReaderViewController 0
 #define COCOAPODS_VERSION_PATCH_QRCodeReaderViewController 0
 
+// REMenu
+#define COCOAPODS_POD_AVAILABLE_REMenu
+#define COCOAPODS_VERSION_MAJOR_REMenu 1
+#define COCOAPODS_VERSION_MINOR_REMenu 10
+#define COCOAPODS_VERSION_PATCH_REMenu 0
+
 // RKValueTransformers
 #define COCOAPODS_POD_AVAILABLE_RKValueTransformers
 #define COCOAPODS_VERSION_MAJOR_RKValueTransformers 1

@@ -3,6 +3,7 @@ PODS:
   - ISO8601DateFormatterValueTransformer (0.6.0):
     - RKValueTransformers (~> 1.1.0)
   - QRCodeReaderViewController (2.0.0)
+  - REMenu (1.10)
   - RestKit (0.24.0):
     - RestKit/Core (= 0.24.0)
   - RestKit/Core (0.24.0):
@@ -29,6 +30,7 @@ PODS:
 
 DEPENDENCIES:
   - QRCodeReaderViewController (~> 2.0.0)
+  - REMenu (~> 1.10)
   - RestKit (~> 0.24)
   - SWRevealViewController (~> 2.3.0)
 
@@ -36,6 +38,7 @@ SPEC CHECKSUMS:
   AFNetworking: 80c4e0652b08eb34e25b9c0ff3c82556fe5967b4
   ISO8601DateFormatterValueTransformer: a705384ea6531255258e25b6480ba1180db703a0
   QRCodeReaderViewController: b6339563c7d373c3b76fc95819f9f604056f7870
+  REMenu: e3988747d83f9e8f49f244bd3f1fb8b0900e8741
   RestKit: 8e301e50e1d25ce427215539f4fd72463f4a2a58
   RKValueTransformers: 67b4ea3eb6a1c1a0b8c3c37eb4e4c05e4febeba2
   SOCKit: d8d0dd3688ae1026c12367570da8fa8e1a6980fb

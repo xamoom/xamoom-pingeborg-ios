@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NavigationViewController.h"
 #import "RSSFeedItemView.h"
 #import "XMMEnduserApi.h"
 
-@interface StartViewController : UIViewController <RSSFeedItemViewDelegate, XMMEnderuserApiDelegate>
+@interface StartViewController : UIViewController <RSSFeedItemViewDelegate, XMMEnderuserApiDelegate, DropDownMenuDelegate>
 
 @property (strong, nonatomic) IBOutlet UIView *view;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;

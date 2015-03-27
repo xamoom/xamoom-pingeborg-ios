@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-REMenu.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-RKValueTransformers.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -52,47 +57,52 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>09334D5BC0197B87C6B27297</key>
+		<key>3756B8E6BEC01788033CC224</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5211B1924CD7787F9D3C76E1</key>
+		<key>53D562597AA0C660754103D6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>645023FB0C3A9532584F42FA</key>
+		<key>58183A4E1A06E53C35CA6EF7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>818528D0EF482B2A4840C8DD</key>
+		<key>6E200D99738847D92026A7A3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9DC79FB73A58E55E5989E9BF</key>
+		<key>86827BE6186FC97EE273EC76</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A43710FD6C380E6A498C8F8E</key>
+		<key>898A6557465710F79AE8071B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AB56C854A868D637EED78F4C</key>
+		<key>91A0E0556EB17FFC62CCF6ED</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D73DA149D156ECBD43D19811</key>
+		<key>991C0C5529D79194AB58A427</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FF6FF550646E6AE484072E6E</key>
+		<key>DBC19B44491ADB887784E6E9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E0D65DA43A10882E972D748D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
