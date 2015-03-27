@@ -135,6 +135,27 @@ NSMutableArray *itemsToDisplay;
     
     [self pingeborgSystemFeedUrl];
     [[XMMEnduserApi sharedInstance] getContentFromRSSFeed];
+    
+    NSInteger location = [[NSUserDefaults standardUserDefaults] integerForKey:@"location"];
+    UILabel *label = self.parentViewController.navigationItem.titleView.subviews[0];
+    
+    switch (location) {
+        case 0:
+            label.text = @"Klagenfurt";
+            break;
+        case 1:
+            label.text = @"Salzburg";
+            break;
+        case 2:
+            label.text = @"Villach";
+            break;
+        case 3:
+            label.text = @"Vorarlberg";
+            break;
+        default:
+            break;
+    }
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
