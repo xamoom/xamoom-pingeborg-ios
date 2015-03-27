@@ -128,7 +128,6 @@
         <!--Scanner View Controller-->
         <scene sceneID="qEf-v5-WpB">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GHE-vJ-7Mb" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="wda-of-8Qb" customClass="ScannerViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ype-wx-0oP"/>
@@ -141,6 +140,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" tag="3" title="" image="QR" id="Vcg-w0-tv5"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GHE-vJ-7Mb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2193" y="-153.99999999999997"/>
         </scene>

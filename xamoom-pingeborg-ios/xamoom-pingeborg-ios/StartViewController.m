@@ -11,7 +11,6 @@
 
 static int const rssFeedMargin = 10;
 
-
 @interface StartViewController () 
 
 @end
