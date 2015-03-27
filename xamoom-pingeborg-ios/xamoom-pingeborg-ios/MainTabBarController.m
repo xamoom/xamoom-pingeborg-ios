@@ -66,8 +66,6 @@ BOOL isFirstTime;
     frame.origin.y = (self.tabBar.frame.size.height/2) - 24.5;
     [middleButton setFrame:frame];
     
-    NSLog(@"Hellyeah: %f", self.tabBar.frame.size.height);
-    
     [self.tabBar addSubview:middleButton];
 }
 
