@@ -12,6 +12,14 @@
 		8827D8E41ABB057B002F632C /* ScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8827D8E31ABB057B002F632C /* ScannerViewController.m */; };
 		8827D8E71ABB0E7C002F632C /* PingebAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8827D8E61ABB0E7C002F632C /* PingebAnnotation.m */; };
 		8827D8ED1ABB0F1C002F632C /* PingeborgAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8827D8EC1ABB0F1C002F632C /* PingeborgAnnotationView.m */; };
+		8830CB951AC925D5005C79EF /* FeedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8830CB941AC925D5005C79EF /* FeedTableViewController.m */; };
+		8830CB971AC92A21005C79EF /* FeedItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8830CB961AC92A21005C79EF /* FeedItemCell.xib */; };
+		8830CB9A1AC92AAE005C79EF /* FeedItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8830CB991AC92AAE005C79EF /* FeedItemCell.m */; };
+		8830CBA01AC977C1005C79EF /* andreanagele_845_321.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8830CB9B1AC977C1005C79EF /* andreanagele_845_321.jpg */; };
+		8830CBA11AC977C1005C79EF /* bee4073696c9438aa2be6a0df19f1ecf.png in Resources */ = {isa = PBXBuildFile; fileRef = 8830CB9C1AC977C1005C79EF /* bee4073696c9438aa2be6a0df19f1ecf.png */; };
+		8830CBA21AC977C1005C79EF /* db42c22d699a4276b02de73dd97a6ffd-845x321.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8830CB9D1AC977C1005C79EF /* db42c22d699a4276b02de73dd97a6ffd-845x321.jpg */; };
+		8830CBA31AC977C1005C79EF /* missinglogic_just_845_321-845x321.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8830CB9E1AC977C1005C79EF /* missinglogic_just_845_321-845x321.jpg */; };
+		8830CBA41AC977C1005C79EF /* ThomasGoschat_WDM_845_321.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8830CB9F1AC977C1005C79EF /* ThomasGoschat_WDM_845_321.jpg */; };
 		8835747E1AB06C950099DF4A /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835747D1AB06C950099DF4A /* MapViewController.m */; };
 		883574801AB1CCF40099DF4A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8835747F1AB1CCF40099DF4A /* QuartzCore.framework */; };
 		883574831AB1D4AD0099DF4A /* styles.css in Resources */ = {isa = PBXBuildFile; fileRef = 883574821AB1D4AD0099DF4A /* styles.css */; };
@@ -73,7 +81,6 @@
 		88BA02AE1AA85C430091A43C /* NSString+XMLEntities.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA02A31AA85C430091A43C /* NSString+XMLEntities.m */; };
 		88BA02AF1AA85C430091A43C /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA02A51AA85C430091A43C /* RootViewController.m */; };
 		88CBAEE11AA9EC9E000E480A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88CBAEE01AA9EC9E000E480A /* MapKit.framework */; };
-		88CE0CF61AAEDA6D0014EE77 /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CE0CF51AAEDA6D0014EE77 /* StartViewController.m */; };
 		88CE0CFD1AAEF7740014EE77 /* RSSFeedItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88CE0CFC1AAEF7740014EE77 /* RSSFeedItemView.xib */; };
 		88CE0D0D1AAF40B30014EE77 /* RSSItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CE0D0C1AAF40B30014EE77 /* RSSItemViewController.m */; };
 		88D401651ABC053A006E865D /* PingeborgCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D401641ABC053A006E865D /* PingeborgCalloutView.m */; };
@@ -102,6 +109,16 @@
 		8827D8E61ABB0E7C002F632C /* PingebAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PingebAnnotation.m; sourceTree = "<group>"; };
 		8827D8EB1ABB0F1C002F632C /* PingeborgAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingeborgAnnotationView.h; sourceTree = "<group>"; };
 		8827D8EC1ABB0F1C002F632C /* PingeborgAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PingeborgAnnotationView.m; sourceTree = "<group>"; };
+		8830CB931AC925D5005C79EF /* FeedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedTableViewController.h; sourceTree = "<group>"; };
+		8830CB941AC925D5005C79EF /* FeedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedTableViewController.m; sourceTree = "<group>"; };
+		8830CB961AC92A21005C79EF /* FeedItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedItemCell.xib; sourceTree = "<group>"; };
+		8830CB981AC92AAE005C79EF /* FeedItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedItemCell.h; sourceTree = "<group>"; };
+		8830CB991AC92AAE005C79EF /* FeedItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedItemCell.m; sourceTree = "<group>"; };
+		8830CB9B1AC977C1005C79EF /* andreanagele_845_321.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = andreanagele_845_321.jpg; path = ../../../Downloads/andreanagele_845_321.jpg; sourceTree = "<group>"; };
+		8830CB9C1AC977C1005C79EF /* bee4073696c9438aa2be6a0df19f1ecf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bee4073696c9438aa2be6a0df19f1ecf.png; path = ../../../Downloads/bee4073696c9438aa2be6a0df19f1ecf.png; sourceTree = "<group>"; };
+		8830CB9D1AC977C1005C79EF /* db42c22d699a4276b02de73dd97a6ffd-845x321.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "db42c22d699a4276b02de73dd97a6ffd-845x321.jpg"; path = "../../../Downloads/db42c22d699a4276b02de73dd97a6ffd-845x321.jpg"; sourceTree = "<group>"; };
+		8830CB9E1AC977C1005C79EF /* missinglogic_just_845_321-845x321.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "missinglogic_just_845_321-845x321.jpg"; path = "../../../Downloads/missinglogic_just_845_321-845x321.jpg"; sourceTree = "<group>"; };
+		8830CB9F1AC977C1005C79EF /* ThomasGoschat_WDM_845_321.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = ThomasGoschat_WDM_845_321.jpg; path = ../../../Downloads/ThomasGoschat_WDM_845_321.jpg; sourceTree = "<group>"; };
 		8835747C1AB06C950099DF4A /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		8835747D1AB06C950099DF4A /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		8835747F1AB1CCF40099DF4A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -219,8 +236,6 @@
 		88BA02A41AA85C430091A43C /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		88BA02A51AA85C430091A43C /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		88CBAEE01AA9EC9E000E480A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		88CE0CF41AAEDA6D0014EE77 /* StartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartViewController.h; sourceTree = "<group>"; };
-		88CE0CF51AAEDA6D0014EE77 /* StartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartViewController.m; sourceTree = "<group>"; };
 		88CE0CFC1AAEF7740014EE77 /* RSSFeedItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RSSFeedItemView.xib; sourceTree = "<group>"; };
 		88CE0D0B1AAF40B30014EE77 /* RSSItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSItemViewController.h; sourceTree = "<group>"; };
 		88CE0D0C1AAF40B30014EE77 /* RSSItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSItemViewController.m; sourceTree = "<group>"; };
@@ -278,6 +293,11 @@
 		88BA01E61AA859F90091A43C = {
 			isa = PBXGroup;
 			children = (
+				8830CB9B1AC977C1005C79EF /* andreanagele_845_321.jpg */,
+				8830CB9C1AC977C1005C79EF /* bee4073696c9438aa2be6a0df19f1ecf.png */,
+				8830CB9D1AC977C1005C79EF /* db42c22d699a4276b02de73dd97a6ffd-845x321.jpg */,
+				8830CB9E1AC977C1005C79EF /* missinglogic_just_845_321-845x321.jpg */,
+				8830CB9F1AC977C1005C79EF /* ThomasGoschat_WDM_845_321.jpg */,
 				88BA02181AA85BF30091A43C /* xamoom-ios-sdk */,
 				88BA01F11AA859F90091A43C /* xamoom-pingeborg-ios */,
 				88BA020B1AA859F90091A43C /* xamoom-pingeborg-iosTests */,
@@ -491,6 +511,9 @@
 				8897A9FC1ABB1C710003C3FA /* PingeborgCalloutView.xib */,
 				88D401631ABC053A006E865D /* PingeborgCalloutView.h */,
 				88D401641ABC053A006E865D /* PingeborgCalloutView.m */,
+				8830CB961AC92A21005C79EF /* FeedItemCell.xib */,
+				8830CB981AC92AAE005C79EF /* FeedItemCell.h */,
+				8830CB991AC92AAE005C79EF /* FeedItemCell.m */,
 			);
 			name = "Custom Views";
 			sourceTree = "<group>";
@@ -498,8 +521,8 @@
 		88CE0D0F1AB0356C0014EE77 /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
-				88CE0CF41AAEDA6D0014EE77 /* StartViewController.h */,
-				88CE0CF51AAEDA6D0014EE77 /* StartViewController.m */,
+				8830CB931AC925D5005C79EF /* FeedTableViewController.h */,
+				8830CB941AC925D5005C79EF /* FeedTableViewController.m */,
 				885BFD041AADD9FF0047340C /* ScanResultViewController.h */,
 				885BFD051AADD9FF0047340C /* ScanResultViewController.m */,
 				88CE0D0B1AAF40B30014EE77 /* RSSItemViewController.h */,
@@ -630,8 +653,14 @@
 				885BFCF81AADC23F0047340C /* Main.storyboard in Resources */,
 				8897A9FD1ABB1C710003C3FA /* PingeborgCalloutView.xib in Resources */,
 				88BA02031AA859F90091A43C /* LaunchScreen.xib in Resources */,
+				8830CBA01AC977C1005C79EF /* andreanagele_845_321.jpg in Resources */,
 				88CE0CFD1AAEF7740014EE77 /* RSSFeedItemView.xib in Resources */,
+				8830CBA31AC977C1005C79EF /* missinglogic_just_845_321-845x321.jpg in Resources */,
+				8830CBA11AC977C1005C79EF /* bee4073696c9438aa2be6a0df19f1ecf.png in Resources */,
 				883574831AB1D4AD0099DF4A /* styles.css in Resources */,
+				8830CB971AC92A21005C79EF /* FeedItemCell.xib in Resources */,
+				8830CBA41AC977C1005C79EF /* ThomasGoschat_WDM_845_321.jpg in Resources */,
+				8830CBA21AC977C1005C79EF /* db42c22d699a4276b02de73dd97a6ffd-845x321.jpg in Resources */,
 				88BA02001AA859F90091A43C /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -700,6 +729,7 @@
 				88BA02871AA85C060091A43C /* XMMResponseGetByLocationIdentifier.m in Sources */,
 				88BA028A1AA85C060091A43C /* XMMResponseGetSpotMapItem.m in Sources */,
 				88BA02A91AA85C430091A43C /* MWFeedItem.m in Sources */,
+				8830CB951AC925D5005C79EF /* FeedTableViewController.m in Sources */,
 				88BA02781AA85C060091A43C /* XMMCoreDataStyle.m in Sources */,
 				88BA02891AA85C060091A43C /* XMMResponseGetSpotMap.m in Sources */,
 				8827D8E71ABB0E7C002F632C /* PingebAnnotation.m in Sources */,
@@ -721,11 +751,11 @@
 				88BA02811AA85C060091A43C /* XMMResponseContentBlockType6.m in Sources */,
 				88BA028C1AA85C060091A43C /* XMMResponseStyle.m in Sources */,
 				88BA026D1AA85C060091A43C /* _XMMCoreDataGetByLocation.m in Sources */,
+				8830CB9A1AC92AAE005C79EF /* FeedItemCell.m in Sources */,
 				88D8F09E1ABACC6200ACFBE4 /* RSSFeedItemView.m in Sources */,
 				88BA02761AA85C060091A43C /* XMMCoreDataGetByLocationItem.m in Sources */,
 				88BA026B1AA85C060091A43C /* _XMMCoreDataContentBlocks.m in Sources */,
 				88BA02721AA85C060091A43C /* XMMCoreDataContent.m in Sources */,
-				88CE0CF61AAEDA6D0014EE77 /* StartViewController.m in Sources */,
 				88D8F0A11ABACD2400ACFBE4 /* SettingsViewController.m in Sources */,
 				88BA02851AA85C060091A43C /* XMMResponseGetById.m in Sources */,
 				88D401651ABC053A006E865D /* PingeborgCalloutView.m in Sources */,

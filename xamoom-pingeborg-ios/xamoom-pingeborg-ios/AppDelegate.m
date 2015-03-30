@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "XMMEnduserApi.h"
-#import "StartViewController.h"
 
 @interface AppDelegate ()
 

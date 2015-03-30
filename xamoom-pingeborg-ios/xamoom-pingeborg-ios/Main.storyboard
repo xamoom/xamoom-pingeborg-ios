@@ -9,7 +9,7 @@
         <scene sceneID="yIo-UF-KLW">
             <objects>
                 <navigationController id="xLe-gR-03r" customClass="NavigationViewController" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UMV-yg-V7g">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="UMV-yg-V7g">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -30,7 +30,7 @@
             <objects>
                 <viewController id="TrX-Pn-Qt4" customClass="MapViewController" sceneMemberID="viewController">
                     <mapView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" id="Cwa-BO-kQr">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </mapView>
                     <tabBarItem key="tabBarItem" tag="1" title="" image="Map" id="OwC-eW-fFf"/>
@@ -51,10 +51,10 @@
                         <viewControllerLayoutGuide type="bottom" id="Kdb-S8-7Bo"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="4gp-YQ-mv2">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="white" translatesAutoresizingMaskIntoConstraints="NO" id="psw-LP-VNn">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" indicatorStyle="white" translatesAutoresizingMaskIntoConstraints="NO" id="psw-LP-VNn">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                             </scrollView>
                         </subviews>
@@ -84,11 +84,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Lro-OS-QOb"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="TfH-Gh-1yT">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F1y-Re-Ay3">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                            <webView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F1y-Re-Ay3">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aA3-Qj-h1s">
@@ -134,7 +134,7 @@
                         <viewControllerLayoutGuide type="bottom" id="ntR-gj-hWM"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="bKd-Ua-hIb" customClass="QRCodeReaderView">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -153,7 +153,7 @@
                         <viewControllerLayoutGuide type="bottom" id="6rg-Jx-dpP"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="QE4-ny-WZo">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pickerView contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aAo-MJ-TcX">
@@ -194,7 +194,7 @@
                         <viewControllerLayoutGuide type="bottom" id="5Xz-sH-L58"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="gJa-l2-6vM">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" indicatorStyle="white" translatesAutoresizingMaskIntoConstraints="NO" id="C1d-xc-YTh">
@@ -220,20 +220,83 @@
             </objects>
             <point key="canvasLocation" x="1475" y="-155"/>
         </scene>
+        <!--Feed Table View Controller-->
+        <scene sceneID="JWA-Tt-J6s">
+            <objects>
+                <tableViewController id="keD-Cb-FhT" customClass="FeedTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="77N-T3-S2R">
+                        <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Yuf-ji-421">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Yuf-ji-421" id="OyQ-bj-ciF">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="tqW-rN-U1Z">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tqW-rN-U1Z" id="UpQ-eo-HMK">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="w8L-Th-vEF">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="w8L-Th-vEF" id="oTx-4W-XLq">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="01k-ew-jPl">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="01k-ew-jPl" id="TIU-uj-Sud">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="T52-KA-FD9">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="T52-KA-FD9" id="jR0-hQ-cve">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="s7U-Jy-fAO">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="s7U-Jy-fAO" id="FpB-nl-mfT">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="7mb-fI-hkd">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7mb-fI-hkd" id="fKE-St-3Ss">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="keD-Cb-FhT" id="WTU-Tb-iKv"/>
+                            <outlet property="delegate" destination="keD-Cb-FhT" id="jcq-5N-VuC"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="" image="Start" id="W8R-Ic-JlW"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Rn-OU-fie" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="783" y="-489"/>
+        </scene>
         <!--Main Tab Bar Controller-->
         <scene sceneID="dSe-9y-ton">
             <objects>
                 <tabBarController id="ln3-at-QtN" customClass="MainTabBarController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="wFz-WY-oY7"/>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="3wJ-8M-eMu">
+                    <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="3wJ-8M-eMu">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
                         <segue destination="g8c-6b-oU9" kind="show" identifier="showScanResult" id="TM5-d9-Bxu"/>
-                        <segue destination="yb1-AW-VOp" kind="relationship" relationship="viewControllers" id="CvR-JY-RwO"/>
+                        <segue destination="keD-Cb-FhT" kind="relationship" relationship="viewControllers" id="iEI-Ey-ObK"/>
                         <segue destination="TrX-Pn-Qt4" kind="relationship" relationship="viewControllers" id="eUh-Xe-XpM"/>
                         <segue destination="evs-Oh-Jun" kind="relationship" relationship="viewControllers" id="7Z6-7b-f6d"/>
                         <segue destination="wda-of-8Qb" kind="relationship" relationship="viewControllers" id="95r-xL-Jxf"/>
