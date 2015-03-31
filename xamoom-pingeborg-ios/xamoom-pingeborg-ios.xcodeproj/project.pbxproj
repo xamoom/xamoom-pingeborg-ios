@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		594E123E6C9FD768422C1CEE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C530CDEFFEDDFCABBEC918B0 /* libPods.a */; };
 		88124DAF1AC5625F00D50C05 /* NavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88124DAE1AC5625F00D50C05 /* NavigationViewController.m */; };
-		8827D8E41ABB057B002F632C /* ScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8827D8E31ABB057B002F632C /* ScannerViewController.m */; };
 		8827D8E71ABB0E7C002F632C /* PingebAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8827D8E61ABB0E7C002F632C /* PingebAnnotation.m */; };
 		8827D8ED1ABB0F1C002F632C /* PingeborgAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8827D8EC1ABB0F1C002F632C /* PingeborgAnnotationView.m */; };
 		8830CB951AC925D5005C79EF /* FeedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8830CB941AC925D5005C79EF /* FeedTableViewController.m */; };
@@ -99,8 +98,6 @@
 		48251170F65DFEEAACD48338 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		88124DAD1AC5625F00D50C05 /* NavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationViewController.h; sourceTree = "<group>"; };
 		88124DAE1AC5625F00D50C05 /* NavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationViewController.m; sourceTree = "<group>"; };
-		8827D8E21ABB057B002F632C /* ScannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScannerViewController.h; sourceTree = "<group>"; };
-		8827D8E31ABB057B002F632C /* ScannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScannerViewController.m; sourceTree = "<group>"; };
 		8827D8E51ABB0E7C002F632C /* PingebAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingebAnnotation.h; sourceTree = "<group>"; };
 		8827D8E61ABB0E7C002F632C /* PingebAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PingebAnnotation.m; sourceTree = "<group>"; };
 		8827D8EB1ABB0F1C002F632C /* PingeborgAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingeborgAnnotationView.h; sourceTree = "<group>"; };
@@ -273,11 +270,18 @@
 			isa = PBXGroup;
 			children = (
 				885BFCF71AADC23F0047340C /* Main.storyboard */,
-				88CE0D0E1AB035470014EE77 /* Custom Views */,
-				88CE0D0F1AB0356C0014EE77 /* View Controller */,
+				88CCAA331ACA8A49004E631F /* Home */,
+				88CCAA341ACA8A54004E631F /* Scans */,
+				88CCAA321ACA89D6004E631F /* Map */,
+				88CCAA351ACA8A69004E631F /* Navigation */,
+				88D8F09F1ABACD2400ACFBE4 /* SettingsViewController.h */,
+				88D8F0A01ABACD2400ACFBE4 /* SettingsViewController.m */,
+				88CE0D0B1AAF40B30014EE77 /* RSSItemViewController.h */,
+				88CE0D0C1AAF40B30014EE77 /* RSSItemViewController.m */,
+				88CE0CFC1AAEF7740014EE77 /* RSSFeedItemView.xib */,
+				88D8F09C1ABACC6200ACFBE4 /* RSSFeedItemView.h */,
+				88D8F09D1ABACC6200ACFBE4 /* RSSFeedItemView.m */,
 				883574811AB1D4810099DF4A /* css */,
-				885BFCFC1AADD3950047340C /* MainTabBarController.h */,
-				885BFCFD1AADD3950047340C /* MainTabBarController.m */,
 			);
 			name = UserInterface;
 			sourceTree = "<group>";
@@ -499,44 +503,43 @@
 				8827D8E61ABB0E7C002F632C /* PingebAnnotation.m */,
 				8827D8EB1ABB0F1C002F632C /* PingeborgAnnotationView.h */,
 				8827D8EC1ABB0F1C002F632C /* PingeborgAnnotationView.m */,
+				8897A9FC1ABB1C710003C3FA /* PingeborgCalloutView.xib */,
+				88D401631ABC053A006E865D /* PingeborgCalloutView.h */,
+				88D401641ABC053A006E865D /* PingeborgCalloutView.m */,
 			);
 			name = Map;
 			sourceTree = "<group>";
 		};
-		88CE0D0E1AB035470014EE77 /* Custom Views */ = {
-			isa = PBXGroup;
-			children = (
-				88CE0CFC1AAEF7740014EE77 /* RSSFeedItemView.xib */,
-				88D8F09C1ABACC6200ACFBE4 /* RSSFeedItemView.h */,
-				88D8F09D1ABACC6200ACFBE4 /* RSSFeedItemView.m */,
-				8897A9FC1ABB1C710003C3FA /* PingeborgCalloutView.xib */,
-				88D401631ABC053A006E865D /* PingeborgCalloutView.h */,
-				88D401641ABC053A006E865D /* PingeborgCalloutView.m */,
-				8830CB961AC92A21005C79EF /* FeedItemCell.xib */,
-				8830CB981AC92AAE005C79EF /* FeedItemCell.h */,
-				8830CB991AC92AAE005C79EF /* FeedItemCell.m */,
-			);
-			name = "Custom Views";
-			sourceTree = "<group>";
-		};
-		88CE0D0F1AB0356C0014EE77 /* View Controller */ = {
+		88CCAA331ACA8A49004E631F /* Home */ = {
 			isa = PBXGroup;
 			children = (
 				8830CB931AC925D5005C79EF /* FeedTableViewController.h */,
 				8830CB941AC925D5005C79EF /* FeedTableViewController.m */,
+				8830CB961AC92A21005C79EF /* FeedItemCell.xib */,
+				8830CB981AC92AAE005C79EF /* FeedItemCell.h */,
+				8830CB991AC92AAE005C79EF /* FeedItemCell.m */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		88CCAA341ACA8A54004E631F /* Scans */ = {
+			isa = PBXGroup;
+			children = (
 				885BFD041AADD9FF0047340C /* ScanResultViewController.h */,
 				885BFD051AADD9FF0047340C /* ScanResultViewController.m */,
-				88CE0D0B1AAF40B30014EE77 /* RSSItemViewController.h */,
-				88CE0D0C1AAF40B30014EE77 /* RSSItemViewController.m */,
-				88CCAA321ACA89D6004E631F /* Map */,
-				88D8F09F1ABACD2400ACFBE4 /* SettingsViewController.h */,
-				88D8F0A01ABACD2400ACFBE4 /* SettingsViewController.m */,
-				8827D8E21ABB057B002F632C /* ScannerViewController.h */,
-				8827D8E31ABB057B002F632C /* ScannerViewController.m */,
+			);
+			name = Scans;
+			sourceTree = "<group>";
+		};
+		88CCAA351ACA8A69004E631F /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
 				88124DAD1AC5625F00D50C05 /* NavigationViewController.h */,
 				88124DAE1AC5625F00D50C05 /* NavigationViewController.m */,
+				885BFCFC1AADD3950047340C /* MainTabBarController.h */,
+				885BFCFD1AADD3950047340C /* MainTabBarController.m */,
 			);
-			name = "View Controller";
+			name = Navigation;
 			sourceTree = "<group>";
 		};
 		B091DC0989CBE4B0B40B108B /* Frameworks */ = {
@@ -713,7 +716,6 @@
 				88BA026F1AA85C060091A43C /* _XMMCoreDataMenuItem.m in Sources */,
 				88BA028B1AA85C060091A43C /* XMMResponseMenuItem.m in Sources */,
 				88BA027D1AA85C060091A43C /* XMMResponseContentBlockType2.m in Sources */,
-				8827D8E41ABB057B002F632C /* ScannerViewController.m in Sources */,
 				88BA027E1AA85C060091A43C /* XMMResponseContentBlockType3.m in Sources */,
 				8827D8ED1ABB0F1C002F632C /* PingeborgAnnotationView.m in Sources */,
 				88BA02701AA85C060091A43C /* _XMMCoreDataStyle.m in Sources */,
