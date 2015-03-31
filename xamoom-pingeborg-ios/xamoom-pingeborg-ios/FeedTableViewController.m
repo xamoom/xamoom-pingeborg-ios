@@ -21,36 +21,40 @@ static NSString *cellIdentifier = @"FeedItemCell";
 
 @synthesize itemsToDisplay;
 
-NSMutableArray *test;
+NSMutableArray *tableViewData;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     itemsToDisplay = [[NSMutableArray alloc] init];
     [[XMMEnduserApi sharedInstance] setDelegate:self];
-
-    //example for data
-    test = [[NSMutableArray alloc] initWithObjects:
-            @"82 | Bernd Sibitz | PANIK in St. Ruprecht und anderswo",
-            @"82 | Bernd Sibitz | PANIK in St. Ruprecht und anderswo",
-            @"82 | Bernd Sibitz | PANIK in St. Ruprecht und anderswo",
-            @"82 | Bernd Sibitz | PANIK in St. Ruprecht und anderswo",
-            @"82 | Bernd Sibitz | PANIK in St. Ruprecht und anderswo",
-            nil];
     
-    //set dropDownMenuDelegate
+    //example for data
+    tableViewData = [[NSMutableArray alloc] initWithObjects:
+                     @"82 | Bernd Sibitz | PANIK in St. Ruprecht und anderswo",
+                     @"82 | Bernd Sibitz | PANIK in St. Ruprecht und anderswo",
+                     @"82 | Bernd Sibitz | PANIK in St. Ruprecht und anderswo",
+                     @"82 | Bernd Sibitz | PANIK in St. Ruprecht und anderswo",
+                     @"82 | Bernd Sibitz | PANIK in St. Ruprecht und anderswo",
+                     nil];
+    
+    //set NavigationController delegate
     NavigationViewController* navController = (NavigationViewController*) self.parentViewController.parentViewController;
     navController.delegate = self;
     
-    //navbar dropdown
-    UIView *iv = [[UIView alloc] initWithFrame:CGRectMake(0,0,200,32)];
-    [iv setBackgroundColor:[UIColor whiteColor]];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0,0,200,32)];
-    label.text = @"Hellyeah";
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0,0,200,32)];
+    //navbarDropdown
+    UIView *iv = [[UIView alloc] initWithFrame:CGRectMake(0,0,(self.view.frame.size.width/1.5),32)];
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0,0,(self.view.frame.size.width/1.5),32)];
     [button addTarget:navController action:@selector(toggleMenu) forControlEvents:UIControlEventTouchUpInside];
-    [iv addSubview:label];
+    [button setTitle:@"pingeborg Klagenfurt" forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake((iv.frame.size.width/2) - 3.5, iv.frame.size.height-3.5, 7, 3.5)];
+    UIImage *angleDownImage = [UIImage imageNamed:@"angleDown"];
+    [imageView setImage:angleDownImage];
+    
     [iv addSubview:button];
+    [iv addSubview:imageView];
     self.parentViewController.navigationItem.titleView = iv;
     
     // Uncomment the following line to preserve selection between presentations.
@@ -66,41 +70,37 @@ NSMutableArray *test;
 }
 
 -(void)viewDidAppear:(BOOL)animated {
-    self.parentViewController.navigationItem.title = @"Home";
-    
     if ([[NSUserDefaults standardUserDefaults] integerForKey:@"isPingeborgSystemChanged"]) {
-        
-        /*
-         [self pingeborgSystemFeedUrl];
-         [[XMMEnduserApi sharedInstance] getContentFromRSSFeed];
-         
-         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-         [userDefaults setBool:NO
-         forKey:@"isPingeborgSystemChanged"];
-         [userDefaults synchronize];
-         */
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setBool:NO
+                       forKey:@"isPingeborgSystemChanged"];
+        [userDefaults synchronize];
     }
 }
 
+#pragma mark - NavbarDropdown Delegation
 -(void)didChangeSystem {
     NSInteger location = [[NSUserDefaults standardUserDefaults] integerForKey:@"location"];
-    UILabel *label = self.parentViewController.navigationItem.titleView.subviews[0];
     
-    switch (location) {
-        case 0:
-            label.text = @"pingeborg Klagenfurt";
-            break;
-        case 1:
-            label.text = @"pingeborg Salzburg";
-            break;
-        case 2:
-            label.text = @"pingeborg Villach";
-            break;
-        case 3:
-            label.text = @"pingeborg Vorarlberg";
-            break;
-        default:
-            break;
+    if ([self.parentViewController.navigationItem.titleView.subviews[0] isKindOfClass:[UIButton class]]) {
+        UIButton *button = self.parentViewController.navigationItem.titleView.subviews[0];
+        
+        switch (location) {
+            case 0:
+                [button setTitle:@"pingeborg Klagenfurt" forState:UIControlStateNormal];
+                break;
+            case 1:
+                [button setTitle:@"pingeborg Salzburg" forState:UIControlStateNormal];
+                break;
+            case 2:
+                [button setTitle:@"pingeborg Villach" forState:UIControlStateNormal];
+                break;
+            case 3:
+                [button setTitle:@"pingeborg Vorarlberg" forState:UIControlStateNormal];
+                break;
+            default:
+                break;
+        }
     }
 }
 
@@ -113,15 +113,14 @@ NSMutableArray *test;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return [test count];
+    return [tableViewData count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     FeedItemCell *cell = (FeedItemCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
-    if (cell == nil)
-    {
+    if (cell == nil) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FeedItemCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
@@ -133,8 +132,9 @@ NSMutableArray *test;
     style.headIndent = 10.0f;
     style.tailIndent = -10.0f;
     style.lineBreakMode = NSLineBreakByTruncatingTail;
-    NSAttributedString *attrText = [[NSAttributedString alloc] initWithString:[test objectAtIndex:indexPath.row]
+    NSAttributedString *attrText = [[NSAttributedString alloc] initWithString:[tableViewData objectAtIndex:indexPath.row]
                                                                    attributes:@{ NSParagraphStyleAttributeName : style}];
+    //set the title
     cell.feedItemTitle.attributedText = attrText;
     
     //set the image
@@ -148,7 +148,7 @@ NSMutableArray *test;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"Hellyeah %ld", (long)indexPath.row);
+    NSLog(@"TableRow %ld clicked", (long)indexPath.row);
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -156,47 +156,47 @@ NSMutableArray *test;
 }
 
 /*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+ // Override to support conditional editing of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+ // Return NO if you do not want the specified item to be editable.
+ return YES;
+ }
+ */
 
 /*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
+ // Override to support editing the table view.
+ - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+ if (editingStyle == UITableViewCellEditingStyleDelete) {
+ // Delete the row from the data source
+ [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+ } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+ // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+ }
+ }
+ */
 
 /*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
+ // Override to support rearranging the table view.
+ - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+ }
+ */
 
 /*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
+ // Override to support conditional rearranging of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+ // Return NO if you do not want the item to be re-orderable.
+ return YES;
+ }
+ */
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

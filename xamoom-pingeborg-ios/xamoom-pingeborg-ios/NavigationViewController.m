@@ -22,40 +22,42 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    REMenuItem *homeItem = [[REMenuItem alloc] initWithTitle:@"pingeborg Klagenfurt"
+    
+    //setting up REMenu "navbarDropdown"
+    REMenuItem *klagenfurt = [[REMenuItem alloc] initWithTitle:@"pingeborg Klagenfurt"
                                                        image:nil
                                             highlightedImage:nil
                                                       action:^(REMenuItem *item) {
                                                             [self changePingeborgSystemWithId:0];
                                                       }];
     
-    REMenuItem *exploreItem = [[REMenuItem alloc] initWithTitle:@"pingeborg Salzburg"
+    REMenuItem *salzburg = [[REMenuItem alloc] initWithTitle:@"pingeborg Salzburg"
                                                           image:nil
                                                highlightedImage:nil
                                                          action:^(REMenuItem *item) {
                                                             [self changePingeborgSystemWithId:1];
                                                          }];
     
-    REMenuItem *activityItem = [[REMenuItem alloc] initWithTitle:@"pingeborg Villach"
+    REMenuItem *villach = [[REMenuItem alloc] initWithTitle:@"pingeborg Villach"
                                                            image:nil
                                                 highlightedImage:nil
                                                           action:^(REMenuItem *item) {
                                                               [self changePingeborgSystemWithId:2];
                                                           }];
     
-    REMenuItem *profileItem = [[REMenuItem alloc] initWithTitle:@"pingeborg Vorarlberg"
+    REMenuItem *vorarlberg = [[REMenuItem alloc] initWithTitle:@"pingeborg Vorarlberg"
                                                           image:nil
                                                highlightedImage:nil
                                                          action:^(REMenuItem *item) {
                                                              [self changePingeborgSystemWithId:3];
                                                          }];
+    //set tags
+    klagenfurt.tag = 0;
+    salzburg.tag = 1;
+    villach.tag = 2;
+    vorarlberg.tag = 3;
     
-    homeItem.tag = 0;
-    exploreItem.tag = 1;
-    activityItem.tag = 2;
-    profileItem.tag = 3;
-    
-    self.menu = [[REMenu alloc] initWithItems:@[homeItem, exploreItem, activityItem, profileItem]];
+    self.menu = [[REMenu alloc] initWithItems:@[klagenfurt, salzburg, villach, vorarlberg]];
     
     self.menu.separatorOffset = CGSizeMake(15.0, 0.0);
     self.menu.imageOffset = CGSizeMake(5, -1);
@@ -64,7 +66,6 @@
         badgeLabel.backgroundColor = [UIColor colorWithRed:0 green:179/255.0 blue:134/255.0 alpha:1];
         badgeLabel.layer.borderColor = [UIColor colorWithRed:0.000 green:0.648 blue:0.507 alpha:1.000].CGColor;
     };
-    //self.menu.delegate = self;
     
     [self.menu setClosePreparationBlock:^{
         NSLog(@"Menu will close");
@@ -81,6 +82,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - navbarDropdown toggle
 - (void)toggleMenu
 {
     if (self.menu.isOpen)
@@ -88,6 +90,7 @@
     
     [self.menu showFromNavigationController:self];
 }
+
 
 - (void)changePingeborgSystemWithId:(NSInteger)selectedId {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
