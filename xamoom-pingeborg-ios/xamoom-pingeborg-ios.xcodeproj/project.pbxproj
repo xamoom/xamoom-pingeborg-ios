@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		594E123E6C9FD768422C1CEE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C530CDEFFEDDFCABBEC918B0 /* libPods.a */; };
+		8806A7631ACC2579000E8552 /* MapkitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8806A7621ACC2579000E8552 /* MapkitViewController.m */; };
 		88124DAF1AC5625F00D50C05 /* NavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88124DAE1AC5625F00D50C05 /* NavigationViewController.m */; };
 		8827D8E71ABB0E7C002F632C /* PingebAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8827D8E61ABB0E7C002F632C /* PingebAnnotation.m */; };
 		8827D8ED1ABB0F1C002F632C /* PingeborgAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8827D8EC1ABB0F1C002F632C /* PingeborgAnnotationView.m */; };
@@ -96,6 +97,8 @@
 /* Begin PBXFileReference section */
 		081CE084B2E648F4E71D7D2A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		48251170F65DFEEAACD48338 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		8806A7611ACC2579000E8552 /* MapkitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapkitViewController.h; sourceTree = "<group>"; };
+		8806A7621ACC2579000E8552 /* MapkitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapkitViewController.m; sourceTree = "<group>"; };
 		88124DAD1AC5625F00D50C05 /* NavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationViewController.h; sourceTree = "<group>"; };
 		88124DAE1AC5625F00D50C05 /* NavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationViewController.m; sourceTree = "<group>"; };
 		8827D8E51ABB0E7C002F632C /* PingebAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingebAnnotation.h; sourceTree = "<group>"; };
@@ -258,6 +261,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8806A7601ACC2552000E8552 /* New Map */ = {
+			isa = PBXGroup;
+			children = (
+				8806A7611ACC2579000E8552 /* MapkitViewController.h */,
+				8806A7621ACC2579000E8552 /* MapkitViewController.m */,
+			);
+			name = "New Map";
+			sourceTree = "<group>";
+		};
 		883574811AB1D4810099DF4A /* css */ = {
 			isa = PBXGroup;
 			children = (
@@ -269,6 +281,7 @@
 		885BFCEB1AADB67F0047340C /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
+				8806A7601ACC2552000E8552 /* New Map */,
 				885BFCF71AADC23F0047340C /* Main.storyboard */,
 				88CCAA331ACA8A49004E631F /* Home */,
 				88CCAA341ACA8A54004E631F /* Scans */,
@@ -731,6 +744,7 @@
 				88BA02831AA85C060091A43C /* XMMResponseContentBlockType8.m in Sources */,
 				88BA01F81AA859F90091A43C /* AppDelegate.m in Sources */,
 				88BA027B1AA85C060091A43C /* XMMResponseContentBlockType0.m in Sources */,
+				8806A7631ACC2579000E8552 /* MapkitViewController.m in Sources */,
 				88BA02821AA85C060091A43C /* XMMResponseContentBlockType7.m in Sources */,
 				88BA026E1AA85C060091A43C /* _XMMCoreDataGetByLocationItem.m in Sources */,
 				88BA02AA1AA85C430091A43C /* MWFeedParser.m in Sources */,

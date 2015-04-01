@@ -30,7 +30,7 @@
             <objects>
                 <viewController id="TrX-Pn-Qt4" customClass="MapViewController" sceneMemberID="viewController">
                     <mapView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" id="Cwa-BO-kQr">
-                        <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </mapView>
                     <tabBarItem key="tabBarItem" tag="1" title="" image="Map" id="OwC-eW-fFf"/>
@@ -296,15 +296,34 @@
                     </tabBar>
                     <connections>
                         <segue destination="g8c-6b-oU9" kind="show" identifier="showScanResult" id="TM5-d9-Bxu"/>
+                        <segue destination="WdT-Q6-mb4" kind="relationship" relationship="viewControllers" id="lPr-2U-FsY"/>
                         <segue destination="keD-Cb-FhT" kind="relationship" relationship="viewControllers" id="iEI-Ey-ObK"/>
-                        <segue destination="TrX-Pn-Qt4" kind="relationship" relationship="viewControllers" id="eUh-Xe-XpM"/>
                         <segue destination="evs-Oh-Jun" kind="relationship" relationship="viewControllers" id="7Z6-7b-f6d"/>
                         <segue destination="wda-of-8Qb" kind="relationship" relationship="viewControllers" id="95r-xL-Jxf"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nmp-ce-SUF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="705" y="201"/>
+            <point key="canvasLocation" x="723" y="201"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="nj5-Cp-ejM">
+            <objects>
+                <viewController id="WdT-Q6-mb4" customClass="MapkitViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="r2z-g0-SZf"/>
+                        <viewControllerLayoutGuide type="bottom" id="taP-xd-o0S"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8fU-ya-1Zx">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="Tov-nI-9zY"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xcE-VJ-wGD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1171" y="847"/>
         </scene>
     </scenes>
     <resources>

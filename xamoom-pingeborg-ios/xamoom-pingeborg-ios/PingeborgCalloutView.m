@@ -32,7 +32,4 @@
 }
 */
 
-- (IBAction)button:(id)sender {
-}
-
 @end

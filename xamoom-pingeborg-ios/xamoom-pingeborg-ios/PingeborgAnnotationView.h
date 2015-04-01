@@ -8,7 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
+#import "XMMEnduserApi.h"
 
 @interface PingeborgAnnotationView : MKAnnotationView
+
+@property XMMResponseGetSpotMapItem *data;
 
 @end

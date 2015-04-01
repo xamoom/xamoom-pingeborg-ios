@@ -32,15 +32,6 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uAi-G3-ggk">
-                    <rect key="frame" x="246" y="8" width="46" height="30"/>
-                    <state key="normal" title="Button">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="button:" destination="iN0-l3-epB" eventType="touchUpInside" id="vAV-LY-vah"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <nil key="simulatedStatusBarMetrics"/>
@@ -48,7 +39,10 @@
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="descriptionOfContent" destination="B3Z-B2-XG9" id="eMY-OR-0ft"/>
+                <outlet property="distance" destination="g1d-sf-wW1" id="pip-mp-64m"/>
                 <outlet property="imageView" destination="Hub-Ii-zic" id="ktX-Dg-iF7"/>
+                <outlet property="title" destination="IUm-1c-qgg" id="YqH-yB-Es2"/>
             </connections>
             <point key="canvasLocation" x="671" y="451.5"/>
         </view>

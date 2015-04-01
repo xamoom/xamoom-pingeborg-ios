@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
+#import "XMMEnduserApi.h"
 
 @interface PingebAnnotation : NSObject <MKAnnotation>
 
@@ -15,6 +16,7 @@
 @property NSString *title;
 @property NSString *image;
 @property NSString *subtitle;
+@property XMMResponseGetSpotMapItem *data;
 
 - (id)initWithLocation:(CLLocationCoordinate2D)coord;
 

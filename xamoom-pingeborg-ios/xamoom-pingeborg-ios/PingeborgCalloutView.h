@@ -11,8 +11,9 @@
 
 @interface PingeborgCalloutView : UIView
 
+@property (weak, nonatomic) IBOutlet UILabel *title;
+@property (weak, nonatomic) IBOutlet UILabel *distance;
+@property (weak, nonatomic) IBOutlet UITextView *descriptionOfContent;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
-
-- (IBAction)button:(id)sender;
 
 @end
