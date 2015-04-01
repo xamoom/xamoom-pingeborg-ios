@@ -13,5 +13,6 @@
 @interface PingeborgAnnotationView : MKAnnotationView
 
 @property XMMResponseGetSpotMapItem *data;
+@property NSString *distance;
 
 @end

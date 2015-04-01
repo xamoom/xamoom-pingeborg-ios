@@ -71,16 +71,25 @@
     for (XMMResponseGetSpotMapItem *item in result.items) {
         // Add an annotation
         PingebAnnotation *point = [[PingebAnnotation alloc] initWithLocation: CLLocationCoordinate2DMake([item.lat doubleValue], [item.lon doubleValue])];
-        point.title = item.displayName;
-        point.image = item.image;
-        point.subtitle = item.descriptionOfContent;
         point.data = item;
         
         CLLocation *pointLocation = [[CLLocation alloc] initWithLatitude:point.coordinate.latitude longitude:point.coordinate.longitude];
         CLLocationDistance distance = [self.locationManager.location distanceFromLocation:pointLocation];
-        //point.subtitle = [NSString stringWithFormat:@"Entfernung: %d Meter", (int)distance];
+        point.distance = [NSString stringWithFormat:@"Entfernung: %d Meter", (int)distance];
         
-        [self.mapKitWithSMCalloutView addAnnotation:point];
+        NSLog(@"Hellyeah: %@", item.image);
+        NSLog(@"Hellyeah: %@", item.descriptionOfSpot);
+        
+        if (item.image == nil && [item.descriptionOfSpot isEqualToString:@""]) {
+            MKPointAnnotation *pointAnnotation = [[MKPointAnnotation alloc] init];
+            pointAnnotation.coordinate = point.coordinate;
+            pointAnnotation.title = item.displayName;
+            pointAnnotation.subtitle = point.distance;
+            [self.mapKitWithSMCalloutView addAnnotation:pointAnnotation];
+        }
+        else {
+            [self.mapKitWithSMCalloutView addAnnotation:point];
+        }
     }
 }
 
@@ -104,6 +113,7 @@
             annotationView.image = [UIImage imageNamed:@"mappoint"];//here we use a nice image instead of the default pins
             PingebAnnotation *pingebAnnotation = (PingebAnnotation*)annotation;
             annotationView.data = pingebAnnotation.data;
+            annotationView.distance = pingebAnnotation.distance;
             
             // create a disclosure button for map kit
             /*
@@ -123,18 +133,14 @@
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)annotationView {
     
-    if (mapView == self.mapKitWithSMCalloutView) {
-        
-        // apply the MKAnnotationView's basic properties
-        //self.calloutView.title = annotationView.annotation.title;
-        //self.calloutView.subtitle = annotationView.annotation.subtitle;
-        
+    if ([annotationView isKindOfClass:[PingeborgAnnotationView class]]) {
         PingeborgCalloutView* pingeborgCalloutView = [[PingeborgCalloutView alloc] init];
         PingebAnnotation* pingeborgAnnotation = (PingebAnnotation *)annotationView;
         pingeborgCalloutView.title.text = pingeborgAnnotation.data.displayName;
-        pingeborgCalloutView.descriptionOfContent.text = pingeborgAnnotation.data.descriptionOfContent;
+        pingeborgCalloutView.descriptionOfContent.text = pingeborgAnnotation.data.descriptionOfSpot;
         pingeborgCalloutView.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:
                                                                        [NSURL URLWithString:pingeborgAnnotation.data.image]]];
+        pingeborgCalloutView.distance.text = pingeborgAnnotation.distance;
         self.calloutView.contentView = pingeborgCalloutView;
         
         // Apply the MKAnnotationView's desired calloutOffset (from the top-middle of the view)
@@ -151,6 +157,9 @@
         
         // This does all the magic.
         [self.calloutView presentCalloutFromRect:annotationView.bounds inView:annotationView constrainedToView:self.view animated:YES];
+    }
+    else {
+        NSLog(@"OK");
     }
 }
 

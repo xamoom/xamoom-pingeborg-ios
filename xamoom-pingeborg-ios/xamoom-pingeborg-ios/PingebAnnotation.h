@@ -13,10 +13,8 @@
 @interface PingebAnnotation : NSObject <MKAnnotation>
 
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
-@property NSString *title;
-@property NSString *image;
-@property NSString *subtitle;
 @property XMMResponseGetSpotMapItem *data;
+@property NSString *distance;
 
 - (id)initWithLocation:(CLLocationCoordinate2D)coord;
 
