@@ -7,13 +7,7 @@
 //
 
 #import "MapViewController.h"
-#import <MapKit/MKAnnotation.h>
-#import "PingebAnnotation.h"
-#import "PingeborgAnnotationView.h"
 
-@interface MapViewController ()
-
-@end
 
 @implementation MapViewController
 
@@ -30,6 +24,9 @@
     
     [[XMMEnduserApi sharedInstance] setDelegate:self];
     [[XMMEnduserApi sharedInstance] getSpotMapWithSystemId:@"6588702901927936" withMapTag:@"stw" withLanguage:@"de"];
+    
+    self.calloutView = [SMCalloutView platformCalloutView];
+    self.calloutView.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -45,32 +42,42 @@
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     [self.locationManager startUpdatingLocation];
     
-    //View Area
+    //map region
     MKCoordinateRegion region = { { 0.0, 0.0 }, { 0.0, 0.0 } };
     region.center.latitude = 46.6247222;
     region.center.longitude = 14.3052778;
     region.span.longitudeDelta = 0.09f;
     region.span.longitudeDelta = 0.09f;
     [self.mapView setRegion:region animated:YES];
+    
+    //create userTracking button
+    MKUserTrackingBarButtonItem *buttonItem = [[MKUserTrackingBarButtonItem alloc] initWithMapView:self.mapView];
+    self.parentViewController.navigationItem.rightBarButtonItem = buttonItem;
 }
 
+-(void)viewWillDisappear:(BOOL)animated {
+    //remove userTracking button
+    self.parentViewController.navigationItem.rightBarButtonItem = nil;
+}
+
+#pragma mark - XMMEnduser Delegate
 - (void)didLoadDataBySpotMap:(XMMResponseGetSpotMap *)result {
     for (XMMResponseGetSpotMapItem *item in result.items) {
         // Add an annotation
         PingebAnnotation *point = [[PingebAnnotation alloc] initWithLocation: CLLocationCoordinate2DMake([item.lat doubleValue], [item.lon doubleValue])];
-        point.title = item.displayName;
-        point.image = item.image;
+        //point.title = item.displayName;
+        //point.image = item.image;
         
         CLLocation *pointLocation = [[CLLocation alloc] initWithLatitude:point.coordinate.latitude longitude:point.coordinate.longitude];
         CLLocationDistance distance = [self.locationManager.location distanceFromLocation:pointLocation];
-        point.subtitle = [NSString stringWithFormat:@"Entfernung: %d Meter", (int)distance];
+        //point.subtitle = [NSString stringWithFormat:@"Entfernung: %d Meter", (int)distance];
 
         [self.mapView addAnnotation:point];
     }
 }
 
+#pragma mark - Map
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
-    
     //do not touch userLocation
     if ([annotation isKindOfClass:[MKUserLocation class]])
         return nil;
@@ -82,28 +89,8 @@
         if (annotationView == nil) {
             annotationView = [[PingeborgAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
             annotationView.enabled = YES;
-            annotationView.canShowCallout = YES;
+            annotationView.canShowCallout = NO;
             annotationView.image = [UIImage imageNamed:@"mappoint"];//here we use a nice image instead of the default pins
-            
-            /*
-            UIImageView *imageView = [[UIImageView alloc] init];
-            PingebAnnotation *pinAnnotation = annotation;
-            NSURL *url = [NSURL URLWithString:pinAnnotation.image];
-            NSData *data = [NSData dataWithContentsOfURL:url];
-            imageView.image = [UIImage imageWithData:data];
-            
-            annotationView.leftCalloutAccessoryView = imageView;
-            */
-            
-            UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
-            [rightButton setFrame:CGRectMake(0,0,50,80)];
-            [rightButton setImage:[[UIImage imageNamed:@"car"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
-            rightButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 25, 0);
-            //UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-            [rightButton setTintColor:[UIColor whiteColor]];
-            [rightButton setBackgroundColor:[UIColor blueColor]];
-            [rightButton setAutoresizingMask:UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleTopMargin];
-            annotationView.leftCalloutAccessoryView = rightButton;
         } else {
             annotationView.annotation = annotation;
         }
@@ -122,47 +109,85 @@
     [pinAnn.mapItem openInMapsWithLaunchOptions:launchOptions];
 }
 
--(void)viewWillAppear:(BOOL)animated {
-    //create direction button in navbar
-    MKUserTrackingBarButtonItem *buttonItem = [[MKUserTrackingBarButtonItem alloc] initWithMapView:self.mapView];
-    self.parentViewController.navigationItem.rightBarButtonItem = buttonItem;
-}
-
--(void)viewWillDisappear:(BOOL)animated {
-    self.parentViewController.navigationItem.rightBarButtonItem = nil;
-}
-
-/*
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
-    NSLog(@"Hellyeah");
-    
-    NSArray *subviewArray = [[NSBundle mainBundle] loadNibNamed:@"PingeborgCalloutView" owner:self options:nil];
-    PingeborgAnnotationView *mainView = [subviewArray objectAtIndex:0];
-    mainView.center = CGPointMake(view.bounds.size.width*0.5f, -mainView.bounds.size.height*0.5f);
-    
-    // border radius
-    [mainView.layer setCornerRadius:30.0f];
-    
-    // border
-    [mainView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
-    [mainView.layer setBorderWidth:1.5f];
-    
-    // drop shadow
-    [mainView.layer setShadowColor:[UIColor blackColor].CGColor];
-    [mainView.layer setShadowOpacity:0.8];
-    [mainView.layer setShadowRadius:3.0];
-    [mainView.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
-    
-    [view addSubview:mainView];
+    if ([view isKindOfClass:PingeborgAnnotationView.class]) {
+        
+        // apply the MKAnnotationView's basic properties
+        self.calloutView.title = @"TEST";
+        self.calloutView.subtitle = @"More Test";
+        //self.calloutView.contentView = [[PingeborgCalloutView alloc] init];
+        
+        
+        // Apply the MKAnnotationView's desired calloutOffset (from the top-middle of the view)
+        //self.calloutView.calloutOffset = annotationView.calloutOffset;
+        
+        // create a disclosure button for comparison
+        UIButton *disclosure = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+        [disclosure addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(disclosureTapped)]];
+        self.calloutView.rightAccessoryView = disclosure;
+        
+        // iOS 7 only: Apply our view controller's edge insets to the allowable area in which the callout can be displayed.
+        if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1)
+            self.calloutView.constrainedInsets = UIEdgeInsetsMake(self.topLayoutGuide.length, 0, self.bottomLayoutGuide.length, 0);
+        
+        // This does all the magic.
+        [self.calloutView presentCalloutFromRect:view.bounds inView:view constrainedToView:self.view animated:YES];
+    }
 }
- */
 
-/*
--(void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
-    NSArray *subviews = view.subviews;
-    [subviews[0] removeFromSuperview];
+- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
+    
+    [self.calloutView dismissCalloutAnimated:YES];
 }
-*/
+
+// override UIGestureRecognizer's delegate method so we can prevent MKMapView's recognizer from firing
+// when we interact with UIControl subclasses inside our callout view.
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    if ([touch.view isKindOfClass:[UIControl class]])
+        return NO;
+    else
+        return [self gestureRecognizer:gestureRecognizer shouldReceiveTouch:touch];
+}
+
+// Allow touches to be sent to our calloutview.
+// See this for some discussion of why we need to override this: https://github.com/nfarina/calloutview/pull/9
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+    NSLog(@"HitTest");
+    UIView *calloutMaybe = [self.calloutView hitTest:[self.calloutView convertPoint:point fromView:self] withEvent:event];
+    if (calloutMaybe) return calloutMaybe;
+    
+    return [self hitTest:point withEvent:event];
+}
+
+- (NSTimeInterval)calloutView:(SMCalloutView *)calloutView delayForRepositionWithSize:(CGSize)offset {
+    
+    // When the callout is being asked to present in a way where it or its target will be partially offscreen, it asks us
+    // if we'd like to reposition our surface first so the callout is completely visible. Here we scroll the map into view,
+    // but it takes some math because we have to deal in lon/lat instead of the given offset in pixels.
+    
+    CLLocationCoordinate2D coordinate = self.mapView.centerCoordinate;
+    
+    // where's the center coordinate in terms of our view?
+    CGPoint center = [self.mapView convertCoordinate:coordinate toPointToView:self.view];
+    
+    // move it by the requested offset
+    center.x -= offset.width;
+    center.y -= offset.height;
+    
+    // and translate it back into map coordinates
+    coordinate = [self.mapView convertPoint:center toCoordinateFromView:self.view];
+    
+    // move the map!
+    [self.mapView setCenterCoordinate:coordinate animated:YES];
+    
+    // tell the callout to wait for a while while we scroll (we assume the scroll delay for MKMapView matches UIScrollView)
+    return kSMCalloutViewRepositionDelayForUIScrollView;
+}
+
+- (void)calloutViewClicked:(SMCalloutView *)calloutView {
+    NSLog(@"Hellyeah");
+}
+
 /*
 #pragma mark - Navigation
 

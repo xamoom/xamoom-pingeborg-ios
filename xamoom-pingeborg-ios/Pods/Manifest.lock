@@ -24,6 +24,7 @@ PODS:
   - RestKit/Support (0.24.0):
     - TransitionKit (= 2.1.0)
   - RKValueTransformers (1.1.1)
+  - SMCalloutView (2.1.2)
   - SOCKit (1.1)
   - SWRevealViewController (2.3.0)
   - TransitionKit (2.1.0)
@@ -32,17 +33,19 @@ DEPENDENCIES:
   - QRCodeReaderViewController (~> 2.0.0)
   - REMenu (~> 1.10)
   - RestKit (~> 0.24)
+  - SMCalloutView
   - SWRevealViewController (~> 2.3.0)
 
 SPEC CHECKSUMS:
-  AFNetworking: 80c4e0652b08eb34e25b9c0ff3c82556fe5967b4
-  ISO8601DateFormatterValueTransformer: a705384ea6531255258e25b6480ba1180db703a0
-  QRCodeReaderViewController: b6339563c7d373c3b76fc95819f9f604056f7870
-  REMenu: e3988747d83f9e8f49f244bd3f1fb8b0900e8741
-  RestKit: 8e301e50e1d25ce427215539f4fd72463f4a2a58
-  RKValueTransformers: 67b4ea3eb6a1c1a0b8c3c37eb4e4c05e4febeba2
-  SOCKit: d8d0dd3688ae1026c12367570da8fa8e1a6980fb
-  SWRevealViewController: f6d80638b8e12323e87ac79562345403a799cb77
-  TransitionKit: 6a6f3ddda38ae758778aa889dcb930e4f8d64edc
+  AFNetworking: cf8e418e16f0c9c7e5c3150d019a3c679d015018
+  ISO8601DateFormatterValueTransformer: 3ac3a721381697cab4e792d8049ce2f2e9ad3036
+  QRCodeReaderViewController: bc35f1b48ec5231904ca9347c02423ddb76b7b40
+  REMenu: 30dad195930adf6c5eeb8041e3257aa60bf9fa49
+  RestKit: 34ba15ca955f7d5436a4120b7f19884f3df056a8
+  RKValueTransformers: d016f1967ae67997e492520fd0f9c512ccf168ae
+  SMCalloutView: 4078d89b847731e514b1a919fed33b383a24a106
+  SOCKit: c7376ac262bea9115b8f749358f762522a47d392
+  SWRevealViewController: 6d3fd97f70112fd7cef9de14df4260eacce4c63a
+  TransitionKit: bc306605fb5e05a743c18d42239dc0e211619547
 
 COCOAPODS: 0.35.0

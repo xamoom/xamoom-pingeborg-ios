@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PingebAnnotation.h"
 
 @interface PingeborgCalloutView : UIView
+
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+
+- (IBAction)button:(id)sender;
 
 @end
