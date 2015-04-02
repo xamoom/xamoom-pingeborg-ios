@@ -16,7 +16,6 @@
 		8830CB971AC92A21005C79EF /* FeedItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8830CB961AC92A21005C79EF /* FeedItemCell.xib */; };
 		8830CB9A1AC92AAE005C79EF /* FeedItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8830CB991AC92AAE005C79EF /* FeedItemCell.m */; };
 		8830CBA21AC977C1005C79EF /* db42c22d699a4276b02de73dd97a6ffd-845x321.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8830CB9D1AC977C1005C79EF /* db42c22d699a4276b02de73dd97a6ffd-845x321.jpg */; };
-		8835747E1AB06C950099DF4A /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8835747D1AB06C950099DF4A /* MapViewController.m */; };
 		883574801AB1CCF40099DF4A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8835747F1AB1CCF40099DF4A /* QuartzCore.framework */; };
 		883574831AB1D4AD0099DF4A /* styles.css in Resources */ = {isa = PBXBuildFile; fileRef = 883574821AB1D4AD0099DF4A /* styles.css */; };
 		885BFCF81AADC23F0047340C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 885BFCF71AADC23F0047340C /* Main.storyboard */; };
@@ -111,8 +110,6 @@
 		8830CB981AC92AAE005C79EF /* FeedItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedItemCell.h; sourceTree = "<group>"; };
 		8830CB991AC92AAE005C79EF /* FeedItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedItemCell.m; sourceTree = "<group>"; };
 		8830CB9D1AC977C1005C79EF /* db42c22d699a4276b02de73dd97a6ffd-845x321.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "db42c22d699a4276b02de73dd97a6ffd-845x321.jpg"; path = "../../../Downloads/db42c22d699a4276b02de73dd97a6ffd-845x321.jpg"; sourceTree = "<group>"; };
-		8835747C1AB06C950099DF4A /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
-		8835747D1AB06C950099DF4A /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		8835747F1AB1CCF40099DF4A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		883574821AB1D4AD0099DF4A /* styles.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = styles.css; sourceTree = "<group>"; };
 		885BFCF71AADC23F0047340C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -264,8 +261,6 @@
 		8806A7601ACC2552000E8552 /* New Map */ = {
 			isa = PBXGroup;
 			children = (
-				8806A7611ACC2579000E8552 /* MapkitViewController.h */,
-				8806A7621ACC2579000E8552 /* MapkitViewController.m */,
 			);
 			name = "New Map";
 			sourceTree = "<group>";
@@ -510,8 +505,8 @@
 		88CCAA321ACA89D6004E631F /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				8835747C1AB06C950099DF4A /* MapViewController.h */,
-				8835747D1AB06C950099DF4A /* MapViewController.m */,
+				8806A7611ACC2579000E8552 /* MapkitViewController.h */,
+				8806A7621ACC2579000E8552 /* MapkitViewController.m */,
 				8827D8E51ABB0E7C002F632C /* PingebAnnotation.h */,
 				8827D8E61ABB0E7C002F632C /* PingebAnnotation.m */,
 				8827D8EB1ABB0F1C002F632C /* PingeborgAnnotationView.h */,
@@ -750,7 +745,6 @@
 				88BA02AA1AA85C430091A43C /* MWFeedParser.m in Sources */,
 				88BA026A1AA85C060091A43C /* _XMMCoreDataContent.m in Sources */,
 				88BA02841AA85C060091A43C /* XMMResponseContentBlockType9.m in Sources */,
-				8835747E1AB06C950099DF4A /* MapViewController.m in Sources */,
 				885BFCFE1AADD3950047340C /* MainTabBarController.m in Sources */,
 				88BA027C1AA85C060091A43C /* XMMResponseContentBlockType1.m in Sources */,
 				88124DAF1AC5625F00D50C05 /* NavigationViewController.m in Sources */,
