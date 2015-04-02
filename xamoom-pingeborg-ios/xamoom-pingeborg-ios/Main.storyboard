@@ -296,8 +296,8 @@
                     </tabBar>
                     <connections>
                         <segue destination="g8c-6b-oU9" kind="show" identifier="showScanResult" id="TM5-d9-Bxu"/>
-                        <segue destination="WdT-Q6-mb4" kind="relationship" relationship="viewControllers" id="lPr-2U-FsY"/>
                         <segue destination="keD-Cb-FhT" kind="relationship" relationship="viewControllers" id="iEI-Ey-ObK"/>
+                        <segue destination="WdT-Q6-mb4" kind="relationship" relationship="viewControllers" id="lPr-2U-FsY"/>
                         <segue destination="evs-Oh-Jun" kind="relationship" relationship="viewControllers" id="7Z6-7b-f6d"/>
                         <segue destination="wda-of-8Qb" kind="relationship" relationship="viewControllers" id="95r-xL-Jxf"/>
                     </connections>
@@ -306,7 +306,7 @@
             </objects>
             <point key="canvasLocation" x="723" y="201"/>
         </scene>
-        <!--Item-->
+        <!--Mapkit View Controller-->
         <scene sceneID="nj5-Cp-ejM">
             <objects>
                 <viewController id="WdT-Q6-mb4" customClass="MapkitViewController" sceneMemberID="viewController">
@@ -319,11 +319,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="Tov-nI-9zY"/>
+                    <tabBarItem key="tabBarItem" title="" image="Map" id="Tov-nI-9zY"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xcE-VJ-wGD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1171" y="847"/>
+            <point key="canvasLocation" x="1189" y="1273"/>
         </scene>
     </scenes>
     <resources>

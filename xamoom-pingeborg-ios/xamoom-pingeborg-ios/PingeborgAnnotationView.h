@@ -14,5 +14,7 @@
 
 @property XMMResponseGetSpotMapItem *data;
 @property NSString *distance;
+@property UIImage *spotImage;
+@property CLLocationCoordinate2D coordinate;
 
 @end

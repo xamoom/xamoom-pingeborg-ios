@@ -19,7 +19,6 @@
 
 @property CLLocationManager *locationManager;
 @property (nonatomic, strong) CustomMapView *mapKitWithSMCalloutView;
-@property (nonatomic, strong) SMCalloutView *calloutView;
 @property (nonatomic, strong) MKPointAnnotation *annotationForSMCalloutView;
 
 @end

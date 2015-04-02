@@ -18,25 +18,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //create annotation
-    self.annotationForSMCalloutView = [MKPointAnnotation new];
-    self.annotationForSMCalloutView.coordinate = (CLLocationCoordinate2D){28.388154, -80.604200};
-    self.annotationForSMCalloutView.title = @"Cape Canaveral";
-    self.annotationForSMCalloutView.subtitle = @"Launchpad";
-    
     //init map
     self.mapKitWithSMCalloutView = [[CustomMapView alloc] initWithFrame:self.view.bounds];
     self.mapKitWithSMCalloutView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.mapKitWithSMCalloutView.delegate = self;
+    self.mapKitWithSMCalloutView.showsUserLocation = YES;
     [self.view addSubview:self.mapKitWithSMCalloutView];
-    
-    // create our custom callout view
-    self.calloutView = [SMCalloutView platformCalloutView];
-    self.calloutView.delegate = self;
-    
-    // tell our custom map view about the callout so it can send it touches
-    self.mapKitWithSMCalloutView.calloutView = self.calloutView;
-    
+        
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     // Check for iOS 8. Without this guard the code will crash with "unknown selector" on iOS 7.
@@ -66,6 +54,33 @@
     self.parentViewController.navigationItem.rightBarButtonItem = buttonItem;
 }
 
+#pragma mark imageutility
+- (UIImage *)imageWithImage:(UIImage *)image scaledToMaxWidth:(CGFloat)width maxHeight:(CGFloat)height {
+    CGFloat oldWidth = image.size.width;
+    CGFloat oldHeight = image.size.height;
+    
+    CGFloat scaleFactor = (oldWidth > oldHeight) ? width / oldWidth : height / oldHeight;
+    
+    CGFloat newHeight = oldHeight * scaleFactor;
+    CGFloat newWidth = oldWidth * scaleFactor;
+    CGSize newSize = CGSizeMake(newWidth, newHeight);
+    
+    return [self imageWithImage:image scaledToSize:newSize];
+}
+
+- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)size {
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
+        UIGraphicsBeginImageContextWithOptions(size, NO, [[UIScreen mainScreen] scale]);
+    } else {
+        UIGraphicsBeginImageContext(size);
+    }
+    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
+}
+
 #pragma mark - XMMEnduser Delegate
 - (void)didLoadDataBySpotMap:(XMMResponseGetSpotMap *)result {
     for (XMMResponseGetSpotMapItem *item in result.items) {
@@ -77,50 +92,38 @@
         CLLocationDistance distance = [self.locationManager.location distanceFromLocation:pointLocation];
         point.distance = [NSString stringWithFormat:@"Entfernung: %d Meter", (int)distance];
         
-        NSLog(@"Hellyeah: %@", item.image);
-        NSLog(@"Hellyeah: %@", item.descriptionOfSpot);
-        
-        if (item.image == nil && [item.descriptionOfSpot isEqualToString:@""]) {
-            MKPointAnnotation *pointAnnotation = [[MKPointAnnotation alloc] init];
-            pointAnnotation.coordinate = point.coordinate;
-            pointAnnotation.title = item.displayName;
-            pointAnnotation.subtitle = point.distance;
-            [self.mapKitWithSMCalloutView addAnnotation:pointAnnotation];
-        }
-        else {
-            [self.mapKitWithSMCalloutView addAnnotation:point];
-        }
+        [self.mapKitWithSMCalloutView addAnnotation:point];
     }
 }
 
-//
-// MKMapView delegate methods
-//
+#pragma mark MKMapView delegate methods
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
     //do not touch userLocation
     if ([annotation isKindOfClass:[MKUserLocation class]])
         return nil;
     
-    static NSString *identifier = @"PingebAnnotation";
     if ([annotation isKindOfClass:[PingebAnnotation class]]) {
-        
+        static NSString *identifier = @"PingebAnnotation";
         PingeborgAnnotationView *annotationView = (PingeborgAnnotationView *) [self.mapKitWithSMCalloutView dequeueReusableAnnotationViewWithIdentifier:identifier];
         if (annotationView == nil) {
             annotationView = [[PingeborgAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
             annotationView.enabled = YES;
             annotationView.canShowCallout = NO;
             annotationView.image = [UIImage imageNamed:@"mappoint"];//here we use a nice image instead of the default pins
+            
             PingebAnnotation *pingebAnnotation = (PingebAnnotation*)annotation;
             annotationView.data = pingebAnnotation.data;
             annotationView.distance = pingebAnnotation.distance;
+            annotationView.coordinate = pingebAnnotation.coordinate;
+            annotationView.spotImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:pingebAnnotation.data.image]]];
             
             // create a disclosure button for map kit
             /*
-            UIButton *disclosure = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-            [disclosure addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(disclosureTapped)]];
-            annotationView.rightCalloutAccessoryView = disclosure;
-            */
+             UIButton *disclosure = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+             [disclosure addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(disclosureTapped)]];
+             annotationView.rightCalloutAccessoryView = disclosure;
+             */
         } else {
             annotationView.annotation = annotation;
         }
@@ -133,39 +136,82 @@
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)annotationView {
     
+    // create our custom callout view
+    SMCalloutView *calloutView = [SMCalloutView platformCalloutView];
+    calloutView.delegate = self;
+    self.mapKitWithSMCalloutView.calloutView = calloutView;
+    
     if ([annotationView isKindOfClass:[PingeborgAnnotationView class]]) {
+        PingeborgAnnotationView* pingeborgAnnotationView = (PingeborgAnnotationView *)annotationView;
+        
         PingeborgCalloutView* pingeborgCalloutView = [[PingeborgCalloutView alloc] init];
-        PingebAnnotation* pingeborgAnnotation = (PingebAnnotation *)annotationView;
-        pingeborgCalloutView.title.text = pingeborgAnnotation.data.displayName;
-        pingeborgCalloutView.descriptionOfContent.text = pingeborgAnnotation.data.descriptionOfSpot;
-        pingeborgCalloutView.imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:
-                                                                       [NSURL URLWithString:pingeborgAnnotation.data.image]]];
-        pingeborgCalloutView.distance.text = pingeborgAnnotation.distance;
-        self.calloutView.contentView = pingeborgCalloutView;
+        pingeborgCalloutView.title.text = pingeborgAnnotationView.data.displayName;
+        pingeborgCalloutView.distance.text = pingeborgAnnotationView.distance;
+        pingeborgCalloutView.coordinate = pingeborgAnnotationView.coordinate;
+        
+        //set button image to blue
+        pingeborgCalloutView.button.imageView.image = [pingeborgCalloutView.button.imageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        [pingeborgCalloutView.button.imageView setTintColor:[UIColor blueColor]];
+        
+        //insert image
+        if(pingeborgAnnotationView.spotImage != nil) {
+            UIImage *scaledImage = [self imageWithImage:pingeborgAnnotationView.spotImage
+                                       scaledToMaxWidth:pingeborgCalloutView.frame.size.width
+                                              maxHeight:700];
+            UIImageView *spotImageView = [[UIImageView alloc] initWithImage:scaledImage];
+            [spotImageView setContentMode: UIViewContentModeScaleAspectFit];
+            [pingeborgCalloutView addSubview:spotImageView];
+            
+            //move image under the other subviews
+            CGRect spotImageViewRect = spotImageView.frame;
+            spotImageViewRect.origin.y += pingeborgCalloutView.frame.size.height + 10;
+            [spotImageView setFrame: spotImageViewRect];
+            
+            CGRect pingeborgCalloutViewRect = pingeborgCalloutView.frame;
+            pingeborgCalloutViewRect.size.height = pingeborgCalloutViewRect.size.height + spotImageView.frame.size.height + 10;
+            [pingeborgCalloutView setFrame: pingeborgCalloutViewRect];
+        }
+        
+        if ( ![pingeborgAnnotationView.data.descriptionOfSpot isEqualToString:@""] ) {
+            UILabel *descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, pingeborgCalloutView.frame.size.width, 50)];
+            descriptionLabel.text = pingeborgAnnotationView.data.descriptionOfSpot;
+            [descriptionLabel setFont:[descriptionLabel.font fontWithSize:14]];
+            [descriptionLabel setTextColor:[UIColor grayColor]];
+            [descriptionLabel setNumberOfLines:2];
+            [descriptionLabel setLineBreakMode:NSLineBreakByTruncatingTail];
+            [descriptionLabel setContentMode: UIViewContentModeTopLeft];
+            
+            //move label under the other subviews
+            CGRect descriptionLabelRect = descriptionLabel.frame;
+            descriptionLabelRect.origin.y += pingeborgCalloutView.frame.size.height + 10;
+            [descriptionLabel setFrame: descriptionLabelRect];
+            
+            //extend pingeCalloutView
+            CGRect pingeborgCalloutViewRect = pingeborgCalloutView.frame;
+            pingeborgCalloutViewRect.size.height = pingeborgCalloutViewRect.size.height + descriptionLabel.frame.size.height + 10;
+            [pingeborgCalloutView setFrame: pingeborgCalloutViewRect];
+            
+            [pingeborgCalloutView addSubview:descriptionLabel];
+        }
+        
+        pingeborgCalloutView.descriptionOfSpot.text = pingeborgAnnotationView.data.descriptionOfSpot;
+        [pingeborgCalloutView.button addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mapNavigationTapped)]];
+        calloutView.contentView = pingeborgCalloutView;
         
         // Apply the MKAnnotationView's desired calloutOffset (from the top-middle of the view)
-        self.calloutView.calloutOffset = annotationView.calloutOffset;
-        
-        // create a disclosure button for comparison
-        UIButton *disclosure = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-        [disclosure addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(disclosureTapped)]];
-        self.calloutView.rightAccessoryView = disclosure;
+        calloutView.calloutOffset = annotationView.calloutOffset;
         
         // iOS 7 only: Apply our view controller's edge insets to the allowable area in which the callout can be displayed.
         if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1)
-            self.calloutView.constrainedInsets = UIEdgeInsetsMake(self.topLayoutGuide.length, 0, self.bottomLayoutGuide.length, 0);
+            calloutView.constrainedInsets = UIEdgeInsetsMake(self.topLayoutGuide.length, 0, self.bottomLayoutGuide.length, 0);
         
         // This does all the magic.
-        [self.calloutView presentCalloutFromRect:annotationView.bounds inView:annotationView constrainedToView:self.view animated:YES];
-    }
-    else {
-        NSLog(@"OK");
+        [calloutView presentCalloutFromRect:annotationView.bounds inView:annotationView constrainedToView:self.view animated:YES];
     }
 }
 
-- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
-    
-    [self.calloutView dismissCalloutAnimated:YES];
+-(void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
+    [self.mapKitWithSMCalloutView.calloutView dismissCalloutAnimated:YES];
 }
 
 //
@@ -197,10 +243,17 @@
     return kSMCalloutViewRepositionDelayForUIScrollView;
 }
 
-- (void)disclosureTapped {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Tap!" message:@"You tapped the disclosure button."
-                                                   delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK",nil];
-    [alert show];
+
+- (void)mapNavigationTapped {
+    PingeborgCalloutView *pingeborgCalloutView = (PingeborgCalloutView* )self.mapKitWithSMCalloutView.calloutView.contentView;
+    
+    MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:pingeborgCalloutView.coordinate addressDictionary:nil];
+    
+    MKMapItem *mapItem = [[MKMapItem alloc] initWithPlacemark:placemark];
+    mapItem.name = pingeborgCalloutView.title.text;
+    
+    NSDictionary *launchOptions = @{MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving};
+    [mapItem openInMapsWithLaunchOptions:launchOptions];
 }
 
 @end

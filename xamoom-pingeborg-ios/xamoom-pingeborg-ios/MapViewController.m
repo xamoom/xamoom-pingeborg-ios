@@ -62,6 +62,7 @@
 
 #pragma mark - XMMEnduser Delegate
 - (void)didLoadDataBySpotMap:(XMMResponseGetSpotMap *)result {
+
     for (XMMResponseGetSpotMapItem *item in result.items) {
         // Add an annotation
         PingebAnnotation *point = [[PingebAnnotation alloc] initWithLocation: CLLocationCoordinate2DMake([item.lat doubleValue], [item.lon doubleValue])];
@@ -123,7 +124,7 @@
         
         // create a disclosure button for comparison
         UIButton *disclosure = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-        [disclosure addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(disclosureTapped)]];
+        [disclosure addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(calloutViewClicked)]];
         self.calloutView.rightAccessoryView = disclosure;
         
         // iOS 7 only: Apply our view controller's edge insets to the allowable area in which the callout can be displayed.
@@ -136,7 +137,6 @@
 }
 
 - (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
-    
     [self.calloutView dismissCalloutAnimated:YES];
 }
 
