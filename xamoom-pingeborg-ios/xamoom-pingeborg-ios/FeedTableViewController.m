@@ -14,6 +14,8 @@ static NSString *cellIdentifier = @"FeedItemCell";
 @interface FeedTableViewController ()
 
 @property NSMutableArray *itemsToDisplay;
+@property NSString *contentListCursor;
+@property bool hasMore;
 
 @end
 
@@ -21,22 +23,15 @@ static NSString *cellIdentifier = @"FeedItemCell";
 
 @synthesize itemsToDisplay;
 
-NSMutableArray *tableViewData;
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    
     itemsToDisplay = [[NSMutableArray alloc] init];
     [[XMMEnduserApi sharedInstance] setDelegate:self];
-    
-    //example for data
-    tableViewData = [[NSMutableArray alloc] initWithObjects:
-                     @"82 | Bernd Sibitz | PANIK in St. Ruprecht und anderswo",
-                     @"82 | Bernd Sibitz | PANIK in St. Ruprecht und anderswo",
-                     @"82 | Bernd Sibitz | PANIK in St. Ruprecht und anderswo",
-                     @"82 | Bernd Sibitz | PANIK in St. Ruprecht und anderswo",
-                     @"82 | Bernd Sibitz | PANIK in St. Ruprecht und anderswo",
-                     nil];
+    [[XMMEnduserApi sharedInstance] getContentListFromApi:@"6588702901927936" withLanguage:@"de" withPageSize:5 withCursor:@"null"];
     
     //set NavigationController delegate
     NavigationViewController* navController = (NavigationViewController*) self.parentViewController.parentViewController;
@@ -78,6 +73,22 @@ NSMutableArray *tableViewData;
     }
 }
 
+#pragma mark - XMMEnduserApi delegates
+
+-(void)didLoadContentList:(XMMResponseContentList *)result {
+    self.contentListCursor = result.cursor;
+    if ([result.hasMore isEqualToString:@"True"])
+        self.hasMore = YES;
+    else
+        self.hasMore = NO;
+    
+    for (XMMResponseContent *contentItem in result.items) {
+        [itemsToDisplay addObject:contentItem];
+        
+    }
+    [self.tableView reloadData];
+}
+
 #pragma mark - NavbarDropdown Delegation
 -(void)didChangeSystem {
     NSInteger location = [[NSUserDefaults standardUserDefaults] integerForKey:@"location"];
@@ -113,13 +124,13 @@ NSMutableArray *tableViewData;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return [tableViewData count];
+    return [itemsToDisplay count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    XMMResponseContent *content = (XMMResponseContent*)[itemsToDisplay objectAtIndex:indexPath.row];
     
     FeedItemCell *cell = (FeedItemCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    
     if (cell == nil) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FeedItemCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
@@ -132,17 +143,20 @@ NSMutableArray *tableViewData;
     style.headIndent = 10.0f;
     style.tailIndent = -10.0f;
     style.lineBreakMode = NSLineBreakByTruncatingTail;
-    NSAttributedString *attrText = [[NSAttributedString alloc] initWithString:[tableViewData objectAtIndex:indexPath.row]
+    NSAttributedString *attrText = [[NSAttributedString alloc] initWithString:content.title
                                                                    attributes:@{ NSParagraphStyleAttributeName : style}];
     //set the title
     cell.feedItemTitle.attributedText = attrText;
     
-    //set the image
-    //cell.feedItemImage.image = [UIImage imageNamed:@"car"];
+    //set the image+
+    cell.feedItemImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:content.imagePublicUrl]]];
     
-    //set the contentId
-    //cell.contentId = @"bla bla bla";
-    
+    //load more contents
+    if (indexPath.row == [self.itemsToDisplay count] - 1) {
+        if (self.hasMore) {
+            [[XMMEnduserApi sharedInstance] getContentListFromApi:@"6588702901927936" withLanguage:@"de" withPageSize:5 withCursor:self.contentListCursor];
+        }
+    }
     return cell;
 }
 

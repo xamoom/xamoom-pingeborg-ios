@@ -9,13 +9,13 @@
 /* Begin PBXBuildFile section */
 		594E123E6C9FD768422C1CEE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C530CDEFFEDDFCABBEC918B0 /* libPods.a */; };
 		8806A7631ACC2579000E8552 /* MapkitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8806A7621ACC2579000E8552 /* MapkitViewController.m */; };
+		8806A76F1ACE7651000E8552 /* XMMResponseContentList.m in Sources */ = {isa = PBXBuildFile; fileRef = 8806A76E1ACE7651000E8552 /* XMMResponseContentList.m */; };
 		88124DAF1AC5625F00D50C05 /* NavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88124DAE1AC5625F00D50C05 /* NavigationViewController.m */; };
 		8827D8E71ABB0E7C002F632C /* PingebAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8827D8E61ABB0E7C002F632C /* PingebAnnotation.m */; };
 		8827D8ED1ABB0F1C002F632C /* PingeborgAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8827D8EC1ABB0F1C002F632C /* PingeborgAnnotationView.m */; };
 		8830CB951AC925D5005C79EF /* FeedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8830CB941AC925D5005C79EF /* FeedTableViewController.m */; };
 		8830CB971AC92A21005C79EF /* FeedItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8830CB961AC92A21005C79EF /* FeedItemCell.xib */; };
 		8830CB9A1AC92AAE005C79EF /* FeedItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8830CB991AC92AAE005C79EF /* FeedItemCell.m */; };
-		8830CBA21AC977C1005C79EF /* db42c22d699a4276b02de73dd97a6ffd-845x321.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8830CB9D1AC977C1005C79EF /* db42c22d699a4276b02de73dd97a6ffd-845x321.jpg */; };
 		883574801AB1CCF40099DF4A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8835747F1AB1CCF40099DF4A /* QuartzCore.framework */; };
 		883574831AB1D4AD0099DF4A /* styles.css in Resources */ = {isa = PBXBuildFile; fileRef = 883574821AB1D4AD0099DF4A /* styles.css */; };
 		885BFCF81AADC23F0047340C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 885BFCF71AADC23F0047340C /* Main.storyboard */; };
@@ -98,6 +98,8 @@
 		48251170F65DFEEAACD48338 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		8806A7611ACC2579000E8552 /* MapkitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapkitViewController.h; sourceTree = "<group>"; };
 		8806A7621ACC2579000E8552 /* MapkitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapkitViewController.m; sourceTree = "<group>"; };
+		8806A76D1ACE7651000E8552 /* XMMResponseContentList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMResponseContentList.h; sourceTree = "<group>"; };
+		8806A76E1ACE7651000E8552 /* XMMResponseContentList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMResponseContentList.m; sourceTree = "<group>"; };
 		88124DAD1AC5625F00D50C05 /* NavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationViewController.h; sourceTree = "<group>"; };
 		88124DAE1AC5625F00D50C05 /* NavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationViewController.m; sourceTree = "<group>"; };
 		8827D8E51ABB0E7C002F632C /* PingebAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingebAnnotation.h; sourceTree = "<group>"; };
@@ -109,7 +111,6 @@
 		8830CB961AC92A21005C79EF /* FeedItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedItemCell.xib; sourceTree = "<group>"; };
 		8830CB981AC92AAE005C79EF /* FeedItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedItemCell.h; sourceTree = "<group>"; };
 		8830CB991AC92AAE005C79EF /* FeedItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedItemCell.m; sourceTree = "<group>"; };
-		8830CB9D1AC977C1005C79EF /* db42c22d699a4276b02de73dd97a6ffd-845x321.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "db42c22d699a4276b02de73dd97a6ffd-845x321.jpg"; path = "../../../Downloads/db42c22d699a4276b02de73dd97a6ffd-845x321.jpg"; sourceTree = "<group>"; };
 		8835747F1AB1CCF40099DF4A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		883574821AB1D4AD0099DF4A /* styles.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = styles.css; sourceTree = "<group>"; };
 		885BFCF71AADC23F0047340C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -297,7 +298,6 @@
 		88BA01E61AA859F90091A43C = {
 			isa = PBXGroup;
 			children = (
-				8830CB9D1AC977C1005C79EF /* db42c22d699a4276b02de73dd97a6ffd-845x321.jpg */,
 				88BA02181AA85BF30091A43C /* xamoom-ios-sdk */,
 				88BA01F11AA859F90091A43C /* xamoom-pingeborg-ios */,
 				88BA020B1AA859F90091A43C /* xamoom-pingeborg-iosTests */,
@@ -410,6 +410,8 @@
 		88BA023B1AA85C060091A43C /* mapping */ = {
 			isa = PBXGroup;
 			children = (
+				8806A76D1ACE7651000E8552 /* XMMResponseContentList.h */,
+				8806A76E1ACE7651000E8552 /* XMMResponseContentList.m */,
 				88BA023C1AA85C060091A43C /* XMMResponseContent.h */,
 				88BA023D1AA85C060091A43C /* XMMResponseContent.m */,
 				88BA023E1AA85C060091A43C /* XMMResponseContentBlock.h */,
@@ -663,7 +665,6 @@
 				88CE0CFD1AAEF7740014EE77 /* RSSFeedItemView.xib in Resources */,
 				883574831AB1D4AD0099DF4A /* styles.css in Resources */,
 				8830CB971AC92A21005C79EF /* FeedItemCell.xib in Resources */,
-				8830CBA21AC977C1005C79EF /* db42c22d699a4276b02de73dd97a6ffd-845x321.jpg in Resources */,
 				88BA02001AA859F90091A43C /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -756,6 +757,7 @@
 				8830CB9A1AC92AAE005C79EF /* FeedItemCell.m in Sources */,
 				88D8F09E1ABACC6200ACFBE4 /* RSSFeedItemView.m in Sources */,
 				88BA02761AA85C060091A43C /* XMMCoreDataGetByLocationItem.m in Sources */,
+				8806A76F1ACE7651000E8552 /* XMMResponseContentList.m in Sources */,
 				88BA026B1AA85C060091A43C /* _XMMCoreDataContentBlocks.m in Sources */,
 				88BA02721AA85C060091A43C /* XMMCoreDataContent.m in Sources */,
 				88D8F0A11ABACD2400ACFBE4 /* SettingsViewController.m in Sources */,

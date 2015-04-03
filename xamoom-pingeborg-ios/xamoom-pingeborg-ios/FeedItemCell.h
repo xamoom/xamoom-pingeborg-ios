@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "XMMEnduserApi.h"
 
 @interface FeedItemCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *feedItemTitle;
 @property (weak, nonatomic) IBOutlet UIImageView *feedItemImage;
-@property NSString *contentId;
+
+@property XMMResponseContent *content;
 
 @end

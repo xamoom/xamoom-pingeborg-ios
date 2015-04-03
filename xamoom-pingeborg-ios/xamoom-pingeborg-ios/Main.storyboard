@@ -261,6 +261,9 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="" image="Start" id="W8R-Ic-JlW"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="P4I-m1-IBj">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Rn-OU-fie" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

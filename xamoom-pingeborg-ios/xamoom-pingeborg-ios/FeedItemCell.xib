@@ -13,7 +13,7 @@
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OY2-tF-H3e" id="EiK-aS-q9u">
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="db42c22d699a4276b02de73dd97a6ffd-845x321.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="RLb-uj-IBD">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RLb-uj-IBD">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="228"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.75" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4wb-79-OqP">
@@ -41,7 +41,4 @@
             <point key="canvasLocation" x="436" y="295"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="db42c22d699a4276b02de73dd97a6ffd-845x321.jpg" width="845" height="321"/>
-    </resources>
 </document>
