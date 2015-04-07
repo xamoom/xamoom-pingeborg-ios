@@ -14,6 +14,4 @@
 @property (weak, nonatomic) IBOutlet UILabel *feedItemTitle;
 @property (weak, nonatomic) IBOutlet UIImageView *feedItemImage;
 
-@property XMMResponseContent *content;
-
 @end

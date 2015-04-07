@@ -78,6 +78,7 @@
 		88CBAEE11AA9EC9E000E480A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88CBAEE01AA9EC9E000E480A /* MapKit.framework */; };
 		88CE0CFD1AAEF7740014EE77 /* RSSFeedItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88CE0CFC1AAEF7740014EE77 /* RSSFeedItemView.xib */; };
 		88CE0D0D1AAF40B30014EE77 /* RSSItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CE0D0C1AAF40B30014EE77 /* RSSItemViewController.m */; };
+		88D3DD951AD3CC8500538BFF /* FeedItemData.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D3DD941AD3CC8500538BFF /* FeedItemData.m */; };
 		88D401651ABC053A006E865D /* PingeborgCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D401641ABC053A006E865D /* PingeborgCalloutView.m */; };
 		88D8F09E1ABACC6200ACFBE4 /* RSSFeedItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D8F09D1ABACC6200ACFBE4 /* RSSFeedItemView.m */; };
 		88D8F0A11ABACD2400ACFBE4 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D8F0A01ABACD2400ACFBE4 /* SettingsViewController.m */; };
@@ -229,6 +230,8 @@
 		88CE0CFC1AAEF7740014EE77 /* RSSFeedItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RSSFeedItemView.xib; sourceTree = "<group>"; };
 		88CE0D0B1AAF40B30014EE77 /* RSSItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSItemViewController.h; sourceTree = "<group>"; };
 		88CE0D0C1AAF40B30014EE77 /* RSSItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSItemViewController.m; sourceTree = "<group>"; };
+		88D3DD931AD3CC8500538BFF /* FeedItemData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedItemData.h; sourceTree = "<group>"; };
+		88D3DD941AD3CC8500538BFF /* FeedItemData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedItemData.m; sourceTree = "<group>"; };
 		88D401631ABC053A006E865D /* PingeborgCalloutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingeborgCalloutView.h; sourceTree = "<group>"; };
 		88D401641ABC053A006E865D /* PingeborgCalloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PingeborgCalloutView.m; sourceTree = "<group>"; };
 		88D8F09C1ABACC6200ACFBE4 /* RSSFeedItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSFeedItemView.h; sourceTree = "<group>"; };
@@ -528,6 +531,8 @@
 				8830CB961AC92A21005C79EF /* FeedItemCell.xib */,
 				8830CB981AC92AAE005C79EF /* FeedItemCell.h */,
 				8830CB991AC92AAE005C79EF /* FeedItemCell.m */,
+				88D3DD931AD3CC8500538BFF /* FeedItemData.h */,
+				88D3DD941AD3CC8500538BFF /* FeedItemData.m */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -722,6 +727,7 @@
 				88BA02691AA85C060091A43C /* _XMMCoreData.m in Sources */,
 				88BA02AC1AA85C430091A43C /* NSDate+InternetDateTime.m in Sources */,
 				88BA026C1AA85C060091A43C /* _XMMCoreDataGetById.m in Sources */,
+				88D3DD951AD3CC8500538BFF /* FeedItemData.m in Sources */,
 				88BA026F1AA85C060091A43C /* _XMMCoreDataMenuItem.m in Sources */,
 				88BA028B1AA85C060091A43C /* XMMResponseMenuItem.m in Sources */,
 				88BA027D1AA85C060091A43C /* XMMResponseContentBlockType2.m in Sources */,

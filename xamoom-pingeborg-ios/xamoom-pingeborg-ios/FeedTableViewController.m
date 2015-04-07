@@ -7,6 +7,7 @@
 //
 
 #import "FeedTableViewController.h"
+#import "FeedItemData.h"
 
 static int const feedItemMargin = 10;
 static NSString *cellIdentifier = @"FeedItemCell";
@@ -14,6 +15,7 @@ static NSString *cellIdentifier = @"FeedItemCell";
 @interface FeedTableViewController ()
 
 @property NSMutableArray *itemsToDisplay;
+@property NSMutableArray *imagesToDisplay;
 @property NSString *contentListCursor;
 @property bool hasMore;
 
@@ -22,6 +24,7 @@ static NSString *cellIdentifier = @"FeedItemCell";
 @implementation FeedTableViewController
 
 @synthesize itemsToDisplay;
+@synthesize imagesToDisplay;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -30,6 +33,7 @@ static NSString *cellIdentifier = @"FeedItemCell";
     self.tableView.delegate = self;
     
     itemsToDisplay = [[NSMutableArray alloc] init];
+    imagesToDisplay = [[NSMutableArray alloc] init];
     [[XMMEnduserApi sharedInstance] setDelegate:self];
     [[XMMEnduserApi sharedInstance] getContentListFromApi:@"6588702901927936" withLanguage:@"de" withPageSize:5 withCursor:@"null"];
     
@@ -75,7 +79,7 @@ static NSString *cellIdentifier = @"FeedItemCell";
 
 #pragma mark - XMMEnduserApi delegates
 
--(void)didLoadContentList:(XMMResponseContentList *)result {
+-(void)didLoadContentList:(XMMResponseContentList *)result {    
     self.contentListCursor = result.cursor;
     if ([result.hasMore isEqualToString:@"True"])
         self.hasMore = YES;
@@ -83,10 +87,37 @@ static NSString *cellIdentifier = @"FeedItemCell";
         self.hasMore = NO;
     
     for (XMMResponseContent *contentItem in result.items) {
-        [itemsToDisplay addObject:contentItem];
+        FeedItemData *data = [[FeedItemData alloc] init];
+        data.content = contentItem;
         
+        if(contentItem.imagePublicUrl != nil) {
+            [self downloadImageWithURL:contentItem.imagePublicUrl completionBlock:^(BOOL succeeded, UIImage *image) {
+                if (succeeded) {
+                    data.image = image;
+                }
+            }];
+        }
+        
+        [itemsToDisplay addObject:data];
     }
     [self.tableView reloadData];
+}
+
+- (void)downloadImageWithURL:(NSString *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock
+{
+    NSURL *realUrl = [[NSURL alloc]initWithString:url];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:realUrl];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               if ( !error )
+                               {
+                                   UIImage *image = [[UIImage alloc] initWithData:data];
+                                   completionBlock(YES,image);
+                               } else{
+                                   completionBlock(NO,nil);
+                               }
+                           }];
 }
 
 #pragma mark - NavbarDropdown Delegation
@@ -128,13 +159,19 @@ static NSString *cellIdentifier = @"FeedItemCell";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    XMMResponseContent *content = (XMMResponseContent*)[itemsToDisplay objectAtIndex:indexPath.row];
+    
+    FeedItemData *data = (FeedItemData*)[itemsToDisplay objectAtIndex:indexPath.row];
     
     FeedItemCell *cell = (FeedItemCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FeedItemCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
+    else {
+        cell.feedItemImage.image = nil;
+        //cell.feedItemTitle = nil;
+    }
+    
     
     //styling the label
     NSMutableParagraphStyle *style =  [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
@@ -143,13 +180,14 @@ static NSString *cellIdentifier = @"FeedItemCell";
     style.headIndent = 10.0f;
     style.tailIndent = -10.0f;
     style.lineBreakMode = NSLineBreakByTruncatingTail;
-    NSAttributedString *attrText = [[NSAttributedString alloc] initWithString:content.title
+    NSAttributedString *attrText = [[NSAttributedString alloc] initWithString:data.content.title
                                                                    attributes:@{ NSParagraphStyleAttributeName : style}];
     //set the title
     cell.feedItemTitle.attributedText = attrText;
     
-    //set the image+
-    cell.feedItemImage.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:content.imagePublicUrl]]];
+    if (data.image != nil) {
+        cell.feedItemImage.image = data.image;
+    }
     
     //load more contents
     if (indexPath.row == [self.itemsToDisplay count] - 1) {
@@ -157,6 +195,7 @@ static NSString *cellIdentifier = @"FeedItemCell";
             [[XMMEnduserApi sharedInstance] getContentListFromApi:@"6588702901927936" withLanguage:@"de" withPageSize:5 withCursor:self.contentListCursor];
         }
     }
+    
     return cell;
 }
 
