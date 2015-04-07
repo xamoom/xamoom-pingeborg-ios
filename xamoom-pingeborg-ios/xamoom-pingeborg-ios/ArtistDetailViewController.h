@@ -1,18 +1,17 @@
 //
-//  feedItemData.h
+//  ArtistDetailViewController.h
 //  xamoom-pingeborg-ios
 //
 //  Created by Raphael Seher on 07/04/15.
 //  Copyright (c) 2015 xamoom GmbH. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "XMMEnduserApi.h"
+#import "TextBlockTableViewCell.h"
 
-@interface FeedItemData : NSObject
+@interface ArtistDetailViewController : UITableViewController <XMMEnderuserApiDelegate>
 
 @property NSString *contentId;
-@property UIImage *image;
-@property XMMResponseContent *content;
 
 @end

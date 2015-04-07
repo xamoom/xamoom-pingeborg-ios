@@ -7,7 +7,7 @@
 //
 
 #import "FeedTableViewController.h"
-#import "FeedItemData.h"
+
 
 static int const feedItemMargin = 10;
 static NSString *cellIdentifier = @"FeedItemCell";
@@ -35,7 +35,7 @@ static NSString *cellIdentifier = @"FeedItemCell";
     itemsToDisplay = [[NSMutableArray alloc] init];
     imagesToDisplay = [[NSMutableArray alloc] init];
     [[XMMEnduserApi sharedInstance] setDelegate:self];
-    [[XMMEnduserApi sharedInstance] getContentListFromApi:@"6588702901927936" withLanguage:@"de" withPageSize:5 withCursor:@"null"];
+    [[XMMEnduserApi sharedInstance] getContentListFromApi:@"6588702901927936" withLanguage:@"de" withPageSize:10 withCursor:@"null"];
     
     //set NavigationController delegate
     NavigationViewController* navController = (NavigationViewController*) self.parentViewController.parentViewController;
@@ -81,6 +81,7 @@ static NSString *cellIdentifier = @"FeedItemCell";
 
 -(void)didLoadContentList:(XMMResponseContentList *)result {    
     self.contentListCursor = result.cursor;
+    
     if ([result.hasMore isEqualToString:@"True"])
         self.hasMore = YES;
     else
@@ -89,7 +90,7 @@ static NSString *cellIdentifier = @"FeedItemCell";
     for (XMMResponseContent *contentItem in result.items) {
         FeedItemData *data = [[FeedItemData alloc] init];
         data.content = contentItem;
-        
+        data.contentId = contentItem.contentId;
         if(contentItem.imagePublicUrl != nil) {
             [self downloadImageWithURL:contentItem.imagePublicUrl completionBlock:^(BOOL succeeded, UIImage *image) {
                 if (succeeded) {
@@ -172,7 +173,6 @@ static NSString *cellIdentifier = @"FeedItemCell";
         //cell.feedItemTitle = nil;
     }
     
-    
     //styling the label
     NSMutableParagraphStyle *style =  [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
     style.alignment = NSTextAlignmentJustified;
@@ -199,9 +199,11 @@ static NSString *cellIdentifier = @"FeedItemCell";
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSLog(@"TableRow %ld clicked", (long)indexPath.row);
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    ArtistDetailViewController *artistDetailViewController = [[ArtistDetailViewController alloc] init];
+    FeedItemData *data = (FeedItemData*)[itemsToDisplay objectAtIndex:indexPath.row];
+    artistDetailViewController.contentId = data.contentId;
+    [self.navigationController pushViewController:artistDetailViewController animated:YES];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -243,13 +245,13 @@ static NSString *cellIdentifier = @"FeedItemCell";
  */
 
 /*
- #pragma mark - Navigation
+#pragma mark - Navigation
  
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    NSLog(@"prepareForSegue");
+    UIViewController *vc = [segue destinationViewController];
+}
+*/
 
 @end
