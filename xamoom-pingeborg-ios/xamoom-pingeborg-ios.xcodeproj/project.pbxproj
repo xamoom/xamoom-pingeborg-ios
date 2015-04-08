@@ -25,6 +25,10 @@
 		88A62C3B1AD3D8EB00EAD4C3 /* ArtistDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A62C3A1AD3D8EB00EAD4C3 /* ArtistDetailViewController.m */; };
 		88A62C461AD3F2AE00EAD4C3 /* TextBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A62C441AD3F2AE00EAD4C3 /* TextBlockTableViewCell.m */; };
 		88A62C471AD3F2AE00EAD4C3 /* TextBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88A62C451AD3F2AE00EAD4C3 /* TextBlockTableViewCell.xib */; };
+		88A62C4C1AD55B8400EAD4C3 /* AudioBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A62C4A1AD55B8400EAD4C3 /* AudioBlockTableViewCell.m */; };
+		88A62C4D1AD55B8400EAD4C3 /* AudioBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88A62C4B1AD55B8400EAD4C3 /* AudioBlockTableViewCell.xib */; };
+		88A62C4F1AD55F2C00EAD4C3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88A62C4E1AD55F2C00EAD4C3 /* AVFoundation.framework */; };
+		88A62C531AD561DB00EAD4C3 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88A62C521AD561DB00EAD4C3 /* MediaPlayer.framework */; };
 		88BA01F51AA859F90091A43C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA01F41AA859F90091A43C /* main.m */; };
 		88BA01F81AA859F90091A43C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA01F71AA859F90091A43C /* AppDelegate.m */; };
 		88BA02001AA859F90091A43C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88BA01FF1AA859F90091A43C /* Images.xcassets */; };
@@ -128,6 +132,11 @@
 		88A62C431AD3F2AE00EAD4C3 /* TextBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextBlockTableViewCell.h; sourceTree = "<group>"; };
 		88A62C441AD3F2AE00EAD4C3 /* TextBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextBlockTableViewCell.m; sourceTree = "<group>"; };
 		88A62C451AD3F2AE00EAD4C3 /* TextBlockTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextBlockTableViewCell.xib; sourceTree = "<group>"; };
+		88A62C491AD55B8400EAD4C3 /* AudioBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioBlockTableViewCell.h; sourceTree = "<group>"; };
+		88A62C4A1AD55B8400EAD4C3 /* AudioBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioBlockTableViewCell.m; sourceTree = "<group>"; };
+		88A62C4B1AD55B8400EAD4C3 /* AudioBlockTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioBlockTableViewCell.xib; sourceTree = "<group>"; };
+		88A62C4E1AD55F2C00EAD4C3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		88A62C521AD561DB00EAD4C3 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		88BA01EF1AA859F90091A43C /* xamoom-pingeborg-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "xamoom-pingeborg-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		88BA01F31AA859F90091A43C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88BA01F41AA859F90091A43C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -254,6 +263,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88A62C531AD561DB00EAD4C3 /* MediaPlayer.framework in Frameworks */,
+				88A62C4F1AD55F2C00EAD4C3 /* AVFoundation.framework in Frameworks */,
 				883574801AB1CCF40099DF4A /* QuartzCore.framework in Frameworks */,
 				88CBAEE11AA9EC9E000E480A /* MapKit.framework in Frameworks */,
 				594E123E6C9FD768422C1CEE /* libPods.a in Frameworks */,
@@ -302,6 +313,7 @@
 		88A62C3C1AD3E16C00EAD4C3 /* ContentBlockTypes */ = {
 			isa = PBXGroup;
 			children = (
+				88A62C481AD55B6E00EAD4C3 /* Audio Block */,
 				88A62C3D1AD3E17A00EAD4C3 /* Text Block */,
 			);
 			name = ContentBlockTypes;
@@ -315,6 +327,16 @@
 				88A62C451AD3F2AE00EAD4C3 /* TextBlockTableViewCell.xib */,
 			);
 			name = "Text Block";
+			sourceTree = "<group>";
+		};
+		88A62C481AD55B6E00EAD4C3 /* Audio Block */ = {
+			isa = PBXGroup;
+			children = (
+				88A62C491AD55B8400EAD4C3 /* AudioBlockTableViewCell.h */,
+				88A62C4A1AD55B8400EAD4C3 /* AudioBlockTableViewCell.m */,
+				88A62C4B1AD55B8400EAD4C3 /* AudioBlockTableViewCell.xib */,
+			);
+			name = "Audio Block";
 			sourceTree = "<group>";
 		};
 		88BA01E61AA859F90091A43C = {
@@ -581,6 +603,8 @@
 		B091DC0989CBE4B0B40B108B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				88A62C521AD561DB00EAD4C3 /* MediaPlayer.framework */,
+				88A62C4E1AD55F2C00EAD4C3 /* AVFoundation.framework */,
 				8835747F1AB1CCF40099DF4A /* QuartzCore.framework */,
 				88CBAEE01AA9EC9E000E480A /* MapKit.framework */,
 				C530CDEFFEDDFCABBEC918B0 /* libPods.a */,
@@ -687,6 +711,7 @@
 			files = (
 				885BFCF81AADC23F0047340C /* Main.storyboard in Resources */,
 				8897A9FD1ABB1C710003C3FA /* PingeborgCalloutView.xib in Resources */,
+				88A62C4D1AD55B8400EAD4C3 /* AudioBlockTableViewCell.xib in Resources */,
 				88BA02031AA859F90091A43C /* LaunchScreen.xib in Resources */,
 				88CE0CFD1AAEF7740014EE77 /* RSSFeedItemView.xib in Resources */,
 				883574831AB1D4AD0099DF4A /* styles.css in Resources */,
@@ -774,6 +799,7 @@
 				88BA026E1AA85C060091A43C /* _XMMCoreDataGetByLocationItem.m in Sources */,
 				88BA02AA1AA85C430091A43C /* MWFeedParser.m in Sources */,
 				88BA026A1AA85C060091A43C /* _XMMCoreDataContent.m in Sources */,
+				88A62C4C1AD55B8400EAD4C3 /* AudioBlockTableViewCell.m in Sources */,
 				88BA02841AA85C060091A43C /* XMMResponseContentBlockType9.m in Sources */,
 				885BFCFE1AADD3950047340C /* MainTabBarController.m in Sources */,
 				88BA027C1AA85C060091A43C /* XMMResponseContentBlockType1.m in Sources */,

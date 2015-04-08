@@ -21,6 +21,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+
     itemsToDisplay = [[NSMutableArray alloc] init];
     // Do any additional setup after loading the view.
     [[XMMEnduserApi sharedInstance] setDelegate:self];
@@ -32,10 +34,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+# pragma mark - XMMEnduser Delegate
 - (void)didLoadDataById:(XMMResponseGetById *)result {
     [self displayContentBlocks:result];
 }
 
+# pragma mark - ContentBlock Methods
 - (void)displayContentBlocks:(XMMResponseGetById *)result {
     NSInteger contentBlockType;
     for (XMMResponseContentBlock *contentBlock in result.content.contentBlocks) {
@@ -45,52 +49,54 @@
             case 0:
             {
                 XMMResponseContentBlockType0 *contentBlock0 = (XMMResponseContentBlockType0*)contentBlock;
-                [itemsToDisplay addObject:contentBlock0];
+                [self displayContentBlock0:contentBlock0];
+                //[itemsToDisplay addObject:contentBlock0];
                 break;
             }
             case 1:
             {
-                NSLog(@"Hellyeah!");
+                XMMResponseContentBlockType1 *contentBlock1 = (XMMResponseContentBlockType1*)contentBlock;
+                [self displayContentBlock1:contentBlock1];
                 break;
             }
             case 2:
             {
-                NSLog(@"Hellyeah!");
+                NSLog(@"Hellyeah! ContentBlock2");
                 break;
             }
             case 3:
             {
-                NSLog(@"Hellyeah!");
+                NSLog(@"Hellyeah! ContentBlock3");
                 break;
             }
             case 4:
             {
-                NSLog(@"Hellyeah!");
+                NSLog(@"Hellyeah! ContentBlock4");
                 break;
             }
             case 5:
             {
-                NSLog(@"Hellyeah!");
+                NSLog(@"Hellyeah! ContentBlock5");
                 break;
             }
             case 6:
             {
-                NSLog(@"Hellyeah!");
+                NSLog(@"Hellyeah! ContentBlock6");
                 break;
             }
             case 7:
             {
-                NSLog(@"Hellyeah!");
+                NSLog(@"Hellyeah! ContentBlock7");
                 break;
             }
             case 8:
             {
-                NSLog(@"Hellyeah!");
+                NSLog(@"Hellyeah! ContentBlock8");
                 break;
             }
             case 9:
             {
-                NSLog(@"Hellyeah!");
+                NSLog(@"Hellyeah! ContentBlock9");
                 break;
             }
             default:
@@ -100,18 +106,58 @@
     [self.tableView reloadData];
 }
 
-- (void)displayContentBlock1:(XMMResponseContentBlockType0 *)contentBlock {
+- (void)displayContentBlock0:(XMMResponseContentBlockType0 *)contentBlock {
     NSError *err = nil;
+    static NSString *cellIdentifier = @"TextBlockTableViewCell";
     
-    /*
-    label.attributedText = [[NSAttributedString alloc] initWithData: [html dataUsingEncoding:NSUTF8StringEncoding]
-                                                            options: @{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType }
-                                                 documentAttributes: nil
-                                                              error: &err];
+    TextBlockTableViewCell *cell = (TextBlockTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"TextBlockTableViewCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+    }
+    
+    //set title
+    cell.titleLabel.text = contentBlock.title;
+    
+    //set content (html content transform to textview text)
+    contentBlock.text = [contentBlock.text stringByAppendingString:@"<style>html{font-family: 'HelveticaNeue-Light';font-size: 14px;}</style>"];
+    
+    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData: [contentBlock.text dataUsingEncoding:NSUTF8StringEncoding]
+                                                                            options: @{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
+                                                                                        NSCharacterEncodingDocumentAttribute: [NSNumber numberWithInt:NSUTF8StringEncoding]}
+                                                                 documentAttributes: nil
+                                                                              error: &err];
+    cell.contentLabel.attributedText = attributedString;
+    
     if(err)
         NSLog(@"Unable to parse label text: %@", err);
-     */
     
+    //resizes cellview
+    cell.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    CGRect cellSize = cell.frame;
+    cellSize.size.height = cell.contentLabel.attributedText.size.height + cell.titleLabel.frame.size.height;
+    NSLog(@"Hellyeah: %@", cell.subviews);
+    cell.frame = cellSize;
+    
+    //add to array
+    [itemsToDisplay addObject: cell];
+}
+
+- (void)displayContentBlock1:(XMMResponseContentBlockType1 *)contentBlock {
+    //contentBlock.fileId, contentBlock.artist
+    
+    static NSString *cellIdentifier = @"AudioBlockTableViewCell";
+    
+    AudioBlockTableViewCell *cell = (AudioBlockTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"AudioBlockTableViewCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+    }
+    
+    //set title
+    cell.fileId = contentBlock.fileId;
+        
+    [itemsToDisplay addObject:cell];
 }
 
 #pragma mark - Table view data source
@@ -127,42 +173,12 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    XMMResponseContentBlockType0 *contentBlock = (XMMResponseContentBlockType0*)[itemsToDisplay objectAtIndex:indexPath.row];
-    
-    static NSString *cellIdentifier = @"TextBlockTableViewCell";
-    TextBlockTableViewCell *cell = (TextBlockTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil) {
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"TextBlockTableViewCell" owner:self options:nil];
-        cell = [nib objectAtIndex:0];
-    }
-    else {
-        //cell.feedItemImage.image = nil;
-        //cell.feedItemTitle = nil;
-    }
-    
-    NSError *err = nil;
-    contentBlock.text = [contentBlock.text stringByAppendingString:@"<style>html{font-family: 'HelveticaNeue-Light';font-size: 14px;}</style>"];
-    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData: [contentBlock.text dataUsingEncoding:NSUTF8StringEncoding]
-                                                                            options: @{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
-                                                                                        NSCharacterEncodingDocumentAttribute: [NSNumber numberWithInt:NSUTF8StringEncoding]}
-                                                                 documentAttributes: nil
-                                                                              error: &err];
-    
-    cell.contentTextView.attributedText = attributedString;
-    
-    if(err)
-        NSLog(@"Unable to parse label text: %@", err);
-    
-    return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
+    return [itemsToDisplay objectAtIndex:indexPath.row];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 700;
+    UITableViewCell *cell = [itemsToDisplay objectAtIndex:indexPath.row];
+    return cell.frame.size.height;
 }
 
 /*

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "XMMEnduserApi.h"
 #import "TextBlockTableViewCell.h"
+#import "AudioBlockTableViewCell.h"
 
 @interface ArtistDetailViewController : UITableViewController <XMMEnderuserApiDelegate>
 
