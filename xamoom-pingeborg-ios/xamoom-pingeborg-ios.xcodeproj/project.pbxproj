@@ -84,6 +84,8 @@
 		88BA02AD1AA85C430091A43C /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA02A11AA85C430091A43C /* NSString+HTML.m */; };
 		88BA02AE1AA85C430091A43C /* NSString+XMLEntities.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA02A31AA85C430091A43C /* NSString+XMLEntities.m */; };
 		88BA02AF1AA85C430091A43C /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA02A51AA85C430091A43C /* RootViewController.m */; };
+		88CBA7041AD6A98F001C3D37 /* ImageBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CBA7021AD6A98F001C3D37 /* ImageBlockTableViewCell.m */; };
+		88CBA7051AD6A98F001C3D37 /* ImageBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88CBA7031AD6A98F001C3D37 /* ImageBlockTableViewCell.xib */; };
 		88CBAEE11AA9EC9E000E480A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88CBAEE01AA9EC9E000E480A /* MapKit.framework */; };
 		88CE0CFD1AAEF7740014EE77 /* RSSFeedItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88CE0CFC1AAEF7740014EE77 /* RSSFeedItemView.xib */; };
 		88CE0D0D1AAF40B30014EE77 /* RSSItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CE0D0C1AAF40B30014EE77 /* RSSItemViewController.m */; };
@@ -248,6 +250,9 @@
 		88BA02A31AA85C430091A43C /* NSString+XMLEntities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+XMLEntities.m"; sourceTree = "<group>"; };
 		88BA02A41AA85C430091A43C /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		88BA02A51AA85C430091A43C /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		88CBA7011AD6A98F001C3D37 /* ImageBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageBlockTableViewCell.h; sourceTree = "<group>"; };
+		88CBA7021AD6A98F001C3D37 /* ImageBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageBlockTableViewCell.m; sourceTree = "<group>"; };
+		88CBA7031AD6A98F001C3D37 /* ImageBlockTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageBlockTableViewCell.xib; sourceTree = "<group>"; };
 		88CBAEE01AA9EC9E000E480A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		88CE0CFC1AAEF7740014EE77 /* RSSFeedItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RSSFeedItemView.xib; sourceTree = "<group>"; };
 		88CE0D0B1AAF40B30014EE77 /* RSSItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSItemViewController.h; sourceTree = "<group>"; };
@@ -318,6 +323,7 @@
 		88A62C3C1AD3E16C00EAD4C3 /* ContentBlockTypes */ = {
 			isa = PBXGroup;
 			children = (
+				88CBA6FB1AD6A94A001C3D37 /* Image Block */,
 				88A62C541AD64FA500EAD4C3 /* Youtube Block */,
 				88A62C481AD55B6E00EAD4C3 /* Audio Block */,
 				88A62C3D1AD3E17A00EAD4C3 /* Text Block */,
@@ -564,6 +570,16 @@
 			path = MWFeedParser;
 			sourceTree = "<group>";
 		};
+		88CBA6FB1AD6A94A001C3D37 /* Image Block */ = {
+			isa = PBXGroup;
+			children = (
+				88CBA7011AD6A98F001C3D37 /* ImageBlockTableViewCell.h */,
+				88CBA7021AD6A98F001C3D37 /* ImageBlockTableViewCell.m */,
+				88CBA7031AD6A98F001C3D37 /* ImageBlockTableViewCell.xib */,
+			);
+			name = "Image Block";
+			sourceTree = "<group>";
+		};
 		88CCAA321ACA89D6004E631F /* Map */ = {
 			isa = PBXGroup;
 			children = (
@@ -730,6 +746,7 @@
 				88A62C4D1AD55B8400EAD4C3 /* AudioBlockTableViewCell.xib in Resources */,
 				88BA02031AA859F90091A43C /* LaunchScreen.xib in Resources */,
 				88CE0CFD1AAEF7740014EE77 /* RSSFeedItemView.xib in Resources */,
+				88CBA7051AD6A98F001C3D37 /* ImageBlockTableViewCell.xib in Resources */,
 				883574831AB1D4AD0099DF4A /* styles.css in Resources */,
 				8830CB971AC92A21005C79EF /* FeedItemCell.xib in Resources */,
 				88A62C591AD64FBE00EAD4C3 /* YoutubeBlockTableViewCell.xib in Resources */,
@@ -840,6 +857,7 @@
 				88BA02A81AA85C430091A43C /* MWFeedInfo.m in Sources */,
 				88BA02711AA85C060091A43C /* Model.xcdatamodeld in Sources */,
 				88BA02741AA85C060091A43C /* XMMCoreDataGetById.m in Sources */,
+				88CBA7041AD6A98F001C3D37 /* ImageBlockTableViewCell.m in Sources */,
 				88BA02771AA85C060091A43C /* XMMCoreDataMenuItem.m in Sources */,
 				88BA02861AA85C060091A43C /* XMMResponseGetByLocation.m in Sources */,
 				88BA02751AA85C060091A43C /* XMMCoreDataGetByLocation.m in Sources */,
