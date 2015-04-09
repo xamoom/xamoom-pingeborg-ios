@@ -10,6 +10,7 @@
 #import "XMMEnduserApi.h"
 #import "TextBlockTableViewCell.h"
 #import "AudioBlockTableViewCell.h"
+#import "YoutubeBlockTableViewCell.h"
 
 @interface ArtistDetailViewController : UITableViewController <XMMEnderuserApiDelegate>
 

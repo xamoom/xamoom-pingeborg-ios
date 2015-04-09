@@ -84,15 +84,15 @@
 #define COCOAPODS_VERSION_MINOR_SOCKit 1
 #define COCOAPODS_VERSION_PATCH_SOCKit 0
 
-// SWRevealViewController
-#define COCOAPODS_POD_AVAILABLE_SWRevealViewController
-#define COCOAPODS_VERSION_MAJOR_SWRevealViewController 2
-#define COCOAPODS_VERSION_MINOR_SWRevealViewController 3
-#define COCOAPODS_VERSION_PATCH_SWRevealViewController 0
-
 // TransitionKit
 #define COCOAPODS_POD_AVAILABLE_TransitionKit
 #define COCOAPODS_VERSION_MAJOR_TransitionKit 2
 #define COCOAPODS_VERSION_MINOR_TransitionKit 1
 #define COCOAPODS_VERSION_PATCH_TransitionKit 0
+
+// youtube-ios-player-helper
+#define COCOAPODS_POD_AVAILABLE_youtube_ios_player_helper
+#define COCOAPODS_VERSION_MAJOR_youtube_ios_player_helper 0
+#define COCOAPODS_VERSION_MINOR_youtube_ios_player_helper 1
+#define COCOAPODS_VERSION_PATCH_youtube_ios_player_helper 1
 

@@ -2,54 +2,94 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AudioBlockTableViewCell" rowHeight="55" id="KGk-i7-Jjw" customClass="AudioBlockTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="55"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AudioBlockTableViewCell" rowHeight="264" id="KGk-i7-Jjw" customClass="AudioBlockTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="318" height="69"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hjl-cR-8LQ">
-                        <rect key="frame" x="8" y="12" width="37" height="30"/>
-                        <state key="normal" title="PLAY">
-                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                        </state>
-                        <connections>
-                            <action selector="playAudioAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="EiG-Nt-HB3"/>
-                        </connections>
-                    </button>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4TC-v4-7IX">
-                        <rect key="frame" x="82" y="12" width="33" height="30"/>
-                        <state key="normal" title="Stop">
-                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                        </state>
-                        <connections>
-                            <action selector="stopAudioAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="s2H-tq-jk1"/>
-                        </connections>
-                    </button>
-                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="swt-1r-P7N">
-                        <rect key="frame" x="159" y="13" width="147" height="31"/>
-                        <connections>
-                            <action selector="volumeSliderChanged:" destination="KGk-i7-Jjw" eventType="valueChanged" id="rGV-Ca-Xfa"/>
-                        </connections>
-                    </slider>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Gold" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v0p-ky-YSc">
+                        <rect key="frame" x="8" y="10" width="239" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="239" id="HsE-YN-Xta"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="HsE-YN-Xta"/>
+                            </mask>
+                        </variation>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Chet Faker" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NkC-Ma-2oK">
+                        <rect key="frame" x="8" y="39" width="239" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bNb-P6-22z">
+                        <rect key="frame" x="255" y="8" width="55" height="55"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="igS-Ja-Tcv">
+                                <rect key="frame" x="6" y="13" width="43" height="30"/>
+                                <state key="normal" title="Play">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="audioButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="CMu-1Z-8Ck"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="55" id="PLh-dK-vbp"/>
+                            <constraint firstAttribute="height" constant="55" id="XDe-vf-Pu9"/>
+                            <constraint firstAttribute="height" constant="55" id="hzj-DS-Zwh"/>
+                            <constraint firstAttribute="width" constant="55" id="wuZ-bF-dnW"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="PLh-dK-vbp"/>
+                                <exclude reference="hzj-DS-Zwh"/>
+                            </mask>
+                        </variation>
+                    </view>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="v0p-ky-YSc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="1" id="07f-q7-1s8"/>
+                    <constraint firstItem="bNb-P6-22z" firstAttribute="leading" secondItem="NkC-Ma-2oK" secondAttribute="trailing" constant="8" id="3Vk-JA-d7h"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="bNb-P6-22z" secondAttribute="bottom" constant="-1" id="5X7-ST-j1D"/>
+                    <constraint firstItem="bNb-P6-22z" firstAttribute="top" secondItem="v0p-ky-YSc" secondAttribute="top" constant="-2" id="6bs-3s-3f2"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="bNb-P6-22z" secondAttribute="bottom" constant="-1" id="KgI-A4-bUf"/>
+                    <constraint firstItem="v0p-ky-YSc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Z6A-TY-geJ"/>
+                    <constraint firstItem="NkC-Ma-2oK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="ZrZ-hl-Ckv"/>
+                    <constraint firstItem="NkC-Ma-2oK" firstAttribute="top" secondItem="v0p-ky-YSc" secondAttribute="bottom" constant="8" symbolic="YES" id="atn-Um-7B6"/>
+                    <constraint firstItem="bNb-P6-22z" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-2" id="hfF-VB-n45"/>
+                    <constraint firstItem="bNb-P6-22z" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="rLW-QU-p2f"/>
+                    <constraint firstItem="bNb-P6-22z" firstAttribute="leading" secondItem="v0p-ky-YSc" secondAttribute="trailing" constant="8" id="tyY-2U-1bh"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="5X7-ST-j1D"/>
+                        <exclude reference="KgI-A4-bUf"/>
+                        <exclude reference="hfF-VB-n45"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
-                <outlet property="volumeSlider" destination="swt-1r-P7N" id="LfR-SB-ffT"/>
+                <outlet property="artistLabel" destination="NkC-Ma-2oK" id="vSb-JY-RQn"/>
+                <outlet property="audioButton" destination="igS-Ja-Tcv" id="XYl-b3-iic"/>
+                <outlet property="controlView" destination="bNb-P6-22z" id="zIf-WY-GI3"/>
+                <outlet property="titleLabel" destination="v0p-ky-YSc" id="hqh-74-Zo5"/>
             </connections>
-            <point key="canvasLocation" x="391" y="474.5"/>
+            <point key="canvasLocation" x="659" y="358.5"/>
         </tableViewCell>
-        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dL0-oq-UTx">
-            <rect key="frame" x="0.0" y="0.0" width="46" height="30"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <state key="normal" title="Button">
-                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-            </state>
-        </button>
     </objects>
 </document>

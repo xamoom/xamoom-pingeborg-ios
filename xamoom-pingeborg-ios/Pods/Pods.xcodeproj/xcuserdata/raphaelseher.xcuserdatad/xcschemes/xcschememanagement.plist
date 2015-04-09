@@ -44,12 +44,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-SWRevealViewController.xcscheme</key>
+		<key>Pods-TransitionKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-TransitionKit.xcscheme</key>
+		<key>Pods-youtube-ios-player-helper.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -62,57 +62,57 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0F8EE78C316F8FC0BDD55F63</key>
+		<key>2706B0B9D4D64580C34C70CE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>30F45F515094320A4E25B68D</key>
+		<key>300FB557334B2B580DE650B8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3ACC4855F6F3F25CE185DD70</key>
+		<key>3100B23CE5FE066B4B5228FE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>48168C3534ECAB477E5575CA</key>
+		<key>4D8522E5B7DB838C5F241C8E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4C1B4963A3A586DD652CC100</key>
+		<key>58F1C91B7F974023F24A7BBA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>732DA66C590BD268C4A46C5E</key>
+		<key>6FB27639B6FD4BE0E3670B5A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7E60B16253A315F4DF13EA35</key>
+		<key>76F0FEAD0EA81A0501AA579F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BD524F2DB99BCD072D91169B</key>
+		<key>7EEB3CE7299B520BE661BFE7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E12102851F0BB6E867583A19</key>
+		<key>86499A5B2999810839720EC8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E53E565E15872100B32453A5</key>
+		<key>87B6AB184166934CC344DAAA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E90C86F744C8FEF07CAE50DB</key>
+		<key>D0FE9B7E6658D79D2A66F088</key>
 		<dict>
 			<key>primary</key>
 			<true/>

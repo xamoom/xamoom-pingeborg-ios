@@ -26,15 +26,15 @@ PODS:
   - RKValueTransformers (1.1.1)
   - SMCalloutView (2.1.2)
   - SOCKit (1.1)
-  - SWRevealViewController (2.3.0)
   - TransitionKit (2.1.0)
+  - youtube-ios-player-helper (0.1.1)
 
 DEPENDENCIES:
   - QRCodeReaderViewController (~> 2.0.0)
   - REMenu (~> 1.10)
   - RestKit (~> 0.24)
   - SMCalloutView
-  - SWRevealViewController (~> 2.3.0)
+  - youtube-ios-player-helper (~> 0.1.1)
 
 SPEC CHECKSUMS:
   AFNetworking: cf8e418e16f0c9c7e5c3150d019a3c679d015018
@@ -45,7 +45,7 @@ SPEC CHECKSUMS:
   RKValueTransformers: d016f1967ae67997e492520fd0f9c512ccf168ae
   SMCalloutView: 4078d89b847731e514b1a919fed33b383a24a106
   SOCKit: c7376ac262bea9115b8f749358f762522a47d392
-  SWRevealViewController: 6d3fd97f70112fd7cef9de14df4260eacce4c63a
   TransitionKit: bc306605fb5e05a743c18d42239dc0e211619547
+  youtube-ios-player-helper: d7350b9f9070edf482e5d0bd5e8948c0ba1437f3
 
 COCOAPODS: 0.35.0

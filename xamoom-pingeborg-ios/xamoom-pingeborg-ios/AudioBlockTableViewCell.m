@@ -13,6 +13,8 @@
 
 @synthesize mp;
 
+bool isPlaying = NO;
+
 - (void)awakeFromNib {
     // Initialization code
 }
@@ -23,25 +25,25 @@
     // Configure the view for the selected state
 }
 
-- (IBAction)playAudioAction:(id)sender {
-    
-    NSLog(@"PLAY: %@", self.fileId);
-
-    NSURL *mediaURL = [NSURL URLWithString:self.fileId];
-    mp = [[MPMoviePlayerController alloc] initWithContentURL:mediaURL];
-    
-    [mp setMovieSourceType:MPMovieSourceTypeUnknown];
-    
-    [mp prepareToPlay];
-    [mp play];
-}
-
-- (IBAction)stopAudioAction:(id)sender {
-    [mp stop];
-}
-
-- (IBAction)volumeSliderChanged:(id)sender {
-    [[MPMusicPlayerController applicationMusicPlayer] setVolume:self.volumeSlider.value];
+- (IBAction)audioButton:(id)sender {
+    NSLog(@"BUTTON");
+    if (!isPlaying) {
+        [self.audioButton setTitle:@"Stop" forState:UIControlStateNormal];
+        isPlaying = TRUE;
+        
+        NSURL *mediaURL = [NSURL URLWithString:self.fileId];
+        mp = [[MPMoviePlayerController alloc] initWithContentURL:mediaURL];
+        
+        [mp setMovieSourceType:MPMovieSourceTypeUnknown];
+        
+        [mp prepareToPlay];
+        [mp play];
+    }
+    else {
+        [self.audioButton setTitle:@"Play" forState:UIControlStateNormal];
+        isPlaying = NO;
+        [mp stop];
+    }
 }
 
 @end

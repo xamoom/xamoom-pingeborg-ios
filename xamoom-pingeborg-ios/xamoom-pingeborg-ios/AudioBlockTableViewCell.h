@@ -12,13 +12,15 @@
 
 @interface AudioBlockTableViewCell : UITableViewCell
 
-@property (strong,nonatomic) MPMoviePlayerController *mp;
-@property (weak, nonatomic) IBOutlet UISlider *volumeSlider;
+@property (weak, nonatomic) IBOutlet UILabel *artistLabel;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UIButton *playButton;
+@property (weak, nonatomic) IBOutlet UIView *controlView;
+@property (weak, nonatomic) IBOutlet UIButton *audioButton;
 
+@property (strong,nonatomic) MPMoviePlayerController *mp;
 @property NSString *fileId;
 
-- (IBAction)playAudioAction:(id)sender;
-- (IBAction)stopAudioAction:(id)sender;
-- (IBAction)volumeSliderChanged:(id)sender;
+- (IBAction)audioButton:(id)sender;
 
 @end

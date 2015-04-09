@@ -50,7 +50,6 @@
             {
                 XMMResponseContentBlockType0 *contentBlock0 = (XMMResponseContentBlockType0*)contentBlock;
                 [self displayContentBlock0:contentBlock0];
-                //[itemsToDisplay addObject:contentBlock0];
                 break;
             }
             case 1:
@@ -61,7 +60,8 @@
             }
             case 2:
             {
-                NSLog(@"Hellyeah! ContentBlock2");
+                XMMResponseContentBlockType2 *contentBlock2 = (XMMResponseContentBlockType2*)contentBlock;
+                [self displayContentBlock2:contentBlock2];
                 break;
             }
             case 3:
@@ -135,8 +135,7 @@
     //resizes cellview
     cell.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     CGRect cellSize = cell.frame;
-    cellSize.size.height = cell.contentLabel.attributedText.size.height + cell.titleLabel.frame.size.height;
-    NSLog(@"Hellyeah: %@", cell.subviews);
+    cellSize.size.height = [cell.contentLabel sizeThatFits:cell.contentLabel.frame.size].height + [cell.titleLabel sizeThatFits:cell.titleLabel.frame.size].height;
     cell.frame = cellSize;
     
     //add to array
@@ -144,8 +143,6 @@
 }
 
 - (void)displayContentBlock1:(XMMResponseContentBlockType1 *)contentBlock {
-    //contentBlock.fileId, contentBlock.artist
-    
     static NSString *cellIdentifier = @"AudioBlockTableViewCell";
     
     AudioBlockTableViewCell *cell = (AudioBlockTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
@@ -156,6 +153,46 @@
     
     //set title
     cell.fileId = contentBlock.fileId;
+    cell.titleLabel.text = contentBlock.title;
+    cell.artistLabel.text = contentBlock.artist;
+    
+    //resizes cellview
+    cell.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    CGRect cellSize = cell.frame;
+    cellSize.size.height = [cell.artistLabel sizeThatFits:cell.artistLabel.frame.size].height + [cell.titleLabel sizeThatFits:cell.titleLabel.frame.size].height;
+    
+    if (cellSize.size.height < cell.controlView.frame.size.height)
+        cellSize.size.height = cell.controlView.frame.size.height + 14;
+    
+    cell.frame = cellSize;
+    
+    [itemsToDisplay addObject:cell];
+}
+
+- (void)displayContentBlock2:(XMMResponseContentBlockType2 *)contentBlock {
+    static NSString *cellIdentifier = @"YoutubeBlockTableViewCell";
+    
+    YoutubeBlockTableViewCell *cell = (YoutubeBlockTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"YoutubeBlockTableViewCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+    }
+    
+    cell.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    
+    cell.titleLabel.text = contentBlock.title;
+    cell.youtubeVideoUrl = contentBlock.youtubeUrl;
+    [cell initYoutubeVideo];
+    
+    CGRect ytPlayerSize = cell.playerView.frame;
+    ytPlayerSize.size.height = ytPlayerSize.size.width/1.75;
+    cell.playerView.frame = ytPlayerSize;
+    
+    //resizes cellview
+    cell.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    CGRect cellSize = cell.frame;
+    cellSize.size.height = [cell.titleLabel sizeThatFits:cell.titleLabel.frame.size].height + cell.playerView.frame.size.height;
+    cell.frame = cellSize;
         
     [itemsToDisplay addObject:cell];
 }
