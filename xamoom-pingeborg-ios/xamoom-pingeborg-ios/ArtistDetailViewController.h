@@ -11,6 +11,9 @@
 #import "TextBlockTableViewCell.h"
 #import "AudioBlockTableViewCell.h"
 #import "YoutubeBlockTableViewCell.h"
+#import "ImageBlockTableViewCell.h"
+#import "LinkBlockTableViewCell.h"
+#import "EbookBlockTableViewCell.h"
 
 @interface ArtistDetailViewController : UITableViewController <XMMEnderuserApiDelegate>
 

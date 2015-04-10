@@ -95,6 +95,7 @@ static NSString *cellIdentifier = @"FeedItemCell";
             [self downloadImageWithURL:contentItem.imagePublicUrl completionBlock:^(BOOL succeeded, UIImage *image) {
                 if (succeeded) {
                     data.image = image;
+                    [self.tableView reloadData];
                 }
             }];
         }

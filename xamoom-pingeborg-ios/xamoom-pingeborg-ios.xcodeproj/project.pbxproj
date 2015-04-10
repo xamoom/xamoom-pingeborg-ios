@@ -86,6 +86,13 @@
 		88BA02AF1AA85C430091A43C /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA02A51AA85C430091A43C /* RootViewController.m */; };
 		88CBA7041AD6A98F001C3D37 /* ImageBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CBA7021AD6A98F001C3D37 /* ImageBlockTableViewCell.m */; };
 		88CBA7051AD6A98F001C3D37 /* ImageBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88CBA7031AD6A98F001C3D37 /* ImageBlockTableViewCell.xib */; };
+		88CBA7071AD79D1F001C3D37 /* 4bf2ccad86764c05b5c7f0eefc7e9f93.gif in Resources */ = {isa = PBXBuildFile; fileRef = 88CBA7061AD79D1F001C3D37 /* 4bf2ccad86764c05b5c7f0eefc7e9f93.gif */; };
+		88CBA70C1AD7AD60001C3D37 /* LinkBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CBA70A1AD7AD60001C3D37 /* LinkBlockTableViewCell.m */; };
+		88CBA70D1AD7AD60001C3D37 /* LinkBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88CBA70B1AD7AD60001C3D37 /* LinkBlockTableViewCell.xib */; };
+		88CBA7121AD7B7EC001C3D37 /* EbookBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CBA7101AD7B7EC001C3D37 /* EbookBlockTableViewCell.m */; };
+		88CBA7131AD7B7EC001C3D37 /* EbookBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88CBA7111AD7B7EC001C3D37 /* EbookBlockTableViewCell.xib */; };
+		88CBA7181AD7BF78001C3D37 /* ContentBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CBA7161AD7BF78001C3D37 /* ContentBlockTableViewCell.m */; };
+		88CBA7191AD7BF78001C3D37 /* ContentBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88CBA7171AD7BF78001C3D37 /* ContentBlockTableViewCell.xib */; };
 		88CBAEE11AA9EC9E000E480A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88CBAEE01AA9EC9E000E480A /* MapKit.framework */; };
 		88CE0CFD1AAEF7740014EE77 /* RSSFeedItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88CE0CFC1AAEF7740014EE77 /* RSSFeedItemView.xib */; };
 		88CE0D0D1AAF40B30014EE77 /* RSSItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CE0D0C1AAF40B30014EE77 /* RSSItemViewController.m */; };
@@ -253,6 +260,16 @@
 		88CBA7011AD6A98F001C3D37 /* ImageBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageBlockTableViewCell.h; sourceTree = "<group>"; };
 		88CBA7021AD6A98F001C3D37 /* ImageBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageBlockTableViewCell.m; sourceTree = "<group>"; };
 		88CBA7031AD6A98F001C3D37 /* ImageBlockTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageBlockTableViewCell.xib; sourceTree = "<group>"; };
+		88CBA7061AD79D1F001C3D37 /* 4bf2ccad86764c05b5c7f0eefc7e9f93.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = 4bf2ccad86764c05b5c7f0eefc7e9f93.gif; path = ../../../Downloads/4bf2ccad86764c05b5c7f0eefc7e9f93.gif; sourceTree = "<group>"; };
+		88CBA7091AD7AD60001C3D37 /* LinkBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkBlockTableViewCell.h; sourceTree = "<group>"; };
+		88CBA70A1AD7AD60001C3D37 /* LinkBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkBlockTableViewCell.m; sourceTree = "<group>"; };
+		88CBA70B1AD7AD60001C3D37 /* LinkBlockTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LinkBlockTableViewCell.xib; sourceTree = "<group>"; };
+		88CBA70F1AD7B7EC001C3D37 /* EbookBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EbookBlockTableViewCell.h; sourceTree = "<group>"; };
+		88CBA7101AD7B7EC001C3D37 /* EbookBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EbookBlockTableViewCell.m; sourceTree = "<group>"; };
+		88CBA7111AD7B7EC001C3D37 /* EbookBlockTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EbookBlockTableViewCell.xib; sourceTree = "<group>"; };
+		88CBA7151AD7BF78001C3D37 /* ContentBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentBlockTableViewCell.h; sourceTree = "<group>"; };
+		88CBA7161AD7BF78001C3D37 /* ContentBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentBlockTableViewCell.m; sourceTree = "<group>"; };
+		88CBA7171AD7BF78001C3D37 /* ContentBlockTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentBlockTableViewCell.xib; sourceTree = "<group>"; };
 		88CBAEE01AA9EC9E000E480A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		88CE0CFC1AAEF7740014EE77 /* RSSFeedItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RSSFeedItemView.xib; sourceTree = "<group>"; };
 		88CE0D0B1AAF40B30014EE77 /* RSSItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSItemViewController.h; sourceTree = "<group>"; };
@@ -323,6 +340,9 @@
 		88A62C3C1AD3E16C00EAD4C3 /* ContentBlockTypes */ = {
 			isa = PBXGroup;
 			children = (
+				88CBA7141AD7BF67001C3D37 /* Content Block */,
+				88CBA70E1AD7B7D8001C3D37 /* Ebook Block */,
+				88CBA7081AD7AD4D001C3D37 /* Link Block */,
 				88CBA6FB1AD6A94A001C3D37 /* Image Block */,
 				88A62C541AD64FA500EAD4C3 /* Youtube Block */,
 				88A62C481AD55B6E00EAD4C3 /* Audio Block */,
@@ -364,6 +384,7 @@
 		88BA01E61AA859F90091A43C = {
 			isa = PBXGroup;
 			children = (
+				88CBA7061AD79D1F001C3D37 /* 4bf2ccad86764c05b5c7f0eefc7e9f93.gif */,
 				88BA02181AA85BF30091A43C /* xamoom-ios-sdk */,
 				88BA01F11AA859F90091A43C /* xamoom-pingeborg-ios */,
 				88BA020B1AA859F90091A43C /* xamoom-pingeborg-iosTests */,
@@ -580,6 +601,36 @@
 			name = "Image Block";
 			sourceTree = "<group>";
 		};
+		88CBA7081AD7AD4D001C3D37 /* Link Block */ = {
+			isa = PBXGroup;
+			children = (
+				88CBA7091AD7AD60001C3D37 /* LinkBlockTableViewCell.h */,
+				88CBA70A1AD7AD60001C3D37 /* LinkBlockTableViewCell.m */,
+				88CBA70B1AD7AD60001C3D37 /* LinkBlockTableViewCell.xib */,
+			);
+			name = "Link Block";
+			sourceTree = "<group>";
+		};
+		88CBA70E1AD7B7D8001C3D37 /* Ebook Block */ = {
+			isa = PBXGroup;
+			children = (
+				88CBA70F1AD7B7EC001C3D37 /* EbookBlockTableViewCell.h */,
+				88CBA7101AD7B7EC001C3D37 /* EbookBlockTableViewCell.m */,
+				88CBA7111AD7B7EC001C3D37 /* EbookBlockTableViewCell.xib */,
+			);
+			name = "Ebook Block";
+			sourceTree = "<group>";
+		};
+		88CBA7141AD7BF67001C3D37 /* Content Block */ = {
+			isa = PBXGroup;
+			children = (
+				88CBA7151AD7BF78001C3D37 /* ContentBlockTableViewCell.h */,
+				88CBA7161AD7BF78001C3D37 /* ContentBlockTableViewCell.m */,
+				88CBA7171AD7BF78001C3D37 /* ContentBlockTableViewCell.xib */,
+			);
+			name = "Content Block";
+			sourceTree = "<group>";
+		};
 		88CCAA321ACA89D6004E631F /* Map */ = {
 			isa = PBXGroup;
 			children = (
@@ -742,10 +793,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				885BFCF81AADC23F0047340C /* Main.storyboard in Resources */,
+				88CBA70D1AD7AD60001C3D37 /* LinkBlockTableViewCell.xib in Resources */,
 				8897A9FD1ABB1C710003C3FA /* PingeborgCalloutView.xib in Resources */,
+				88CBA7191AD7BF78001C3D37 /* ContentBlockTableViewCell.xib in Resources */,
 				88A62C4D1AD55B8400EAD4C3 /* AudioBlockTableViewCell.xib in Resources */,
+				88CBA7131AD7B7EC001C3D37 /* EbookBlockTableViewCell.xib in Resources */,
 				88BA02031AA859F90091A43C /* LaunchScreen.xib in Resources */,
 				88CE0CFD1AAEF7740014EE77 /* RSSFeedItemView.xib in Resources */,
+				88CBA7071AD79D1F001C3D37 /* 4bf2ccad86764c05b5c7f0eefc7e9f93.gif in Resources */,
 				88CBA7051AD6A98F001C3D37 /* ImageBlockTableViewCell.xib in Resources */,
 				883574831AB1D4AD0099DF4A /* styles.css in Resources */,
 				8830CB971AC92A21005C79EF /* FeedItemCell.xib in Resources */,
@@ -806,11 +861,13 @@
 				88BA02AE1AA85C430091A43C /* NSString+XMLEntities.m in Sources */,
 				88BA02AB1AA85C430091A43C /* MWFeedParserAppDelegate.m in Sources */,
 				88BA02691AA85C060091A43C /* _XMMCoreData.m in Sources */,
+				88CBA7121AD7B7EC001C3D37 /* EbookBlockTableViewCell.m in Sources */,
 				88BA02AC1AA85C430091A43C /* NSDate+InternetDateTime.m in Sources */,
 				88BA026C1AA85C060091A43C /* _XMMCoreDataGetById.m in Sources */,
 				88D3DD951AD3CC8500538BFF /* FeedItemData.m in Sources */,
 				88BA026F1AA85C060091A43C /* _XMMCoreDataMenuItem.m in Sources */,
 				88BA028B1AA85C060091A43C /* XMMResponseMenuItem.m in Sources */,
+				88CBA70C1AD7AD60001C3D37 /* LinkBlockTableViewCell.m in Sources */,
 				88BA027D1AA85C060091A43C /* XMMResponseContentBlockType2.m in Sources */,
 				88BA027E1AA85C060091A43C /* XMMResponseContentBlockType3.m in Sources */,
 				8827D8ED1ABB0F1C002F632C /* PingeborgAnnotationView.m in Sources */,
@@ -871,6 +928,7 @@
 				88BA02A71AA85C430091A43C /* GTMNSString+HTML.m in Sources */,
 				88A62C461AD3F2AE00EAD4C3 /* TextBlockTableViewCell.m in Sources */,
 				88BA02791AA85C060091A43C /* XMMResponseContent.m in Sources */,
+				88CBA7181AD7BF78001C3D37 /* ContentBlockTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

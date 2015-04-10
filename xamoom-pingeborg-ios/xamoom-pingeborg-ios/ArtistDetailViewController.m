@@ -66,17 +66,20 @@
             }
             case 3:
             {
-                NSLog(@"Hellyeah! ContentBlock3");
+                XMMResponseContentBlockType3 *contentBlock3 = (XMMResponseContentBlockType3*)contentBlock;
+                [self displayContentBlock3:contentBlock3];
                 break;
             }
             case 4:
             {
-                NSLog(@"Hellyeah! ContentBlock4");
+                XMMResponseContentBlockType4 *contentBlock4 = (XMMResponseContentBlockType4*)contentBlock;
+                [self displayContentBlock4:contentBlock4];
                 break;
             }
             case 5:
             {
-                NSLog(@"Hellyeah! ContentBlock5");
+                XMMResponseContentBlockType5 *contentBlock5 = (XMMResponseContentBlockType5*)contentBlock;
+                [self displayContentBlock5:contentBlock5];
                 break;
             }
             case 6:
@@ -135,7 +138,7 @@
     //resizes cellview
     cell.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     CGRect cellSize = cell.frame;
-    cellSize.size.height = [cell.contentLabel sizeThatFits:cell.contentLabel.frame.size].height + [cell.titleLabel sizeThatFits:cell.titleLabel.frame.size].height;
+    cellSize.size.height = [cell.contentLabel sizeThatFits:cell.contentLabel.frame.size].height + [cell.titleLabel sizeThatFits:cell.titleLabel.frame.size].height + 24;
     cell.frame = cellSize;
     
     //add to array
@@ -195,6 +198,90 @@
     cell.frame = cellSize;
         
     [itemsToDisplay addObject:cell];
+}
+
+- (void)displayContentBlock3:(XMMResponseContentBlockType3 *)contentBlock {
+    static NSString *cellIdentifier = @"ImageBlockTableViewCell";
+    
+    ImageBlockTableViewCell *cell = (ImageBlockTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ImageBlockTableViewCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+    }
+    
+    cell.titleLabel.text = contentBlock.title;
+        
+    if(contentBlock.fileId != nil) {
+        [self downloadImageWithURL:contentBlock.fileId completionBlock:^(BOOL succeeded, UIImage *image) {
+            if (succeeded) {
+                //set image
+                [cell.image setImage:image];
+                //calculate width/height ratio
+                float imageRatio = image.size.width/image.size.height;
+
+                //resizes cellview
+                cell.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+                CGRect cellSize = cell.frame;
+                cellSize.size.height = [cell.titleLabel sizeThatFits:cell.titleLabel.frame.size].height + (cell.image.frame.size.width / imageRatio) + 24;
+                cell.frame = cellSize;
+                
+                //[self.tableView reloadData];
+            }
+            
+        }];
+    }
+    
+    [itemsToDisplay addObject:cell];
+}
+
+- (void)displayContentBlock4:(XMMResponseContentBlockType4 *)contentBlock {
+    static NSString *cellIdentifier = @"LinkBlockTableViewCell";
+    
+    LinkBlockTableViewCell *cell = (LinkBlockTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"LinkBlockTableViewCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+    }
+    
+    cell.titleLabel.text = contentBlock.title;
+    [cell.linkButton setTitle:contentBlock.text forState:UIControlStateNormal];
+    cell.linkUrl = contentBlock.linkUrl;
+    cell.linkType = contentBlock.linkType;
+    
+    [itemsToDisplay addObject:cell];
+}
+
+- (void)displayContentBlock5:(XMMResponseContentBlockType5 *)contentBlock {
+    static NSString *cellIdentifier = @"EbookBlockTableViewCell";
+    
+    EbookBlockTableViewCell *cell = (EbookBlockTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"EbookBlockTableViewCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+    }
+    
+    cell.titleLabel.text = contentBlock.title;
+    cell.artistLabel.text = contentBlock.artist;
+    cell.downloadUrl = contentBlock.fileId;
+    
+    [itemsToDisplay addObject:cell];
+}
+
+- (void)downloadImageWithURL:(NSString *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock
+{
+    NSURL *realUrl = [[NSURL alloc]initWithString:url];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:realUrl];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               if ( !error )
+                               {
+                                   UIImage *image = [[UIImage alloc] initWithData:data];
+                                   completionBlock(YES,image);
+                               } else{
+                                   completionBlock(NO,nil);
+                               }
+                           }];
 }
 
 #pragma mark - Table view data source
