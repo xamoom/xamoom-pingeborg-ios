@@ -21,8 +21,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //tableview settings
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 150.0;
+    
     itemsToDisplay = [[NSMutableArray alloc] init];
     // Do any additional setup after loading the view.
     [[XMMEnduserApi sharedInstance] setDelegate:self];
@@ -139,7 +142,7 @@
     cell.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     CGRect cellSize = cell.frame;
     cellSize.size.height = [cell.contentLabel sizeThatFits:cell.contentLabel.frame.size].height + [cell.titleLabel sizeThatFits:cell.titleLabel.frame.size].height + 24;
-    cell.frame = cellSize;
+    //cell.frame = cellSize;
     
     //add to array
     [itemsToDisplay addObject: cell];
@@ -160,14 +163,14 @@
     cell.artistLabel.text = contentBlock.artist;
     
     //resizes cellview
-    cell.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    //cell.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     CGRect cellSize = cell.frame;
     cellSize.size.height = [cell.artistLabel sizeThatFits:cell.artistLabel.frame.size].height + [cell.titleLabel sizeThatFits:cell.titleLabel.frame.size].height;
     
     if (cellSize.size.height < cell.controlView.frame.size.height)
         cellSize.size.height = cell.controlView.frame.size.height + 14;
     
-    cell.frame = cellSize;
+    //cell.frame = cellSize;
     
     [itemsToDisplay addObject:cell];
 }
@@ -181,22 +184,23 @@
         cell = [nib objectAtIndex:0];
     }
     
-    cell.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-    
     cell.titleLabel.text = contentBlock.title;
     cell.youtubeVideoUrl = contentBlock.youtubeUrl;
-    [cell initYoutubeVideo];
     
-    CGRect ytPlayerSize = cell.playerView.frame;
-    ytPlayerSize.size.height = ytPlayerSize.size.width/1.75;
-    cell.playerView.frame = ytPlayerSize;
+    //get the videoId from the string
+    NSString *regexString = @"((?<=(v|V)/)|(?<=be/)|(?<=(\\?|\\&)v=)|(?<=embed/))([\\w-]++)";
+    NSRegularExpression *regExp = [NSRegularExpression regularExpressionWithPattern:regexString
+                                                                            options:NSRegularExpressionCaseInsensitive
+                                                                              error:nil];
     
-    //resizes cellview
-    cell.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    CGRect cellSize = cell.frame;
-    cellSize.size.height = [cell.titleLabel sizeThatFits:cell.titleLabel.frame.size].height + cell.playerView.frame.size.height;
-    cell.frame = cellSize;
-        
+    NSArray *array = [regExp matchesInString:cell.youtubeVideoUrl options:0 range:NSMakeRange(0,cell.youtubeVideoUrl.length)];
+    if (array.count > 0) {
+        NSTextCheckingResult *result = array.firstObject;
+        NSString* youtubeVideoId = [cell.youtubeVideoUrl substringWithRange:result.range];
+        //load video inside playerView
+        [cell.playerView loadWithVideoId:youtubeVideoId];
+    }
+
     [itemsToDisplay addObject:cell];
 }
 
@@ -223,7 +227,7 @@
                 cell.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
                 CGRect cellSize = cell.frame;
                 cellSize.size.height = [cell.titleLabel sizeThatFits:cell.titleLabel.frame.size].height + (cell.image.frame.size.width / imageRatio) + 24;
-                cell.frame = cellSize;
+                //cell.frame = cellSize;
                 
                 //[self.tableView reloadData];
             }
@@ -297,12 +301,8 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    [[itemsToDisplay objectAtIndex:indexPath.row] layoutIfNeeded];
     return [itemsToDisplay objectAtIndex:indexPath.row];
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [itemsToDisplay objectAtIndex:indexPath.row];
-    return cell.frame.size.height;
 }
 
 /*
