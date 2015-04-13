@@ -16,8 +16,8 @@
 @property NSString *linkUrl;
 @property NSString *linkType;
 
-
-
 - (IBAction)linkClicked:(id)sender;
+
+- (void)changeStyleAccordingToLinkType;
 
 @end

@@ -16,33 +16,33 @@
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NfP-Ht-jrX">
                         <rect key="frame" x="8" y="8" width="304" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22" id="x4M-zF-PiY"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" image="4bf2ccad86764c05b5c7f0eefc7e9f93.gif" translatesAutoresizingMaskIntoConstraints="NO" id="Fvj-ka-sv0">
                         <rect key="frame" x="8" y="38" width="304" height="370"/>
-                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="370" id="RAS-ih-13T"/>
-                            <constraint firstAttribute="width" constant="304" id="ZQJ-nU-U5b"/>
                         </constraints>
                     </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Fvj-ka-sv0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="5uz-03-a09"/>
                     <constraint firstItem="Fvj-ka-sv0" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="CEQ-ex-Fao"/>
                     <constraint firstItem="NfP-Ht-jrX" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="DNu-HQ-71g"/>
                     <constraint firstItem="NfP-Ht-jrX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="H2W-9F-RSr"/>
+                    <constraint firstItem="Fvj-ka-sv0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Lbw-Cd-zQP"/>
                     <constraint firstItem="NfP-Ht-jrX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="RgF-Pv-5ZS"/>
                     <constraint firstItem="Fvj-ka-sv0" firstAttribute="top" secondItem="NfP-Ht-jrX" secondAttribute="bottom" constant="8" id="We5-Zt-jKD"/>
-                    <constraint firstItem="Fvj-ka-sv0" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="nXH-gH-bbz"/>
+                    <constraint firstItem="Fvj-ka-sv0" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="YJt-r8-tR6"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="image" destination="Fvj-ka-sv0" id="JRJ-wL-cvq"/>
                 <outlet property="imageHeightConstraint" destination="RAS-ih-13T" id="rJ2-hJ-Iax"/>
-                <outlet property="imageWidthConstraint" destination="ZQJ-nU-U5b" id="loW-zP-bxn"/>
                 <outlet property="titleLabel" destination="NfP-Ht-jrX" id="X1m-MY-cGj"/>
             </connections>
             <point key="canvasLocation" x="280" y="447.5"/>

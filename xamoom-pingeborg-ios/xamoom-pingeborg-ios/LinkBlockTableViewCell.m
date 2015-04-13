@@ -24,4 +24,8 @@
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.linkUrl]];
 }
 
+- (void)changeStyleAccordingToLinkType {
+    NSLog(@"Linktype: %@", self.linkType);
+}
+
 @end

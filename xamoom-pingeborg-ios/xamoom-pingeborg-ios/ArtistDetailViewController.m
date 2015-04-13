@@ -226,7 +226,6 @@ NSLayoutConstraint *aspectRatio;
                 if (image.size.width < cell.image.frame.size.width) {
                     [cell.image setContentMode:UIViewContentModeCenter];
                     [cell.imageHeightConstraint setConstant:image.size.height];
-                    NSLog(@"image.size.width: %f, imageview.size.width: %f", image.size.width, cell.image.frame.size.width);
                 }
                 else {
                     //bigger images will be resized und displayed full-width
