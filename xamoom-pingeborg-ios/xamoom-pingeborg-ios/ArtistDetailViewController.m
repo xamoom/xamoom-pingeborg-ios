@@ -204,6 +204,8 @@
     [itemsToDisplay addObject:cell];
 }
 
+NSLayoutConstraint *aspectRatio;
+
 - (void)displayContentBlock3:(XMMResponseContentBlockType3 *)contentBlock {
     static NSString *cellIdentifier = @"ImageBlockTableViewCell";
     
@@ -214,22 +216,25 @@
     }
     
     cell.titleLabel.text = contentBlock.title;
-        
+    
     if(contentBlock.fileId != nil) {
         [self downloadImageWithURL:contentBlock.fileId completionBlock:^(BOOL succeeded, UIImage *image) {
-            if (succeeded) {
-                //set image
-                [cell.image setImage:image];
-                //calculate width/height ratio
+            if (succeeded && image) {
                 float imageRatio = image.size.width/image.size.height;
 
-                //resizes cellview
-                cell.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-                CGRect cellSize = cell.frame;
-                cellSize.size.height = [cell.titleLabel sizeThatFits:cell.titleLabel.frame.size].height + (cell.image.frame.size.width / imageRatio) + 24;
-                //cell.frame = cellSize;
+                //smaller images will be displayed normal size and centered
+                if (image.size.width < cell.image.frame.size.width) {
+                    [cell.image setContentMode:UIViewContentModeCenter];
+                    [cell.imageHeightConstraint setConstant:image.size.height];
+                    NSLog(@"image.size.width: %f, imageview.size.width: %f", image.size.width, cell.image.frame.size.width);
+                }
+                else {
+                    //bigger images will be resized und displayed full-width
+                    [cell.imageHeightConstraint setConstant:(cell.imageWidthConstraint.constant / imageRatio)];
+                }
                 
-                //[self.tableView reloadData];
+                [cell.image setImage:image];
+                [self.tableView reloadData];
             }
             
         }];
