@@ -11,7 +11,9 @@
 @interface LinkBlockTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UIButton *linkButton;
+@property (weak, nonatomic) IBOutlet UIImageView *icon;
+@property (weak, nonatomic) IBOutlet UILabel *linkTextLabel;
+@property (weak, nonatomic) IBOutlet UIView *viewForBackgroundColor;
 
 @property NSString *linkUrl;
 @property NSString *linkType;

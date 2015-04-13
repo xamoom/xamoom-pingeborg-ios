@@ -18,6 +18,7 @@ static NSString *cellIdentifier = @"FeedItemCell";
 @property NSMutableArray *imagesToDisplay;
 @property NSString *contentListCursor;
 @property bool hasMore;
+@property bool isApiCallingBlocked;
 
 @end
 
@@ -35,7 +36,7 @@ static NSString *cellIdentifier = @"FeedItemCell";
     itemsToDisplay = [[NSMutableArray alloc] init];
     imagesToDisplay = [[NSMutableArray alloc] init];
     [[XMMEnduserApi sharedInstance] setDelegate:self];
-    [[XMMEnduserApi sharedInstance] getContentListFromApi:@"6588702901927936" withLanguage:@"de" withPageSize:10 withCursor:@"null"];
+    [[XMMEnduserApi sharedInstance] getContentListFromApi:@"6588702901927936" withLanguage:@"de" withPageSize:5 withCursor:@"null"];
     
     //set NavigationController delegate
     NavigationViewController* navController = (NavigationViewController*) self.parentViewController.parentViewController;
@@ -81,6 +82,8 @@ static NSString *cellIdentifier = @"FeedItemCell";
 
 -(void)didLoadContentList:(XMMResponseContentList *)result {    
     self.contentListCursor = result.cursor;
+
+    NSLog(@"Hey! : %@", self.contentListCursor);
     
     if ([result.hasMore isEqualToString:@"True"])
         self.hasMore = YES;
@@ -102,6 +105,7 @@ static NSString *cellIdentifier = @"FeedItemCell";
         
         [itemsToDisplay addObject:data];
     }
+    self.isApiCallingBlocked = NO;
     [self.tableView reloadData];
 }
 
@@ -192,7 +196,9 @@ static NSString *cellIdentifier = @"FeedItemCell";
     
     //load more contents
     if (indexPath.row == [self.itemsToDisplay count] - 1) {
-        if (self.hasMore) {
+        if (self.hasMore && !self.isApiCallingBlocked) {
+            self.isApiCallingBlocked = YES;
+            [[XMMEnduserApi sharedInstance] setDelegate:self];
             [[XMMEnduserApi sharedInstance] getContentListFromApi:@"6588702901927936" withLanguage:@"de" withPageSize:5 withCursor:self.contentListCursor];
         }
     }

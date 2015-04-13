@@ -204,8 +204,6 @@
     [itemsToDisplay addObject:cell];
 }
 
-NSLayoutConstraint *aspectRatio;
-
 - (void)displayContentBlock3:(XMMResponseContentBlockType3 *)contentBlock {
     static NSString *cellIdentifier = @"ImageBlockTableViewCell";
     
@@ -229,7 +227,7 @@ NSLayoutConstraint *aspectRatio;
                 }
                 else {
                     //bigger images will be resized und displayed full-width
-                    [cell.imageHeightConstraint setConstant:(cell.imageWidthConstraint.constant / imageRatio)];
+                    [cell.imageHeightConstraint setConstant:(cell.image.frame.size.width / imageRatio)];
                 }
                 
                 [cell.image setImage:image];
@@ -249,13 +247,14 @@ NSLayoutConstraint *aspectRatio;
     if (cell == nil) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"LinkBlockTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
+        
+        cell.titleLabel.text = contentBlock.title;
+        cell.linkTextLabel.text = contentBlock.text;
+        cell.linkUrl = contentBlock.linkUrl;
+        cell.linkType = contentBlock.linkType;
     }
     
-    cell.titleLabel.text = contentBlock.title;
-    [cell.linkButton setTitle:contentBlock.text forState:UIControlStateNormal];
-    cell.linkUrl = contentBlock.linkUrl;
-    cell.linkType = contentBlock.linkType;
-    
+    [cell changeStyleAccordingToLinkType];
     [itemsToDisplay addObject:cell];
 }
 
@@ -305,7 +304,6 @@ NSLayoutConstraint *aspectRatio;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    [[itemsToDisplay objectAtIndex:indexPath.row] layoutIfNeeded];
     return [itemsToDisplay objectAtIndex:indexPath.row];
 }
 
