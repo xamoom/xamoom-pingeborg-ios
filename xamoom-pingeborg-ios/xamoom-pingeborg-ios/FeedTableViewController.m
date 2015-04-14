@@ -56,6 +56,15 @@ static NSString *cellIdentifier = @"FeedItemCell";
     [iv addSubview:button];
     [iv addSubview:imageView];
     self.parentViewController.navigationItem.titleView = iv;
+
+    //setting up refresh control
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.backgroundColor = [UIColor colorWithRed:25/255.0f green:198/255.0f blue:255/255.0f alpha:1.0f];
+    self.refreshControl.tintColor = [UIColor whiteColor];
+    [self.refreshControl addTarget:self
+                            action:@selector(pullToRefresh)
+                  forControlEvents:UIControlEventValueChanged];
+
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -96,7 +105,7 @@ static NSString *cellIdentifier = @"FeedItemCell";
             [self downloadImageWithURL:contentItem.imagePublicUrl completionBlock:^(BOOL succeeded, UIImage *image) {
                 if (succeeded) {
                     data.image = image;
-                    [self.tableView reloadData];
+                    [self reloadData];
                 }
             }];
         }
@@ -163,8 +172,16 @@ static NSString *cellIdentifier = @"FeedItemCell";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    FeedItemData *data;
     
-    FeedItemData *data = (FeedItemData*)[itemsToDisplay objectAtIndex:indexPath.row];
+    //checking for array out of bounds caused by pull to refresh
+    if (indexPath.row > itemsToDisplay.count) {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FeedItemCell" owner:self options:nil];
+        return [nib objectAtIndex:0];
+    }
+    else {
+        data = (FeedItemData*)[itemsToDisplay objectAtIndex:indexPath.row];
+    }
     
     FeedItemCell *cell = (FeedItemCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
@@ -173,7 +190,6 @@ static NSString *cellIdentifier = @"FeedItemCell";
     }
     else {
         cell.feedItemImage.image = nil;
-        //cell.feedItemTitle = nil;
     }
     
     //styling the label
@@ -213,6 +229,36 @@ static NSString *cellIdentifier = @"FeedItemCell";
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return (self.tableView.frame.size.width/2.6323987539) + feedItemMargin;
+}
+
+- (void)pullToRefresh {
+    if(!self.isApiCallingBlocked) {
+        itemsToDisplay = nil;
+        itemsToDisplay = [[NSMutableArray alloc] init];
+        [[XMMEnduserApi sharedInstance] setDelegate:self];
+        [[XMMEnduserApi sharedInstance] getContentListFromApi:@"6588702901927936" withLanguage:@"de" withPageSize:5 withCursor:@"null"];
+        self.isApiCallingBlocked = YES;
+    }
+}
+
+- (void)reloadData
+{
+    // Reload table data
+    [self.tableView reloadData];
+    
+    // End the refreshing
+    if (self.refreshControl) {
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"MMM d, hh:mm"];
+        NSString *title = [NSString stringWithFormat:@"Letztes Update: %@", [formatter stringFromDate:[NSDate date]]];
+        NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor whiteColor]
+                                                                    forKey:NSForegroundColorAttributeName];
+        NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:attrsDictionary];
+        self.refreshControl.attributedTitle = attributedTitle;
+        
+        [self.refreshControl endRefreshing];
+    }
 }
 
 /*

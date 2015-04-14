@@ -319,8 +319,8 @@
 		885BFCEB1AADB67F0047340C /* UserInterface */ = {
 			isa = PBXGroup;
 			children = (
-				88A62C3C1AD3E16C00EAD4C3 /* ContentBlockTypes */,
 				885BFCF71AADC23F0047340C /* Main.storyboard */,
+				88A62C3C1AD3E16C00EAD4C3 /* ContentBlockTypes */,
 				88CCAA331ACA8A49004E631F /* Home */,
 				88CCAA341ACA8A54004E631F /* Scans */,
 				88CCAA321ACA89D6004E631F /* Map */,
