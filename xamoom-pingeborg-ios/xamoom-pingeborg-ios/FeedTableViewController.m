@@ -82,8 +82,6 @@ static NSString *cellIdentifier = @"FeedItemCell";
 
 -(void)didLoadContentList:(XMMResponseContentList *)result {    
     self.contentListCursor = result.cursor;
-
-    NSLog(@"Hey! : %@", self.contentListCursor);
     
     if ([result.hasMore isEqualToString:@"True"])
         self.hasMore = YES;

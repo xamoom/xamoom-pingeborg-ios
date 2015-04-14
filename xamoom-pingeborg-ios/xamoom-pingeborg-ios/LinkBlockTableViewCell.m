@@ -44,7 +44,7 @@
     switch ([self.linkType integerValue]) {
         case 0: {
             [self.viewForBackgroundColor setBackgroundColor:[UIColor colorWithRed:59/255.0f green:89/255.0f blue:152/255.0f alpha:1.0f]];
-            [self.imageView setImage:[UIImage imageNamed:@"car"]];
+            [self.imageView setImage:[UIImage imageNamed:@"facebook"]];
             self.imageView.image = [self.imageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             [self.imageView setTintColor:[UIColor whiteColor]];
             [self.linkTextLabel setTextColor:[UIColor whiteColor]];
@@ -53,7 +53,7 @@
         }
         case 1: {
             [self.viewForBackgroundColor setBackgroundColor:[UIColor colorWithRed:85/255.0f green:172/255.0f blue:238/255.0f alpha:1.0f]];
-            [self.imageView setImage:[UIImage imageNamed:@"car"]];
+            [self.imageView setImage:[UIImage imageNamed:@"twitter"]];
             self.imageView.image = [self.imageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             [self.imageView setTintColor:[UIColor whiteColor]];
             [self.linkTextLabel setTextColor:[UIColor whiteColor]];
@@ -62,7 +62,7 @@
         }
         case 2: {
             [self.viewForBackgroundColor setBackgroundColor:[UIColor colorWithRed:209/255.0f green:209/255.0f blue:209/255.0f alpha:1.0f]];
-            [self.imageView setImage:[UIImage imageNamed:@"car"]];
+            [self.imageView setImage:[UIImage imageNamed:@"web"]];
             self.imageView.image = [self.imageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             [self.imageView setTintColor:[UIColor colorWithRed:51/255.0f green:51/255.0f blue:51/255.0f alpha:1.0f]];
             [self.linkTextLabel setTextColor:[UIColor colorWithRed:51/255.0f green:51/255.0f blue:51/255.0f alpha:1.0f]];
@@ -71,7 +71,7 @@
         }
         case 3: {
             [self.viewForBackgroundColor setBackgroundColor:[UIColor colorWithRed:255/255.0f green:153/255.0f blue:0/255.0f alpha:1.0f]];
-            [self.imageView setImage:[UIImage imageNamed:@"car"]];
+            [self.imageView setImage:[UIImage imageNamed:@"shop"]];
             self.imageView.image = [self.imageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             [self.imageView setTintColor:[UIColor whiteColor]];
             [self.linkTextLabel setTextColor:[UIColor whiteColor]];
@@ -80,7 +80,7 @@
         }
         case 4: {
             [self.viewForBackgroundColor setBackgroundColor:[UIColor colorWithRed:209/255.0f green:209/255.0f blue:209/255.0f alpha:1.0f]];
-            [self.imageView setImage:[UIImage imageNamed:@"car"]];
+            [self.imageView setImage:[UIImage imageNamed:@"wikipedia"]];
             self.imageView.image = [self.imageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             [self.imageView setTintColor:[UIColor colorWithRed:51/255.0f green:51/255.0f blue:51/255.0f alpha:1.0f]];
             [self.linkTextLabel setTextColor:[UIColor colorWithRed:51/255.0f green:51/255.0f blue:51/255.0f alpha:1.0f]];
@@ -89,7 +89,7 @@
         }
         case 5: {
             [self.viewForBackgroundColor setBackgroundColor:[UIColor colorWithRed:9/255.0f green:118/255.0f blue:180/255.0f alpha:1.0f]];
-            [self.imageView setImage:[UIImage imageNamed:@"car"]];
+            [self.imageView setImage:[UIImage imageNamed:@"linkedin"]];
             self.imageView.image = [self.imageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             [self.imageView setTintColor:[UIColor whiteColor]];
             [self.linkTextLabel setTextColor:[UIColor whiteColor]];
@@ -98,7 +98,7 @@
         }
         case 6: {
             [self.viewForBackgroundColor setBackgroundColor:[UIColor colorWithRed:255/255.0f green:0/255.0f blue:132/255.0f alpha:1.0f]];
-            [self.imageView setImage:[UIImage imageNamed:@"car"]];
+            [self.imageView setImage:[UIImage imageNamed:@"flickr"]];
             self.imageView.image = [self.imageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             [self.imageView setTintColor:[UIColor whiteColor]];
             [self.linkTextLabel setTextColor:[UIColor whiteColor]];
@@ -107,7 +107,7 @@
         }
         case 7: {
             [self.viewForBackgroundColor setBackgroundColor:[UIColor colorWithRed:255/255.0f green:136/255.0f blue:0/255.0f alpha:1.0f]];
-            [self.imageView setImage:[UIImage imageNamed:@"car"]];
+            [self.imageView setImage:[UIImage imageNamed:@"soundcloud"]];
             self.imageView.image = [self.imageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             [self.imageView setTintColor:[UIColor whiteColor]];
             [self.linkTextLabel setTextColor:[UIColor whiteColor]];
@@ -116,7 +116,7 @@
         }
         case 8: {
             [self.viewForBackgroundColor setBackgroundColor:[UIColor colorWithRed:209/255.0f green:209/255.0f blue:209/255.0f alpha:1.0f]];
-            [self.imageView setImage:[UIImage imageNamed:@"car"]];
+            [self.imageView setImage:[UIImage imageNamed:@"itunes"]];
             self.imageView.image = [self.imageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             [self.imageView setTintColor:[UIColor colorWithRed:51/255.0f green:51/255.0f blue:51/255.0f alpha:1.0f]];
             [self.linkTextLabel setTextColor:[UIColor colorWithRed:51/255.0f green:51/255.0f blue:51/255.0f alpha:1.0f]];
@@ -125,7 +125,7 @@
         }
         case 9: {
             [self.viewForBackgroundColor setBackgroundColor:[UIColor colorWithRed:179/255.0f green:18/255.0f blue:23/255.0f alpha:1.0f]];
-            [self.imageView setImage:[UIImage imageNamed:@"car"]];
+            [self.imageView setImage:[UIImage imageNamed:@"youtube"]];
             self.imageView.image = [self.imageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             [self.imageView setTintColor:[UIColor whiteColor]];
             [self.linkTextLabel setTextColor:[UIColor whiteColor]];
@@ -134,7 +134,7 @@
         }
         case 10: {
             [self.viewForBackgroundColor setBackgroundColor:[UIColor colorWithRed:221/255.0f green:75/255.0f blue:57/255.0f alpha:1.0f]];
-            [self.imageView setImage:[UIImage imageNamed:@"car"]];
+            [self.imageView setImage:[UIImage imageNamed:@"google"]];
             self.imageView.image = [self.imageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             [self.imageView setTintColor:[UIColor whiteColor]];
             [self.linkTextLabel setTextColor:[UIColor whiteColor]];
@@ -143,7 +143,7 @@
         }
         case 11: {
             [self.viewForBackgroundColor setBackgroundColor:[UIColor colorWithRed:209/255.0f green:209/255.0f blue:209/255.0f alpha:1.0f]];
-            [self.imageView setImage:[UIImage imageNamed:@"car"]];
+            [self.imageView setImage:[UIImage imageNamed:@"phone"]];
             self.imageView.image = [self.imageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             [self.imageView setTintColor:[UIColor colorWithRed:51/255.0f green:51/255.0f blue:51/255.0f alpha:1.0f]];
             [self.linkTextLabel setTextColor:[UIColor colorWithRed:51/255.0f green:51/255.0f blue:51/255.0f alpha:1.0f]];
@@ -152,7 +152,7 @@
         }
         case 12: {
             [self.viewForBackgroundColor setBackgroundColor:[UIColor colorWithRed:209/255.0f green:209/255.0f blue:209/255.0f alpha:1.0f]];
-            [self.imageView setImage:[UIImage imageNamed:@"car"]];
+            [self.imageView setImage:[UIImage imageNamed:@"email"]];
             self.imageView.image = [self.imageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
             [self.imageView setTintColor:[UIColor colorWithRed:51/255.0f green:51/255.0f blue:51/255.0f alpha:1.0f]];
             [self.linkTextLabel setTextColor:[UIColor colorWithRed:51/255.0f green:51/255.0f blue:51/255.0f alpha:1.0f]];
