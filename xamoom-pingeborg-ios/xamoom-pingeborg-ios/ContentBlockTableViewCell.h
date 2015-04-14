@@ -7,11 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "XMMEnduserApi.h"
+#import "ArtistDetailViewController.h"
 
-@interface ContentBlockTableViewCell : UITableViewCell
+@interface ContentBlockTableViewCell : UITableViewCell <XMMEnderuserApiDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *contentImageView;
 @property (weak, nonatomic) IBOutlet UILabel *contentTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *contentExcerptLabel;
+
+- (IBAction)clickOnContentBlock:(id)sender;
+
+@property NSString *contentId;
+@property XMMResponseGetById *result;
+
+- (void)getContent;
 
 @end

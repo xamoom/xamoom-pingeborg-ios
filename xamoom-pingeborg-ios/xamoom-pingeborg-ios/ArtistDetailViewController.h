@@ -14,6 +14,7 @@
 #import "ImageBlockTableViewCell.h"
 #import "LinkBlockTableViewCell.h"
 #import "EbookBlockTableViewCell.h"
+#import "ContentBlockTableViewCell.h"
 
 @interface ArtistDetailViewController : UITableViewController <XMMEnderuserApiDelegate>
 

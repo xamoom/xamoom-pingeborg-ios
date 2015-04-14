@@ -30,6 +30,14 @@
     // Do any additional setup after loading the view.
     [[XMMEnduserApi sharedInstance] setDelegate:self];
     [[XMMEnduserApi sharedInstance] getContentByIdFull:self.contentId includeStyle:@"False" includeMenu:@"False" withLanguage:@"de" full:@"False"];
+    
+    //reload data notification
+    NSString *notificationName = @"reloadArtistDetails";
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(reloadData)
+     name:notificationName
+     object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -87,7 +95,8 @@
             }
             case 6:
             {
-                NSLog(@"Hellyeah! ContentBlock6");
+                XMMResponseContentBlockType6 *contentBlock6 = (XMMResponseContentBlockType6*)contentBlock;
+                [self displayContentBlock6:contentBlock6];
                 break;
             }
             case 7:
@@ -274,6 +283,22 @@
     [itemsToDisplay addObject:cell];
 }
 
+- (void)displayContentBlock6:(XMMResponseContentBlockType6 *)contentBlock {
+    static NSString *cellIdentifier = @"ContentBlockTableViewCell";
+    
+    ContentBlockTableViewCell *cell = (ContentBlockTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ContentBlockTableViewCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+    }
+    
+    cell.contentId = contentBlock.contentId;
+    [cell getContent];
+    
+    [itemsToDisplay addObject:cell];
+    [self.tableView reloadData];
+}
+
 - (void)downloadImageWithURL:(NSString *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock
 {
     NSURL *realUrl = [[NSURL alloc]initWithString:url];
@@ -293,6 +318,20 @@
 
 #pragma mark - Table view data source
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    if ([[itemsToDisplay objectAtIndex:indexPath.row] isKindOfClass:[ContentBlockTableViewCell class]]) {
+        ContentBlockTableViewCell *cell = [itemsToDisplay objectAtIndex:indexPath.row];
+        NSLog(@"check hellyeah: %@", cell.contentId);
+    
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        ArtistDetailViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ArtistDetailViewController"];
+        [vc setContentId:cell.contentId];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
     return 1;
@@ -305,6 +344,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     return [itemsToDisplay objectAtIndex:indexPath.row];
+}
+
+- (void)reloadData {
+    //[self.tableView reloadData];
 }
 
 /*
