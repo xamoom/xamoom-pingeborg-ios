@@ -18,6 +18,7 @@
     if (self) {
         coordinate = coord;
     }
+    
     return self;
 }
 

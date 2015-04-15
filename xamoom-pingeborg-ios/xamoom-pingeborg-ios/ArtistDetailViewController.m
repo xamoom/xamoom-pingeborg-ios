@@ -113,7 +113,8 @@
             }
             case 9:
             {
-                NSLog(@"Hellyeah! ContentBlock9");
+                XMMResponseContentBlockType9 *contentBlock9 = (XMMResponseContentBlockType9*)contentBlock;
+                [self displayContentBlock9:contentBlock9];
                 break;
             }
             default:
@@ -345,6 +346,22 @@
     cell.contentTextLabel.text = contentBlock.text;
     cell.fileId = contentBlock.fileId;
     cell.downloadType = contentBlock.downloadType;
+    
+    [itemsToDisplay addObject:cell];
+}
+
+- (void)displayContentBlock9:(XMMResponseContentBlockType9 *)contentBlock {
+    static NSString *cellIdentifier = @"SpotMapBlockTableViewCell";
+    
+    SpotMapBlockTableViewCell *cell = (SpotMapBlockTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SpotMapBlockTableViewCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+    }
+    
+    cell.titleLabel.text = contentBlock.title;
+    cell.spotMapTags = contentBlock.spotMapTag;
+    [cell getSpotMap];
     
     [itemsToDisplay addObject:cell];
 }

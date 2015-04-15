@@ -31,6 +31,8 @@
 		88A62C531AD561DB00EAD4C3 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88A62C521AD561DB00EAD4C3 /* MediaPlayer.framework */; };
 		88A62C581AD64FBE00EAD4C3 /* YoutubeBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A62C561AD64FBE00EAD4C3 /* YoutubeBlockTableViewCell.m */; };
 		88A62C591AD64FBE00EAD4C3 /* YoutubeBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88A62C571AD64FBE00EAD4C3 /* YoutubeBlockTableViewCell.xib */; };
+		88B8598F1ADE97F30000D113 /* SpotMapBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B8598D1ADE97F30000D113 /* SpotMapBlockTableViewCell.m */; };
+		88B859901ADE97F30000D113 /* SpotMapBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88B8598E1ADE97F30000D113 /* SpotMapBlockTableViewCell.xib */; };
 		88BA01F51AA859F90091A43C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA01F41AA859F90091A43C /* main.m */; };
 		88BA01F81AA859F90091A43C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA01F71AA859F90091A43C /* AppDelegate.m */; };
 		88BA02001AA859F90091A43C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88BA01FF1AA859F90091A43C /* Images.xcassets */; };
@@ -156,6 +158,9 @@
 		88A62C551AD64FBE00EAD4C3 /* YoutubeBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YoutubeBlockTableViewCell.h; sourceTree = "<group>"; };
 		88A62C561AD64FBE00EAD4C3 /* YoutubeBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YoutubeBlockTableViewCell.m; sourceTree = "<group>"; };
 		88A62C571AD64FBE00EAD4C3 /* YoutubeBlockTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YoutubeBlockTableViewCell.xib; sourceTree = "<group>"; };
+		88B8598C1ADE97F30000D113 /* SpotMapBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotMapBlockTableViewCell.h; sourceTree = "<group>"; };
+		88B8598D1ADE97F30000D113 /* SpotMapBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotMapBlockTableViewCell.m; sourceTree = "<group>"; };
+		88B8598E1ADE97F30000D113 /* SpotMapBlockTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SpotMapBlockTableViewCell.xib; sourceTree = "<group>"; };
 		88BA01EF1AA859F90091A43C /* xamoom-pingeborg-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "xamoom-pingeborg-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		88BA01F31AA859F90091A43C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88BA01F41AA859F90091A43C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -353,6 +358,7 @@
 		88A62C3C1AD3E16C00EAD4C3 /* ContentBlockTypes */ = {
 			isa = PBXGroup;
 			children = (
+				88B8598B1ADE97DC0000D113 /* SpotMap Block */,
 				88DEE9DC1ADE79640069DC32 /* Download Block */,
 				88E7801B1ADE384C0082648B /* Soundcloud Block */,
 				88CBA7141AD7BF67001C3D37 /* Content Block */,
@@ -394,6 +400,16 @@
 				88A62C571AD64FBE00EAD4C3 /* YoutubeBlockTableViewCell.xib */,
 			);
 			name = "Youtube Block";
+			sourceTree = "<group>";
+		};
+		88B8598B1ADE97DC0000D113 /* SpotMap Block */ = {
+			isa = PBXGroup;
+			children = (
+				88B8598C1ADE97F30000D113 /* SpotMapBlockTableViewCell.h */,
+				88B8598D1ADE97F30000D113 /* SpotMapBlockTableViewCell.m */,
+				88B8598E1ADE97F30000D113 /* SpotMapBlockTableViewCell.xib */,
+			);
+			name = "SpotMap Block";
 			sourceTree = "<group>";
 		};
 		88BA01E61AA859F90091A43C = {
@@ -831,6 +847,7 @@
 				88CBA70D1AD7AD60001C3D37 /* LinkBlockTableViewCell.xib in Resources */,
 				8897A9FD1ABB1C710003C3FA /* PingeborgCalloutView.xib in Resources */,
 				88CBA7191AD7BF78001C3D37 /* ContentBlockTableViewCell.xib in Resources */,
+				88B859901ADE97F30000D113 /* SpotMapBlockTableViewCell.xib in Resources */,
 				88A62C4D1AD55B8400EAD4C3 /* AudioBlockTableViewCell.xib in Resources */,
 				88CBA7131AD7B7EC001C3D37 /* EbookBlockTableViewCell.xib in Resources */,
 				88BA02031AA859F90091A43C /* LaunchScreen.xib in Resources */,
@@ -905,6 +922,7 @@
 				88D3DD951AD3CC8500538BFF /* FeedItemData.m in Sources */,
 				88BA026F1AA85C060091A43C /* _XMMCoreDataMenuItem.m in Sources */,
 				88DEE9E01ADE79830069DC32 /* DownloadBlockTableViewCell.m in Sources */,
+				88B8598F1ADE97F30000D113 /* SpotMapBlockTableViewCell.m in Sources */,
 				88BA028B1AA85C060091A43C /* XMMResponseMenuItem.m in Sources */,
 				88CBA70C1AD7AD60001C3D37 /* LinkBlockTableViewCell.m in Sources */,
 				88BA027D1AA85C060091A43C /* XMMResponseContentBlockType2.m in Sources */,
