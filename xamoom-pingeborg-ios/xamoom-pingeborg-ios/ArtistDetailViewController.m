@@ -390,10 +390,8 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     if ([[itemsToDisplay objectAtIndex:indexPath.row] isKindOfClass:[ContentBlockTableViewCell class]]) {
         ContentBlockTableViewCell *cell = [itemsToDisplay objectAtIndex:indexPath.row];
-        NSLog(@"check hellyeah: %@", cell.contentId);
     
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        ArtistDetailViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ArtistDetailViewController"];
+        ArtistDetailViewController *vc = [[ArtistDetailViewController alloc] init];
         [vc setContentId:cell.contentId];
         [self.navigationController pushViewController:vc animated:YES];
     }

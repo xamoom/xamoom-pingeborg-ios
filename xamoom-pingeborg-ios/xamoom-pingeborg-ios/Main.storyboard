@@ -309,9 +309,6 @@
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="ZFb-R3-zJd">
                         <autoresizingMask key="autoresizingMask"/>
                     </refreshControl>
-                    <connections>
-                        <outlet property="artistDetailTableView" destination="eHq-dT-g1l" id="6bk-gK-TLI"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eX6-q5-p4T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
