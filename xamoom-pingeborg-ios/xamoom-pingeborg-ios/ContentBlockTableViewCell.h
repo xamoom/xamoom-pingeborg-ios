@@ -16,8 +16,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *contentTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *contentExcerptLabel;
 
-- (IBAction)clickOnContentBlock:(id)sender;
-
 @property NSString *contentId;
 @property XMMResponseGetById *result;
 

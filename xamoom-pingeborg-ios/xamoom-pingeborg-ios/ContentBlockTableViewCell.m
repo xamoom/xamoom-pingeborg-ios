@@ -44,7 +44,6 @@
         [self downloadImageWithURL:self.result.content.imagePublicUrl completionBlock:^(BOOL succeeded, UIImage *image) {
             if (succeeded && image) {
                 [self.contentImageView setImage:image];
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadArtistDetails" object:nil ];
             }
         }];
     }

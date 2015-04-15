@@ -101,7 +101,8 @@
             }
             case 7:
             {
-                NSLog(@"Hellyeah! ContentBlock7");
+                XMMResponseContentBlockType7 *contentBlock7 = (XMMResponseContentBlockType7*)contentBlock;
+                [self displayContentBlock7:contentBlock7];
                 break;
             }
             case 8:
@@ -146,12 +147,6 @@
     
     if(err)
         NSLog(@"Unable to parse label text: %@", err);
-    
-    //resizes cellview
-    cell.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    CGRect cellSize = cell.frame;
-    cellSize.size.height = [cell.contentLabel sizeThatFits:cell.contentLabel.frame.size].height + [cell.titleLabel sizeThatFits:cell.titleLabel.frame.size].height + 24;
-    //cell.frame = cellSize;
     
     //add to array
     [itemsToDisplay addObject: cell];
@@ -296,7 +291,45 @@
     [cell getContent];
     
     [itemsToDisplay addObject:cell];
-    [self.tableView reloadData];
+    //[self.tableView reloadData];
+}
+
+- (void)displayContentBlock7:(XMMResponseContentBlockType7 *)contentBlock {
+    static NSString *cellIdentifier = @"SoundcloudBlockTableViewCell";
+    
+    SoundcloudBlockTableViewCell *cell = (SoundcloudBlockTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SoundcloudBlockTableViewCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+    }
+    
+    //disable scrolling and bouncing
+    [cell.webView.scrollView setScrollEnabled:NO];
+    [cell.webView.scrollView setBounces:NO];
+    
+    //set title
+    cell.titleLabel.text = contentBlock.title;
+    
+    //get soundcloud code from file
+    NSString *soundcloudJs;
+    NSString *soundcloudJsPath = [[NSBundle mainBundle] pathForResource:@"soundcloud" ofType:@"js"];
+    NSData *loadedData = [NSData dataWithContentsOfFile:soundcloudJsPath];
+    if (loadedData) {
+        soundcloudJs = [[NSString alloc] initWithData:loadedData encoding:NSUTF8StringEncoding];
+    }
+    
+    //replace url and height from soundcloudJs
+    NSString *soundcloudUrl = contentBlock.soundcloudUrl;
+    soundcloudJs = [soundcloudJs stringByReplacingOccurrencesOfString:@"##url##"
+                                                           withString:soundcloudUrl];
+    
+    soundcloudJs = [soundcloudJs stringByReplacingOccurrencesOfString:@"##height##"
+                                                           withString:[NSString stringWithFormat:@"%f", cell.webView.frame.size.height]];
+
+    //display soundcloud in webview
+    [cell.webView loadHTMLString:soundcloudJs baseURL:nil];
+    
+    [itemsToDisplay addObject:cell];
 }
 
 - (void)downloadImageWithURL:(NSString *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock
@@ -347,7 +380,7 @@
 }
 
 - (void)reloadData {
-    //[self.tableView reloadData];
+    [self.tableView reloadData];
 }
 
 /*
