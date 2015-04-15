@@ -107,7 +107,8 @@
             }
             case 8:
             {
-                NSLog(@"Hellyeah! ContentBlock8");
+                XMMResponseContentBlockType8 *contentBlock8 = (XMMResponseContentBlockType8*)contentBlock;
+                [self displayContentBlock8:contentBlock8];
                 break;
             }
             case 9:
@@ -327,6 +328,23 @@
 
     //display soundcloud in webview
     [cell.webView loadHTMLString:soundcloudJs baseURL:nil];
+    
+    [itemsToDisplay addObject:cell];
+}
+
+- (void)displayContentBlock8:(XMMResponseContentBlockType8 *)contentBlock {
+    static NSString *cellIdentifier = @"DownloadBlockTableViewCell";
+    
+    DownloadBlockTableViewCell *cell = (DownloadBlockTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"DownloadBlockTableViewCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+    }
+    
+    cell.titleLabel.text = contentBlock.title;
+    cell.contentTextLabel.text = contentBlock.text;
+    cell.fileId = contentBlock.fileId;
+    cell.downloadType = contentBlock.downloadType;
     
     [itemsToDisplay addObject:cell];
 }

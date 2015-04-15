@@ -16,6 +16,7 @@
 #import "EbookBlockTableViewCell.h"
 #import "ContentBlockTableViewCell.h"
 #import "SoundcloudBlockTableViewCell.h"
+#import "DownloadBlockTableViewCell.h"
 
 @interface ArtistDetailViewController : UITableViewController <XMMEnderuserApiDelegate>
 

@@ -101,6 +101,8 @@
 		88D8F09E1ABACC6200ACFBE4 /* RSSFeedItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D8F09D1ABACC6200ACFBE4 /* RSSFeedItemView.m */; };
 		88D8F0A11ABACD2400ACFBE4 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D8F0A01ABACD2400ACFBE4 /* SettingsViewController.m */; };
 		88DEE9DB1ADE43730069DC32 /* soundcloud.js in Resources */ = {isa = PBXBuildFile; fileRef = 88DEE9DA1ADE43730069DC32 /* soundcloud.js */; };
+		88DEE9E01ADE79830069DC32 /* DownloadBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DEE9DE1ADE79830069DC32 /* DownloadBlockTableViewCell.m */; };
+		88DEE9E11ADE79830069DC32 /* DownloadBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88DEE9DF1ADE79830069DC32 /* DownloadBlockTableViewCell.xib */; };
 		88E7801F1ADE38690082648B /* SoundcloudBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E7801D1ADE38690082648B /* SoundcloudBlockTableViewCell.m */; };
 		88E780201ADE38690082648B /* SoundcloudBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88E7801E1ADE38690082648B /* SoundcloudBlockTableViewCell.xib */; };
 /* End PBXBuildFile section */
@@ -286,6 +288,9 @@
 		88D8F09F1ABACD2400ACFBE4 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		88D8F0A01ABACD2400ACFBE4 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		88DEE9DA1ADE43730069DC32 /* soundcloud.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = soundcloud.js; sourceTree = "<group>"; };
+		88DEE9DD1ADE79830069DC32 /* DownloadBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadBlockTableViewCell.h; sourceTree = "<group>"; };
+		88DEE9DE1ADE79830069DC32 /* DownloadBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadBlockTableViewCell.m; sourceTree = "<group>"; };
+		88DEE9DF1ADE79830069DC32 /* DownloadBlockTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DownloadBlockTableViewCell.xib; sourceTree = "<group>"; };
 		88E7801C1ADE38690082648B /* SoundcloudBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundcloudBlockTableViewCell.h; sourceTree = "<group>"; };
 		88E7801D1ADE38690082648B /* SoundcloudBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundcloudBlockTableViewCell.m; sourceTree = "<group>"; };
 		88E7801E1ADE38690082648B /* SoundcloudBlockTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SoundcloudBlockTableViewCell.xib; sourceTree = "<group>"; };
@@ -348,6 +353,7 @@
 		88A62C3C1AD3E16C00EAD4C3 /* ContentBlockTypes */ = {
 			isa = PBXGroup;
 			children = (
+				88DEE9DC1ADE79640069DC32 /* Download Block */,
 				88E7801B1ADE384C0082648B /* Soundcloud Block */,
 				88CBA7141AD7BF67001C3D37 /* Content Block */,
 				88CBA70E1AD7B7D8001C3D37 /* Ebook Block */,
@@ -692,6 +698,16 @@
 			name = Navigation;
 			sourceTree = "<group>";
 		};
+		88DEE9DC1ADE79640069DC32 /* Download Block */ = {
+			isa = PBXGroup;
+			children = (
+				88DEE9DD1ADE79830069DC32 /* DownloadBlockTableViewCell.h */,
+				88DEE9DE1ADE79830069DC32 /* DownloadBlockTableViewCell.m */,
+				88DEE9DF1ADE79830069DC32 /* DownloadBlockTableViewCell.xib */,
+			);
+			name = "Download Block";
+			sourceTree = "<group>";
+		};
 		88E7801B1ADE384C0082648B /* Soundcloud Block */ = {
 			isa = PBXGroup;
 			children = (
@@ -818,6 +834,7 @@
 				88A62C4D1AD55B8400EAD4C3 /* AudioBlockTableViewCell.xib in Resources */,
 				88CBA7131AD7B7EC001C3D37 /* EbookBlockTableViewCell.xib in Resources */,
 				88BA02031AA859F90091A43C /* LaunchScreen.xib in Resources */,
+				88DEE9E11ADE79830069DC32 /* DownloadBlockTableViewCell.xib in Resources */,
 				88CE0CFD1AAEF7740014EE77 /* RSSFeedItemView.xib in Resources */,
 				88DEE9DB1ADE43730069DC32 /* soundcloud.js in Resources */,
 				88CBA7071AD79D1F001C3D37 /* 4bf2ccad86764c05b5c7f0eefc7e9f93.gif in Resources */,
@@ -887,6 +904,7 @@
 				88BA026C1AA85C060091A43C /* _XMMCoreDataGetById.m in Sources */,
 				88D3DD951AD3CC8500538BFF /* FeedItemData.m in Sources */,
 				88BA026F1AA85C060091A43C /* _XMMCoreDataMenuItem.m in Sources */,
+				88DEE9E01ADE79830069DC32 /* DownloadBlockTableViewCell.m in Sources */,
 				88BA028B1AA85C060091A43C /* XMMResponseMenuItem.m in Sources */,
 				88CBA70C1AD7AD60001C3D37 /* LinkBlockTableViewCell.m in Sources */,
 				88BA027D1AA85C060091A43C /* XMMResponseContentBlockType2.m in Sources */,
