@@ -12,11 +12,22 @@
 @implementation PingebAnnotation
 
 @synthesize coordinate;
+@synthesize title;
 
 - (id)initWithLocation:(CLLocationCoordinate2D)coord {
     self = [super init];
     if (self) {
         coordinate = coord;
+    }
+    
+    return self;
+}
+
+- (id)initWithName:(NSString*)name location:(CLLocationCoordinate2D)coord {
+    self = [super init];
+    if (self) {
+        coordinate = coord;
+        title = name;
     }
     
     return self;

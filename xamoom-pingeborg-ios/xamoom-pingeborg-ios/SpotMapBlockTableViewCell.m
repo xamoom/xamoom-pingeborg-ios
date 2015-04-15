@@ -30,9 +30,8 @@
 - (void)didLoadDataBySpotMap:(XMMResponseGetSpotMap *)result {
     for (XMMResponseGetSpotMapItem *item in result.items) {
         // Add an annotation
-        PingebAnnotation *point = [[PingebAnnotation alloc] initWithLocation: CLLocationCoordinate2DMake([item.lat doubleValue], [item.lon doubleValue])];
+        PingebAnnotation *point = [[PingebAnnotation alloc] initWithName:item.displayName location:CLLocationCoordinate2DMake([item.lat doubleValue], [item.lon doubleValue])];
         point.data = item;
-        point.title = item.displayName;
         
         [self.map addAnnotation:point];
     }

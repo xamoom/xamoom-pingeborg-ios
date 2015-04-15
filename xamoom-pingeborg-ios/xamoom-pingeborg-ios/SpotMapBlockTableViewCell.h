@@ -20,6 +20,4 @@
 
 - (void)getSpotMap;
 
-- (IBAction)tapped:(id)sender;
-
 @end
