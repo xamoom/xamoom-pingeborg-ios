@@ -251,13 +251,13 @@
     if (cell == nil) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"LinkBlockTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
-        
-        cell.titleLabel.text = contentBlock.title;
-        cell.linkTextLabel.text = contentBlock.text;
-        cell.linkUrl = contentBlock.linkUrl;
-        cell.linkType = contentBlock.linkType;
     }
     
+    cell.titleLabel.text = contentBlock.title;
+    cell.linkTextLabel.text = contentBlock.text;
+    cell.linkUrl = contentBlock.linkUrl;
+    cell.linkType = contentBlock.linkType;
+        
     [cell changeStyleAccordingToLinkType];
     [itemsToDisplay addObject:cell];
 }
@@ -291,7 +291,6 @@
     [cell getContent];
     
     [itemsToDisplay addObject:cell];
-    //[self.tableView reloadData];
 }
 
 - (void)displayContentBlock7:(XMMResponseContentBlockType7 *)contentBlock {
