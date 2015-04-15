@@ -112,8 +112,9 @@ static NSString *cellIdentifier = @"FeedItemCell";
         
         [itemsToDisplay addObject:data];
     }
+    
     self.isApiCallingBlocked = NO;
-    [self.tableView reloadData];
+    [self reloadData];
 }
 
 - (void)downloadImageWithURL:(NSString *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock

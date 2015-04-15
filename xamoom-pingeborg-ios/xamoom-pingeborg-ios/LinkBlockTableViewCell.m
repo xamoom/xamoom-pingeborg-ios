@@ -21,6 +21,7 @@
 }
 
 - (IBAction)linkClicked:(id)sender {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.linkUrl]];
 }
 
 - (void)changeStyleAccordingToLinkType {
