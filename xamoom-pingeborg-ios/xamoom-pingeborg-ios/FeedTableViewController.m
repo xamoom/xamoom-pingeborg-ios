@@ -85,6 +85,8 @@ static NSString *cellIdentifier = @"FeedItemCell";
                        forKey:@"isPingeborgSystemChanged"];
         [userDefaults synchronize];
     }
+    
+    [[XMMEnduserApi sharedInstance] setDelegate:self];
 }
 
 #pragma mark - XMMEnduserApi delegates

@@ -45,6 +45,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.tableView reloadData];
+}
+
 # pragma mark - XMMEnduser Delegate
 - (void)didLoadDataById:(XMMResponseGetById *)result {
     [self displayContentBlocks:result];
@@ -121,7 +126,7 @@
                 break;
         }
     }
-    [self.tableView reloadData];
+    //[self.tableView reloadData];
 }
 
 - (void)displayContentBlock0:(XMMResponseContentBlockType0 *)contentBlock {
@@ -129,6 +134,7 @@
     static NSString *cellIdentifier = @"TextBlockTableViewCell";
     
     TextBlockTableViewCell *cell = (TextBlockTableViewCell *)[self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    cell = nil;
     if (cell == nil) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"TextBlockTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
@@ -137,8 +143,14 @@
     //set title
     cell.titleLabel.text = contentBlock.title;
     
+    NSLog(@"AttrText: %@", contentBlock.text);
+
+    
     //set content (html content transform to textview text)
-    contentBlock.text = [contentBlock.text stringByAppendingString:@"<style>html{font-family: 'HelveticaNeue-Light';font-size: 14px;}</style>"];
+    contentBlock.text = [contentBlock.text stringByReplacingOccurrencesOfString:@"<br></p>" withString:@"</p>"];
+    contentBlock.text = [contentBlock.text stringByAppendingString:@"<style>html{font-family: 'HelveticaNeue-Light';font-size: 14px;} body{margin:0 !important;} p:last-child, p:last-of-type{margin:1px !important;}</style>"];
+    
+    NSLog(@"AttrText: %@", contentBlock.text);
     
     NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData: [contentBlock.text dataUsingEncoding:NSUTF8StringEncoding]
                                                                             options: @{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
@@ -409,10 +421,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     return [itemsToDisplay objectAtIndex:indexPath.row];
-}
-
-- (void)reloadData {
-    [self.tableView reloadData];
 }
 
 /*
