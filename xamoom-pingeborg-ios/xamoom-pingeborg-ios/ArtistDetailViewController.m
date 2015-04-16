@@ -126,7 +126,7 @@
                 break;
         }
     }
-    //[self.tableView reloadData];
+    [self.tableView reloadData];
 }
 
 - (void)displayContentBlock0:(XMMResponseContentBlockType0 *)contentBlock {
