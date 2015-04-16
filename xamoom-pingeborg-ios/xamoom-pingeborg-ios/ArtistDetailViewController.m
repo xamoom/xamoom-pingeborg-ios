@@ -143,15 +143,10 @@
     //set title
     cell.titleLabel.text = contentBlock.title;
     
-    NSLog(@"AttrText: %@", contentBlock.text);
-
-    
     //set content (html content transform to textview text)
     contentBlock.text = [contentBlock.text stringByReplacingOccurrencesOfString:@"<br></p>" withString:@"</p>"];
     contentBlock.text = [contentBlock.text stringByAppendingString:@"<style>html{font-family: 'HelveticaNeue-Light';font-size: 14px;} body{margin:0 !important;} p:last-child, p:last-of-type{margin:1px !important;}</style>"];
-    
-    NSLog(@"AttrText: %@", contentBlock.text);
-    
+        
     NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData: [contentBlock.text dataUsingEncoding:NSUTF8StringEncoding]
                                                                             options: @{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
                                                                                         NSCharacterEncodingDocumentAttribute: [NSNumber numberWithInt:NSUTF8StringEncoding]}

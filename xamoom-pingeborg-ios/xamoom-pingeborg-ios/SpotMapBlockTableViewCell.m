@@ -23,7 +23,7 @@
 - (void)getSpotMap {
     self.map.delegate = self;
     [[XMMEnduserApi sharedInstance] setDelegate:self];
-    [[XMMEnduserApi sharedInstance] getSpotMapWithSystemId:@"6588702901927936" withMapTag:self.spotMapTags withLanguage:@"de"];
+    [[XMMEnduserApi sharedInstance] getSpotMapWithSystemId:@"6588702901927936" withMapTags:self.spotMapTags withLanguage:@"de"];
 }
 
 #pragma mark - XMMEnduser Delegate
