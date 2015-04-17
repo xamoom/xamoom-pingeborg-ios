@@ -33,7 +33,7 @@
     }
     
     [[XMMEnduserApi sharedInstance] setDelegate:self];
-    [[XMMEnduserApi sharedInstance] getSpotMapWithSystemId:@"6588702901927936" withMapTag:@"stw" withLanguage:@"de"];
+    [[XMMEnduserApi sharedInstance] getSpotMapWithSystemId:@"6588702901927936" withMapTags:@"stw" withLanguage:@"de"];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -83,6 +83,16 @@
 
 #pragma mark - XMMEnduser Delegate
 - (void)didLoadDataBySpotMap:(XMMResponseGetSpotMap *)result {
+    NSString *base64String = result.style.customMarker;
+    
+    //decode two times!
+    NSData *decodedData = [[NSData alloc] initWithBase64EncodedString:base64String options:0];
+    NSString *decodedString = [[NSString alloc] initWithData:decodedData encoding:NSUTF8StringEncoding];
+    decodedData = [[NSData alloc] initWithBase64EncodedString:decodedString options:0];
+    
+    NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:decodedString]];
+    self.customMapMarker = [self imageWithImage:[UIImage imageWithData:imageData] scaledToMaxWidth:30.0f maxHeight:30.0f];
+    
     for (XMMResponseGetSpotMapItem *item in result.items) {
         // Add an annotation
         PingebAnnotation *point = [[PingebAnnotation alloc] initWithLocation: CLLocationCoordinate2DMake([item.lat doubleValue], [item.lon doubleValue])];
@@ -110,7 +120,11 @@
             annotationView = [[PingeborgAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
             annotationView.enabled = YES;
             annotationView.canShowCallout = NO;
-            annotationView.image = [UIImage imageNamed:@"mappoint"];//here we use a nice image instead of the default pins
+            if(self.customMapMarker == nil) {
+                annotationView.image = [UIImage imageNamed:@"mappoint"];//here we use a nice image instead of the default pins
+            } else {
+                annotationView.image = self.customMapMarker;
+            }
             
             PingebAnnotation *pingebAnnotation = (PingebAnnotation*)annotation;
             annotationView.data = pingebAnnotation.data;
@@ -118,12 +132,6 @@
             annotationView.coordinate = pingebAnnotation.coordinate;
             annotationView.spotImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:pingebAnnotation.data.image]]];
             
-            // create a disclosure button for map kit
-            /*
-             UIButton *disclosure = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-             [disclosure addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(disclosureTapped)]];
-             annotationView.rightCalloutAccessoryView = disclosure;
-             */
         } else {
             annotationView.annotation = annotation;
         }

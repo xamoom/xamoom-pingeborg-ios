@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet MKMapView *map;
 @property NSString *spotMapTags;
+@property UIImage *customMapMarker;
 
 - (void)getSpotMap;
 

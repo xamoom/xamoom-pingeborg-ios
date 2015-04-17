@@ -28,6 +28,16 @@
 
 #pragma mark - XMMEnduser Delegate
 - (void)didLoadDataBySpotMap:(XMMResponseGetSpotMap *)result {
+    NSString *base64String = result.style.customMarker;
+    
+    //decode two times!
+    NSData *decodedData = [[NSData alloc] initWithBase64EncodedString:base64String options:0];
+    NSString *decodedString = [[NSString alloc] initWithData:decodedData encoding:NSUTF8StringEncoding];
+    decodedData = [[NSData alloc] initWithBase64EncodedString:decodedString options:0];
+    
+    NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:decodedString]];
+    self.customMapMarker = [self imageWithImage:[UIImage imageWithData:imageData] scaledToMaxWidth:30.0f maxHeight:30.0f];
+    
     for (XMMResponseGetSpotMapItem *item in result.items) {
         // Add an annotation
         PingebAnnotation *point = [[PingebAnnotation alloc] initWithName:item.displayName location:CLLocationCoordinate2DMake([item.lat doubleValue], [item.lon doubleValue])];
@@ -50,7 +60,12 @@
             annotationView = [[PingeborgAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
             annotationView.enabled = YES;
             annotationView.canShowCallout = YES;
-            annotationView.image = [UIImage imageNamed:@"mappoint"];//here we use a nice image instead of the default pins
+            
+            if(self.customMapMarker == nil) {
+                annotationView.image = [UIImage imageNamed:@"mappoint"];//here we use a nice image instead of the default pins
+            } else {
+                annotationView.image = self.customMapMarker;
+            }
             
         } else {
             annotationView.annotation = annotation;
@@ -102,6 +117,33 @@
         region.span.longitudeDelta = MINIMUM_ZOOM_ARC;
     }
     [mapView setRegion:region animated:animated];
+}
+
+#pragma mark imageutility
+- (UIImage *)imageWithImage:(UIImage *)image scaledToMaxWidth:(CGFloat)width maxHeight:(CGFloat)height {
+    CGFloat oldWidth = image.size.width;
+    CGFloat oldHeight = image.size.height;
+    
+    CGFloat scaleFactor = (oldWidth > oldHeight) ? width / oldWidth : height / oldHeight;
+    
+    CGFloat newHeight = oldHeight * scaleFactor;
+    CGFloat newWidth = oldWidth * scaleFactor;
+    CGSize newSize = CGSizeMake(newWidth, newHeight);
+    
+    return [self imageWithImage:image scaledToSize:newSize];
+}
+
+- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)size {
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
+        UIGraphicsBeginImageContextWithOptions(size, NO, [[UIScreen mainScreen] scale]);
+    } else {
+        UIGraphicsBeginImageContext(size);
+    }
+    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
 }
 
 @end

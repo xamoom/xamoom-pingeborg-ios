@@ -10,6 +10,7 @@
 
 
 static int const feedItemMargin = 10;
+static int const pageSize = 6;
 static NSString *cellIdentifier = @"FeedItemCell";
 
 @interface FeedTableViewController ()
@@ -36,7 +37,7 @@ static NSString *cellIdentifier = @"FeedItemCell";
     itemsToDisplay = [[NSMutableArray alloc] init];
     imagesToDisplay = [[NSMutableArray alloc] init];
     [[XMMEnduserApi sharedInstance] setDelegate:self];
-    [[XMMEnduserApi sharedInstance] getContentListFromApi:@"6588702901927936" withLanguage:@"de" withPageSize:5 withCursor:@"null"];
+    [[XMMEnduserApi sharedInstance] getContentListFromApi:@"6588702901927936" withLanguage:@"de" withPageSize:pageSize withCursor:@"null"];
     
     //set NavigationController delegate
     NavigationViewController* navController = (NavigationViewController*) self.parentViewController.parentViewController;
@@ -216,7 +217,7 @@ static NSString *cellIdentifier = @"FeedItemCell";
         if (self.hasMore && !self.isApiCallingBlocked) {
             self.isApiCallingBlocked = YES;
             [[XMMEnduserApi sharedInstance] setDelegate:self];
-            [[XMMEnduserApi sharedInstance] getContentListFromApi:@"6588702901927936" withLanguage:@"de" withPageSize:5 withCursor:self.contentListCursor];
+            [[XMMEnduserApi sharedInstance] getContentListFromApi:@"6588702901927936" withLanguage:@"de" withPageSize:pageSize withCursor:self.contentListCursor];
         }
     }
     

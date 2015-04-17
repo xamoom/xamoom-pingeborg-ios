@@ -52,7 +52,22 @@
 
 # pragma mark - XMMEnduser Delegate
 - (void)didLoadDataById:(XMMResponseGetById *)result {
+    [self displayContentTitleAndImage:result];
     [self displayContentBlocks:result];
+}
+
+- (void)displayContentTitleAndImage:(XMMResponseGetById *)result {
+    XMMResponseContentBlockType0 *contentBlock0 = [[XMMResponseContentBlockType0 alloc] init];
+    contentBlock0.contentBlockType = @"title";
+    contentBlock0.title = result.content.title;
+    contentBlock0.text = result.content.descriptionOfContent;
+    [self displayContentBlock0:contentBlock0];
+    
+    if (result.content.imagePublicUrl != nil) {
+        XMMResponseContentBlockType3 *contentBlock3 = [[XMMResponseContentBlockType3 alloc] init];
+        contentBlock3.fileId = result.content.imagePublicUrl;
+        [self displayContentBlock3:contentBlock3];
+    }
 }
 
 # pragma mark - ContentBlock Methods
@@ -156,6 +171,11 @@
     
     if(err)
         NSLog(@"Unable to parse label text: %@", err);
+    
+    
+    if ([contentBlock.contentBlockType isEqualToString:@"title"]) {
+        [cell.titleLabel setFont:[UIFont systemFontOfSize:20]];
+    }
     
     //add to array
     [itemsToDisplay addObject: cell];
