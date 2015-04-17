@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Globals.h"
 #import "NavigationViewController.h"
 #import "XMMEnduserApi.h"
 #import "FeedItemCell.h"

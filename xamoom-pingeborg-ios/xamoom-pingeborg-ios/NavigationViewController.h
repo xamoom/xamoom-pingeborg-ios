@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Globals.h"
 #import "REMenu.h"
 
 @protocol DropDownMenuDelegate <NSObject>

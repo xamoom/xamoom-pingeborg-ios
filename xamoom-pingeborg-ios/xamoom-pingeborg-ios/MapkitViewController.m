@@ -33,7 +33,12 @@
     }
     
     [[XMMEnduserApi sharedInstance] setDelegate:self];
-    [[XMMEnduserApi sharedInstance] getSpotMapWithSystemId:@"6588702901927936" withMapTags:@"stw" withLanguage:@"de"];
+    [[XMMEnduserApi sharedInstance] getSpotMapWithSystemId:[Globals sharedObject].globalSystemId withMapTags:@"showAllTheSpots" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(pingeborgSystemChanged)
+                                                 name:@"PingeborgSystemChanged"
+                                               object:nil];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -301,5 +306,7 @@
     return [super hitTest:point withEvent:event];
 }
 
+- (void)pingeborgSystemChanged {
+}
 
 @end

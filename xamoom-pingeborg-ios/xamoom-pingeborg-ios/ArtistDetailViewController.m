@@ -29,7 +29,7 @@
     itemsToDisplay = [[NSMutableArray alloc] init];
     // Do any additional setup after loading the view.
     [[XMMEnduserApi sharedInstance] setDelegate:self];
-    [[XMMEnduserApi sharedInstance] getContentByIdFull:self.contentId includeStyle:@"False" includeMenu:@"False" withLanguage:@"de" full:@"False"];
+    [[XMMEnduserApi sharedInstance] getContentByIdFull:self.contentId includeStyle:@"False" includeMenu:@"False" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:@"False"];
     
     //reload data notification
     NSString *notificationName = @"reloadArtistDetails";
@@ -38,6 +38,11 @@
      selector:@selector(reloadData)
      name:notificationName
      object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(pingeborgSystemChanged)
+                                                 name:@"PingeborgSystemChanged"
+                                               object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -481,5 +486,8 @@
  UIViewController *vc = [segue destinationViewController];
  }
  */
+
+- (void)pingeborgSystemChanged {
+}
 
 @end

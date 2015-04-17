@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		594E123E6C9FD768422C1CEE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C530CDEFFEDDFCABBEC918B0 /* libPods.a */; };
+		88052D7B1AE103C300AB433D /* Globals.m in Sources */ = {isa = PBXBuildFile; fileRef = 88052D7A1AE103C300AB433D /* Globals.m */; };
 		8806A7631ACC2579000E8552 /* MapkitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8806A7621ACC2579000E8552 /* MapkitViewController.m */; };
 		8806A76F1ACE7651000E8552 /* XMMResponseContentList.m in Sources */ = {isa = PBXBuildFile; fileRef = 8806A76E1ACE7651000E8552 /* XMMResponseContentList.m */; };
 		88124DAF1AC5625F00D50C05 /* NavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88124DAE1AC5625F00D50C05 /* NavigationViewController.m */; };
@@ -122,6 +123,8 @@
 /* Begin PBXFileReference section */
 		081CE084B2E648F4E71D7D2A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		48251170F65DFEEAACD48338 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		88052D791AE103C300AB433D /* Globals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Globals.h; sourceTree = "<group>"; };
+		88052D7A1AE103C300AB433D /* Globals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Globals.m; sourceTree = "<group>"; };
 		8806A7611ACC2579000E8552 /* MapkitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapkitViewController.h; sourceTree = "<group>"; };
 		8806A7621ACC2579000E8552 /* MapkitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapkitViewController.m; sourceTree = "<group>"; };
 		8806A76D1ACE7651000E8552 /* XMMResponseContentList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMResponseContentList.h; sourceTree = "<group>"; };
@@ -338,11 +341,11 @@
 			isa = PBXGroup;
 			children = (
 				885BFCF71AADC23F0047340C /* Main.storyboard */,
-				88A62C3C1AD3E16C00EAD4C3 /* ContentBlockTypes */,
 				88CCAA331ACA8A49004E631F /* Home */,
 				88CCAA341ACA8A54004E631F /* Scans */,
 				88CCAA321ACA89D6004E631F /* Map */,
 				88CCAA351ACA8A69004E631F /* Navigation */,
+				88A62C3C1AD3E16C00EAD4C3 /* ContentBlockTypes */,
 				88D8F09F1ABACD2400ACFBE4 /* SettingsViewController.h */,
 				88D8F0A01ABACD2400ACFBE4 /* SettingsViewController.m */,
 				88CE0D0B1AAF40B30014EE77 /* RSSItemViewController.h */,
@@ -439,6 +442,8 @@
 			children = (
 				88BA01F61AA859F90091A43C /* AppDelegate.h */,
 				88BA01F71AA859F90091A43C /* AppDelegate.m */,
+				88052D791AE103C300AB433D /* Globals.h */,
+				88052D7A1AE103C300AB433D /* Globals.m */,
 				885BFCEB1AADB67F0047340C /* UserInterface */,
 				88BA01FF1AA859F90091A43C /* Images.xcassets */,
 				88BA02011AA859F90091A43C /* LaunchScreen.xib */,
@@ -943,6 +948,7 @@
 				88E7801F1ADE38690082648B /* SoundcloudBlockTableViewCell.m in Sources */,
 				88BA027B1AA85C060091A43C /* XMMResponseContentBlockType0.m in Sources */,
 				88A62C3B1AD3D8EB00EAD4C3 /* ArtistDetailViewController.m in Sources */,
+				88052D7B1AE103C300AB433D /* Globals.m in Sources */,
 				8806A7631ACC2579000E8552 /* MapkitViewController.m in Sources */,
 				88BA02821AA85C060091A43C /* XMMResponseContentBlockType7.m in Sources */,
 				88BA026E1AA85C060091A43C /* _XMMCoreDataGetByLocationItem.m in Sources */,

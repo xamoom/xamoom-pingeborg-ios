@@ -16,7 +16,6 @@ static NSString *cellIdentifier = @"FeedItemCell";
 @interface FeedTableViewController ()
 
 @property NSMutableArray *itemsToDisplay;
-@property NSMutableArray *imagesToDisplay;
 @property NSString *contentListCursor;
 @property bool hasMore;
 @property bool isApiCallingBlocked;
@@ -26,7 +25,8 @@ static NSString *cellIdentifier = @"FeedItemCell";
 @implementation FeedTableViewController
 
 @synthesize itemsToDisplay;
-@synthesize imagesToDisplay;
+
+UIButton *dropDownButton;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -34,28 +34,23 @@ static NSString *cellIdentifier = @"FeedItemCell";
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
-    itemsToDisplay = [[NSMutableArray alloc] init];
-    imagesToDisplay = [[NSMutableArray alloc] init];
-    [[XMMEnduserApi sharedInstance] setDelegate:self];
-    [[XMMEnduserApi sharedInstance] getContentListFromApi:@"6588702901927936" withLanguage:@"de" withPageSize:pageSize withCursor:@"null"];
-    
     //set NavigationController delegate
     NavigationViewController* navController = (NavigationViewController*) self.parentViewController.parentViewController;
     navController.delegate = self;
     
     //navbarDropdown
     UIView *iv = [[UIView alloc] initWithFrame:CGRectMake(0,0,(self.view.frame.size.width/1.5),32)];
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0,0,(self.view.frame.size.width/1.5),32)];
-    [button addTarget:navController action:@selector(toggleMenu) forControlEvents:UIControlEventTouchUpInside];
-    [button setTitle:@"pingeborg Klagenfurt" forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    dropDownButton = [[UIButton alloc] initWithFrame:CGRectMake(0,0,(self.view.frame.size.width/1.5),32)];
+    //[dropDownButton addTarget:navController action:@selector(toggleMenu) forControlEvents:UIControlEventTouchUpInside];
+    [dropDownButton setTitle:@"pingeborg Carinthia" forState:UIControlStateNormal];
+    [dropDownButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake((iv.frame.size.width/2) - 3.5, iv.frame.size.height-3.5, 7, 3.5)];
     UIImage *angleDownImage = [UIImage imageNamed:@"angleDown"];
     [imageView setImage:angleDownImage];
     
-    [iv addSubview:button];
-    [iv addSubview:imageView];
+    [iv addSubview:dropDownButton];
+    //[iv addSubview:imageView];
     self.parentViewController.navigationItem.titleView = iv;
 
     //setting up refresh control
@@ -66,6 +61,14 @@ static NSString *cellIdentifier = @"FeedItemCell";
                             action:@selector(pullToRefresh)
                   forControlEvents:UIControlEventValueChanged];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(pingeborgSystemChanged)
+                                                 name:@"PingeborgSystemChanged"
+                                               object:nil];
+    
+    itemsToDisplay = [[NSMutableArray alloc] init];
+    [[XMMEnduserApi sharedInstance] setDelegate:self];
+    [[XMMEnduserApi sharedInstance] getContentListFromApi:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:pageSize withCursor:@"null"];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -217,7 +220,7 @@ static NSString *cellIdentifier = @"FeedItemCell";
         if (self.hasMore && !self.isApiCallingBlocked) {
             self.isApiCallingBlocked = YES;
             [[XMMEnduserApi sharedInstance] setDelegate:self];
-            [[XMMEnduserApi sharedInstance] getContentListFromApi:@"6588702901927936" withLanguage:@"de" withPageSize:pageSize withCursor:self.contentListCursor];
+            [[XMMEnduserApi sharedInstance] getContentListFromApi:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:pageSize withCursor:self.contentListCursor];
         }
     }
     
@@ -240,7 +243,7 @@ static NSString *cellIdentifier = @"FeedItemCell";
         itemsToDisplay = nil;
         itemsToDisplay = [[NSMutableArray alloc] init];
         [[XMMEnduserApi sharedInstance] setDelegate:self];
-        [[XMMEnduserApi sharedInstance] getContentListFromApi:@"6588702901927936" withLanguage:@"de" withPageSize:5 withCursor:@"null"];
+        [[XMMEnduserApi sharedInstance] getContentListFromApi:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:5 withCursor:@"null"];
         self.isApiCallingBlocked = YES;
     }
 }
@@ -308,5 +311,24 @@ static NSString *cellIdentifier = @"FeedItemCell";
     UIViewController *vc = [segue destinationViewController];
 }
 */
+
+- (void)pingeborgSystemChanged {
+    NSLog(@"Hellyeah: %@", [Globals sharedObject].globalSystemId);
+    
+    NSString *systemName;
+    if ([[Globals sharedObject].globalSystemId isEqualToString:@"6588702901927936"]) {
+        systemName = @"pingeborg Carinthia";
+    }
+    else if ([[Globals sharedObject].globalSystemId isEqualToString:@"Salzburg"]) {
+        systemName = @"pingeborg Salzburg";
+    }
+    else {
+        systemName = @"pingeborg Vorarlberg";
+    }
+    
+    [dropDownButton setTitle:systemName forState:UIControlStateNormal];
+    
+    [self pullToRefresh];
+}
 
 @end

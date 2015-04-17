@@ -24,7 +24,7 @@
     
     
     //setting up REMenu "navbarDropdown"
-    REMenuItem *klagenfurt = [[REMenuItem alloc] initWithTitle:@"pingeborg Klagenfurt"
+    REMenuItem *klagenfurt = [[REMenuItem alloc] initWithTitle:@"pingeborg Carinthia"
                                                        image:nil
                                             highlightedImage:nil
                                                       action:^(REMenuItem *item) {
@@ -38,26 +38,19 @@
                                                             [self changePingeborgSystemWithId:1];
                                                          }];
     
-    REMenuItem *villach = [[REMenuItem alloc] initWithTitle:@"pingeborg Villach"
-                                                           image:nil
-                                                highlightedImage:nil
-                                                          action:^(REMenuItem *item) {
-                                                              [self changePingeborgSystemWithId:2];
-                                                          }];
     
     REMenuItem *vorarlberg = [[REMenuItem alloc] initWithTitle:@"pingeborg Vorarlberg"
                                                           image:nil
                                                highlightedImage:nil
                                                          action:^(REMenuItem *item) {
-                                                             [self changePingeborgSystemWithId:3];
+                                                             [self changePingeborgSystemWithId:2];
                                                          }];
     //set tags
     klagenfurt.tag = 0;
     salzburg.tag = 1;
-    villach.tag = 2;
-    vorarlberg.tag = 3;
+    vorarlberg.tag = 2;
     
-    self.menu = [[REMenu alloc] initWithItems:@[klagenfurt, salzburg, villach, vorarlberg]];
+    self.menu = [[REMenu alloc] initWithItems:@[klagenfurt, salzburg, vorarlberg]];
     
     self.menu.separatorOffset = CGSizeMake(15.0, 0.0);
     self.menu.imageOffset = CGSizeMake(5, -1);
@@ -66,15 +59,6 @@
         badgeLabel.backgroundColor = [UIColor colorWithRed:0 green:179/255.0 blue:134/255.0 alpha:1];
         badgeLabel.layer.borderColor = [UIColor colorWithRed:0.000 green:0.648 blue:0.507 alpha:1.000].CGColor;
     };
-    
-    [self.menu setClosePreparationBlock:^{
-        NSLog(@"Menu will close");
-    }];
-    
-    [self.menu setCloseCompletionHandler:^{
-        NSLog(@"Menu did close");
-    }];
-
 }
 
 - (void)didReceiveMemoryWarning {
@@ -95,12 +79,12 @@
 - (void)changePingeborgSystemWithId:(NSInteger)selectedId {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setInteger:selectedId
-                      forKey:@"location"];
-    [userDefaults setBool:YES
-                   forKey:@"isPingeborgSystemChanged"];
+                      forKey:@"pingeborgSystem"];
     [userDefaults synchronize];
     
-    [delegate performSelector:@selector(didChangeSystem)];
+    [Globals sharedObject].globalSystemId = [Globals getSystemIdFromInteger:selectedId];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"PingeborgSystemChanged" object:self];
 }
 
 /*

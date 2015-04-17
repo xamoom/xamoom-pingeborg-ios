@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import "XMMEnduserApi.h"
+#import "Globals.h"
 #import "SMCalloutView.h"
 #import "PingeborgAnnotationView.h"
 #import "PingeborgCalloutView.h"
