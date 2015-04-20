@@ -14,25 +14,18 @@
 
 @implementation ScanResultViewController
 
-int y;
+@synthesize result;
+@synthesize contentBlocks;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //set view height to 1000
-    CGRect frame = self.view.frame;
-    frame.size.height = 1000;
-    [self.view setFrame:frame];
-    //set scrollViewHeight to 2000
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, 2000.0);
-    y = 45;
+    //tableview settings
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 150.0;
     
-    //self.testLabel.text = self.result.content.title;
-    
-    //UIImage* myImage = [UIImage imageWithData: [NSData dataWithContentsOfURL: [NSURL URLWithString: self.result.content.imagePublicUrl]]];
-    //[self.testImage setImage:myImage];
-    
-    [self addContentBlocks];
+    contentBlocks = [[XMMContentBlocks alloc] initWithTableView:self.tableView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -40,33 +33,55 @@ int y;
     // Dispose of any resources that can be recreated.
 }
 
-- (void)addContentBlocks {
-    
-    NSArray *contentBlocks = self.result.content.contentBlocks;
-    
-    for (XMMResponseContentBlock* block in contentBlocks) {
-        switch ([block.contentBlockType integerValue]) {
-            case 0:
-                [self showContentBlockText:(XMMResponseContentBlockType0*)block];
-                break;
-                
-            default:
-                break;
-        }
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [contentBlocks displayContentBlocksById:nil byLocationIdentifier:result];
+}
+
+#pragma mark - Table view data source
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    if ([[contentBlocks.itemsToDisplay objectAtIndex:indexPath.row] isKindOfClass:[ContentBlockTableViewCell class]]) {
+        ContentBlockTableViewCell *cell = [contentBlocks.itemsToDisplay objectAtIndex:indexPath.row];
+        
+        ArtistDetailViewController *vc = [[ArtistDetailViewController alloc] init];
+        [vc setContentId:cell.contentId];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 
-- (void)showContentBlockText:(XMMResponseContentBlockType0*)block {
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(5,y,self.view.frame.size.width,45)];
-    label.text= [block.text stringByDecodingHTMLEntities];
-    [self.scrollView addSubview:label];
-    y += 45;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    // Return the number of sections.
+    return 1;
 }
 
-
-- (void)viewDidAppear:(BOOL)animated {
-    self.parentViewController.navigationItem.title = self.result.systemName;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    // Return the number of rows in the section.
+    return [contentBlocks.itemsToDisplay count];
 }
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [contentBlocks.itemsToDisplay objectAtIndex:indexPath.row];
+}
+
+/*
+- (void)displayContentTitleAndImage:(XMMResponseGetById *)result {
+    XMMResponseContentBlockType0 *contentBlock0 = [[XMMResponseContentBlockType0 alloc] init];
+    contentBlock0.contentBlockType = @"title";
+    contentBlock0.title = result.content.title;
+    contentBlock0.text = result.content.descriptionOfContent;
+    [contentBlocks displayContentBlock0:contentBlock0];
+    
+    if (result.content.imagePublicUrl != nil) {
+        XMMResponseContentBlockType3 *contentBlock3 = [[XMMResponseContentBlockType3 alloc] init];
+        contentBlock3.fileId = result.content.imagePublicUrl;
+        [contentBlocks displayContentBlock3:contentBlock3];
+    }
+}
+*/
+
 /*
  #pragma mark - Navigation
  
@@ -75,6 +90,6 @@ int y;
  // Get the new view controller using [segue destinationViewController].
  // Pass the selected object to the new view controller.
  }
- */
+*/
 
 @end

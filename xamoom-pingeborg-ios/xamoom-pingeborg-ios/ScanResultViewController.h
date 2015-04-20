@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "XMMEnduserApi.h"
+#import "XMMContentBlocks.h"
 
 @interface ScanResultViewController : UIViewController
 
-@property (nonatomic, strong) XMMResponseGetByLocationIdentifier *result;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, strong) XMMResponseGetByLocationIdentifier *result;
+@property XMMContentBlocks *contentBlocks;
 
 @end

@@ -8,16 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "XMMEnduserApi.h"
-#import "TextBlockTableViewCell.h"
-#import "AudioBlockTableViewCell.h"
-#import "YoutubeBlockTableViewCell.h"
-#import "ImageBlockTableViewCell.h"
-#import "LinkBlockTableViewCell.h"
-#import "EbookBlockTableViewCell.h"
-#import "ContentBlockTableViewCell.h"
-#import "SoundcloudBlockTableViewCell.h"
-#import "DownloadBlockTableViewCell.h"
-#import "SpotMapBlockTableViewCell.h"
+#import "XMMContentBlocks.h"
 
 @interface ArtistDetailViewController : UITableViewController <XMMEnderuserApiDelegate>
 

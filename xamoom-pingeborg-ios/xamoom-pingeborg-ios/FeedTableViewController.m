@@ -312,9 +312,7 @@ UIButton *dropDownButton;
 }
 */
 
-- (void)pingeborgSystemChanged {
-    NSLog(@"Hellyeah: %@", [Globals sharedObject].globalSystemId);
-    
+- (void)pingeborgSystemChanged {    
     NSString *systemName;
     if ([[Globals sharedObject].globalSystemId isEqualToString:@"6588702901927936"]) {
         systemName = @"pingeborg Carinthia";

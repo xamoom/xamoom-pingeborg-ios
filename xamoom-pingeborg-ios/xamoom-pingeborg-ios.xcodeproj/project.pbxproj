@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		594E123E6C9FD768422C1CEE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C530CDEFFEDDFCABBEC918B0 /* libPods.a */; };
 		88052D7B1AE103C300AB433D /* Globals.m in Sources */ = {isa = PBXBuildFile; fileRef = 88052D7A1AE103C300AB433D /* Globals.m */; };
+		88052D7E1AE4D34D00AB433D /* XMMContentBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 88052D7D1AE4D34D00AB433D /* XMMContentBlocks.m */; };
 		8806A7631ACC2579000E8552 /* MapkitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8806A7621ACC2579000E8552 /* MapkitViewController.m */; };
 		8806A76F1ACE7651000E8552 /* XMMResponseContentList.m in Sources */ = {isa = PBXBuildFile; fileRef = 8806A76E1ACE7651000E8552 /* XMMResponseContentList.m */; };
 		88124DAF1AC5625F00D50C05 /* NavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88124DAE1AC5625F00D50C05 /* NavigationViewController.m */; };
@@ -125,6 +126,8 @@
 		48251170F65DFEEAACD48338 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		88052D791AE103C300AB433D /* Globals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Globals.h; sourceTree = "<group>"; };
 		88052D7A1AE103C300AB433D /* Globals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Globals.m; sourceTree = "<group>"; };
+		88052D7C1AE4D34D00AB433D /* XMMContentBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMContentBlocks.h; sourceTree = "<group>"; };
+		88052D7D1AE4D34D00AB433D /* XMMContentBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMContentBlocks.m; sourceTree = "<group>"; };
 		8806A7611ACC2579000E8552 /* MapkitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapkitViewController.h; sourceTree = "<group>"; };
 		8806A7621ACC2579000E8552 /* MapkitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapkitViewController.m; sourceTree = "<group>"; };
 		8806A76D1ACE7651000E8552 /* XMMResponseContentList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMResponseContentList.h; sourceTree = "<group>"; };
@@ -444,6 +447,8 @@
 				88BA01F71AA859F90091A43C /* AppDelegate.m */,
 				88052D791AE103C300AB433D /* Globals.h */,
 				88052D7A1AE103C300AB433D /* Globals.m */,
+				88052D7C1AE4D34D00AB433D /* XMMContentBlocks.h */,
+				88052D7D1AE4D34D00AB433D /* XMMContentBlocks.m */,
 				885BFCEB1AADB67F0047340C /* UserInterface */,
 				88BA01FF1AA859F90091A43C /* Images.xcassets */,
 				88BA02011AA859F90091A43C /* LaunchScreen.xib */,
@@ -925,6 +930,7 @@
 				88BA02AC1AA85C430091A43C /* NSDate+InternetDateTime.m in Sources */,
 				88BA026C1AA85C060091A43C /* _XMMCoreDataGetById.m in Sources */,
 				88D3DD951AD3CC8500538BFF /* FeedItemData.m in Sources */,
+				88052D7E1AE4D34D00AB433D /* XMMContentBlocks.m in Sources */,
 				88BA026F1AA85C060091A43C /* _XMMCoreDataMenuItem.m in Sources */,
 				88DEE9E01ADE79830069DC32 /* DownloadBlockTableViewCell.m in Sources */,
 				88B8598F1ADE97F30000D113 /* SpotMapBlockTableViewCell.m in Sources */,
