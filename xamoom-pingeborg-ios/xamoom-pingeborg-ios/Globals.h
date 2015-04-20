@@ -12,8 +12,12 @@
 
 @property (nonatomic) NSString * globalSystemId;
 
-+(Globals*)sharedObject;
++ (Globals*)sharedObject;
 
 + (NSString*)getSystemIdFromInteger:(NSInteger)systemId;
+
++ (void)addDiscoveredArtist:(NSString*)contentId;
+
++ (NSString*)savedArtits;
 
 @end

@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xLe-gR-03r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Navigation View Controller-->
@@ -88,7 +87,7 @@
         <!--Settings Screen-->
         <scene sceneID="RRn-VI-kmy">
             <objects>
-                <viewController id="evs-Oh-Jun" userLabel="Settings Screen" customClass="SettingsViewController" sceneMemberID="viewController">
+                <viewController id="evs-Oh-Jun" userLabel="Settings Screen" customClass="DiscoverViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ORa-fX-SH4"/>
                         <viewControllerLayoutGuide type="bottom" id="6rg-Jx-dpP"/>
@@ -97,29 +96,26 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <pickerView contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aAo-MJ-TcX">
-                                <rect key="frame" x="0.0" y="99" width="600" height="162"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="46F-Jo-ObI">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <outlet property="dataSource" destination="evs-Oh-Jun" id="6JZ-Is-RVc"/>
-                                    <outlet property="delegate" destination="evs-Oh-Jun" id="NlZ-i7-ryt"/>
+                                    <outlet property="dataSource" destination="evs-Oh-Jun" id="zWi-24-EDr"/>
+                                    <outlet property="delegate" destination="evs-Oh-Jun" id="J2u-b4-wyK"/>
                                 </connections>
-                            </pickerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Wähle dein pingeb.org" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fSU-0I-xzR">
-                                <rect key="frame" x="16" y="72" width="173" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="aAo-MJ-TcX" firstAttribute="leading" secondItem="QE4-ny-WZo" secondAttribute="leadingMargin" constant="-16" id="7M9-Bm-RV9"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="aAo-MJ-TcX" secondAttribute="trailing" constant="-16" id="g8d-N2-o61"/>
+                            <constraint firstItem="46F-Jo-ObI" firstAttribute="top" secondItem="ORa-fX-SH4" secondAttribute="bottom" id="F68-UI-eGx"/>
+                            <constraint firstAttribute="trailing" secondItem="46F-Jo-ObI" secondAttribute="trailing" id="kdw-sq-DOh"/>
+                            <constraint firstItem="6rg-Jx-dpP" firstAttribute="top" secondItem="46F-Jo-ObI" secondAttribute="bottom" id="mUO-8J-SIe"/>
+                            <constraint firstItem="46F-Jo-ObI" firstAttribute="leading" secondItem="QE4-ny-WZo" secondAttribute="leading" id="nCn-WW-kca"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" tag="2" title="" image="Settings" id="fBt-P2-bzm"/>
                     <connections>
-                        <outlet property="locationPicker" destination="aAo-MJ-TcX" id="tab-Wz-PTf"/>
+                        <outlet property="tableView" destination="46F-Jo-ObI" id="w1v-cG-UaI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OW8-hQ-NGl" userLabel="First Responder" sceneMemberID="firstResponder"/>

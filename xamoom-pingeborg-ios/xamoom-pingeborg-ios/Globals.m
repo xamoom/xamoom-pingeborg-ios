@@ -48,4 +48,30 @@ static Globals *globals;
     }
 }
 
++ (void)addDiscoveredArtist:(NSString *)contentId {
+    NSString *savedArtists;
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    if ( [userDefaults stringForKey:@"savedArtists"] ) {
+        savedArtists = [userDefaults stringForKey:@"savedArtists"];
+        savedArtists = [NSString stringWithFormat:@"%@,%@", savedArtists, contentId];
+    }
+    else {
+        savedArtists = contentId;
+    }
+    
+    [userDefaults setObject:savedArtists forKey:@"savedArtists"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
++ (NSString *)savedArtits {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    if ( [userDefaults stringForKey:@"savedArtists"] ) {
+        return [userDefaults stringForKey:@"savedArtists"];
+    }
+
+    return nil;
+}
+
 @end

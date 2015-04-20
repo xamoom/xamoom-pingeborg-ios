@@ -9,8 +9,7 @@
 #import "FeedTableViewController.h"
 
 
-static int const feedItemMargin = 10;
-static int const pageSize = 6;
+static int const pageSize = 7;
 static NSString *cellIdentifier = @"FeedItemCell";
 
 @interface FeedTableViewController ()
@@ -36,7 +35,7 @@ UIButton *dropDownButton;
     self.tableView.delegate = self;
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 50.0;
+    self.tableView.estimatedRowHeight = 150.0;
     
     //set NavigationController delegate
     NavigationViewController* navController = (NavigationViewController*) self.parentViewController.parentViewController;
@@ -141,7 +140,6 @@ UIButton *dropDownButton;
                 }
             }];
         }
-        
         [itemsToDisplay addObject:cell];
     }
     
