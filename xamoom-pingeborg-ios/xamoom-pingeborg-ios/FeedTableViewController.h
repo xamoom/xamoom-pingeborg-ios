@@ -11,7 +11,6 @@
 #import "NavigationViewController.h"
 #import "XMMEnduserApi.h"
 #import "FeedItemCell.h"
-#import "FeedItemData.h"
 #import "ArtistDetailViewController.h"
 
 @interface FeedTableViewController : UITableViewController <XMMEnderuserApiDelegate, DropDownMenuDelegate>

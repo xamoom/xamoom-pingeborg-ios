@@ -100,7 +100,6 @@
 		88CBAEE11AA9EC9E000E480A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88CBAEE01AA9EC9E000E480A /* MapKit.framework */; };
 		88CE0CFD1AAEF7740014EE77 /* RSSFeedItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88CE0CFC1AAEF7740014EE77 /* RSSFeedItemView.xib */; };
 		88CE0D0D1AAF40B30014EE77 /* RSSItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CE0D0C1AAF40B30014EE77 /* RSSItemViewController.m */; };
-		88D3DD951AD3CC8500538BFF /* FeedItemData.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D3DD941AD3CC8500538BFF /* FeedItemData.m */; };
 		88D401651ABC053A006E865D /* PingeborgCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D401641ABC053A006E865D /* PingeborgCalloutView.m */; };
 		88D8F09E1ABACC6200ACFBE4 /* RSSFeedItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D8F09D1ABACC6200ACFBE4 /* RSSFeedItemView.m */; };
 		88D8F0A11ABACD2400ACFBE4 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D8F0A01ABACD2400ACFBE4 /* SettingsViewController.m */; };
@@ -290,8 +289,6 @@
 		88CE0CFC1AAEF7740014EE77 /* RSSFeedItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RSSFeedItemView.xib; sourceTree = "<group>"; };
 		88CE0D0B1AAF40B30014EE77 /* RSSItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSItemViewController.h; sourceTree = "<group>"; };
 		88CE0D0C1AAF40B30014EE77 /* RSSItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSItemViewController.m; sourceTree = "<group>"; };
-		88D3DD931AD3CC8500538BFF /* FeedItemData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedItemData.h; sourceTree = "<group>"; };
-		88D3DD941AD3CC8500538BFF /* FeedItemData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedItemData.m; sourceTree = "<group>"; };
 		88D401631ABC053A006E865D /* PingeborgCalloutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingeborgCalloutView.h; sourceTree = "<group>"; };
 		88D401641ABC053A006E865D /* PingeborgCalloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PingeborgCalloutView.m; sourceTree = "<group>"; };
 		88D8F09C1ABACC6200ACFBE4 /* RSSFeedItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSFeedItemView.h; sourceTree = "<group>"; };
@@ -348,7 +345,6 @@
 				88CCAA341ACA8A54004E631F /* Scans */,
 				88CCAA321ACA89D6004E631F /* Map */,
 				88CCAA351ACA8A69004E631F /* Navigation */,
-				88A62C3C1AD3E16C00EAD4C3 /* ContentBlockTypes */,
 				88D8F09F1ABACD2400ACFBE4 /* SettingsViewController.h */,
 				88D8F0A01ABACD2400ACFBE4 /* SettingsViewController.m */,
 				88CE0D0B1AAF40B30014EE77 /* RSSItemViewController.h */,
@@ -449,6 +445,7 @@
 				88052D7A1AE103C300AB433D /* Globals.m */,
 				88052D7C1AE4D34D00AB433D /* XMMContentBlocks.h */,
 				88052D7D1AE4D34D00AB433D /* XMMContentBlocks.m */,
+				88A62C3C1AD3E16C00EAD4C3 /* ContentBlockTypes */,
 				885BFCEB1AADB67F0047340C /* UserInterface */,
 				88BA01FF1AA859F90091A43C /* Images.xcassets */,
 				88BA02011AA859F90091A43C /* LaunchScreen.xib */,
@@ -698,8 +695,6 @@
 				8830CB961AC92A21005C79EF /* FeedItemCell.xib */,
 				8830CB981AC92AAE005C79EF /* FeedItemCell.h */,
 				8830CB991AC92AAE005C79EF /* FeedItemCell.m */,
-				88D3DD931AD3CC8500538BFF /* FeedItemData.h */,
-				88D3DD941AD3CC8500538BFF /* FeedItemData.m */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -929,7 +924,6 @@
 				88CBA7121AD7B7EC001C3D37 /* EbookBlockTableViewCell.m in Sources */,
 				88BA02AC1AA85C430091A43C /* NSDate+InternetDateTime.m in Sources */,
 				88BA026C1AA85C060091A43C /* _XMMCoreDataGetById.m in Sources */,
-				88D3DD951AD3CC8500538BFF /* FeedItemData.m in Sources */,
 				88052D7E1AE4D34D00AB433D /* XMMContentBlocks.m in Sources */,
 				88BA026F1AA85C060091A43C /* _XMMCoreDataMenuItem.m in Sources */,
 				88DEE9E01ADE79830069DC32 /* DownloadBlockTableViewCell.m in Sources */,

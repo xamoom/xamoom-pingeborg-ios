@@ -31,8 +31,12 @@ UIButton *dropDownButton;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //setting up tableView
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 50.0;
     
     //set NavigationController delegate
     NavigationViewController* navController = (NavigationViewController*) self.parentViewController.parentViewController;
@@ -91,6 +95,10 @@ UIButton *dropDownButton;
     }
     
     [[XMMEnduserApi sharedInstance] setDelegate:self];
+    
+    if (itemsToDisplay.count <= 0) {
+        [[XMMEnduserApi sharedInstance] getContentListFromApi:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:pageSize withCursor:@"null"];
+    }
 }
 
 #pragma mark - XMMEnduserApi delegates
@@ -104,19 +112,37 @@ UIButton *dropDownButton;
         self.hasMore = NO;
     
     for (XMMResponseContent *contentItem in result.items) {
-        FeedItemData *data = [[FeedItemData alloc] init];
-        data.content = contentItem;
-        data.contentId = contentItem.contentId;
+        FeedItemCell *cell;
+        
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FeedItemCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+        
+        cell.contentId = contentItem.contentId;
+        
+        //styling the label
+        NSMutableParagraphStyle *style =  [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+        style.alignment = NSTextAlignmentJustified;
+        style.firstLineHeadIndent = 10.0f;
+        style.headIndent = 10.0f;
+        style.tailIndent = -10.0f;
+        style.lineBreakMode = NSLineBreakByTruncatingTail;
+        NSAttributedString *attrText = [[NSAttributedString alloc] initWithString:contentItem.title
+                                                                       attributes:@{ NSParagraphStyleAttributeName : style}];
+        //set the title
+        cell.feedItemTitle.attributedText = attrText;
+        
         if(contentItem.imagePublicUrl != nil) {
             [self downloadImageWithURL:contentItem.imagePublicUrl completionBlock:^(BOOL succeeded, UIImage *image) {
                 if (succeeded) {
-                    data.image = image;
-                    [self reloadData];
+                    float imageRatio = image.size.width/image.size.height;
+                    [cell.imageHeightConstraint setConstant:(cell.frame.size.width / imageRatio)];
+                    [cell.feedItemImage setImage:image];
+                    [self.tableView reloadData];
                 }
             }];
         }
         
-        [itemsToDisplay addObject:data];
+        [itemsToDisplay addObject:cell];
     }
     
     self.isApiCallingBlocked = NO;
@@ -179,42 +205,7 @@ UIButton *dropDownButton;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    FeedItemData *data;
-    
-    //checking for array out of bounds caused by pull to refresh
-    if (indexPath.row > itemsToDisplay.count) {
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FeedItemCell" owner:self options:nil];
-        return [nib objectAtIndex:0];
-    }
-    else {
-        data = (FeedItemData*)[itemsToDisplay objectAtIndex:indexPath.row];
-    }
-    
-    FeedItemCell *cell = (FeedItemCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil) {
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FeedItemCell" owner:self options:nil];
-        cell = [nib objectAtIndex:0];
-    }
-    else {
-        cell.feedItemImage.image = nil;
-    }
-    
-    //styling the label
-    NSMutableParagraphStyle *style =  [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-    style.alignment = NSTextAlignmentJustified;
-    style.firstLineHeadIndent = 10.0f;
-    style.headIndent = 10.0f;
-    style.tailIndent = -10.0f;
-    style.lineBreakMode = NSLineBreakByTruncatingTail;
-    NSAttributedString *attrText = [[NSAttributedString alloc] initWithString:data.content.title
-                                                                   attributes:@{ NSParagraphStyleAttributeName : style}];
-    //set the title
-    cell.feedItemTitle.attributedText = attrText;
-    
-    if (data.image != nil) {
-        cell.feedItemImage.image = data.image;
-    }
-    
+
     //load more contents
     if (indexPath.row == [self.itemsToDisplay count] - 1) {
         if (self.hasMore && !self.isApiCallingBlocked) {
@@ -223,19 +214,15 @@ UIButton *dropDownButton;
             [[XMMEnduserApi sharedInstance] getContentListFromApi:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:pageSize withCursor:self.contentListCursor];
         }
     }
-    
-    return cell;
+
+    return [itemsToDisplay objectAtIndex:indexPath.row];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     ArtistDetailViewController *artistDetailViewController = [[ArtistDetailViewController alloc] init];
-    FeedItemData *data = (FeedItemData*)[itemsToDisplay objectAtIndex:indexPath.row];
+    FeedItemCell *data = (FeedItemCell*)[itemsToDisplay objectAtIndex:indexPath.row];
     artistDetailViewController.contentId = data.contentId;
     [self.navigationController pushViewController:artistDetailViewController animated:YES];
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return (self.tableView.frame.size.width/2.6323987539) + feedItemMargin;
 }
 
 - (void)pullToRefresh {

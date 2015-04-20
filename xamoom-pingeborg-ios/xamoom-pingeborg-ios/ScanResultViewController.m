@@ -35,6 +35,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    [self displayContentTitleAndImage];
     [contentBlocks displayContentBlocksById:nil byLocationIdentifier:result];
 }
 
@@ -66,8 +67,7 @@
     return [contentBlocks.itemsToDisplay objectAtIndex:indexPath.row];
 }
 
-/*
-- (void)displayContentTitleAndImage:(XMMResponseGetById *)result {
+- (void)displayContentTitleAndImage {
     XMMResponseContentBlockType0 *contentBlock0 = [[XMMResponseContentBlockType0 alloc] init];
     contentBlock0.contentBlockType = @"title";
     contentBlock0.title = result.content.title;
@@ -80,7 +80,6 @@
         [contentBlocks displayContentBlock3:contentBlock3];
     }
 }
-*/
 
 /*
  #pragma mark - Navigation

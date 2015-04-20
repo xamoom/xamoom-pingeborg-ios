@@ -20,7 +20,6 @@
     
     //init map
     self.mapKitWithSMCalloutView = [[CustomMapView alloc] initWithFrame:self.view.bounds];
-    self.mapKitWithSMCalloutView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.mapKitWithSMCalloutView.delegate = self;
     self.mapKitWithSMCalloutView.showsUserLocation = YES;
     [self.view addSubview:self.mapKitWithSMCalloutView];
@@ -34,11 +33,6 @@
     
     [[XMMEnduserApi sharedInstance] setDelegate:self];
     [[XMMEnduserApi sharedInstance] getSpotMapWithSystemId:[Globals sharedObject].globalSystemId withMapTags:@"showAllTheSpots" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(pingeborgSystemChanged)
-                                                 name:@"PingeborgSystemChanged"
-                                               object:nil];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -57,6 +51,15 @@
     //create userTracking button
     MKUserTrackingBarButtonItem *buttonItem = [[MKUserTrackingBarButtonItem alloc] initWithMapView:self.mapKitWithSMCalloutView];
     self.parentViewController.navigationItem.rightBarButtonItem = buttonItem;
+    
+    if ( self.mapKitWithSMCalloutView.annotations.count <= 0 ) {
+        [[XMMEnduserApi sharedInstance] setDelegate:self];
+        [[XMMEnduserApi sharedInstance] getSpotMapWithSystemId:[Globals sharedObject].globalSystemId withMapTags:@"showAllTheSpots" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
+    }
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    self.parentViewController.navigationItem.rightBarButtonItem = nil;
 }
 
 #pragma mark imageutility
@@ -307,6 +310,7 @@
 }
 
 - (void)pingeborgSystemChanged {
+    NSLog(@"pingeborgSystemChanged");
 }
 
 @end
