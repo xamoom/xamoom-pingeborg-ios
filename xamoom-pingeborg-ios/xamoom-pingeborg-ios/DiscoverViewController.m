@@ -24,6 +24,8 @@ static const NSInteger pageSize = 7;
 
 @synthesize itemsToDisplay;
 
+#pragma mark - View Lifecycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     //setting up tableView
@@ -36,19 +38,18 @@ static const NSInteger pageSize = 7;
 
 }
 
+-(void)viewDidAppear:(BOOL)animated {
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
--(void)viewDidAppear:(BOOL)animated {
-    [Globals addDiscoveredArtist:@"Test"];
-    NSLog(@"%@ saved.", [Globals savedArtits]);
-}
-
 #pragma mark - XMMEnduserApi delegates
 
 -(void)didLoadContentList:(XMMResponseContentList *)result {
+    NSString *savedArtists = [Globals savedArtits];
     self.contentListCursor = result.cursor;
     
     if ([result.hasMore isEqualToString:@"True"])
@@ -81,7 +82,10 @@ static const NSInteger pageSize = 7;
                 if (succeeded) {
                     float imageRatio = image.size.width/image.size.height;
                     [cell.imageHeightConstraint setConstant:(cell.frame.size.width / imageRatio)];
-                    [cell.feedItemImage setImage:[self convertImageToGrayScale:image]];
+                    if (![savedArtists containsString:contentItem.contentId]) {
+                        image = [self convertImageToGrayScale:image];
+                    }
+                    [cell.feedItemImage setImage:image];
                     [self.tableView reloadData];
                 }
             }];
@@ -123,7 +127,6 @@ static const NSInteger pageSize = 7;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     //load more contents
     if (indexPath.row == [self.itemsToDisplay count] - 1) {
         if (self.hasMore && !self.isApiCallingBlocked) {
@@ -143,7 +146,7 @@ static const NSInteger pageSize = 7;
     [self.navigationController pushViewController:artistDetailViewController animated:YES];
 }
 
-#pragma mark Image Methods
+#pragma mark - Image Methods
 
 - (UIImage *)convertImageToGrayScale:(UIImage *)image
 {

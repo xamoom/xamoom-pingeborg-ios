@@ -52,8 +52,11 @@ static Globals *globals;
     NSString *savedArtists;
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     
-    if ( [userDefaults stringForKey:@"savedArtists"] ) {
+    if ([userDefaults stringForKey:@"savedArtists"]) {
         savedArtists = [userDefaults stringForKey:@"savedArtists"];
+        if ([savedArtists containsString:contentId]) {
+            return;
+        }
         savedArtists = [NSString stringWithFormat:@"%@,%@", savedArtists, contentId];
     }
     else {

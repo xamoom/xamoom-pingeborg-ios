@@ -26,11 +26,18 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 150.0;
     
-     contentBlocks = [[XMMContentBlocks alloc] initWithTableView:self.tableView];
-    
+    contentBlocks = [[XMMContentBlocks alloc] initWithTableView:self.tableView];
+    NSString* savedArtists = [Globals savedArtits];
+
     // Do any additional setup after loading the view.
     [[XMMEnduserApi sharedInstance] setDelegate:self];
-    [[XMMEnduserApi sharedInstance] getContentByIdFull:self.contentId includeStyle:@"False" includeMenu:@"False" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:@"False"];
+
+    if ([savedArtists containsString:self.contentId]) {
+        [XMMEnduserApi sharedInstance].delegate = self;
+        [[XMMEnduserApi sharedInstance] getContentByIdFull:self.contentId includeStyle:@"False" includeMenu:@"False" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:@"True"];
+    } else {
+        [[XMMEnduserApi sharedInstance] getContentByIdFull:self.contentId includeStyle:@"False" includeMenu:@"False" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:@"False"];
+    }
     
     //reload data notification
     NSString *notificationName = @"reloadArtistDetails";

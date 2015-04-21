@@ -16,7 +16,7 @@
 
 @implementation MainTabBarController
 
-XMMResponseGetByLocationIdentifier *_result;
+XMMResponseGetByLocationIdentifier *result;
 BOOL isFirstTime;
 
 - (void)viewDidLoad {
@@ -70,8 +70,6 @@ BOOL isFirstTime;
 }
 
 -(void)tappedMiddleButton:(id)sender {
-    NSLog(@"Hellyeah");
-    
     [[XMMEnduserApi sharedInstance] setDelegate:self];
     [[XMMEnduserApi sharedInstance] setQrCodeViewControllerCancelButtonTitle:@"Abbrechen"];
     [[XMMEnduserApi sharedInstance] startQRCodeReader:self withAPIRequest:YES withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
@@ -101,13 +99,14 @@ BOOL isFirstTime;
     [self dismissViewControllerAnimated:YES completion:NULL];   
 }
 
-- (void)didLoadDataByLocationIdentifier:(XMMResponseGetByLocationIdentifier *)result {
-    NSLog(@"finishedLoadDataByLocationIdentifier: %@", result);
+- (void)didLoadDataByLocationIdentifier:(XMMResponseGetByLocationIdentifier *)apiResult {
+    NSLog(@"finishedLoadDataByLocationIdentifier: %@", apiResult);
     
-    _result = result;
+    result = apiResult;
     if( isFirstTime ) {
-        [self performSegueWithIdentifier:@"showScanResult" sender:self];
         isFirstTime = NO;
+        [Globals addDiscoveredArtist:apiResult.content.contentId];
+        [self performSegueWithIdentifier:@"showScanResult" sender:self];
     }
 }
 
@@ -117,7 +116,7 @@ BOOL isFirstTime;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ( [[segue identifier] isEqualToString:@"showScanResult"] ) {
         ScanResultViewController *srvc = [segue destinationViewController];
-        [srvc setResult:_result];
+        [srvc setResult:result];
     }
 }
 

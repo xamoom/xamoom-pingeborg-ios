@@ -20,5 +20,8 @@
     // Configure the view for the selected state
 }
 
++ (BOOL)requiresConstraintBasedLayout {
+    return YES;
+}
 
 @end

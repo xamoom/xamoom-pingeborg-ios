@@ -17,6 +17,8 @@
 @synthesize result;
 @synthesize contentBlocks;
 
+#pragma mark - View Lifecycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -28,15 +30,17 @@
     contentBlocks = [[XMMContentBlocks alloc] initWithTableView:self.tableView];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self displayContentTitleAndImage];
     [contentBlocks displayContentBlocksById:nil byLocationIdentifier:result];
+    
+    NSLog(@"Saved artists: %@", [Globals savedArtits]);
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
