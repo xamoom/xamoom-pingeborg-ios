@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
+#import <SVGKit.h>
 #import "XMMEnduserApi.h"
 
 @interface PingeborgAnnotationView : MKAnnotationView
@@ -16,5 +17,7 @@
 @property NSString *distance;
 @property UIImage *spotImage;
 @property CLLocationCoordinate2D coordinate;
+
+- (void)displaySVG:(SVGKImage*)image;
 
 @end

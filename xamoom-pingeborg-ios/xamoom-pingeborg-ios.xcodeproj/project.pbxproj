@@ -23,6 +23,13 @@
 		885BFCF81AADC23F0047340C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 885BFCF71AADC23F0047340C /* Main.storyboard */; };
 		885BFCFE1AADD3950047340C /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 885BFCFD1AADD3950047340C /* MainTabBarController.m */; };
 		885BFD071AADD9FF0047340C /* ScanResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 885BFD051AADD9FF0047340C /* ScanResultViewController.m */; };
+		8860DA791AE78CB800DF2239 /* libSVGKit-iOS.1.2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8860DA771AE78CB800DF2239 /* libSVGKit-iOS.1.2.0.a */; };
+		8860DA7A1AE78CB800DF2239 /* usr in Resources */ = {isa = PBXBuildFile; fileRef = 8860DA781AE78CB800DF2239 /* usr */; };
+		8860DA7D1AE78D0500DF2239 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8860DA7C1AE78D0500DF2239 /* CoreText.framework */; };
+		8860DA7F1AE78D0E00DF2239 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8860DA7E1AE78D0E00DF2239 /* CoreImage.framework */; };
+		8860DA811AE78D2C00DF2239 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8860DA801AE78D2C00DF2239 /* libxml2.dylib */; };
+		8860DA831AE78D3500DF2239 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8860DA821AE78D3500DF2239 /* CoreGraphics.framework */; };
+		8860DA851AE78D3B00DF2239 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8860DA841AE78D3B00DF2239 /* UIKit.framework */; };
 		8897A9FD1ABB1C710003C3FA /* PingeborgCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8897A9FC1ABB1C710003C3FA /* PingeborgCalloutView.xib */; };
 		88A62C3B1AD3D8EB00EAD4C3 /* ArtistDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A62C3A1AD3D8EB00EAD4C3 /* ArtistDetailViewController.m */; };
 		88A62C461AD3F2AE00EAD4C3 /* TextBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A62C441AD3F2AE00EAD4C3 /* TextBlockTableViewCell.m */; };
@@ -149,6 +156,13 @@
 		885BFCFD1AADD3950047340C /* MainTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabBarController.m; sourceTree = "<group>"; };
 		885BFD041AADD9FF0047340C /* ScanResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanResultViewController.h; sourceTree = "<group>"; };
 		885BFD051AADD9FF0047340C /* ScanResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanResultViewController.m; sourceTree = "<group>"; };
+		8860DA771AE78CB800DF2239 /* libSVGKit-iOS.1.2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libSVGKit-iOS.1.2.0.a"; sourceTree = "<group>"; };
+		8860DA781AE78CB800DF2239 /* usr */ = {isa = PBXFileReference; lastKnownFileType = folder; path = usr; sourceTree = "<group>"; };
+		8860DA7C1AE78D0500DF2239 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		8860DA7E1AE78D0E00DF2239 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		8860DA801AE78D2C00DF2239 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		8860DA821AE78D3500DF2239 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		8860DA841AE78D3B00DF2239 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8897A9FC1ABB1C710003C3FA /* PingeborgCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PingeborgCalloutView.xib; sourceTree = "<group>"; };
 		88A62C391AD3D8EB00EAD4C3 /* ArtistDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtistDetailViewController.h; sourceTree = "<group>"; };
 		88A62C3A1AD3D8EB00EAD4C3 /* ArtistDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtistDetailViewController.m; sourceTree = "<group>"; };
@@ -310,10 +324,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8860DA851AE78D3B00DF2239 /* UIKit.framework in Frameworks */,
+				8860DA831AE78D3500DF2239 /* CoreGraphics.framework in Frameworks */,
+				8860DA811AE78D2C00DF2239 /* libxml2.dylib in Frameworks */,
+				8860DA7F1AE78D0E00DF2239 /* CoreImage.framework in Frameworks */,
+				8860DA7D1AE78D0500DF2239 /* CoreText.framework in Frameworks */,
 				88A62C531AD561DB00EAD4C3 /* MediaPlayer.framework in Frameworks */,
 				88A62C4F1AD55F2C00EAD4C3 /* AVFoundation.framework in Frameworks */,
 				883574801AB1CCF40099DF4A /* QuartzCore.framework in Frameworks */,
 				88CBAEE11AA9EC9E000E480A /* MapKit.framework in Frameworks */,
+				8860DA791AE78CB800DF2239 /* libSVGKit-iOS.1.2.0.a in Frameworks */,
 				594E123E6C9FD768422C1CEE /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -355,6 +375,15 @@
 				883574811AB1D4810099DF4A /* css */,
 			);
 			name = UserInterface;
+			sourceTree = "<group>";
+		};
+		8860DA7B1AE78CDF00DF2239 /* SVGKit */ = {
+			isa = PBXGroup;
+			children = (
+				8860DA771AE78CB800DF2239 /* libSVGKit-iOS.1.2.0.a */,
+				8860DA781AE78CB800DF2239 /* usr */,
+			);
+			name = SVGKit;
 			sourceTree = "<group>";
 		};
 		88A62C3C1AD3E16C00EAD4C3 /* ContentBlockTypes */ = {
@@ -449,6 +478,7 @@
 				885BFCEB1AADB67F0047340C /* UserInterface */,
 				88BA01FF1AA859F90091A43C /* Images.xcassets */,
 				88BA02011AA859F90091A43C /* LaunchScreen.xib */,
+				8860DA7B1AE78CDF00DF2239 /* SVGKit */,
 				88BA01F21AA859F90091A43C /* Supporting Files */,
 			);
 			path = "xamoom-pingeborg-ios";
@@ -742,6 +772,11 @@
 		B091DC0989CBE4B0B40B108B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8860DA841AE78D3B00DF2239 /* UIKit.framework */,
+				8860DA821AE78D3500DF2239 /* CoreGraphics.framework */,
+				8860DA801AE78D2C00DF2239 /* libxml2.dylib */,
+				8860DA7E1AE78D0E00DF2239 /* CoreImage.framework */,
+				8860DA7C1AE78D0500DF2239 /* CoreText.framework */,
 				88A62C521AD561DB00EAD4C3 /* MediaPlayer.framework */,
 				88A62C4E1AD55F2C00EAD4C3 /* AVFoundation.framework */,
 				8835747F1AB1CCF40099DF4A /* QuartzCore.framework */,
@@ -857,6 +892,7 @@
 				88CBA7131AD7B7EC001C3D37 /* EbookBlockTableViewCell.xib in Resources */,
 				88BA02031AA859F90091A43C /* LaunchScreen.xib in Resources */,
 				88DEE9E11ADE79830069DC32 /* DownloadBlockTableViewCell.xib in Resources */,
+				8860DA7A1AE78CB800DF2239 /* usr in Resources */,
 				88CE0CFD1AAEF7740014EE77 /* RSSFeedItemView.xib in Resources */,
 				88DEE9DB1ADE43730069DC32 /* soundcloud.js in Resources */,
 				88CBA7071AD79D1F001C3D37 /* 4bf2ccad86764c05b5c7f0eefc7e9f93.gif in Resources */,
@@ -1109,9 +1145,32 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
+					"\"${PODS_ROOT}/Headers/Public/ISO8601DateFormatterValueTransformer\"",
+					"\"${PODS_ROOT}/Headers/Public/QRCodeReaderViewController\"",
+					"\"${PODS_ROOT}/Headers/Public/REMenu\"",
+					"\"${PODS_ROOT}/Headers/Public/RKValueTransformers\"",
+					"\"${PODS_ROOT}/Headers/Public/RestKit\"",
+					"\"${PODS_ROOT}/Headers/Public/RestKit/CoreData\"",
+					"\"${PODS_ROOT}/Headers/Public/RestKit/Network\"",
+					"\"${PODS_ROOT}/Headers/Public/RestKit/ObjectMapping\"",
+					"\"${PODS_ROOT}/Headers/Public/RestKit/Support\"",
+					"\"${PODS_ROOT}/Headers/Public/SMCalloutView\"",
+					"\"${PODS_ROOT}/Headers/Public/SOCKit\"",
+					"\"${PODS_ROOT}/Headers/Public/TransitionKit\"",
+					"\"${PODS_ROOT}/Headers/Public/Vendor/LibComponentLogging/Core\"",
+					"\"${PODS_ROOT}/Headers/Public/youtube-ios-player-helper\"",
+					"$(SRCROOT)/**",
+				);
 				INFOPLIST_FILE = "xamoom-pingeborg-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/xamoom-pingeborg-ios",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1125,9 +1184,32 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
+					"\"${PODS_ROOT}/Headers/Public/ISO8601DateFormatterValueTransformer\"",
+					"\"${PODS_ROOT}/Headers/Public/QRCodeReaderViewController\"",
+					"\"${PODS_ROOT}/Headers/Public/REMenu\"",
+					"\"${PODS_ROOT}/Headers/Public/RKValueTransformers\"",
+					"\"${PODS_ROOT}/Headers/Public/RestKit\"",
+					"\"${PODS_ROOT}/Headers/Public/RestKit/CoreData\"",
+					"\"${PODS_ROOT}/Headers/Public/RestKit/Network\"",
+					"\"${PODS_ROOT}/Headers/Public/RestKit/ObjectMapping\"",
+					"\"${PODS_ROOT}/Headers/Public/RestKit/Support\"",
+					"\"${PODS_ROOT}/Headers/Public/SMCalloutView\"",
+					"\"${PODS_ROOT}/Headers/Public/SOCKit\"",
+					"\"${PODS_ROOT}/Headers/Public/TransitionKit\"",
+					"\"${PODS_ROOT}/Headers/Public/Vendor/LibComponentLogging/Core\"",
+					"\"${PODS_ROOT}/Headers/Public/youtube-ios-player-helper\"",
+					"$(SRCROOT)/**",
+				);
 				INFOPLIST_FILE = "xamoom-pingeborg-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/xamoom-pingeborg-ios",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";

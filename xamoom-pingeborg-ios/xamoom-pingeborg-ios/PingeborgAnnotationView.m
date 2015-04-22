@@ -18,8 +18,20 @@
         // The opaque property is YES by default. Setting it to
         // NO allows map content to show through any unrendered parts of your view.
         self.opaque = NO;
+        //self.svgImageView = [[SVGKFastImageView alloc] init];
     }
     return self;
+}
+
+- (void)displaySVG:(SVGKImage*)image {
+    SVGKImageView *svgImageView = [[SVGKFastImageView alloc] initWithSVGKImage:image];
+    
+    //set svgImageView.frame and image.frame
+    float imageRatio = svgImageView.frame.size.width / svgImageView.frame.size.height;
+    [svgImageView setFrame:CGRectMake(0.0f, 0.0f, 30.0f*imageRatio, 30.0f)];
+    self.frame = svgImageView.frame;
+    
+    [self addSubview:svgImageView];
 }
 
 @end

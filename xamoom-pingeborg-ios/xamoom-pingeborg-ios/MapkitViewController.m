@@ -101,6 +101,21 @@
     NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:decodedString]];
     self.customMapMarker = [self imageWithImage:[UIImage imageWithData:imageData] scaledToMaxWidth:30.0f maxHeight:30.0f];
     
+    if (!self.customMapMarker) {
+        //save svg mapmarker
+        NSArray *paths = NSSearchPathForDirectoriesInDomains
+        (NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSString *fileName = [NSString stringWithFormat:@"%@/mapmarker.svg", documentsDirectory];
+        [imageData writeToFile:fileName atomically:YES];
+        
+        //read svg mapmarker
+        NSData *data = [[NSFileManager defaultManager] contentsAtPath:fileName];
+        self.customSVGMapMarker = [SVGKImage imageWithSource:[SVGKSourceString sourceFromContentsOfString:
+                                                          [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]]];
+    }
+    
+    
     for (XMMResponseGetSpotMapItem *item in result.items) {
         // Add an annotation
         PingebAnnotation *point = [[PingebAnnotation alloc] initWithLocation: CLLocationCoordinate2DMake([item.lat doubleValue], [item.lon doubleValue])];
@@ -128,10 +143,13 @@
             annotationView = [[PingeborgAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
             annotationView.enabled = YES;
             annotationView.canShowCallout = NO;
-            if(self.customMapMarker == nil) {
-                annotationView.image = [UIImage imageNamed:@"mappoint"];//here we use a nice image instead of the default pins
-            } else {
+            if(self.customMapMarker) {
                 annotationView.image = self.customMapMarker;
+            } else if (self.customSVGMapMarker) {
+                [annotationView displaySVG:self.customSVGMapMarker];
+                //annotationView.image = [UIImage imageNamed:@"mappoint"];//here we use a nice image instead of the default pins
+            } else {
+                annotationView.image = [UIImage imageNamed:@"mappoint"];//here we use a nice image instead of the default pins
             }
             
             PingebAnnotation *pingebAnnotation = (PingebAnnotation*)annotation;
