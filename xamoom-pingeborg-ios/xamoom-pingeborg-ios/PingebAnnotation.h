@@ -12,7 +12,6 @@
 
 @interface PingebAnnotation : NSObject <MKAnnotation>
 
-@property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 @property XMMResponseGetSpotMapItem *data;
 @property NSString *distance;
 
