@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="FeedItemCell" rowHeight="139" id="OY2-tF-H3e" customClass="FeedItemCell">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="FeedItemCell" id="OY2-tF-H3e" customClass="FeedItemCell">
             <rect key="frame" x="0.0" y="0.0" width="482" height="139"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OY2-tF-H3e" id="EiK-aS-q9u">
@@ -16,7 +16,7 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RLb-uj-IBD">
                         <rect key="frame" x="0.0" y="0.0" width="482" height="130"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="130" id="gVU-IG-sXy"/>
+                            <constraint firstAttribute="height" priority="999" constant="130" id="gVU-IG-sXy"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.75" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4wb-79-OqP">
@@ -28,13 +28,13 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="RLb-uj-IBD" firstAttribute="width" secondItem="4wb-79-OqP" secondAttribute="width" id="3WB-Up-Gpf"/>
                     <constraint firstItem="RLb-uj-IBD" firstAttribute="bottom" secondItem="EiK-aS-q9u" secondAttribute="bottomMargin" id="CRR-0m-1Ae"/>
                     <constraint firstItem="RLb-uj-IBD" firstAttribute="top" secondItem="EiK-aS-q9u" secondAttribute="top" id="Cw7-Q0-4Ll"/>
                     <constraint firstAttribute="trailing" secondItem="RLb-uj-IBD" secondAttribute="trailing" id="J1e-FZ-CyI"/>
                     <constraint firstItem="RLb-uj-IBD" firstAttribute="bottom" secondItem="4wb-79-OqP" secondAttribute="bottom" id="gT3-7Q-Xhr"/>
                     <constraint firstItem="RLb-uj-IBD" firstAttribute="leading" secondItem="4wb-79-OqP" secondAttribute="leading" id="jha-dZ-F7s"/>
                     <constraint firstItem="RLb-uj-IBD" firstAttribute="leading" secondItem="EiK-aS-q9u" secondAttribute="leading" id="mXs-PU-FUt"/>
+                    <constraint firstItem="4wb-79-OqP" firstAttribute="trailing" secondItem="RLb-uj-IBD" secondAttribute="trailing" id="vZo-up-wzu"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

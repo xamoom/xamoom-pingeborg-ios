@@ -9,13 +9,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "xamoom-pingeborg-ios/Globals.m"
-            timestampString = "451292615.839475"
+            filePath = "xamoom-pingeborg-ios/FeedTableViewController.m"
+            timestampString = "451485884.018738"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
-            landmarkName = "+addDiscoveredArtist:"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
+            landmarkName = "-didLoadContentList:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

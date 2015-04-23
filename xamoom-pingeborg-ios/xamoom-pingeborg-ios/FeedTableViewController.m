@@ -129,6 +129,7 @@ UIButton *dropDownButton;
                                                                        attributes:@{ NSParagraphStyleAttributeName : style}];
         //set the title
         cell.feedItemTitle.attributedText = attrText;
+        cell.feedItemTitle.text = contentItem.title;
         
         if(contentItem.imagePublicUrl != nil) {
             [self downloadImageWithURL:contentItem.imagePublicUrl completionBlock:^(BOOL succeeded, UIImage *image) {
@@ -212,8 +213,45 @@ UIButton *dropDownButton;
             [[XMMEnduserApi sharedInstance] getContentListFromApi:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:pageSize withCursor:self.contentListCursor];
         }
     }
+    
+    FeedItemCell *oldCell = [itemsToDisplay objectAtIndex:indexPath.row];
+    
+    static NSString *simpleTableIdentifier = @"FeedItemCell";
+    
+    FeedItemCell *cell = (FeedItemCell *)[self.tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    if (cell == nil)
+    {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FeedItemCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+    }
+    
+    //styling the label
+    NSMutableParagraphStyle *style =  [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    style.alignment = NSTextAlignmentJustified;
+    style.firstLineHeadIndent = 10.0f;
+    style.headIndent = 10.0f;
+    style.tailIndent = -10.0f;
+    style.lineBreakMode = NSLineBreakByTruncatingTail;
+    NSAttributedString *attrText = [[NSAttributedString alloc] initWithString:oldCell.feedItemTitle.text
+                                                                   attributes:@{ NSParagraphStyleAttributeName : style}];
+    //set the title
+    cell.feedItemTitle.attributedText = attrText;
+    cell.feedItemImage.image = oldCell.feedItemImage.image;
+    
+    if (oldCell.feedItemImage.image) {
+        float imageRatio = oldCell.feedItemImage.image.size.width / oldCell.feedItemImage.image.size.height;
 
-    return [itemsToDisplay objectAtIndex:indexPath.row];
+        [cell.imageHeightConstraint setConstant:(cell.frame.size.width / imageRatio)];
+        cell.feedItemImage.image = oldCell.feedItemImage.image;
+    } else {
+        [cell.imageHeightConstraint setConstant:50.0f];
+    }
+    //NSLog(@"cell height: %f", cell.frame.size.height);
+    //NSLog(@"imageView height: %f", cell.imageView.frame.size.height);
+    
+    return cell;
+    
+    //return [itemsToDisplay objectAtIndex:indexPath.row];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

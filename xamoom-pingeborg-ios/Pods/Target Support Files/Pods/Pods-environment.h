@@ -34,43 +34,43 @@
 #define COCOAPODS_POD_AVAILABLE_RKValueTransformers
 #define COCOAPODS_VERSION_MAJOR_RKValueTransformers 1
 #define COCOAPODS_VERSION_MINOR_RKValueTransformers 1
-#define COCOAPODS_VERSION_PATCH_RKValueTransformers 1
+#define COCOAPODS_VERSION_PATCH_RKValueTransformers 2
 
 // RestKit
 #define COCOAPODS_POD_AVAILABLE_RestKit
 #define COCOAPODS_VERSION_MAJOR_RestKit 0
 #define COCOAPODS_VERSION_MINOR_RestKit 24
-#define COCOAPODS_VERSION_PATCH_RestKit 0
+#define COCOAPODS_VERSION_PATCH_RestKit 1
 
 // RestKit/Core
 #define COCOAPODS_POD_AVAILABLE_RestKit_Core
 #define COCOAPODS_VERSION_MAJOR_RestKit_Core 0
 #define COCOAPODS_VERSION_MINOR_RestKit_Core 24
-#define COCOAPODS_VERSION_PATCH_RestKit_Core 0
+#define COCOAPODS_VERSION_PATCH_RestKit_Core 1
 
 // RestKit/CoreData
 #define COCOAPODS_POD_AVAILABLE_RestKit_CoreData
 #define COCOAPODS_VERSION_MAJOR_RestKit_CoreData 0
 #define COCOAPODS_VERSION_MINOR_RestKit_CoreData 24
-#define COCOAPODS_VERSION_PATCH_RestKit_CoreData 0
+#define COCOAPODS_VERSION_PATCH_RestKit_CoreData 1
 
 // RestKit/Network
 #define COCOAPODS_POD_AVAILABLE_RestKit_Network
 #define COCOAPODS_VERSION_MAJOR_RestKit_Network 0
 #define COCOAPODS_VERSION_MINOR_RestKit_Network 24
-#define COCOAPODS_VERSION_PATCH_RestKit_Network 0
+#define COCOAPODS_VERSION_PATCH_RestKit_Network 1
 
 // RestKit/ObjectMapping
 #define COCOAPODS_POD_AVAILABLE_RestKit_ObjectMapping
 #define COCOAPODS_VERSION_MAJOR_RestKit_ObjectMapping 0
 #define COCOAPODS_VERSION_MINOR_RestKit_ObjectMapping 24
-#define COCOAPODS_VERSION_PATCH_RestKit_ObjectMapping 0
+#define COCOAPODS_VERSION_PATCH_RestKit_ObjectMapping 1
 
 // RestKit/Support
 #define COCOAPODS_POD_AVAILABLE_RestKit_Support
 #define COCOAPODS_VERSION_MAJOR_RestKit_Support 0
 #define COCOAPODS_VERSION_MINOR_RestKit_Support 24
-#define COCOAPODS_VERSION_PATCH_RestKit_Support 0
+#define COCOAPODS_VERSION_PATCH_RestKit_Support 1
 
 // SMCalloutView
 #define COCOAPODS_POD_AVAILABLE_SMCalloutView
@@ -88,7 +88,7 @@
 #define COCOAPODS_POD_AVAILABLE_TransitionKit
 #define COCOAPODS_VERSION_MAJOR_TransitionKit 2
 #define COCOAPODS_VERSION_MINOR_TransitionKit 1
-#define COCOAPODS_VERSION_PATCH_TransitionKit 0
+#define COCOAPODS_VERSION_PATCH_TransitionKit 1
 
 // youtube-ios-player-helper
 #define COCOAPODS_POD_AVAILABLE_youtube_ios_player_helper
