@@ -8,6 +8,20 @@
 
 #import "PingeborgAnnotationView.h"
 
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+#define IS_RETINA ([[UIScreen mainScreen] scale] >= 2.0)
+
+#define SCREEN_WIDTH ([[UIScreen mainScreen] bounds].size.width)
+#define SCREEN_HEIGHT ([[UIScreen mainScreen] bounds].size.height)
+#define SCREEN_MAX_LENGTH (MAX(SCREEN_WIDTH, SCREEN_HEIGHT))
+#define SCREEN_MIN_LENGTH (MIN(SCREEN_WIDTH, SCREEN_HEIGHT))
+
+#define IS_IPHONE_4_OR_LESS (IS_IPHONE && SCREEN_MAX_LENGTH < 568.0)
+#define IS_IPHONE_5 (IS_IPHONE && SCREEN_MAX_LENGTH == 568.0)
+#define IS_IPHONE_6 (IS_IPHONE && SCREEN_MAX_LENGTH == 667.0)
+#define IS_IPHONE_6P (IS_IPHONE && SCREEN_MAX_LENGTH == 736.0)
+
 @implementation PingeborgAnnotationView
 
 - (id)initWithAnnotation:(id <MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier
@@ -28,7 +42,16 @@
     
     //set svgImageView.frame and image.frame
     float imageRatio = svgImageView.frame.size.width / svgImageView.frame.size.height;
-    [svgImageView setFrame:CGRectMake(0.0f, 0.0f, 30.0f*imageRatio, 30.0f)];
+    
+    if (IS_IPHONE_5)
+        [svgImageView setFrame:CGRectMake(0.0f, 0.0f, 30.0f*imageRatio, 30.0f)];
+    else if (IS_IPHONE_6)
+        [svgImageView setFrame:CGRectMake(0.0f, 0.0f, 40.0f*imageRatio, 40.0f)];
+    else if (IS_IPHONE_6P)
+        [svgImageView setFrame:CGRectMake(0.0f, 0.0f, 50.0f*imageRatio, 50.0f)];
+    else
+        [svgImageView setFrame:CGRectMake(0.0f, 0.0f, 30.0f*imageRatio, 30.0f)];
+    
     self.frame = svgImageView.frame;
     
     [self addSubview:svgImageView];
