@@ -144,6 +144,8 @@
             annotationView = [[PingeborgAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
             annotationView.enabled = YES;
             annotationView.canShowCallout = NO;
+            
+            //set mapmarker
             if(self.customMapMarker) {
                 annotationView.image = self.customMapMarker;
             } else if (self.customSVGMapMarker) {
@@ -156,7 +158,14 @@
             annotationView.data = pingebAnnotation.data;
             annotationView.distance = pingebAnnotation.distance;
             annotationView.coordinate = pingebAnnotation.coordinate;
-            annotationView.spotImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:pingebAnnotation.data.image]]];
+            
+            if(pingebAnnotation.data.image != nil) {
+                [self downloadImageWithURL:pingebAnnotation.data.image completionBlock:^(BOOL succeeded, UIImage *image) {
+                    if (succeeded) {
+                        annotationView.spotImage = image;
+                    }
+                }];
+            }
             
         } else {
             annotationView.annotation = annotation;
@@ -166,6 +175,23 @@
     }
     
     return nil;
+}
+
+- (void)downloadImageWithURL:(NSString *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock
+{
+    NSURL *realUrl = [[NSURL alloc]initWithString:url];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:realUrl];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               if ( !error )
+                               {
+                                   UIImage *image = [[UIImage alloc] initWithData:data];
+                                   completionBlock(YES,image);
+                               } else{
+                                   completionBlock(NO,nil);
+                               }
+                           }];
 }
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)annotationView {
