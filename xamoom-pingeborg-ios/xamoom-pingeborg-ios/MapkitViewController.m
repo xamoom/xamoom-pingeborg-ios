@@ -178,20 +178,27 @@
     
     if ([annotationView isKindOfClass:[PingeborgAnnotationView class]]) {
         PingeborgAnnotationView* pingeborgAnnotationView = (PingeborgAnnotationView *)annotationView;
-        
-        PingeborgCalloutView* pingeborgCalloutView = [[PingeborgCalloutView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 300.0f, 100.0f)];
+        PingeborgCalloutView* pingeborgCalloutView = [[PingeborgCalloutView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 300.0f, 45.0f)];
+        pingeborgCalloutView.nameOfSpot = pingeborgAnnotationView.data.displayName;
         
         //create titleLabel
         UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, 10.0f, 280.0f, 25.0f)];
         titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
         titleLabel.numberOfLines = 0;
         titleLabel.text = pingeborgAnnotationView.data.displayName;
+        
+        //size label to fit content
         CGRect titleLabelRect = titleLabel.frame;
         titleLabelRect.size = [titleLabel sizeThatFits:titleLabelRect.size];
         titleLabel.frame = titleLabelRect;
         
+        //increase pingeborCalloutView height
+        CGRect pingeborgCalloutViewRect = pingeborgCalloutView.frame;
+        pingeborgCalloutViewRect.size.height += titleLabel.frame.size.height;
+        pingeborgCalloutView.frame = pingeborgCalloutViewRect;
+        
         //create distance label
-        UILabel* distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, titleLabel.frame.size.height + 10.f, 280.0f, 25.0f)];
+        UILabel* distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, titleLabel.frame.size.height + 10.0f, 280.0f, 25.0f)];
         distanceLabel.font = [UIFont systemFontOfSize:12];
         distanceLabel.text = pingeborgAnnotationView.distance;
         
@@ -203,86 +210,71 @@
         [pingeborgCalloutView addSubview:titleLabel];
         [pingeborgCalloutView addSubview:distanceLabel];
         
+        UIImageView *spotImageView;
+        
         //insert image
         if(pingeborgAnnotationView.spotImage != nil) {
+            float imageRatio = pingeborgAnnotationView.spotImage.size.width / pingeborgAnnotationView.spotImage.size.height;
             
-            UIImage *scaledImage = [self imageWithImage:pingeborgAnnotationView.spotImage
-                                       scaledToMaxWidth:pingeborgCalloutView.frame.size.width
-                                              maxHeight:700];
+            spotImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, distanceLabel.frame.origin.y + distanceLabel.frame.size.height, pingeborgCalloutView.frame.size.width, pingeborgCalloutView.frame.size.width / imageRatio)];
             
-            UIImageView *spotImageView = [[UIImageView alloc] initWithImage:scaledImage];
-            //[spotImageView setContentMode: UIViewContentModeScaleAspectFit];
-            
-            //move image under the other subviews
-            CGRect spotImageViewRect = spotImageView.frame;
-            spotImageViewRect.origin.y = distanceLabel.frame.origin.y + distanceLabel.frame.size.height;
-            spotImageView.frame = spotImageViewRect;
+            [spotImageView setContentMode: UIViewContentModeScaleAspectFit];
+            spotImageView.image = pingeborgAnnotationView.spotImage;
             
             //increase pingeborCalloutView height
             CGRect pingeborgCalloutViewRect = pingeborgCalloutView.frame;
-            pingeborgCalloutViewRect.size.height += scaledImage.size.height;
-            [pingeborgCalloutView setFrame: pingeborgCalloutViewRect];
+            pingeborgCalloutViewRect.size.height += spotImageView.frame.size.height;
+            pingeborgCalloutView.frame = pingeborgCalloutViewRect;
             
             [pingeborgCalloutView addSubview:spotImageView];
         }
+        
+        if (![pingeborgAnnotationView.data.descriptionOfSpot isEqualToString:@""]) {
+            UILabel *spotDescriptionLabel;
+            if ([pingeborgCalloutView.subviews count] >= 3) {
+                spotDescriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, spotImageView.frame.size.height + spotImageView.frame.origin.y + 5.0f, 280.0f, 25.0f)];
+            } else {
+                spotDescriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, distanceLabel.frame.origin.y + distanceLabel.frame.size.height + 5.0f, 280.0f, 25.0f)];
+            }
+            
+            spotDescriptionLabel.lineBreakMode = NSLineBreakByWordWrapping;
+            spotDescriptionLabel.numberOfLines = 0;
+            spotDescriptionLabel.font = [UIFont systemFontOfSize:12];
+            spotDescriptionLabel.textColor = [UIColor darkGrayColor];
+            
+            spotDescriptionLabel.text = pingeborgAnnotationView.data.descriptionOfSpot;
 
-        /*
-        
-        //set button image to blue
-        pingeborgCalloutView.button.imageView.image = [pingeborgCalloutView.button.imageView.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        [pingeborgCalloutView.button.imageView setTintColor:[UIColor blueColor]];
-        */
-        /*
-        //insert image
-        if(pingeborgAnnotationView.spotImage != nil) {
-            UIImage *scaledImage = [self imageWithImage:pingeborgAnnotationView.spotImage
-                                       scaledToMaxWidth:pingeborgCalloutView.frame.size.width
-                                              maxHeight:700];
-            UIImageView *spotImageView = [[UIImageView alloc] initWithImage:scaledImage];
-            [spotImageView setContentMode: UIViewContentModeScaleAspectFit];
-            [pingeborgCalloutView addSubview:spotImageView];
+            //resize label depending on content
+            CGRect spotDescriptionLabelRect = spotDescriptionLabel.frame;
+            spotDescriptionLabelRect.size = [spotDescriptionLabel sizeThatFits:spotDescriptionLabelRect.size];
+            spotDescriptionLabel.frame = spotDescriptionLabelRect;
             
-            //move image under the other subviews
-            CGRect spotImageViewRect = spotImageView.frame;
-            spotImageViewRect.origin.y += pingeborgCalloutView.frame.size.height + 10;
-            [spotImageView setFrame: spotImageViewRect];
-            
+            //increase pingeborCalloutView height
             CGRect pingeborgCalloutViewRect = pingeborgCalloutView.frame;
-            pingeborgCalloutViewRect.size.height = pingeborgCalloutViewRect.size.height + spotImageView.frame.size.height + 10;
-            [pingeborgCalloutView setFrame: pingeborgCalloutViewRect];
+            pingeborgCalloutViewRect.size.height += spotDescriptionLabel.frame.size.height;
+            pingeborgCalloutView.frame = pingeborgCalloutViewRect;
+            
+            [pingeborgCalloutView addSubview:spotDescriptionLabel];
         }
         
-        if ( ![pingeborgAnnotationView.data.descriptionOfSpot isEqualToString:@""] ) {
-            UILabel *descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, pingeborgCalloutView.frame.size.width, 50)];
-            descriptionLabel.text = pingeborgAnnotationView.data.descriptionOfSpot;
-            [descriptionLabel setFont:[descriptionLabel.font fontWithSize:14]];
-            [descriptionLabel setTextColor:[UIColor grayColor]];
-            [descriptionLabel setNumberOfLines:2];
-            [descriptionLabel setLineBreakMode:NSLineBreakByTruncatingTail];
-            [descriptionLabel setContentMode: UIViewContentModeTopLeft];
-            
-            //move label under the other subviews
-            CGRect descriptionLabelRect = descriptionLabel.frame;
-            descriptionLabelRect.origin.y += pingeborgCalloutView.frame.size.height + 10;
-            [descriptionLabel setFrame: descriptionLabelRect];
-            
-            //extend pingeCalloutView
-            CGRect pingeborgCalloutViewRect = pingeborgCalloutView.frame;
-            pingeborgCalloutViewRect.size.height = pingeborgCalloutViewRect.size.height + descriptionLabel.frame.size.height + 10;
-            [pingeborgCalloutView setFrame: pingeborgCalloutViewRect];
-            
-            [pingeborgCalloutView addSubview:descriptionLabel];
-        }
+        //create, design and adust button
+        UIButton *navigationButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, pingeborgCalloutView.frame.size.height, 300.0f, 60.0f)];
+        navigationButton.backgroundColor = [UIColor blueColor];
+        [navigationButton setImage:[[UIImage imageNamed:@"car"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+        [navigationButton setTintColor:[UIColor whiteColor]];
+        [navigationButton setImageEdgeInsets: UIEdgeInsetsMake(-10.0f, navigationButton.titleEdgeInsets.right, 10.0f, navigationButton.titleEdgeInsets.left)];
         
-        //pingeborgCalloutView.descriptionOfSpot.text = pingeborgAnnotationView.data.descriptionOfSpot;
-        [pingeborgCalloutView.button addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mapNavigationTapped)]];
-        */
+        //increase pingeborCalloutView height
+        pingeborgCalloutViewRect = pingeborgCalloutView.frame;
+        pingeborgCalloutViewRect.size.height += navigationButton.frame.size.height - 20.0f;
+        pingeborgCalloutView.frame = pingeborgCalloutViewRect;
         
+        [navigationButton addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mapNavigationTapped)]];
+        
+        [pingeborgCalloutView addSubview:navigationButton];
+        
+        //set custom contentView
         calloutView.contentView = pingeborgCalloutView;
-
-        NSLog(@"UIView %f, %f", pingeborgCalloutView.frame.size.width, pingeborgCalloutView.frame.size.height);
-        NSLog(@"contentView %f, %f", calloutView.contentView.frame.size.width, calloutView.contentView.frame.size.height);
-        
 
         // Apply the MKAnnotationView's desired calloutOffset (from the top-middle of the view)
         calloutView.calloutOffset = annotationView.calloutOffset;
@@ -291,7 +283,6 @@
         if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1)
             calloutView.constrainedInsets = UIEdgeInsetsMake(self.topLayoutGuide.length, 0, self.bottomLayoutGuide.length, 0);
         
-        // This does all the magic.
         [calloutView presentCalloutFromRect:annotationView.bounds inView:annotationView constrainedToView:self.view animated:YES];
     }
 }
@@ -336,7 +327,7 @@
     MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:pingeborgCalloutView.coordinate addressDictionary:nil];
     
     MKMapItem *mapItem = [[MKMapItem alloc] initWithPlacemark:placemark];
-    mapItem.name = pingeborgCalloutView.title.text;
+    mapItem.name = pingeborgCalloutView.nameOfSpot;
     
     NSDictionary *launchOptions = @{MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving};
     [mapItem openInMapsWithLaunchOptions:launchOptions];
