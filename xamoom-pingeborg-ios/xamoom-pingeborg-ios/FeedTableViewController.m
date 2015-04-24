@@ -10,11 +10,11 @@
 
 
 static int const pageSize = 7;
-static NSString *cellIdentifier = @"FeedItemCell";
 
 @interface FeedTableViewController ()
 
 @property NSMutableArray *itemsToDisplay;
+@property NSMutableDictionary *imagesToDispay;
 @property NSString *contentListCursor;
 @property bool hasMore;
 @property bool isApiCallingBlocked;
@@ -24,6 +24,7 @@ static NSString *cellIdentifier = @"FeedItemCell";
 @implementation FeedTableViewController
 
 @synthesize itemsToDisplay;
+@synthesize imagesToDispay;
 
 UIButton *dropDownButton;
 
@@ -70,6 +71,8 @@ UIButton *dropDownButton;
                                                object:nil];
     
     itemsToDisplay = [[NSMutableArray alloc] init];
+    imagesToDispay = [[NSMutableDictionary alloc] init];
+    
     [[XMMEnduserApi sharedInstance] setDelegate:self];
     [[XMMEnduserApi sharedInstance] getContentListFromApi:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:pageSize withCursor:@"null"];
     
@@ -111,37 +114,15 @@ UIButton *dropDownButton;
         self.hasMore = NO;
     
     for (XMMResponseContent *contentItem in result.items) {
-        FeedItemCell *cell;
-        
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FeedItemCell" owner:self options:nil];
-        cell = [nib objectAtIndex:0];
-        
-        cell.contentId = contentItem.contentId;
-        
-        //styling the label
-        NSMutableParagraphStyle *style =  [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-        style.alignment = NSTextAlignmentJustified;
-        style.firstLineHeadIndent = 10.0f;
-        style.headIndent = 10.0f;
-        style.tailIndent = -10.0f;
-        style.lineBreakMode = NSLineBreakByTruncatingTail;
-        NSAttributedString *attrText = [[NSAttributedString alloc] initWithString:contentItem.title
-                                                                       attributes:@{ NSParagraphStyleAttributeName : style}];
-        //set the title
-        cell.feedItemTitle.attributedText = attrText;
-        cell.feedItemTitle.text = contentItem.title;
-        
         if(contentItem.imagePublicUrl != nil) {
             [self downloadImageWithURL:contentItem.imagePublicUrl completionBlock:^(BOOL succeeded, UIImage *image) {
                 if (succeeded) {
-                    float imageRatio = image.size.width/image.size.height;
-                    [cell.imageHeightConstraint setConstant:(cell.frame.size.width / imageRatio)];
-                    [cell.feedItemImage setImage:image];
+                    [imagesToDispay setValue:image forKey:contentItem.contentId];
                     [self.tableView reloadData];
                 }
             }];
         }
-        [itemsToDisplay addObject:cell];
+        [itemsToDisplay addObject:contentItem];
     }
     
     self.isApiCallingBlocked = NO;
@@ -163,32 +144,6 @@ UIButton *dropDownButton;
                                    completionBlock(NO,nil);
                                }
                            }];
-}
-
-#pragma mark - NavbarDropdown Delegation
--(void)didChangeSystem {
-    NSInteger location = [[NSUserDefaults standardUserDefaults] integerForKey:@"location"];
-    
-    if ([self.parentViewController.navigationItem.titleView.subviews[0] isKindOfClass:[UIButton class]]) {
-        UIButton *button = self.parentViewController.navigationItem.titleView.subviews[0];
-        
-        switch (location) {
-            case 0:
-                [button setTitle:@"pingeborg Klagenfurt" forState:UIControlStateNormal];
-                break;
-            case 1:
-                [button setTitle:@"pingeborg Salzburg" forState:UIControlStateNormal];
-                break;
-            case 2:
-                [button setTitle:@"pingeborg Villach" forState:UIControlStateNormal];
-                break;
-            case 3:
-                [button setTitle:@"pingeborg Vorarlberg" forState:UIControlStateNormal];
-                break;
-            default:
-                break;
-        }
-    }
 }
 
 #pragma mark - Table view data source
@@ -213,8 +168,7 @@ UIButton *dropDownButton;
             [[XMMEnduserApi sharedInstance] getContentListFromApi:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:pageSize withCursor:self.contentListCursor];
         }
     }
-    
-    FeedItemCell *oldCell = [itemsToDisplay objectAtIndex:indexPath.row];
+    XMMResponseContent *contentItem = [itemsToDisplay objectAtIndex:indexPath.row];
     
     static NSString *simpleTableIdentifier = @"FeedItemCell";
     
@@ -224,7 +178,8 @@ UIButton *dropDownButton;
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FeedItemCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    
+    cell.feedItemImage.image = [UIImage imageNamed:@"placeholder"];
+
     //styling the label
     NSMutableParagraphStyle *style =  [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
     style.alignment = NSTextAlignmentJustified;
@@ -232,26 +187,21 @@ UIButton *dropDownButton;
     style.headIndent = 10.0f;
     style.tailIndent = -10.0f;
     style.lineBreakMode = NSLineBreakByTruncatingTail;
-    NSAttributedString *attrText = [[NSAttributedString alloc] initWithString:oldCell.feedItemTitle.text
+    NSAttributedString *attrText = [[NSAttributedString alloc] initWithString:contentItem.title
                                                                    attributes:@{ NSParagraphStyleAttributeName : style}];
     //set the title
     cell.feedItemTitle.attributedText = attrText;
-    cell.feedItemImage.image = oldCell.feedItemImage.image;
     
-    if (oldCell.feedItemImage.image) {
-        float imageRatio = oldCell.feedItemImage.image.size.width / oldCell.feedItemImage.image.size.height;
-
+    if ([imagesToDispay objectForKey:contentItem.contentId]){
+        UIImage *image = [imagesToDispay objectForKey:contentItem.contentId];
+        float imageRatio = image.size.width / image.size.height;
         [cell.imageHeightConstraint setConstant:(cell.frame.size.width / imageRatio)];
-        cell.feedItemImage.image = oldCell.feedItemImage.image;
+        cell.feedItemImage.image = image;
     } else {
-        [cell.imageHeightConstraint setConstant:50.0f];
+        //[cell.imageHeightConstraint setConstant:50.0f];
     }
-    //NSLog(@"cell height: %f", cell.frame.size.height);
-    //NSLog(@"imageView height: %f", cell.imageView.frame.size.height);
     
     return cell;
-    
-    //return [itemsToDisplay objectAtIndex:indexPath.row];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -261,10 +211,14 @@ UIButton *dropDownButton;
     [self.navigationController pushViewController:artistDetailViewController animated:YES];
 }
 
+#pragma mark Table view reload
+
 - (void)pullToRefresh {
     if(!self.isApiCallingBlocked) {
         itemsToDisplay = nil;
         itemsToDisplay = [[NSMutableArray alloc] init];
+        imagesToDispay = nil;
+        imagesToDispay = [[NSMutableDictionary alloc] init];
         [[XMMEnduserApi sharedInstance] setDelegate:self];
         [[XMMEnduserApi sharedInstance] getContentListFromApi:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:5 withCursor:@"null"];
         self.isApiCallingBlocked = YES;
@@ -334,6 +288,33 @@ UIButton *dropDownButton;
     UIViewController *vc = [segue destinationViewController];
 }
 */
+
+#pragma mark - NavbarDropdown Delegation
+
+-(void)didChangeSystem {
+    NSInteger location = [[NSUserDefaults standardUserDefaults] integerForKey:@"location"];
+    
+    if ([self.parentViewController.navigationItem.titleView.subviews[0] isKindOfClass:[UIButton class]]) {
+        UIButton *button = self.parentViewController.navigationItem.titleView.subviews[0];
+        
+        switch (location) {
+            case 0:
+                [button setTitle:@"pingeborg Klagenfurt" forState:UIControlStateNormal];
+                break;
+            case 1:
+                [button setTitle:@"pingeborg Salzburg" forState:UIControlStateNormal];
+                break;
+            case 2:
+                [button setTitle:@"pingeborg Villach" forState:UIControlStateNormal];
+                break;
+            case 3:
+                [button setTitle:@"pingeborg Vorarlberg" forState:UIControlStateNormal];
+                break;
+            default:
+                break;
+        }
+    }
+}
 
 - (void)pingeborgSystemChanged {    
     NSString *systemName;
