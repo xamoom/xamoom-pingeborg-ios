@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import <SVGKit.h>
+#import <SVGKSourceString.h>
 #import "XMMEnduserApi.h"
 #import "PingebAnnotation.h"
 #import "PingeborgAnnotationView.h"
@@ -16,8 +18,10 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet MKMapView *map;
+
 @property NSString *spotMapTags;
 @property UIImage *customMapMarker;
+@property SVGKImage *customSVGMapMarker;
 
 - (void)getSpotMap;
 
