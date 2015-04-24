@@ -142,16 +142,6 @@ UIButton *dropDownButton;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    //load more contents
-    if (indexPath.row == [self.itemsToDisplay count] - 1) {
-        if (self.hasMore && !self.isApiCallingBlocked) {
-            self.isApiCallingBlocked = YES;
-            [[XMMEnduserApi sharedInstance] setDelegate:self];
-            [[XMMEnduserApi sharedInstance] getContentListFromApi:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:pageSize withCursor:self.contentListCursor];
-        }
-    }
-    XMMResponseContent *contentItem = [itemsToDisplay objectAtIndex:indexPath.row];
-    
     static NSString *simpleTableIdentifier = @"FeedItemCell";
     
     FeedItemCell *cell = (FeedItemCell *)[self.tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
@@ -161,7 +151,19 @@ UIButton *dropDownButton;
         cell = [nib objectAtIndex:0];
     }
     cell.feedItemImage.image = [UIImage imageNamed:@"placeholder"];
-
+    
+    //load more contents
+    if (indexPath.row == [self.itemsToDisplay count] - 1) {
+        if (self.hasMore && !self.isApiCallingBlocked) {
+            self.isApiCallingBlocked = YES;
+            [[XMMEnduserApi sharedInstance] setDelegate:self];
+            [[XMMEnduserApi sharedInstance] getContentListFromApi:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:pageSize withCursor:self.contentListCursor];
+        }
+        return cell;
+    }
+    
+    XMMResponseContent *contentItem = [itemsToDisplay objectAtIndex:indexPath.row];
+    
     //styling the label
     NSMutableParagraphStyle *style =  [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
     style.alignment = NSTextAlignmentJustified;
