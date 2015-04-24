@@ -96,9 +96,8 @@ UIButton *dropDownButton;
         [userDefaults synchronize];
     }
     
-    [[XMMEnduserApi sharedInstance] setDelegate:self];
-    
     if (itemsToDisplay.count <= 0) {
+        [[XMMEnduserApi sharedInstance] setDelegate:self];
         [[XMMEnduserApi sharedInstance] getContentListFromApi:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:pageSize withCursor:@"null"];
     }
 }
