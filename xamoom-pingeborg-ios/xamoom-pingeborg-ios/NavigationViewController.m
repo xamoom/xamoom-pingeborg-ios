@@ -18,10 +18,11 @@
 
 @synthesize delegate;
 
+#pragma mark - View Lifecycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
     
     //setting up REMenu "navbarDropdown"
     REMenuItem *klagenfurt = [[REMenuItem alloc] initWithTitle:@"pingeborg Carinthia"
@@ -67,6 +68,7 @@
 }
 
 #pragma mark - navbarDropdown toggle
+
 - (void)toggleMenu
 {
     if (self.menu.isOpen)
@@ -74,7 +76,6 @@
     
     [self.menu showFromNavigationController:self];
 }
-
 
 - (void)changePingeborgSystemWithId:(NSInteger)selectedId {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];

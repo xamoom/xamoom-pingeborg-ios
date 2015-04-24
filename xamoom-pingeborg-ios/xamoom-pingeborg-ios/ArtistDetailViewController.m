@@ -18,6 +18,8 @@
 
 @synthesize contentBlocks;
 
+#pragma mark - View Lifecycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -38,19 +40,7 @@
     } else {
         [[XMMEnduserApi sharedInstance] getContentByIdFull:self.contentId includeStyle:@"False" includeMenu:@"False" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:@"False"];
     }
-    
-    //reload data notification
-    NSString *notificationName = @"reloadArtistDetails";
-    [[NSNotificationCenter defaultCenter]
-     addObserver:self
-     selector:@selector(reloadData)
-     name:notificationName
-     object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(pingeborgSystemChanged)
-                                                 name:@"PingeborgSystemChanged"
-                                               object:nil];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,27 +50,12 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    //[self.tableView reloadData];
 }
 
 # pragma mark - XMMEnduser Delegate
 - (void)didLoadDataById:(XMMResponseGetById *)result {
     [self displayContentTitleAndImage:result];
     [contentBlocks displayContentBlocksById:result byLocationIdentifier:nil];
-}
-
-- (void)displayContentTitleAndImage:(XMMResponseGetById *)result {
-    XMMResponseContentBlockType0 *contentBlock0 = [[XMMResponseContentBlockType0 alloc] init];
-    contentBlock0.contentBlockType = @"title";
-    contentBlock0.title = result.content.title;
-    contentBlock0.text = result.content.descriptionOfContent;
-    [contentBlocks displayContentBlock0:contentBlock0];
-    
-    if (result.content.imagePublicUrl != nil) {
-        XMMResponseContentBlockType3 *contentBlock3 = [[XMMResponseContentBlockType3 alloc] init];
-        contentBlock3.fileId = result.content.imagePublicUrl;
-        [contentBlocks displayContentBlock3:contentBlock3];
-    }
 }
 
 #pragma mark - Table view data source
@@ -109,6 +84,22 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     return [contentBlocks.itemsToDisplay objectAtIndex:indexPath.row];
+}
+
+#pragma mark - Custom Methods
+
+- (void)displayContentTitleAndImage:(XMMResponseGetById *)result {
+    XMMResponseContentBlockType0 *contentBlock0 = [[XMMResponseContentBlockType0 alloc] init];
+    contentBlock0.contentBlockType = @"title";
+    contentBlock0.title = result.content.title;
+    contentBlock0.text = result.content.descriptionOfContent;
+    [contentBlocks displayContentBlock0:contentBlock0];
+    
+    if (result.content.imagePublicUrl != nil) {
+        XMMResponseContentBlockType3 *contentBlock3 = [[XMMResponseContentBlockType3 alloc] init];
+        contentBlock3.fileId = result.content.imagePublicUrl;
+        [contentBlocks displayContentBlock3:contentBlock3];
+    }
 }
 
 /*
@@ -154,8 +145,5 @@
  UIViewController *vc = [segue destinationViewController];
  }
  */
-
-- (void)pingeborgSystemChanged {
-}
 
 @end

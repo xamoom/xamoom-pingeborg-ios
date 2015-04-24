@@ -129,23 +129,6 @@ UIButton *dropDownButton;
     [self reloadData];
 }
 
-- (void)downloadImageWithURL:(NSString *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock
-{
-    NSURL *realUrl = [[NSURL alloc]initWithString:url];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:realUrl];
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[NSOperationQueue mainQueue]
-                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                               if ( !error )
-                               {
-                                   UIImage *image = [[UIImage alloc] initWithData:data];
-                                   completionBlock(YES,image);
-                               } else{
-                                   completionBlock(NO,nil);
-                               }
-                           }];
-}
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -288,6 +271,26 @@ UIButton *dropDownButton;
     UIViewController *vc = [segue destinationViewController];
 }
 */
+
+#pragma mark - Image Methods
+
+- (void)downloadImageWithURL:(NSString *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock
+{
+    NSURL *realUrl = [[NSURL alloc]initWithString:url];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:realUrl];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               if ( !error )
+                               {
+                                   UIImage *image = [[UIImage alloc] initWithData:data];
+                                   completionBlock(YES,image);
+                               } else{
+                                   completionBlock(NO,nil);
+                               }
+                           }];
+}
+
 
 #pragma mark - NavbarDropdown Delegation
 

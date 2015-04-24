@@ -71,6 +71,8 @@
     return [contentBlocks.itemsToDisplay objectAtIndex:indexPath.row];
 }
 
+#pragma mark - Custom Methods
+
 - (void)displayContentTitleAndImage {
     XMMResponseContentBlockType0 *contentBlock0 = [[XMMResponseContentBlockType0 alloc] init];
     contentBlock0.contentBlockType = @"title";

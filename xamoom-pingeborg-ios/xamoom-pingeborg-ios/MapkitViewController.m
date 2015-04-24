@@ -15,6 +15,8 @@
 
 @implementation MapkitViewController
 
+#pragma mark - View Lifecycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -62,34 +64,8 @@
     self.parentViewController.navigationItem.rightBarButtonItem = nil;
 }
 
-#pragma mark imageutility
-- (UIImage *)imageWithImage:(UIImage *)image scaledToMaxWidth:(CGFloat)width maxHeight:(CGFloat)height {
-    CGFloat oldWidth = image.size.width;
-    CGFloat oldHeight = image.size.height;
-    
-    CGFloat scaleFactor = (oldWidth > oldHeight) ? width / oldWidth : height / oldHeight;
-    
-    CGFloat newHeight = oldHeight * scaleFactor;
-    CGFloat newWidth = oldWidth * scaleFactor;
-    CGSize newSize = CGSizeMake(newWidth, newHeight);
-    
-    return [self imageWithImage:image scaledToSize:newSize];
-}
-
-- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)size {
-    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
-        UIGraphicsBeginImageContextWithOptions(size, NO, [[UIScreen mainScreen] scale]);
-    } else {
-        UIGraphicsBeginImageContext(size);
-    }
-    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return newImage;
-}
-
 #pragma mark - XMMEnduser Delegate
+
 - (void)didLoadDataBySpotMap:(XMMResponseGetSpotMap *)result {
     if (result.style.customMarker != nil) {
         NSString *base64String = result.style.customMarker;
@@ -130,7 +106,7 @@
     }
 }
 
-#pragma mark MKMapView delegate methods
+#pragma mark - MKMapView delegate methods
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
     //do not touch userLocation
@@ -175,23 +151,6 @@
     }
     
     return nil;
-}
-
-- (void)downloadImageWithURL:(NSString *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock
-{
-    NSURL *realUrl = [[NSURL alloc]initWithString:url];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:realUrl];
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[NSOperationQueue mainQueue]
-                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                               if ( !error )
-                               {
-                                   UIImage *image = [[UIImage alloc] initWithData:data];
-                                   completionBlock(YES,image);
-                               } else{
-                                   completionBlock(NO,nil);
-                               }
-                           }];
 }
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)annotationView {
@@ -346,6 +305,7 @@
     return kSMCalloutViewRepositionDelayForUIScrollView;
 }
 
+#pragma mark User Interaction
 
 - (void)mapNavigationTapped {
     PingeborgCalloutView *pingeborgCalloutView = (PingeborgCalloutView* )self.mapKitWithSMCalloutView.calloutView.contentView;
@@ -357,6 +317,58 @@
     
     NSDictionary *launchOptions = @{MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving};
     [mapItem openInMapsWithLaunchOptions:launchOptions];
+}
+
+#pragma mark - Image Methods
+
+- (UIImage *)imageWithImage:(UIImage *)image scaledToMaxWidth:(CGFloat)width maxHeight:(CGFloat)height {
+    CGFloat oldWidth = image.size.width;
+    CGFloat oldHeight = image.size.height;
+    
+    CGFloat scaleFactor = (oldWidth > oldHeight) ? width / oldWidth : height / oldHeight;
+    
+    CGFloat newHeight = oldHeight * scaleFactor;
+    CGFloat newWidth = oldWidth * scaleFactor;
+    CGSize newSize = CGSizeMake(newWidth, newHeight);
+    
+    return [self imageWithImage:image scaledToSize:newSize];
+}
+
+- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)size {
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
+        UIGraphicsBeginImageContextWithOptions(size, NO, [[UIScreen mainScreen] scale]);
+    } else {
+        UIGraphicsBeginImageContext(size);
+    }
+    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
+}
+
+
+- (void)downloadImageWithURL:(NSString *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock
+{
+    NSURL *realUrl = [[NSURL alloc]initWithString:url];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:realUrl];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               if ( !error )
+                               {
+                                   UIImage *image = [[UIImage alloc] initWithData:data];
+                                   completionBlock(YES,image);
+                               } else{
+                                   completionBlock(NO,nil);
+                               }
+                           }];
+}
+
+#pragma mark - NavbarDropdown Delegation
+
+- (void)pingeborgSystemChanged {
+    NSLog(@"pingeborgSystemChanged");
 }
 
 @end
@@ -394,10 +406,6 @@
     if (calloutMaybe) return calloutMaybe;
     
     return [super hitTest:point withEvent:event];
-}
-
-- (void)pingeborgSystemChanged {
-    NSLog(@"pingeborgSystemChanged");
 }
 
 @end

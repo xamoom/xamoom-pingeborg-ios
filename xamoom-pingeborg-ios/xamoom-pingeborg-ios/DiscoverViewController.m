@@ -97,23 +97,6 @@ static const NSInteger pageSize = 7;
     [self.tableView reloadData];
 }
 
-- (void)downloadImageWithURL:(NSString *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock
-{
-    NSURL *realUrl = [[NSURL alloc]initWithString:url];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:realUrl];
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[NSOperationQueue mainQueue]
-                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                               if ( !error )
-                               {
-                                   UIImage *image = [[UIImage alloc] initWithData:data];
-                                   completionBlock(YES,image);
-                               } else{
-                                   completionBlock(NO,nil);
-                               }
-                           }];
-}
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -176,6 +159,23 @@ static const NSInteger pageSize = 7;
     
     // Return the new grayscale image
     return newImage;
+}
+
+- (void)downloadImageWithURL:(NSString *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock
+{
+    NSURL *realUrl = [[NSURL alloc]initWithString:url];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:realUrl];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               if ( !error )
+                               {
+                                   UIImage *image = [[UIImage alloc] initWithData:data];
+                                   completionBlock(YES,image);
+                               } else{
+                                   completionBlock(NO,nil);
+                               }
+                           }];
 }
 
 /*
