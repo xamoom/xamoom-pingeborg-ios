@@ -19,19 +19,20 @@
 XMMResponseGetByLocationIdentifier *result;
 BOOL isFirstTime;
 
+#pragma mark - View Lifecycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     isFirstTime = YES;
     
     for (UITabBarItem *item in self.tabBar.items) {
         [item setImageInsets:UIEdgeInsetsMake(4,0,-4,0)];
     }
     
+    //hide original navbar scan-qr-button
     [self.tabBar.subviews[3] setHidden:YES];
     
-    
-    /*
+    /*//navbar Dropdown Code
     UIImage *buttonImage = [UIImage imageNamed:@"QR"];
     UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = CGRectMake(0.0, 0.0, buttonImage.size.width, buttonImage.size.height);
@@ -52,12 +53,13 @@ BOOL isFirstTime;
     
      */
     
+    //creating custom scan-qr-button
     UIButton *middleButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [middleButton addTarget:self action:@selector(tappedMiddleButton:) forControlEvents:UIControlEventTouchUpInside];
     
-    UIImage *buttonImage = [UIImage imageNamed:@"QR"];
+    UIImage *buttonImage = [[UIImage imageNamed:@"QR"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [middleButton setImage:buttonImage forState:UIControlStateNormal];
-    [middleButton setTintColor:[UIColor whiteColor]];
+    middleButton.tintColor = [UIColor blueColor];
     
     CGRect frame;
     frame.size.height = 49;
@@ -69,12 +71,6 @@ BOOL isFirstTime;
     [self.tabBar addSubview:middleButton];
 }
 
--(void)tappedMiddleButton:(id)sender {
-    [[XMMEnduserApi sharedInstance] setDelegate:self];
-    [[XMMEnduserApi sharedInstance] setQrCodeViewControllerCancelButtonTitle:@"Abbrechen"];
-    [[XMMEnduserApi sharedInstance] startQRCodeReader:self withAPIRequest:YES withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -82,6 +78,14 @@ BOOL isFirstTime;
 
 -(void)viewDidAppear:(BOOL)animated {
     isFirstTime = YES;
+}
+
+#pragma mark - User Interaction
+
+-(void)tappedMiddleButton:(id)sender {
+    [[XMMEnduserApi sharedInstance] setDelegate:self];
+    [[XMMEnduserApi sharedInstance] setQrCodeViewControllerCancelButtonTitle:@"Abbrechen"];
+    [[XMMEnduserApi sharedInstance] startQRCodeReader:self withAPIRequest:YES withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
 }
 
 #pragma mark - QRCodeReader Delegate Methods
