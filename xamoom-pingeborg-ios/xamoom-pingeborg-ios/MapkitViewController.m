@@ -61,7 +61,8 @@
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
-    self.parentViewController.navigationItem.rightBarButtonItem = nil;
+  [super viewWillDisappear:animated];
+  self.parentViewController.navigationItem.rightBarButtonItem = nil;
 }
 
 #pragma mark - XMMEnduser Delegate

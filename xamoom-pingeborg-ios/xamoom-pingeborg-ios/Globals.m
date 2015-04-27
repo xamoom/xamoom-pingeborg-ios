@@ -13,79 +13,97 @@ static Globals *globals;
 @implementation Globals
 
 @synthesize globalSystemId;
+@synthesize aboutPageId;
 
 +(Globals*)sharedObject {
-    if(!globals)
-    {
-        globals = [[Globals alloc] init];
-        globals.globalSystemId = [self getSystemIdFromInteger:[globals getSavedId]];
-    }
-    return globals;
+  if(!globals)
+  {
+    globals = [[Globals alloc] init];
+  }
+  globals.globalSystemId = [self systemIdFromInteger:[globals savedSystemId]];
+  
+  //IF DEV
+  if (globals.isDev) {
+    globals.aboutPageId = @"a5d1ad92a1fa4f6287d37664b39483c2";
+    globals.globalSystemId = @"6588702901927936";
+  }
+  
+  return globals;
 }
 
-- (NSInteger)getSavedId {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    return [userDefaults integerForKey:@"pingeborgSystem"];
+- (NSInteger)savedSystemId {
+  NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+  return [userDefaults integerForKey:@"pingeborgSystem"];
 }
 
-+ (NSString*)getSystemIdFromInteger:(NSInteger)systemId {
-    switch (systemId) {
-        case 0: {
-            return @"6588702901927936";
-            break;
-        }
-        case 1: {
-            return @"Salzburg";
-            break;
-        }
-        case 2: {
-            return @"Vorarlberg";
-            break;
-        }
-        default:
-            return @"6588702901927936";
-            break;
++ (NSString*)systemIdFromInteger:(NSInteger)systemId {
+  switch (systemId) {
+    case 0: {
+      globals.aboutPageId = @"";
+      return @"Carinthia";
+      break;
     }
+    case 1: {
+      globals.aboutPageId = @"";
+      return @"Salzburg";
+      break;
+    }
+    case 2: {
+      globals.aboutPageId = @"";
+      return @"Vorarlberg";
+      break;
+    }
+    default:
+      globals.aboutPageId = @"";
+      return @"Carinthia";
+      break;
+  }
 }
+
 
 + (void)addDiscoveredArtist:(NSString *)contentId {
-    NSString *savedArtists;
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    
-    if ([userDefaults stringForKey:@"savedArtists"]) {
-        savedArtists = [userDefaults stringForKey:@"savedArtists"];
-        if ([savedArtists containsString:contentId]) {
-            return;
-        }
-        savedArtists = [NSString stringWithFormat:@"%@,%@", savedArtists, contentId];
+  NSString *savedArtists;
+  NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+  
+  if ([userDefaults stringForKey:@"savedArtists"]) {
+    savedArtists = [userDefaults stringForKey:@"savedArtists"];
+    if ([savedArtists containsString:contentId]) {
+      return;
     }
-    else {
-        savedArtists = contentId;
-    }
-    
-    [userDefaults setObject:savedArtists forKey:@"savedArtists"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    savedArtists = [NSString stringWithFormat:@"%@,%@", savedArtists, contentId];
+  }
+  else {
+    savedArtists = contentId;
+  }
+  
+  [userDefaults setObject:savedArtists forKey:@"savedArtists"];
+  [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 + (NSString *)savedArtits {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    
-    if ( [userDefaults stringForKey:@"savedArtists"] ) {
-        return [userDefaults stringForKey:@"savedArtists"];
-    }
-
-    return nil;
+  NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+  
+  if ( [userDefaults stringForKey:@"savedArtists"] ) {
+    return [userDefaults stringForKey:@"savedArtists"];
+  }
+  
+  return nil;
 }
 
 + (BOOL)isFirstStart {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    
-    if ([userDefaults boolForKey:@"isNotFirstStart"]) {
-        return NO;
-    } else {
-        [userDefaults setBool:YES forKey:@"isNotFirstStart"];
-        return YES;
-    }
+  NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+  
+  if ([userDefaults boolForKey:@"isNotFirstStart"]) {
+    return NO;
+  } else {
+    [userDefaults setBool:YES forKey:@"isNotFirstStart"];
+    return YES;
+  }
+}
+
+//IF DEV
+- (void)developmentMode {
+  globals.isDev = YES;
 }
 
 @end

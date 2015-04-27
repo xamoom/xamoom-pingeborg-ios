@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "XMMEnduserApi.h"
+#import "XMMContentBlocks.h"
 #import "Globals.h"
-#import "FeedItemCell.h"
 #import "ArtistDetailViewController.h"
+#import "FeedItemCell.h"
 
-@interface DiscoverViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, XMMEnderuserApiDelegate>
+@interface AboutViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, XMMEnderuserApiDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 

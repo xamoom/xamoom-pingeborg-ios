@@ -108,7 +108,7 @@
 		88CE0D0D1AAF40B30014EE77 /* RSSItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CE0D0C1AAF40B30014EE77 /* RSSItemViewController.m */; };
 		88D401651ABC053A006E865D /* PingeborgCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D401641ABC053A006E865D /* PingeborgCalloutView.m */; };
 		88D8F09E1ABACC6200ACFBE4 /* RSSFeedItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D8F09D1ABACC6200ACFBE4 /* RSSFeedItemView.m */; };
-		88D8F0A11ABACD2400ACFBE4 /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D8F0A01ABACD2400ACFBE4 /* DiscoverViewController.m */; };
+		88D8F0A11ABACD2400ACFBE4 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D8F0A01ABACD2400ACFBE4 /* AboutViewController.m */; };
 		88DEE9DB1ADE43730069DC32 /* soundcloud.js in Resources */ = {isa = PBXBuildFile; fileRef = 88DEE9DA1ADE43730069DC32 /* soundcloud.js */; };
 		88DEE9E01ADE79830069DC32 /* DownloadBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DEE9DE1ADE79830069DC32 /* DownloadBlockTableViewCell.m */; };
 		88DEE9E11ADE79830069DC32 /* DownloadBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88DEE9DF1ADE79830069DC32 /* DownloadBlockTableViewCell.xib */; };
@@ -305,8 +305,8 @@
 		88D401641ABC053A006E865D /* PingeborgCalloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PingeborgCalloutView.m; sourceTree = "<group>"; };
 		88D8F09C1ABACC6200ACFBE4 /* RSSFeedItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSFeedItemView.h; sourceTree = "<group>"; };
 		88D8F09D1ABACC6200ACFBE4 /* RSSFeedItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSFeedItemView.m; sourceTree = "<group>"; };
-		88D8F09F1ABACD2400ACFBE4 /* DiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverViewController.h; sourceTree = "<group>"; };
-		88D8F0A01ABACD2400ACFBE4 /* DiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverViewController.m; sourceTree = "<group>"; };
+		88D8F09F1ABACD2400ACFBE4 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		88D8F0A01ABACD2400ACFBE4 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		88DEE9DA1ADE43730069DC32 /* soundcloud.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = soundcloud.js; sourceTree = "<group>"; };
 		88DEE9DD1ADE79830069DC32 /* DownloadBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadBlockTableViewCell.h; sourceTree = "<group>"; };
 		88DEE9DE1ADE79830069DC32 /* DownloadBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadBlockTableViewCell.m; sourceTree = "<group>"; };
@@ -363,8 +363,8 @@
 				88CCAA341ACA8A54004E631F /* Scans */,
 				88CCAA321ACA89D6004E631F /* Map */,
 				88CCAA351ACA8A69004E631F /* Navigation */,
-				88D8F09F1ABACD2400ACFBE4 /* DiscoverViewController.h */,
-				88D8F0A01ABACD2400ACFBE4 /* DiscoverViewController.m */,
+				88D8F09F1ABACD2400ACFBE4 /* AboutViewController.h */,
+				88D8F0A01ABACD2400ACFBE4 /* AboutViewController.m */,
 				88CE0D0B1AAF40B30014EE77 /* RSSItemViewController.h */,
 				88CE0D0C1AAF40B30014EE77 /* RSSItemViewController.m */,
 				88CE0CFC1AAEF7740014EE77 /* RSSFeedItemView.xib */,
@@ -1003,7 +1003,7 @@
 				8806A76F1ACE7651000E8552 /* XMMResponseContentList.m in Sources */,
 				88BA026B1AA85C060091A43C /* _XMMCoreDataContentBlocks.m in Sources */,
 				88BA02721AA85C060091A43C /* XMMCoreDataContent.m in Sources */,
-				88D8F0A11ABACD2400ACFBE4 /* DiscoverViewController.m in Sources */,
+				88D8F0A11ABACD2400ACFBE4 /* AboutViewController.m in Sources */,
 				88BA02851AA85C060091A43C /* XMMResponseGetById.m in Sources */,
 				88D401651ABC053A006E865D /* PingeborgCalloutView.m in Sources */,
 				88BA02A61AA85C430091A43C /* DetailTableViewController.m in Sources */,

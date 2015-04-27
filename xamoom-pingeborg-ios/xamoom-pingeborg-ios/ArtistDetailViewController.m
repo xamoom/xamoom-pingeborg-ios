@@ -21,85 +21,85 @@
 #pragma mark - View Lifecycle
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    //tableview settings
-    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 150.0;
-    
-    contentBlocks = [[XMMContentBlocks alloc] initWithTableView:self.tableView];
-    NSString* savedArtists = [Globals savedArtits];
-
-    // Do any additional setup after loading the view.
-    [[XMMEnduserApi sharedInstance] setDelegate:self];
-
-    if ([savedArtists containsString:self.contentId]) {
-        [XMMEnduserApi sharedInstance].delegate = self;
-        [[XMMEnduserApi sharedInstance] getContentByIdFull:self.contentId includeStyle:@"False" includeMenu:@"False" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:@"True"];
-    } else {
-        [[XMMEnduserApi sharedInstance] getContentByIdFull:self.contentId includeStyle:@"False" includeMenu:@"False" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:@"False"];
-    }
-
+  [super viewDidLoad];
+  
+  //tableview settings
+  [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+  self.tableView.rowHeight = UITableViewAutomaticDimension;
+  self.tableView.estimatedRowHeight = 150.0;
+  
+  contentBlocks = [[XMMContentBlocks alloc] initWithTableView:self.tableView];
+  NSString* savedArtists = [Globals savedArtits];
+  
+  // Do any additional setup after loading the view.
+  [[XMMEnduserApi sharedInstance] setDelegate:self];
+  
+  if ([savedArtists containsString:self.contentId]) {
+    [XMMEnduserApi sharedInstance].delegate = self;
+    [[XMMEnduserApi sharedInstance] getContentByIdFull:self.contentId includeStyle:@"False" includeMenu:@"False" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:@"True"];
+  } else {
+    [[XMMEnduserApi sharedInstance] getContentByIdFull:self.contentId includeStyle:@"False" includeMenu:@"False" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:@"False"];
+  }
+  
 }
 
 - (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+  [super didReceiveMemoryWarning];
+  // Dispose of any resources that can be recreated.
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+  [super viewDidAppear:animated];
 }
 
 # pragma mark - XMMEnduser Delegate
 - (void)didLoadDataById:(XMMResponseGetById *)result {
-    [self displayContentTitleAndImage:result];
-    [contentBlocks displayContentBlocksById:result byLocationIdentifier:nil];
+  [self displayContentTitleAndImage:result];
+  [contentBlocks displayContentBlocksById:result byLocationIdentifier:nil];
 }
 
 #pragma mark - Table view data source
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    if ([[contentBlocks.itemsToDisplay objectAtIndex:indexPath.row] isKindOfClass:[ContentBlockTableViewCell class]]) {
-        ContentBlockTableViewCell *cell = [contentBlocks.itemsToDisplay objectAtIndex:indexPath.row];
+  [tableView deselectRowAtIndexPath:indexPath animated:NO];
+  if ([[contentBlocks.itemsToDisplay objectAtIndex:indexPath.row] isKindOfClass:[ContentBlockTableViewCell class]]) {
+    ContentBlockTableViewCell *cell = [contentBlocks.itemsToDisplay objectAtIndex:indexPath.row];
     
-        ArtistDetailViewController *vc = [[ArtistDetailViewController alloc] init];
-        [vc setContentId:cell.contentId];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
+    ArtistDetailViewController *vc = [[ArtistDetailViewController alloc] init];
+    [vc setContentId:cell.contentId];
+    [self.navigationController pushViewController:vc animated:YES];
+  }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
-    return 1;
+  // Return the number of sections.
+  return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
-    return [contentBlocks.itemsToDisplay count];
+  // Return the number of rows in the section.
+  return [contentBlocks.itemsToDisplay count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [contentBlocks.itemsToDisplay objectAtIndex:indexPath.row];
+  return [contentBlocks.itemsToDisplay objectAtIndex:indexPath.row];
 }
 
 #pragma mark - Custom Methods
 
 - (void)displayContentTitleAndImage:(XMMResponseGetById *)result {
-    XMMResponseContentBlockType0 *contentBlock0 = [[XMMResponseContentBlockType0 alloc] init];
-    contentBlock0.contentBlockType = @"title";
-    contentBlock0.title = result.content.title;
-    contentBlock0.text = result.content.descriptionOfContent;
-    [contentBlocks displayContentBlock0:contentBlock0];
-    
-    if (result.content.imagePublicUrl != nil) {
-        XMMResponseContentBlockType3 *contentBlock3 = [[XMMResponseContentBlockType3 alloc] init];
-        contentBlock3.fileId = result.content.imagePublicUrl;
-        [contentBlocks displayContentBlock3:contentBlock3];
-    }
+  XMMResponseContentBlockType0 *contentBlock0 = [[XMMResponseContentBlockType0 alloc] init];
+  contentBlock0.contentBlockType = @"title";
+  contentBlock0.title = result.content.title;
+  contentBlock0.text = result.content.descriptionOfContent;
+  [contentBlocks displayContentBlock0:contentBlock0];
+  
+  if (result.content.imagePublicUrl != nil) {
+    XMMResponseContentBlockType3 *contentBlock3 = [[XMMResponseContentBlockType3 alloc] init];
+    contentBlock3.fileId = result.content.imagePublicUrl;
+    [contentBlocks displayContentBlock3:contentBlock3];
+  }
 }
 
 /*

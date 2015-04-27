@@ -171,6 +171,11 @@ UIButton *dropDownButton;
     return cell;
   }
   
+  //save for out of range
+  if (indexPath.row >= [itemsToDisplay count]) {
+    return cell;
+  }
+  
   XMMResponseContent *contentItem = [itemsToDisplay objectAtIndex:indexPath.row];
   
   //styling the label

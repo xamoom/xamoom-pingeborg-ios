@@ -11,15 +11,19 @@
 @interface Globals : NSObject
 
 @property (nonatomic) NSString *globalSystemId;
+@property (nonatomic) NSString *aboutPageId;
+@property BOOL isDev;
 
 + (Globals*)sharedObject;
 
-+ (NSString*)getSystemIdFromInteger:(NSInteger)systemId;
++ (NSString*)systemIdFromInteger:(NSInteger)systemId;
 
 + (void)addDiscoveredArtist:(NSString*)contentId;
 
 + (NSString*)savedArtits;
 
 + (BOOL)isFirstStart;
+
+- (void)developmentMode;
 
 @end

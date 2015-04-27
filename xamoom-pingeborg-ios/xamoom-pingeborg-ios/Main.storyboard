@@ -87,7 +87,7 @@
         <!--Discover Screen-->
         <scene sceneID="RRn-VI-kmy">
             <objects>
-                <viewController id="evs-Oh-Jun" userLabel="Discover Screen" customClass="DiscoverViewController" sceneMemberID="viewController">
+                <viewController id="evs-Oh-Jun" userLabel="Discover Screen" customClass="AboutViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ORa-fX-SH4"/>
                         <viewControllerLayoutGuide type="bottom" id="6rg-Jx-dpP"/>
