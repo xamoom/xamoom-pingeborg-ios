@@ -10,7 +10,7 @@
 
 @interface Globals : NSObject
 
-@property (nonatomic) NSString * globalSystemId;
+@property (nonatomic) NSString *globalSystemId;
 
 + (Globals*)sharedObject;
 
@@ -19,5 +19,7 @@
 + (void)addDiscoveredArtist:(NSString*)contentId;
 
 + (NSString*)savedArtits;
+
++ (BOOL)isFirstStart;
 
 @end

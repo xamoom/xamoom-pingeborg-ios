@@ -52,7 +52,6 @@
                                                               [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]]];
     }
 
-    
     for (XMMResponseGetSpotMapItem *item in result.items) {
         // Add an annotation
         PingebAnnotation *point = [[PingebAnnotation alloc] initWithName:item.displayName location:CLLocationCoordinate2DMake([item.lat doubleValue], [item.lon doubleValue])];

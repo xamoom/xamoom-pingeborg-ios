@@ -77,4 +77,15 @@ static Globals *globals;
     return nil;
 }
 
++ (BOOL)isFirstStart {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    if ([userDefaults boolForKey:@"isNotFirstStart"]) {
+        return NO;
+    } else {
+        [userDefaults setBool:YES forKey:@"isNotFirstStart"];
+        return YES;
+    }
+}
+
 @end
