@@ -10,7 +10,7 @@
 #import "XMMEnduserApi.h"
 #import "XMMContentBlocks.h"
 
-@interface ScanResultViewController : UIViewController
+@interface ScanResultViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, XMMContentBlocksDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 

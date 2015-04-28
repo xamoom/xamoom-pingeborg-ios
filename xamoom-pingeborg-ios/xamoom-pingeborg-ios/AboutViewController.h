@@ -13,7 +13,7 @@
 #import "ArtistDetailViewController.h"
 #import "FeedItemCell.h"
 
-@interface AboutViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, XMMEnderuserApiDelegate>
+@interface AboutViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, XMMEnderuserApiDelegate, XMMContentBlocksDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 

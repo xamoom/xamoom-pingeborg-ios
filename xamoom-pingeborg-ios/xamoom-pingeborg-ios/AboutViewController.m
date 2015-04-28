@@ -28,10 +28,10 @@
   self.tableView.rowHeight = UITableViewAutomaticDimension;
   self.tableView.estimatedRowHeight = 150.0;
   
-  contentBlocks = [[XMMContentBlocks alloc] initWithTableView:self.tableView];
+  contentBlocks = [[XMMContentBlocks alloc] init];
+  contentBlocks.delegate = self;
   
   [XMMEnduserApi sharedInstance].delegate = self;
-  //[[XMMEnduserApi sharedInstance] getContentListFromApi:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:pageSize withCursor:@"null"];
   [[XMMEnduserApi sharedInstance] getContentByIdFull:[Globals sharedObject].aboutPageId includeStyle:@"false" includeMenu:@"false" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:@"True"];
 }
 
@@ -41,6 +41,12 @@
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
   // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - XMMContentBlocks delegates
+
+- (void)reloadTableViewForContentBlocks {
+  [self.tableView reloadData];
 }
 
 #pragma mark - XMMEnduserApi delegates

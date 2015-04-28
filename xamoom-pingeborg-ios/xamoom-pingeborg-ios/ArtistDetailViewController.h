@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "XMMEnduserApi.h"
-#import "XMMContentBlocks.h"
 #import "Globals.h"
+#import "XMMContentBlocks.h"
+
+@class XMMContentBlocks;
 
 @interface ArtistDetailViewController : UITableViewController <XMMEnderuserApiDelegate>
 
 @property NSString *contentId;
+@property XMMContentBlocks *contentBlocks;
 
 @end

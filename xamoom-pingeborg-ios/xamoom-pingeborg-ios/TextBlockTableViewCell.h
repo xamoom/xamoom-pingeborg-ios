@@ -10,8 +10,9 @@
 
 @interface TextBlockTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UITextView *contentTextView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
+
+- (IBAction)increaseFontSize:(id)sender;
 
 @end

@@ -18,12 +18,26 @@
 #import "DownloadBlockTableViewCell.h"
 #import "SpotMapBlockTableViewCell.h"
 
+#pragma mark - XMMContentBlocksDelegate
+
+@protocol XMMContentBlocksDelegate <NSObject>
+
+@required
+
+- (void)reloadTableViewForContentBlocks;
+
+@end
+
+#pragma mark - XMMContentBlocks
+
 @interface XMMContentBlocks : NSObject
 
+@property (nonatomic, weak) id<XMMContentBlocksDelegate> delegate;
 @property NSMutableArray *itemsToDisplay;
-@property UITableView *tableView;
 
-- (id)initWithTableView:(UITableView*)tView;
+-(void)setFontSize:(int)fontSize;
+
+- (id)init;
 
 - (void)displayContentBlocksById:(XMMResponseGetById *)IdResult byLocationIdentifier:(XMMResponseGetByLocationIdentifier *)LocationIdentifierResult;
 

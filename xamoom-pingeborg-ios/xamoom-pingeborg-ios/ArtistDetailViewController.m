@@ -8,12 +8,6 @@
 
 #import "ArtistDetailViewController.h"
 
-@interface ArtistDetailViewController ()
-
-@property XMMContentBlocks *contentBlocks;
-
-@end
-
 @implementation ArtistDetailViewController
 
 @synthesize contentBlocks;
@@ -28,7 +22,8 @@
   self.tableView.rowHeight = UITableViewAutomaticDimension;
   self.tableView.estimatedRowHeight = 150.0;
   
-  contentBlocks = [[XMMContentBlocks alloc] initWithTableView:self.tableView];
+  contentBlocks = [[XMMContentBlocks alloc] init];
+  contentBlocks.delegate = self;
   NSString* savedArtists = [Globals savedArtits];
   
   // Do any additional setup after loading the view.
@@ -41,6 +36,17 @@
     [[XMMEnduserApi sharedInstance] getContentByIdFull:self.contentId includeStyle:@"False" includeMenu:@"False" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:@"False"];
   }
   
+  UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc] initWithTitle:@"+A"
+                                                                 style:UIBarButtonItemStylePlain
+                                                                target:self
+                                                                action:@selector(test)];
+  
+  self.navigationItem.rightBarButtonItem = buttonItem;
+}
+
+-(void)test {
+  [contentBlocks setFontSize:30];
+  [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,6 +56,12 @@
 
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
+}
+
+#pragma mark - XMMContentBlock Delegate
+
+- (void)reloadTableViewForContentBlocks {
+  [self.tableView reloadData];
 }
 
 # pragma mark - XMMEnduser Delegate
