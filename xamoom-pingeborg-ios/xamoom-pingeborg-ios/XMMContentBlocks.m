@@ -23,6 +23,15 @@ NSString *style;
     itemsToDisplay = [[NSMutableArray alloc] init];
     fontSize = NormalFontSize;
   }
+  
+  NSString *notificationName = @"reloadTableViewForContentBlocks";
+  
+  [[NSNotificationCenter defaultCenter]
+   addObserver:self
+   selector:@selector(reloadTableView)
+   name:notificationName
+   object:nil];
+  
   return self;
 }
 
@@ -112,6 +121,8 @@ NSString *style;
   
   [self reloadTableView];
 }
+
+#pragma mark - Display Content Blocks
 
 - (void)displayContentBlock0:(XMMResponseContentBlockType0 *)contentBlock {
   
