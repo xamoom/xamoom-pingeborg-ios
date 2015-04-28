@@ -43,6 +43,8 @@
   if (self.result.content.imagePublicUrl != nil) {
     [self downloadImageWithURL:self.result.content.imagePublicUrl completionBlock:^(BOOL succeeded, UIImage *image) {
       if (succeeded && image) {
+        self.contentImageView.contentMode = UIViewContentModeScaleAspectFill;
+        self.contentImageView.clipsToBounds = YES;
         [self.contentImageView setImage:image];
         NSString *notificationName = @"reloadTableViewForContentBlocks";
         [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil];

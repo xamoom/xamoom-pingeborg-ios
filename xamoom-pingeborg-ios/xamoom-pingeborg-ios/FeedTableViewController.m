@@ -180,9 +180,8 @@ UIButton *dropDownButton;
   //styling the label
   NSMutableParagraphStyle *style =  [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
   style.alignment = NSTextAlignmentJustified;
-  style.firstLineHeadIndent = 10.0f;
-  style.headIndent = 10.0f;
-  style.tailIndent = -10.0f;
+  style.firstLineHeadIndent = 4.0f;
+  style.tailIndent = -4.0f;
   style.lineBreakMode = NSLineBreakByTruncatingTail;
   NSAttributedString *attrText = [[NSAttributedString alloc] initWithString:contentItem.title
                                                                  attributes:@{ NSParagraphStyleAttributeName : style}];
