@@ -29,6 +29,41 @@
   
   contentBlocks = [[XMMContentBlocks alloc] init];
   contentBlocks.delegate = self;
+  
+  //dropdown menu
+  REMenuItem *NormalFontSizeItem = [[REMenuItem alloc] initWithTitle:@"Normal Font Size"
+                                                            subtitle:nil
+                                                               image:nil
+                                                    highlightedImage:nil
+                                                              action:^(REMenuItem *item) {
+                                                                [contentBlocks updateFontSizeOnTextTo:NormalFontSize];
+                                                              }];
+  
+  REMenuItem *BigFontSizeItem = [[REMenuItem alloc] initWithTitle:@"Big Font Size"
+                                                         subtitle:nil
+                                                            image:nil
+                                                 highlightedImage:nil
+                                                           action:^(REMenuItem *item) {
+                                                             [contentBlocks updateFontSizeOnTextTo:BigFontSize];
+                                                           }];
+  
+  REMenuItem *BiggerFontSizeItem = [[REMenuItem alloc] initWithTitle:@"Really Big Font Size"
+                                                            subtitle:nil
+                                                               image:nil
+                                                    highlightedImage:nil
+                                                              action:^(REMenuItem *item) {
+                                                                [contentBlocks updateFontSizeOnTextTo:BiggerFontSize];
+                                                              }];
+  
+  self.fontSizeDropdownMenu = [[REMenu alloc] initWithItems:@[NormalFontSizeItem, BigFontSizeItem, BiggerFontSizeItem]];
+  
+  UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"textsize"]
+                                                                 style:UIBarButtonItemStylePlain
+                                                                target:self
+                                                                action:@selector(toggleFontSizeDropdownMenu)];
+  
+  self.navigationItem.rightBarButtonItem = buttonItem;
+
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -41,8 +76,15 @@
 
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
-  contentBlocks = nil;
-  result = nil;
+}
+
+#pragma mark - NavbarDropdown
+
+-(void)toggleFontSizeDropdownMenu {
+  if (self.fontSizeDropdownMenu.isOpen)
+    return [self.fontSizeDropdownMenu close];
+  
+  [self.fontSizeDropdownMenu showFromNavigationController:self.navigationController];
 }
 
 #pragma mark - XMMContentBlocks delegates

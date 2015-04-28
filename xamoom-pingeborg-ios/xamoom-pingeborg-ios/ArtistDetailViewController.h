@@ -10,12 +10,16 @@
 #import "XMMEnduserApi.h"
 #import "Globals.h"
 #import "XMMContentBlocks.h"
+#import "REMenu.h"
 
 @class XMMContentBlocks;
+@protocol XMMContentBlocksDelegate;
 
-@interface ArtistDetailViewController : UITableViewController <XMMEnderuserApiDelegate>
+@interface ArtistDetailViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource, XMMEnderuserApiDelegate, XMMContentBlocksDelegate>
 
 @property NSString *contentId;
+@property XMMResponseGetById *savedResult;
 @property XMMContentBlocks *contentBlocks;
+@property REMenu *fontSizeDropdownMenu;
 
 @end

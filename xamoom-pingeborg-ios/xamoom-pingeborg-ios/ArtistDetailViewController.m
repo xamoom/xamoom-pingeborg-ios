@@ -11,6 +11,7 @@
 @implementation ArtistDetailViewController
 
 @synthesize contentBlocks;
+@synthesize savedResult;
 
 #pragma mark - View Lifecycle
 
@@ -36,26 +37,56 @@
     [[XMMEnduserApi sharedInstance] getContentByIdFull:self.contentId includeStyle:@"False" includeMenu:@"False" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:@"False"];
   }
   
-  UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc] initWithTitle:@"+A"
+  //dropdown menu
+  REMenuItem *NormalFontSizeItem = [[REMenuItem alloc] initWithTitle:@"Normal Font Size"
+                                                  subtitle:nil
+                                                     image:nil
+                                          highlightedImage:nil
+                                                    action:^(REMenuItem *item) {
+                                                      [contentBlocks updateFontSizeOnTextTo:NormalFontSize];
+                                                    }];
+  
+  REMenuItem *BigFontSizeItem = [[REMenuItem alloc] initWithTitle:@"Big Font Size"
+                                                     subtitle:nil
+                                                        image:nil
+                                             highlightedImage:nil
+                                                       action:^(REMenuItem *item) {
+                                                         [contentBlocks updateFontSizeOnTextTo:BigFontSize];
+                                                       }];
+  
+  REMenuItem *BiggerFontSizeItem = [[REMenuItem alloc] initWithTitle:@"Really Big Font Size"
+                                                      subtitle:nil
+                                                         image:nil
+                                              highlightedImage:nil
+                                                        action:^(REMenuItem *item) {
+                                                          [contentBlocks updateFontSizeOnTextTo:BiggerFontSize];
+                                                        }];
+  
+  self.fontSizeDropdownMenu = [[REMenu alloc] initWithItems:@[NormalFontSizeItem, BigFontSizeItem, BiggerFontSizeItem]];
+  
+  UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"textsize"]
                                                                  style:UIBarButtonItemStylePlain
                                                                 target:self
-                                                                action:@selector(test)];
+                                                                action:@selector(toggleFontSizeDropdownMenu)];
   
   self.navigationItem.rightBarButtonItem = buttonItem;
 }
 
--(void)test {
-  [contentBlocks setFontSize:30];
-  [self.tableView reloadData];
-}
-
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
-  // Dispose of any resources that can be recreated.
 }
 
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
+}
+
+#pragma mark - NavbarDropdown
+
+-(void)toggleFontSizeDropdownMenu {
+  if (self.fontSizeDropdownMenu.isOpen)
+    return [self.fontSizeDropdownMenu close];
+  
+  [self.fontSizeDropdownMenu showFromNavigationController:self.navigationController];
 }
 
 #pragma mark - XMMContentBlock Delegate
@@ -65,9 +96,10 @@
 }
 
 # pragma mark - XMMEnduser Delegate
+
 - (void)didLoadDataById:(XMMResponseGetById *)result {
-  [self displayContentTitleAndImage:result];
-  [contentBlocks displayContentBlocksById:result byLocationIdentifier:nil];
+  savedResult = result;
+  [self displayContentOnTableView:savedResult];
 }
 
 #pragma mark - Table view data source
@@ -99,6 +131,11 @@
 }
 
 #pragma mark - Custom Methods
+
+- (void)displayContentOnTableView:(XMMResponseGetById *)result {
+  [self displayContentTitleAndImage:result];
+  [contentBlocks displayContentBlocksById:result byLocationIdentifier:nil];
+}
 
 - (void)displayContentTitleAndImage:(XMMResponseGetById *)result {
   XMMResponseContentBlockType0 *contentBlock0 = [[XMMResponseContentBlockType0 alloc] init];

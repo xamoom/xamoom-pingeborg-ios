@@ -16,5 +16,6 @@
 
 @property (nonatomic, strong) XMMResponseGetByLocationIdentifier *result;
 @property XMMContentBlocks *contentBlocks;
+@property REMenu *fontSizeDropdownMenu;
 
 @end

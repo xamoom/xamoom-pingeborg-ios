@@ -8,7 +8,6 @@
 
 #import "FeedTableViewController.h"
 
-
 static int const pageSize = 7;
 
 @interface FeedTableViewController ()

@@ -13,6 +13,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 
-- (IBAction)increaseFontSize:(id)sender;
+@property NSString *titleText;
+@property NSString *contentText;
+@property NSString *contentBlockType;
 
 @end

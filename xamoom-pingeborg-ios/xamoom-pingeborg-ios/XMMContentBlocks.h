@@ -18,6 +18,15 @@
 #import "DownloadBlockTableViewCell.h"
 #import "SpotMapBlockTableViewCell.h"
 
+typedef NS_ENUM(NSInteger, TextFontSize)
+{
+  NormalFontSize = 17,
+  BigFontSize = 21,
+  BiggerFontSize = 25,
+};
+
+@class XMMContentBlocks;
+
 #pragma mark - XMMContentBlocksDelegate
 
 @protocol XMMContentBlocksDelegate <NSObject>
@@ -34,8 +43,7 @@
 
 @property (nonatomic, weak) id<XMMContentBlocksDelegate> delegate;
 @property NSMutableArray *itemsToDisplay;
-
--(void)setFontSize:(int)fontSize;
+@property int fontSize;
 
 - (id)init;
 
@@ -60,5 +68,7 @@
 - (void)displayContentBlock8:(XMMResponseContentBlockType8 *)contentBlock;
 
 - (void)displayContentBlock9:(XMMResponseContentBlockType9 *)contentBlock;
+
+- (void)updateFontSizeOnTextTo:(TextFontSize)newFontSize;
 
 @end

@@ -1,4 +1,4 @@
- //
+//
 //  XMMContentBlocks.m
 //  xamoom-pingeborg-ios
 //
@@ -8,10 +8,12 @@
 
 #import "XMMContentBlocks.h"
 
+
 @implementation XMMContentBlocks
 
 @synthesize delegate;
 @synthesize itemsToDisplay;
+@synthesize fontSize;
 
 NSString *style;
 
@@ -19,39 +21,9 @@ NSString *style;
   self = [super init];
   if(self) {
     itemsToDisplay = [[NSMutableArray alloc] init];
+    fontSize = NormalFontSize;
   }
   return self;
-}
-
--(void)setFontSize:(int)fontSize {
-  [self changeFontSize:fontSize];
-}
-
--(void)changeFontSize:(int)fontSize {
-  for (UITableViewCell *cell in itemsToDisplay) {
-    if (![cell isKindOfClass:[TextBlockTableViewCell class]])
-      return;
-    
-    TextBlockTableViewCell *textCell = (TextBlockTableViewCell*)cell;
-    NSMutableAttributedString *contentString = (NSMutableAttributedString*)textCell.contentLabel.attributedText;
-    
-    [contentString beginEditing];
-    
-    [contentString enumerateAttribute:NSFontAttributeName inRange:NSMakeRange(0, contentString.length) options:0 usingBlock:^(id value, NSRange range, BOOL *stop) {
-      
-      UIFont* font = value;
-      font = [font fontWithSize:fontSize];
-      
-      [contentString removeAttribute:NSFontAttributeName range:range];
-      [contentString addAttribute:NSFontAttributeName value:font range:range];
-    }];
-    
-    [contentString endEditing];
-    
-    textCell.contentLabel.attributedText = contentString;
-    
-    NSLog(@"Hellyeah: %@", textCell.contentLabel.attributedText);
-  }
 }
 
 # pragma mark - ContentBlock Methods
@@ -142,38 +114,47 @@ NSString *style;
 }
 
 - (void)displayContentBlock0:(XMMResponseContentBlockType0 *)contentBlock {
-  NSError *err = nil;
   
   TextBlockTableViewCell *cell = [[TextBlockTableViewCell alloc] init];
   NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"TextBlockTableViewCell" owner:self options:nil];
   cell = [nib objectAtIndex:0];
   
+  //save text for later use
+  cell.titleText = contentBlock.title;
+  cell.contentText = contentBlock.text;
+  cell.contentBlockType = contentBlock.contentBlockType;
+  
   //set title
   cell.titleLabel.text = contentBlock.title;
+  if ([contentBlock.contentBlockType isEqualToString:@"title"]) {
+    [cell.titleLabel setFont:[UIFont systemFontOfSize:fontSize+6]];
+  }
   
-  style = @"<style>html{font-family: 'HelveticaNeue-Light';font-size: 14px;} body{margin:0 !important;} p:last-child, p:last-of-type{margin:1px !important;}</style>";
+  cell.contentLabel.attributedText = [self attributedStringFromHTML:contentBlock.text];
+  
+  //add to array
+  [itemsToDisplay addObject: cell];
+}
+
+- (NSAttributedString*)attributedStringFromHTML:(NSString*)html {
+  NSError *err = nil;
+  
+  style = @"<style>html{font-family: 'HelveticaNeue-Light';font-size: ###fontsize###} body{margin:0 !important;} p:last-child, p:last-of-type{margin:1px !important;}</style>";
   
   //set content (html content transform to textview text)
-  contentBlock.text = [contentBlock.text stringByReplacingOccurrencesOfString:@"<br></p>" withString:@"</p>"];
-  contentBlock.text = [contentBlock.text stringByAppendingString:style];
+  style = [style stringByReplacingOccurrencesOfString:@"###fontsize###" withString:[NSString stringWithFormat:@"%d", fontSize]];
+  html = [html stringByReplacingOccurrencesOfString:@"<br></p>" withString:@"</p>"];
+  html = [html stringByAppendingString:style];
   
-  NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData: [contentBlock.text dataUsingEncoding:NSUTF8StringEncoding]
+  NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData: [html dataUsingEncoding:NSUTF8StringEncoding]
                                                                           options: @{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
                                                                                       NSCharacterEncodingDocumentAttribute: [NSNumber numberWithInt:NSUTF8StringEncoding]}
                                                                documentAttributes: nil
                                                                             error: &err];
-  cell.contentLabel.attributedText = attributedString;
-  
   if(err)
     NSLog(@"Unable to parse label text: %@", err);
   
-  
-  if ([contentBlock.contentBlockType isEqualToString:@"title"]) {
-    [cell.titleLabel setFont:[UIFont systemFontOfSize:20]];
-  }
-  
-  //add to array
-  [itemsToDisplay addObject: cell];
+  return attributedString;
 }
 
 - (void)displayContentBlock1:(XMMResponseContentBlockType1 *)contentBlock {
@@ -360,6 +341,28 @@ NSString *style;
 }
 
 #pragma mark - Custom Methods
+
+- (void)updateFontSizeOnTextTo:(TextFontSize)newFontSize {
+  if (fontSize == newFontSize) {
+    return;
+  }
+  
+  fontSize = newFontSize;
+  
+  for (XMMResponseContentBlock *contentItem in itemsToDisplay) {
+    if ([contentItem isKindOfClass:[TextBlockTableViewCell class]]) {
+      TextBlockTableViewCell* textBlock = (TextBlockTableViewCell*)contentItem;
+      textBlock.contentLabel.attributedText = [self attributedStringFromHTML:textBlock.contentText];
+      [textBlock.titleLabel setFont:[UIFont fontWithName:nil size:fontSize]];
+      
+      if ([contentItem.contentBlockType isEqualToString:@"title"]) {
+        [textBlock.titleLabel setFont:[UIFont systemFontOfSize:fontSize+6]];
+      }
+    }
+  }
+  
+  [self reloadTableView];
+}
 
 - (void)reloadTableView {
   if ([delegate respondsToSelector:@selector(reloadTableViewForContentBlocks)]) {
