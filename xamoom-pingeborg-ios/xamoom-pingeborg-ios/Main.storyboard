@@ -208,9 +208,62 @@
                     <view key="view" contentMode="scaleToFill" id="8fU-ya-1Zx">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="OrU-3Y-DR4">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="274"/>
+                            </mapView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="YcP-f3-HIP">
+                                <rect key="frame" x="0.0" y="311" width="600" height="176"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LocationItem" textLabel="8kS-sX-XxL" detailTextLabel="JnA-7C-jre" style="IBUITableViewCellStyleSubtitle" id="wKt-WY-Jcf">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wKt-WY-Jcf" id="gQH-pq-GX5">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8kS-sX-XxL">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JnA-7C-jre">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="WdT-Q6-mb4" id="erJ-uW-G32"/>
+                                    <outlet property="delegate" destination="WdT-Q6-mb4" id="TsM-dS-Xdb"/>
+                                </connections>
+                            </tableView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vWz-ei-cp6">
+                                <rect key="frame" x="0.0" y="272" width="600" height="40"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YcP-f3-HIP" firstAttribute="top" secondItem="r2z-g0-SZf" secondAttribute="bottom" constant="311" id="5R6-SW-dmn"/>
+                            <constraint firstAttribute="trailing" secondItem="YcP-f3-HIP" secondAttribute="trailing" id="8mZ-3j-XWw"/>
+                            <constraint firstItem="OrU-3Y-DR4" firstAttribute="top" secondItem="r2z-g0-SZf" secondAttribute="bottom" id="KoB-iO-MiF"/>
+                            <constraint firstAttribute="trailing" secondItem="OrU-3Y-DR4" secondAttribute="trailing" id="MWP-UN-zTX"/>
+                            <constraint firstItem="taP-xd-o0S" firstAttribute="top" secondItem="YcP-f3-HIP" secondAttribute="bottom" id="QTR-Hz-Z6V"/>
+                            <constraint firstItem="taP-xd-o0S" firstAttribute="top" secondItem="OrU-3Y-DR4" secondAttribute="bottom" constant="213" id="Sx3-tN-qgc"/>
+                            <constraint firstItem="YcP-f3-HIP" firstAttribute="leading" secondItem="8fU-ya-1Zx" secondAttribute="leading" id="bW9-l9-yLV"/>
+                            <constraint firstItem="OrU-3Y-DR4" firstAttribute="leading" secondItem="8fU-ya-1Zx" secondAttribute="leading" id="mFP-5f-V1H"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="Map" id="Tov-nI-9zY"/>
+                    <connections>
+                        <outlet property="mapView" destination="OrU-3Y-DR4" id="Vhr-1h-ehd"/>
+                        <outlet property="tableView" destination="YcP-f3-HIP" id="zs2-fg-7Nh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xcE-VJ-wGD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

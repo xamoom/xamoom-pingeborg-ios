@@ -18,12 +18,17 @@
 
 @class CustomMapView;
 
-@interface MapkitViewController : UIViewController <MKMapViewDelegate, SMCalloutViewDelegate, CLLocationManagerDelegate, XMMEnderuserApiDelegate>
+@interface MapkitViewController : UIViewController <MKMapViewDelegate, SMCalloutViewDelegate, CLLocationManagerDelegate, XMMEnderuserApiDelegate, UITableViewDelegate, UITableViewDataSource>
 
-@property CLLocationManager *locationManager;
 @property (nonatomic, strong) CustomMapView *mapKitWithSMCalloutView;
 @property (nonatomic, strong) MKPointAnnotation *annotationForSMCalloutView;
+@property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property CLLocationManager *locationManager;
+
 @property UIImage *customMapMarker;
 @property SVGKImage *customSVGMapMarker;
+@property NSMutableArray *itemsToDisplay;
 
 @end
