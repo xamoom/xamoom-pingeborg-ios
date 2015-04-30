@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xLe-gR-03r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Navigation View Controller-->
@@ -210,11 +211,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="OrU-3Y-DR4">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="274"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="666"/>
                             </mapView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="YcP-f3-HIP">
-                                <rect key="frame" x="0.0" y="311" width="600" height="176"/>
+                                <rect key="frame" x="0.0" y="437" width="600" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="oZX-iE-fW1"/>
+                                </constraints>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LocationItem" textLabel="8kS-sX-XxL" detailTextLabel="JnA-7C-jre" style="IBUITableViewCellStyleSubtitle" id="wKt-WY-Jcf">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -242,27 +246,48 @@
                                     <outlet property="delegate" destination="WdT-Q6-mb4" id="TsM-dS-Xdb"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vWz-ei-cp6">
-                                <rect key="frame" x="0.0" y="272" width="600" height="40"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vWz-ei-cp6">
+                                <rect key="frame" x="0.0" y="397" width="600" height="40"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Geofencing" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ipZ-u8-Z2v">
+                                        <rect key="frame" x="8" y="9" width="89" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="8Vn-ui-r4H"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="YcP-f3-HIP" firstAttribute="top" secondItem="r2z-g0-SZf" secondAttribute="bottom" constant="311" id="5R6-SW-dmn"/>
-                            <constraint firstAttribute="trailing" secondItem="YcP-f3-HIP" secondAttribute="trailing" id="8mZ-3j-XWw"/>
-                            <constraint firstItem="OrU-3Y-DR4" firstAttribute="top" secondItem="r2z-g0-SZf" secondAttribute="bottom" id="KoB-iO-MiF"/>
-                            <constraint firstAttribute="trailing" secondItem="OrU-3Y-DR4" secondAttribute="trailing" id="MWP-UN-zTX"/>
-                            <constraint firstItem="taP-xd-o0S" firstAttribute="top" secondItem="YcP-f3-HIP" secondAttribute="bottom" id="QTR-Hz-Z6V"/>
-                            <constraint firstItem="taP-xd-o0S" firstAttribute="top" secondItem="OrU-3Y-DR4" secondAttribute="bottom" constant="213" id="Sx3-tN-qgc"/>
-                            <constraint firstItem="YcP-f3-HIP" firstAttribute="leading" secondItem="8fU-ya-1Zx" secondAttribute="leading" id="bW9-l9-yLV"/>
-                            <constraint firstItem="OrU-3Y-DR4" firstAttribute="leading" secondItem="8fU-ya-1Zx" secondAttribute="leading" id="mFP-5f-V1H"/>
+                            <constraint firstAttribute="trailing" secondItem="OrU-3Y-DR4" secondAttribute="trailing" id="5nZ-Ca-BCd"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="YcP-f3-HIP" secondAttribute="trailing" constant="-16" id="6DU-HB-CU9"/>
+                            <constraint firstItem="taP-xd-o0S" firstAttribute="top" secondItem="YcP-f3-HIP" secondAttribute="bottom" id="8eS-WD-usU"/>
+                            <constraint firstItem="vWz-ei-cp6" firstAttribute="leading" secondItem="8fU-ya-1Zx" secondAttribute="leadingMargin" constant="-16" id="EAW-Em-ugM"/>
+                            <constraint firstItem="YcP-f3-HIP" firstAttribute="top" secondItem="vWz-ei-cp6" secondAttribute="bottom" id="GeG-PP-rX8"/>
+                            <constraint firstItem="OrU-3Y-DR4" firstAttribute="top" secondItem="r2z-g0-SZf" secondAttribute="bottom" id="L4T-ll-W0X"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="vWz-ei-cp6" secondAttribute="trailing" constant="-16" id="UtG-2D-gJj"/>
+                            <constraint firstItem="taP-xd-o0S" firstAttribute="top" secondItem="OrU-3Y-DR4" secondAttribute="bottom" constant="-179" id="ZEF-4b-EaM"/>
+                            <constraint firstItem="OrU-3Y-DR4" firstAttribute="leading" secondItem="8fU-ya-1Zx" secondAttribute="leading" id="f6d-Q6-GvU"/>
+                            <constraint firstItem="YcP-f3-HIP" firstAttribute="leading" secondItem="8fU-ya-1Zx" secondAttribute="leadingMargin" constant="-16" id="jMA-Z4-aa2"/>
+                            <constraint firstItem="vWz-ei-cp6" firstAttribute="leading" secondItem="YcP-f3-HIP" secondAttribute="trailing" constant="-600" id="uoA-6b-iVm"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="uoA-6b-iVm"/>
+                            </mask>
+                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="Map" id="Tov-nI-9zY"/>
                     <connections>
+                        <outlet property="geofenceView" destination="vWz-ei-cp6" id="M76-gi-lzF"/>
                         <outlet property="mapView" destination="OrU-3Y-DR4" id="Vhr-1h-ehd"/>
                         <outlet property="tableView" destination="YcP-f3-HIP" id="zs2-fg-7Nh"/>
+                        <outlet property="tableViewHeightConstraint" destination="oZX-iE-fW1" id="cOA-LK-5xe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xcE-VJ-wGD" userLabel="First Responder" sceneMemberID="firstResponder"/>

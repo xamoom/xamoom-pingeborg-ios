@@ -24,6 +24,8 @@
 @property (nonatomic, strong) MKPointAnnotation *annotationForSMCalloutView;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet UIView *geofenceView;
 
 @property CLLocationManager *locationManager;
 

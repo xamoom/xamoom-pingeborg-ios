@@ -17,6 +17,10 @@
 
 @synthesize itemsToDisplay;
 
+bool isUp = NO;
+UISwipeGestureRecognizer *swipeGeoFenceViewUp;
+UISwipeGestureRecognizer *swipeGeoFenceViewDown;
+
 #pragma mark - View Lifecycle
 
 - (void)viewDidLoad {
@@ -27,6 +31,14 @@
   self.mapKitWithSMCalloutView.delegate = self;
   self.mapKitWithSMCalloutView.showsUserLocation = YES;
   [self.mapView addSubview:self.mapKitWithSMCalloutView];
+  
+  swipeGeoFenceViewUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(toggleGeoFenceView)];
+  swipeGeoFenceViewUp.direction = UISwipeGestureRecognizerDirectionUp;
+  swipeGeoFenceViewDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(toggleGeoFenceView)];
+  swipeGeoFenceViewDown.direction = UISwipeGestureRecognizerDirectionDown;
+  UITapGestureRecognizer *geoFenceTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toggleGeoFenceView)];
+  [self.geofenceView addGestureRecognizer:geoFenceTapGesture];
+  [self.geofenceView addGestureRecognizer:swipeGeoFenceViewUp];
   
   self.locationManager = [[CLLocationManager alloc] init];
   self.locationManager.delegate = self;
@@ -453,6 +465,33 @@
 
 - (void)pingeborgSystemChanged {
   NSLog(@"pingeborgSystemChanged");
+}
+
+#pragma mark - GeoFencing UX
+
+- (IBAction)openGeoFencing:(UIButton *)sender {
+  [self toggleGeoFenceView];
+}
+
+- (void)toggleGeoFenceView {
+  [self.view layoutIfNeeded];
+  
+  if (isUp) {
+    self.tableViewHeightConstraint.constant = 0.0f;
+    [self.geofenceView removeGestureRecognizer:swipeGeoFenceViewDown];
+    [self.geofenceView addGestureRecognizer:swipeGeoFenceViewUp];
+  } else {
+    self.tableViewHeightConstraint.constant = self.view.frame.size.height - 70.0f;
+    [self.geofenceView removeGestureRecognizer:swipeGeoFenceViewUp];
+    [self.geofenceView addGestureRecognizer:swipeGeoFenceViewDown];
+  }
+  
+  [UIView animateWithDuration:1
+                   animations:^{
+                     [self.view layoutIfNeeded]; // Called on parent view
+                   }];
+  
+  isUp = !isUp;
 }
 
 @end
