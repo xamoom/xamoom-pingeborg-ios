@@ -442,7 +442,7 @@ UISwipeGestureRecognizer *swipeGeoFenceViewDown;
       cell.feedItemImage.image = image;
     }
     
-    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(test:)];
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openArtistDetailViewFromSender:)];
     [cell addGestureRecognizer:tapGestureRecognizer];
     
     return cell;
@@ -467,14 +467,6 @@ UISwipeGestureRecognizer *swipeGeoFenceViewDown;
   }
   
   return cell;
-}
-
-- (void)test:(UITapGestureRecognizer*)sender {
-  FeedItemCell *cell = (FeedItemCell*)sender.view;
-  NSLog(@"Hellyeah: %@", cell.contentId);
-  ArtistDetailViewController *artistDetailViewController = [[ArtistDetailViewController alloc] init];
-  artistDetailViewController.contentId = cell.contentId;
-  [self.navigationController pushViewController:artistDetailViewController animated:YES];
 }
 
 /*
@@ -593,7 +585,7 @@ UISwipeGestureRecognizer *swipeGeoFenceViewDown;
   NSLog(@"pingeborgSystemChanged");
 }
 
-#pragma mark - GeoFencing UX
+#pragma mark - GeoFencing UI/UX
 
 - (IBAction)openGeoFencing:(UIButton *)sender {
   [self toggleGeoFenceView];
@@ -623,6 +615,14 @@ UISwipeGestureRecognizer *swipeGeoFenceViewDown;
                    }];
   
   isUp = !isUp;
+}
+
+- (void)openArtistDetailViewFromSender:(UITapGestureRecognizer*)sender {
+  FeedItemCell *cell = (FeedItemCell*)sender.view;
+  NSLog(@"Hellyeah: %@", cell.contentId);
+  ArtistDetailViewController *artistDetailViewController = [[ArtistDetailViewController alloc] init];
+  artistDetailViewController.contentId = cell.contentId;
+  [self.navigationController pushViewController:artistDetailViewController animated:YES];
 }
 
 @end
