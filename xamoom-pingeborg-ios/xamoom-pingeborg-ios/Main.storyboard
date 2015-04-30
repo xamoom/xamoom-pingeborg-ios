@@ -214,13 +214,12 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="666"/>
                             </mapView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="YcP-f3-HIP">
-                                <rect key="frame" x="0.0" y="437" width="600" height="50"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="487" width="600" height="0.0"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="oZX-iE-fW1"/>
+                                    <constraint firstAttribute="height" id="oZX-iE-fW1"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LocationItem" textLabel="8kS-sX-XxL" detailTextLabel="JnA-7C-jre" style="IBUITableViewCellStyleSubtitle" id="wKt-WY-Jcf">
+                                    <tableViewCell alpha="0.0" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LocationItem" textLabel="8kS-sX-XxL" detailTextLabel="JnA-7C-jre" style="IBUITableViewCellStyleSubtitle" id="wKt-WY-Jcf">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wKt-WY-Jcf" id="gQH-pq-GX5">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -246,8 +245,8 @@
                                     <outlet property="delegate" destination="WdT-Q6-mb4" id="TsM-dS-Xdb"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vWz-ei-cp6">
-                                <rect key="frame" x="0.0" y="397" width="600" height="40"/>
+                            <view alpha="0.90000000000000013" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vWz-ei-cp6">
+                                <rect key="frame" x="0.0" y="447" width="600" height="40"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Geofencing" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ipZ-u8-Z2v">
                                         <rect key="frame" x="8" y="9" width="89" height="21"/>
@@ -255,10 +254,26 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="kag-2o-TLE">
+                                        <rect key="frame" x="572" y="10" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vnx-Hm-ayt">
+                                        <rect key="frame" x="572" y="10" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="Gnq-77-xHV"/>
+                                            <constraint firstAttribute="height" constant="20" id="yNf-Nt-rLx"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="8Vn-ui-r4H"/>
+                                    <constraint firstAttribute="bottom" secondItem="kag-2o-TLE" secondAttribute="bottom" constant="10" id="ARQ-Bu-AQH"/>
+                                    <constraint firstAttribute="bottom" secondItem="vnx-Hm-ayt" secondAttribute="bottom" constant="10" id="F0u-df-7XM"/>
+                                    <constraint firstAttribute="trailing" secondItem="kag-2o-TLE" secondAttribute="trailing" constant="8" id="J6I-Be-Q8c"/>
+                                    <constraint firstAttribute="trailing" secondItem="vnx-Hm-ayt" secondAttribute="trailing" constant="8" id="LUj-P9-a0E"/>
+                                    <constraint firstItem="vnx-Hm-ayt" firstAttribute="top" secondItem="vWz-ei-cp6" secondAttribute="top" constant="10" id="jE7-uz-igj"/>
+                                    <constraint firstItem="kag-2o-TLE" firstAttribute="top" secondItem="vWz-ei-cp6" secondAttribute="top" constant="10" id="w7r-29-XnC"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -284,6 +299,8 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="Map" id="Tov-nI-9zY"/>
                     <connections>
+                        <outlet property="geoFenceActivityIndicator" destination="kag-2o-TLE" id="Pvu-Va-ubE"/>
+                        <outlet property="geoFenceIcon" destination="vnx-Hm-ayt" id="PLF-kp-gxy"/>
                         <outlet property="geofenceView" destination="vWz-ei-cp6" id="M76-gi-lzF"/>
                         <outlet property="mapView" destination="OrU-3Y-DR4" id="Vhr-1h-ehd"/>
                         <outlet property="tableView" destination="YcP-f3-HIP" id="zs2-fg-7Nh"/>

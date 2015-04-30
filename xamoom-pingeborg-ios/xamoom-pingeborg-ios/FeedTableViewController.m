@@ -13,7 +13,7 @@ static int const pageSize = 7;
 @interface FeedTableViewController ()
 
 @property NSMutableArray *itemsToDisplay;
-@property NSMutableDictionary *imagesToDispay;
+@property NSMutableDictionary *imagesToDisplay;
 @property NSString *contentListCursor;
 @property bool hasMore;
 @property bool isApiCallingBlocked;
@@ -23,7 +23,7 @@ static int const pageSize = 7;
 @implementation FeedTableViewController
 
 @synthesize itemsToDisplay;
-@synthesize imagesToDispay;
+@synthesize imagesToDisplay;
 
 UIButton *dropDownButton;
 
@@ -70,7 +70,7 @@ UIButton *dropDownButton;
                                              object:nil];
   
   itemsToDisplay = [[NSMutableArray alloc] init];
-  imagesToDispay = [[NSMutableDictionary alloc] init];
+  imagesToDisplay = [[NSMutableDictionary alloc] init];
   
   [[XMMEnduserApi sharedInstance] setDelegate:self];
   [[XMMEnduserApi sharedInstance] getContentListFromApi:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:pageSize withCursor:@"null"];
@@ -124,7 +124,7 @@ UIButton *dropDownButton;
           if (![savedArtists containsString:contentItem.contentId]) {
             image = [self convertImageToGrayScale:image];
           }
-          [imagesToDispay setValue:image forKey:contentItem.contentId];
+          [imagesToDisplay setValue:image forKey:contentItem.contentId];
           [self.tableView reloadData];
         }
       }];
@@ -188,8 +188,8 @@ UIButton *dropDownButton;
   //set the title
   cell.feedItemTitle.attributedText = attrText;
   
-  if ([imagesToDispay objectForKey:contentItem.contentId]){
-    UIImage *image = [imagesToDispay objectForKey:contentItem.contentId];
+  if ([imagesToDisplay objectForKey:contentItem.contentId]){
+    UIImage *image = [imagesToDisplay objectForKey:contentItem.contentId];
     float imageRatio = image.size.width / image.size.height;
     [cell.imageHeightConstraint setConstant:(cell.frame.size.width / imageRatio)];
     cell.feedItemImage.image = image;
@@ -203,7 +203,7 @@ UIButton *dropDownButton;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   ArtistDetailViewController *artistDetailViewController = [[ArtistDetailViewController alloc] init];
-  FeedItemCell *data = (FeedItemCell*)[itemsToDisplay objectAtIndex:indexPath.row];
+  XMMResponseContent *data = (XMMResponseContent*)[itemsToDisplay objectAtIndex:indexPath.row];
   artistDetailViewController.contentId = data.contentId;
   [self.navigationController pushViewController:artistDetailViewController animated:YES];
 }
@@ -214,8 +214,8 @@ UIButton *dropDownButton;
   if(!self.isApiCallingBlocked) {
     itemsToDisplay = nil;
     itemsToDisplay = [[NSMutableArray alloc] init];
-    imagesToDispay = nil;
-    imagesToDispay = [[NSMutableDictionary alloc] init];
+    imagesToDisplay = nil;
+    imagesToDisplay = [[NSMutableDictionary alloc] init];
     [[XMMEnduserApi sharedInstance] setDelegate:self];
     [[XMMEnduserApi sharedInstance] getContentListFromApi:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:5 withCursor:@"null"];
     self.isApiCallingBlocked = YES;

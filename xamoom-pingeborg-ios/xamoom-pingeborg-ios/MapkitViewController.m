@@ -16,6 +16,7 @@
 @implementation MapkitViewController
 
 @synthesize itemsToDisplay;
+@synthesize imagesToDisplay;
 
 bool isUp = NO;
 UISwipeGestureRecognizer *swipeGeoFenceViewUp;
@@ -25,12 +26,26 @@ UISwipeGestureRecognizer *swipeGeoFenceViewDown;
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-    
+  
   //init map
   self.mapKitWithSMCalloutView = [[CustomMapView alloc] initWithFrame:self.mapView.bounds];
   self.mapKitWithSMCalloutView.delegate = self;
   self.mapKitWithSMCalloutView.showsUserLocation = YES;
   [self.mapView addSubview:self.mapKitWithSMCalloutView];
+  
+  //setting up tableView
+  [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+  self.tableView.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.9];
+  self.tableView.rowHeight = UITableViewAutomaticDimension;
+  self.tableView.estimatedRowHeight = 150.0;
+  
+  //add shadow to geofenceView
+  CALayer *layer = self.geofenceView.layer;
+  layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
+  layer.shadowColor = [[UIColor blackColor] CGColor];
+  layer.shadowRadius = 4.0f;
+  layer.shadowOpacity = 0.20f;
+  layer.shadowPath = [[UIBezierPath bezierPathWithRect:layer.bounds] CGPath];
   
   swipeGeoFenceViewUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(toggleGeoFenceView)];
   swipeGeoFenceViewUp.direction = UISwipeGestureRecognizerDirectionUp;
@@ -47,6 +62,7 @@ UISwipeGestureRecognizer *swipeGeoFenceViewDown;
     [self.locationManager requestWhenInUseAuthorization];
   }
   
+  [self.geoFenceActivityIndicator startAnimating];
   [[XMMEnduserApi sharedInstance] setDelegate:self];
   [[XMMEnduserApi sharedInstance] getSpotMapWithSystemId:[Globals sharedObject].globalSystemId withMapTags:@"showAllTheSpots" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
 }
@@ -69,6 +85,7 @@ UISwipeGestureRecognizer *swipeGeoFenceViewDown;
   self.parentViewController.navigationItem.rightBarButtonItem = buttonItem;
   
   if ( self.mapKitWithSMCalloutView.annotations.count <= 0 ) {
+    [self.geoFenceActivityIndicator startAnimating];
     [[XMMEnduserApi sharedInstance] setDelegate:self];
     [[XMMEnduserApi sharedInstance] getSpotMapWithSystemId:[Globals sharedObject].globalSystemId withMapTags:@"showAllTheSpots" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
   }
@@ -110,25 +127,61 @@ UISwipeGestureRecognizer *swipeGeoFenceViewDown;
   
   for (XMMResponseGetSpotMapItem *item in result.items) {
     // Add an annotation
-    PingebAnnotation *point = [[PingebAnnotation alloc] initWithLocation: CLLocationCoordinate2DMake([item.lat doubleValue], [item.lon doubleValue])];
+    PingebAnnotation *point = [[PingebAnnotation alloc] initWithLocation: CLLocationCoordinate2DMake(item.lat, item.lon)];
     point.data = item;
     
     CLLocation *pointLocation = [[CLLocation alloc] initWithLatitude:point.coordinate.latitude longitude:point.coordinate.longitude];
     CLLocationDistance distance = [self.locationManager.location distanceFromLocation:pointLocation];
-    point.distance = [NSString stringWithFormat:@"Entfernung: %d Meter", (int)distance];
+    point.distance = [NSString stringWithFormat:@"Distance: %d meter", (int)distance];
     
     [self.mapKitWithSMCalloutView addAnnotation:point];
   }
 }
 
 -(void)didLoadDataByLocation:(XMMResponseGetByLocation *)result {
+  NSString *savedArtists = [Globals savedArtits];
   itemsToDisplay = [[NSMutableArray alloc] init];
+  imagesToDisplay = [[NSMutableDictionary alloc] init];
+  
   for (XMMResponseGetByLocationItem* item in result.items) {
     if ([item.systemId isEqualToString:[Globals sharedObject].globalSystemId]) {
       [itemsToDisplay addObject:item];
+      if(item.imagePublicUrl != nil) {
+        [self downloadImageWithURL:item.imagePublicUrl completionBlock:^(BOOL succeeded, UIImage *image) {
+          if (succeeded) {
+            if (![savedArtists containsString:item.contentId]) {
+              image = [self convertImageToGrayScale:image];
+            }
+            [imagesToDisplay setValue:image forKey:item.contentId];
+            [self.tableView reloadData];
+          }
+        }];
+      }
+      
     }
   }
+  
+  if ([itemsToDisplay count] == 0) {
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+    [XMMEnduserApi sharedInstance].delegate = self;
+    [[XMMEnduserApi sharedInstance] closestSpotsWith:self.lastLocation.coordinate.latitude andLon:self.lastLocation.coordinate.longitude withRadius:10000 withLimit:5 withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
+  } else {
+    [self.geoFenceActivityIndicator stopAnimating];
+    self.geoFenceIcon.image = [UIImage imageNamed:@"angleDown"];
+    self.geoFenceIcon.transform = CGAffineTransformMakeRotation(M_PI);
+    [self.tableView reloadData];
+  }
+}
+
+- (void)didLoadClosestSpots:(XMMResponseClosestSpot *)result {
+  for (XMMResponseGetSpotMapItem *item in result.items) {
+    [itemsToDisplay addObject:item];
+  }
   [self.tableView reloadData];
+  
+  [self.geoFenceActivityIndicator stopAnimating];
+  self.geoFenceIcon.image = [UIImage imageNamed:@"angleDown"];
+  self.geoFenceIcon.transform = CGAffineTransformMakeRotation(M_PI);
 }
 
 #pragma mark - MKMapView delegate methods
@@ -333,9 +386,9 @@ UISwipeGestureRecognizer *swipeGeoFenceViewDown;
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
   [self.locationManager stopUpdatingLocation];
   
-  CLLocation *userLocation = [locations firstObject];
-  NSString *lat = [NSString stringWithFormat:@"%f", userLocation.coordinate.latitude];
-  NSString *lon = [NSString stringWithFormat:@"%f", userLocation.coordinate.longitude];
+  self.lastLocation = [locations firstObject];
+  NSString *lat = [NSString stringWithFormat:@"%f", self.lastLocation.coordinate.latitude];
+  NSString *lon = [NSString stringWithFormat:@"%f", self.lastLocation.coordinate.longitude];
   
   [[XMMEnduserApi sharedInstance] getContentFromApiWithLat:lat withLon:lon withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
 }
@@ -367,19 +420,62 @@ UISwipeGestureRecognizer *swipeGeoFenceViewDown;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LocationItem" forIndexPath:indexPath];
+  UITableViewCell *cell = nil;
   
-  if (cell == nil) {
-    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"LocationItem"];
+  if ([[itemsToDisplay objectAtIndex:indexPath.row] isKindOfClass:[XMMResponseGetByLocationItem class]]) {
+    FeedItemCell *cell = (FeedItemCell *)[self.tableView dequeueReusableCellWithIdentifier:@"FeedItemCell"];
+    if (cell == nil)
+    {
+      NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FeedItemCell" owner:self options:nil];
+      cell = [nib objectAtIndex:0];
+    }
+    cell.feedItemImage.image = [UIImage imageNamed:@"placeholder"];
+    
+    XMMResponseGetByLocationItem *item = [itemsToDisplay objectAtIndex:indexPath.row];
+    cell.feedItemTitle.text = item.title;
+    cell.contentId = item.contentId;
+    
+    if ([imagesToDisplay objectForKey:item.contentId]){
+      UIImage *image = [imagesToDisplay objectForKey:item.contentId];
+      float imageRatio = image.size.width / image.size.height;
+      [cell.imageHeightConstraint setConstant:(cell.frame.size.width / imageRatio)];
+      cell.feedItemImage.image = image;
+    }
+    
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(test:)];
+    [cell addGestureRecognizer:tapGestureRecognizer];
+    
+    return cell;
+  } else {
+    cell = [tableView dequeueReusableCellWithIdentifier:@"LocationItem" forIndexPath:indexPath];
+    
+    if (cell == nil) {
+      cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"LocationItem"];
+    }
+    
+    XMMResponseGetSpotMapItem *item = [itemsToDisplay objectAtIndex:indexPath.row];
+    cell.textLabel.text = item.displayName;
+    
+    CLLocation *pointLocation = [[CLLocation alloc] initWithLatitude:item.lat longitude:item.lon];
+    CLLocationDistance distance = [self.locationManager.location distanceFromLocation:pointLocation];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"Distance: %d meter", (int)distance];
+    
+    //make cell transparent
+    [[cell contentView] setBackgroundColor:[UIColor clearColor]];
+    [[cell backgroundView] setBackgroundColor:[UIColor clearColor]];
+    [cell setBackgroundColor:[UIColor clearColor]];
   }
-  
-  XMMResponseGetByLocationItem *item = [itemsToDisplay objectAtIndex:indexPath.row];
-  
-  cell.textLabel.text = item.title;
   
   return cell;
 }
 
+- (void)test:(UITapGestureRecognizer*)sender {
+  FeedItemCell *cell = (FeedItemCell*)sender.view;
+  NSLog(@"Hellyeah: %@", cell.contentId);
+  ArtistDetailViewController *artistDetailViewController = [[ArtistDetailViewController alloc] init];
+  artistDetailViewController.contentId = cell.contentId;
+  [self.navigationController pushViewController:artistDetailViewController animated:YES];
+}
 
 /*
  // Override to support conditional editing of the table view.
@@ -443,6 +539,36 @@ UISwipeGestureRecognizer *swipeGeoFenceViewDown;
   return newImage;
 }
 
+- (UIImage *)convertImageToGrayScale:(UIImage *)image
+{
+  // Create image rectangle with current image width/height
+  CGRect imageRect = CGRectMake(0, 0, image.size.width, image.size.height);
+  
+  // Grayscale color space
+  CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceGray();
+  
+  // Create bitmap content with current image size and grayscale colorspace
+  CGContextRef context = CGBitmapContextCreate(nil, image.size.width, image.size.height, 8, 0, colorSpace, kCGImageAlphaNone);
+  
+  // Draw image into current context, with specified rectangle
+  // using previously defined context (with grayscale colorspace)
+  CGContextDrawImage(context, imageRect, [image CGImage]);
+  
+  // Create bitmap image info from pixel data in current context
+  CGImageRef imageRef = CGBitmapContextCreateImage(context);
+  
+  // Create a new UIImage object
+  UIImage *newImage = [UIImage imageWithCGImage:imageRef];
+  
+  // Release colorspace, context and bitmap information
+  CGColorSpaceRelease(colorSpace);
+  CGContextRelease(context);
+  CFRelease(imageRef);
+  
+  // Return the new grayscale image
+  return newImage;
+}
+
 
 - (void)downloadImageWithURL:(NSString *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock
 {
@@ -481,13 +607,18 @@ UISwipeGestureRecognizer *swipeGeoFenceViewDown;
     [self.geofenceView removeGestureRecognizer:swipeGeoFenceViewDown];
     [self.geofenceView addGestureRecognizer:swipeGeoFenceViewUp];
   } else {
-    self.tableViewHeightConstraint.constant = self.view.frame.size.height - 70.0f;
+    self.tableViewHeightConstraint.constant = self.view.frame.size.height - 40.0f;
+    
     [self.geofenceView removeGestureRecognizer:swipeGeoFenceViewUp];
     [self.geofenceView addGestureRecognizer:swipeGeoFenceViewDown];
   }
   
   [UIView animateWithDuration:1
                    animations:^{
+                     if (isUp)
+                       self.geoFenceIcon.transform = CGAffineTransformMakeRotation(M_PI);
+                     else
+                       self.geoFenceIcon.transform = CGAffineTransformMakeRotation(0);
                      [self.view layoutIfNeeded]; // Called on parent view
                    }];
   
