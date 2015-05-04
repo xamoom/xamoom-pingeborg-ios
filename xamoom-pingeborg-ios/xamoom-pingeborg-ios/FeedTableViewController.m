@@ -141,6 +141,8 @@ JGProgressHUD *hud;
   
   for (XMMResponseContent *contentItem in result.items) {
     
+    [imagesToDisplay setValue:[UIImage imageNamed:@"placeholder"] forKey:contentItem.contentId];
+    
     //gif support
     if ([contentItem.imagePublicUrl containsString:@".gif?"]) {
       UIImage *gifImage = [UIImage animatedImageWithAnimatedGIFURL:[NSURL URLWithString:contentItem.imagePublicUrl]];
@@ -225,13 +227,14 @@ JGProgressHUD *hud;
                                                                  attributes:@{ NSParagraphStyleAttributeName : style}];
   //set the title
   cell.feedItemTitle.attributedText = attrText;
+  [cell.loadingIndicator startAnimating];
   
   if ([imagesToDisplay objectForKey:contentItem.contentId]){
     UIImage *image = [imagesToDisplay objectForKey:contentItem.contentId];
     float imageRatio = image.size.width / image.size.height;
     [cell.imageHeightConstraint setConstant:(cell.frame.size.width / imageRatio)];
     cell.feedItemImage.image = image;
-    
+    [cell.loadingIndicator stopAnimating];
   } else {
     //[cell.imageHeightConstraint setConstant:50.0f];
   }

@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *feedItemTitle;
 @property (weak, nonatomic) IBOutlet UIImageView *feedItemImage;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageHeightConstraint;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
 
 @property NSString *contentId;
 @property UIImage *image;

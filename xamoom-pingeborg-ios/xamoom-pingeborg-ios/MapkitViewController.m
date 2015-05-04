@@ -128,6 +128,11 @@ UISwipeGestureRecognizer *swipeGeoFenceViewDown;
     
     [self.mapKitWithSMCalloutView addAnnotation:point];
   }
+  
+  NSLog(@"Lat: %f, Lon: %f", self.lastLocation.coordinate.latitude, self.lastLocation.coordinate.longitude);
+
+  [XMMEnduserApi sharedInstance].delegate = self;
+  [[XMMEnduserApi sharedInstance] contentWithLat:[NSString stringWithFormat:@"%f",self.lastLocation.coordinate.latitude] withLon:[NSString stringWithFormat:@"%f",self.lastLocation.coordinate.longitude] withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
 }
 
 -(void)didLoadDataWithLocation:(XMMResponseGetByLocation *)result {
@@ -138,6 +143,9 @@ UISwipeGestureRecognizer *swipeGeoFenceViewDown;
   for (XMMResponseGetByLocationItem* item in result.items) {
     if ([item.systemId isEqualToString:[Globals sharedObject].globalSystemId]) {
       [itemsToDisplay addObject:item];
+      
+      [imagesToDisplay setValue:[UIImage imageNamed:@"placeholder"] forKey:item.contentId];
+      
       //gif support
       if ([item.imagePublicUrl containsString:@".gif?"]) {
         UIImage *gifImage = [UIImage animatedImageWithAnimatedGIFURL:[NSURL URLWithString:item.imagePublicUrl]];
@@ -161,7 +169,6 @@ UISwipeGestureRecognizer *swipeGeoFenceViewDown;
           }
         }];
       }
-      
     }
   }
   
@@ -398,13 +405,7 @@ UISwipeGestureRecognizer *swipeGeoFenceViewDown;
 }
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-  [self.locationManager stopUpdatingLocation];
-  
-  self.lastLocation = [locations firstObject];
-  NSString *lat = [NSString stringWithFormat:@"%f", self.lastLocation.coordinate.latitude];
-  NSString *lon = [NSString stringWithFormat:@"%f", self.lastLocation.coordinate.longitude];
-  
-  [[XMMEnduserApi sharedInstance] contentWithLat:lat withLon:lon withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
+  self.lastLocation = [locations lastObject];
 }
 
 #pragma mark User Interaction
@@ -443,7 +444,7 @@ UISwipeGestureRecognizer *swipeGeoFenceViewDown;
       NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FeedItemCell" owner:self options:nil];
       cell = [nib objectAtIndex:0];
     }
-    cell.feedItemImage.image = [UIImage imageNamed:@"placeholder"];
+    [cell.loadingIndicator startAnimating];
     
     XMMResponseGetByLocationItem *item = [itemsToDisplay objectAtIndex:indexPath.row];
     cell.feedItemTitle.text = item.title;
@@ -454,11 +455,13 @@ UISwipeGestureRecognizer *swipeGeoFenceViewDown;
       float imageRatio = image.size.width / image.size.height;
       [cell.imageHeightConstraint setConstant:(cell.frame.size.width / imageRatio)];
       cell.feedItemImage.image = image;
+      [cell.loadingIndicator stopAnimating];
     }
     
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openArtistDetailViewFromSender:)];
     [cell addGestureRecognizer:tapGestureRecognizer];
     
+    return cell;
   } else {
     cell = [tableView dequeueReusableCellWithIdentifier:@"LocationItem" forIndexPath:indexPath];
     

@@ -26,6 +26,9 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="8pK-L0-lt3">
+                        <rect key="frame" x="231" y="55" width="20" height="20"/>
+                    </activityIndicatorView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="RLb-uj-IBD" firstAttribute="bottom" secondItem="EiK-aS-q9u" secondAttribute="bottomMargin" id="CRR-0m-1Ae"/>
@@ -41,6 +44,7 @@
                 <outlet property="feedItemImage" destination="RLb-uj-IBD" id="itO-c7-W5s"/>
                 <outlet property="feedItemTitle" destination="4wb-79-OqP" id="fkH-01-jWG"/>
                 <outlet property="imageHeightConstraint" destination="gVU-IG-sXy" id="o3Q-nn-WRd"/>
+                <outlet property="loadingIndicator" destination="8pK-L0-lt3" id="Jk8-8M-B4o"/>
             </connections>
             <point key="canvasLocation" x="377" y="250.5"/>
         </tableViewCell>
