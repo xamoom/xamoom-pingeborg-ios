@@ -118,17 +118,32 @@ UIButton *dropDownButton;
     self.hasMore = NO;
   
   for (XMMResponseContent *contentItem in result.items) {
+    
+    //gif support
+    if ([contentItem.imagePublicUrl containsString:@".gif?"]) {
+      UIImage *gifImage = [UIImage animatedImageWithAnimatedGIFURL:[NSURL URLWithString:contentItem.imagePublicUrl]];
+      
+      if (![savedArtists containsString:contentItem.contentId]) {
+        gifImage = [self convertImageToGrayScale:gifImage];
+      }
+      
+      [imagesToDisplay setValue:gifImage forKey:contentItem.contentId];
+      contentItem.imagePublicUrl = nil;
+    }
+    
     if(contentItem.imagePublicUrl != nil) {
       [self downloadImageWithURL:contentItem.imagePublicUrl completionBlock:^(BOOL succeeded, UIImage *image) {
         if (succeeded) {
           if (![savedArtists containsString:contentItem.contentId]) {
             image = [self convertImageToGrayScale:image];
           }
+          
           [imagesToDisplay setValue:image forKey:contentItem.contentId];
           [self.tableView reloadData];
         }
       }];
     }
+    
     [itemsToDisplay addObject:contentItem];
   }
   
@@ -346,9 +361,27 @@ UIButton *dropDownButton;
   return newImage;
 }
 
+- (NSString *)contentTypeForImageData:(NSData *)data {
+  uint8_t c;
+  [data getBytes:&c length:1];
+  
+  switch (c) {
+    case 0xFF:
+      return @"image/jpeg";
+    case 0x89:
+      return @"image/png";
+    case 0x47:
+      return @"image/gif";
+    case 0x49:
+    case 0x4D:
+      return @"image/tiff";
+  }
+  return nil;
+}
+
 #pragma mark - NavbarDropdown Delegation
 
--(void)didChangeSystem {
+- (void)didChangeSystem {
   NSInteger location = [[NSUserDefaults standardUserDefaults] integerForKey:@"location"];
   
   if ([self.parentViewController.navigationItem.titleView.subviews[0] isKindOfClass:[UIButton class]]) {

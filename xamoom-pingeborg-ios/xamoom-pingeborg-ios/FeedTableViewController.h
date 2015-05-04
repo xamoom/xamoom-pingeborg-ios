@@ -12,6 +12,7 @@
 #import "XMMEnduserApi.h"
 #import "FeedItemCell.h"
 #import "ArtistDetailViewController.h"
+#import "UIImage+animatedGIF.h"
 
 @interface FeedTableViewController : UITableViewController <XMMEnderuserApiDelegate, DropDownMenuDelegate>
 

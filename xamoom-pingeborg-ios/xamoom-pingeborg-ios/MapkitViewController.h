@@ -17,6 +17,7 @@
 #import "PingeborgCalloutView.h"
 #import "FeedItemCell.h"
 #import "ArtistDetailViewController.h"
+#import "UIImage+animatedGIF.h"
 
 @class CustomMapView;
 

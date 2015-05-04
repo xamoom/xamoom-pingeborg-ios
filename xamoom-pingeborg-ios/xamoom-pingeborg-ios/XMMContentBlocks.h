@@ -17,6 +17,7 @@
 #import "SoundcloudBlockTableViewCell.h"
 #import "DownloadBlockTableViewCell.h"
 #import "SpotMapBlockTableViewCell.h"
+#import "UIImage+animatedGIF.h"
 
 typedef NS_ENUM(NSInteger, TextFontSize)
 {

@@ -138,6 +138,18 @@ UISwipeGestureRecognizer *swipeGeoFenceViewDown;
   for (XMMResponseGetByLocationItem* item in result.items) {
     if ([item.systemId isEqualToString:[Globals sharedObject].globalSystemId]) {
       [itemsToDisplay addObject:item];
+      //gif support
+      if ([item.imagePublicUrl containsString:@".gif?"]) {
+        UIImage *gifImage = [UIImage animatedImageWithAnimatedGIFURL:[NSURL URLWithString:item.imagePublicUrl]];
+        
+        if (![savedArtists containsString:item.contentId]) {
+          gifImage = [self convertImageToGrayScale:gifImage];
+        }
+        
+        [imagesToDisplay setValue:gifImage forKey:item.contentId];
+        item.imagePublicUrl = nil;
+      }
+      
       if(item.imagePublicUrl != nil) {
         [self downloadImageWithURL:item.imagePublicUrl completionBlock:^(BOOL succeeded, UIImage *image) {
           if (succeeded) {
@@ -206,6 +218,14 @@ UISwipeGestureRecognizer *swipeGeoFenceViewDown;
       annotationView.data = pingebAnnotation.data;
       annotationView.distance = pingebAnnotation.distance;
       annotationView.coordinate = pingebAnnotation.coordinate;
+      
+      //gif support
+      if ([pingebAnnotation.data.image containsString:@".gif"]) {
+        UIImage *gifImage = [UIImage animatedImageWithAnimatedGIFURL:[NSURL URLWithString:pingebAnnotation.data.image]];
+        
+        annotationView.spotImage = gifImage;
+        pingebAnnotation.data.image = nil;
+      }
       
       if(pingebAnnotation.data.image != nil) {
         [self downloadImageWithURL:pingebAnnotation.data.image completionBlock:^(BOOL succeeded, UIImage *image) {

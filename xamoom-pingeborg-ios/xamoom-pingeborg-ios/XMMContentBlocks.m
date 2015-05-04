@@ -224,6 +224,28 @@ NSString *style;
   
   cell.titleLabel.text = contentBlock.title;
   
+  //gif support
+  if ([contentBlock.fileId containsString:@".gif"]) {
+    UIImage *gifImage = [UIImage animatedImageWithAnimatedGIFURL:[NSURL URLWithString:contentBlock.fileId]];
+    
+    float imageRatio = gifImage.size.width/gifImage.size.height;
+    
+    //smaller images will be displayed normal size and centered
+    if (gifImage.size.width < cell.image.frame.size.width) {
+      [cell.image setContentMode:UIViewContentModeCenter];
+      [cell.imageHeightConstraint setConstant:gifImage.size.height];
+    }
+    else {
+      //bigger images will be resized und displayed full-width
+      [cell.imageHeightConstraint setConstant:(cell.image.frame.size.width / imageRatio)];
+    }
+    
+    [cell.image setImage:gifImage];
+    [self reloadTableView];
+    
+    contentBlock.fileId = nil;
+  }
+  
   if(contentBlock.fileId != nil) {
     [self downloadImageWithURL:contentBlock.fileId completionBlock:^(BOOL succeeded, UIImage *image) {
       if (succeeded && image) {
