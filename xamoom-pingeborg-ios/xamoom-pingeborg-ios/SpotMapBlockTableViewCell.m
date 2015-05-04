@@ -23,11 +23,11 @@
 - (void)getSpotMap {
   self.map.delegate = self;
   [[XMMEnduserApi sharedInstance] setDelegate:self];
-  [[XMMEnduserApi sharedInstance] getSpotMapWithSystemId:@"6588702901927936" withMapTags:self.spotMapTags withLanguage:@"de"];
+  [[XMMEnduserApi sharedInstance] spotMapWithSystemId:@"6588702901927936" withMapTags:self.spotMapTags withLanguage:@"de"];
 }
 
 #pragma mark - XMMEnduser Delegate
-- (void)didLoadDataBySpotMap:(XMMResponseGetSpotMap *)result {
+- (void)didLoadSpotMap:(XMMResponseGetSpotMap *)result {
   NSString *base64String = result.style.customMarker;
   
   //decode two times!

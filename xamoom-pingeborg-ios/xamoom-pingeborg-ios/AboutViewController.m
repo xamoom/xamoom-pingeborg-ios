@@ -32,7 +32,7 @@
   contentBlocks.delegate = self;
   
   [XMMEnduserApi sharedInstance].delegate = self;
-  [[XMMEnduserApi sharedInstance] getContentByIdFull:[Globals sharedObject].aboutPageId includeStyle:@"false" includeMenu:@"false" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:@"True"];
+  [[XMMEnduserApi sharedInstance] contentWithContentId:[Globals sharedObject].aboutPageId includeStyle:@"false" includeMenu:@"false" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:@"True"];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -51,7 +51,7 @@
 
 #pragma mark - XMMEnduserApi delegates
 
-- (void)didLoadDataById:(XMMResponseGetById *)result {
+- (void)didLoadDataWithContentId:(XMMResponseGetById *)result {
   [self displayContentTitleAndImage:result];
   [contentBlocks displayContentBlocksById:result byLocationIdentifier:nil];
 }

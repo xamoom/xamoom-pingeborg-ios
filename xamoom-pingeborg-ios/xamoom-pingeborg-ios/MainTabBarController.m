@@ -87,7 +87,7 @@ BOOL isFirstTime;
 -(void)tappedMiddleButton:(id)sender {
   [[XMMEnduserApi sharedInstance] setDelegate:self];
   [[XMMEnduserApi sharedInstance] setQrCodeViewControllerCancelButtonTitle:@"Abbrechen"];
-  [[XMMEnduserApi sharedInstance] startQRCodeReader:self withAPIRequest:YES withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
+  [[XMMEnduserApi sharedInstance] startQRCodeReaderFromViewController:self withAPIRequest:YES withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
 }
 
 #pragma mark - QRCodeReader Delegate Methods
@@ -105,7 +105,7 @@ BOOL isFirstTime;
   [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
-- (void)didLoadDataByLocationIdentifier:(XMMResponseGetByLocationIdentifier *)apiResult {
+- (void)didLoadDataWithLocationIdentifier:(XMMResponseGetByLocationIdentifier *)apiResult {
   NSLog(@"finishedLoadDataByLocationIdentifier: %@", apiResult);
   
   result = apiResult;

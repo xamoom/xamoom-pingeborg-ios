@@ -74,7 +74,7 @@ UIBarButtonItem *qrButtonItem;
   imagesToDisplay = [[NSMutableDictionary alloc] init];
   
   [[XMMEnduserApi sharedInstance] setDelegate:self];
-  [[XMMEnduserApi sharedInstance] getContentListFromApi:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:pageSize withCursor:@"null"];
+  [[XMMEnduserApi sharedInstance] contentListWithSystemId:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:pageSize withCursor:@"null"];
   
   qrButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"qr26"]
                                                                  style:UIBarButtonItemStylePlain
@@ -109,7 +109,7 @@ UIBarButtonItem *qrButtonItem;
   //load artists, if there are none
   if (itemsToDisplay.count <= 0) {
     [[XMMEnduserApi sharedInstance] setDelegate:self];
-    [[XMMEnduserApi sharedInstance] getContentListFromApi:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:pageSize withCursor:@"null"];
+    [[XMMEnduserApi sharedInstance] contentListWithSystemId:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:pageSize withCursor:@"null"];
   }
 }
 
@@ -196,7 +196,7 @@ UIBarButtonItem *qrButtonItem;
     if (self.hasMore && !self.isApiCallingBlocked) {
       self.isApiCallingBlocked = YES;
       [[XMMEnduserApi sharedInstance] setDelegate:self];
-      [[XMMEnduserApi sharedInstance] getContentListFromApi:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:pageSize withCursor:self.contentListCursor];
+      [[XMMEnduserApi sharedInstance] contentListWithSystemId:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:pageSize withCursor:self.contentListCursor];
     }
     return cell;
   }
@@ -248,7 +248,7 @@ UIBarButtonItem *qrButtonItem;
     imagesToDisplay = nil;
     imagesToDisplay = [[NSMutableDictionary alloc] init];
     [[XMMEnduserApi sharedInstance] setDelegate:self];
-    [[XMMEnduserApi sharedInstance] getContentListFromApi:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:5 withCursor:@"null"];
+    [[XMMEnduserApi sharedInstance] contentListWithSystemId:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:5 withCursor:@"null"];
     self.isApiCallingBlocked = YES;
   }
 }
@@ -334,7 +334,7 @@ UIBarButtonItem *qrButtonItem;
 -(void)tappedQRButton {
   [[XMMEnduserApi sharedInstance] setDelegate:self];
   [[XMMEnduserApi sharedInstance] setQrCodeViewControllerCancelButtonTitle:@"Abbrechen"];
-  [[XMMEnduserApi sharedInstance] startQRCodeReader:self withAPIRequest:YES withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
+  [[XMMEnduserApi sharedInstance] startQRCodeReaderFromViewController:self withAPIRequest:YES withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
 }
 
 #pragma mark - QRCodeReader Delegate Methods
@@ -355,7 +355,7 @@ UIBarButtonItem *qrButtonItem;
 BOOL isFirstTime;
 XMMResponseGetByLocationIdentifier *result;
 
-- (void)didLoadDataByLocationIdentifier:(XMMResponseGetByLocationIdentifier *)apiResult {
+- (void)didLoadDataWithLocationIdentifier:(XMMResponseGetByLocationIdentifier *)apiResult {
   
   result = apiResult;
   if( isFirstTime ) {

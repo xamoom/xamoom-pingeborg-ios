@@ -56,7 +56,7 @@ UISwipeGestureRecognizer *swipeGeoFenceViewDown;
   
   [self.geoFenceActivityIndicator startAnimating];
   [[XMMEnduserApi sharedInstance] setDelegate:self];
-  [[XMMEnduserApi sharedInstance] getSpotMapWithSystemId:[Globals sharedObject].globalSystemId withMapTags:@"showAllTheSpots" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
+  [[XMMEnduserApi sharedInstance] spotMapWithSystemId:[Globals sharedObject].globalSystemId withMapTags:@"showAllTheSpots" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -79,7 +79,7 @@ UISwipeGestureRecognizer *swipeGeoFenceViewDown;
   if ( self.mapKitWithSMCalloutView.annotations.count <= 0 ) {
     [self.geoFenceActivityIndicator startAnimating];
     [[XMMEnduserApi sharedInstance] setDelegate:self];
-    [[XMMEnduserApi sharedInstance] getSpotMapWithSystemId:[Globals sharedObject].globalSystemId withMapTags:@"showAllTheSpots" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
+    [[XMMEnduserApi sharedInstance] spotMapWithSystemId:[Globals sharedObject].globalSystemId withMapTags:@"showAllTheSpots" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
   }
 }
 
@@ -90,7 +90,7 @@ UISwipeGestureRecognizer *swipeGeoFenceViewDown;
 
 #pragma mark - XMMEnduser Delegate
 
-- (void)didLoadDataBySpotMap:(XMMResponseGetSpotMap *)result {
+- (void)didLoadSpotMap:(XMMResponseGetSpotMap *)result {
   if (result.style.customMarker != nil) {
     NSString *base64String = result.style.customMarker;
     
@@ -130,7 +130,7 @@ UISwipeGestureRecognizer *swipeGeoFenceViewDown;
   }
 }
 
--(void)didLoadDataByLocation:(XMMResponseGetByLocation *)result {
+-(void)didLoadDataWithLocation:(XMMResponseGetByLocation *)result {
   NSString *savedArtists = [Globals savedArtits];
   itemsToDisplay = [[NSMutableArray alloc] init];
   imagesToDisplay = [[NSMutableDictionary alloc] init];
@@ -404,7 +404,7 @@ UISwipeGestureRecognizer *swipeGeoFenceViewDown;
   NSString *lat = [NSString stringWithFormat:@"%f", self.lastLocation.coordinate.latitude];
   NSString *lon = [NSString stringWithFormat:@"%f", self.lastLocation.coordinate.longitude];
   
-  [[XMMEnduserApi sharedInstance] getContentFromApiWithLat:lat withLon:lon withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
+  [[XMMEnduserApi sharedInstance] contentWithLat:lat withLon:lon withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
 }
 
 #pragma mark User Interaction

@@ -32,9 +32,9 @@
   
   if ([savedArtists containsString:self.contentId]) {
     [XMMEnduserApi sharedInstance].delegate = self;
-    [[XMMEnduserApi sharedInstance] getContentByIdFull:self.contentId includeStyle:@"False" includeMenu:@"False" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:@"True"];
+    [[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:@"False" includeMenu:@"False" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:@"True"];
   } else {
-    [[XMMEnduserApi sharedInstance] getContentByIdFull:self.contentId includeStyle:@"False" includeMenu:@"False" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:@"False"];
+    [[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:@"False" includeMenu:@"False" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:@"False"];
   }
   
   //dropdown menu
@@ -97,7 +97,7 @@
 
 # pragma mark - XMMEnduser Delegate
 
-- (void)didLoadDataById:(XMMResponseGetById *)result {
+- (void)didLoadDataWithContentId:(XMMResponseGetById *)result {
   savedResult = result;
   [self displayContentOnTableView:savedResult];
 }
