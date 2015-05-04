@@ -70,8 +70,6 @@
   [super viewDidAppear:animated];
   [self displayContentTitleAndImage];
   [contentBlocks displayContentBlocksById:nil byLocationIdentifier:result];
-  
-  NSLog(@"Saved artists: %@", [Globals savedArtits]);
 }
 
 - (void)didReceiveMemoryWarning {

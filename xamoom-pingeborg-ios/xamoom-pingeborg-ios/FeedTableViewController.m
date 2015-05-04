@@ -26,6 +26,7 @@ static int const pageSize = 7;
 @synthesize imagesToDisplay;
 
 UIButton *dropDownButton;
+UIBarButtonItem *qrButtonItem;
 
 - (void)viewDidLoad {
   [super viewDidLoad];
@@ -75,6 +76,14 @@ UIButton *dropDownButton;
   [[XMMEnduserApi sharedInstance] setDelegate:self];
   [[XMMEnduserApi sharedInstance] getContentListFromApi:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:pageSize withCursor:@"null"];
   
+  qrButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"qr26"]
+                                                                 style:UIBarButtonItemStylePlain
+                                                                target:self
+                                                                action:@selector(tappedQRButton)];
+  
+  self.parentViewController.navigationItem.leftBarButtonItem = qrButtonItem;
+
+  isFirstTime = YES;
   // Uncomment the following line to preserve selection between presentations.
   // self.clearsSelectionOnViewWillAppear = NO;
   
@@ -88,17 +97,24 @@ UIButton *dropDownButton;
 }
 
 -(void)viewDidAppear:(BOOL)animated {
+  /*
   if ([[NSUserDefaults standardUserDefaults] integerForKey:@"isPingeborgSystemChanged"]) {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setBool:NO
                    forKey:@"isPingeborgSystemChanged"];
     [userDefaults synchronize];
-  }
+  }*/
+  //self.parentViewController.navigationItem.leftBarButtonItem= qrButtonItem;
   
+  //load artists, if there are none
   if (itemsToDisplay.count <= 0) {
     [[XMMEnduserApi sharedInstance] setDelegate:self];
     [[XMMEnduserApi sharedInstance] getContentListFromApi:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:pageSize withCursor:@"null"];
   }
+}
+
+-(void)viewDidDisappear:(BOOL)animated {
+  //self.parentViewController.navigationItem.leftBarButtonItem = nil;
 }
 
 #pragma mark - XMMEnduserApi delegates
@@ -302,15 +318,52 @@ UIButton *dropDownButton;
  }
  */
 
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- NSLog(@"prepareForSegue");
- UIViewController *vc = [segue destinationViewController];
- }
- */
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+  if ( [[segue identifier] isEqualToString:@"showScanResult"] ) {
+    ScanResultViewController *srvc = [segue destinationViewController];
+    [srvc setResult:result];
+  }
+}
+
+
+#pragma mark - User Interaction
+
+-(void)tappedQRButton {
+  [[XMMEnduserApi sharedInstance] setDelegate:self];
+  [[XMMEnduserApi sharedInstance] setQrCodeViewControllerCancelButtonTitle:@"Abbrechen"];
+  [[XMMEnduserApi sharedInstance] startQRCodeReader:self withAPIRequest:YES withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
+}
+
+#pragma mark - QRCodeReader Delegate Methods
+
+- (void)reader:(QRCodeReaderViewController *)reader didScanResult:(NSString *)result
+{
+  [self dismissViewControllerAnimated:YES completion:^{
+    NSLog(@"Completion with result: %@", result);
+  }];
+}
+
+- (void)readerDidCancel:(QRCodeReaderViewController *)reader
+{
+  NSLog(@"readerDidCancel");
+  [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+BOOL isFirstTime;
+XMMResponseGetByLocationIdentifier *result;
+
+- (void)didLoadDataByLocationIdentifier:(XMMResponseGetByLocationIdentifier *)apiResult {
+  
+  result = apiResult;
+  if( isFirstTime ) {
+    isFirstTime = NO;
+    [Globals addDiscoveredArtist:apiResult.content.contentId];
+    [self performSegueWithIdentifier:@"showScanResult" sender:self];
+  }
+}
 
 #pragma mark - Image Methods
 
@@ -359,24 +412,6 @@ UIButton *dropDownButton;
   
   // Return the new grayscale image
   return newImage;
-}
-
-- (NSString *)contentTypeForImageData:(NSData *)data {
-  uint8_t c;
-  [data getBytes:&c length:1];
-  
-  switch (c) {
-    case 0xFF:
-      return @"image/jpeg";
-    case 0x89:
-      return @"image/png";
-    case 0x47:
-      return @"image/gif";
-    case 0x49:
-    case 0x4D:
-      return @"image/tiff";
-  }
-  return nil;
 }
 
 #pragma mark - NavbarDropdown Delegation
