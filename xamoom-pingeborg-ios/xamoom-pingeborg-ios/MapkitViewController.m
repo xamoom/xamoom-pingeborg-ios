@@ -459,7 +459,6 @@ UISwipeGestureRecognizer *swipeGeoFenceViewDown;
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openArtistDetailViewFromSender:)];
     [cell addGestureRecognizer:tapGestureRecognizer];
     
-    return cell;
   } else {
     cell = [tableView dequeueReusableCellWithIdentifier:@"LocationItem" forIndexPath:indexPath];
     

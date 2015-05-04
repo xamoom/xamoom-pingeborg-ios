@@ -27,6 +27,7 @@ static int const pageSize = 7;
 
 UIButton *dropDownButton;
 UIBarButtonItem *qrButtonItem;
+JGProgressHUD *hud;
 
 - (void)viewDidLoad {
   [super viewDidLoad];
@@ -73,6 +74,9 @@ UIBarButtonItem *qrButtonItem;
   itemsToDisplay = [[NSMutableArray alloc] init];
   imagesToDisplay = [[NSMutableDictionary alloc] init];
   
+  hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+  [hud showInView:self.view];
+  
   [[XMMEnduserApi sharedInstance] setDelegate:self];
   [[XMMEnduserApi sharedInstance] contentListWithSystemId:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:pageSize withCursor:@"null"];
   
@@ -84,6 +88,8 @@ UIBarButtonItem *qrButtonItem;
   self.parentViewController.navigationItem.leftBarButtonItem = qrButtonItem;
 
   isFirstTime = YES;
+  
+  
   // Uncomment the following line to preserve selection between presentations.
   // self.clearsSelectionOnViewWillAppear = NO;
   
@@ -163,6 +169,7 @@ UIBarButtonItem *qrButtonItem;
     [itemsToDisplay addObject:contentItem];
   }
   
+  [hud dismiss];
   self.isApiCallingBlocked = NO;
   [self reloadData];
 }

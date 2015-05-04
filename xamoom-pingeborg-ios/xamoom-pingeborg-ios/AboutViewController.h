@@ -12,6 +12,7 @@
 #import "Globals.h"
 #import "ArtistDetailViewController.h"
 #import "FeedItemCell.h"
+#import <JGProgressHUD/JGProgressHUD.h>
 
 @interface AboutViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, XMMEnderuserApiDelegate, XMMContentBlocksDelegate>
 

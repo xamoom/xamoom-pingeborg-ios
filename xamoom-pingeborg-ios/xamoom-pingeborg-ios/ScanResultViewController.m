@@ -17,6 +17,8 @@
 @synthesize result;
 @synthesize contentBlocks;
 
+JGProgressHUD *hud;
+
 #pragma mark - View Lifecycle
 
 - (void)viewDidLoad {
@@ -64,12 +66,15 @@
   
   self.navigationItem.rightBarButtonItem = buttonItem;
   
+  hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+  [hud showInView:self.view];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
   [self displayContentTitleAndImage];
   [contentBlocks displayContentBlocksById:nil byLocationIdentifier:result];
+  [hud dismiss];
 }
 
 - (void)didReceiveMemoryWarning {

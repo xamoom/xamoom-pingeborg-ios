@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "XMMEnduserApi.h"
 #import "XMMContentBlocks.h"
+#import <JGProgressHUD/JGProgressHUD.h>
 
 @interface ScanResultViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, XMMContentBlocksDelegate>
 

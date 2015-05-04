@@ -5,3 +5,4 @@ pod 'QRCodeReaderViewController', '~> 2.0.0'
 pod 'REMenu', '~> 1.10'
 pod 'SMCalloutView'
 pod "youtube-ios-player-helper", "~> 0.1.1"
+pod 'JGProgressHUD'

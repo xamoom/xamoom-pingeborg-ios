@@ -13,6 +13,8 @@
 @synthesize contentBlocks;
 @synthesize savedResult;
 
+JGProgressHUD *hud;
+
 #pragma mark - View Lifecycle
 
 - (void)viewDidLoad {
@@ -30,8 +32,10 @@
   // Do any additional setup after loading the view.
   [[XMMEnduserApi sharedInstance] setDelegate:self];
   
+  hud = [[JGProgressHUD alloc] initWithStyle:JGProgressHUDStyleDark];
+  [hud showInView:self.view];
+  
   if ([savedArtists containsString:self.contentId]) {
-    [XMMEnduserApi sharedInstance].delegate = self;
     [[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:@"False" includeMenu:@"False" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:@"True"];
   } else {
     [[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:@"False" includeMenu:@"False" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:@"False"];
@@ -100,6 +104,7 @@
 - (void)didLoadDataWithContentId:(XMMResponseGetById *)result {
   savedResult = result;
   [self displayContentOnTableView:savedResult];
+  [hud dismiss];
 }
 
 #pragma mark - Table view data source

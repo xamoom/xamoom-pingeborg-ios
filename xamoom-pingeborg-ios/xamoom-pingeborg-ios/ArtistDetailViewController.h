@@ -11,6 +11,7 @@
 #import "Globals.h"
 #import "XMMContentBlocks.h"
 #import "REMenu.h"
+#import <JGProgressHUD/JGProgressHUD.h>
 
 @class XMMContentBlocks;
 @protocol XMMContentBlocksDelegate;

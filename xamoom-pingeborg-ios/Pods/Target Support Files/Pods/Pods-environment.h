@@ -18,6 +18,12 @@
 #define COCOAPODS_VERSION_MINOR_ISO8601DateFormatterValueTransformer 6
 #define COCOAPODS_VERSION_PATCH_ISO8601DateFormatterValueTransformer 0
 
+// JGProgressHUD
+#define COCOAPODS_POD_AVAILABLE_JGProgressHUD
+#define COCOAPODS_VERSION_MAJOR_JGProgressHUD 1
+#define COCOAPODS_VERSION_MINOR_JGProgressHUD 2
+#define COCOAPODS_VERSION_PATCH_JGProgressHUD 5
+
 // QRCodeReaderViewController
 #define COCOAPODS_POD_AVAILABLE_QRCodeReaderViewController
 #define COCOAPODS_VERSION_MAJOR_QRCodeReaderViewController 2

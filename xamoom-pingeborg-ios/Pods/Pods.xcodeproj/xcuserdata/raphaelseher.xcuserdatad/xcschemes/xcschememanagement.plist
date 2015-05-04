@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-JGProgressHUD.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-QRCodeReaderViewController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -62,7 +67,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1041AB0C01A96DBA77DCF099</key>
+		<key>00377D3E5AC6DD6FD7EC7F5D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -72,7 +77,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2933810E2E18124EEBDCEDD6</key>
+		<key>1536374312C4D999AED29ADC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>30046ABF8E681DEB018EB34C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>357A91DA3FCE0E3B44DD637C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4B5C4DA80F6B3E80FC0F758E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -82,7 +102,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5C117641C95695327389AFC4</key>
+		<key>54F9C99ED3C0E8A552280C23</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -92,12 +112,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>80E16341A44823455058F74E</key>
+		<key>7F2C33B31CBE2FBBE91F592F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>847FF5DF13EE39B6F6586DC5</key>
+		<key>9B7288E4420C581E6597AC9A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -112,17 +132,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AD72194EE81DF93FD80F1409</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>AF5C13DFB5C73165715AA0ED</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>B5978E0409763FA780ED6B36</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B926D03EF1340C6C7CF4A4E0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -132,12 +147,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C4EE104C2D24A1A9637DD4DB</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C594D4894F127772062A3C4D</key>
+		<key>BFCEB000608535BC668C6994</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -157,12 +167,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EC6C9F83C86CF88C3598483C</key>
+		<key>F08C5B9379CD1CEE61B346C8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F1A4A5AFD7BBED302AC83162</key>
+		<key>F107B307D8E4D739663EFE38</key>
 		<dict>
 			<key>primary</key>
 			<true/>

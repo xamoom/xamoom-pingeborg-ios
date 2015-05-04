@@ -19,6 +19,8 @@
 
 @synthesize contentBlocks;
 
+JGProgressHUD *hud;
+
 #pragma mark - View Lifecycle
 
 - (void)viewDidLoad {
@@ -30,6 +32,9 @@
   
   contentBlocks = [[XMMContentBlocks alloc] init];
   contentBlocks.delegate = self;
+  
+  hud = [[JGProgressHUD alloc] initWithStyle:JGProgressHUDStyleDark];
+  [hud showInView:self.view];
   
   [XMMEnduserApi sharedInstance].delegate = self;
   [[XMMEnduserApi sharedInstance] contentWithContentId:[Globals sharedObject].aboutPageId includeStyle:@"false" includeMenu:@"false" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:@"True"];
@@ -54,6 +59,7 @@
 - (void)didLoadDataWithContentId:(XMMResponseGetById *)result {
   [self displayContentTitleAndImage:result];
   [contentBlocks displayContentBlocksById:result byLocationIdentifier:nil];
+  [hud dismiss];
 }
 
 #pragma mark - Table view data source

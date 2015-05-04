@@ -14,6 +14,7 @@
 #import "ArtistDetailViewController.h"
 #import "ScanResultViewController.h"
 #import "UIImage+animatedGIF.h"
+#import <JGProgressHUD/JGProgressHUD.h>
 
 @interface FeedTableViewController : UITableViewController <XMMEnderuserApiDelegate, DropDownMenuDelegate>
 
