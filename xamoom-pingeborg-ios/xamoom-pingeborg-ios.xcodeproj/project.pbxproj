@@ -113,6 +113,7 @@
 		88DEE9DB1ADE43730069DC32 /* soundcloud.js in Resources */ = {isa = PBXBuildFile; fileRef = 88DEE9DA1ADE43730069DC32 /* soundcloud.js */; };
 		88DEE9E01ADE79830069DC32 /* DownloadBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DEE9DE1ADE79830069DC32 /* DownloadBlockTableViewCell.m */; };
 		88DEE9E11ADE79830069DC32 /* DownloadBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88DEE9DF1ADE79830069DC32 /* DownloadBlockTableViewCell.xib */; };
+		88E2FAEA1AF74D5800917AFB /* UIImage+animatedGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E2FAE91AF74D5800917AFB /* UIImage+animatedGIF.m */; };
 		88E7801F1ADE38690082648B /* SoundcloudBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E7801D1ADE38690082648B /* SoundcloudBlockTableViewCell.m */; };
 		88E780201ADE38690082648B /* SoundcloudBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88E7801E1ADE38690082648B /* SoundcloudBlockTableViewCell.xib */; };
 /* End PBXBuildFile section */
@@ -314,6 +315,8 @@
 		88DEE9DD1ADE79830069DC32 /* DownloadBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadBlockTableViewCell.h; sourceTree = "<group>"; };
 		88DEE9DE1ADE79830069DC32 /* DownloadBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadBlockTableViewCell.m; sourceTree = "<group>"; };
 		88DEE9DF1ADE79830069DC32 /* DownloadBlockTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DownloadBlockTableViewCell.xib; sourceTree = "<group>"; };
+		88E2FAE81AF74D5800917AFB /* UIImage+animatedGIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+animatedGIF.h"; sourceTree = "<group>"; };
+		88E2FAE91AF74D5800917AFB /* UIImage+animatedGIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+animatedGIF.m"; sourceTree = "<group>"; };
 		88E7801C1ADE38690082648B /* SoundcloudBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundcloudBlockTableViewCell.h; sourceTree = "<group>"; };
 		88E7801D1ADE38690082648B /* SoundcloudBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundcloudBlockTableViewCell.m; sourceTree = "<group>"; };
 		88E7801E1ADE38690082648B /* SoundcloudBlockTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SoundcloudBlockTableViewCell.xib; sourceTree = "<group>"; };
@@ -489,6 +492,8 @@
 			children = (
 				88BA01F31AA859F90091A43C /* Info.plist */,
 				88BA01F41AA859F90091A43C /* main.m */,
+				88E2FAE81AF74D5800917AFB /* UIImage+animatedGIF.h */,
+				88E2FAE91AF74D5800917AFB /* UIImage+animatedGIF.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -964,6 +969,7 @@
 				88DA7DC81AF24CE80005FEA3 /* XMMResponseGetByLocation.m in Sources */,
 				88DA7DA11AF24CE80005FEA3 /* _XMMCoreDataContentBlocks.m in Sources */,
 				8827D8ED1ABB0F1C002F632C /* PingeborgAnnotationView.m in Sources */,
+				88E2FAEA1AF74D5800917AFB /* UIImage+animatedGIF.m in Sources */,
 				88DA7DA41AF24CE80005FEA3 /* _XMMCoreDataGetByLocationItem.m in Sources */,
 				8830CB951AC925D5005C79EF /* FeedTableViewController.m in Sources */,
 				8827D8E71ABB0E7C002F632C /* PingebAnnotation.m in Sources */,

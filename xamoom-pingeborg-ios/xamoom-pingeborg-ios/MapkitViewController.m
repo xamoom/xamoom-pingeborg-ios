@@ -47,14 +47,6 @@ UISwipeGestureRecognizer *swipeGeoFenceViewDown;
   layer.shadowOpacity = 0.20f;
   layer.shadowPath = [[UIBezierPath bezierPathWithRect:layer.bounds] CGPath];
   
-  swipeGeoFenceViewUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(toggleGeoFenceView)];
-  swipeGeoFenceViewUp.direction = UISwipeGestureRecognizerDirectionUp;
-  swipeGeoFenceViewDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(toggleGeoFenceView)];
-  swipeGeoFenceViewDown.direction = UISwipeGestureRecognizerDirectionDown;
-  UITapGestureRecognizer *geoFenceTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toggleGeoFenceView)];
-  [self.geofenceView addGestureRecognizer:geoFenceTapGesture];
-  [self.geofenceView addGestureRecognizer:swipeGeoFenceViewUp];
-  
   self.locationManager = [[CLLocationManager alloc] init];
   self.locationManager.delegate = self;
   // Check for iOS 8. Without this guard the code will crash with "unknown selector" on iOS 7.
@@ -169,6 +161,7 @@ UISwipeGestureRecognizer *swipeGeoFenceViewDown;
     [self.geoFenceActivityIndicator stopAnimating];
     self.geoFenceIcon.image = [UIImage imageNamed:@"angleDown"];
     self.geoFenceIcon.transform = CGAffineTransformMakeRotation(M_PI);
+    [self enableGeofenceView];
     [self.tableView reloadData];
   }
 }
@@ -182,6 +175,7 @@ UISwipeGestureRecognizer *swipeGeoFenceViewDown;
   [self.geoFenceActivityIndicator stopAnimating];
   self.geoFenceIcon.image = [UIImage imageNamed:@"angleDown"];
   self.geoFenceIcon.transform = CGAffineTransformMakeRotation(M_PI);
+  [self enableGeofenceView];
 }
 
 #pragma mark - MKMapView delegate methods
@@ -589,6 +583,20 @@ UISwipeGestureRecognizer *swipeGeoFenceViewDown;
 
 - (IBAction)openGeoFencing:(UIButton *)sender {
   [self toggleGeoFenceView];
+}
+
+- (void)enableGeofenceView {
+  swipeGeoFenceViewUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(toggleGeoFenceView)];
+  swipeGeoFenceViewUp.direction = UISwipeGestureRecognizerDirectionUp;
+  swipeGeoFenceViewDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(toggleGeoFenceView)];
+  swipeGeoFenceViewDown.direction = UISwipeGestureRecognizerDirectionDown;
+  UITapGestureRecognizer *geoFenceTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toggleGeoFenceView)];
+  [self.geofenceView addGestureRecognizer:geoFenceTapGesture];
+  [self.geofenceView addGestureRecognizer:swipeGeoFenceViewUp];
+  
+  [self.geoFenceActivityIndicator stopAnimating];
+  self.geoFenceIcon.image = [UIImage imageNamed:@"angleDown"];
+  self.geoFenceIcon.transform = CGAffineTransformMakeRotation(M_PI);
 }
 
 - (void)toggleGeoFenceView {
