@@ -11,17 +11,17 @@
 @implementation EbookBlockTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+  // Initialization code
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+  [super setSelected:selected animated:animated];
+  
+  // Configure the view for the selected state
 }
 
 - (IBAction)downloadButtonClicked:(id)sender {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.downloadUrl]];
+  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.downloadUrl]];
 }
 
 @end

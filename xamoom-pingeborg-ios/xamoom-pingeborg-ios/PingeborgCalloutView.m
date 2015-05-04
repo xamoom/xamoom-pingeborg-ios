@@ -11,25 +11,25 @@
 @implementation PingeborgCalloutView
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        self.layer.cornerRadius = 6.0f;
-        self.layer.masksToBounds = YES;
-    }
-    return self;
+  self = [super initWithCoder:aDecoder];
+  if (self) {
+    self.layer.cornerRadius = 6.0f;
+    self.layer.masksToBounds = YES;
+  }
+  return self;
 }
 
 - (id)init{
-    id mainView = [[[NSBundle mainBundle] loadNibNamed:@"PingeborgCalloutView" owner:self options:nil] lastObject];
-    return mainView;
+  id mainView = [[[NSBundle mainBundle] loadNibNamed:@"PingeborgCalloutView" owner:self options:nil] lastObject];
+  return mainView;
 }
 
 /*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
+ - (void)drawRect:(CGRect)rect {
+ // Drawing code
+ }
+ */
 
 @end

@@ -55,21 +55,21 @@ BOOL isFirstTime;
   
   //creating custom scan-qr-button
   /*
-  UIButton *middleButton = [UIButton buttonWithType:UIButtonTypeCustom];
-  [middleButton addTarget:self action:@selector(tappedMiddleButton:) forControlEvents:UIControlEventTouchUpInside];
-  
-  UIImage *buttonImage = [UIImage imageNamed:@"QR"];
-  [middleButton setImage:buttonImage forState:UIControlStateNormal];
-  middleButton.tintColor = [UIColor lightGrayColor];
-  
-  CGRect frame;
-  frame.size.height = 49;
-  frame.size.width = [self.tabBar.subviews[3] size].width;
-  frame.origin.x = (self.tabBar.frame.size.width/4) * 3 + ([self.tabBar.subviews[3] size].width / 2 ) - ([self.tabBar.subviews[3] size].width / 2 ) ;
-  frame.origin.y = (self.tabBar.frame.size.height/2) - 24.5;
-  [middleButton setFrame:frame];
-  
-  [self.tabBar addSubview:middleButton];
+   UIButton *middleButton = [UIButton buttonWithType:UIButtonTypeCustom];
+   [middleButton addTarget:self action:@selector(tappedMiddleButton:) forControlEvents:UIControlEventTouchUpInside];
+   
+   UIImage *buttonImage = [UIImage imageNamed:@"QR"];
+   [middleButton setImage:buttonImage forState:UIControlStateNormal];
+   middleButton.tintColor = [UIColor lightGrayColor];
+   
+   CGRect frame;
+   frame.size.height = 49;
+   frame.size.width = [self.tabBar.subviews[3] size].width;
+   frame.origin.x = (self.tabBar.frame.size.width/4) * 3 + ([self.tabBar.subviews[3] size].width / 2 ) - ([self.tabBar.subviews[3] size].width / 2 ) ;
+   frame.origin.y = (self.tabBar.frame.size.height/2) - 24.5;
+   [middleButton setFrame:frame];
+   
+   [self.tabBar addSubview:middleButton];
    */
 }
 

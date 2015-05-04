@@ -63,7 +63,7 @@
                                                                 action:@selector(toggleFontSizeDropdownMenu)];
   
   self.navigationItem.rightBarButtonItem = buttonItem;
-
+  
 }
 
 - (void)viewDidAppear:(BOOL)animated {

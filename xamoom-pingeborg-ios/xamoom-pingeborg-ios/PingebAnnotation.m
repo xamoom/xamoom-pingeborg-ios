@@ -15,31 +15,31 @@
 @synthesize title;
 
 - (id)initWithLocation:(CLLocationCoordinate2D)coord {
-    self = [super init];
-    if (self) {
-        coordinate = coord;
-    }
-    
-    return self;
+  self = [super init];
+  if (self) {
+    coordinate = coord;
+  }
+  
+  return self;
 }
 
 - (id)initWithName:(NSString*)name location:(CLLocationCoordinate2D)coord {
-    self = [super init];
-    if (self) {
-        coordinate = coord;
-        title = name;
-    }
-    
-    return self;
+  self = [super init];
+  if (self) {
+    coordinate = coord;
+    title = name;
+  }
+  
+  return self;
 }
 
 - (MKMapItem*)mapItem {
-    MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:coordinate addressDictionary:nil];
-
-    MKMapItem *mapItem = [[MKMapItem alloc] initWithPlacemark:placemark];
-    mapItem.name = self.title;
-    
-    return mapItem;
+  MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:coordinate addressDictionary:nil];
+  
+  MKMapItem *mapItem = [[MKMapItem alloc] initWithPlacemark:placemark];
+  mapItem.name = self.title;
+  
+  return mapItem;
 }
 
 @end
