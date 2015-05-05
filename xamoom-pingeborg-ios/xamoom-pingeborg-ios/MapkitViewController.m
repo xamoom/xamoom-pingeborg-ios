@@ -353,7 +353,7 @@ UIImage *placeholder;
     UIButton *navigationButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, pingeborgCalloutView.frame.size.height, 300.0f, 60.0f)];
     navigationButton.backgroundColor = [UIColor blueColor];
     [navigationButton setImage:[[UIImage imageNamed:@"car"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
-    [navigationButton setTintColor:[UIColor whiteColor]];
+    navigationButton.tintColor = [UIColor whiteColor];
     [navigationButton setImageEdgeInsets: UIEdgeInsetsMake(-10.0f, navigationButton.titleEdgeInsets.right, 10.0f, navigationButton.titleEdgeInsets.left)];
     
     //increase pingeborCalloutView height

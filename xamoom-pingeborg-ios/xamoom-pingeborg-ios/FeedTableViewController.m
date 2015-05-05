@@ -86,15 +86,6 @@ JGProgressHUD *hud;
   //api call
   [[XMMEnduserApi sharedInstance] setDelegate:self];
   [[XMMEnduserApi sharedInstance] contentListWithSystemId:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:pageSize withCursor:@"null"];
-  
-  //qr button
-  qrButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"qr26"]
-                                                                 style:UIBarButtonItemStylePlain
-                                                                target:self
-                                                                action:@selector(tappedQRButton)];
-  self.parentViewController.navigationItem.leftBarButtonItem = qrButtonItem;
-
-  
 }
 
 - (void)didReceiveMemoryWarning {
@@ -244,10 +235,12 @@ JGProgressHUD *hud;
   }
   
   //overlay image for the first cell
-  if (indexPath.row == 0) {
+  if (contentItem == itemsToDisplay.firstObject) {
     if (![[Globals savedArtits] containsString:contentItem.contentId]) {
       cell.feedItemOverlayImage.image = [UIImage imageNamed:@"discoverable"];
     }
+  } else {
+    cell.feedItemOverlayImage.image = nil;
   }
   
   return cell;

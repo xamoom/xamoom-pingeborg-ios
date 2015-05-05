@@ -75,7 +75,7 @@
                         <viewControllerLayoutGuide type="bottom" id="ntR-gj-hWM"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="bKd-Ua-hIb" customClass="QRCodeReaderView">
-                        <rect key="frame" x="0.0" y="64" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -188,13 +188,13 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="3wJ-8M-eMu">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
                         <segue destination="g8c-6b-oU9" kind="show" identifier="showScanResult" id="TM5-d9-Bxu"/>
                         <segue destination="keD-Cb-FhT" kind="relationship" relationship="viewControllers" id="iEI-Ey-ObK"/>
                         <segue destination="WdT-Q6-mb4" kind="relationship" relationship="viewControllers" id="lPr-2U-FsY"/>
                         <segue destination="evs-Oh-Jun" kind="relationship" relationship="viewControllers" id="7Z6-7b-f6d"/>
+                        <segue destination="wda-of-8Qb" kind="relationship" relationship="viewControllers" id="czG-kt-2ns"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nmp-ce-SUF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -322,6 +322,6 @@
         <image name="info" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="F5f-SD-5lP"/>
+        <segue reference="TM5-d9-Bxu"/>
     </inferredMetricsTieBreakers>
 </document>

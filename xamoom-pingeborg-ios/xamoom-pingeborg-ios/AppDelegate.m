@@ -23,7 +23,7 @@
   api = [[XMMEnduserApi alloc] init];
   
   //set UI colors
-  [[UITabBar appearance] setTintColor:[UIColor blackColor]];
+  //[[UITabBar appearance] setTintColor:[UIColor blackColor]];
   [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:255.0/255.0 green:238.0/255.0 blue:0/255.0 alpha:1]];
   
   //IF DEV

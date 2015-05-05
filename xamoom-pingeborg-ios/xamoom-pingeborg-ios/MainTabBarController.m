@@ -28,9 +28,7 @@ BOOL isFirstTime;
   for (UITabBarItem *item in self.tabBar.items) {
     [item setImageInsets:UIEdgeInsetsMake(4,0,-4,0)];
   }
-  
-  //hide original navbar scan-qr-button
-  //[self.tabBar.subviews[3] setHidden:YES];
+
   
   /*//navbar Dropdown Code
    UIImage *buttonImage = [UIImage imageNamed:@"QR"];
@@ -50,27 +48,28 @@ BOOL isFirstTime;
    }
    
    [self.view addSubview:button];
-   
    */
   
+  //hide original navbar scan-qr-button
+  [self.tabBar.subviews[3] setHidden:YES];
+  
   //creating custom scan-qr-button
-  /*
-   UIButton *middleButton = [UIButton buttonWithType:UIButtonTypeCustom];
-   [middleButton addTarget:self action:@selector(tappedMiddleButton:) forControlEvents:UIControlEventTouchUpInside];
-   
-   UIImage *buttonImage = [UIImage imageNamed:@"QR"];
-   [middleButton setImage:buttonImage forState:UIControlStateNormal];
-   middleButton.tintColor = [UIColor lightGrayColor];
-   
-   CGRect frame;
-   frame.size.height = 49;
-   frame.size.width = [self.tabBar.subviews[3] size].width;
-   frame.origin.x = (self.tabBar.frame.size.width/4) * 3 + ([self.tabBar.subviews[3] size].width / 2 ) - ([self.tabBar.subviews[3] size].width / 2 ) ;
-   frame.origin.y = (self.tabBar.frame.size.height/2) - 24.5;
-   [middleButton setFrame:frame];
-   
-   [self.tabBar addSubview:middleButton];
-   */
+  UIButton *middleButton = [UIButton buttonWithType:UIButtonTypeCustom];
+  [middleButton addTarget:self action:@selector(tappedMiddleButton:) forControlEvents:UIControlEventTouchUpInside];
+  
+  UIImage *buttonImage = [UIImage imageNamed:@"QR"];
+  [middleButton setImage:[buttonImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+  middleButton.tintColor = [UIColor lightGrayColor];
+  
+  CGRect frame;
+  frame.size.height = 49;
+  frame.size.width = [self.tabBar.subviews[3] size].width;
+  frame.origin.x = (self.tabBar.frame.size.width/4) * 3 + ([self.tabBar.subviews[3] size].width / 2 ) - ([self.tabBar.subviews[3] size].width / 2 ) ;
+  frame.origin.y = (self.tabBar.frame.size.height/2) - 24.5;
+  [middleButton setFrame:frame];
+  
+  [self.tabBar addSubview:middleButton];
+  
 }
 
 - (void)didReceiveMemoryWarning {
