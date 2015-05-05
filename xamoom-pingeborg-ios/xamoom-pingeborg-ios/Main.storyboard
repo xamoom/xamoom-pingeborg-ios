@@ -251,8 +251,8 @@
                             <view alpha="0.90000000000000013" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vWz-ei-cp6">
                                 <rect key="frame" x="0.0" y="447" width="600" height="40"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Geofencing" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ipZ-u8-Z2v">
-                                        <rect key="frame" x="8" y="9" width="89" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Geofencing" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ipZ-u8-Z2v">
+                                        <rect key="frame" x="8" y="9" width="556" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -273,9 +273,13 @@
                                     <constraint firstAttribute="height" constant="40" id="8Vn-ui-r4H"/>
                                     <constraint firstAttribute="bottom" secondItem="kag-2o-TLE" secondAttribute="bottom" constant="10" id="ARQ-Bu-AQH"/>
                                     <constraint firstAttribute="bottom" secondItem="vnx-Hm-ayt" secondAttribute="bottom" constant="10" id="F0u-df-7XM"/>
+                                    <constraint firstItem="ipZ-u8-Z2v" firstAttribute="leading" secondItem="vWz-ei-cp6" secondAttribute="leading" constant="8" id="H3z-th-CUQ"/>
                                     <constraint firstAttribute="trailing" secondItem="kag-2o-TLE" secondAttribute="trailing" constant="8" id="J6I-Be-Q8c"/>
                                     <constraint firstAttribute="trailing" secondItem="vnx-Hm-ayt" secondAttribute="trailing" constant="8" id="LUj-P9-a0E"/>
+                                    <constraint firstItem="vnx-Hm-ayt" firstAttribute="leading" secondItem="ipZ-u8-Z2v" secondAttribute="trailing" constant="8" id="fpZ-y7-3Q4"/>
                                     <constraint firstItem="vnx-Hm-ayt" firstAttribute="top" secondItem="vWz-ei-cp6" secondAttribute="top" constant="10" id="jE7-uz-igj"/>
+                                    <constraint firstAttribute="bottom" secondItem="ipZ-u8-Z2v" secondAttribute="bottom" constant="10" id="nIH-kT-jgs"/>
+                                    <constraint firstItem="ipZ-u8-Z2v" firstAttribute="top" secondItem="vWz-ei-cp6" secondAttribute="top" constant="9" id="rUz-6Q-uun"/>
                                     <constraint firstItem="kag-2o-TLE" firstAttribute="top" secondItem="vWz-ei-cp6" secondAttribute="top" constant="10" id="w7r-29-XnC"/>
                                 </constraints>
                             </view>
@@ -304,6 +308,7 @@
                     <connections>
                         <outlet property="geoFenceActivityIndicator" destination="kag-2o-TLE" id="Pvu-Va-ubE"/>
                         <outlet property="geoFenceIcon" destination="vnx-Hm-ayt" id="PLF-kp-gxy"/>
+                        <outlet property="geoFenceLabel" destination="ipZ-u8-Z2v" id="cst-UK-ln9"/>
                         <outlet property="geofenceView" destination="vWz-ei-cp6" id="M76-gi-lzF"/>
                         <outlet property="mapView" destination="OrU-3Y-DR4" id="Vhr-1h-ehd"/>
                         <outlet property="tableView" destination="YcP-f3-HIP" id="zs2-fg-7Nh"/>

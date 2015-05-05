@@ -29,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet UIView *geofenceView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *geoFenceActivityIndicator;
 @property (weak, nonatomic) IBOutlet UIImageView *geoFenceIcon;
+@property (weak, nonatomic) IBOutlet UILabel *geoFenceLabel;
 
 @property (nonatomic, strong) CustomMapView *mapKitWithSMCalloutView;
 @property (nonatomic, strong) MKPointAnnotation *annotationForSMCalloutView;

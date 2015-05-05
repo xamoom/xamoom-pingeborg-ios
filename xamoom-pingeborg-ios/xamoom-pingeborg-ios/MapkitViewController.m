@@ -146,6 +146,9 @@ UIImage *placeholder;
     XMMResponseGetByLocationItem* item = [result.items firstObject];
     savedResponseContent = item;
     
+    //set geoFenceLabel
+    self.geoFenceLabel.text = [NSString stringWithFormat:@"Gefunden: %@", item.title];
+    
     if ([item.systemId isEqualToString:[Globals sharedObject].globalSystemId]) {
       [itemsToDisplay addObject:item];
       
@@ -200,10 +203,10 @@ UIImage *placeholder;
   }
   
   if ([itemsToDisplay count] > 0) {
+    self.geoFenceLabel.text = [NSString stringWithFormat:@"%lu in der Nähe", (unsigned long)[itemsToDisplay count]];
     [self enableGeofenceView];
   } else {
-    NSLog(@"Nothing near you: 3000m");
-    //TODO Change text
+    self.geoFenceLabel.text = @"Nichts in deiner Nähe";
   }
 }
 
