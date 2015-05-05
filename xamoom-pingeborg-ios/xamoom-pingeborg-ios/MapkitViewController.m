@@ -21,6 +21,7 @@
 bool isUp = NO;
 UISwipeGestureRecognizer *swipeGeoFenceViewUp;
 UISwipeGestureRecognizer *swipeGeoFenceViewDown;
+XMMResponseGetByLocationItem *savedResponseContent;
 UIImage *placeholder;
 
 #pragma mark - View Lifecycle
@@ -141,7 +142,10 @@ UIImage *placeholder;
   itemsToDisplay = [[NSMutableArray alloc] init];
   imagesToDisplay = [[NSMutableDictionary alloc] init];
   
-  for (XMMResponseGetByLocationItem* item in result.items) {
+  if([result.items firstObject] != nil) {
+    XMMResponseGetByLocationItem* item = [result.items firstObject];
+    savedResponseContent = item;
+    
     if ([item.systemId isEqualToString:[Globals sharedObject].globalSystemId]) {
       [itemsToDisplay addObject:item];
       
@@ -159,7 +163,7 @@ UIImage *placeholder;
               [imagesToDisplay setValue:gifImage forKey:item.contentId];
             }
             
-            [self.tableView reloadData];
+            [self enableGeofenceView];
           });
         });
       } else if(item.imagePublicUrl != nil) {
@@ -171,25 +175,22 @@ UIImage *placeholder;
             
             [imagesToDisplay setValue:image forKey:item.contentId];
             [self.tableView reloadData];
+
+            [self enableGeofenceView];
           }
         }];
       } else {
         [imagesToDisplay setValue:placeholder forKey:item.contentId];
+        
+        [self enableGeofenceView];
       }
-      
     }
   }
-  
-  if ([itemsToDisplay count] == 0) {
+
+  if (savedResponseContent == nil) {
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
     [XMMEnduserApi sharedInstance].delegate = self;
-    [[XMMEnduserApi sharedInstance] closestSpotsWith:self.lastLocation.coordinate.latitude andLon:self.lastLocation.coordinate.longitude withRadius:10000 withLimit:5 withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
-  } else {
-    [self.geoFenceActivityIndicator stopAnimating];
-    self.geoFenceIcon.image = [UIImage imageNamed:@"angleDown"];
-    self.geoFenceIcon.transform = CGAffineTransformMakeRotation(M_PI);
-    [self.tableView reloadData];
-    [self enableGeofenceView];
+    [[XMMEnduserApi sharedInstance] closestSpotsWith:self.lastLocation.coordinate.latitude andLon:self.lastLocation.coordinate.longitude withRadius:30000 withLimit:10 withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
   }
 }
 
@@ -197,12 +198,13 @@ UIImage *placeholder;
   for (XMMResponseGetSpotMapItem *item in result.items) {
     [itemsToDisplay addObject:item];
   }
-  [self.tableView reloadData];
   
-  [self.geoFenceActivityIndicator stopAnimating];
-  self.geoFenceIcon.image = [UIImage imageNamed:@"angleDown"];
-  self.geoFenceIcon.transform = CGAffineTransformMakeRotation(M_PI);
-  [self enableGeofenceView];
+  if ([itemsToDisplay count] > 0) {
+    [self enableGeofenceView];
+  } else {
+    NSLog(@"Nothing near you: 3000m");
+    //TODO Change text
+  }
 }
 
 #pragma mark - MKMapView delegate methods
@@ -622,6 +624,11 @@ UIImage *placeholder;
 }
 
 - (void)enableGeofenceView {
+  self.geoFenceIcon.image = [UIImage imageNamed:@"angleDown"];
+  self.geoFenceIcon.transform = CGAffineTransformMakeRotation(M_PI);
+  [self.geoFenceActivityIndicator stopAnimating];
+  [self.tableView reloadData];
+  
   swipeGeoFenceViewUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(toggleGeoFenceView)];
   swipeGeoFenceViewUp.direction = UISwipeGestureRecognizerDirectionUp;
   swipeGeoFenceViewDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(toggleGeoFenceView)];
@@ -643,22 +650,33 @@ UIImage *placeholder;
     [self.geofenceView removeGestureRecognizer:swipeGeoFenceViewDown];
     [self.geofenceView addGestureRecognizer:swipeGeoFenceViewUp];
   } else {
-    self.tableViewHeightConstraint.constant = self.view.frame.size.height - 40.0f;
+    if (savedResponseContent != nil) {
+      UIImage *image = [imagesToDisplay objectForKey:savedResponseContent.contentId];
+      float imageRatio = image.size.width / image.size.height;
+      self.tableViewHeightConstraint.constant = (self.tableView.frame.size.width / imageRatio);
+      self.tableView.scrollEnabled = NO;
+      self.tableView.bounces = NO;
+    } else {
+      self.tableViewHeightConstraint.constant = (self.view.frame.size.height/2) + 40;
+    }
     
     [self.geofenceView removeGestureRecognizer:swipeGeoFenceViewUp];
     [self.geofenceView addGestureRecognizer:swipeGeoFenceViewDown];
   }
   
-  [UIView animateWithDuration:1
+  [UIView animateWithDuration:0.5
                    animations:^{
                      if (isUp)
                        self.geoFenceIcon.transform = CGAffineTransformMakeRotation(M_PI);
                      else
                        self.geoFenceIcon.transform = CGAffineTransformMakeRotation(0);
                      [self.view layoutIfNeeded]; // Called on parent view
+                     isUp = !isUp;
                    }];
   
-  isUp = !isUp;
+  if (isUp)
+    [self.tableView reloadData];
+
 }
 
 - (void)openArtistDetailViewFromSender:(UITapGestureRecognizer*)sender {
