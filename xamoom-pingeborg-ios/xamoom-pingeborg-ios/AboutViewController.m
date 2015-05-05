@@ -20,6 +20,7 @@
 @synthesize contentBlocks;
 
 JGProgressHUD *hud;
+UIBarButtonItem *buttonItem;
 
 #pragma mark - View Lifecycle
 
@@ -66,15 +67,20 @@ JGProgressHUD *hud;
   
   self.fontSizeDropdownMenu = [[REMenu alloc] initWithItems:@[NormalFontSizeItem, BigFontSizeItem, BiggerFontSizeItem]];
   
-  UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"textsize"]
+  buttonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"textsize"]
                                                                  style:UIBarButtonItemStylePlain
                                                                 target:self
                                                                 action:@selector(toggleFontSizeDropdownMenu)];
-  
   self.parentViewController.navigationItem.rightBarButtonItem = buttonItem;
+
 }
 
 -(void)viewDidAppear:(BOOL)animated {
+  self.parentViewController.navigationItem.rightBarButtonItem = buttonItem;
+}
+
+-(void)viewDidDisappear:(BOOL)animated {
+  self.parentViewController.navigationItem.rightBarButtonItem = nil;
 }
 
 - (void)didReceiveMemoryWarning {
