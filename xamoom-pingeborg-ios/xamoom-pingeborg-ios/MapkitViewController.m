@@ -129,8 +129,6 @@ UISwipeGestureRecognizer *swipeGeoFenceViewDown;
     [self.mapKitWithSMCalloutView addAnnotation:point];
   }
   
-  NSLog(@"Lat: %f, Lon: %f", self.lastLocation.coordinate.latitude, self.lastLocation.coordinate.longitude);
-
   [XMMEnduserApi sharedInstance].delegate = self;
   [[XMMEnduserApi sharedInstance] contentWithLat:[NSString stringWithFormat:@"%f",self.lastLocation.coordinate.latitude] withLon:[NSString stringWithFormat:@"%f",self.lastLocation.coordinate.longitude] withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
 }
@@ -144,31 +142,38 @@ UISwipeGestureRecognizer *swipeGeoFenceViewDown;
     if ([item.systemId isEqualToString:[Globals sharedObject].globalSystemId]) {
       [itemsToDisplay addObject:item];
       
-      [imagesToDisplay setValue:[UIImage imageNamed:@"placeholder"] forKey:item.contentId];
-      
-      //gif support
-      if ([item.imagePublicUrl containsString:@".gif?"]) {
-        UIImage *gifImage = [UIImage animatedImageWithAnimatedGIFURL:[NSURL URLWithString:item.imagePublicUrl]];
-        
-        if (![savedArtists containsString:item.contentId]) {
-          gifImage = [self convertImageToGrayScale:gifImage];
-        }
-        
-        [imagesToDisplay setValue:gifImage forKey:item.contentId];
-        item.imagePublicUrl = nil;
-      }
-      
-      if(item.imagePublicUrl != nil) {
+      if ([item.imagePublicUrl containsString:@".gif"]) {
+        //off mainthread gifimage loading
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
+                                                 (unsigned long)NULL), ^(void) {
+          UIImage *gifImage = [UIImage animatedImageWithAnimatedGIFURL:[NSURL URLWithString:item.imagePublicUrl]];
+          
+          dispatch_async(dispatch_get_main_queue(), ^(void) {
+            if (![savedArtists containsString:item.contentId]) {
+              UIImage *grayscaleImage = [self convertImageToGrayScale:gifImage];
+              [imagesToDisplay setValue:grayscaleImage forKey:item.contentId];
+            } else {
+              [imagesToDisplay setValue:gifImage forKey:item.contentId];
+            }
+            
+            [self.tableView reloadData];
+          });
+        });
+      } else if(item.imagePublicUrl != nil) {
         [self downloadImageWithURL:item.imagePublicUrl completionBlock:^(BOOL succeeded, UIImage *image) {
           if (succeeded) {
             if (![savedArtists containsString:item.contentId]) {
               image = [self convertImageToGrayScale:image];
             }
+            
             [imagesToDisplay setValue:image forKey:item.contentId];
             [self.tableView reloadData];
           }
         }];
+      } else {
+        [imagesToDisplay setValue:[UIImage imageNamed:@"placeholder"] forKey:item.contentId];
       }
+      
     }
   }
   
@@ -180,8 +185,8 @@ UISwipeGestureRecognizer *swipeGeoFenceViewDown;
     [self.geoFenceActivityIndicator stopAnimating];
     self.geoFenceIcon.image = [UIImage imageNamed:@"angleDown"];
     self.geoFenceIcon.transform = CGAffineTransformMakeRotation(M_PI);
-    [self enableGeofenceView];
     [self.tableView reloadData];
+    [self enableGeofenceView];
   }
 }
 
@@ -228,13 +233,15 @@ UISwipeGestureRecognizer *swipeGeoFenceViewDown;
       
       //gif support
       if ([pingebAnnotation.data.image containsString:@".gif"]) {
-        UIImage *gifImage = [UIImage animatedImageWithAnimatedGIFURL:[NSURL URLWithString:pingebAnnotation.data.image]];
-        
-        annotationView.spotImage = gifImage;
-        pingebAnnotation.data.image = nil;
-      }
-      
-      if(pingebAnnotation.data.image != nil) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
+                                                 (unsigned long)NULL), ^(void) {
+          UIImage *gifImage = [UIImage animatedImageWithAnimatedGIFURL:[NSURL URLWithString:pingebAnnotation.data.image]];
+          
+          dispatch_async(dispatch_get_main_queue(), ^(void) {
+            annotationView.spotImage = gifImage;
+          });
+        });
+      } else if(pingebAnnotation.data.image != nil) {
         [self downloadImageWithURL:pingebAnnotation.data.image completionBlock:^(BOOL succeeded, UIImage *image) {
           if (succeeded) {
             annotationView.spotImage = image;
@@ -288,8 +295,6 @@ UISwipeGestureRecognizer *swipeGeoFenceViewDown;
     
     //set coordinates (for navigating)
     pingeborgCalloutView.coordinate = pingeborgAnnotationView.coordinate;
-    
-    //NSLog(@"Label %f and %f", [pingeborgCalloutView sizeThatFits:pingeborgCalloutView.frame.size].width, [pingeborgCalloutView sizeThatFits:pingeborgCalloutView.frame.size].height);
     
     [pingeborgCalloutView addSubview:titleLabel];
     [pingeborgCalloutView addSubview:distanceLabel];
@@ -450,7 +455,13 @@ UISwipeGestureRecognizer *swipeGeoFenceViewDown;
     cell.feedItemTitle.text = item.title;
     cell.contentId = item.contentId;
     
-    if ([imagesToDisplay objectForKey:item.contentId]){
+    if ([imagesToDisplay objectForKey:item.contentId] == [UIImage imageNamed:@"placeholder"]) {
+      UIImage *image = [imagesToDisplay objectForKey:item.contentId];
+      float imageRatio = image.size.width / image.size.height;
+      [cell.imageHeightConstraint setConstant:(cell.frame.size.width / imageRatio)];
+      cell.feedItemImage.image = image;
+      [cell.loadingIndicator stopAnimating];
+    } else if ([imagesToDisplay objectForKey:item.contentId]){
       UIImage *image = [imagesToDisplay objectForKey:item.contentId];
       float imageRatio = image.size.width / image.size.height;
       [cell.imageHeightConstraint setConstant:(cell.frame.size.width / imageRatio)];

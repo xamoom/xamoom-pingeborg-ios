@@ -27,6 +27,7 @@ static int const pageSize = 7;
 
 UIButton *dropDownButton;
 UIBarButtonItem *qrButtonItem;
+UIImage *placeholderImage;
 JGProgressHUD *hud;
 
 - (void)viewDidLoad {
@@ -43,7 +44,7 @@ JGProgressHUD *hud;
   NavigationViewController* navController = (NavigationViewController*) self.parentViewController.parentViewController;
   navController.delegate = self;
   
-  //navbarDropdown
+  //navbarDropdown => title
   UIView *iv = [[UIView alloc] initWithFrame:CGRectMake(0,0,(self.view.frame.size.width/1.5),32)];
   dropDownButton = [[UIButton alloc] initWithFrame:CGRectMake(0,0,(self.view.frame.size.width/1.5),32)];
   //[dropDownButton addTarget:navController action:@selector(toggleMenu) forControlEvents:UIControlEventTouchUpInside];
@@ -58,6 +59,7 @@ JGProgressHUD *hud;
   //[iv addSubview:imageView];
   self.parentViewController.navigationItem.titleView = iv;
   
+  
   //setting up refresh control
   self.refreshControl = [[UIRefreshControl alloc] init];
   self.refreshControl.backgroundColor = [UIColor colorWithRed:25/255.0f green:198/255.0f blue:255/255.0f alpha:1.0f];
@@ -71,30 +73,28 @@ JGProgressHUD *hud;
                                                name:@"PingeborgSystemChanged"
                                              object:nil];
   
+  //init variables
+  isFirstTime = YES;
+  placeholderImage = [UIImage imageNamed:@"placeholder"];
   itemsToDisplay = [[NSMutableArray alloc] init];
   imagesToDisplay = [[NSMutableDictionary alloc] init];
   
+  //loading hud in view
   hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
   [hud showInView:self.view];
   
+  //api call
   [[XMMEnduserApi sharedInstance] setDelegate:self];
   [[XMMEnduserApi sharedInstance] contentListWithSystemId:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:pageSize withCursor:@"null"];
   
+  //qr button
   qrButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"qr26"]
                                                                  style:UIBarButtonItemStylePlain
                                                                 target:self
                                                                 action:@selector(tappedQRButton)];
-  
   self.parentViewController.navigationItem.leftBarButtonItem = qrButtonItem;
 
-  isFirstTime = YES;
   
-  
-  // Uncomment the following line to preserve selection between presentations.
-  // self.clearsSelectionOnViewWillAppear = NO;
-  
-  // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-  // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -103,15 +103,6 @@ JGProgressHUD *hud;
 }
 
 -(void)viewDidAppear:(BOOL)animated {
-  /*
-  if ([[NSUserDefaults standardUserDefaults] integerForKey:@"isPingeborgSystemChanged"]) {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setBool:NO
-                   forKey:@"isPingeborgSystemChanged"];
-    [userDefaults synchronize];
-  }*/
-  //self.parentViewController.navigationItem.leftBarButtonItem= qrButtonItem;
-  
   //load artists, if there are none
   if (itemsToDisplay.count <= 0) {
     [[XMMEnduserApi sharedInstance] setDelegate:self];
@@ -120,7 +111,6 @@ JGProgressHUD *hud;
 }
 
 -(void)viewDidDisappear:(BOOL)animated {
-  //self.parentViewController.navigationItem.leftBarButtonItem = nil;
 }
 
 #pragma mark - XMMEnduserApi delegates
@@ -140,22 +130,25 @@ JGProgressHUD *hud;
     self.hasMore = NO;
   
   for (XMMResponseContent *contentItem in result.items) {
-    
-    [imagesToDisplay setValue:[UIImage imageNamed:@"placeholder"] forKey:contentItem.contentId];
-    
-    //gif support
-    if ([contentItem.imagePublicUrl containsString:@".gif?"]) {
-      UIImage *gifImage = [UIImage animatedImageWithAnimatedGIFURL:[NSURL URLWithString:contentItem.imagePublicUrl]];
-      
-      if (![savedArtists containsString:contentItem.contentId]) {
-        gifImage = [self convertImageToGrayScale:gifImage];
-      }
-      
-      [imagesToDisplay setValue:gifImage forKey:contentItem.contentId];
-      contentItem.imagePublicUrl = nil;
-    }
-    
-    if(contentItem.imagePublicUrl != nil) {
+    //load images
+    if ([contentItem.imagePublicUrl containsString:@".gif"]) {
+      //off mainthread gifimage loading
+      dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
+                                               (unsigned long)NULL), ^(void) {
+        UIImage *gifImage = [UIImage animatedImageWithAnimatedGIFURL:[NSURL URLWithString:contentItem.imagePublicUrl]];
+        
+        dispatch_async(dispatch_get_main_queue(), ^(void) {
+          if (![savedArtists containsString:contentItem.contentId]) {
+            UIImage *grayscaleImage = [self convertImageToGrayScale:gifImage];
+            [imagesToDisplay setValue:grayscaleImage forKey:contentItem.contentId];
+          } else {
+            [imagesToDisplay setValue:gifImage forKey:contentItem.contentId];
+          }
+          
+          [self.tableView reloadData];
+        });
+      });
+    } else if(contentItem.imagePublicUrl != nil) {
       [self downloadImageWithURL:contentItem.imagePublicUrl completionBlock:^(BOOL succeeded, UIImage *image) {
         if (succeeded) {
           if (![savedArtists containsString:contentItem.contentId]) {
@@ -166,8 +159,11 @@ JGProgressHUD *hud;
           [self.tableView reloadData];
         }
       }];
+    } else {
+      [imagesToDisplay setValue:placeholderImage forKey:contentItem.contentId];
     }
     
+    //add contentItem
     [itemsToDisplay addObject:contentItem];
   }
   
@@ -198,8 +194,7 @@ JGProgressHUD *hud;
     NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FeedItemCell" owner:self options:nil];
     cell = [nib objectAtIndex:0];
   }
-  cell.feedItemImage.image = [UIImage imageNamed:@"placeholder"];
-  
+
   //load more contents
   if (indexPath.row == [self.itemsToDisplay count] - 1) {
     if (self.hasMore && !self.isApiCallingBlocked) {
@@ -215,6 +210,7 @@ JGProgressHUD *hud;
     return cell;
   }
   
+  [cell.loadingIndicator startAnimating];
   XMMResponseContent *contentItem = [itemsToDisplay objectAtIndex:indexPath.row];
   
   //styling the label
@@ -227,16 +223,19 @@ JGProgressHUD *hud;
                                                                  attributes:@{ NSParagraphStyleAttributeName : style}];
   //set the title
   cell.feedItemTitle.attributedText = attrText;
-  [cell.loadingIndicator startAnimating];
   
-  if ([imagesToDisplay objectForKey:contentItem.contentId]){
+  if ([imagesToDisplay objectForKey:contentItem.contentId] == placeholderImage) {
     UIImage *image = [imagesToDisplay objectForKey:contentItem.contentId];
     float imageRatio = image.size.width / image.size.height;
     [cell.imageHeightConstraint setConstant:(cell.frame.size.width / imageRatio)];
     cell.feedItemImage.image = image;
     [cell.loadingIndicator stopAnimating];
-  } else {
-    //[cell.imageHeightConstraint setConstant:50.0f];
+  } else if ([imagesToDisplay objectForKey:contentItem.contentId]){
+    UIImage *image = [imagesToDisplay objectForKey:contentItem.contentId];
+    float imageRatio = image.size.width / image.size.height;
+    [cell.imageHeightConstraint setConstant:(cell.frame.size.width / imageRatio)];
+    cell.feedItemImage.image = image;
+    [cell.loadingIndicator stopAnimating];
   }
   
   return cell;

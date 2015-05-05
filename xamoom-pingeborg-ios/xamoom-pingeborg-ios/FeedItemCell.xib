@@ -26,11 +26,13 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="8pK-L0-lt3">
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="8pK-L0-lt3">
                         <rect key="frame" x="231" y="55" width="20" height="20"/>
                     </activityIndicatorView>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="RLb-uj-IBD" firstAttribute="centerY" secondItem="8pK-L0-lt3" secondAttribute="centerY" id="0Rv-kV-LAW"/>
+                    <constraint firstItem="RLb-uj-IBD" firstAttribute="centerX" secondItem="8pK-L0-lt3" secondAttribute="centerX" id="AHS-ew-h9U"/>
                     <constraint firstItem="RLb-uj-IBD" firstAttribute="bottom" secondItem="EiK-aS-q9u" secondAttribute="bottomMargin" id="CRR-0m-1Ae"/>
                     <constraint firstItem="RLb-uj-IBD" firstAttribute="top" secondItem="EiK-aS-q9u" secondAttribute="top" id="Cw7-Q0-4Ll"/>
                     <constraint firstAttribute="trailing" secondItem="RLb-uj-IBD" secondAttribute="trailing" id="J1e-FZ-CyI"/>
