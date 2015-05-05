@@ -7,11 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+@import UIKit;
 
 @interface Globals : NSObject
 
 @property (nonatomic) NSString *globalSystemId;
 @property (nonatomic) NSString *aboutPageId;
+
+@property (nonatomic) UIColor *pingeborgYellow;
+@property (nonatomic) UIColor *pingeborgLinkColor;
+
 @property BOOL isDev;
 
 + (Globals*)sharedObject;

@@ -354,9 +354,9 @@ UIImage *placeholder;
       [pingeborgCalloutView addSubview:spotDescriptionLabel];
     }
     
-    //create, design and adust button
+    //create, design and adjust button
     UIButton *navigationButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, pingeborgCalloutView.frame.size.height, 300.0f, 60.0f)];
-    navigationButton.backgroundColor = [UIColor blueColor];
+    navigationButton.backgroundColor = [Globals sharedObject].pingeborgLinkColor;
     [navigationButton setImage:[[UIImage imageNamed:@"car"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
     navigationButton.tintColor = [UIColor whiteColor];
     [navigationButton setImageEdgeInsets: UIEdgeInsetsMake(-10.0f, navigationButton.titleEdgeInsets.right, 10.0f, navigationButton.titleEdgeInsets.left)];

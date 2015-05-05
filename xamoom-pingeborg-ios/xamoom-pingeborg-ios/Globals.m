@@ -14,11 +14,15 @@ static Globals *globals;
 
 @synthesize globalSystemId;
 @synthesize aboutPageId;
+@synthesize pingeborgLinkColor;
+@synthesize pingeborgYellow;
 
 +(Globals*)sharedObject {
   if(!globals)
   {
     globals = [[Globals alloc] init];
+    globals.pingeborgYellow = [UIColor colorWithRed:255.0/255.0 green:238.0/255.0 blue:0/255.0 alpha:1];
+    globals.pingeborgLinkColor = [UIColor colorWithRed:113.0/255.0 green:148.0/255.0 blue:48.0/255.0 alpha:1];
   }
   globals.globalSystemId = [self systemIdFromInteger:[globals savedSystemId]];
   

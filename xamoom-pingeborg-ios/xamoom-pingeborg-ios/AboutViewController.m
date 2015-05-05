@@ -38,6 +38,40 @@ JGProgressHUD *hud;
   
   [XMMEnduserApi sharedInstance].delegate = self;
   [[XMMEnduserApi sharedInstance] contentWithContentId:[Globals sharedObject].aboutPageId includeStyle:@"false" includeMenu:@"false" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:@"True"];
+  
+  //dropdown menu
+  REMenuItem *NormalFontSizeItem = [[REMenuItem alloc] initWithTitle:@"Normal Font Size"
+                                                            subtitle:nil
+                                                               image:nil
+                                                    highlightedImage:nil
+                                                              action:^(REMenuItem *item) {
+                                                                [contentBlocks updateFontSizeOnTextTo:NormalFontSize];
+                                                              }];
+  
+  REMenuItem *BigFontSizeItem = [[REMenuItem alloc] initWithTitle:@"Big Font Size"
+                                                         subtitle:nil
+                                                            image:nil
+                                                 highlightedImage:nil
+                                                           action:^(REMenuItem *item) {
+                                                             [contentBlocks updateFontSizeOnTextTo:BigFontSize];
+                                                           }];
+  
+  REMenuItem *BiggerFontSizeItem = [[REMenuItem alloc] initWithTitle:@"Really Big Font Size"
+                                                            subtitle:nil
+                                                               image:nil
+                                                    highlightedImage:nil
+                                                              action:^(REMenuItem *item) {
+                                                                [contentBlocks updateFontSizeOnTextTo:BiggerFontSize];
+                                                              }];
+  
+  self.fontSizeDropdownMenu = [[REMenu alloc] initWithItems:@[NormalFontSizeItem, BigFontSizeItem, BiggerFontSizeItem]];
+  
+  UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"textsize"]
+                                                                 style:UIBarButtonItemStylePlain
+                                                                target:self
+                                                                action:@selector(toggleFontSizeDropdownMenu)];
+  
+  self.parentViewController.navigationItem.rightBarButtonItem = buttonItem;
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -46,6 +80,15 @@ JGProgressHUD *hud;
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
   // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - NavbarDropdown
+
+-(void)toggleFontSizeDropdownMenu {
+  if (self.fontSizeDropdownMenu.isOpen)
+    return [self.fontSizeDropdownMenu close];
+  
+  [self.fontSizeDropdownMenu showFromNavigationController:self.navigationController];
 }
 
 #pragma mark - XMMContentBlocks delegates

@@ -17,5 +17,6 @@
 @interface AboutViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, XMMEnderuserApiDelegate, XMMContentBlocksDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property REMenu *fontSizeDropdownMenu;
 
 @end

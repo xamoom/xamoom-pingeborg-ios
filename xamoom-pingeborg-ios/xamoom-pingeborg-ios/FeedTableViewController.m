@@ -62,7 +62,7 @@ JGProgressHUD *hud;
   
   //setting up refresh control
   self.refreshControl = [[UIRefreshControl alloc] init];
-  self.refreshControl.backgroundColor = [UIColor colorWithRed:25/255.0f green:198/255.0f blue:255/255.0f alpha:1.0f];
+  self.refreshControl.backgroundColor = [Globals sharedObject].pingeborgLinkColor;
   self.refreshControl.tintColor = [UIColor whiteColor];
   [self.refreshControl addTarget:self
                           action:@selector(pullToRefresh)
