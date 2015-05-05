@@ -21,6 +21,7 @@
 bool isUp = NO;
 UISwipeGestureRecognizer *swipeGeoFenceViewUp;
 UISwipeGestureRecognizer *swipeGeoFenceViewDown;
+UIImage *placeholder;
 
 #pragma mark - View Lifecycle
 
@@ -57,6 +58,8 @@ UISwipeGestureRecognizer *swipeGeoFenceViewDown;
   [self.geoFenceActivityIndicator startAnimating];
   [[XMMEnduserApi sharedInstance] setDelegate:self];
   [[XMMEnduserApi sharedInstance] spotMapWithSystemId:[Globals sharedObject].globalSystemId withMapTags:@"showAllTheSpots" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
+  
+  placeholder = [UIImage imageNamed:@"placeholder"];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -171,7 +174,7 @@ UISwipeGestureRecognizer *swipeGeoFenceViewDown;
           }
         }];
       } else {
-        [imagesToDisplay setValue:[UIImage imageNamed:@"placeholder"] forKey:item.contentId];
+        [imagesToDisplay setValue:placeholder forKey:item.contentId];
       }
       
     }
@@ -455,7 +458,7 @@ UISwipeGestureRecognizer *swipeGeoFenceViewDown;
     cell.feedItemTitle.text = item.title;
     cell.contentId = item.contentId;
     
-    if ([imagesToDisplay objectForKey:item.contentId] == [UIImage imageNamed:@"placeholder"]) {
+    if ([imagesToDisplay objectForKey:item.contentId] == placeholder) {
       UIImage *image = [imagesToDisplay objectForKey:item.contentId];
       float imageRatio = image.size.width / image.size.height;
       [cell.imageHeightConstraint setConstant:(cell.frame.size.width / imageRatio)];
