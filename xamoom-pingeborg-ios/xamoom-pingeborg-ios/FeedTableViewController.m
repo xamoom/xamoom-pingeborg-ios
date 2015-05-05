@@ -160,7 +160,11 @@ JGProgressHUD *hud;
         }
       }];
     } else {
-      [imagesToDisplay setValue:placeholderImage forKey:contentItem.contentId];
+      if (![savedArtists containsString:contentItem.contentId]) {
+        [imagesToDisplay setValue:[self convertImageToGrayScale:placeholderImage] forKey:contentItem.contentId];
+      } else {
+        [imagesToDisplay setValue:placeholderImage forKey:contentItem.contentId];
+      }
     }
     
     //add contentItem
@@ -211,6 +215,7 @@ JGProgressHUD *hud;
   }
   
   [cell.loadingIndicator startAnimating];
+  cell.feedItemImage.image = nil;
   XMMResponseContent *contentItem = [itemsToDisplay objectAtIndex:indexPath.row];
   
   //styling the label
@@ -236,6 +241,13 @@ JGProgressHUD *hud;
     [cell.imageHeightConstraint setConstant:(cell.frame.size.width / imageRatio)];
     cell.feedItemImage.image = image;
     [cell.loadingIndicator stopAnimating];
+  }
+  
+  //overlay image for the first cell
+  if (indexPath.row == 0) {
+    if (![[Globals savedArtits] containsString:contentItem.contentId]) {
+      cell.feedItemOverlayImage.image = [UIImage imageNamed:@"discoverable"];
+    }
   }
   
   return cell;

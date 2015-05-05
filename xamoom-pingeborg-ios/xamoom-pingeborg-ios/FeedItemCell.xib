@@ -19,6 +19,9 @@
                             <constraint firstAttribute="height" priority="999" constant="130" id="gVU-IG-sXy"/>
                         </constraints>
                     </imageView>
+                    <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XeV-xf-ZXR">
+                        <rect key="frame" x="0.0" y="0.0" width="482" height="130"/>
+                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.75" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4wb-79-OqP">
                         <rect key="frame" x="0.0" y="109" width="482" height="21"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -32,11 +35,15 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="RLb-uj-IBD" firstAttribute="centerY" secondItem="8pK-L0-lt3" secondAttribute="centerY" id="0Rv-kV-LAW"/>
+                    <constraint firstItem="XeV-xf-ZXR" firstAttribute="top" secondItem="RLb-uj-IBD" secondAttribute="top" id="7fD-LG-20h"/>
                     <constraint firstItem="RLb-uj-IBD" firstAttribute="centerX" secondItem="8pK-L0-lt3" secondAttribute="centerX" id="AHS-ew-h9U"/>
                     <constraint firstItem="RLb-uj-IBD" firstAttribute="bottom" secondItem="EiK-aS-q9u" secondAttribute="bottomMargin" id="CRR-0m-1Ae"/>
                     <constraint firstItem="RLb-uj-IBD" firstAttribute="top" secondItem="EiK-aS-q9u" secondAttribute="top" id="Cw7-Q0-4Ll"/>
+                    <constraint firstItem="XeV-xf-ZXR" firstAttribute="leading" secondItem="RLb-uj-IBD" secondAttribute="leading" id="H1X-bp-xtb"/>
                     <constraint firstAttribute="trailing" secondItem="RLb-uj-IBD" secondAttribute="trailing" id="J1e-FZ-CyI"/>
+                    <constraint firstItem="XeV-xf-ZXR" firstAttribute="height" secondItem="RLb-uj-IBD" secondAttribute="height" id="MYO-mc-nxa"/>
                     <constraint firstItem="RLb-uj-IBD" firstAttribute="bottom" secondItem="4wb-79-OqP" secondAttribute="bottom" id="gT3-7Q-Xhr"/>
+                    <constraint firstItem="XeV-xf-ZXR" firstAttribute="width" secondItem="RLb-uj-IBD" secondAttribute="width" id="iyY-3Y-dn4"/>
                     <constraint firstItem="RLb-uj-IBD" firstAttribute="leading" secondItem="4wb-79-OqP" secondAttribute="leading" id="jha-dZ-F7s"/>
                     <constraint firstItem="RLb-uj-IBD" firstAttribute="leading" secondItem="EiK-aS-q9u" secondAttribute="leading" id="mXs-PU-FUt"/>
                     <constraint firstItem="4wb-79-OqP" firstAttribute="trailing" secondItem="RLb-uj-IBD" secondAttribute="trailing" id="vZo-up-wzu"/>
@@ -44,6 +51,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="feedItemImage" destination="RLb-uj-IBD" id="itO-c7-W5s"/>
+                <outlet property="feedItemOverlayImage" destination="XeV-xf-ZXR" id="fOV-HY-725"/>
                 <outlet property="feedItemTitle" destination="4wb-79-OqP" id="fkH-01-jWG"/>
                 <outlet property="imageHeightConstraint" destination="gVU-IG-sXy" id="o3Q-nn-WRd"/>
                 <outlet property="loadingIndicator" destination="8pK-L0-lt3" id="Jk8-8M-B4o"/>
