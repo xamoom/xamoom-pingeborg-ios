@@ -68,12 +68,9 @@
   
   self.placeholder = [UIImage imageNamed:@"placeholder"];
   self.isUp = NO;
-}
-
--(void)viewDidAppear:(BOOL)animated {
+  
   self.locationManager.distanceFilter = kCLDistanceFilterNone;
   self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-  [self.locationManager startUpdatingLocation];
   
   //map region
   MKCoordinateRegion region = { { 0.0, 0.0 }, { 0.0, 0.0 } };
@@ -82,21 +79,31 @@
   region.span.longitudeDelta = 0.09f;
   region.span.longitudeDelta = 0.09f;
   [self.mapKitWithSMCalloutView setRegion:region animated:YES];
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+  [self.locationManager startUpdatingLocation];
   
   //create userTracking button
   MKUserTrackingBarButtonItem *buttonItem = [[MKUserTrackingBarButtonItem alloc] initWithMapView:self.mapKitWithSMCalloutView];
   self.parentViewController.navigationItem.rightBarButtonItem = buttonItem;
   
-  if ( self.mapKitWithSMCalloutView.annotations.count <= 0 ) {
+  if (self.mapKitWithSMCalloutView.annotations.count <= 0 ) {
     [self.geoFenceActivityIndicator startAnimating];
     [[XMMEnduserApi sharedInstance] setDelegate:self];
     [[XMMEnduserApi sharedInstance] spotMapWithSystemId:[Globals sharedObject].globalSystemId withMapTags:@"showAllTheSpots" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
+  }
+  
+  if ([self.itemsToDisplay count] <= 0) {
+    [XMMEnduserApi sharedInstance].delegate = self;
+    [[XMMEnduserApi sharedInstance] contentWithLat:[NSString stringWithFormat:@"%f",self.lastLocation.coordinate.latitude] withLon:[NSString stringWithFormat:@"%f",self.lastLocation.coordinate.longitude] withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
   }
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
   [super viewWillDisappear:animated];
   self.parentViewController.navigationItem.rightBarButtonItem = nil;
+  [self.locationManager stopUpdatingLocation];
 }
 
 #pragma mark - XMMEnduser Delegate
@@ -185,7 +192,7 @@
             
             [self.imagesToDisplay setValue:image forKey:item.contentId];
             [self.tableView reloadData];
-
+            
             [self enableGeofenceView];
           }
         }];
@@ -196,7 +203,7 @@
       }
     }
   }
-
+  
   if (self.savedResponseContent == nil) {
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
     [XMMEnduserApi sharedInstance].delegate = self;
@@ -267,7 +274,6 @@
     } else {
       annotationView.annotation = annotation;
     }
-    
     return annotationView;
   }
   
@@ -427,6 +433,8 @@
   // tell the callout to wait for a while while we scroll (we assume the scroll delay for MKMapView matches UIScrollView)
   return kSMCalloutViewRepositionDelayForUIScrollView;
 }
+
+#pragma mark LocationManager
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
   self.lastLocation = [locations lastObject];
@@ -690,7 +698,7 @@
   
   if (self.isUp)
     [self.tableView reloadData];
-
+  
 }
 
 - (void)openArtistDetailViewFromSender:(UITapGestureRecognizer*)sender {
