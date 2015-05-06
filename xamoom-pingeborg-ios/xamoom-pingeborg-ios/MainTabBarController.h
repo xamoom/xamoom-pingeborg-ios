@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "Globals.h"
 
-@interface MainTabBarController : UITabBarController
+@interface MainTabBarController : UITabBarController <UITabBarControllerDelegate>
 
 @end
