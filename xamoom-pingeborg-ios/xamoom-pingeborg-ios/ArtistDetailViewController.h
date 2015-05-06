@@ -19,8 +19,5 @@
 @interface ArtistDetailViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource, XMMEnderuserApiDelegate, XMMContentBlocksDelegate>
 
 @property NSString *contentId;
-@property XMMResponseGetById *savedResult;
-@property XMMContentBlocks *contentBlocks;
-@property REMenu *fontSizeDropdownMenu;
 
 @end

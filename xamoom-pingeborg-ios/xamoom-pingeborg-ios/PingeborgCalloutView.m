@@ -10,7 +10,7 @@
 
 @implementation PingeborgCalloutView
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if (self) {
     self.layer.cornerRadius = 6.0f;
@@ -19,7 +19,7 @@
   return self;
 }
 
-- (id)init{
+- (instancetype)init{
   id mainView = [[[NSBundle mainBundle] loadNibNamed:@"PingeborgCalloutView" owner:self options:nil] lastObject];
   return mainView;
 }

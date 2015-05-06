@@ -8,12 +8,16 @@
 
 #import "ArtistDetailViewController.h"
 
+@interface ArtistDetailViewController ()
+
+@property JGProgressHUD *hud;
+@property XMMResponseGetById *savedResult;
+@property XMMContentBlocks *contentBlocks;
+@property REMenu *fontSizeDropdownMenu;
+
+@end
+
 @implementation ArtistDetailViewController
-
-@synthesize contentBlocks;
-@synthesize savedResult;
-
-JGProgressHUD *hud;
 
 #pragma mark - View Lifecycle
 
@@ -25,15 +29,15 @@ JGProgressHUD *hud;
   self.tableView.rowHeight = UITableViewAutomaticDimension;
   self.tableView.estimatedRowHeight = 150.0;
   
-  contentBlocks = [[XMMContentBlocks alloc] init];
-  contentBlocks.delegate = self;
+  self.contentBlocks = [[XMMContentBlocks alloc] init];
+  self.contentBlocks.delegate = self;
   NSString* savedArtists = [Globals savedArtits];
   
   // Do any additional setup after loading the view.
   [[XMMEnduserApi sharedInstance] setDelegate:self];
   
-  hud = [[JGProgressHUD alloc] initWithStyle:JGProgressHUDStyleDark];
-  [hud showInView:self.view];
+  self.hud = [[JGProgressHUD alloc] initWithStyle:JGProgressHUDStyleDark];
+  [self.hud showInView:self.view];
   
   if ([savedArtists containsString:self.contentId]) {
     [[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:@"False" includeMenu:@"False" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:@"True"];
@@ -47,7 +51,7 @@ JGProgressHUD *hud;
                                                      image:nil
                                           highlightedImage:nil
                                                     action:^(REMenuItem *item) {
-                                                      [contentBlocks updateFontSizeOnTextTo:NormalFontSize];
+                                                      [self.contentBlocks updateFontSizeOnTextTo:NormalFontSize];
                                                     }];
   
   REMenuItem *BigFontSizeItem = [[REMenuItem alloc] initWithTitle:@"Big Font Size"
@@ -55,7 +59,7 @@ JGProgressHUD *hud;
                                                         image:nil
                                              highlightedImage:nil
                                                        action:^(REMenuItem *item) {
-                                                         [contentBlocks updateFontSizeOnTextTo:BigFontSize];
+                                                         [self.contentBlocks updateFontSizeOnTextTo:BigFontSize];
                                                        }];
   
   REMenuItem *BiggerFontSizeItem = [[REMenuItem alloc] initWithTitle:@"Really Big Font Size"
@@ -63,7 +67,7 @@ JGProgressHUD *hud;
                                                          image:nil
                                               highlightedImage:nil
                                                         action:^(REMenuItem *item) {
-                                                          [contentBlocks updateFontSizeOnTextTo:BiggerFontSize];
+                                                          [self.contentBlocks updateFontSizeOnTextTo:BiggerFontSize];
                                                         }];
   
   self.fontSizeDropdownMenu = [[REMenu alloc] initWithItems:@[NormalFontSizeItem, BigFontSizeItem, BiggerFontSizeItem]];
@@ -102,9 +106,9 @@ JGProgressHUD *hud;
 # pragma mark - XMMEnduser Delegate
 
 - (void)didLoadDataWithContentId:(XMMResponseGetById *)result {
-  savedResult = result;
-  [self displayContentOnTableView:savedResult];
-  [hud dismiss];
+  self.savedResult = result;
+  [self displayContentOnTableView:self.savedResult];
+  [self.hud dismiss];
 }
 
 #pragma mark - Table view data source
@@ -112,8 +116,8 @@ JGProgressHUD *hud;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
   [tableView deselectRowAtIndexPath:indexPath animated:NO];
-  if ([[contentBlocks.itemsToDisplay objectAtIndex:indexPath.row] isKindOfClass:[ContentBlockTableViewCell class]]) {
-    ContentBlockTableViewCell *cell = [contentBlocks.itemsToDisplay objectAtIndex:indexPath.row];
+  if ([(self.contentBlocks.itemsToDisplay)[indexPath.row] isKindOfClass:[ContentBlockTableViewCell class]]) {
+    ContentBlockTableViewCell *cell = (self.contentBlocks.itemsToDisplay)[indexPath.row];
     
     ArtistDetailViewController *vc = [[ArtistDetailViewController alloc] init];
     [vc setContentId:cell.contentId];
@@ -128,18 +132,18 @@ JGProgressHUD *hud;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   // Return the number of rows in the section.
-  return [contentBlocks.itemsToDisplay count];
+  return [self.contentBlocks.itemsToDisplay count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  return [contentBlocks.itemsToDisplay objectAtIndex:indexPath.row];
+  return (self.contentBlocks.itemsToDisplay)[indexPath.row];
 }
 
 #pragma mark - Custom Methods
 
 - (void)displayContentOnTableView:(XMMResponseGetById *)result {
   [self displayContentTitleAndImage:result];
-  [contentBlocks displayContentBlocksById:result byLocationIdentifier:nil];
+  [self.contentBlocks displayContentBlocksById:result byLocationIdentifier:nil];
 }
 
 - (void)displayContentTitleAndImage:(XMMResponseGetById *)result {
@@ -147,12 +151,12 @@ JGProgressHUD *hud;
   contentBlock0.contentBlockType = @"title";
   contentBlock0.title = result.content.title;
   contentBlock0.text = result.content.descriptionOfContent;
-  [contentBlocks displayContentBlock0:contentBlock0];
+  [self.contentBlocks displayContentBlock0:contentBlock0];
   
   if (result.content.imagePublicUrl != nil) {
     XMMResponseContentBlockType3 *contentBlock3 = [[XMMResponseContentBlockType3 alloc] init];
     contentBlock3.fileId = result.content.imagePublicUrl;
-    [contentBlocks displayContentBlock3:contentBlock3];
+    [self.contentBlocks displayContentBlock3:contentBlock3];
   }
 }
 

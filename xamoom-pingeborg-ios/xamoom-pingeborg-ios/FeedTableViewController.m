@@ -164,7 +164,7 @@ int const kPageSize = 7;
   if (cell == nil)
   {
     NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FeedItemCell" owner:self options:nil];
-    cell = [nib objectAtIndex:0];
+    cell = nib[0];
   }
   
   [cell.loadingIndicator startAnimating];
@@ -177,21 +177,14 @@ int const kPageSize = 7;
   if (indexPath.row >= [self.itemsToDisplay count]) {
     return cell;
   }
-  XMMResponseContent *contentItem = [self.itemsToDisplay objectAtIndex:indexPath.row];
+  XMMResponseContent *contentItem = (self.itemsToDisplay)[indexPath.row];
   
-  //styling the label & set the title
-  NSMutableParagraphStyle *style =  [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-  style.alignment = NSTextAlignmentJustified;
-  style.firstLineHeadIndent = 4.0f;
-  style.tailIndent = -4.0f;
-  style.lineBreakMode = NSLineBreakByTruncatingTail;
-  NSAttributedString *attrText = [[NSAttributedString alloc] initWithString:contentItem.title
-                                                                 attributes:@{ NSParagraphStyleAttributeName : style}];
-  cell.feedItemTitle.attributedText = attrText;
+  //set title
+  cell.feedItemTitle.text = contentItem.title;
   
   //set image & grayscale if needed
-  if([self.imagesToDisplay objectForKey:contentItem.contentId] != nil) {
-    UIImage *image = [self.imagesToDisplay objectForKey:contentItem.contentId];
+  if((self.imagesToDisplay)[contentItem.contentId] != nil) {
+    UIImage *image = (self.imagesToDisplay)[contentItem.contentId];
     float imageRatio = image.size.width / image.size.height;
     [cell.imageHeightConstraint setConstant:(cell.frame.size.width / imageRatio)];
     
@@ -229,7 +222,7 @@ int const kPageSize = 7;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   ArtistDetailViewController *artistDetailViewController = [[ArtistDetailViewController alloc] init];
-  XMMResponseContent *data = (XMMResponseContent*)[self.itemsToDisplay objectAtIndex:indexPath.row];
+  XMMResponseContent *data = (XMMResponseContent*)(self.itemsToDisplay)[indexPath.row];
   artistDetailViewController.contentId = data.contentId;
   [self.navigationController pushViewController:artistDetailViewController animated:YES];
 }
@@ -261,8 +254,7 @@ int const kPageSize = 7;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MMM d, hh:mm"];
     NSString *title = [NSString stringWithFormat:@"Letztes Update: %@", [formatter stringFromDate:[NSDate date]]];
-    NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor whiteColor]
-                                                                forKey:NSForegroundColorAttributeName];
+    NSDictionary *attrsDictionary = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:attrsDictionary];
     self.refreshControl.attributedTitle = attributedTitle;
     

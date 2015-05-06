@@ -20,7 +20,6 @@
 
 @interface NavigationViewController : UINavigationController
 
-@property (nonatomic, assign) id<DropDownMenuDelegate> delegate;
 @property (strong, readonly, nonatomic) REMenu *menu;
 
 - (void)toggleMenu;

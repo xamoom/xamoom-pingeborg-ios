@@ -15,10 +15,10 @@
 @property XMMResponseGetSpotMapItem *data;
 @property NSString *distance;
 
-- (id)initWithLocation:(CLLocationCoordinate2D)coord;
+- (instancetype)initWithLocation:(CLLocationCoordinate2D)coord NS_DESIGNATED_INITIALIZER;
 
-- (id)initWithName:(NSString*)name location:(CLLocationCoordinate2D)coord;
+- (instancetype)initWithName:(NSString*)name location:(CLLocationCoordinate2D)coord NS_DESIGNATED_INITIALIZER;
 
-- (MKMapItem*)mapItem;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) MKMapItem *mapItem;
 
 @end

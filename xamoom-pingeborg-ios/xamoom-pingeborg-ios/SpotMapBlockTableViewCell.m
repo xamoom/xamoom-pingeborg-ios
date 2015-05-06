@@ -42,7 +42,7 @@
     //save svg mapmarker
     NSArray *paths = NSSearchPathForDirectoriesInDomains
     (NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *documentsDirectory = paths[0];
     NSString *fileName = [NSString stringWithFormat:@"%@/mapmarker.svg", documentsDirectory];
     [imageData writeToFile:fileName atomically:YES];
     
@@ -109,7 +109,7 @@
   MKMapPoint points[count]; //C array of MKMapPoint struct
   for( int i=0; i<count; i++ ) //load points C array by converting coordinates to points
   {
-    CLLocationCoordinate2D coordinate = [(id <MKAnnotation>)[annotations objectAtIndex:i] coordinate];
+    CLLocationCoordinate2D coordinate = [(id <MKAnnotation>)annotations[i] coordinate];
     points[i] = MKMapPointForCoordinate(coordinate);
   }
   //create MKMapRect from array of MKMapPoint

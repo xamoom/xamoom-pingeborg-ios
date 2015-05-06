@@ -19,7 +19,7 @@
 #import "SpotMapBlockTableViewCell.h"
 #import "UIImage+animatedGIF.h"
 
-typedef NS_ENUM(NSInteger, TextFontSize)
+typedef NS_OPTIONS(NSInteger, TextFontSize)
 {
   NormalFontSize = 17,
   BigFontSize = 21,
@@ -46,7 +46,7 @@ typedef NS_ENUM(NSInteger, TextFontSize)
 @property NSMutableArray *itemsToDisplay;
 @property int fontSize;
 
-- (id)init;
+- (instancetype)init NS_DESIGNATED_INITIALIZER;
 
 - (void)displayContentBlocksById:(XMMResponseGetById *)IdResult byLocationIdentifier:(XMMResponseGetByLocationIdentifier *)LocationIdentifierResult;
 

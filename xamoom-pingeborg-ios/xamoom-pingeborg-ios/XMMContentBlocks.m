@@ -17,7 +17,7 @@
 
 NSString *style;
 
-- (id)init {
+- (instancetype)init {
   self = [super init];
   if(self) {
     itemsToDisplay = [[NSMutableArray alloc] init];
@@ -128,7 +128,7 @@ NSString *style;
   
   TextBlockTableViewCell *cell = [[TextBlockTableViewCell alloc] init];
   NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"TextBlockTableViewCell" owner:self options:nil];
-  cell = [nib objectAtIndex:0];
+  cell = nib[0];
   
   //save text for later use
   cell.titleText = contentBlock.title;
@@ -160,7 +160,7 @@ NSString *style;
   
   NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData: [html dataUsingEncoding:NSUTF8StringEncoding]
                                                                           options: @{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
-                                                                                      NSCharacterEncodingDocumentAttribute: [NSNumber numberWithInt:NSUTF8StringEncoding]}
+                                                                                      NSCharacterEncodingDocumentAttribute: @(NSUTF8StringEncoding)}
                                                                documentAttributes: nil
                                                                             error: &err];
   if(err)
@@ -172,7 +172,7 @@ NSString *style;
 - (void)displayContentBlock1:(XMMResponseContentBlockType1 *)contentBlock {
   AudioBlockTableViewCell *cell = [[AudioBlockTableViewCell alloc] init];
   NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"AudioBlockTableViewCell" owner:self options:nil];
-  cell = [nib objectAtIndex:0];
+  cell = nib[0];
   
   //set title
   cell.fileId = contentBlock.fileId;
@@ -195,7 +195,7 @@ NSString *style;
 - (void)displayContentBlock2:(XMMResponseContentBlockType2 *)contentBlock {
   YoutubeBlockTableViewCell *cell = [[YoutubeBlockTableViewCell alloc] init];
   NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"YoutubeBlockTableViewCell" owner:self options:nil];
-  cell = [nib objectAtIndex:0];
+  cell = nib[0];
   
   cell.titleLabel.text = contentBlock.title;
   cell.youtubeVideoUrl = contentBlock.youtubeUrl;
@@ -221,7 +221,7 @@ NSString *style;
   
   ImageBlockTableViewCell *cell = [[ImageBlockTableViewCell alloc] init];
   NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ImageBlockTableViewCell" owner:self options:nil];
-  cell = [nib objectAtIndex:0];
+  cell = nib[0];
   
   cell.titleLabel.text = contentBlock.title;
   
@@ -276,7 +276,7 @@ NSString *style;
   
   LinkBlockTableViewCell *cell = [[LinkBlockTableViewCell alloc] init];
   NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"LinkBlockTableViewCell" owner:self options:nil];
-  cell = [nib objectAtIndex:0];
+  cell = nib[0];
   
   cell.titleLabel.text = contentBlock.title;
   cell.linkTextLabel.text = contentBlock.text;
@@ -291,7 +291,7 @@ NSString *style;
   
   EbookBlockTableViewCell *cell = [[EbookBlockTableViewCell alloc] init];
   NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"EbookBlockTableViewCell" owner:self options:nil];
-  cell = [nib objectAtIndex:0];
+  cell = nib[0];
   
   cell.titleLabel.text = contentBlock.title;
   cell.artistLabel.text = contentBlock.artist;
@@ -304,7 +304,7 @@ NSString *style;
   
   ContentBlockTableViewCell *cell = [[ContentBlockTableViewCell alloc] init];
   NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ContentBlockTableViewCell" owner:self options:nil];
-  cell = [nib objectAtIndex:0];
+  cell = nib[0];
   
   cell.contentId = contentBlock.contentId;
   [cell getContent];
@@ -316,7 +316,7 @@ NSString *style;
   
   SoundcloudBlockTableViewCell *cell = [[SoundcloudBlockTableViewCell alloc] init];
   NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SoundcloudBlockTableViewCell" owner:self options:nil];
-  cell = [nib objectAtIndex:0];
+  cell = nib[0];
   
   //disable scrolling and bouncing
   [cell.webView.scrollView setScrollEnabled:NO];
@@ -351,7 +351,7 @@ NSString *style;
   
   DownloadBlockTableViewCell *cell = [[DownloadBlockTableViewCell alloc] init];
   NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"DownloadBlockTableViewCell" owner:self options:nil];
-  cell = [nib objectAtIndex:0];
+  cell = nib[0];
   
   cell.titleLabel.text = contentBlock.title;
   cell.contentTextLabel.text = contentBlock.text;
@@ -365,7 +365,7 @@ NSString *style;
   
   SpotMapBlockTableViewCell *cell = [[SpotMapBlockTableViewCell alloc] init];
   NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SpotMapBlockTableViewCell" owner:self options:nil];
-  cell = [nib objectAtIndex:0];
+  cell = nib[0];
   
   cell.titleLabel.text = contentBlock.title;
   cell.spotMapTags = contentBlock.spotMapTag;

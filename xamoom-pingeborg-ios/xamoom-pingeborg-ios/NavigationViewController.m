@@ -16,8 +16,6 @@
 
 @implementation NavigationViewController
 
-@synthesize delegate;
-
 #pragma mark - View Lifecycle
 
 - (void)viewDidLoad {

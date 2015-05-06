@@ -12,6 +12,8 @@
 @interface AboutViewController ()
 
 @property XMMContentBlocks *contentBlocks;
+@property JGProgressHUD *hud;
+@property UIBarButtonItem *buttonItem;
 
 @end
 
@@ -19,8 +21,7 @@
 
 @synthesize contentBlocks;
 
-JGProgressHUD *hud;
-UIBarButtonItem *buttonItem;
+
 
 #pragma mark - View Lifecycle
 
@@ -34,8 +35,8 @@ UIBarButtonItem *buttonItem;
   contentBlocks = [[XMMContentBlocks alloc] init];
   contentBlocks.delegate = self;
   
-  hud = [[JGProgressHUD alloc] initWithStyle:JGProgressHUDStyleDark];
-  [hud showInView:self.view];
+  self.hud = [[JGProgressHUD alloc] initWithStyle:JGProgressHUDStyleDark];
+  [self.hud showInView:self.view];
   
   [XMMEnduserApi sharedInstance].delegate = self;
   [[XMMEnduserApi sharedInstance] contentWithContentId:[Globals sharedObject].aboutPageId includeStyle:@"false" includeMenu:@"false" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:@"True"];
@@ -67,16 +68,16 @@ UIBarButtonItem *buttonItem;
   
   self.fontSizeDropdownMenu = [[REMenu alloc] initWithItems:@[NormalFontSizeItem, BigFontSizeItem, BiggerFontSizeItem]];
   
-  buttonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"textsize"]
+  self.buttonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"textsize"]
                                                                  style:UIBarButtonItemStylePlain
                                                                 target:self
                                                                 action:@selector(toggleFontSizeDropdownMenu)];
-  self.parentViewController.navigationItem.rightBarButtonItem = buttonItem;
+  self.parentViewController.navigationItem.rightBarButtonItem = self.buttonItem;
 
 }
 
 -(void)viewDidAppear:(BOOL)animated {
-  self.parentViewController.navigationItem.rightBarButtonItem = buttonItem;
+  self.parentViewController.navigationItem.rightBarButtonItem = self.buttonItem;
 }
 
 -(void)viewDidDisappear:(BOOL)animated {
@@ -108,7 +109,7 @@ UIBarButtonItem *buttonItem;
 - (void)didLoadDataWithContentId:(XMMResponseGetById *)result {
   [self displayContentTitleAndImage:result];
   [contentBlocks displayContentBlocksById:result byLocationIdentifier:nil];
-  [hud dismiss];
+  [self.hud dismiss];
 }
 
 #pragma mark - Table view data source
@@ -125,7 +126,7 @@ UIBarButtonItem *buttonItem;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   //load more contents
-  return [contentBlocks.itemsToDisplay objectAtIndex:indexPath.row];
+  return (contentBlocks.itemsToDisplay)[indexPath.row];
 }
 
 #pragma mark - Custom Methods

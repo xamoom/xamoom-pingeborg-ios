@@ -12,6 +12,9 @@
 
 @interface MainTabBarController () <XMMEnderuserApiDelegate, QRCodeReaderDelegate>
 
+@property XMMResponseGetByLocationIdentifier *result;
+@property BOOL isFirstTime;
+
 @end
 
 @implementation MainTabBarController
@@ -64,7 +67,7 @@ BOOL isFirstTime;
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
 {
   //instead of switching view the qr code scanner will be opened
-  if(viewController == [tabBarController.viewControllers objectAtIndex:3]){
+  if(viewController == (tabBarController.viewControllers)[3]){
     [[XMMEnduserApi sharedInstance] setDelegate:self];
     [[XMMEnduserApi sharedInstance] setQrCodeViewControllerCancelButtonTitle:@"Abbrechen"];
     [[XMMEnduserApi sharedInstance] startQRCodeReaderFromViewController:self withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];

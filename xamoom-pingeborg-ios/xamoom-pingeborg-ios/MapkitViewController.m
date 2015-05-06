@@ -10,19 +10,25 @@
 
 // We need a custom subclass of MKMapView in order to allow touches on UIControls in our custom callout view.
 @interface CustomMapView : MKMapView
+
 @property (nonatomic, strong) SMCalloutView *calloutView;
+
+@end
+
+@interface MapkitViewController ()
+
+@property bool isUp;
+@property UIImage *placeholder;
+@property UISwipeGestureRecognizer *swipeGeoFenceViewUp;
+@property UISwipeGestureRecognizer *swipeGeoFenceViewDown;
+@property XMMResponseGetByLocationItem *savedResponseContent;
+
 @end
 
 @implementation MapkitViewController
 
-@synthesize itemsToDisplay;
-@synthesize imagesToDisplay;
 
-bool isUp = NO;
-UISwipeGestureRecognizer *swipeGeoFenceViewUp;
-UISwipeGestureRecognizer *swipeGeoFenceViewDown;
-XMMResponseGetByLocationItem *savedResponseContent;
-UIImage *placeholder;
+
 
 #pragma mark - View Lifecycle
 
@@ -60,7 +66,8 @@ UIImage *placeholder;
   [[XMMEnduserApi sharedInstance] setDelegate:self];
   [[XMMEnduserApi sharedInstance] spotMapWithSystemId:[Globals sharedObject].globalSystemId withMapTags:@"showAllTheSpots" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
   
-  placeholder = [UIImage imageNamed:@"placeholder"];
+  self.placeholder = [UIImage imageNamed:@"placeholder"];
+  self.isUp = NO;
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -110,7 +117,7 @@ UIImage *placeholder;
       //save svg mapmarker
       NSArray *paths = NSSearchPathForDirectoriesInDomains
       (NSDocumentDirectory, NSUserDomainMask, YES);
-      NSString *documentsDirectory = [paths objectAtIndex:0];
+      NSString *documentsDirectory = paths[0];
       NSString *fileName = [NSString stringWithFormat:@"%@/mapmarker.svg", documentsDirectory];
       [imageData writeToFile:fileName atomically:YES];
       
@@ -139,18 +146,18 @@ UIImage *placeholder;
 
 -(void)didLoadDataWithLocation:(XMMResponseGetByLocation *)result {
   NSString *savedArtists = [Globals savedArtits];
-  itemsToDisplay = [[NSMutableArray alloc] init];
-  imagesToDisplay = [[NSMutableDictionary alloc] init];
+  self.itemsToDisplay = [[NSMutableArray alloc] init];
+  self.imagesToDisplay = [[NSMutableDictionary alloc] init];
   
   if([result.items firstObject] != nil) {
     XMMResponseGetByLocationItem* item = [result.items firstObject];
-    savedResponseContent = item;
+    self.savedResponseContent = item;
     
     //set geoFenceLabel
     self.geoFenceLabel.text = [NSString stringWithFormat:@"Gefunden: %@", item.title];
     
     if ([item.systemId isEqualToString:[Globals sharedObject].globalSystemId]) {
-      [itemsToDisplay addObject:item];
+      [self.itemsToDisplay addObject:item];
       
       if ([item.imagePublicUrl containsString:@".gif"]) {
         //off mainthread gifimage loading
@@ -161,9 +168,9 @@ UIImage *placeholder;
           dispatch_async(dispatch_get_main_queue(), ^(void) {
             if (![savedArtists containsString:item.contentId]) {
               UIImage *grayscaleImage = [self convertImageToGrayScale:gifImage];
-              [imagesToDisplay setValue:grayscaleImage forKey:item.contentId];
+              [self.imagesToDisplay setValue:grayscaleImage forKey:item.contentId];
             } else {
-              [imagesToDisplay setValue:gifImage forKey:item.contentId];
+              [self.imagesToDisplay setValue:gifImage forKey:item.contentId];
             }
             
             [self enableGeofenceView];
@@ -176,21 +183,21 @@ UIImage *placeholder;
               image = [self convertImageToGrayScale:image];
             }
             
-            [imagesToDisplay setValue:image forKey:item.contentId];
+            [self.imagesToDisplay setValue:image forKey:item.contentId];
             [self.tableView reloadData];
 
             [self enableGeofenceView];
           }
         }];
       } else {
-        [imagesToDisplay setValue:placeholder forKey:item.contentId];
+        [self.imagesToDisplay setValue:self.placeholder forKey:item.contentId];
         
         [self enableGeofenceView];
       }
     }
   }
 
-  if (savedResponseContent == nil) {
+  if (self.savedResponseContent == nil) {
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
     [XMMEnduserApi sharedInstance].delegate = self;
     [[XMMEnduserApi sharedInstance] closestSpotsWith:self.lastLocation.coordinate.latitude andLon:self.lastLocation.coordinate.longitude withRadius:30000 withLimit:10 withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
@@ -199,11 +206,11 @@ UIImage *placeholder;
 
 - (void)didLoadClosestSpots:(XMMResponseClosestSpot *)result {
   for (XMMResponseGetSpotMapItem *item in result.items) {
-    [itemsToDisplay addObject:item];
+    [self.itemsToDisplay addObject:item];
   }
   
-  if ([itemsToDisplay count] > 0) {
-    self.geoFenceLabel.text = [NSString stringWithFormat:@"%lu in der Nähe", (unsigned long)[itemsToDisplay count]];
+  if ([self.itemsToDisplay count] > 0) {
+    self.geoFenceLabel.text = [NSString stringWithFormat:@"%lu in der Nähe", (unsigned long)[self.itemsToDisplay count]];
     [self enableGeofenceView];
   } else {
     self.geoFenceLabel.text = @"Nichts in deiner Nähe";
@@ -277,7 +284,7 @@ UIImage *placeholder;
   
   if ([annotationView isKindOfClass:[PingeborgAnnotationView class]]) {
     PingeborgAnnotationView* pingeborgAnnotationView = (PingeborgAnnotationView *)annotationView;
-    PingeborgCalloutView* pingeborgCalloutView = [[PingeborgCalloutView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 300.0f, 45.0f)];
+    PingeborgCalloutView* pingeborgCalloutView = [[PingeborgCalloutView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 300.0f, 35.0f)];
     pingeborgCalloutView.nameOfSpot = pingeborgAnnotationView.data.displayName;
     
     //create titleLabel
@@ -290,6 +297,8 @@ UIImage *placeholder;
     CGRect titleLabelRect = titleLabel.frame;
     titleLabelRect.size = [titleLabel sizeThatFits:titleLabelRect.size];
     titleLabel.frame = titleLabelRect;
+    
+    [pingeborgCalloutView addSubview:titleLabel];
     
     //increase pingeborCalloutView height
     CGRect pingeborgCalloutViewRect = pingeborgCalloutView.frame;
@@ -304,18 +313,21 @@ UIImage *placeholder;
     //set coordinates (for navigating)
     pingeborgCalloutView.coordinate = pingeborgAnnotationView.coordinate;
     
-    [pingeborgCalloutView addSubview:titleLabel];
+    
     [pingeborgCalloutView addSubview:distanceLabel];
     
     UIImageView *spotImageView;
     
     //insert image
     if(pingeborgAnnotationView.spotImage != nil) {
-      float imageRatio = pingeborgAnnotationView.spotImage.size.width / pingeborgAnnotationView.spotImage.size.height;
+      if (pingeborgAnnotationView.spotImage.size.width < pingeborgAnnotationView.spotImage.size.height) {
+        spotImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, distanceLabel.frame.origin.y + distanceLabel.frame.size.height, pingeborgCalloutView.frame.size.width, pingeborgCalloutView.frame.size.width)];
+      } else {
+        float imageRatio = pingeborgAnnotationView.spotImage.size.width / pingeborgAnnotationView.spotImage.size.height;
+        spotImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, distanceLabel.frame.origin.y + distanceLabel.frame.size.height, pingeborgCalloutView.frame.size.width, pingeborgCalloutView.frame.size.width / imageRatio)];
+      }
       
-      spotImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, distanceLabel.frame.origin.y + distanceLabel.frame.size.height, pingeborgCalloutView.frame.size.width, pingeborgCalloutView.frame.size.width / imageRatio)];
-      
-      [spotImageView setContentMode: UIViewContentModeScaleAspectFit];
+      [spotImageView setContentMode: UIViewContentModeScaleToFill];
       spotImageView.image = pingeborgAnnotationView.spotImage;
       
       //increase pingeborCalloutView height
@@ -338,7 +350,6 @@ UIImage *placeholder;
       spotDescriptionLabel.numberOfLines = 0;
       spotDescriptionLabel.font = [UIFont systemFontOfSize:12];
       spotDescriptionLabel.textColor = [UIColor darkGrayColor];
-      
       spotDescriptionLabel.text = pingeborgAnnotationView.data.descriptionOfSpot;
       
       //resize label depending on content
@@ -348,7 +359,7 @@ UIImage *placeholder;
       
       //increase pingeborCalloutView height
       CGRect pingeborgCalloutViewRect = pingeborgCalloutView.frame;
-      pingeborgCalloutViewRect.size.height += spotDescriptionLabel.frame.size.height;
+      pingeborgCalloutViewRect.size.height += spotDescriptionLabel.frame.size.height + 10.0f;
       pingeborgCalloutView.frame = pingeborgCalloutViewRect;
       
       [pingeborgCalloutView addSubview:spotDescriptionLabel];
@@ -444,33 +455,33 @@ UIImage *placeholder;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   // Return the number of rows in the section.
-  return [itemsToDisplay count];
+  return [self.itemsToDisplay count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   UITableViewCell *cell = nil;
   
-  if ([[itemsToDisplay objectAtIndex:indexPath.row] isKindOfClass:[XMMResponseGetByLocationItem class]]) {
+  if ([self.itemsToDisplay[indexPath.row] isKindOfClass:[XMMResponseGetByLocationItem class]]) {
     FeedItemCell *cell = (FeedItemCell *)[self.tableView dequeueReusableCellWithIdentifier:@"FeedItemCell"];
     if (cell == nil)
     {
       NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FeedItemCell" owner:self options:nil];
-      cell = [nib objectAtIndex:0];
+      cell = nib[0];
     }
     [cell.loadingIndicator startAnimating];
     
-    XMMResponseGetByLocationItem *item = [itemsToDisplay objectAtIndex:indexPath.row];
+    XMMResponseGetByLocationItem *item = self.itemsToDisplay[indexPath.row];
     cell.feedItemTitle.text = item.title;
     cell.contentId = item.contentId;
     
-    if ([imagesToDisplay objectForKey:item.contentId] == placeholder) {
-      UIImage *image = [imagesToDisplay objectForKey:item.contentId];
+    if (self.imagesToDisplay[item.contentId] == self.placeholder) {
+      UIImage *image = self.imagesToDisplay[item.contentId];
       float imageRatio = image.size.width / image.size.height;
       [cell.imageHeightConstraint setConstant:(cell.frame.size.width / imageRatio)];
       cell.feedItemImage.image = image;
       [cell.loadingIndicator stopAnimating];
-    } else if ([imagesToDisplay objectForKey:item.contentId]){
-      UIImage *image = [imagesToDisplay objectForKey:item.contentId];
+    } else if (self.imagesToDisplay[item.contentId]){
+      UIImage *image = self.imagesToDisplay[item.contentId];
       float imageRatio = image.size.width / image.size.height;
       [cell.imageHeightConstraint setConstant:(cell.frame.size.width / imageRatio)];
       cell.feedItemImage.image = image;
@@ -488,7 +499,7 @@ UIImage *placeholder;
       cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"LocationItem"];
     }
     
-    XMMResponseGetSpotMapItem *item = [itemsToDisplay objectAtIndex:indexPath.row];
+    XMMResponseGetSpotMapItem *item = self.itemsToDisplay[indexPath.row];
     cell.textLabel.text = item.displayName;
     
     CLLocation *pointLocation = [[CLLocation alloc] initWithLatitude:item.lat longitude:item.lon];
@@ -632,13 +643,13 @@ UIImage *placeholder;
   [self.geoFenceActivityIndicator stopAnimating];
   [self.tableView reloadData];
   
-  swipeGeoFenceViewUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(toggleGeoFenceView)];
-  swipeGeoFenceViewUp.direction = UISwipeGestureRecognizerDirectionUp;
-  swipeGeoFenceViewDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(toggleGeoFenceView)];
-  swipeGeoFenceViewDown.direction = UISwipeGestureRecognizerDirectionDown;
+  self.swipeGeoFenceViewUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(toggleGeoFenceView)];
+  self.swipeGeoFenceViewUp.direction = UISwipeGestureRecognizerDirectionUp;
+  self.swipeGeoFenceViewDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(toggleGeoFenceView)];
+  self.swipeGeoFenceViewDown.direction = UISwipeGestureRecognizerDirectionDown;
   UITapGestureRecognizer *geoFenceTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toggleGeoFenceView)];
   [self.geofenceView addGestureRecognizer:geoFenceTapGesture];
-  [self.geofenceView addGestureRecognizer:swipeGeoFenceViewUp];
+  [self.geofenceView addGestureRecognizer:self.swipeGeoFenceViewUp];
   
   [self.geoFenceActivityIndicator stopAnimating];
   self.geoFenceIcon.image = [UIImage imageNamed:@"angleDown"];
@@ -648,13 +659,13 @@ UIImage *placeholder;
 - (void)toggleGeoFenceView {
   [self.view layoutIfNeeded];
   
-  if (isUp) {
+  if (self.isUp) {
     self.tableViewHeightConstraint.constant = 0.0f;
-    [self.geofenceView removeGestureRecognizer:swipeGeoFenceViewDown];
-    [self.geofenceView addGestureRecognizer:swipeGeoFenceViewUp];
+    [self.geofenceView removeGestureRecognizer:self.swipeGeoFenceViewDown];
+    [self.geofenceView addGestureRecognizer:self.swipeGeoFenceViewUp];
   } else {
-    if (savedResponseContent != nil) {
-      UIImage *image = [imagesToDisplay objectForKey:savedResponseContent.contentId];
+    if (self.savedResponseContent != nil) {
+      UIImage *image = self.imagesToDisplay[self.savedResponseContent.contentId];
       float imageRatio = image.size.width / image.size.height;
       self.tableViewHeightConstraint.constant = (self.tableView.frame.size.width / imageRatio);
       self.tableView.scrollEnabled = NO;
@@ -663,28 +674,27 @@ UIImage *placeholder;
       self.tableViewHeightConstraint.constant = (self.view.frame.size.height/2) + 40;
     }
     
-    [self.geofenceView removeGestureRecognizer:swipeGeoFenceViewUp];
-    [self.geofenceView addGestureRecognizer:swipeGeoFenceViewDown];
+    [self.geofenceView removeGestureRecognizer:self.swipeGeoFenceViewUp];
+    [self.geofenceView addGestureRecognizer:self.swipeGeoFenceViewDown];
   }
   
   [UIView animateWithDuration:0.5
                    animations:^{
-                     if (isUp)
+                     if (self.isUp)
                        self.geoFenceIcon.transform = CGAffineTransformMakeRotation(M_PI);
                      else
                        self.geoFenceIcon.transform = CGAffineTransformMakeRotation(0);
                      [self.view layoutIfNeeded]; // Called on parent view
-                     isUp = !isUp;
+                     self.isUp = !self.isUp;
                    }];
   
-  if (isUp)
+  if (self.isUp)
     [self.tableView reloadData];
 
 }
 
 - (void)openArtistDetailViewFromSender:(UITapGestureRecognizer*)sender {
   FeedItemCell *cell = (FeedItemCell*)sender.view;
-  NSLog(@"Hellyeah: %@", cell.contentId);
   ArtistDetailViewController *artistDetailViewController = [[ArtistDetailViewController alloc] init];
   artistDetailViewController.contentId = cell.contentId;
   [self.navigationController pushViewController:artistDetailViewController animated:YES];
