@@ -21,14 +21,12 @@
 @property UIImage *placeholder;
 @property UISwipeGestureRecognizer *swipeGeoFenceViewUp;
 @property UISwipeGestureRecognizer *swipeGeoFenceViewDown;
+@property UITapGestureRecognizer *geoFenceTapGesture;
 @property XMMResponseGetByLocationItem *savedResponseContent;
 
 @end
 
 @implementation MapkitViewController
-
-
-
 
 #pragma mark - View Lifecycle
 
@@ -95,6 +93,8 @@
   }
   
   if ([self.itemsToDisplay count] <= 0) {
+    [self disableGeofenceView];
+    [self.geoFenceActivityIndicator startAnimating];
     [XMMEnduserApi sharedInstance].delegate = self;
     [[XMMEnduserApi sharedInstance] contentWithLat:[NSString stringWithFormat:@"%f",self.lastLocation.coordinate.latitude] withLon:[NSString stringWithFormat:@"%f",self.lastLocation.coordinate.longitude] withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
   }
@@ -198,7 +198,6 @@
         }];
       } else {
         [self.imagesToDisplay setValue:self.placeholder forKey:item.contentId];
-        
         [self enableGeofenceView];
       }
     }
@@ -646,22 +645,27 @@
 }
 
 - (void)enableGeofenceView {
-  self.geoFenceIcon.image = [UIImage imageNamed:@"angleDown"];
-  self.geoFenceIcon.transform = CGAffineTransformMakeRotation(M_PI);
-  [self.geoFenceActivityIndicator stopAnimating];
-  [self.tableView reloadData];
-  
   self.swipeGeoFenceViewUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(toggleGeoFenceView)];
   self.swipeGeoFenceViewUp.direction = UISwipeGestureRecognizerDirectionUp;
   self.swipeGeoFenceViewDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(toggleGeoFenceView)];
   self.swipeGeoFenceViewDown.direction = UISwipeGestureRecognizerDirectionDown;
-  UITapGestureRecognizer *geoFenceTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toggleGeoFenceView)];
-  [self.geofenceView addGestureRecognizer:geoFenceTapGesture];
+  self.geoFenceTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toggleGeoFenceView)];
+  [self.geofenceView addGestureRecognizer:self.geoFenceTapGesture];
   [self.geofenceView addGestureRecognizer:self.swipeGeoFenceViewUp];
   
-  [self.geoFenceActivityIndicator stopAnimating];
   self.geoFenceIcon.image = [UIImage imageNamed:@"angleDown"];
   self.geoFenceIcon.transform = CGAffineTransformMakeRotation(M_PI);
+  [self.geoFenceActivityIndicator stopAnimating];
+  [self.tableView reloadData];
+}
+
+- (void)disableGeofenceView {
+  if (self.isUp) {
+    [self toggleGeoFenceView];
+  }
+  [self.geofenceView removeGestureRecognizer:self.swipeGeoFenceViewDown];
+  [self.geofenceView removeGestureRecognizer:self.swipeGeoFenceViewUp];
+  [self.geofenceView removeGestureRecognizer:self.geoFenceTapGesture];
 }
 
 - (void)toggleGeoFenceView {
