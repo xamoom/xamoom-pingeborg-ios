@@ -18,10 +18,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   
-  //set up api
-  XMMEnduserApi *api;
-  api = [[XMMEnduserApi alloc] init];
-  
   //set UI colors
   //[[UITabBar appearance] setTintColor:[UIColor blackColor]];
   [[UINavigationBar appearance] setBarTintColor:[Globals sharedObject].pingeborgYellow];

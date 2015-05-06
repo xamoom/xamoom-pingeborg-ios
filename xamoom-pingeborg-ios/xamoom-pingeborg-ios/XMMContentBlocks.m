@@ -141,7 +141,8 @@ NSString *style;
     [cell.titleLabel setFont:[UIFont systemFontOfSize:fontSize+6]];
   }
   
-  cell.contentLabel.attributedText = [self attributedStringFromHTML:contentBlock.text];
+  if (contentBlock.text != nil)
+    cell.contentLabel.attributedText = [self attributedStringFromHTML:contentBlock.text];
   
   //add to array
   [itemsToDisplay addObject: cell];

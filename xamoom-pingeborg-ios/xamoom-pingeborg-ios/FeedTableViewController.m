@@ -282,14 +282,6 @@ int const kPageSize = 7;
   }
 }
 
-#pragma mark - User Interaction
-
--(void)tappedQRButton {
-  [[XMMEnduserApi sharedInstance] setDelegate:self];
-  [[XMMEnduserApi sharedInstance] setQrCodeViewControllerCancelButtonTitle:@"Abbrechen"];
-  [[XMMEnduserApi sharedInstance] startQRCodeReaderFromViewController:self withAPIRequest:YES withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
-}
-
 #pragma mark - Image Methods
 
 - (void)downloadImageWithURL:(NSString *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock

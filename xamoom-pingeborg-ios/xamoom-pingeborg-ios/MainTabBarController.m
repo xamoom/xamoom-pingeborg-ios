@@ -63,49 +63,28 @@ BOOL isFirstTime;
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
 {
+  //instead of switching view the qr code scanner will be opened
   if(viewController == [tabBarController.viewControllers objectAtIndex:3]){
     [[XMMEnduserApi sharedInstance] setDelegate:self];
     [[XMMEnduserApi sharedInstance] setQrCodeViewControllerCancelButtonTitle:@"Abbrechen"];
-    [[XMMEnduserApi sharedInstance] startQRCodeReaderFromViewController:self withAPIRequest:YES withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
+    [[XMMEnduserApi sharedInstance] startQRCodeReaderFromViewController:self withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
     return NO;
   }else{
     return YES;
   }
-  
-}
-
-#pragma mark - User Interaction
-
--(void)tappedMiddleButton:(id)sender {
-  [[XMMEnduserApi sharedInstance] setDelegate:self];
-  [[XMMEnduserApi sharedInstance] setQrCodeViewControllerCancelButtonTitle:@"Abbrechen"];
-  [[XMMEnduserApi sharedInstance] startQRCodeReaderFromViewController:self withAPIRequest:YES withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
 }
 
 #pragma mark - QRCodeReader Delegate Methods
 
-- (void)reader:(QRCodeReaderViewController *)reader didScanResult:(NSString *)result
-{
-  [self dismissViewControllerAnimated:YES completion:^{
-    NSLog(@"Completion with result: %@", result);
-  }];
-}
-
-- (void)readerDidCancel:(QRCodeReaderViewController *)reader
-{
-  NSLog(@"readerDidCancel");
-  [self dismissViewControllerAnimated:YES completion:NULL];
+-(void)didScanQR:(NSString *)result {
+  [[XMMEnduserApi sharedInstance] setDelegate:self];
+  [[XMMEnduserApi sharedInstance] contentWithLocationIdentifier:@"0ana0" includeStyle:@"False" includeMenu:@"False" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
 }
 
 - (void)didLoadDataWithLocationIdentifier:(XMMResponseGetByLocationIdentifier *)apiResult {
-  NSLog(@"finishedLoadDataByLocationIdentifier: %@", apiResult);
-  
+  [Globals addDiscoveredArtist:apiResult.content.contentId];
   result = apiResult;
-  if( isFirstTime ) {
-    isFirstTime = NO;
-    [Globals addDiscoveredArtist:apiResult.content.contentId];
-    [self performSegueWithIdentifier:@"showScanResult" sender:self];
-  }
+  [self performSegueWithIdentifier:@"showScanResult" sender:self];
 }
 
 #pragma mark - Navigation
@@ -117,6 +96,5 @@ BOOL isFirstTime;
     [srvc setResult:result];
   }
 }
-
 
 @end
