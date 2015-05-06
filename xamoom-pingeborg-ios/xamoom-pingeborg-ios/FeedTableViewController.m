@@ -8,7 +8,7 @@
 
 #import "FeedTableViewController.h"
 
-static int const pageSize = 7;
+int const kPageSize = 7;
 
 @interface FeedTableViewController ()
 
@@ -17,18 +17,14 @@ static int const pageSize = 7;
 @property NSString *contentListCursor;
 @property bool hasMore;
 @property bool isApiCallingBlocked;
+@property UIButton *dropDownButton;
+@property UIBarButtonItem *qrButtonItem;
+@property UIImage *placeholderImage;
+@property JGProgressHUD *hud;
 
 @end
 
 @implementation FeedTableViewController
-
-@synthesize itemsToDisplay;
-@synthesize imagesToDisplay;
-
-UIButton *dropDownButton;
-UIBarButtonItem *qrButtonItem;
-UIImage *placeholderImage;
-JGProgressHUD *hud;
 
 - (void)viewDidLoad {
   [super viewDidLoad];
@@ -46,19 +42,18 @@ JGProgressHUD *hud;
   
   //navbarDropdown => title
   UIView *iv = [[UIView alloc] initWithFrame:CGRectMake(0,0,(self.view.frame.size.width/1.5),32)];
-  dropDownButton = [[UIButton alloc] initWithFrame:CGRectMake(0,0,(self.view.frame.size.width/1.5),32)];
+  self.dropDownButton = [[UIButton alloc] initWithFrame:CGRectMake(0,0,(self.view.frame.size.width/1.5),32)];
   //[dropDownButton addTarget:navController action:@selector(toggleMenu) forControlEvents:UIControlEventTouchUpInside];
-  [dropDownButton setTitle:@"pingeborg Carinthia" forState:UIControlStateNormal];
-  [dropDownButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+  [self.dropDownButton setTitle:@"pingeborg Carinthia" forState:UIControlStateNormal];
+  [self.dropDownButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
   
   UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake((iv.frame.size.width/2) - 3.5, iv.frame.size.height-3.5, 7, 3.5)];
   UIImage *angleDownImage = [UIImage imageNamed:@"angleDown"];
   [imageView setImage:angleDownImage];
   
-  [iv addSubview:dropDownButton];
+  [iv addSubview:self.dropDownButton];
   //[iv addSubview:imageView];
   self.parentViewController.navigationItem.titleView = iv;
-  
   
   //setting up refresh control
   self.refreshControl = [[UIRefreshControl alloc] init];
@@ -74,18 +69,17 @@ JGProgressHUD *hud;
                                              object:nil];
   
   //init variables
-  isFirstTime = YES;
-  placeholderImage = [UIImage imageNamed:@"placeholder"];
-  itemsToDisplay = [[NSMutableArray alloc] init];
-  imagesToDisplay = [[NSMutableDictionary alloc] init];
+  self.placeholderImage = [UIImage imageNamed:@"placeholder"];
+  self.itemsToDisplay = [[NSMutableArray alloc] init];
+  self.imagesToDisplay = [[NSMutableDictionary alloc] init];
   
   //loading hud in view
-  hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
-  [hud showInView:self.view];
+  self.hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+  [self.hud showInView:self.view];
   
   //api call
   [[XMMEnduserApi sharedInstance] setDelegate:self];
-  [[XMMEnduserApi sharedInstance] contentListWithSystemId:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:pageSize withCursor:@"null"];
+  [[XMMEnduserApi sharedInstance] contentListWithSystemId:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:kPageSize withCursor:@"null"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -95,9 +89,9 @@ JGProgressHUD *hud;
 
 -(void)viewDidAppear:(BOOL)animated {
   //load artists, if there are none
-  if (itemsToDisplay.count <= 0) {
+  if (self.itemsToDisplay.count <= 0) {
     [[XMMEnduserApi sharedInstance] setDelegate:self];
-    [[XMMEnduserApi sharedInstance] contentListWithSystemId:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:pageSize withCursor:@"null"];
+    [[XMMEnduserApi sharedInstance] contentListWithSystemId:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:kPageSize withCursor:@"null"];
   }
 }
 
@@ -107,14 +101,14 @@ JGProgressHUD *hud;
 #pragma mark - XMMEnduserApi delegates
 
 -(void)didLoadContentList:(XMMResponseContentList *)result {
+  self.contentListCursor = result.cursor;
+
   //check if first startup
   if ([Globals isFirstStart]) {
     [self firstStartup:result];
   }
   
-  NSString *savedArtists = [Globals savedArtits];
-  self.contentListCursor = result.cursor;
-  
+  //save if there are more items available over api
   if ([result.hasMore isEqualToString:@"True"])
     self.hasMore = YES;
   else
@@ -129,40 +123,24 @@ JGProgressHUD *hud;
         UIImage *gifImage = [UIImage animatedImageWithAnimatedGIFURL:[NSURL URLWithString:contentItem.imagePublicUrl]];
         
         dispatch_async(dispatch_get_main_queue(), ^(void) {
-          if (![savedArtists containsString:contentItem.contentId]) {
-            UIImage *grayscaleImage = [self convertImageToGrayScale:gifImage];
-            [imagesToDisplay setValue:grayscaleImage forKey:contentItem.contentId];
-          } else {
-            [imagesToDisplay setValue:gifImage forKey:contentItem.contentId];
-          }
-          
+          [self.imagesToDisplay setValue:gifImage forKey:contentItem.contentId];
           [self.tableView reloadData];
         });
       });
     } else if(contentItem.imagePublicUrl != nil) {
       [self downloadImageWithURL:contentItem.imagePublicUrl completionBlock:^(BOOL succeeded, UIImage *image) {
-        if (succeeded) {
-          if (![savedArtists containsString:contentItem.contentId]) {
-            image = [self convertImageToGrayScale:image];
-          }
-          
-          [imagesToDisplay setValue:image forKey:contentItem.contentId];
-          [self.tableView reloadData];
-        }
+        [self.imagesToDisplay setValue:image forKey:contentItem.contentId];
+        [self.tableView reloadData];
       }];
     } else {
-      if (![savedArtists containsString:contentItem.contentId]) {
-        [imagesToDisplay setValue:[self convertImageToGrayScale:placeholderImage] forKey:contentItem.contentId];
-      } else {
-        [imagesToDisplay setValue:placeholderImage forKey:contentItem.contentId];
-      }
+      [self.imagesToDisplay setValue:self.placeholderImage forKey:contentItem.contentId];
     }
     
     //add contentItem
-    [itemsToDisplay addObject:contentItem];
+    [self.itemsToDisplay addObject:contentItem];
   }
   
-  [hud dismiss];
+  [self.hud dismiss];
   self.isApiCallingBlocked = NO;
   [self reloadData];
 }
@@ -176,11 +154,10 @@ JGProgressHUD *hud;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   // Return the number of rows in the section.
-  return [itemsToDisplay count];
+  return [self.itemsToDisplay count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  
   static NSString *simpleTableIdentifier = @"FeedItemCell";
   
   FeedItemCell *cell = (FeedItemCell *)[self.tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
@@ -189,27 +166,20 @@ JGProgressHUD *hud;
     NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FeedItemCell" owner:self options:nil];
     cell = [nib objectAtIndex:0];
   }
-
-  //load more contents
-  if (indexPath.row == [self.itemsToDisplay count] - 1) {
-    if (self.hasMore && !self.isApiCallingBlocked) {
-      self.isApiCallingBlocked = YES;
-      [[XMMEnduserApi sharedInstance] setDelegate:self];
-      [[XMMEnduserApi sharedInstance] contentListWithSystemId:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:pageSize withCursor:self.contentListCursor];
-    }
-    return cell;
-  }
-  
-  //save for out of range
-  if (indexPath.row >= [itemsToDisplay count]) {
-    return cell;
-  }
   
   [cell.loadingIndicator startAnimating];
+
+  //set defaults to images
   cell.feedItemImage.image = nil;
-  XMMResponseContent *contentItem = [itemsToDisplay objectAtIndex:indexPath.row];
+  cell.loadingIndicator.hidden = NO;
   
-  //styling the label
+  //save for out of range
+  if (indexPath.row >= [self.itemsToDisplay count]) {
+    return cell;
+  }
+  XMMResponseContent *contentItem = [self.itemsToDisplay objectAtIndex:indexPath.row];
+  
+  //styling the label & set the title
   NSMutableParagraphStyle *style =  [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
   style.alignment = NSTextAlignmentJustified;
   style.firstLineHeadIndent = 4.0f;
@@ -217,25 +187,27 @@ JGProgressHUD *hud;
   style.lineBreakMode = NSLineBreakByTruncatingTail;
   NSAttributedString *attrText = [[NSAttributedString alloc] initWithString:contentItem.title
                                                                  attributes:@{ NSParagraphStyleAttributeName : style}];
-  //set the title
   cell.feedItemTitle.attributedText = attrText;
   
-  if ([imagesToDisplay objectForKey:contentItem.contentId] == placeholderImage) {
-    UIImage *image = [imagesToDisplay objectForKey:contentItem.contentId];
+  //set image & grayscale if needed
+  if([self.imagesToDisplay objectForKey:contentItem.contentId] != nil) {
+    UIImage *image = [self.imagesToDisplay objectForKey:contentItem.contentId];
     float imageRatio = image.size.width / image.size.height;
     [cell.imageHeightConstraint setConstant:(cell.frame.size.width / imageRatio)];
-    cell.feedItemImage.image = image;
-    [cell.loadingIndicator stopAnimating];
-  } else if ([imagesToDisplay objectForKey:contentItem.contentId]){
-    UIImage *image = [imagesToDisplay objectForKey:contentItem.contentId];
-    float imageRatio = image.size.width / image.size.height;
-    [cell.imageHeightConstraint setConstant:(cell.frame.size.width / imageRatio)];
-    cell.feedItemImage.image = image;
+    
+    if (![[Globals savedArtits] containsString:contentItem.contentId]) {
+      cell.feedItemImage.image = [self convertImageToGrayScale:image];
+      cell.feedItemOverlayImage.backgroundColor = [UIColor whiteColor];
+    } else {
+      cell.feedItemImage.image = image;
+      cell.feedItemOverlayImage.backgroundColor = [UIColor clearColor];
+    }
+    
     [cell.loadingIndicator stopAnimating];
   }
   
-  //overlay image for the first cell
-  if (contentItem == itemsToDisplay.firstObject) {
+  //overlay image for the first cell "discoverable"
+  if (contentItem == self.itemsToDisplay.firstObject) {
     if (![[Globals savedArtits] containsString:contentItem.contentId]) {
       cell.feedItemOverlayImage.image = [UIImage imageNamed:@"discoverable"];
     }
@@ -243,12 +215,21 @@ JGProgressHUD *hud;
     cell.feedItemOverlayImage.image = nil;
   }
   
+  //load more contents
+  if (indexPath.row == [self.itemsToDisplay count] - 1) {
+    if (self.hasMore && !self.isApiCallingBlocked) {
+      self.isApiCallingBlocked = YES;
+      [[XMMEnduserApi sharedInstance] setDelegate:self];
+      [[XMMEnduserApi sharedInstance] contentListWithSystemId:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:kPageSize withCursor:self.contentListCursor];
+    }
+  }
+  
   return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   ArtistDetailViewController *artistDetailViewController = [[ArtistDetailViewController alloc] init];
-  XMMResponseContent *data = (XMMResponseContent*)[itemsToDisplay objectAtIndex:indexPath.row];
+  XMMResponseContent *data = (XMMResponseContent*)[self.itemsToDisplay objectAtIndex:indexPath.row];
   artistDetailViewController.contentId = data.contentId;
   [self.navigationController pushViewController:artistDetailViewController animated:YES];
 }
@@ -257,12 +238,15 @@ JGProgressHUD *hud;
 
 - (void)pullToRefresh {
   if(!self.isApiCallingBlocked) {
-    itemsToDisplay = nil;
-    itemsToDisplay = [[NSMutableArray alloc] init];
-    imagesToDisplay = nil;
-    imagesToDisplay = [[NSMutableDictionary alloc] init];
+    
+    //delete all items in arrays
+    self.itemsToDisplay = [[NSMutableArray alloc] init];
+    self.imagesToDisplay = [[NSMutableDictionary alloc] init];
+    
+    //api call
     [[XMMEnduserApi sharedInstance] setDelegate:self];
     [[XMMEnduserApi sharedInstance] contentListWithSystemId:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:5 withCursor:@"null"];
+    
     self.isApiCallingBlocked = YES;
   }
 }
@@ -274,7 +258,6 @@ JGProgressHUD *hud;
   
   // End the refreshing
   if (self.refreshControl) {
-    
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MMM d, hh:mm"];
     NSString *title = [NSString stringWithFormat:@"Letztes Update: %@", [formatter stringFromDate:[NSDate date]]];
@@ -290,6 +273,7 @@ JGProgressHUD *hud;
 # pragma mark - Custom Methods
 
 -(void)firstStartup:(XMMResponseContentList *)result {
+  //add artist 2-4 to discovered list
   int counter = 1;
   while (counter <= 3) {
     XMMResponseContent *contentItem = result.items[counter];
@@ -298,85 +282,12 @@ JGProgressHUD *hud;
   }
 }
 
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
-
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- } else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
- */
-
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
- }
- */
-
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
-
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-  if ( [[segue identifier] isEqualToString:@"showScanResult"] ) {
-    ScanResultViewController *srvc = [segue destinationViewController];
-    [srvc setResult:result];
-  }
-}
-
-
 #pragma mark - User Interaction
 
 -(void)tappedQRButton {
   [[XMMEnduserApi sharedInstance] setDelegate:self];
   [[XMMEnduserApi sharedInstance] setQrCodeViewControllerCancelButtonTitle:@"Abbrechen"];
   [[XMMEnduserApi sharedInstance] startQRCodeReaderFromViewController:self withAPIRequest:YES withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
-}
-
-#pragma mark - QRCodeReader Delegate Methods
-
-- (void)reader:(QRCodeReaderViewController *)reader didScanResult:(NSString *)result
-{
-  [self dismissViewControllerAnimated:YES completion:^{
-    NSLog(@"Completion with result: %@", result);
-  }];
-}
-
-- (void)readerDidCancel:(QRCodeReaderViewController *)reader
-{
-  NSLog(@"readerDidCancel");
-  [self dismissViewControllerAnimated:YES completion:NULL];
-}
-
-BOOL isFirstTime;
-XMMResponseGetByLocationIdentifier *result;
-
-- (void)didLoadDataWithLocationIdentifier:(XMMResponseGetByLocationIdentifier *)apiResult {
-  
-  result = apiResult;
-  if( isFirstTime ) {
-    isFirstTime = NO;
-    [Globals addDiscoveredArtist:apiResult.content.contentId];
-    [self performSegueWithIdentifier:@"showScanResult" sender:self];
-  }
 }
 
 #pragma mark - Image Methods
@@ -467,9 +378,18 @@ XMMResponseGetByLocationIdentifier *result;
     systemName = @"pingeborg Vorarlberg";
   }
   
-  [dropDownButton setTitle:systemName forState:UIControlStateNormal];
+  [self.dropDownButton setTitle:systemName forState:UIControlStateNormal];
   
   [self pullToRefresh];
 }
+
+#pragma mark - Navigation
+/*
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ 
+ }
+ }
+ */
 
 @end

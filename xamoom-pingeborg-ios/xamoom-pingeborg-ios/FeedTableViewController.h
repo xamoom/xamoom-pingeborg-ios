@@ -16,6 +16,8 @@
 #import "UIImage+animatedGIF.h"
 #import <JGProgressHUD/JGProgressHUD.h>
 
+extern int const kPageSize;
+
 @interface FeedTableViewController : UITableViewController <XMMEnderuserApiDelegate, DropDownMenuDelegate>
 
 @end
