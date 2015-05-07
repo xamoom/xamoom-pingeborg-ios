@@ -19,6 +19,8 @@
 #import "SpotMapBlockTableViewCell.h"
 #import "UIImage+animatedGIF.h"
 
+extern int const kHorizontalSpaceToSubview;
+
 typedef NS_OPTIONS(NSInteger, TextFontSize)
 {
   NormalFontSize = 17,
@@ -40,11 +42,12 @@ typedef NS_OPTIONS(NSInteger, TextFontSize)
 
 @property (nonatomic, weak) id<XMMContentBlocksDelegate> delegate;
 @property NSMutableArray *itemsToDisplay;
-@property int fontSize;
+@property float screenWidth;
+
 
 - (instancetype)init NS_DESIGNATED_INITIALIZER;
 
-- (void)displayContentBlocksById:(XMMResponseGetById *)IdResult byLocationIdentifier:(XMMResponseGetByLocationIdentifier *)LocationIdentifierResult;
+- (void)displayContentBlocksById:(XMMResponseGetById *)IdResult byLocationIdentifier:(XMMResponseGetByLocationIdentifier *)LocationIdentifierResult WithScreenWidth:(float)screenWidth;
 
 - (void)displayContentBlock0:(XMMResponseContentBlockType0 *)contentBlock;
 

@@ -70,7 +70,7 @@
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
   [self displayContentTitleAndImage];
-  [self.contentBlocks displayContentBlocksById:nil byLocationIdentifier:self.result];
+  //[self.contentBlocks displayContentBlocksById:nil byLocationIdentifier:self.result];
   [self.hud dismiss];
 }
 

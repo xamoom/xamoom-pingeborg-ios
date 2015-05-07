@@ -136,14 +136,20 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  return (self.contentBlocks.itemsToDisplay)[indexPath.row];
+  if ([self.contentBlocks.itemsToDisplay[indexPath.row] isKindOfClass:[ImageBlockTableViewCell class]]) {
+    ImageBlockTableViewCell *cell = self.contentBlocks.itemsToDisplay[indexPath.row];
+    NSLog(@"Height: %f", cell.image.frame.size.height);
+    NSLog(@"Calc Height: %f", (cell.image.frame.size.width)/(cell.image.frame.size.width/cell.image.frame.size.height));
+    NSLog(@"HeightCons: %f", cell.imageHeightConstraint.constant);
+  }
+  return self.contentBlocks.itemsToDisplay[indexPath.row];
 }
 
 #pragma mark - Custom Methods
 
 - (void)displayContentOnTableView:(XMMResponseGetById *)result {
   [self displayContentTitleAndImage:result];
-  [self.contentBlocks displayContentBlocksById:result byLocationIdentifier:nil];
+  [self.contentBlocks displayContentBlocksById:result byLocationIdentifier:nil WithScreenWidth:self.tableView.bounds.size.width];
 }
 
 - (void)displayContentTitleAndImage:(XMMResponseGetById *)result {

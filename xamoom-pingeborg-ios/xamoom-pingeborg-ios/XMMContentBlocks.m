@@ -8,23 +8,22 @@
 
 #import "XMMContentBlocks.h"
 
+int const kHorizontalSpaceToSubview = 32;
+
 @interface XMMContentBlocks ()
+
+@property NSString *style;
+@property int fontSize;
 
 @end
 
 @implementation XMMContentBlocks
 
-@synthesize delegate;
-@synthesize itemsToDisplay;
-@synthesize fontSize;
-
-NSString *style;
-
 - (instancetype)init {
   self = [super init];
   if(self) {
-    itemsToDisplay = [[NSMutableArray alloc] init];
-    fontSize = NormalFontSize;
+    self.itemsToDisplay = [[NSMutableArray alloc] init];
+    self.fontSize = NormalFontSize;
   }
   
   NSString *notificationName = @"reloadTableViewForContentBlocks";
@@ -39,9 +38,10 @@ NSString *style;
 }
 
 # pragma mark - ContentBlock Methods
-- (void)displayContentBlocksById:(XMMResponseGetById *)IdResult byLocationIdentifier:(XMMResponseGetByLocationIdentifier *)LocationIdentifierResult {
+- (void)displayContentBlocksById:(XMMResponseGetById *)IdResult byLocationIdentifier:(XMMResponseGetByLocationIdentifier *)LocationIdentifierResult WithScreenWidth:(float)screenWidth {
   NSInteger contentBlockType;
   NSArray *contentBlocks;
+  self.screenWidth = screenWidth - kHorizontalSpaceToSubview;
   
   if (IdResult != nil) {
     contentBlocks = IdResult.content.contentBlocks;
@@ -127,6 +127,7 @@ NSString *style;
 
 #pragma mark - Display Content Blocks
 
+#pragma mark Text Block
 - (void)displayContentBlock0:(XMMResponseContentBlockType0 *)contentBlock {
   
   TextBlockTableViewCell *cell = [[TextBlockTableViewCell alloc] init];
@@ -141,37 +142,17 @@ NSString *style;
   //set title
   cell.titleLabel.text = contentBlock.title;
   if ([contentBlock.contentBlockType isEqualToString:@"title"]) {
-    [cell.titleLabel setFont:[UIFont systemFontOfSize:fontSize+6]];
+    [cell.titleLabel setFont:[UIFont systemFontOfSize:self.fontSize+6]];
   }
   
   if (contentBlock.text != nil)
     cell.contentLabel.attributedText = [self attributedStringFromHTML:contentBlock.text];
   
   //add to array
-  [itemsToDisplay addObject: cell];
+  [self.itemsToDisplay addObject: cell];
 }
 
-- (NSAttributedString*)attributedStringFromHTML:(NSString*)html {
-  NSError *err = nil;
-  
-  style = @"<style>html{font-family: 'HelveticaNeue-Light';font-size: ###fontsize###} body{margin:0 !important;} p:last-child, p:last-of-type{margin:1px !important;}</style>";
-  
-  //set content (html content transform to textview text)
-  style = [style stringByReplacingOccurrencesOfString:@"###fontsize###" withString:[NSString stringWithFormat:@"%d", fontSize]];
-  html = [html stringByReplacingOccurrencesOfString:@"<br></p>" withString:@"</p>"];
-  html = [html stringByAppendingString:style];
-  
-  NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData: [html dataUsingEncoding:NSUTF8StringEncoding]
-                                                                          options: @{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
-                                                                                      NSCharacterEncodingDocumentAttribute: @(NSUTF8StringEncoding)}
-                                                               documentAttributes: nil
-                                                                            error: &err];
-  if(err)
-    NSLog(@"Unable to parse label text: %@", err);
-  
-  return attributedString;
-}
-
+#pragma mark Audio Block
 - (void)displayContentBlock1:(XMMResponseContentBlockType1 *)contentBlock {
   AudioBlockTableViewCell *cell = [[AudioBlockTableViewCell alloc] init];
   NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"AudioBlockTableViewCell" owner:self options:nil];
@@ -192,9 +173,10 @@ NSString *style;
   
   //cell.frame = cellSize;
   
-  [itemsToDisplay addObject:cell];
+  [self.itemsToDisplay addObject:cell];
 }
 
+#pragma mark Youtube Block
 - (void)displayContentBlock2:(XMMResponseContentBlockType2 *)contentBlock {
   YoutubeBlockTableViewCell *cell = [[YoutubeBlockTableViewCell alloc] init];
   NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"YoutubeBlockTableViewCell" owner:self options:nil];
@@ -217,9 +199,10 @@ NSString *style;
     [cell.playerView loadWithVideoId:youtubeVideoId];
   }
   
-  [itemsToDisplay addObject:cell];
+  [self.itemsToDisplay addObject:cell];
 }
 
+#pragma mark Image Block
 - (void)displayContentBlock3:(XMMResponseContentBlockType3 *)contentBlock {
   
   ImageBlockTableViewCell *cell = [[ImageBlockTableViewCell alloc] init];
@@ -230,27 +213,26 @@ NSString *style;
   
   //gif support
   if ([contentBlock.fileId containsString:@".gif"]) {
-    UIImage *gifImage = [UIImage animatedImageWithAnimatedGIFURL:[NSURL URLWithString:contentBlock.fileId]];
-    
-    float imageRatio = gifImage.size.width/gifImage.size.height;
-    
-    //smaller images will be displayed normal size and centered
-    if (gifImage.size.width < cell.image.frame.size.width) {
-      [cell.image setContentMode:UIViewContentModeCenter];
-      [cell.imageHeightConstraint setConstant:gifImage.size.height];
-    }
-    else {
-      //bigger images will be resized und displayed full-width
-      [cell.imageHeightConstraint setConstant:(cell.image.frame.size.width / imageRatio)];
-    }
-    
-    [cell.image setImage:gifImage];
-    [self reloadTableView];
-    
-    contentBlock.fileId = nil;
-  }
-  
-  if(contentBlock.fileId != nil) {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
+                                             (unsigned long)NULL), ^(void) {
+      UIImage *gifImage = [UIImage animatedImageWithAnimatedGIFURL:[NSURL URLWithString:contentBlock.fileId]];
+      float imageRatio = gifImage.size.width/gifImage.size.height;
+      dispatch_async(dispatch_get_main_queue(), ^(void) {
+        //smaller images will be displayed normal size and centered
+        if (gifImage.size.width < cell.image.frame.size.width) {
+          [cell.image setContentMode:UIViewContentModeCenter];
+          [cell.imageHeightConstraint setConstant:gifImage.size.height];
+        }
+        else {
+          //bigger images will be resized und displayed full-width
+          [cell.imageHeightConstraint setConstant:(self.screenWidth / imageRatio)];
+        }
+        cell.image.backgroundColor = [UIColor blueColor];
+        [cell.image setImage:gifImage];
+        [self reloadTableView];
+      });
+    });
+  } else if(cell.image != nil) {
     [self downloadImageWithURL:contentBlock.fileId completionBlock:^(BOOL succeeded, UIImage *image) {
       if (succeeded && image) {
         float imageRatio = image.size.width/image.size.height;
@@ -262,19 +244,19 @@ NSString *style;
         }
         else {
           //bigger images will be resized und displayed full-width
-          [cell.imageHeightConstraint setConstant:(cell.image.frame.size.width / imageRatio)];
+          [cell.imageHeightConstraint setConstant:(self.screenWidth / imageRatio)];
         }
         
         [cell.image setImage:image];
         [self reloadTableView];
       }
-      
     }];
   }
   
-  [itemsToDisplay addObject:cell];
+  [self.itemsToDisplay addObject:cell];
 }
 
+#pragma mark Link Block
 - (void)displayContentBlock4:(XMMResponseContentBlockType4 *)contentBlock {
   
   LinkBlockTableViewCell *cell = [[LinkBlockTableViewCell alloc] init];
@@ -287,9 +269,10 @@ NSString *style;
   cell.linkType = contentBlock.linkType;
   
   [cell changeStyleAccordingToLinkType];
-  [itemsToDisplay addObject:cell];
+  [self.itemsToDisplay addObject:cell];
 }
 
+#pragma mark Ebook Block
 - (void)displayContentBlock5:(XMMResponseContentBlockType5 *)contentBlock {
   
   EbookBlockTableViewCell *cell = [[EbookBlockTableViewCell alloc] init];
@@ -300,9 +283,10 @@ NSString *style;
   cell.artistLabel.text = contentBlock.artist;
   cell.downloadUrl = contentBlock.fileId;
   
-  [itemsToDisplay addObject:cell];
+  [self.itemsToDisplay addObject:cell];
 }
 
+#pragma mark Content Block
 - (void)displayContentBlock6:(XMMResponseContentBlockType6 *)contentBlock {
   
   ContentBlockTableViewCell *cell = [[ContentBlockTableViewCell alloc] init];
@@ -312,9 +296,10 @@ NSString *style;
   cell.contentId = contentBlock.contentId;
   [cell getContent];
   
-  [itemsToDisplay addObject:cell];
+  [self.itemsToDisplay addObject:cell];
 }
 
+#pragma mark Soundcloud Block
 - (void)displayContentBlock7:(XMMResponseContentBlockType7 *)contentBlock {
   
   SoundcloudBlockTableViewCell *cell = [[SoundcloudBlockTableViewCell alloc] init];
@@ -347,7 +332,7 @@ NSString *style;
   //display soundcloud in webview
   [cell.webView loadHTMLString:soundcloudJs baseURL:nil];
   
-  [itemsToDisplay addObject:cell];
+  [self.itemsToDisplay addObject:cell];
 }
 
 - (void)displayContentBlock8:(XMMResponseContentBlockType8 *)contentBlock {
@@ -361,9 +346,10 @@ NSString *style;
   cell.fileId = contentBlock.fileId;
   cell.downloadType = contentBlock.downloadType;
   
-  [itemsToDisplay addObject:cell];
+  [self.itemsToDisplay addObject:cell];
 }
 
+#pragma mark SpotMap Block
 - (void)displayContentBlock9:(XMMResponseContentBlockType9 *)contentBlock {
   
   SpotMapBlockTableViewCell *cell = [[SpotMapBlockTableViewCell alloc] init];
@@ -374,26 +360,47 @@ NSString *style;
   cell.spotMapTags = contentBlock.spotMapTag;
   [cell getSpotMap];
   
-  [itemsToDisplay addObject:cell];
+  [self.itemsToDisplay addObject:cell];
 }
 
 #pragma mark - Custom Methods
 
+- (NSAttributedString*)attributedStringFromHTML:(NSString*)html {
+  NSError *err = nil;
+  
+  self.style = @"<style>html{font-family: 'HelveticaNeue-Light';font-size: ###fontsize###} body{margin:0 !important;} p:last-child, p:last-of-type{margin:1px !important;}</style>";
+  
+  //set content (html content transform to textview text)
+  self.style = [self.style stringByReplacingOccurrencesOfString:@"###fontsize###" withString:[NSString stringWithFormat:@"%d", self.fontSize]];
+  html = [html stringByReplacingOccurrencesOfString:@"<br></p>" withString:@"</p>"];
+  html = [html stringByAppendingString:self.style];
+  
+  NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData: [html dataUsingEncoding:NSUTF8StringEncoding]
+                                                                          options: @{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
+                                                                                      NSCharacterEncodingDocumentAttribute: @(NSUTF8StringEncoding)}
+                                                               documentAttributes: nil
+                                                                            error: &err];
+  if(err)
+    NSLog(@"Unable to parse label text: %@", err);
+  
+  return attributedString;
+}
+
 - (void)updateFontSizeOnTextTo:(TextFontSize)newFontSize {
-  if (fontSize == newFontSize) {
+  if (self.fontSize == newFontSize) {
     return;
   }
   
-  fontSize = newFontSize;
+  self.fontSize = newFontSize;
   
-  for (XMMResponseContentBlock *contentItem in itemsToDisplay) {
+  for (XMMResponseContentBlock *contentItem in self.itemsToDisplay) {
     if ([contentItem isKindOfClass:[TextBlockTableViewCell class]]) {
       TextBlockTableViewCell* textBlock = (TextBlockTableViewCell*)contentItem;
       textBlock.contentLabel.attributedText = [self attributedStringFromHTML:textBlock.contentText];
-      [textBlock.titleLabel setFont:[UIFont fontWithName:nil size:fontSize]];
+      [textBlock.titleLabel setFont:[UIFont fontWithName:nil size:self.fontSize]];
       
       if ([contentItem.contentBlockType isEqualToString:@"title"]) {
-        [textBlock.titleLabel setFont:[UIFont systemFontOfSize:fontSize+6]];
+        [textBlock.titleLabel setFont:[UIFont systemFontOfSize:self.fontSize+6]];
       }
     }
   }
@@ -402,8 +409,8 @@ NSString *style;
 }
 
 - (void)reloadTableView {
-  if ([delegate respondsToSelector:@selector(reloadTableViewForContentBlocks)]) {
-    [delegate performSelector:@selector(reloadTableViewForContentBlocks)];
+  if ([self.delegate respondsToSelector:@selector(reloadTableViewForContentBlocks)]) {
+    [self.delegate performSelector:@selector(reloadTableViewForContentBlocks)];
   }
 }
 

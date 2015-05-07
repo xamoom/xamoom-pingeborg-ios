@@ -106,7 +106,7 @@
 
 - (void)didLoadDataWithContentId:(XMMResponseGetById *)result {
   [self displayContentTitleAndImage:result];
-  [contentBlocks displayContentBlocksById:result byLocationIdentifier:nil];
+  //[contentBlocks displayContentBlocksById:result byLocationIdentifier:nil];
   [self.hud dismiss];
 }
 
