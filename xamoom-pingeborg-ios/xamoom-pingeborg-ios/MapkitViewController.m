@@ -55,6 +55,8 @@
   
   self.locationManager = [[CLLocationManager alloc] init];
   self.locationManager.delegate = self;
+  self.locationManager.distanceFilter = 10; //meters
+  self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
   // Check for iOS 8. Without this guard the code will crash with "unknown selector" on iOS 7.
   if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
     [self.locationManager requestWhenInUseAuthorization];
@@ -66,9 +68,6 @@
   
   self.placeholder = [UIImage imageNamed:@"placeholder"];
   self.isUp = NO;
-  
-  self.locationManager.distanceFilter = kCLDistanceFilterNone;
-  self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
   
   //map region
   MKCoordinateRegion region = { { 0.0, 0.0 }, { 0.0, 0.0 } };
@@ -104,6 +103,8 @@
   [super viewWillDisappear:animated];
   self.parentViewController.navigationItem.rightBarButtonItem = nil;
   [self.locationManager stopUpdatingLocation];
+  self.itemsToDisplay = nil;
+  self.imagesToDisplay = nil;
 }
 
 #pragma mark - XMMEnduser Delegate
@@ -148,7 +149,7 @@
   }
   
   [XMMEnduserApi sharedInstance].delegate = self;
-  [[XMMEnduserApi sharedInstance] contentWithLat:[NSString stringWithFormat:@"%f",self.lastLocation.coordinate.latitude] withLon:[NSString stringWithFormat:@"%f",self.lastLocation.coordinate.longitude] withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
+  //[[XMMEnduserApi sharedInstance] contentWithLat:[NSString stringWithFormat:@"%f",self.lastLocation.coordinate.latitude] withLon:[NSString stringWithFormat:@"%f",self.lastLocation.coordinate.longitude] withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
 }
 
 -(void)didLoadDataWithLocation:(XMMResponseGetByLocation *)result {
@@ -666,6 +667,8 @@
   [self.geofenceView removeGestureRecognizer:self.swipeGeoFenceViewDown];
   [self.geofenceView removeGestureRecognizer:self.swipeGeoFenceViewUp];
   [self.geofenceView removeGestureRecognizer:self.geoFenceTapGesture];
+  self.geoFenceIcon.image = nil;
+  self.geoFenceLabel.text = @"Geofence";
 }
 
 - (void)toggleGeoFenceView {

@@ -157,14 +157,6 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="separatorColor" red="1" green="0.98679385549999998" blue="0.97868615140000004" alpha="1" colorSpace="calibratedRGB"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="aO8-cc-E5h">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aO8-cc-E5h" id="gme-sg-vPn">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="D2c-7D-mRj" id="oG5-WJ-enJ"/>
                             <outlet property="delegate" destination="D2c-7D-mRj" id="kdD-by-YlQ"/>
@@ -222,7 +214,7 @@
                                     <constraint firstAttribute="height" id="oZX-iE-fW1"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell alpha="0.0" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LocationItem" textLabel="8kS-sX-XxL" detailTextLabel="JnA-7C-jre" style="IBUITableViewCellStyleSubtitle" id="wKt-WY-Jcf">
+                                    <tableViewCell alpha="0.0" contentMode="scaleToFill" restorationIdentifier="LocationItem" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LocationItem" textLabel="8kS-sX-XxL" detailTextLabel="JnA-7C-jre" style="IBUITableViewCellStyleSubtitle" id="wKt-WY-Jcf">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wKt-WY-Jcf" id="gQH-pq-GX5">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -327,6 +319,6 @@
         <image name="info" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="TM5-d9-Bxu"/>
+        <segue reference="F5f-SD-5lP"/>
     </inferredMetricsTieBreakers>
 </document>

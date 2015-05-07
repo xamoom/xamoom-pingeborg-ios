@@ -37,8 +37,8 @@ int const kPageSize = 7;
   self.tableView.estimatedRowHeight = 150.0;
   
   //set NavigationController delegate
-  NavigationViewController* navController = (NavigationViewController*) self.parentViewController.parentViewController;
-  navController.delegate = self;
+  //NavigationViewController* navController = (NavigationViewController*) self.parentViewController.parentViewController;
+  //navController.delegate = self;
   
   //navbarDropdown => title
   UIView *iv = [[UIView alloc] initWithFrame:CGRectMake(0,0,(self.view.frame.size.width/1.5),32)];
@@ -302,7 +302,7 @@ int const kPageSize = 7;
   CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceGray();
   
   // Create bitmap content with current image size and grayscale colorspace
-  CGContextRef context = CGBitmapContextCreate(nil, image.size.width, image.size.height, 8, 0, colorSpace, kCGImageAlphaNone);
+  CGContextRef context = CGBitmapContextCreate(nil, image.size.width, image.size.height, 8, 0, colorSpace, (CGBitmapInfo)kCGImageAlphaNone);
   
   // Draw image into current context, with specified rectangle
   // using previously defined context (with grayscale colorspace)

@@ -101,7 +101,7 @@
 - (void)zoomMapViewToFitAnnotations:(MKMapView *)mapView animated:(BOOL)animated
 {
   NSArray *annotations = mapView.annotations;
-  int count = [self.map.annotations count];
+  int count = (int)[self.map.annotations count];
   if ( count == 0) { return; } //bail if no annotations
   
   //convert NSArray of id <MKAnnotation> into an MKCoordinateRegion that can be used to set the map size
