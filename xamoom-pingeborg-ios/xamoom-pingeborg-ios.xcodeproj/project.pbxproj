@@ -12,6 +12,7 @@
 		88052D7E1AE4D34D00AB433D /* XMMContentBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 88052D7D1AE4D34D00AB433D /* XMMContentBlocks.m */; };
 		8806A7631ACC2579000E8552 /* MapkitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8806A7621ACC2579000E8552 /* MapkitViewController.m */; };
 		88124DAF1AC5625F00D50C05 /* NavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88124DAE1AC5625F00D50C05 /* NavigationViewController.m */; };
+		88166CD51AFB86D40012CBA6 /* XMMMusicPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 88166CD41AFB86D40012CBA6 /* XMMMusicPlayer.m */; };
 		8827D8E71ABB0E7C002F632C /* PingebAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8827D8E61ABB0E7C002F632C /* PingebAnnotation.m */; };
 		8827D8ED1ABB0F1C002F632C /* PingeborgAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8827D8EC1ABB0F1C002F632C /* PingeborgAnnotationView.m */; };
 		8830CB951AC925D5005C79EF /* FeedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8830CB941AC925D5005C79EF /* FeedTableViewController.m */; };
@@ -136,6 +137,8 @@
 		8806A7621ACC2579000E8552 /* MapkitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapkitViewController.m; sourceTree = "<group>"; };
 		88124DAD1AC5625F00D50C05 /* NavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationViewController.h; sourceTree = "<group>"; };
 		88124DAE1AC5625F00D50C05 /* NavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationViewController.m; sourceTree = "<group>"; };
+		88166CD31AFB86D40012CBA6 /* XMMMusicPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMMusicPlayer.h; sourceTree = "<group>"; };
+		88166CD41AFB86D40012CBA6 /* XMMMusicPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMMusicPlayer.m; sourceTree = "<group>"; };
 		8827D8E51ABB0E7C002F632C /* PingebAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingebAnnotation.h; sourceTree = "<group>"; };
 		8827D8E61ABB0E7C002F632C /* PingebAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PingebAnnotation.m; sourceTree = "<group>"; };
 		8827D8EB1ABB0F1C002F632C /* PingeborgAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingeborgAnnotationView.h; sourceTree = "<group>"; };
@@ -344,6 +347,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		88166CCD1AFB84FF0012CBA6 /* Music Player */ = {
+			isa = PBXGroup;
+			children = (
+				88166CD31AFB86D40012CBA6 /* XMMMusicPlayer.h */,
+				88166CD41AFB86D40012CBA6 /* XMMMusicPlayer.m */,
+			);
+			name = "Music Player";
+			sourceTree = "<group>";
+		};
 		883574811AB1D4810099DF4A /* css */ = {
 			isa = PBXGroup;
 			children = (
@@ -361,6 +373,7 @@
 				88CCAA341ACA8A54004E631F /* Scans */,
 				88CCAA321ACA89D6004E631F /* Map */,
 				88CCAA351ACA8A69004E631F /* Navigation */,
+				88166CCD1AFB84FF0012CBA6 /* Music Player */,
 				88D8F09F1ABACD2400ACFBE4 /* AboutViewController.h */,
 				88D8F0A01ABACD2400ACFBE4 /* AboutViewController.m */,
 				883574811AB1D4810099DF4A /* css */,
@@ -988,6 +1001,7 @@
 				88DA7D9F1AF24CE80005FEA3 /* _XMMCoreData.m in Sources */,
 				88BA01F51AA859F90091A43C /* main.m in Sources */,
 				8830CB9A1AC92AAE005C79EF /* FeedItemCell.m in Sources */,
+				88166CD51AFB86D40012CBA6 /* XMMMusicPlayer.m in Sources */,
 				88DA7DB41AF24CE80005FEA3 /* MWFeedParserAppDelegate.m in Sources */,
 				88DA7DC91AF24CE80005FEA3 /* XMMResponseGetByLocationIdentifier.m in Sources */,
 				88DA7DBE1AF24CE80005FEA3 /* XMMResponseContentBlockType2.m in Sources */,

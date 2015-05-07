@@ -136,12 +136,6 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  if ([self.contentBlocks.itemsToDisplay[indexPath.row] isKindOfClass:[ImageBlockTableViewCell class]]) {
-    ImageBlockTableViewCell *cell = self.contentBlocks.itemsToDisplay[indexPath.row];
-    NSLog(@"Height: %f", cell.image.frame.size.height);
-    NSLog(@"Calc Height: %f", (cell.image.frame.size.width)/(cell.image.frame.size.width/cell.image.frame.size.height));
-    NSLog(@"HeightCons: %f", cell.imageHeightConstraint.constant);
-  }
   return self.contentBlocks.itemsToDisplay[indexPath.row];
 }
 

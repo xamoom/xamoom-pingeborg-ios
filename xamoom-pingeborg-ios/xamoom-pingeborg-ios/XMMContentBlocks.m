@@ -227,7 +227,7 @@ int const kHorizontalSpaceToSubview = 32;
           //bigger images will be resized und displayed full-width
           [cell.imageHeightConstraint setConstant:(self.screenWidth / imageRatio)];
         }
-        cell.image.backgroundColor = [UIColor blueColor];
+
         [cell.image setImage:gifImage];
         [self reloadTableView];
       });
