@@ -55,8 +55,9 @@
   
   self.locationManager = [[CLLocationManager alloc] init];
   self.locationManager.delegate = self;
-  self.locationManager.distanceFilter = 10; //meters
+  self.locationManager.distanceFilter = 100.0f; //meter
   self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+  self.locationManager.activityType = CLActivityTypeOther;
   // Check for iOS 8. Without this guard the code will crash with "unknown selector" on iOS 7.
   if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
     [self.locationManager requestWhenInUseAuthorization];
@@ -80,6 +81,7 @@
 
 -(void)viewDidAppear:(BOOL)animated {
   [self.locationManager startUpdatingLocation];
+  //[self.locationManager startMonitoringSignificantLocationChanges];
   
   //create userTracking button
   MKUserTrackingBarButtonItem *buttonItem = [[MKUserTrackingBarButtonItem alloc] initWithMapView:self.mapKitWithSMCalloutView];
@@ -91,12 +93,14 @@
     [[XMMEnduserApi sharedInstance] spotMapWithSystemId:[Globals sharedObject].globalSystemId withMapTags:@"showAllTheSpots" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
   }
   
+  /*
   if ([self.itemsToDisplay count] <= 0) {
     [self disableGeofenceView];
     [self.geoFenceActivityIndicator startAnimating];
     [XMMEnduserApi sharedInstance].delegate = self;
     [[XMMEnduserApi sharedInstance] contentWithLat:[NSString stringWithFormat:@"%f",self.lastLocation.coordinate.latitude] withLon:[NSString stringWithFormat:@"%f",self.lastLocation.coordinate.longitude] withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
   }
+   */
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
@@ -161,9 +165,6 @@
     XMMResponseGetByLocationItem* item = [result.items firstObject];
     self.savedResponseContent = item;
     
-    //set geoFenceLabel
-    self.geoFenceLabel.text = [NSString stringWithFormat:@"Gefunden: %@", item.title];
-    
     if ([item.systemId isEqualToString:[Globals sharedObject].globalSystemId]) {
       [self.itemsToDisplay addObject:item];
       
@@ -180,6 +181,8 @@
             } else {
               [self.imagesToDisplay setValue:gifImage forKey:item.contentId];
             }
+            //set geoFenceLabel
+            self.geoFenceLabel.text = [NSString stringWithFormat:@"Gefunden: %@", item.title];
             
             [self enableGeofenceView];
           });
@@ -194,11 +197,18 @@
             [self.imagesToDisplay setValue:image forKey:item.contentId];
             [self.tableView reloadData];
             
+            //set geoFenceLabel
+            self.geoFenceLabel.text = [NSString stringWithFormat:@"Gefunden: %@", item.title];
+            
             [self enableGeofenceView];
           }
         }];
       } else {
         [self.imagesToDisplay setValue:self.placeholder forKey:item.contentId];
+        
+        //set geoFenceLabel
+        self.geoFenceLabel.text = [NSString stringWithFormat:@"Gefunden: %@", item.title];
+        
         [self enableGeofenceView];
       }
     }
@@ -207,7 +217,7 @@
   if (self.savedResponseContent == nil) {
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
     [XMMEnduserApi sharedInstance].delegate = self;
-    [[XMMEnduserApi sharedInstance] closestSpotsWith:self.lastLocation.coordinate.latitude andLon:self.lastLocation.coordinate.longitude withRadius:30000 withLimit:10 withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
+    [[XMMEnduserApi sharedInstance] closestSpotsWith:self.lastLocation.coordinate.latitude andLon:self.lastLocation.coordinate.longitude withRadius:2000 withLimit:10 withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
   }
 }
 
@@ -221,6 +231,7 @@
     [self enableGeofenceView];
   } else {
     self.geoFenceLabel.text = @"Nichts in deiner Nähe";
+    [self disableGeofenceView];
   }
 }
 
@@ -434,12 +445,6 @@
   return kSMCalloutViewRepositionDelayForUIScrollView;
 }
 
-#pragma mark LocationManager
-
--(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-  self.lastLocation = [locations lastObject];
-}
-
 #pragma mark User Interaction
 
 - (void)mapNavigationTapped {
@@ -453,6 +458,23 @@
   NSDictionary *launchOptions = @{MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving};
   [mapItem openInMapsWithLaunchOptions:launchOptions];
 }
+
+#pragma mark - LocationManager
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+  self.lastLocation = [locations lastObject];
+  
+  NSLog(@"LastLocation: %@", self.lastLocation.description);
+  
+  self.savedResponseContent = nil;
+  
+  [self disableGeofenceView];
+  [self.geoFenceActivityIndicator startAnimating];
+  self.geoFenceLabel.text = @"Auf der Suche...";
+  [XMMEnduserApi sharedInstance].delegate = self;
+  [[XMMEnduserApi sharedInstance] contentWithLat:[NSString stringWithFormat:@"%f",self.lastLocation.coordinate.latitude] withLon:[NSString stringWithFormat:@"%f",self.lastLocation.coordinate.longitude] withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
+}
+
 
 #pragma mark - Table view data source
 
@@ -594,7 +616,7 @@
   CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceGray();
   
   // Create bitmap content with current image size and grayscale colorspace
-  CGContextRef context = CGBitmapContextCreate(nil, image.size.width, image.size.height, 8, 0, colorSpace, kCGImageAlphaNone);
+  CGContextRef context = CGBitmapContextCreate(nil, image.size.width, image.size.height, 8, 0, colorSpace, (CGBitmapInfo)kCGImageAlphaNone);
   
   // Draw image into current context, with specified rectangle
   // using previously defined context (with grayscale colorspace)
@@ -668,7 +690,7 @@
   [self.geofenceView removeGestureRecognizer:self.swipeGeoFenceViewUp];
   [self.geofenceView removeGestureRecognizer:self.geoFenceTapGesture];
   self.geoFenceIcon.image = nil;
-  self.geoFenceLabel.text = @"Geofence";
+  [self.geoFenceActivityIndicator stopAnimating];
 }
 
 - (void)toggleGeoFenceView {

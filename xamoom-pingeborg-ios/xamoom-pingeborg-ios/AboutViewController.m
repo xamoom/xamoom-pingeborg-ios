@@ -21,8 +21,6 @@
 
 @synthesize contentBlocks;
 
-
-
 #pragma mark - View Lifecycle
 
 - (void)viewDidLoad {

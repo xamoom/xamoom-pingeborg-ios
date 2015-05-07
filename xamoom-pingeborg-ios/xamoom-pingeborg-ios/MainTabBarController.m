@@ -10,7 +10,7 @@
 #import "XMMEnduserApi.h"
 #import "ScanResultViewController.h"
 
-@interface MainTabBarController () <XMMEnderuserApiDelegate, QRCodeReaderDelegate>
+@interface MainTabBarController () <XMMEnduserApiDelegate, QRCodeReaderDelegate>
 
 @property XMMResponseGetByLocationIdentifier *result;
 @property BOOL isFirstTime;

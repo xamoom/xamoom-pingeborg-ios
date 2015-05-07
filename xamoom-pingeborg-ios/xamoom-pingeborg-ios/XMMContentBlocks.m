@@ -8,6 +8,9 @@
 
 #import "XMMContentBlocks.h"
 
+@interface XMMContentBlocks ()
+
+@end
 
 @implementation XMMContentBlocks
 

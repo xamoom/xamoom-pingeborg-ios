@@ -10,13 +10,10 @@
 #import "XMMEnduserApi.h"
 #import "Globals.h"
 #import "XMMContentBlocks.h"
-#import "REMenu.h"
+#import "REMenu.h"  
 #import <JGProgressHUD/JGProgressHUD.h>
 
-@class XMMContentBlocks;
-@protocol XMMContentBlocksDelegate;
-
-@interface ArtistDetailViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource, XMMEnderuserApiDelegate, XMMContentBlocksDelegate>
+@interface ArtistDetailViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource, XMMEnduserApiDelegate>
 
 @property NSString *contentId;
 

@@ -8,7 +8,7 @@
 
 #import "ArtistDetailViewController.h"
 
-@interface ArtistDetailViewController ()
+@interface ArtistDetailViewController () <XMMContentBlocksDelegate>
 
 @property JGProgressHUD *hud;
 @property XMMResponseGetById *savedResult;

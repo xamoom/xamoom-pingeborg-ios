@@ -26,13 +26,9 @@ typedef NS_OPTIONS(NSInteger, TextFontSize)
   BiggerFontSize = 25,
 };
 
-@class XMMContentBlocks;
-
 #pragma mark - XMMContentBlocksDelegate
 
 @protocol XMMContentBlocksDelegate <NSObject>
-
-@required
 
 - (void)reloadTableViewForContentBlocks;
 
