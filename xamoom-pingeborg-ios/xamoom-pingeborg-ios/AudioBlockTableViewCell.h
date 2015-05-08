@@ -9,18 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
+#import <XMMMusicPlayer.h>
 
 @interface AudioBlockTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *artistLabel;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UIButton *playButton;
-@property (weak, nonatomic) IBOutlet UIView *controlView;
-@property (weak, nonatomic) IBOutlet UIButton *audioButton;
-
-@property (strong,nonatomic) MPMoviePlayerController *mp;
-@property NSString *fileId;
-
-- (IBAction)audioButton:(id)sender;
+@property (strong, nonatomic) IBOutlet XMMMusicPlayer *audioPlayerControl;
 
 @end

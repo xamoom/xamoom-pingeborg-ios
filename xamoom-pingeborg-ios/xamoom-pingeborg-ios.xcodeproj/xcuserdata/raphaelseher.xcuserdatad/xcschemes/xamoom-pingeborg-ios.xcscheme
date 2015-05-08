@@ -34,6 +34,20 @@
                ReferencedContainer = "container:xamoom-pingeborg-ios.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "88166D131AFCAC0B0012CBA6"
+               BuildableName = "XMMMusicPlayerTests.xctest"
+               BlueprintName = "XMMMusicPlayerTests"
+               ReferencedContainer = "container:xamoom-pingeborg-ios.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -49,6 +63,16 @@
                BlueprintIdentifier = "88BA02071AA859F90091A43C"
                BuildableName = "xamoom-pingeborg-iosTests.xctest"
                BlueprintName = "xamoom-pingeborg-iosTests"
+               ReferencedContainer = "container:xamoom-pingeborg-ios.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "88166D131AFCAC0B0012CBA6"
+               BuildableName = "XMMMusicPlayerTests.xctest"
+               BlueprintName = "XMMMusicPlayerTests"
                ReferencedContainer = "container:xamoom-pingeborg-ios.xcodeproj">
             </BuildableReference>
          </TestableReference>

@@ -159,19 +159,9 @@ int const kHorizontalSpaceToSubview = 32;
   cell = nib[0];
   
   //set title
-  cell.fileId = contentBlock.fileId;
+  cell.audioPlayerControl.mediaUrlString = contentBlock.fileId;
   cell.titleLabel.text = contentBlock.title;
   cell.artistLabel.text = contentBlock.artist;
-  
-  //resizes cellview
-  //cell.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-  CGRect cellSize = cell.frame;
-  cellSize.size.height = [cell.artistLabel sizeThatFits:cell.artistLabel.frame.size].height + [cell.titleLabel sizeThatFits:cell.titleLabel.frame.size].height;
-  
-  if (cellSize.size.height < cell.controlView.frame.size.height)
-    cellSize.size.height = cell.controlView.frame.size.height + 14;
-  
-  //cell.frame = cellSize;
   
   [self.itemsToDisplay addObject:cell];
 }
