@@ -1522,6 +1522,7 @@
 				88166D251AFCAC0B0012CBA6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		88166D271AFCAC0B0012CBA6 /* Build configuration list for PBXNativeTarget "XMMMusicPlayerTests" */ = {
 			isa = XCConfigurationList;
@@ -1530,6 +1531,7 @@
 				88166D291AFCAC0B0012CBA6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		88BA01EA1AA859F90091A43C /* Build configuration list for PBXProject "xamoom-pingeborg-ios" */ = {
 			isa = XCConfigurationList;

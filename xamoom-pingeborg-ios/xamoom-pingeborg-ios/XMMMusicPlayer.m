@@ -14,21 +14,19 @@
 
 @property UILabel *songDurationLabel;
 @property UIButton *audioButton;
+@property UIActivityIndicatorView *loadingIndicator;
 
 @property UIImage *audioButtonPlayIcon;
 @property UIImage *audioButtonPauseIcon;
 
 @property BOOL isPlaying;
 
-@property float totalTime;
-@property (nonatomic) float currentTime;
-
 @end
 
 IB_DESIGNABLE
 @implementation XMMMusicPlayer
 
-@synthesize songDurationLabel;
+@synthesize audioPlayer;
 
 -(instancetype)initWithMediaUrlString:(NSString*)mediaUrlString {
   self = [super init];
@@ -37,6 +35,16 @@ IB_DESIGNABLE
   }
   return self;
 }
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+  self = [super initWithCoder:aDecoder];
+  
+  self.isPlaying = NO;
+  
+  return self;
+}
+
+
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -101,27 +109,14 @@ IB_DESIGNABLE
   
   // Restore the graphics state before drawing any other content.
   //CGContextRestoreGState(aRef);
-  
-  self.songDurationLabel = [[UILabel alloc] initWithFrame:CGRectMake((self.drawingFrameSize.width/2)-10, 0, 20, 20)];
-  self.songDurationLabel.font = [self.songDurationLabel.font fontWithSize:5];
-  
-  [self addSubview:self.songDurationLabel];
-}
-
-- (instancetype)initWithCoder:(NSCoder *)aDecoder {
-  self = [super initWithCoder:aDecoder];
-  
-  self.isPlaying = NO;
-  
-  return self;
 }
 
 - (void)layoutSubviews {
   [super layoutSubviews];
   
   self.drawingFrameSize = self.bounds.size;
-  self.audioButtonPlayIcon = [[UIImage imageNamed:@"angleRight"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-  self.audioButtonPauseIcon = [[UIImage imageNamed:@"Settings"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+  self.audioButtonPlayIcon = [[UIImage imageNamed:@"playbutton"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+  self.audioButtonPauseIcon = [[UIImage imageNamed:@"pausebutton"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
   
   self.audioButton = [UIButton buttonWithType:UIButtonTypeCustom];
   self.audioButton.imageView.tintColor = self.foregroundRingColor;
@@ -130,33 +125,57 @@ IB_DESIGNABLE
   [self.audioButton addTarget:self
                        action:@selector(audioButton:)
              forControlEvents:UIControlEventTouchDown];
-  self.audioButton.frame = CGRectMake(0, 0, self.drawingFrameSize.width, self.drawingFrameSize.height); //make the frame
+  self.audioButton.frame = CGRectMake((self.drawingFrameSize.width/2) - (self.audioButtonPlayIcon.size.width/2), (self.drawingFrameSize.height/2) - (self.audioButtonPlayIcon.size.height/2), self.audioButtonPlayIcon.size.width, self.audioButtonPlayIcon.size.height); //make the frame
   [self addSubview:self.audioButton]; //add to current view
   
+  self.songDurationLabel = [[UILabel alloc] initWithFrame:CGRectMake((self.drawingFrameSize.width/2)-15, self.drawingFrameSize.height-35, 30, 30)];
+  self.songDurationLabel.textAlignment = NSTextAlignmentCenter;
+  self.songDurationLabel.font = [self.songDurationLabel.font fontWithSize:10];
+  self.songDurationLabel.text = @"0:00";
+  
+  [self addSubview:self.songDurationLabel];
+  
+  self.loadingIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake((self.drawingFrameSize.width/2)-15, (self.drawingFrameSize.height/2)-15, 30, 30)];
+  self.loadingIndicator.hidesWhenStopped = YES;
+  self.loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+  [self addSubview:self.loadingIndicator];
 }
 
 - (IBAction)audioButton:(id)sender {
   if (!self.audioPlayer) {
     NSURL *mediaURL = [NSURL URLWithString:self.mediaUrlString];
     self.audioPlayer = [[AVPlayer alloc] initWithURL:mediaURL];
-    
-    AVPlayerItem *currentItem = self.audioPlayer.currentItem;
-    self.totalTime = CMTimeGetSeconds(currentItem.duration);
-    self.songDurationLabel.text = [NSString stringWithFormat:@"%f", self.totalTime];
+    [self.loadingIndicator startAnimating];
   }
   
   if (!self.isPlaying) {
-    //[self.audioButton setImage:self.audioButtonPauseIcon forState:UIControlStateNormal];
+    [self.audioButton setImage:self.audioButtonPauseIcon forState:UIControlStateNormal];
     self.isPlaying = YES;
-    
-    [self.audioPlayer addPeriodicTimeObserverForInterval:CMTimeMake(1, 2) queue:dispatch_get_main_queue() usingBlock:^(CMTime time) {
-      self.currentTime = CMTimeGetSeconds(time);
-    }];
-    
     [self.audioPlayer play];
+
+    //updating time on UI
+    
+    __block XMMMusicPlayer *weakSelf = self;
+    [self.audioPlayer addPeriodicTimeObserverForInterval:CMTimeMakeWithSeconds(1, 1) queue:NULL usingBlock:^(CMTime time) {
+      if (!time.value) {
+        return;
+      } else {
+        CGFloat songDuration = CMTimeGetSeconds([weakSelf.audioPlayer.currentItem duration]);
+        CGFloat currentSongTime = CMTimeGetSeconds([weakSelf.audioPlayer currentTime]);
+        CGFloat remainingSongTime = songDuration - currentSongTime;
+        
+        if (!isnan(songDuration)) {
+          weakSelf.ringProgress = currentSongTime / songDuration;
+          weakSelf.songDurationLabel.text = [NSString stringWithFormat:@"%d:%02d", (int)remainingSongTime / 60, (int)remainingSongTime %60];
+        }
+        
+        [weakSelf.loadingIndicator stopAnimating];
+        [weakSelf setNeedsDisplay];
+      }
+    }];
   }
   else {
-    //[self.audioButton setImage:self.audioButtonPlayIcon forState:UIControlStateNormal];
+    [self.audioButton setImage:self.audioButtonPlayIcon forState:UIControlStateNormal];
     self.isPlaying = NO;
     [self.audioPlayer pause];
   }
@@ -164,16 +183,10 @@ IB_DESIGNABLE
 
 - (void)prepareForInterfaceBuilder {
   [super prepareForInterfaceBuilder];
+  
+  [self addSubview:self.loadingIndicator];
+  [self addSubview:self.songDurationLabel];
 }
 
--(void)setCurrentTime:(float)currentTime {
-  //self.songDurationLabel.text = [NSString stringWithFormat:@"%f", currentTime];
-  
-  AVPlayerItem *currentItem = self.audioPlayer.currentItem;
-  self.totalTime = CMTimeGetSeconds(currentItem.duration);
-  
-  self.ringProgress = currentTime / self.totalTime;
-  [self setNeedsDisplay];
-}
 
 @end

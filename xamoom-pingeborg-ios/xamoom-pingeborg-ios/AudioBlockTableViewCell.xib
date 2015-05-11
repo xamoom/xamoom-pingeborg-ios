@@ -15,14 +15,14 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Gold" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v0p-ky-YSc">
-                        <rect key="frame" x="8" y="7" width="76" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gold" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v0p-ky-YSc">
+                        <rect key="frame" x="8" y="7" width="38" height="21"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Chet Faker" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NkC-Ma-2oK">
-                        <rect key="frame" x="8" y="35" width="76" height="64"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chet Faker" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NkC-Ma-2oK">
+                        <rect key="frame" x="8" y="35" width="196" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -69,10 +69,18 @@
                     <constraint firstItem="v0p-ky-YSc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="X1P-d0-MYa"/>
                     <constraint firstItem="v0p-ky-YSc" firstAttribute="trailing" secondItem="NkC-Ma-2oK" secondAttribute="trailing" id="aGT-fB-pmK"/>
                     <constraint firstItem="bNb-P6-22z" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="aW9-5S-LDa"/>
+                    <constraint firstItem="bNb-P6-22z" firstAttribute="leading" relation="lessThanOrEqual" secondItem="v0p-ky-YSc" secondAttribute="trailing" constant="166" id="aj6-ZA-25m"/>
                     <constraint firstItem="v0p-ky-YSc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-1" id="buK-xD-T9W"/>
                     <constraint firstItem="NkC-Ma-2oK" firstAttribute="top" secondItem="v0p-ky-YSc" secondAttribute="bottom" constant="7" id="qja-w3-5lJ"/>
                     <constraint firstItem="NkC-Ma-2oK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="tNr-7D-Ap7"/>
+                    <constraint firstItem="bNb-P6-22z" firstAttribute="leading" relation="lessThanOrEqual" secondItem="NkC-Ma-2oK" secondAttribute="trailing" constant="8" id="ugG-Da-ND0"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="aGT-fB-pmK"/>
+                        <exclude reference="TCV-oA-Yqi"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="artistLabel" destination="NkC-Ma-2oK" id="vSb-JY-RQn"/>
