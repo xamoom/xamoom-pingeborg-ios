@@ -62,11 +62,7 @@
   if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
     [self.locationManager requestWhenInUseAuthorization];
   }
-  
-  [self.geoFenceActivityIndicator startAnimating];
-  [[XMMEnduserApi sharedInstance] setDelegate:self];
-  [[XMMEnduserApi sharedInstance] spotMapWithSystemId:[Globals sharedObject].globalSystemId withMapTags:@"showAllTheSpots" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
-  
+    
   self.placeholder = [UIImage imageNamed:@"placeholder"];
   self.isUp = NO;
   
@@ -92,15 +88,7 @@
     [[XMMEnduserApi sharedInstance] setDelegate:self];
     [[XMMEnduserApi sharedInstance] spotMapWithSystemId:[Globals sharedObject].globalSystemId withMapTags:@"showAllTheSpots" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
   }
-  
-  /*
-  if ([self.itemsToDisplay count] <= 0) {
-    [self disableGeofenceView];
-    [self.geoFenceActivityIndicator startAnimating];
-    [XMMEnduserApi sharedInstance].delegate = self;
-    [[XMMEnduserApi sharedInstance] contentWithLat:[NSString stringWithFormat:@"%f",self.lastLocation.coordinate.latitude] withLon:[NSString stringWithFormat:@"%f",self.lastLocation.coordinate.longitude] withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
-  }
-   */
+
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
@@ -151,9 +139,6 @@
     
     [self.mapKitWithSMCalloutView addAnnotation:point];
   }
-  
-  [XMMEnduserApi sharedInstance].delegate = self;
-  //[[XMMEnduserApi sharedInstance] contentWithLat:[NSString stringWithFormat:@"%f",self.lastLocation.coordinate.latitude] withLon:[NSString stringWithFormat:@"%f",self.lastLocation.coordinate.longitude] withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
 }
 
 -(void)didLoadDataWithLocation:(XMMResponseGetByLocation *)result {
@@ -161,56 +146,59 @@
   self.itemsToDisplay = [[NSMutableArray alloc] init];
   self.imagesToDisplay = [[NSMutableDictionary alloc] init];
   
-  if([result.items firstObject] != nil) {
-    XMMResponseGetByLocationItem* item = [result.items firstObject];
-    self.savedResponseContent = item;
+  if(result.items != nil) {
     
-    if ([item.systemId isEqualToString:[Globals sharedObject].globalSystemId]) {
-      [self.itemsToDisplay addObject:item];
-      
-      if ([item.imagePublicUrl containsString:@".gif"]) {
-        //off mainthread gifimage loading
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
-                                                 (unsigned long)NULL), ^(void) {
-          UIImage *gifImage = [UIImage animatedImageWithAnimatedGIFURL:[NSURL URLWithString:item.imagePublicUrl]];
-          
-          dispatch_async(dispatch_get_main_queue(), ^(void) {
-            if (![savedArtists containsString:item.contentId]) {
-              UIImage *grayscaleImage = [self convertImageToGrayScale:gifImage];
-              [self.imagesToDisplay setValue:grayscaleImage forKey:item.contentId];
-            } else {
-              [self.imagesToDisplay setValue:gifImage forKey:item.contentId];
-            }
-            //set geoFenceLabel
-            self.geoFenceLabel.text = [NSString stringWithFormat:@"Gefunden: %@", item.title];
-            
-            [self enableGeofenceView];
-          });
-        });
-      } else if(item.imagePublicUrl != nil) {
-        [self downloadImageWithURL:item.imagePublicUrl completionBlock:^(BOOL succeeded, UIImage *image) {
-          if (succeeded) {
-            if (![savedArtists containsString:item.contentId]) {
-              image = [self convertImageToGrayScale:image];
-            }
-            
-            [self.imagesToDisplay setValue:image forKey:item.contentId];
-            [self.tableView reloadData];
-            
-            //set geoFenceLabel
-            self.geoFenceLabel.text = [NSString stringWithFormat:@"Gefunden: %@", item.title];
-            
-            [self enableGeofenceView];
-          }
-        }];
-      } else {
-        [self.imagesToDisplay setValue:self.placeholder forKey:item.contentId];
-        
-        //set geoFenceLabel
-        self.geoFenceLabel.text = [NSString stringWithFormat:@"Gefunden: %@", item.title];
-        
-        [self enableGeofenceView];
+    for (XMMResponseGetByLocationItem *item in result.items) {
+      if ([item.systemId isEqualToString:[Globals sharedObject].globalSystemId]) {
+        self.savedResponseContent = item;
+        [self.itemsToDisplay addObject:item];
+        break;
       }
+    }
+    
+    
+    if ([self.savedResponseContent.imagePublicUrl containsString:@".gif"]) {
+      //off mainthread gifimage loading
+      dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
+                                               (unsigned long)NULL), ^(void) {
+        UIImage *gifImage = [UIImage animatedImageWithAnimatedGIFURL:[NSURL URLWithString:self.savedResponseContent.imagePublicUrl]];
+        
+        dispatch_async(dispatch_get_main_queue(), ^(void) {
+          if (![savedArtists containsString:self.savedResponseContent.contentId]) {
+            UIImage *grayscaleImage = [self convertImageToGrayScale:gifImage];
+            [self.imagesToDisplay setValue:grayscaleImage forKey:self.savedResponseContent.contentId];
+          } else {
+            [self.imagesToDisplay setValue:gifImage forKey:self.savedResponseContent.contentId];
+          }
+          //set geoFenceLabel
+          self.geoFenceLabel.text = [NSString stringWithFormat:@"Gefunden: %@", self.savedResponseContent.title];
+          
+          [self enableGeofenceView];
+        });
+      });
+    } else if(self.savedResponseContent.imagePublicUrl != nil) {
+      [self downloadImageWithURL:self.savedResponseContent.imagePublicUrl completionBlock:^(BOOL succeeded, UIImage *image) {
+        if (succeeded) {
+          if (![savedArtists containsString:self.savedResponseContent.contentId]) {
+            image = [self convertImageToGrayScale:image];
+          }
+          
+          [self.imagesToDisplay setValue:image forKey:self.savedResponseContent.contentId];
+          [self.tableView reloadData];
+          
+          //set geoFenceLabel
+          self.geoFenceLabel.text = [NSString stringWithFormat:@"Gefunden: %@", self.savedResponseContent.title];
+          
+          [self enableGeofenceView];
+        }
+      }];
+    } else {
+      [self.imagesToDisplay setValue:self.placeholder forKey:self.savedResponseContent.contentId];
+      
+      //set geoFenceLabel
+      self.geoFenceLabel.text = [NSString stringWithFormat:@"Gefunden: %@", self.savedResponseContent.title];
+      
+      [self enableGeofenceView];
     }
   }
   
@@ -492,29 +480,44 @@
   UITableViewCell *cell = nil;
   
   if ([self.itemsToDisplay[indexPath.row] isKindOfClass:[XMMResponseGetByLocationItem class]]) {
-    FeedItemCell *cell = (FeedItemCell *)[self.tableView dequeueReusableCellWithIdentifier:@"FeedItemCell"];
+    static NSString *simpleTableIdentifier = @"FeedItemCell";
+    
+    FeedItemCell *cell = (FeedItemCell *)[self.tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     if (cell == nil)
     {
       NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FeedItemCell" owner:self options:nil];
       cell = nib[0];
     }
+    
     [cell.loadingIndicator startAnimating];
     
-    XMMResponseGetByLocationItem *item = self.itemsToDisplay[indexPath.row];
-    cell.feedItemTitle.text = item.title;
-    cell.contentId = item.contentId;
+    //set defaults to images
+    cell.feedItemImage.image = nil;
+    cell.loadingIndicator.hidden = NO;
     
-    if (self.imagesToDisplay[item.contentId] == self.placeholder) {
-      UIImage *image = self.imagesToDisplay[item.contentId];
+    //save for out of range
+    if (indexPath.row >= [self.itemsToDisplay count]) {
+      return cell;
+    }
+    XMMResponseContent *contentItem = (self.itemsToDisplay)[indexPath.row];
+    
+    //set title
+    cell.feedItemTitle.text = contentItem.title;
+    
+    //set image & grayscale if needed
+    if((self.imagesToDisplay)[contentItem.contentId] != nil) {
+      UIImage *image = (self.imagesToDisplay)[contentItem.contentId];
       float imageRatio = image.size.width / image.size.height;
       [cell.imageHeightConstraint setConstant:(cell.frame.size.width / imageRatio)];
-      cell.feedItemImage.image = image;
-      [cell.loadingIndicator stopAnimating];
-    } else if (self.imagesToDisplay[item.contentId]){
-      UIImage *image = self.imagesToDisplay[item.contentId];
-      float imageRatio = image.size.width / image.size.height;
-      [cell.imageHeightConstraint setConstant:(cell.frame.size.width / imageRatio)];
-      cell.feedItemImage.image = image;
+      
+      if (![[Globals savedArtits] containsString:contentItem.contentId]) {
+        cell.feedItemImage.image = [self convertImageToGrayScale:image];
+        cell.feedItemOverlayImage.backgroundColor = [UIColor whiteColor];
+      } else {
+        cell.feedItemImage.image = image;
+        cell.feedItemOverlayImage.backgroundColor = [UIColor clearColor];
+      }
+      
       [cell.loadingIndicator stopAnimating];
     }
     

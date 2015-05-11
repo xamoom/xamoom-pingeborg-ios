@@ -44,7 +44,9 @@ IB_DESIGNABLE
   return self;
 }
 
-
+-(void)dealloc {
+  self.audioPlayer = nil;
+}
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
@@ -187,6 +189,5 @@ IB_DESIGNABLE
   [self addSubview:self.loadingIndicator];
   [self addSubview:self.songDurationLabel];
 }
-
 
 @end

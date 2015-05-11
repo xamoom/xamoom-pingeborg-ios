@@ -76,6 +76,12 @@
 
 -(void)viewDidAppear:(BOOL)animated {
   self.parentViewController.navigationItem.rightBarButtonItem = self.buttonItem;
+  
+  if ([self.contentBlocks.itemsToDisplay count] == 0) {
+    [XMMEnduserApi sharedInstance].delegate = self;
+    [[XMMEnduserApi sharedInstance] contentWithContentId:[Globals sharedObject].aboutPageId includeStyle:@"false" includeMenu:@"false" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:@"True"];
+
+  }
 }
 
 -(void)viewDidDisappear:(BOOL)animated {
@@ -106,24 +112,21 @@
 
 - (void)didLoadDataWithContentId:(XMMResponseGetById *)result {
   [self displayContentTitleAndImage:result];
-  //[contentBlocks displayContentBlocksById:result byLocationIdentifier:nil];
+  [self.contentBlocks displayContentBlocksById:result byLocationIdentifier:nil withScreenWidth:self.view.frame.size.width];
   [self.hud dismiss];
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  // Return the number of sections.
   return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  // Return the number of rows in the section.
   return [contentBlocks.itemsToDisplay count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  //load more contents
   return (contentBlocks.itemsToDisplay)[indexPath.row];
 }
 

@@ -88,6 +88,16 @@
   [super viewDidAppear:animated];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+  [super viewWillDisappear:animated];
+  self.tableView = nil;
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+  NSLog(@"YUNO WORK?");
+
+}
+
 #pragma mark - NavbarDropdown
 
 -(void)toggleFontSizeDropdownMenu {
@@ -143,7 +153,7 @@
 
 - (void)displayContentOnTableView:(XMMResponseGetById *)result {
   [self displayContentTitleAndImage:result];
-  [self.contentBlocks displayContentBlocksById:result byLocationIdentifier:nil WithScreenWidth:self.tableView.bounds.size.width];
+  [self.contentBlocks displayContentBlocksById:result byLocationIdentifier:nil withScreenWidth:self.tableView.bounds.size.width];
 }
 
 - (void)displayContentTitleAndImage:(XMMResponseGetById *)result {

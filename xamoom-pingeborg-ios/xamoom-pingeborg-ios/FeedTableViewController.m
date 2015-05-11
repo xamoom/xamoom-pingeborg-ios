@@ -186,7 +186,7 @@ int const kPageSize = 7;
   if((self.imagesToDisplay)[contentItem.contentId] != nil) {
     UIImage *image = (self.imagesToDisplay)[contentItem.contentId];
     float imageRatio = image.size.width / image.size.height;
-    [cell.imageHeightConstraint setConstant:(cell.frame.size.width / imageRatio)];
+    [cell.imageHeightConstraint setConstant:(self.view.frame.size.width / imageRatio)];
     
     if (![[Globals savedArtits] containsString:contentItem.contentId]) {
       cell.feedItemImage.image = [self convertImageToGrayScale:image];

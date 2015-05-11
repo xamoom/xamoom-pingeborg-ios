@@ -37,8 +37,12 @@ int const kHorizontalSpaceToSubview = 32;
   return self;
 }
 
+-(void)dealloc {
+  self.itemsToDisplay = nil;
+}
+
 # pragma mark - ContentBlock Methods
-- (void)displayContentBlocksById:(XMMResponseGetById *)IdResult byLocationIdentifier:(XMMResponseGetByLocationIdentifier *)LocationIdentifierResult WithScreenWidth:(float)screenWidth {
+- (void)displayContentBlocksById:(XMMResponseGetById *)IdResult byLocationIdentifier:(XMMResponseGetByLocationIdentifier *)locationIdentifierResult withScreenWidth:(float)screenWidth {
   NSInteger contentBlockType;
   NSArray *contentBlocks;
   self.screenWidth = screenWidth - kHorizontalSpaceToSubview;
@@ -46,8 +50,8 @@ int const kHorizontalSpaceToSubview = 32;
   if (IdResult != nil) {
     contentBlocks = IdResult.content.contentBlocks;
   }
-  else if (LocationIdentifierResult != nil) {
-    contentBlocks = LocationIdentifierResult.content.contentBlocks;
+  else if (locationIdentifierResult != nil) {
+    contentBlocks = locationIdentifierResult.content.contentBlocks;
   }
   else {
     return;

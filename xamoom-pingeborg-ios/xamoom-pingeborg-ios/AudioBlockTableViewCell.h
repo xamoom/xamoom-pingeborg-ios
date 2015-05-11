@@ -15,6 +15,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *artistLabel;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (strong, nonatomic) IBOutlet XMMMusicPlayer *audioPlayerControl;
+@property (weak, nonatomic) IBOutlet XMMMusicPlayer *audioPlayerControl;
 
 @end

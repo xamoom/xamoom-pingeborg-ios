@@ -47,7 +47,7 @@ typedef NS_OPTIONS(NSInteger, TextFontSize)
 
 - (instancetype)init NS_DESIGNATED_INITIALIZER;
 
-- (void)displayContentBlocksById:(XMMResponseGetById *)IdResult byLocationIdentifier:(XMMResponseGetByLocationIdentifier *)LocationIdentifierResult WithScreenWidth:(float)screenWidth;
+- (void)displayContentBlocksById:(XMMResponseGetById *)IdResult byLocationIdentifier:(XMMResponseGetByLocationIdentifier *)LocationIdentifierResult withScreenWidth:(float)screenWidth;
 
 - (void)displayContentBlock0:(XMMResponseContentBlockType0 *)contentBlock;
 
