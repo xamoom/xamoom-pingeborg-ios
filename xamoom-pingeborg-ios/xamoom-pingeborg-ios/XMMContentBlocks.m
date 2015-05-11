@@ -37,10 +37,6 @@ int const kHorizontalSpaceToSubview = 32;
   return self;
 }
 
--(void)dealloc {
-  self.itemsToDisplay = nil;
-}
-
 # pragma mark - ContentBlock Methods
 - (void)displayContentBlocksById:(XMMResponseGetById *)IdResult byLocationIdentifier:(XMMResponseGetByLocationIdentifier *)locationIdentifierResult withScreenWidth:(float)screenWidth {
   NSInteger contentBlockType;

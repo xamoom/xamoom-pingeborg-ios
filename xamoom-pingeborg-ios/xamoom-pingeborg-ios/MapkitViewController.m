@@ -77,7 +77,6 @@
 
 -(void)viewDidAppear:(BOOL)animated {
   [self.locationManager startUpdatingLocation];
-  //[self.locationManager startMonitoringSignificantLocationChanges];
   
   //create userTracking button
   MKUserTrackingBarButtonItem *buttonItem = [[MKUserTrackingBarButtonItem alloc] initWithMapView:self.mapKitWithSMCalloutView];
@@ -95,8 +94,6 @@
   [super viewWillDisappear:animated];
   self.parentViewController.navigationItem.rightBarButtonItem = nil;
   [self.locationManager stopUpdatingLocation];
-  self.itemsToDisplay = nil;
-  self.imagesToDisplay = nil;
 }
 
 #pragma mark - XMMEnduser Delegate
@@ -146,7 +143,7 @@
   self.itemsToDisplay = [[NSMutableArray alloc] init];
   self.imagesToDisplay = [[NSMutableDictionary alloc] init];
   
-  if(result.items != nil) {
+  if([result.items count] > 0) {
     
     for (XMMResponseGetByLocationItem *item in result.items) {
       if ([item.systemId isEqualToString:[Globals sharedObject].globalSystemId]) {
@@ -521,6 +518,8 @@
       [cell.loadingIndicator stopAnimating];
     }
     
+    cell.contentId = contentItem.contentId;
+    
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openArtistDetailViewFromSender:)];
     [cell addGestureRecognizer:tapGestureRecognizer];
     
@@ -707,7 +706,10 @@
     if (self.savedResponseContent != nil) {
       UIImage *image = self.imagesToDisplay[self.savedResponseContent.contentId];
       float imageRatio = image.size.width / image.size.height;
-      self.tableViewHeightConstraint.constant = (self.tableView.frame.size.width / imageRatio);
+      if (!isnan(imageRatio))
+        self.tableViewHeightConstraint.constant = (self.view.frame.size.width / imageRatio);
+      else
+        self.tableViewHeightConstraint.constant = self.view.frame.size.height / 2;
       self.tableView.scrollEnabled = NO;
       self.tableView.bounces = NO;
     } else {

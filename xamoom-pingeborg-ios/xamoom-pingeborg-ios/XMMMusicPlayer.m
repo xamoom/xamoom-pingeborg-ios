@@ -44,10 +44,6 @@ IB_DESIGNABLE
   return self;
 }
 
--(void)dealloc {
-  self.audioPlayer = nil;
-}
-
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
@@ -148,6 +144,11 @@ IB_DESIGNABLE
     NSURL *mediaURL = [NSURL URLWithString:self.mediaUrlString];
     self.audioPlayer = [[AVPlayer alloc] initWithURL:mediaURL];
     [self.loadingIndicator startAnimating];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(pauseAllXMMMusicPlayer)
+                                                 name:@"pauseAllXMMMusicPlayer"
+                                               object:nil];
   }
   
   if (!self.isPlaying) {
@@ -188,6 +189,10 @@ IB_DESIGNABLE
   
   [self addSubview:self.loadingIndicator];
   [self addSubview:self.songDurationLabel];
+}
+
+- (void)pauseAllXMMMusicPlayer {
+  [self.audioPlayer pause];
 }
 
 @end

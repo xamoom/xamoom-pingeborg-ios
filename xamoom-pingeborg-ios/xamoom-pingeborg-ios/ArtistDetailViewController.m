@@ -88,14 +88,8 @@
   [super viewDidAppear:animated];
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-  [super viewWillDisappear:animated];
-  self.tableView = nil;
-}
-
-- (void)viewDidDisappear:(BOOL)animated {
-  NSLog(@"YUNO WORK?");
-
+-(void)viewWillDisappear:(BOOL)animated {
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"pauseAllXMMMusicPlayer" object:self];
 }
 
 #pragma mark - NavbarDropdown
