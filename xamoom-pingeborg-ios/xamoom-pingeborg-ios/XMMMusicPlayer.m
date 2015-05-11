@@ -147,7 +147,7 @@ IB_DESIGNABLE
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(pauseAllXMMMusicPlayer)
-                                                 name:@"pauseAllXMMMusicPlayer"
+                                                 name:@"pauseAllSounds"
                                                object:nil];
   }
   

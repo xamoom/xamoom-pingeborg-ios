@@ -89,7 +89,7 @@
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"pauseAllXMMMusicPlayer" object:self];
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"pauseAllSounds" object:self];
 }
 
 #pragma mark - NavbarDropdown

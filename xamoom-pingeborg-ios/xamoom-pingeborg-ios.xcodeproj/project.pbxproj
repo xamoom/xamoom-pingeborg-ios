@@ -442,13 +442,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		883574811AB1D4810099DF4A /* css */ = {
+		883574811AB1D4810099DF4A /* js/css */ = {
 			isa = PBXGroup;
 			children = (
 				883574821AB1D4AD0099DF4A /* styles.css */,
 				88DEE9DA1ADE43730069DC32 /* soundcloud.js */,
 			);
-			name = css;
+			name = js/css;
 			sourceTree = "<group>";
 		};
 		885BFCEB1AADB67F0047340C /* UserInterface */ = {
@@ -461,7 +461,7 @@
 				88CCAA351ACA8A69004E631F /* Navigation */,
 				88D8F09F1ABACD2400ACFBE4 /* AboutViewController.h */,
 				88D8F0A01ABACD2400ACFBE4 /* AboutViewController.m */,
-				883574811AB1D4810099DF4A /* css */,
+				883574811AB1D4810099DF4A /* js/css */,
 			);
 			name = UserInterface;
 			sourceTree = "<group>";

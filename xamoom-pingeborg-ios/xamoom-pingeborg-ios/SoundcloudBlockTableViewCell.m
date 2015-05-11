@@ -11,13 +11,20 @@
 @implementation SoundcloudBlockTableViewCell
 
 - (void)awakeFromNib {
-  // Initialization code
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(pauseAllSounds)
+                                               name:@"pauseAllSounds"
+                                             object:nil];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
   [super setSelected:selected animated:animated];
   
   // Configure the view for the selected state
+}
+
+- (void)pauseAllSounds {
+  [self.webView reload];
 }
 
 @end

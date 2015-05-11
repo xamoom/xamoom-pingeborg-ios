@@ -28,11 +28,10 @@ int const kHorizontalSpaceToSubview = 32;
   
   NSString *notificationName = @"reloadTableViewForContentBlocks";
   
-  [[NSNotificationCenter defaultCenter]
-   addObserver:self
-   selector:@selector(reloadTableView)
-   name:notificationName
-   object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(reloadTableView)
+                                               name:notificationName
+                                             object:nil];
   
   return self;
 }
@@ -325,6 +324,8 @@ int const kHorizontalSpaceToSubview = 32;
   [self.itemsToDisplay addObject:cell];
 }
 
+#pragma mark Download Block
+
 - (void)displayContentBlock8:(XMMResponseContentBlockType8 *)contentBlock {
   
   DownloadBlockTableViewCell *cell = [[DownloadBlockTableViewCell alloc] init];
@@ -422,6 +423,5 @@ int const kHorizontalSpaceToSubview = 32;
                            }
                          }];
 }
-
 
 @end
