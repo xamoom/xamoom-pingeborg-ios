@@ -9,24 +9,48 @@
 /* Begin PBXBuildFile section */
 		594E123E6C9FD768422C1CEE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C530CDEFFEDDFCABBEC918B0 /* libPods.a */; };
 		88052D7B1AE103C300AB433D /* Globals.m in Sources */ = {isa = PBXBuildFile; fileRef = 88052D7A1AE103C300AB433D /* Globals.m */; };
-		88052D7E1AE4D34D00AB433D /* XMMContentBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 88052D7D1AE4D34D00AB433D /* XMMContentBlocks.m */; };
-		8806A7631ACC2579000E8552 /* MapkitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8806A7621ACC2579000E8552 /* MapkitViewController.m */; };
-		88124DAF1AC5625F00D50C05 /* NavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88124DAE1AC5625F00D50C05 /* NavigationViewController.m */; };
-		88166CD51AFB86D40012CBA6 /* XMMMusicPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 88166CD41AFB86D40012CBA6 /* XMMMusicPlayer.m */; };
+		881457C11B01E7DE0024E6F4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 881457C01B01E7DE0024E6F4 /* libPods.a */; };
+		881457E71B01E8620024E6F4 /* AudioBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 881457C51B01E8620024E6F4 /* AudioBlockTableViewCell.m */; };
+		881457E81B01E8620024E6F4 /* AudioBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881457C61B01E8620024E6F4 /* AudioBlockTableViewCell.xib */; };
+		881457E91B01E8620024E6F4 /* ContentBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 881457C81B01E8620024E6F4 /* ContentBlockTableViewCell.m */; };
+		881457EA1B01E8620024E6F4 /* ContentBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881457C91B01E8620024E6F4 /* ContentBlockTableViewCell.xib */; };
+		881457EB1B01E8620024E6F4 /* DownloadBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 881457CB1B01E8620024E6F4 /* DownloadBlockTableViewCell.m */; };
+		881457EC1B01E8620024E6F4 /* DownloadBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881457CC1B01E8620024E6F4 /* DownloadBlockTableViewCell.xib */; };
+		881457ED1B01E8620024E6F4 /* EbookBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 881457CE1B01E8620024E6F4 /* EbookBlockTableViewCell.m */; };
+		881457EE1B01E8620024E6F4 /* EbookBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881457CF1B01E8620024E6F4 /* EbookBlockTableViewCell.xib */; };
+		881457EF1B01E8620024E6F4 /* ImageBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 881457D11B01E8620024E6F4 /* ImageBlockTableViewCell.m */; };
+		881457F01B01E8620024E6F4 /* ImageBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881457D21B01E8620024E6F4 /* ImageBlockTableViewCell.xib */; };
+		881457F11B01E8620024E6F4 /* LinkBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 881457D41B01E8620024E6F4 /* LinkBlockTableViewCell.m */; };
+		881457F21B01E8620024E6F4 /* LinkBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881457D51B01E8620024E6F4 /* LinkBlockTableViewCell.xib */; };
+		881457F31B01E8620024E6F4 /* soundcloud.js in Resources */ = {isa = PBXBuildFile; fileRef = 881457D61B01E8620024E6F4 /* soundcloud.js */; };
+		881457F41B01E8620024E6F4 /* SoundcloudBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 881457D81B01E8620024E6F4 /* SoundcloudBlockTableViewCell.m */; };
+		881457F51B01E8620024E6F4 /* SoundcloudBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881457D91B01E8620024E6F4 /* SoundcloudBlockTableViewCell.xib */; };
+		881457F61B01E8620024E6F4 /* SpotMapBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 881457DB1B01E8620024E6F4 /* SpotMapBlockTableViewCell.m */; };
+		881457F71B01E8620024E6F4 /* SpotMapBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881457DC1B01E8620024E6F4 /* SpotMapBlockTableViewCell.xib */; };
+		881457F81B01E8620024E6F4 /* TextBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 881457DE1B01E8620024E6F4 /* TextBlockTableViewCell.m */; };
+		881457F91B01E8620024E6F4 /* TextBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881457DF1B01E8620024E6F4 /* TextBlockTableViewCell.xib */; };
+		881457FA1B01E8620024E6F4 /* YoutubeBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 881457E11B01E8620024E6F4 /* YoutubeBlockTableViewCell.m */; };
+		881457FB1B01E8620024E6F4 /* YoutubeBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881457E21B01E8620024E6F4 /* YoutubeBlockTableViewCell.xib */; };
+		881457FC1B01E8620024E6F4 /* XMMContentBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 881457E41B01E8620024E6F4 /* XMMContentBlocks.m */; };
+		881457FD1B01E8620024E6F4 /* XMMMusicPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 881457E61B01E8620024E6F4 /* XMMMusicPlayer.m */; };
+		881458551B01EE8B0024E6F4 /* PingebAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8814583A1B01EE8B0024E6F4 /* PingebAnnotation.m */; };
+		881458561B01EE8B0024E6F4 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8814583D1B01EE8B0024E6F4 /* AboutViewController.m */; };
+		881458571B01EE8B0024E6F4 /* ArtistDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8814583F1B01EE8B0024E6F4 /* ArtistDetailViewController.m */; };
+		881458581B01EE8B0024E6F4 /* FeedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 881458411B01EE8B0024E6F4 /* FeedTableViewController.m */; };
+		881458591B01EE8B0024E6F4 /* MapkitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 881458431B01EE8B0024E6F4 /* MapkitViewController.m */; };
+		8814585A1B01EE8B0024E6F4 /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 881458461B01EE8B0024E6F4 /* MainTabBarController.m */; };
+		8814585B1B01EE8B0024E6F4 /* NavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 881458481B01EE8B0024E6F4 /* NavigationViewController.m */; };
+		8814585C1B01EE8B0024E6F4 /* FeedItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8814584B1B01EE8B0024E6F4 /* FeedItemCell.m */; };
+		8814585D1B01EE8B0024E6F4 /* FeedItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8814584C1B01EE8B0024E6F4 /* FeedItemCell.xib */; };
+		8814585E1B01EE8B0024E6F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8814584D1B01EE8B0024E6F4 /* Main.storyboard */; };
+		8814585F1B01EE8B0024E6F4 /* PingeborgAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8814584F1B01EE8B0024E6F4 /* PingeborgAnnotationView.m */; };
+		881458601B01EE8B0024E6F4 /* PingeborgCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 881458511B01EE8B0024E6F4 /* PingeborgCalloutView.m */; };
+		881458611B01EE8B0024E6F4 /* PingeborgCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881458521B01EE8B0024E6F4 /* PingeborgCalloutView.xib */; };
+		881458621B01EE8B0024E6F4 /* ScanResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 881458541B01EE8B0024E6F4 /* ScanResultViewController.m */; };
 		88166D151AFCAC0B0012CBA6 /* XMMMusicPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88166D0A1AFCAC0A0012CBA6 /* XMMMusicPlayer.framework */; };
-		88166D1E1AFCAC0B0012CBA6 /* XMMMusicPlayerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88166D1D1AFCAC0B0012CBA6 /* XMMMusicPlayerTests.m */; };
 		88166D211AFCAC0B0012CBA6 /* XMMMusicPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88166D0A1AFCAC0A0012CBA6 /* XMMMusicPlayer.framework */; };
 		88166D221AFCAC0B0012CBA6 /* XMMMusicPlayer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 88166D0A1AFCAC0A0012CBA6 /* XMMMusicPlayer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8827D8E71ABB0E7C002F632C /* PingebAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8827D8E61ABB0E7C002F632C /* PingebAnnotation.m */; };
-		8827D8ED1ABB0F1C002F632C /* PingeborgAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8827D8EC1ABB0F1C002F632C /* PingeborgAnnotationView.m */; };
-		8830CB951AC925D5005C79EF /* FeedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8830CB941AC925D5005C79EF /* FeedTableViewController.m */; };
-		8830CB971AC92A21005C79EF /* FeedItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8830CB961AC92A21005C79EF /* FeedItemCell.xib */; };
-		8830CB9A1AC92AAE005C79EF /* FeedItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8830CB991AC92AAE005C79EF /* FeedItemCell.m */; };
 		883574801AB1CCF40099DF4A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8835747F1AB1CCF40099DF4A /* QuartzCore.framework */; };
-		883574831AB1D4AD0099DF4A /* styles.css in Resources */ = {isa = PBXBuildFile; fileRef = 883574821AB1D4AD0099DF4A /* styles.css */; };
-		885BFCF81AADC23F0047340C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 885BFCF71AADC23F0047340C /* Main.storyboard */; };
-		885BFCFE1AADD3950047340C /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 885BFCFD1AADD3950047340C /* MainTabBarController.m */; };
-		885BFD071AADD9FF0047340C /* ScanResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 885BFD051AADD9FF0047340C /* ScanResultViewController.m */; };
 		8860DA791AE78CB800DF2239 /* libSVGKit-iOS.1.2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8860DA771AE78CB800DF2239 /* libSVGKit-iOS.1.2.0.a */; };
 		8860DA7A1AE78CB800DF2239 /* usr in Resources */ = {isa = PBXBuildFile; fileRef = 8860DA781AE78CB800DF2239 /* usr */; };
 		8860DA7D1AE78D0500DF2239 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8860DA7C1AE78D0500DF2239 /* CoreText.framework */; };
@@ -34,34 +58,14 @@
 		8860DA811AE78D2C00DF2239 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8860DA801AE78D2C00DF2239 /* libxml2.dylib */; };
 		8860DA831AE78D3500DF2239 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8860DA821AE78D3500DF2239 /* CoreGraphics.framework */; };
 		8860DA851AE78D3B00DF2239 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8860DA841AE78D3B00DF2239 /* UIKit.framework */; };
-		8897A9FD1ABB1C710003C3FA /* PingeborgCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8897A9FC1ABB1C710003C3FA /* PingeborgCalloutView.xib */; };
-		88A62C3B1AD3D8EB00EAD4C3 /* ArtistDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A62C3A1AD3D8EB00EAD4C3 /* ArtistDetailViewController.m */; };
-		88A62C461AD3F2AE00EAD4C3 /* TextBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A62C441AD3F2AE00EAD4C3 /* TextBlockTableViewCell.m */; };
-		88A62C471AD3F2AE00EAD4C3 /* TextBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88A62C451AD3F2AE00EAD4C3 /* TextBlockTableViewCell.xib */; };
-		88A62C4C1AD55B8400EAD4C3 /* AudioBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A62C4A1AD55B8400EAD4C3 /* AudioBlockTableViewCell.m */; };
-		88A62C4D1AD55B8400EAD4C3 /* AudioBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88A62C4B1AD55B8400EAD4C3 /* AudioBlockTableViewCell.xib */; };
 		88A62C4F1AD55F2C00EAD4C3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88A62C4E1AD55F2C00EAD4C3 /* AVFoundation.framework */; };
 		88A62C531AD561DB00EAD4C3 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88A62C521AD561DB00EAD4C3 /* MediaPlayer.framework */; };
-		88A62C581AD64FBE00EAD4C3 /* YoutubeBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A62C561AD64FBE00EAD4C3 /* YoutubeBlockTableViewCell.m */; };
-		88A62C591AD64FBE00EAD4C3 /* YoutubeBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88A62C571AD64FBE00EAD4C3 /* YoutubeBlockTableViewCell.xib */; };
-		88B8598F1ADE97F30000D113 /* SpotMapBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B8598D1ADE97F30000D113 /* SpotMapBlockTableViewCell.m */; };
-		88B859901ADE97F30000D113 /* SpotMapBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88B8598E1ADE97F30000D113 /* SpotMapBlockTableViewCell.xib */; };
 		88BA01F51AA859F90091A43C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA01F41AA859F90091A43C /* main.m */; };
 		88BA01F81AA859F90091A43C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA01F71AA859F90091A43C /* AppDelegate.m */; };
 		88BA02001AA859F90091A43C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88BA01FF1AA859F90091A43C /* Images.xcassets */; };
 		88BA02031AA859F90091A43C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88BA02011AA859F90091A43C /* LaunchScreen.xib */; };
 		88BA020F1AA859F90091A43C /* xamoom_pingeborg_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA020E1AA859F90091A43C /* xamoom_pingeborg_iosTests.m */; };
-		88CBA7041AD6A98F001C3D37 /* ImageBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CBA7021AD6A98F001C3D37 /* ImageBlockTableViewCell.m */; };
-		88CBA7051AD6A98F001C3D37 /* ImageBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88CBA7031AD6A98F001C3D37 /* ImageBlockTableViewCell.xib */; };
-		88CBA70C1AD7AD60001C3D37 /* LinkBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CBA70A1AD7AD60001C3D37 /* LinkBlockTableViewCell.m */; };
-		88CBA70D1AD7AD60001C3D37 /* LinkBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88CBA70B1AD7AD60001C3D37 /* LinkBlockTableViewCell.xib */; };
-		88CBA7121AD7B7EC001C3D37 /* EbookBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CBA7101AD7B7EC001C3D37 /* EbookBlockTableViewCell.m */; };
-		88CBA7131AD7B7EC001C3D37 /* EbookBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88CBA7111AD7B7EC001C3D37 /* EbookBlockTableViewCell.xib */; };
-		88CBA7181AD7BF78001C3D37 /* ContentBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CBA7161AD7BF78001C3D37 /* ContentBlockTableViewCell.m */; };
-		88CBA7191AD7BF78001C3D37 /* ContentBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88CBA7171AD7BF78001C3D37 /* ContentBlockTableViewCell.xib */; };
 		88CBAEE11AA9EC9E000E480A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88CBAEE01AA9EC9E000E480A /* MapKit.framework */; };
-		88D401651ABC053A006E865D /* PingeborgCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D401641ABC053A006E865D /* PingeborgCalloutView.m */; };
-		88D8F0A11ABACD2400ACFBE4 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D8F0A01ABACD2400ACFBE4 /* AboutViewController.m */; };
 		88DA7D9F1AF24CE80005FEA3 /* _XMMCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D371AF24CE80005FEA3 /* _XMMCoreData.m */; };
 		88DA7DA01AF24CE80005FEA3 /* _XMMCoreDataContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D391AF24CE80005FEA3 /* _XMMCoreDataContent.m */; };
 		88DA7DA11AF24CE80005FEA3 /* _XMMCoreDataContentBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D3B1AF24CE80005FEA3 /* _XMMCoreDataContentBlocks.m */; };
@@ -112,11 +116,7 @@
 		88DA7DCE1AF24CE80005FEA3 /* XMMResponseStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D991AF24CE80005FEA3 /* XMMResponseStyle.m */; };
 		88DA7DCF1AF24CE80005FEA3 /* XMMRSSEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D9C1AF24CE80005FEA3 /* XMMRSSEntry.m */; };
 		88DA7DD01AF24CE80005FEA3 /* XMMEnduserApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D9E1AF24CE80005FEA3 /* XMMEnduserApi.m */; };
-		88DEE9E01ADE79830069DC32 /* DownloadBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DEE9DE1ADE79830069DC32 /* DownloadBlockTableViewCell.m */; };
-		88DEE9E11ADE79830069DC32 /* DownloadBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88DEE9DF1ADE79830069DC32 /* DownloadBlockTableViewCell.xib */; };
 		88E2FAEA1AF74D5800917AFB /* UIImage+animatedGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E2FAE91AF74D5800917AFB /* UIImage+animatedGIF.m */; };
-		88E7801F1ADE38690082648B /* SoundcloudBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E7801D1ADE38690082648B /* SoundcloudBlockTableViewCell.m */; };
-		88E780201ADE38690082648B /* SoundcloudBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88E7801E1ADE38690082648B /* SoundcloudBlockTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -169,35 +169,71 @@
 		48251170F65DFEEAACD48338 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		88052D791AE103C300AB433D /* Globals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Globals.h; sourceTree = "<group>"; };
 		88052D7A1AE103C300AB433D /* Globals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Globals.m; sourceTree = "<group>"; };
-		88052D7C1AE4D34D00AB433D /* XMMContentBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMContentBlocks.h; sourceTree = "<group>"; };
-		88052D7D1AE4D34D00AB433D /* XMMContentBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMContentBlocks.m; sourceTree = "<group>"; };
-		8806A7611ACC2579000E8552 /* MapkitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapkitViewController.h; sourceTree = "<group>"; };
-		8806A7621ACC2579000E8552 /* MapkitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapkitViewController.m; sourceTree = "<group>"; };
-		88124DAD1AC5625F00D50C05 /* NavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationViewController.h; sourceTree = "<group>"; };
-		88124DAE1AC5625F00D50C05 /* NavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationViewController.m; sourceTree = "<group>"; };
-		88166CD31AFB86D40012CBA6 /* XMMMusicPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMMMusicPlayer.h; path = "../xamoom-pingeborg-ios/XMMMusicPlayer.h"; sourceTree = "<group>"; };
-		88166CD41AFB86D40012CBA6 /* XMMMusicPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMMMusicPlayer.m; path = "../xamoom-pingeborg-ios/XMMMusicPlayer.m"; sourceTree = "<group>"; };
+		881457BE1B01E7CF0024E6F4 /* libPods-AFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AFNetworking.a"; path = "Pods/build/Debug-iphoneos/libPods-AFNetworking.a"; sourceTree = "<group>"; };
+		881457C01B01E7DE0024E6F4 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
+		881457C41B01E8620024E6F4 /* AudioBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioBlockTableViewCell.h; sourceTree = "<group>"; };
+		881457C51B01E8620024E6F4 /* AudioBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioBlockTableViewCell.m; sourceTree = "<group>"; };
+		881457C61B01E8620024E6F4 /* AudioBlockTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioBlockTableViewCell.xib; sourceTree = "<group>"; };
+		881457C71B01E8620024E6F4 /* ContentBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentBlockTableViewCell.h; sourceTree = "<group>"; };
+		881457C81B01E8620024E6F4 /* ContentBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentBlockTableViewCell.m; sourceTree = "<group>"; };
+		881457C91B01E8620024E6F4 /* ContentBlockTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentBlockTableViewCell.xib; sourceTree = "<group>"; };
+		881457CA1B01E8620024E6F4 /* DownloadBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadBlockTableViewCell.h; sourceTree = "<group>"; };
+		881457CB1B01E8620024E6F4 /* DownloadBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadBlockTableViewCell.m; sourceTree = "<group>"; };
+		881457CC1B01E8620024E6F4 /* DownloadBlockTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DownloadBlockTableViewCell.xib; sourceTree = "<group>"; };
+		881457CD1B01E8620024E6F4 /* EbookBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EbookBlockTableViewCell.h; sourceTree = "<group>"; };
+		881457CE1B01E8620024E6F4 /* EbookBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EbookBlockTableViewCell.m; sourceTree = "<group>"; };
+		881457CF1B01E8620024E6F4 /* EbookBlockTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EbookBlockTableViewCell.xib; sourceTree = "<group>"; };
+		881457D01B01E8620024E6F4 /* ImageBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageBlockTableViewCell.h; sourceTree = "<group>"; };
+		881457D11B01E8620024E6F4 /* ImageBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageBlockTableViewCell.m; sourceTree = "<group>"; };
+		881457D21B01E8620024E6F4 /* ImageBlockTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageBlockTableViewCell.xib; sourceTree = "<group>"; };
+		881457D31B01E8620024E6F4 /* LinkBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkBlockTableViewCell.h; sourceTree = "<group>"; };
+		881457D41B01E8620024E6F4 /* LinkBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkBlockTableViewCell.m; sourceTree = "<group>"; };
+		881457D51B01E8620024E6F4 /* LinkBlockTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LinkBlockTableViewCell.xib; sourceTree = "<group>"; };
+		881457D61B01E8620024E6F4 /* soundcloud.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = soundcloud.js; sourceTree = "<group>"; };
+		881457D71B01E8620024E6F4 /* SoundcloudBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundcloudBlockTableViewCell.h; sourceTree = "<group>"; };
+		881457D81B01E8620024E6F4 /* SoundcloudBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundcloudBlockTableViewCell.m; sourceTree = "<group>"; };
+		881457D91B01E8620024E6F4 /* SoundcloudBlockTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SoundcloudBlockTableViewCell.xib; sourceTree = "<group>"; };
+		881457DA1B01E8620024E6F4 /* SpotMapBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotMapBlockTableViewCell.h; sourceTree = "<group>"; };
+		881457DB1B01E8620024E6F4 /* SpotMapBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotMapBlockTableViewCell.m; sourceTree = "<group>"; };
+		881457DC1B01E8620024E6F4 /* SpotMapBlockTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SpotMapBlockTableViewCell.xib; sourceTree = "<group>"; };
+		881457DD1B01E8620024E6F4 /* TextBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextBlockTableViewCell.h; sourceTree = "<group>"; };
+		881457DE1B01E8620024E6F4 /* TextBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextBlockTableViewCell.m; sourceTree = "<group>"; };
+		881457DF1B01E8620024E6F4 /* TextBlockTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextBlockTableViewCell.xib; sourceTree = "<group>"; };
+		881457E01B01E8620024E6F4 /* YoutubeBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YoutubeBlockTableViewCell.h; sourceTree = "<group>"; };
+		881457E11B01E8620024E6F4 /* YoutubeBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YoutubeBlockTableViewCell.m; sourceTree = "<group>"; };
+		881457E21B01E8620024E6F4 /* YoutubeBlockTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YoutubeBlockTableViewCell.xib; sourceTree = "<group>"; };
+		881457E31B01E8620024E6F4 /* XMMContentBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMContentBlocks.h; sourceTree = "<group>"; };
+		881457E41B01E8620024E6F4 /* XMMContentBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMContentBlocks.m; sourceTree = "<group>"; };
+		881457E51B01E8620024E6F4 /* XMMMusicPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMMusicPlayer.h; sourceTree = "<group>"; };
+		881457E61B01E8620024E6F4 /* XMMMusicPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMMusicPlayer.m; sourceTree = "<group>"; };
+		881458391B01EE8B0024E6F4 /* PingebAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingebAnnotation.h; sourceTree = "<group>"; };
+		8814583A1B01EE8B0024E6F4 /* PingebAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PingebAnnotation.m; sourceTree = "<group>"; };
+		8814583C1B01EE8B0024E6F4 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		8814583D1B01EE8B0024E6F4 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		8814583E1B01EE8B0024E6F4 /* ArtistDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtistDetailViewController.h; sourceTree = "<group>"; };
+		8814583F1B01EE8B0024E6F4 /* ArtistDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtistDetailViewController.m; sourceTree = "<group>"; };
+		881458401B01EE8B0024E6F4 /* FeedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedTableViewController.h; sourceTree = "<group>"; };
+		881458411B01EE8B0024E6F4 /* FeedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedTableViewController.m; sourceTree = "<group>"; };
+		881458421B01EE8B0024E6F4 /* MapkitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapkitViewController.h; sourceTree = "<group>"; };
+		881458431B01EE8B0024E6F4 /* MapkitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapkitViewController.m; sourceTree = "<group>"; };
+		881458451B01EE8B0024E6F4 /* MainTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabBarController.h; sourceTree = "<group>"; };
+		881458461B01EE8B0024E6F4 /* MainTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabBarController.m; sourceTree = "<group>"; };
+		881458471B01EE8B0024E6F4 /* NavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationViewController.h; sourceTree = "<group>"; };
+		881458481B01EE8B0024E6F4 /* NavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationViewController.m; sourceTree = "<group>"; };
+		8814584A1B01EE8B0024E6F4 /* FeedItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedItemCell.h; sourceTree = "<group>"; };
+		8814584B1B01EE8B0024E6F4 /* FeedItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedItemCell.m; sourceTree = "<group>"; };
+		8814584C1B01EE8B0024E6F4 /* FeedItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedItemCell.xib; sourceTree = "<group>"; };
+		8814584D1B01EE8B0024E6F4 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		8814584E1B01EE8B0024E6F4 /* PingeborgAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingeborgAnnotationView.h; sourceTree = "<group>"; };
+		8814584F1B01EE8B0024E6F4 /* PingeborgAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PingeborgAnnotationView.m; sourceTree = "<group>"; };
+		881458501B01EE8B0024E6F4 /* PingeborgCalloutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingeborgCalloutView.h; sourceTree = "<group>"; };
+		881458511B01EE8B0024E6F4 /* PingeborgCalloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PingeborgCalloutView.m; sourceTree = "<group>"; };
+		881458521B01EE8B0024E6F4 /* PingeborgCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PingeborgCalloutView.xib; sourceTree = "<group>"; };
+		881458531B01EE8B0024E6F4 /* ScanResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanResultViewController.h; sourceTree = "<group>"; };
+		881458541B01EE8B0024E6F4 /* ScanResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanResultViewController.m; sourceTree = "<group>"; };
 		88166D0A1AFCAC0A0012CBA6 /* XMMMusicPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XMMMusicPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		88166D0D1AFCAC0A0012CBA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88166D141AFCAC0B0012CBA6 /* XMMMusicPlayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XMMMusicPlayerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		88166D1C1AFCAC0B0012CBA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		88166D1D1AFCAC0B0012CBA6 /* XMMMusicPlayerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XMMMusicPlayerTests.m; sourceTree = "<group>"; };
-		8827D8E51ABB0E7C002F632C /* PingebAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingebAnnotation.h; sourceTree = "<group>"; };
-		8827D8E61ABB0E7C002F632C /* PingebAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PingebAnnotation.m; sourceTree = "<group>"; };
-		8827D8EB1ABB0F1C002F632C /* PingeborgAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingeborgAnnotationView.h; sourceTree = "<group>"; };
-		8827D8EC1ABB0F1C002F632C /* PingeborgAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PingeborgAnnotationView.m; sourceTree = "<group>"; };
-		8830CB931AC925D5005C79EF /* FeedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedTableViewController.h; sourceTree = "<group>"; };
-		8830CB941AC925D5005C79EF /* FeedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedTableViewController.m; sourceTree = "<group>"; };
-		8830CB961AC92A21005C79EF /* FeedItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedItemCell.xib; sourceTree = "<group>"; };
-		8830CB981AC92AAE005C79EF /* FeedItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedItemCell.h; sourceTree = "<group>"; };
-		8830CB991AC92AAE005C79EF /* FeedItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedItemCell.m; sourceTree = "<group>"; };
 		8835747F1AB1CCF40099DF4A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		883574821AB1D4AD0099DF4A /* styles.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = styles.css; sourceTree = "<group>"; };
-		885BFCF71AADC23F0047340C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		885BFCFC1AADD3950047340C /* MainTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabBarController.h; sourceTree = "<group>"; };
-		885BFCFD1AADD3950047340C /* MainTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabBarController.m; sourceTree = "<group>"; };
-		885BFD041AADD9FF0047340C /* ScanResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanResultViewController.h; sourceTree = "<group>"; };
-		885BFD051AADD9FF0047340C /* ScanResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanResultViewController.m; sourceTree = "<group>"; };
 		8860DA771AE78CB800DF2239 /* libSVGKit-iOS.1.2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libSVGKit-iOS.1.2.0.a"; sourceTree = "<group>"; };
 		8860DA781AE78CB800DF2239 /* usr */ = {isa = PBXFileReference; lastKnownFileType = folder; path = usr; sourceTree = "<group>"; };
 		8860DA7C1AE78D0500DF2239 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -205,23 +241,8 @@
 		8860DA801AE78D2C00DF2239 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		8860DA821AE78D3500DF2239 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		8860DA841AE78D3B00DF2239 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		8897A9FC1ABB1C710003C3FA /* PingeborgCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PingeborgCalloutView.xib; sourceTree = "<group>"; };
-		88A62C391AD3D8EB00EAD4C3 /* ArtistDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtistDetailViewController.h; sourceTree = "<group>"; };
-		88A62C3A1AD3D8EB00EAD4C3 /* ArtistDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtistDetailViewController.m; sourceTree = "<group>"; };
-		88A62C431AD3F2AE00EAD4C3 /* TextBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextBlockTableViewCell.h; sourceTree = "<group>"; };
-		88A62C441AD3F2AE00EAD4C3 /* TextBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextBlockTableViewCell.m; sourceTree = "<group>"; };
-		88A62C451AD3F2AE00EAD4C3 /* TextBlockTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextBlockTableViewCell.xib; sourceTree = "<group>"; };
-		88A62C491AD55B8400EAD4C3 /* AudioBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioBlockTableViewCell.h; sourceTree = "<group>"; };
-		88A62C4A1AD55B8400EAD4C3 /* AudioBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioBlockTableViewCell.m; sourceTree = "<group>"; };
-		88A62C4B1AD55B8400EAD4C3 /* AudioBlockTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioBlockTableViewCell.xib; sourceTree = "<group>"; };
 		88A62C4E1AD55F2C00EAD4C3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		88A62C521AD561DB00EAD4C3 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		88A62C551AD64FBE00EAD4C3 /* YoutubeBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YoutubeBlockTableViewCell.h; sourceTree = "<group>"; };
-		88A62C561AD64FBE00EAD4C3 /* YoutubeBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YoutubeBlockTableViewCell.m; sourceTree = "<group>"; };
-		88A62C571AD64FBE00EAD4C3 /* YoutubeBlockTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YoutubeBlockTableViewCell.xib; sourceTree = "<group>"; };
-		88B8598C1ADE97F30000D113 /* SpotMapBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotMapBlockTableViewCell.h; sourceTree = "<group>"; };
-		88B8598D1ADE97F30000D113 /* SpotMapBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotMapBlockTableViewCell.m; sourceTree = "<group>"; };
-		88B8598E1ADE97F30000D113 /* SpotMapBlockTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SpotMapBlockTableViewCell.xib; sourceTree = "<group>"; };
 		88BA01EF1AA859F90091A43C /* xamoom-pingeborg-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "xamoom-pingeborg-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		88BA01F31AA859F90091A43C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88BA01F41AA859F90091A43C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -232,23 +253,7 @@
 		88BA02081AA859F90091A43C /* xamoom-pingeborg-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "xamoom-pingeborg-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		88BA020D1AA859F90091A43C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88BA020E1AA859F90091A43C /* xamoom_pingeborg_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = xamoom_pingeborg_iosTests.m; sourceTree = "<group>"; };
-		88CBA7011AD6A98F001C3D37 /* ImageBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageBlockTableViewCell.h; sourceTree = "<group>"; };
-		88CBA7021AD6A98F001C3D37 /* ImageBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageBlockTableViewCell.m; sourceTree = "<group>"; };
-		88CBA7031AD6A98F001C3D37 /* ImageBlockTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageBlockTableViewCell.xib; sourceTree = "<group>"; };
-		88CBA7091AD7AD60001C3D37 /* LinkBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkBlockTableViewCell.h; sourceTree = "<group>"; };
-		88CBA70A1AD7AD60001C3D37 /* LinkBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkBlockTableViewCell.m; sourceTree = "<group>"; };
-		88CBA70B1AD7AD60001C3D37 /* LinkBlockTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LinkBlockTableViewCell.xib; sourceTree = "<group>"; };
-		88CBA70F1AD7B7EC001C3D37 /* EbookBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EbookBlockTableViewCell.h; sourceTree = "<group>"; };
-		88CBA7101AD7B7EC001C3D37 /* EbookBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EbookBlockTableViewCell.m; sourceTree = "<group>"; };
-		88CBA7111AD7B7EC001C3D37 /* EbookBlockTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EbookBlockTableViewCell.xib; sourceTree = "<group>"; };
-		88CBA7151AD7BF78001C3D37 /* ContentBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentBlockTableViewCell.h; sourceTree = "<group>"; };
-		88CBA7161AD7BF78001C3D37 /* ContentBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentBlockTableViewCell.m; sourceTree = "<group>"; };
-		88CBA7171AD7BF78001C3D37 /* ContentBlockTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentBlockTableViewCell.xib; sourceTree = "<group>"; };
 		88CBAEE01AA9EC9E000E480A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		88D401631ABC053A006E865D /* PingeborgCalloutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingeborgCalloutView.h; sourceTree = "<group>"; };
-		88D401641ABC053A006E865D /* PingeborgCalloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PingeborgCalloutView.m; sourceTree = "<group>"; };
-		88D8F09F1ABACD2400ACFBE4 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
-		88D8F0A01ABACD2400ACFBE4 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		88DA7D361AF24CE80005FEA3 /* _XMMCoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _XMMCoreData.h; sourceTree = "<group>"; };
 		88DA7D371AF24CE80005FEA3 /* _XMMCoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _XMMCoreData.m; sourceTree = "<group>"; };
 		88DA7D381AF24CE80005FEA3 /* _XMMCoreDataContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _XMMCoreDataContent.h; sourceTree = "<group>"; };
@@ -349,15 +354,8 @@
 		88DA7D9C1AF24CE80005FEA3 /* XMMRSSEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMRSSEntry.m; sourceTree = "<group>"; };
 		88DA7D9D1AF24CE80005FEA3 /* XMMEnduserApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMEnduserApi.h; sourceTree = "<group>"; };
 		88DA7D9E1AF24CE80005FEA3 /* XMMEnduserApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMEnduserApi.m; sourceTree = "<group>"; };
-		88DEE9DA1ADE43730069DC32 /* soundcloud.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = soundcloud.js; sourceTree = "<group>"; };
-		88DEE9DD1ADE79830069DC32 /* DownloadBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadBlockTableViewCell.h; sourceTree = "<group>"; };
-		88DEE9DE1ADE79830069DC32 /* DownloadBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadBlockTableViewCell.m; sourceTree = "<group>"; };
-		88DEE9DF1ADE79830069DC32 /* DownloadBlockTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DownloadBlockTableViewCell.xib; sourceTree = "<group>"; };
 		88E2FAE81AF74D5800917AFB /* UIImage+animatedGIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+animatedGIF.h"; sourceTree = "<group>"; };
 		88E2FAE91AF74D5800917AFB /* UIImage+animatedGIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+animatedGIF.m"; sourceTree = "<group>"; };
-		88E7801C1ADE38690082648B /* SoundcloudBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundcloudBlockTableViewCell.h; sourceTree = "<group>"; };
-		88E7801D1ADE38690082648B /* SoundcloudBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundcloudBlockTableViewCell.m; sourceTree = "<group>"; };
-		88E7801E1ADE38690082648B /* SoundcloudBlockTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SoundcloudBlockTableViewCell.xib; sourceTree = "<group>"; };
 		C530CDEFFEDDFCABBEC918B0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -366,6 +364,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				881457C11B01E7DE0024E6F4 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,63 +405,108 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		88166D0B1AFCAC0A0012CBA6 /* XMMMusicPlayer */ = {
+		881457C21B01E8620024E6F4 /* ContentBlocks */ = {
 			isa = PBXGroup;
 			children = (
-				88166CD31AFB86D40012CBA6 /* XMMMusicPlayer.h */,
-				88166CD41AFB86D40012CBA6 /* XMMMusicPlayer.m */,
-				88166D0C1AFCAC0A0012CBA6 /* Supporting Files */,
+				881457C31B01E8620024E6F4 /* Blocks */,
+				881457E31B01E8620024E6F4 /* XMMContentBlocks.h */,
+				881457E41B01E8620024E6F4 /* XMMContentBlocks.m */,
+				881457E51B01E8620024E6F4 /* XMMMusicPlayer.h */,
+				881457E61B01E8620024E6F4 /* XMMMusicPlayer.m */,
 			);
-			path = XMMMusicPlayer;
+			path = ContentBlocks;
 			sourceTree = "<group>";
 		};
-		88166D0C1AFCAC0A0012CBA6 /* Supporting Files */ = {
+		881457C31B01E8620024E6F4 /* Blocks */ = {
 			isa = PBXGroup;
 			children = (
-				88166D0D1AFCAC0A0012CBA6 /* Info.plist */,
+				881457C41B01E8620024E6F4 /* AudioBlockTableViewCell.h */,
+				881457C51B01E8620024E6F4 /* AudioBlockTableViewCell.m */,
+				881457C61B01E8620024E6F4 /* AudioBlockTableViewCell.xib */,
+				881457C71B01E8620024E6F4 /* ContentBlockTableViewCell.h */,
+				881457C81B01E8620024E6F4 /* ContentBlockTableViewCell.m */,
+				881457C91B01E8620024E6F4 /* ContentBlockTableViewCell.xib */,
+				881457CA1B01E8620024E6F4 /* DownloadBlockTableViewCell.h */,
+				881457CB1B01E8620024E6F4 /* DownloadBlockTableViewCell.m */,
+				881457CC1B01E8620024E6F4 /* DownloadBlockTableViewCell.xib */,
+				881457CD1B01E8620024E6F4 /* EbookBlockTableViewCell.h */,
+				881457CE1B01E8620024E6F4 /* EbookBlockTableViewCell.m */,
+				881457CF1B01E8620024E6F4 /* EbookBlockTableViewCell.xib */,
+				881457D01B01E8620024E6F4 /* ImageBlockTableViewCell.h */,
+				881457D11B01E8620024E6F4 /* ImageBlockTableViewCell.m */,
+				881457D21B01E8620024E6F4 /* ImageBlockTableViewCell.xib */,
+				881457D31B01E8620024E6F4 /* LinkBlockTableViewCell.h */,
+				881457D41B01E8620024E6F4 /* LinkBlockTableViewCell.m */,
+				881457D51B01E8620024E6F4 /* LinkBlockTableViewCell.xib */,
+				881457D61B01E8620024E6F4 /* soundcloud.js */,
+				881457D71B01E8620024E6F4 /* SoundcloudBlockTableViewCell.h */,
+				881457D81B01E8620024E6F4 /* SoundcloudBlockTableViewCell.m */,
+				881457D91B01E8620024E6F4 /* SoundcloudBlockTableViewCell.xib */,
+				881457DA1B01E8620024E6F4 /* SpotMapBlockTableViewCell.h */,
+				881457DB1B01E8620024E6F4 /* SpotMapBlockTableViewCell.m */,
+				881457DC1B01E8620024E6F4 /* SpotMapBlockTableViewCell.xib */,
+				881457DD1B01E8620024E6F4 /* TextBlockTableViewCell.h */,
+				881457DE1B01E8620024E6F4 /* TextBlockTableViewCell.m */,
+				881457DF1B01E8620024E6F4 /* TextBlockTableViewCell.xib */,
+				881457E01B01E8620024E6F4 /* YoutubeBlockTableViewCell.h */,
+				881457E11B01E8620024E6F4 /* YoutubeBlockTableViewCell.m */,
+				881457E21B01E8620024E6F4 /* YoutubeBlockTableViewCell.xib */,
 			);
-			name = "Supporting Files";
+			path = Blocks;
 			sourceTree = "<group>";
 		};
-		88166D1A1AFCAC0B0012CBA6 /* XMMMusicPlayerTests */ = {
+		881458381B01EE8B0024E6F4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				88166D1D1AFCAC0B0012CBA6 /* XMMMusicPlayerTests.m */,
-				88166D1B1AFCAC0B0012CBA6 /* Supporting Files */,
+				881458391B01EE8B0024E6F4 /* PingebAnnotation.h */,
+				8814583A1B01EE8B0024E6F4 /* PingebAnnotation.m */,
 			);
-			path = XMMMusicPlayerTests;
+			path = Models;
 			sourceTree = "<group>";
 		};
-		88166D1B1AFCAC0B0012CBA6 /* Supporting Files */ = {
+		8814583B1B01EE8B0024E6F4 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				88166D1C1AFCAC0B0012CBA6 /* Info.plist */,
+				8814583C1B01EE8B0024E6F4 /* AboutViewController.h */,
+				8814583D1B01EE8B0024E6F4 /* AboutViewController.m */,
+				8814583E1B01EE8B0024E6F4 /* ArtistDetailViewController.h */,
+				8814583F1B01EE8B0024E6F4 /* ArtistDetailViewController.m */,
+				881458401B01EE8B0024E6F4 /* FeedTableViewController.h */,
+				881458411B01EE8B0024E6F4 /* FeedTableViewController.m */,
+				881458421B01EE8B0024E6F4 /* MapkitViewController.h */,
+				881458431B01EE8B0024E6F4 /* MapkitViewController.m */,
+				881458441B01EE8B0024E6F4 /* navigation */,
 			);
-			name = "Supporting Files";
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		883574811AB1D4810099DF4A /* js/css */ = {
+		881458441B01EE8B0024E6F4 /* navigation */ = {
 			isa = PBXGroup;
 			children = (
-				883574821AB1D4AD0099DF4A /* styles.css */,
-				88DEE9DA1ADE43730069DC32 /* soundcloud.js */,
+				881458451B01EE8B0024E6F4 /* MainTabBarController.h */,
+				881458461B01EE8B0024E6F4 /* MainTabBarController.m */,
+				881458471B01EE8B0024E6F4 /* NavigationViewController.h */,
+				881458481B01EE8B0024E6F4 /* NavigationViewController.m */,
 			);
-			name = js/css;
+			path = navigation;
 			sourceTree = "<group>";
 		};
-		885BFCEB1AADB67F0047340C /* UserInterface */ = {
+		881458491B01EE8B0024E6F4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				885BFCF71AADC23F0047340C /* Main.storyboard */,
-				88CCAA331ACA8A49004E631F /* Home */,
-				88CCAA341ACA8A54004E631F /* Scans */,
-				88CCAA321ACA89D6004E631F /* Map */,
-				88CCAA351ACA8A69004E631F /* Navigation */,
-				88D8F09F1ABACD2400ACFBE4 /* AboutViewController.h */,
-				88D8F0A01ABACD2400ACFBE4 /* AboutViewController.m */,
-				883574811AB1D4810099DF4A /* js/css */,
+				8814584A1B01EE8B0024E6F4 /* FeedItemCell.h */,
+				8814584B1B01EE8B0024E6F4 /* FeedItemCell.m */,
+				8814584C1B01EE8B0024E6F4 /* FeedItemCell.xib */,
+				8814584D1B01EE8B0024E6F4 /* Main.storyboard */,
+				8814584E1B01EE8B0024E6F4 /* PingeborgAnnotationView.h */,
+				8814584F1B01EE8B0024E6F4 /* PingeborgAnnotationView.m */,
+				881458501B01EE8B0024E6F4 /* PingeborgCalloutView.h */,
+				881458511B01EE8B0024E6F4 /* PingeborgCalloutView.m */,
+				881458521B01EE8B0024E6F4 /* PingeborgCalloutView.xib */,
+				881458531B01EE8B0024E6F4 /* ScanResultViewController.h */,
+				881458541B01EE8B0024E6F4 /* ScanResultViewController.m */,
 			);
-			name = UserInterface;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		8860DA7B1AE78CDF00DF2239 /* SVGKit */ = {
@@ -474,71 +518,12 @@
 			name = SVGKit;
 			sourceTree = "<group>";
 		};
-		88A62C3C1AD3E16C00EAD4C3 /* ContentBlockTypes */ = {
-			isa = PBXGroup;
-			children = (
-				88B8598B1ADE97DC0000D113 /* SpotMap Block */,
-				88DEE9DC1ADE79640069DC32 /* Download Block */,
-				88E7801B1ADE384C0082648B /* Soundcloud Block */,
-				88CBA7141AD7BF67001C3D37 /* Content Block */,
-				88CBA70E1AD7B7D8001C3D37 /* Ebook Block */,
-				88CBA7081AD7AD4D001C3D37 /* Link Block */,
-				88CBA6FB1AD6A94A001C3D37 /* Image Block */,
-				88A62C541AD64FA500EAD4C3 /* Youtube Block */,
-				88A62C481AD55B6E00EAD4C3 /* Audio Block */,
-				88A62C3D1AD3E17A00EAD4C3 /* Text Block */,
-			);
-			name = ContentBlockTypes;
-			sourceTree = "<group>";
-		};
-		88A62C3D1AD3E17A00EAD4C3 /* Text Block */ = {
-			isa = PBXGroup;
-			children = (
-				88A62C431AD3F2AE00EAD4C3 /* TextBlockTableViewCell.h */,
-				88A62C441AD3F2AE00EAD4C3 /* TextBlockTableViewCell.m */,
-				88A62C451AD3F2AE00EAD4C3 /* TextBlockTableViewCell.xib */,
-			);
-			name = "Text Block";
-			sourceTree = "<group>";
-		};
-		88A62C481AD55B6E00EAD4C3 /* Audio Block */ = {
-			isa = PBXGroup;
-			children = (
-				88A62C491AD55B8400EAD4C3 /* AudioBlockTableViewCell.h */,
-				88A62C4A1AD55B8400EAD4C3 /* AudioBlockTableViewCell.m */,
-				88A62C4B1AD55B8400EAD4C3 /* AudioBlockTableViewCell.xib */,
-			);
-			name = "Audio Block";
-			sourceTree = "<group>";
-		};
-		88A62C541AD64FA500EAD4C3 /* Youtube Block */ = {
-			isa = PBXGroup;
-			children = (
-				88A62C551AD64FBE00EAD4C3 /* YoutubeBlockTableViewCell.h */,
-				88A62C561AD64FBE00EAD4C3 /* YoutubeBlockTableViewCell.m */,
-				88A62C571AD64FBE00EAD4C3 /* YoutubeBlockTableViewCell.xib */,
-			);
-			name = "Youtube Block";
-			sourceTree = "<group>";
-		};
-		88B8598B1ADE97DC0000D113 /* SpotMap Block */ = {
-			isa = PBXGroup;
-			children = (
-				88B8598C1ADE97F30000D113 /* SpotMapBlockTableViewCell.h */,
-				88B8598D1ADE97F30000D113 /* SpotMapBlockTableViewCell.m */,
-				88B8598E1ADE97F30000D113 /* SpotMapBlockTableViewCell.xib */,
-			);
-			name = "SpotMap Block";
-			sourceTree = "<group>";
-		};
 		88BA01E61AA859F90091A43C = {
 			isa = PBXGroup;
 			children = (
 				88DA7D341AF24CE80005FEA3 /* xamoom-ios-sdk */,
 				88BA01F11AA859F90091A43C /* xamoom-pingeborg-ios */,
 				88BA020B1AA859F90091A43C /* xamoom-pingeborg-iosTests */,
-				88166D0B1AFCAC0A0012CBA6 /* XMMMusicPlayer */,
-				88166D1A1AFCAC0B0012CBA6 /* XMMMusicPlayerTests */,
 				88BA01F01AA859F90091A43C /* Products */,
 				F58201F992BD4B4517D1E332 /* Pods */,
 				B091DC0989CBE4B0B40B108B /* Frameworks */,
@@ -563,10 +548,10 @@
 				88BA01F71AA859F90091A43C /* AppDelegate.m */,
 				88052D791AE103C300AB433D /* Globals.h */,
 				88052D7A1AE103C300AB433D /* Globals.m */,
-				88052D7C1AE4D34D00AB433D /* XMMContentBlocks.h */,
-				88052D7D1AE4D34D00AB433D /* XMMContentBlocks.m */,
-				88A62C3C1AD3E16C00EAD4C3 /* ContentBlockTypes */,
-				885BFCEB1AADB67F0047340C /* UserInterface */,
+				881457C21B01E8620024E6F4 /* ContentBlocks */,
+				881458381B01EE8B0024E6F4 /* Models */,
+				8814583B1B01EE8B0024E6F4 /* ViewControllers */,
+				881458491B01EE8B0024E6F4 /* Views */,
 				88BA01FF1AA859F90091A43C /* Images.xcassets */,
 				88BA02011AA859F90091A43C /* LaunchScreen.xib */,
 				8860DA7B1AE78CDF00DF2239 /* SVGKit */,
@@ -601,96 +586,6 @@
 				88BA020D1AA859F90091A43C /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		88CBA6FB1AD6A94A001C3D37 /* Image Block */ = {
-			isa = PBXGroup;
-			children = (
-				88CBA7011AD6A98F001C3D37 /* ImageBlockTableViewCell.h */,
-				88CBA7021AD6A98F001C3D37 /* ImageBlockTableViewCell.m */,
-				88CBA7031AD6A98F001C3D37 /* ImageBlockTableViewCell.xib */,
-			);
-			name = "Image Block";
-			sourceTree = "<group>";
-		};
-		88CBA7081AD7AD4D001C3D37 /* Link Block */ = {
-			isa = PBXGroup;
-			children = (
-				88CBA7091AD7AD60001C3D37 /* LinkBlockTableViewCell.h */,
-				88CBA70A1AD7AD60001C3D37 /* LinkBlockTableViewCell.m */,
-				88CBA70B1AD7AD60001C3D37 /* LinkBlockTableViewCell.xib */,
-			);
-			name = "Link Block";
-			sourceTree = "<group>";
-		};
-		88CBA70E1AD7B7D8001C3D37 /* Ebook Block */ = {
-			isa = PBXGroup;
-			children = (
-				88CBA70F1AD7B7EC001C3D37 /* EbookBlockTableViewCell.h */,
-				88CBA7101AD7B7EC001C3D37 /* EbookBlockTableViewCell.m */,
-				88CBA7111AD7B7EC001C3D37 /* EbookBlockTableViewCell.xib */,
-			);
-			name = "Ebook Block";
-			sourceTree = "<group>";
-		};
-		88CBA7141AD7BF67001C3D37 /* Content Block */ = {
-			isa = PBXGroup;
-			children = (
-				88CBA7151AD7BF78001C3D37 /* ContentBlockTableViewCell.h */,
-				88CBA7161AD7BF78001C3D37 /* ContentBlockTableViewCell.m */,
-				88CBA7171AD7BF78001C3D37 /* ContentBlockTableViewCell.xib */,
-			);
-			name = "Content Block";
-			sourceTree = "<group>";
-		};
-		88CCAA321ACA89D6004E631F /* Map */ = {
-			isa = PBXGroup;
-			children = (
-				8806A7611ACC2579000E8552 /* MapkitViewController.h */,
-				8806A7621ACC2579000E8552 /* MapkitViewController.m */,
-				8827D8E51ABB0E7C002F632C /* PingebAnnotation.h */,
-				8827D8E61ABB0E7C002F632C /* PingebAnnotation.m */,
-				8827D8EB1ABB0F1C002F632C /* PingeborgAnnotationView.h */,
-				8827D8EC1ABB0F1C002F632C /* PingeborgAnnotationView.m */,
-				8897A9FC1ABB1C710003C3FA /* PingeborgCalloutView.xib */,
-				88D401631ABC053A006E865D /* PingeborgCalloutView.h */,
-				88D401641ABC053A006E865D /* PingeborgCalloutView.m */,
-			);
-			name = Map;
-			sourceTree = "<group>";
-		};
-		88CCAA331ACA8A49004E631F /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				8830CB931AC925D5005C79EF /* FeedTableViewController.h */,
-				8830CB941AC925D5005C79EF /* FeedTableViewController.m */,
-				88A62C391AD3D8EB00EAD4C3 /* ArtistDetailViewController.h */,
-				88A62C3A1AD3D8EB00EAD4C3 /* ArtistDetailViewController.m */,
-				8830CB961AC92A21005C79EF /* FeedItemCell.xib */,
-				8830CB981AC92AAE005C79EF /* FeedItemCell.h */,
-				8830CB991AC92AAE005C79EF /* FeedItemCell.m */,
-			);
-			name = Home;
-			sourceTree = "<group>";
-		};
-		88CCAA341ACA8A54004E631F /* Scans */ = {
-			isa = PBXGroup;
-			children = (
-				885BFD041AADD9FF0047340C /* ScanResultViewController.h */,
-				885BFD051AADD9FF0047340C /* ScanResultViewController.m */,
-			);
-			name = Scans;
-			sourceTree = "<group>";
-		};
-		88CCAA351ACA8A69004E631F /* Navigation */ = {
-			isa = PBXGroup;
-			children = (
-				88124DAD1AC5625F00D50C05 /* NavigationViewController.h */,
-				88124DAE1AC5625F00D50C05 /* NavigationViewController.m */,
-				885BFCFC1AADD3950047340C /* MainTabBarController.h */,
-				885BFCFD1AADD3950047340C /* MainTabBarController.m */,
-			);
-			name = Navigation;
 			sourceTree = "<group>";
 		};
 		88DA7D341AF24CE80005FEA3 /* xamoom-ios-sdk */ = {
@@ -841,29 +736,11 @@
 			path = RSS;
 			sourceTree = "<group>";
 		};
-		88DEE9DC1ADE79640069DC32 /* Download Block */ = {
-			isa = PBXGroup;
-			children = (
-				88DEE9DD1ADE79830069DC32 /* DownloadBlockTableViewCell.h */,
-				88DEE9DE1ADE79830069DC32 /* DownloadBlockTableViewCell.m */,
-				88DEE9DF1ADE79830069DC32 /* DownloadBlockTableViewCell.xib */,
-			);
-			name = "Download Block";
-			sourceTree = "<group>";
-		};
-		88E7801B1ADE384C0082648B /* Soundcloud Block */ = {
-			isa = PBXGroup;
-			children = (
-				88E7801C1ADE38690082648B /* SoundcloudBlockTableViewCell.h */,
-				88E7801D1ADE38690082648B /* SoundcloudBlockTableViewCell.m */,
-				88E7801E1ADE38690082648B /* SoundcloudBlockTableViewCell.xib */,
-			);
-			name = "Soundcloud Block";
-			sourceTree = "<group>";
-		};
 		B091DC0989CBE4B0B40B108B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				881457C01B01E7DE0024E6F4 /* libPods.a */,
+				881457BE1B01E7CF0024E6F4 /* libPods-AFNetworking.a */,
 				8860DA841AE78D3B00DF2239 /* UIKit.framework */,
 				8860DA821AE78D3500DF2239 /* CoreGraphics.framework */,
 				8860DA801AE78D2C00DF2239 /* libxml2.dylib */,
@@ -1048,23 +925,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				885BFCF81AADC23F0047340C /* Main.storyboard in Resources */,
-				88CBA70D1AD7AD60001C3D37 /* LinkBlockTableViewCell.xib in Resources */,
-				8897A9FD1ABB1C710003C3FA /* PingeborgCalloutView.xib in Resources */,
-				88CBA7191AD7BF78001C3D37 /* ContentBlockTableViewCell.xib in Resources */,
-				88B859901ADE97F30000D113 /* SpotMapBlockTableViewCell.xib in Resources */,
-				88A62C4D1AD55B8400EAD4C3 /* AudioBlockTableViewCell.xib in Resources */,
-				88CBA7131AD7B7EC001C3D37 /* EbookBlockTableViewCell.xib in Resources */,
+				881457F71B01E8620024E6F4 /* SpotMapBlockTableViewCell.xib in Resources */,
+				881457F31B01E8620024E6F4 /* soundcloud.js in Resources */,
+				881457EA1B01E8620024E6F4 /* ContentBlockTableViewCell.xib in Resources */,
+				881457F21B01E8620024E6F4 /* LinkBlockTableViewCell.xib in Resources */,
+				881457F01B01E8620024E6F4 /* ImageBlockTableViewCell.xib in Resources */,
+				8814585D1B01EE8B0024E6F4 /* FeedItemCell.xib in Resources */,
+				881458611B01EE8B0024E6F4 /* PingeborgCalloutView.xib in Resources */,
+				881457FB1B01E8620024E6F4 /* YoutubeBlockTableViewCell.xib in Resources */,
 				88BA02031AA859F90091A43C /* LaunchScreen.xib in Resources */,
-				88DEE9E11ADE79830069DC32 /* DownloadBlockTableViewCell.xib in Resources */,
+				881457F51B01E8620024E6F4 /* SoundcloudBlockTableViewCell.xib in Resources */,
 				8860DA7A1AE78CB800DF2239 /* usr in Resources */,
-				88CBA7051AD6A98F001C3D37 /* ImageBlockTableViewCell.xib in Resources */,
-				883574831AB1D4AD0099DF4A /* styles.css in Resources */,
-				8830CB971AC92A21005C79EF /* FeedItemCell.xib in Resources */,
-				88A62C591AD64FBE00EAD4C3 /* YoutubeBlockTableViewCell.xib in Resources */,
-				88A62C471AD3F2AE00EAD4C3 /* TextBlockTableViewCell.xib in Resources */,
-				88E780201ADE38690082648B /* SoundcloudBlockTableViewCell.xib in Resources */,
+				881457E81B01E8620024E6F4 /* AudioBlockTableViewCell.xib in Resources */,
+				8814585E1B01EE8B0024E6F4 /* Main.storyboard in Resources */,
+				881457EC1B01E8620024E6F4 /* DownloadBlockTableViewCell.xib in Resources */,
+				881457F91B01E8620024E6F4 /* TextBlockTableViewCell.xib in Resources */,
 				88BA02001AA859F90091A43C /* Images.xcassets in Resources */,
+				881457EE1B01E8620024E6F4 /* EbookBlockTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1122,7 +999,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88166D1E1AFCAC0B0012CBA6 /* XMMMusicPlayerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1130,82 +1006,82 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				881457F61B01E8620024E6F4 /* SpotMapBlockTableViewCell.m in Sources */,
+				881457E91B01E8620024E6F4 /* ContentBlockTableViewCell.m in Sources */,
+				881457EF1B01E8620024E6F4 /* ImageBlockTableViewCell.m in Sources */,
 				88DA7DBC1AF24CE80005FEA3 /* XMMResponseContentBlockType0.m in Sources */,
 				88DA7DAF1AF24CE80005FEA3 /* DetailTableViewController.m in Sources */,
-				88CBA7121AD7B7EC001C3D37 /* EbookBlockTableViewCell.m in Sources */,
 				88DA7DB01AF24CE80005FEA3 /* GTMNSString+HTML.m in Sources */,
 				88DA7DB11AF24CE80005FEA3 /* MWFeedInfo.m in Sources */,
-				88052D7E1AE4D34D00AB433D /* XMMContentBlocks.m in Sources */,
-				88DEE9E01ADE79830069DC32 /* DownloadBlockTableViewCell.m in Sources */,
 				88DA7DB81AF24CE80005FEA3 /* RootViewController.m in Sources */,
-				88B8598F1ADE97F30000D113 /* SpotMapBlockTableViewCell.m in Sources */,
-				88CBA70C1AD7AD60001C3D37 /* LinkBlockTableViewCell.m in Sources */,
+				8814585C1B01EE8B0024E6F4 /* FeedItemCell.m in Sources */,
+				8814585F1B01EE8B0024E6F4 /* PingeborgAnnotationView.m in Sources */,
 				88DA7DC81AF24CE80005FEA3 /* XMMResponseGetByLocation.m in Sources */,
+				881457ED1B01E8620024E6F4 /* EbookBlockTableViewCell.m in Sources */,
 				88DA7DA11AF24CE80005FEA3 /* _XMMCoreDataContentBlocks.m in Sources */,
-				8827D8ED1ABB0F1C002F632C /* PingeborgAnnotationView.m in Sources */,
 				88E2FAEA1AF74D5800917AFB /* UIImage+animatedGIF.m in Sources */,
 				88DA7DA41AF24CE80005FEA3 /* _XMMCoreDataGetByLocationItem.m in Sources */,
-				8830CB951AC925D5005C79EF /* FeedTableViewController.m in Sources */,
-				8827D8E71ABB0E7C002F632C /* PingebAnnotation.m in Sources */,
 				88DA7DA81AF24CE80005FEA3 /* XMMCoreDataContent.m in Sources */,
 				88DA7DB51AF24CE80005FEA3 /* NSDate+InternetDateTime.m in Sources */,
+				881457E71B01E8620024E6F4 /* AudioBlockTableViewCell.m in Sources */,
 				88DA7DB31AF24CE80005FEA3 /* MWFeedParser.m in Sources */,
 				88BA01F81AA859F90091A43C /* AppDelegate.m in Sources */,
 				88DA7DC11AF24CE80005FEA3 /* XMMResponseContentBlockType5.m in Sources */,
 				88DA7DCE1AF24CE80005FEA3 /* XMMResponseStyle.m in Sources */,
 				88DA7DC71AF24CE80005FEA3 /* XMMResponseGetById.m in Sources */,
-				88E7801F1ADE38690082648B /* SoundcloudBlockTableViewCell.m in Sources */,
 				88DA7DCD1AF24CE80005FEA3 /* XMMResponseMenuItem.m in Sources */,
 				88DA7DC51AF24CE80005FEA3 /* XMMResponseContentBlockType9.m in Sources */,
 				88DA7DBB1AF24CE80005FEA3 /* XMMResponseContentBlock.m in Sources */,
 				88DA7DAA1AF24CE80005FEA3 /* XMMCoreDataGetById.m in Sources */,
 				88DA7DAB1AF24CE80005FEA3 /* XMMCoreDataGetByLocation.m in Sources */,
-				88A62C3B1AD3D8EB00EAD4C3 /* ArtistDetailViewController.m in Sources */,
+				881458561B01EE8B0024E6F4 /* AboutViewController.m in Sources */,
 				88DA7DC31AF24CE80005FEA3 /* XMMResponseContentBlockType7.m in Sources */,
 				88052D7B1AE103C300AB433D /* Globals.m in Sources */,
+				881457FC1B01E8620024E6F4 /* XMMContentBlocks.m in Sources */,
 				88DA7DBD1AF24CE80005FEA3 /* XMMResponseContentBlockType1.m in Sources */,
 				88DA7DB61AF24CE80005FEA3 /* NSString+HTML.m in Sources */,
-				8806A7631ACC2579000E8552 /* MapkitViewController.m in Sources */,
+				881458591B01EE8B0024E6F4 /* MapkitViewController.m in Sources */,
 				88DA7DAE1AF24CE80005FEA3 /* XMMCoreDataStyle.m in Sources */,
 				88DA7DCA1AF24CE80005FEA3 /* XMMResponseGetByLocationItem.m in Sources */,
-				88A62C4C1AD55B8400EAD4C3 /* AudioBlockTableViewCell.m in Sources */,
-				88A62C581AD64FBE00EAD4C3 /* YoutubeBlockTableViewCell.m in Sources */,
-				885BFCFE1AADD3950047340C /* MainTabBarController.m in Sources */,
 				88DA7DCF1AF24CE80005FEA3 /* XMMRSSEntry.m in Sources */,
-				88124DAF1AC5625F00D50C05 /* NavigationViewController.m in Sources */,
+				881457F81B01E8620024E6F4 /* TextBlockTableViewCell.m in Sources */,
 				88DA7D9F1AF24CE80005FEA3 /* _XMMCoreData.m in Sources */,
+				8814585A1B01EE8B0024E6F4 /* MainTabBarController.m in Sources */,
 				88BA01F51AA859F90091A43C /* main.m in Sources */,
-				8830CB9A1AC92AAE005C79EF /* FeedItemCell.m in Sources */,
-				88166CD51AFB86D40012CBA6 /* XMMMusicPlayer.m in Sources */,
+				881458621B01EE8B0024E6F4 /* ScanResultViewController.m in Sources */,
 				88DA7DB41AF24CE80005FEA3 /* MWFeedParserAppDelegate.m in Sources */,
+				881457FD1B01E8620024E6F4 /* XMMMusicPlayer.m in Sources */,
 				88DA7DC91AF24CE80005FEA3 /* XMMResponseGetByLocationIdentifier.m in Sources */,
 				88DA7DBE1AF24CE80005FEA3 /* XMMResponseContentBlockType2.m in Sources */,
 				88DA7DA71AF24CE80005FEA3 /* Model.xcdatamodeld in Sources */,
+				881457FA1B01E8620024E6F4 /* YoutubeBlockTableViewCell.m in Sources */,
+				881458551B01EE8B0024E6F4 /* PingebAnnotation.m in Sources */,
+				8814585B1B01EE8B0024E6F4 /* NavigationViewController.m in Sources */,
+				881458581B01EE8B0024E6F4 /* FeedTableViewController.m in Sources */,
 				88DA7DCB1AF24CE80005FEA3 /* XMMResponseGetSpotMap.m in Sources */,
 				88DA7DAD1AF24CE80005FEA3 /* XMMCoreDataMenuItem.m in Sources */,
 				88DA7DB91AF24CE80005FEA3 /* XMMResponseClosestSpot.m in Sources */,
 				88DA7DAC1AF24CE80005FEA3 /* XMMCoreDataGetByLocationItem.m in Sources */,
-				88D8F0A11ABACD2400ACFBE4 /* AboutViewController.m in Sources */,
 				88DA7DB71AF24CE80005FEA3 /* NSString+XMLEntities.m in Sources */,
+				881458571B01EE8B0024E6F4 /* ArtistDetailViewController.m in Sources */,
 				88DA7DBF1AF24CE80005FEA3 /* XMMResponseContentBlockType3.m in Sources */,
+				881457F11B01E8620024E6F4 /* LinkBlockTableViewCell.m in Sources */,
 				88DA7DA21AF24CE80005FEA3 /* _XMMCoreDataGetById.m in Sources */,
+				881457F41B01E8620024E6F4 /* SoundcloudBlockTableViewCell.m in Sources */,
+				881458601B01EE8B0024E6F4 /* PingeborgCalloutView.m in Sources */,
 				88DA7DA91AF24CE80005FEA3 /* XMMCoreDataContentBlocks.m in Sources */,
 				88DA7DC41AF24CE80005FEA3 /* XMMResponseContentBlockType8.m in Sources */,
-				88D401651ABC053A006E865D /* PingeborgCalloutView.m in Sources */,
 				88DA7DC01AF24CE80005FEA3 /* XMMResponseContentBlockType4.m in Sources */,
 				88DA7DC21AF24CE80005FEA3 /* XMMResponseContentBlockType6.m in Sources */,
+				881457EB1B01E8620024E6F4 /* DownloadBlockTableViewCell.m in Sources */,
 				88DA7DBA1AF24CE80005FEA3 /* XMMResponseContent.m in Sources */,
-				88CBA7041AD6A98F001C3D37 /* ImageBlockTableViewCell.m in Sources */,
 				88DA7DA51AF24CE80005FEA3 /* _XMMCoreDataMenuItem.m in Sources */,
 				88DA7DB21AF24CE80005FEA3 /* MWFeedItem.m in Sources */,
 				88DA7DD01AF24CE80005FEA3 /* XMMEnduserApi.m in Sources */,
 				88DA7DCC1AF24CE80005FEA3 /* XMMResponseGetSpotMapItem.m in Sources */,
-				885BFD071AADD9FF0047340C /* ScanResultViewController.m in Sources */,
 				88DA7DA01AF24CE80005FEA3 /* _XMMCoreDataContent.m in Sources */,
-				88A62C461AD3F2AE00EAD4C3 /* TextBlockTableViewCell.m in Sources */,
 				88DA7DA61AF24CE80005FEA3 /* _XMMCoreDataStyle.m in Sources */,
 				88DA7DA31AF24CE80005FEA3 /* _XMMCoreDataGetByLocation.m in Sources */,
-				88CBA7181AD7BF78001C3D37 /* ContentBlockTableViewCell.m in Sources */,
 				88DA7DC61AF24CE80005FEA3 /* XMMResponseContentList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1276,6 +1152,10 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1302,6 +1182,10 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1446,6 +1330,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/xamoom-pingeborg-ios",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -1467,6 +1352,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/xamoom-pingeborg-ios",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

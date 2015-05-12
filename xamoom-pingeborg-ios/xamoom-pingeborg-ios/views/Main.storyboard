@@ -151,7 +151,6 @@
         <!--Artist Detail View Controller-->
         <scene sceneID="T5I-QS-QvV">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eX6-q5-p4T" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController storyboardIdentifier="ArtistDetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="D2c-7D-mRj" customClass="ArtistDetailViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="eHq-dT-g1l">
                         <rect key="frame" x="0.0" y="64" width="600" height="600"/>
@@ -172,6 +171,7 @@
                         <outlet property="tableView" destination="eHq-dT-g1l" id="axs-rO-pIb"/>
                     </connections>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eX6-q5-p4T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="76" y="1559"/>
         </scene>
