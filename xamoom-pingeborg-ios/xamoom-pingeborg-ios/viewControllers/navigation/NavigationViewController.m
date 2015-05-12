@@ -23,7 +23,7 @@
   // Do any additional setup after loading the view.
   
   //setting up REMenu "navbarDropdown"
-  REMenuItem *klagenfurt = [[REMenuItem alloc] initWithTitle:@"pingeborg Carinthia"
+  REMenuItem *klagenfurt = [[REMenuItem alloc] initWithTitle:@"pingeborg Kärnten"
                                                        image:nil
                                             highlightedImage:nil
                                                       action:^(REMenuItem *item) {

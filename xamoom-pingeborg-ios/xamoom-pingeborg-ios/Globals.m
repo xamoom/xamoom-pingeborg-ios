@@ -44,7 +44,7 @@ static Globals *globals;
   switch (systemId) {
     case 0: {
       globals.aboutPageId = @"";
-      return @"Carinthia";
+      return @"Kärnten";
       break;
     }
     case 1: {
@@ -59,7 +59,7 @@ static Globals *globals;
     }
     default:
       globals.aboutPageId = @"";
-      return @"Carinthia";
+      return @"Kärnten";
       break;
   }
 }

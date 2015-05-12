@@ -24,10 +24,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </imageView>
                     <view alpha="0.75" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4MJ-4A-8g2">
-                        <rect key="frame" x="0.0" y="109" width="482" height="21"/>
+                        <rect key="frame" x="0.0" y="103" width="482" height="27"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4wb-79-OqP">
-                                <rect key="frame" x="8" y="0.0" width="466" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GggjqiyKjqlfiaSJalkfj" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4wb-79-OqP">
+                                <rect key="frame" x="12" y="0.0" width="456" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -35,11 +35,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="4wb-79-OqP" secondAttribute="bottom" id="6Ax-6O-wch"/>
+                            <constraint firstAttribute="bottom" secondItem="4wb-79-OqP" secondAttribute="bottom" constant="6" id="6Ax-6O-wch"/>
                             <constraint firstItem="4wb-79-OqP" firstAttribute="top" secondItem="4MJ-4A-8g2" secondAttribute="top" id="DXP-JA-47g"/>
-                            <constraint firstItem="4wb-79-OqP" firstAttribute="leading" secondItem="4MJ-4A-8g2" secondAttribute="leading" constant="8" id="Tpk-Td-AB3"/>
-                            <constraint firstAttribute="height" constant="21" id="YY3-Rc-KZ8"/>
-                            <constraint firstAttribute="trailing" secondItem="4wb-79-OqP" secondAttribute="trailing" constant="8" id="uSv-MO-4ps"/>
+                            <constraint firstItem="4wb-79-OqP" firstAttribute="leading" secondItem="4MJ-4A-8g2" secondAttribute="leading" constant="12" id="Tpk-Td-AB3"/>
+                            <constraint firstAttribute="height" constant="27" id="YY3-Rc-KZ8"/>
+                            <constraint firstAttribute="trailing" secondItem="4wb-79-OqP" secondAttribute="trailing" constant="14" id="uSv-MO-4ps"/>
                         </constraints>
                     </view>
                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="8pK-L0-lt3">
@@ -69,7 +69,7 @@
                 <outlet property="imageHeightConstraint" destination="gVU-IG-sXy" id="o3Q-nn-WRd"/>
                 <outlet property="loadingIndicator" destination="8pK-L0-lt3" id="Jk8-8M-B4o"/>
             </connections>
-            <point key="canvasLocation" x="377" y="250.5"/>
+            <point key="canvasLocation" x="405" y="258.5"/>
         </tableViewCell>
     </objects>
 </document>

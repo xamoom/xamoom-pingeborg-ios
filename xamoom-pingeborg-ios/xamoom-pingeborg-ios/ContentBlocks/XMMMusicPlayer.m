@@ -88,7 +88,7 @@ IB_DESIGNABLE
                                                              clockwise:YES];
   
   // Set the render colors.
-  [self.foregroundRingColor setStroke];
+  [[UIColor colorWithRed:113.0/255.0 green:148.0/255.0 blue:48.0/255.0 alpha:1] setStroke];
   
   // If you have content to draw after the shape,
   // save the current state before changing the transform.

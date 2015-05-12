@@ -64,7 +64,8 @@ int const kPageSize = 7;
   [self.refreshControl addTarget:self
                           action:@selector(pullToRefresh)
                 forControlEvents:UIControlEventValueChanged];
-  
+
+  //pingeborg system changing notifcation observer
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(pingeborgSystemChanged)
                                                name:@"PingeborgSystemChanged"
@@ -212,11 +213,7 @@ int const kPageSize = 7;
   
   //load more contents
   if (indexPath.row == [self.itemsToDisplay count] - 1) {
-    if (self.hasMore && !self.isApiCallingBlocked) {
-      self.isApiCallingBlocked = YES;
-      [[XMMEnduserApi sharedInstance] setDelegate:self];
-      [[XMMEnduserApi sharedInstance] contentListWithSystemId:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:kPageSize withCursor:self.contentListCursor];
-    }
+    //[self loadMoreContent];
   }
   
   return cell;
@@ -273,6 +270,14 @@ int const kPageSize = 7;
     XMMResponseContent *contentItem = result.items[counter];
     [Globals addDiscoveredArtist:contentItem.contentId];
     counter++;
+  }
+}
+
+- (void)loadMoreContent {
+  if (self.hasMore && !self.isApiCallingBlocked) {
+    self.isApiCallingBlocked = YES;
+    [[XMMEnduserApi sharedInstance] setDelegate:self];
+    [[XMMEnduserApi sharedInstance] contentListWithSystemId:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:kPageSize withCursor:self.contentListCursor];
   }
 }
 

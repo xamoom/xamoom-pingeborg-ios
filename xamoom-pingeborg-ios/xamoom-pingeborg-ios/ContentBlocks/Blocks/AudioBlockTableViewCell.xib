@@ -29,7 +29,7 @@
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bNb-P6-22z" customClass="XMMMusicPlayer">
                         <rect key="frame" x="212" y="8" width="98" height="98"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="98" id="Joo-s8-9mV"/>
                             <constraint firstAttribute="height" constant="53" id="Ue9-RP-j0J"/>
@@ -40,16 +40,16 @@
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="ringProgress">
-                                <real key="value" value="0.0"/>
+                                <real key="value" value="0.77000000000000002"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="number" keyPath="ringLineWidth">
                                 <integer key="value" value="8"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="color" keyPath="backgroundRingColor">
-                                <color key="value" white="0.86935478344298234" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="color" keyPath="foregroundRingColor">
-                                <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="value" red="0.35149568135567999" green="0.76676925505050508" blue="0.14529067675954899" alpha="1" colorSpace="calibratedRGB"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                         <variation key="default">
@@ -82,6 +82,7 @@
                     </mask>
                 </variation>
             </tableViewCellContentView>
+            <color key="backgroundColor" red="1" green="1" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="artistLabel" destination="NkC-Ma-2oK" id="vSb-JY-RQn"/>
                 <outlet property="audioPlayerControl" destination="bNb-P6-22z" id="Sqw-Jc-F6e"/>
