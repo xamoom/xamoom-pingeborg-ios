@@ -25,6 +25,9 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+  
+  [self.tabBarItem setSelectedImage:[UIImage imageNamed:@"info_filled"]];
+  
   //setting up tableView
   [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
   self.tableView.rowHeight = UITableViewAutomaticDimension;
@@ -37,7 +40,7 @@
   [self.hud showInView:self.view];
   
   [XMMEnduserApi sharedInstance].delegate = self;
-  [[XMMEnduserApi sharedInstance] contentWithContentId:[Globals sharedObject].aboutPageId includeStyle:@"false" includeMenu:@"false" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:@"True"];
+  [[XMMEnduserApi sharedInstance] contentWithContentId:[Globals sharedObject].aboutPageId includeStyle:NO includeMenu:NO withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:YES];
   
   //dropdown menu
   REMenuItem *NormalFontSizeItem = [[REMenuItem alloc] initWithTitle:@"Normal Font Size"
@@ -79,7 +82,7 @@
   
   if ([self.contentBlocks.itemsToDisplay count] == 0) {
     [XMMEnduserApi sharedInstance].delegate = self;
-    [[XMMEnduserApi sharedInstance] contentWithContentId:[Globals sharedObject].aboutPageId includeStyle:@"false" includeMenu:@"false" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:@"True"];
+    [[XMMEnduserApi sharedInstance] contentWithContentId:[Globals sharedObject].aboutPageId includeStyle:NO includeMenu:NO withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:YES];
 
   }
 }

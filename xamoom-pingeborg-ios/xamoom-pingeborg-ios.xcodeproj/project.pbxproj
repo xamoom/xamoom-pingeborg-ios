@@ -347,10 +347,10 @@
 		881458491B01EE8B0024E6F4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8814584D1B01EE8B0024E6F4 /* Main.storyboard */,
 				8814584A1B01EE8B0024E6F4 /* FeedItemCell.h */,
 				8814584B1B01EE8B0024E6F4 /* FeedItemCell.m */,
 				8814584C1B01EE8B0024E6F4 /* FeedItemCell.xib */,
-				8814584D1B01EE8B0024E6F4 /* Main.storyboard */,
 				8814584E1B01EE8B0024E6F4 /* PingeborgAnnotationView.h */,
 				8814584F1B01EE8B0024E6F4 /* PingeborgAnnotationView.m */,
 				881458501B01EE8B0024E6F4 /* PingeborgCalloutView.h */,

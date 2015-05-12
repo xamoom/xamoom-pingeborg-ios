@@ -30,7 +30,7 @@
    object:nil];
   
   [[XMMEnduserApi sharedInstance] setDelegate:nil];
-  [[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:@"False" includeMenu:@"False" withLanguage:@"de" full:@"False"];
+  [[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:NO includeMenu:NO withLanguage:@"de" full:NO];
 }
 
 - (void)didLoadContentBlockData:(NSNotification *)notification {

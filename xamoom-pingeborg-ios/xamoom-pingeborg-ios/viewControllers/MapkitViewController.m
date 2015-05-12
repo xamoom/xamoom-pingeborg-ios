@@ -33,6 +33,9 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   
+  [self.tabBarItem setSelectedImage:[UIImage imageNamed:@"map_filled"]];
+
+  
   //init map
   self.mapKitWithSMCalloutView = [[CustomMapView alloc] initWithFrame:self.mapView.bounds];
   self.mapKitWithSMCalloutView.delegate = self;
@@ -85,7 +88,7 @@
   if (self.mapKitWithSMCalloutView.annotations.count <= 0 ) {
     [self.geoFenceActivityIndicator startAnimating];
     [[XMMEnduserApi sharedInstance] setDelegate:self];
-    [[XMMEnduserApi sharedInstance] spotMapWithSystemId:[Globals sharedObject].globalSystemId withMapTags:@"showAllTheSpots" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
+    [[XMMEnduserApi sharedInstance] spotMapWithSystemId:[Globals sharedObject].globalSystemId withMapTags:@[@"showAllTheSpots"] withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
   }
 
 }

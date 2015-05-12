@@ -81,14 +81,12 @@ BOOL isFirstTime;
 
 -(void)didScanQR:(NSString *)result {
   [[XMMEnduserApi sharedInstance] setDelegate:self];
-  [[XMMEnduserApi sharedInstance] contentWithLocationIdentifier:@"0ana0" includeStyle:@"False" includeMenu:@"False" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
+  [[XMMEnduserApi sharedInstance] contentWithLocationIdentifier:result includeStyle:NO includeMenu:NO withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
 }
 
 - (void)didLoadDataWithLocationIdentifier:(XMMResponseGetByLocationIdentifier *)apiResult {
   [Globals addDiscoveredArtist:apiResult.content.contentId];
   result = apiResult;
-  
-  NSLog(@"Here: %@", apiResult.content.contentBlocks);
   
   [self performSegueWithIdentifier:@"showScanResult" sender:self];
 }

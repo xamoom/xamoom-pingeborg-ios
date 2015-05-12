@@ -28,6 +28,8 @@ int const kPageSize = 7;
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+
+  [self.tabBarItem setSelectedImage:[UIImage imageNamed:@"home_filled"]];
   
   //setting up tableView
   self.tableView.dataSource = self;

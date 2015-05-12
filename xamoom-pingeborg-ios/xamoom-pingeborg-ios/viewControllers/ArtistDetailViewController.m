@@ -40,9 +40,9 @@
   [self.hud showInView:self.view];
   
   if ([savedArtists containsString:self.contentId]) {
-    [[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:@"False" includeMenu:@"False" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:@"True"];
+    [[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:NO includeMenu:NO withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:YES];
   } else {
-    [[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:@"False" includeMenu:@"False" withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:@"False"];
+    [[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:NO includeMenu:NO withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:NO];
   }
   
   //dropdown menu

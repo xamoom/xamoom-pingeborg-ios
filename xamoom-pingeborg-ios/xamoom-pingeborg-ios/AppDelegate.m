@@ -21,7 +21,7 @@
   //set UI colors
   //[[UITabBar appearance] setTintColor:[UIColor blackColor]];
   [[UINavigationBar appearance] setBarTintColor:[Globals sharedObject].pingeborgYellow];
-  [[UITabBar appearance] setTintColor:[Globals sharedObject].pingeborgLinkColor];
+  //[[UITabBar appearance] setTintColor:[Globals sharedObject].pingeborgLinkColor];
   
   //IF DEV
   [[Globals sharedObject] developmentMode];
