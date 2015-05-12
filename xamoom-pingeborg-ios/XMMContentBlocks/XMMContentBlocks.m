@@ -37,13 +37,13 @@ int const kHorizontalSpaceToSubview = 32;
 }
 
 # pragma mark - ContentBlock Methods
-- (void)displayContentBlocksById:(XMMResponseGetById *)idResult byLocationIdentifier:(XMMResponseGetByLocationIdentifier *)locationIdentifierResult withScreenWidth:(float)screenWidth {
+- (void)displayContentBlocksById:(XMMResponseGetById *)IdResult byLocationIdentifier:(XMMResponseGetByLocationIdentifier *)locationIdentifierResult withScreenWidth:(float)screenWidth {
   NSInteger contentBlockType;
   NSArray *contentBlocks;
   self.screenWidth = screenWidth - kHorizontalSpaceToSubview;
   
-  if (idResult != nil) {
-    contentBlocks = idResult.content.contentBlocks;
+  if (IdResult != nil) {
+    contentBlocks = IdResult.content.contentBlocks;
   }
   else if (locationIdentifierResult != nil) {
     contentBlocks = locationIdentifierResult.content.contentBlocks;
@@ -303,7 +303,12 @@ int const kHorizontalSpaceToSubview = 32;
   cell.titleLabel.text = contentBlock.title;
   
   //get soundcloud code from file
-  NSString *soundcloudJs = @"<iframe width='100%' height='##height##' scrolling='no' frameborder='no' src='https://w.soundcloud.com/player/?url=##url##&auto_play=false&hide_related=true&show_comments=false&show_comments=false&show_user=false&show_reposts=false&sharing=false&download=false&buying=false&visual=true'></iframe><script src=\"https://w.soundcloud.com/player/api.js\" type=\"text/javascript\"></script>";
+  NSString *soundcloudJs;
+  NSString *soundcloudJsPath = [[NSBundle mainBundle] pathForResource:@"soundcloud" ofType:@"js"];
+  NSData *loadedData = [NSData dataWithContentsOfFile:soundcloudJsPath];
+  if (loadedData) {
+    soundcloudJs = [[NSString alloc] initWithData:loadedData encoding:NSUTF8StringEncoding];
+  }
   
   //replace url and height from soundcloudJs
   NSString *soundcloudUrl = contentBlock.soundcloudUrl;

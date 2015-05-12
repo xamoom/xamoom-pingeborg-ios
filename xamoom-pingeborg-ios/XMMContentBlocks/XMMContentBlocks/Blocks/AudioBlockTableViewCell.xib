@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="AudioBlockTableViewCell" rowHeight="310" id="KGk-i7-Jjw" customClass="AudioBlockTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="318" height="115"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gold" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v0p-ky-YSc">
+                        <rect key="frame" x="8" y="7" width="38" height="21"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chet Faker" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NkC-Ma-2oK">
+                        <rect key="frame" x="8" y="35" width="196" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bNb-P6-22z" customClass="XMMMusicPlayer">
+                        <rect key="frame" x="212" y="8" width="98" height="98"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="98" id="Joo-s8-9mV"/>
+                            <constraint firstAttribute="height" constant="53" id="Ue9-RP-j0J"/>
+                            <constraint firstAttribute="width" constant="98" id="XHn-zj-hU3"/>
+                            <constraint firstAttribute="width" secondItem="bNb-P6-22z" secondAttribute="height" multiplier="1:1" id="iUA-P4-FkO"/>
+                            <constraint firstAttribute="width" constant="53" id="kRA-Lv-lop"/>
+                            <constraint firstAttribute="width" secondItem="bNb-P6-22z" secondAttribute="height" multiplier="1:1" id="tZL-F3-ktN"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="ringProgress">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="ringLineWidth">
+                                <integer key="value" value="8"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="backgroundRingColor">
+                                <color key="value" white="0.86935478344298234" alpha="1" colorSpace="calibratedWhite"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="foregroundRingColor">
+                                <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Ue9-RP-j0J"/>
+                                <exclude reference="iUA-P4-FkO"/>
+                                <exclude reference="kRA-Lv-lop"/>
+                                <exclude reference="tZL-F3-ktN"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="bNb-P6-22z" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="E5b-eZ-Fee"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="bNb-P6-22z" secondAttribute="bottom" id="SVn-Q7-dbS"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="NkC-Ma-2oK" secondAttribute="bottom" constant="7" id="TCV-oA-Yqi"/>
+                    <constraint firstItem="v0p-ky-YSc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="X1P-d0-MYa"/>
+                    <constraint firstItem="v0p-ky-YSc" firstAttribute="trailing" secondItem="NkC-Ma-2oK" secondAttribute="trailing" id="aGT-fB-pmK"/>
+                    <constraint firstItem="bNb-P6-22z" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="aW9-5S-LDa"/>
+                    <constraint firstItem="bNb-P6-22z" firstAttribute="leading" relation="lessThanOrEqual" secondItem="v0p-ky-YSc" secondAttribute="trailing" constant="166" id="aj6-ZA-25m"/>
+                    <constraint firstItem="v0p-ky-YSc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-1" id="buK-xD-T9W"/>
+                    <constraint firstItem="NkC-Ma-2oK" firstAttribute="top" secondItem="v0p-ky-YSc" secondAttribute="bottom" constant="7" id="qja-w3-5lJ"/>
+                    <constraint firstItem="NkC-Ma-2oK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="tNr-7D-Ap7"/>
+                    <constraint firstItem="bNb-P6-22z" firstAttribute="leading" relation="lessThanOrEqual" secondItem="NkC-Ma-2oK" secondAttribute="trailing" constant="8" id="ugG-Da-ND0"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="aGT-fB-pmK"/>
+                        <exclude reference="TCV-oA-Yqi"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="artistLabel" destination="NkC-Ma-2oK" id="vSb-JY-RQn"/>
+                <outlet property="audioPlayerControl" destination="bNb-P6-22z" id="Sqw-Jc-F6e"/>
+                <outlet property="titleLabel" destination="v0p-ky-YSc" id="hqh-74-Zo5"/>
+            </connections>
+            <point key="canvasLocation" x="659" y="382.5"/>
+        </tableViewCell>
+    </objects>
+</document>

@@ -112,7 +112,6 @@
 		88DA7DCE1AF24CE80005FEA3 /* XMMResponseStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D991AF24CE80005FEA3 /* XMMResponseStyle.m */; };
 		88DA7DCF1AF24CE80005FEA3 /* XMMRSSEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D9C1AF24CE80005FEA3 /* XMMRSSEntry.m */; };
 		88DA7DD01AF24CE80005FEA3 /* XMMEnduserApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D9E1AF24CE80005FEA3 /* XMMEnduserApi.m */; };
-		88DEE9DB1ADE43730069DC32 /* soundcloud.js in Resources */ = {isa = PBXBuildFile; fileRef = 88DEE9DA1ADE43730069DC32 /* soundcloud.js */; };
 		88DEE9E01ADE79830069DC32 /* DownloadBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DEE9DE1ADE79830069DC32 /* DownloadBlockTableViewCell.m */; };
 		88DEE9E11ADE79830069DC32 /* DownloadBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88DEE9DF1ADE79830069DC32 /* DownloadBlockTableViewCell.xib */; };
 		88E2FAEA1AF74D5800917AFB /* UIImage+animatedGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E2FAE91AF74D5800917AFB /* UIImage+animatedGIF.m */; };
@@ -1059,7 +1058,6 @@
 				88BA02031AA859F90091A43C /* LaunchScreen.xib in Resources */,
 				88DEE9E11ADE79830069DC32 /* DownloadBlockTableViewCell.xib in Resources */,
 				8860DA7A1AE78CB800DF2239 /* usr in Resources */,
-				88DEE9DB1ADE43730069DC32 /* soundcloud.js in Resources */,
 				88CBA7051AD6A98F001C3D37 /* ImageBlockTableViewCell.xib in Resources */,
 				883574831AB1D4AD0099DF4A /* styles.css in Resources */,
 				8830CB971AC92A21005C79EF /* FeedItemCell.xib in Resources */,

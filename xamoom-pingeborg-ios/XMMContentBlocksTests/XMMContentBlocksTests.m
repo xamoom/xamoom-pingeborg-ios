@@ -1,6 +1,6 @@
 //
-//  XMMMusicPlayerTests.m
-//  XMMMusicPlayerTests
+//  XMMContentBlocksTests.m
+//  XMMContentBlocksTests
 //
 //  Created by Raphael Seher on 12.05.15.
 //  Copyright (c) 2015 xamoom GmbH. All rights reserved.
@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 
-@interface XMMMusicPlayerTests : XCTestCase
+@interface XMMContentBlocksTests : XCTestCase
 
 @end
 
-@implementation XMMMusicPlayerTests
+@implementation XMMContentBlocksTests
 
 - (void)setUp {
     [super setUp];
