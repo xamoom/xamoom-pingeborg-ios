@@ -28,15 +28,21 @@ PODS:
   - SMCalloutView (2.1.2)
   - SOCKit (1.1)
   - TransitionKit (2.1.1)
+  - xamoom-ios-sdk (0.1.0):
+    - QRCodeReaderViewController (~> 2.0.0)
+    - RestKit (~> 0.24)
   - youtube-ios-player-helper (0.1.1)
 
 DEPENDENCIES:
   - JGProgressHUD
-  - QRCodeReaderViewController (~> 2.0.0)
   - REMenu (~> 1.10)
-  - RestKit (~> 0.24)
   - SMCalloutView
+  - xamoom-ios-sdk (from `~/dev/xamoom-ios-sdk`)
   - youtube-ios-player-helper (~> 0.1.1)
+
+EXTERNAL SOURCES:
+  xamoom-ios-sdk:
+    :path: ~/dev/xamoom-ios-sdk
 
 SPEC CHECKSUMS:
   AFNetworking: cf8e418e16f0c9c7e5c3150d019a3c679d015018
@@ -49,6 +55,7 @@ SPEC CHECKSUMS:
   SMCalloutView: 4078d89b847731e514b1a919fed33b383a24a106
   SOCKit: c7376ac262bea9115b8f749358f762522a47d392
   TransitionKit: 3a14b6acc7cf2d1dd3e454e24dbad1cfab9a1ef1
+  xamoom-ios-sdk: 66ccb711f4f12e58053181642c72ab1a7d559404
   youtube-ios-player-helper: d7350b9f9070edf482e5d0bd5e8948c0ba1437f3
 
 COCOAPODS: 0.35.0

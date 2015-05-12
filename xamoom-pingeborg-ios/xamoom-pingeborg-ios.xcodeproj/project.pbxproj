@@ -66,56 +66,6 @@
 		88BA02031AA859F90091A43C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88BA02011AA859F90091A43C /* LaunchScreen.xib */; };
 		88BA020F1AA859F90091A43C /* xamoom_pingeborg_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA020E1AA859F90091A43C /* xamoom_pingeborg_iosTests.m */; };
 		88CBAEE11AA9EC9E000E480A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88CBAEE01AA9EC9E000E480A /* MapKit.framework */; };
-		88DA7D9F1AF24CE80005FEA3 /* _XMMCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D371AF24CE80005FEA3 /* _XMMCoreData.m */; };
-		88DA7DA01AF24CE80005FEA3 /* _XMMCoreDataContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D391AF24CE80005FEA3 /* _XMMCoreDataContent.m */; };
-		88DA7DA11AF24CE80005FEA3 /* _XMMCoreDataContentBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D3B1AF24CE80005FEA3 /* _XMMCoreDataContentBlocks.m */; };
-		88DA7DA21AF24CE80005FEA3 /* _XMMCoreDataGetById.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D3D1AF24CE80005FEA3 /* _XMMCoreDataGetById.m */; };
-		88DA7DA31AF24CE80005FEA3 /* _XMMCoreDataGetByLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D3F1AF24CE80005FEA3 /* _XMMCoreDataGetByLocation.m */; };
-		88DA7DA41AF24CE80005FEA3 /* _XMMCoreDataGetByLocationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D411AF24CE80005FEA3 /* _XMMCoreDataGetByLocationItem.m */; };
-		88DA7DA51AF24CE80005FEA3 /* _XMMCoreDataMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D431AF24CE80005FEA3 /* _XMMCoreDataMenuItem.m */; };
-		88DA7DA61AF24CE80005FEA3 /* _XMMCoreDataStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D451AF24CE80005FEA3 /* _XMMCoreDataStyle.m */; };
-		88DA7DA71AF24CE80005FEA3 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D461AF24CE80005FEA3 /* Model.xcdatamodeld */; };
-		88DA7DA81AF24CE80005FEA3 /* XMMCoreDataContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D491AF24CE80005FEA3 /* XMMCoreDataContent.m */; };
-		88DA7DA91AF24CE80005FEA3 /* XMMCoreDataContentBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D4B1AF24CE80005FEA3 /* XMMCoreDataContentBlocks.m */; };
-		88DA7DAA1AF24CE80005FEA3 /* XMMCoreDataGetById.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D4D1AF24CE80005FEA3 /* XMMCoreDataGetById.m */; };
-		88DA7DAB1AF24CE80005FEA3 /* XMMCoreDataGetByLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D4F1AF24CE80005FEA3 /* XMMCoreDataGetByLocation.m */; };
-		88DA7DAC1AF24CE80005FEA3 /* XMMCoreDataGetByLocationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D511AF24CE80005FEA3 /* XMMCoreDataGetByLocationItem.m */; };
-		88DA7DAD1AF24CE80005FEA3 /* XMMCoreDataMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D531AF24CE80005FEA3 /* XMMCoreDataMenuItem.m */; };
-		88DA7DAE1AF24CE80005FEA3 /* XMMCoreDataStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D551AF24CE80005FEA3 /* XMMCoreDataStyle.m */; };
-		88DA7DAF1AF24CE80005FEA3 /* DetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D591AF24CE80005FEA3 /* DetailTableViewController.m */; };
-		88DA7DB01AF24CE80005FEA3 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D5B1AF24CE80005FEA3 /* GTMNSString+HTML.m */; };
-		88DA7DB11AF24CE80005FEA3 /* MWFeedInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D5D1AF24CE80005FEA3 /* MWFeedInfo.m */; };
-		88DA7DB21AF24CE80005FEA3 /* MWFeedItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D5F1AF24CE80005FEA3 /* MWFeedItem.m */; };
-		88DA7DB31AF24CE80005FEA3 /* MWFeedParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D611AF24CE80005FEA3 /* MWFeedParser.m */; };
-		88DA7DB41AF24CE80005FEA3 /* MWFeedParserAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D641AF24CE80005FEA3 /* MWFeedParserAppDelegate.m */; };
-		88DA7DB51AF24CE80005FEA3 /* NSDate+InternetDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D661AF24CE80005FEA3 /* NSDate+InternetDateTime.m */; };
-		88DA7DB61AF24CE80005FEA3 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D681AF24CE80005FEA3 /* NSString+HTML.m */; };
-		88DA7DB71AF24CE80005FEA3 /* NSString+XMLEntities.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D6A1AF24CE80005FEA3 /* NSString+XMLEntities.m */; };
-		88DA7DB81AF24CE80005FEA3 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D6C1AF24CE80005FEA3 /* RootViewController.m */; };
-		88DA7DB91AF24CE80005FEA3 /* XMMResponseClosestSpot.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D6F1AF24CE80005FEA3 /* XMMResponseClosestSpot.m */; };
-		88DA7DBA1AF24CE80005FEA3 /* XMMResponseContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D711AF24CE80005FEA3 /* XMMResponseContent.m */; };
-		88DA7DBB1AF24CE80005FEA3 /* XMMResponseContentBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D731AF24CE80005FEA3 /* XMMResponseContentBlock.m */; };
-		88DA7DBC1AF24CE80005FEA3 /* XMMResponseContentBlockType0.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D751AF24CE80005FEA3 /* XMMResponseContentBlockType0.m */; };
-		88DA7DBD1AF24CE80005FEA3 /* XMMResponseContentBlockType1.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D771AF24CE80005FEA3 /* XMMResponseContentBlockType1.m */; };
-		88DA7DBE1AF24CE80005FEA3 /* XMMResponseContentBlockType2.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D791AF24CE80005FEA3 /* XMMResponseContentBlockType2.m */; };
-		88DA7DBF1AF24CE80005FEA3 /* XMMResponseContentBlockType3.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D7B1AF24CE80005FEA3 /* XMMResponseContentBlockType3.m */; };
-		88DA7DC01AF24CE80005FEA3 /* XMMResponseContentBlockType4.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D7D1AF24CE80005FEA3 /* XMMResponseContentBlockType4.m */; };
-		88DA7DC11AF24CE80005FEA3 /* XMMResponseContentBlockType5.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D7F1AF24CE80005FEA3 /* XMMResponseContentBlockType5.m */; };
-		88DA7DC21AF24CE80005FEA3 /* XMMResponseContentBlockType6.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D811AF24CE80005FEA3 /* XMMResponseContentBlockType6.m */; };
-		88DA7DC31AF24CE80005FEA3 /* XMMResponseContentBlockType7.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D831AF24CE80005FEA3 /* XMMResponseContentBlockType7.m */; };
-		88DA7DC41AF24CE80005FEA3 /* XMMResponseContentBlockType8.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D851AF24CE80005FEA3 /* XMMResponseContentBlockType8.m */; };
-		88DA7DC51AF24CE80005FEA3 /* XMMResponseContentBlockType9.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D871AF24CE80005FEA3 /* XMMResponseContentBlockType9.m */; };
-		88DA7DC61AF24CE80005FEA3 /* XMMResponseContentList.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D891AF24CE80005FEA3 /* XMMResponseContentList.m */; };
-		88DA7DC71AF24CE80005FEA3 /* XMMResponseGetById.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D8B1AF24CE80005FEA3 /* XMMResponseGetById.m */; };
-		88DA7DC81AF24CE80005FEA3 /* XMMResponseGetByLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D8D1AF24CE80005FEA3 /* XMMResponseGetByLocation.m */; };
-		88DA7DC91AF24CE80005FEA3 /* XMMResponseGetByLocationIdentifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D8F1AF24CE80005FEA3 /* XMMResponseGetByLocationIdentifier.m */; };
-		88DA7DCA1AF24CE80005FEA3 /* XMMResponseGetByLocationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D911AF24CE80005FEA3 /* XMMResponseGetByLocationItem.m */; };
-		88DA7DCB1AF24CE80005FEA3 /* XMMResponseGetSpotMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D931AF24CE80005FEA3 /* XMMResponseGetSpotMap.m */; };
-		88DA7DCC1AF24CE80005FEA3 /* XMMResponseGetSpotMapItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D951AF24CE80005FEA3 /* XMMResponseGetSpotMapItem.m */; };
-		88DA7DCD1AF24CE80005FEA3 /* XMMResponseMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D971AF24CE80005FEA3 /* XMMResponseMenuItem.m */; };
-		88DA7DCE1AF24CE80005FEA3 /* XMMResponseStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D991AF24CE80005FEA3 /* XMMResponseStyle.m */; };
-		88DA7DCF1AF24CE80005FEA3 /* XMMRSSEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D9C1AF24CE80005FEA3 /* XMMRSSEntry.m */; };
-		88DA7DD01AF24CE80005FEA3 /* XMMEnduserApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DA7D9E1AF24CE80005FEA3 /* XMMEnduserApi.m */; };
 		88E2FAEA1AF74D5800917AFB /* UIImage+animatedGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E2FAE91AF74D5800917AFB /* UIImage+animatedGIF.m */; };
 /* End PBXBuildFile section */
 
@@ -254,106 +204,6 @@
 		88BA020D1AA859F90091A43C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88BA020E1AA859F90091A43C /* xamoom_pingeborg_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = xamoom_pingeborg_iosTests.m; sourceTree = "<group>"; };
 		88CBAEE01AA9EC9E000E480A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		88DA7D361AF24CE80005FEA3 /* _XMMCoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _XMMCoreData.h; sourceTree = "<group>"; };
-		88DA7D371AF24CE80005FEA3 /* _XMMCoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _XMMCoreData.m; sourceTree = "<group>"; };
-		88DA7D381AF24CE80005FEA3 /* _XMMCoreDataContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _XMMCoreDataContent.h; sourceTree = "<group>"; };
-		88DA7D391AF24CE80005FEA3 /* _XMMCoreDataContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _XMMCoreDataContent.m; sourceTree = "<group>"; };
-		88DA7D3A1AF24CE80005FEA3 /* _XMMCoreDataContentBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _XMMCoreDataContentBlocks.h; sourceTree = "<group>"; };
-		88DA7D3B1AF24CE80005FEA3 /* _XMMCoreDataContentBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _XMMCoreDataContentBlocks.m; sourceTree = "<group>"; };
-		88DA7D3C1AF24CE80005FEA3 /* _XMMCoreDataGetById.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _XMMCoreDataGetById.h; sourceTree = "<group>"; };
-		88DA7D3D1AF24CE80005FEA3 /* _XMMCoreDataGetById.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _XMMCoreDataGetById.m; sourceTree = "<group>"; };
-		88DA7D3E1AF24CE80005FEA3 /* _XMMCoreDataGetByLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _XMMCoreDataGetByLocation.h; sourceTree = "<group>"; };
-		88DA7D3F1AF24CE80005FEA3 /* _XMMCoreDataGetByLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _XMMCoreDataGetByLocation.m; sourceTree = "<group>"; };
-		88DA7D401AF24CE80005FEA3 /* _XMMCoreDataGetByLocationItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _XMMCoreDataGetByLocationItem.h; sourceTree = "<group>"; };
-		88DA7D411AF24CE80005FEA3 /* _XMMCoreDataGetByLocationItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _XMMCoreDataGetByLocationItem.m; sourceTree = "<group>"; };
-		88DA7D421AF24CE80005FEA3 /* _XMMCoreDataMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _XMMCoreDataMenuItem.h; sourceTree = "<group>"; };
-		88DA7D431AF24CE80005FEA3 /* _XMMCoreDataMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _XMMCoreDataMenuItem.m; sourceTree = "<group>"; };
-		88DA7D441AF24CE80005FEA3 /* _XMMCoreDataStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _XMMCoreDataStyle.h; sourceTree = "<group>"; };
-		88DA7D451AF24CE80005FEA3 /* _XMMCoreDataStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _XMMCoreDataStyle.m; sourceTree = "<group>"; };
-		88DA7D471AF24CE80005FEA3 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		88DA7D481AF24CE80005FEA3 /* XMMCoreDataContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMCoreDataContent.h; sourceTree = "<group>"; };
-		88DA7D491AF24CE80005FEA3 /* XMMCoreDataContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMCoreDataContent.m; sourceTree = "<group>"; };
-		88DA7D4A1AF24CE80005FEA3 /* XMMCoreDataContentBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMCoreDataContentBlocks.h; sourceTree = "<group>"; };
-		88DA7D4B1AF24CE80005FEA3 /* XMMCoreDataContentBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMCoreDataContentBlocks.m; sourceTree = "<group>"; };
-		88DA7D4C1AF24CE80005FEA3 /* XMMCoreDataGetById.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMCoreDataGetById.h; sourceTree = "<group>"; };
-		88DA7D4D1AF24CE80005FEA3 /* XMMCoreDataGetById.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMCoreDataGetById.m; sourceTree = "<group>"; };
-		88DA7D4E1AF24CE80005FEA3 /* XMMCoreDataGetByLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMCoreDataGetByLocation.h; sourceTree = "<group>"; };
-		88DA7D4F1AF24CE80005FEA3 /* XMMCoreDataGetByLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMCoreDataGetByLocation.m; sourceTree = "<group>"; };
-		88DA7D501AF24CE80005FEA3 /* XMMCoreDataGetByLocationItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMCoreDataGetByLocationItem.h; sourceTree = "<group>"; };
-		88DA7D511AF24CE80005FEA3 /* XMMCoreDataGetByLocationItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMCoreDataGetByLocationItem.m; sourceTree = "<group>"; };
-		88DA7D521AF24CE80005FEA3 /* XMMCoreDataMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMCoreDataMenuItem.h; sourceTree = "<group>"; };
-		88DA7D531AF24CE80005FEA3 /* XMMCoreDataMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMCoreDataMenuItem.m; sourceTree = "<group>"; };
-		88DA7D541AF24CE80005FEA3 /* XMMCoreDataStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMCoreDataStyle.h; sourceTree = "<group>"; };
-		88DA7D551AF24CE80005FEA3 /* XMMCoreDataStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMCoreDataStyle.m; sourceTree = "<group>"; };
-		88DA7D581AF24CE80005FEA3 /* DetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailTableViewController.h; sourceTree = "<group>"; };
-		88DA7D591AF24CE80005FEA3 /* DetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailTableViewController.m; sourceTree = "<group>"; };
-		88DA7D5A1AF24CE80005FEA3 /* GTMNSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GTMNSString+HTML.h"; sourceTree = "<group>"; };
-		88DA7D5B1AF24CE80005FEA3 /* GTMNSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GTMNSString+HTML.m"; sourceTree = "<group>"; };
-		88DA7D5C1AF24CE80005FEA3 /* MWFeedInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWFeedInfo.h; sourceTree = "<group>"; };
-		88DA7D5D1AF24CE80005FEA3 /* MWFeedInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWFeedInfo.m; sourceTree = "<group>"; };
-		88DA7D5E1AF24CE80005FEA3 /* MWFeedItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWFeedItem.h; sourceTree = "<group>"; };
-		88DA7D5F1AF24CE80005FEA3 /* MWFeedItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWFeedItem.m; sourceTree = "<group>"; };
-		88DA7D601AF24CE80005FEA3 /* MWFeedParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWFeedParser.h; sourceTree = "<group>"; };
-		88DA7D611AF24CE80005FEA3 /* MWFeedParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWFeedParser.m; sourceTree = "<group>"; };
-		88DA7D621AF24CE80005FEA3 /* MWFeedParser_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWFeedParser_Private.h; sourceTree = "<group>"; };
-		88DA7D631AF24CE80005FEA3 /* MWFeedParserAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWFeedParserAppDelegate.h; sourceTree = "<group>"; };
-		88DA7D641AF24CE80005FEA3 /* MWFeedParserAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWFeedParserAppDelegate.m; sourceTree = "<group>"; };
-		88DA7D651AF24CE80005FEA3 /* NSDate+InternetDateTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+InternetDateTime.h"; sourceTree = "<group>"; };
-		88DA7D661AF24CE80005FEA3 /* NSDate+InternetDateTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+InternetDateTime.m"; sourceTree = "<group>"; };
-		88DA7D671AF24CE80005FEA3 /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
-		88DA7D681AF24CE80005FEA3 /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
-		88DA7D691AF24CE80005FEA3 /* NSString+XMLEntities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+XMLEntities.h"; sourceTree = "<group>"; };
-		88DA7D6A1AF24CE80005FEA3 /* NSString+XMLEntities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+XMLEntities.m"; sourceTree = "<group>"; };
-		88DA7D6B1AF24CE80005FEA3 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
-		88DA7D6C1AF24CE80005FEA3 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		88DA7D6E1AF24CE80005FEA3 /* XMMResponseClosestSpot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMResponseClosestSpot.h; sourceTree = "<group>"; };
-		88DA7D6F1AF24CE80005FEA3 /* XMMResponseClosestSpot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMResponseClosestSpot.m; sourceTree = "<group>"; };
-		88DA7D701AF24CE80005FEA3 /* XMMResponseContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMResponseContent.h; sourceTree = "<group>"; };
-		88DA7D711AF24CE80005FEA3 /* XMMResponseContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMResponseContent.m; sourceTree = "<group>"; };
-		88DA7D721AF24CE80005FEA3 /* XMMResponseContentBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMResponseContentBlock.h; sourceTree = "<group>"; };
-		88DA7D731AF24CE80005FEA3 /* XMMResponseContentBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMResponseContentBlock.m; sourceTree = "<group>"; };
-		88DA7D741AF24CE80005FEA3 /* XMMResponseContentBlockType0.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMResponseContentBlockType0.h; sourceTree = "<group>"; };
-		88DA7D751AF24CE80005FEA3 /* XMMResponseContentBlockType0.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMResponseContentBlockType0.m; sourceTree = "<group>"; };
-		88DA7D761AF24CE80005FEA3 /* XMMResponseContentBlockType1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMResponseContentBlockType1.h; sourceTree = "<group>"; };
-		88DA7D771AF24CE80005FEA3 /* XMMResponseContentBlockType1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMResponseContentBlockType1.m; sourceTree = "<group>"; };
-		88DA7D781AF24CE80005FEA3 /* XMMResponseContentBlockType2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMResponseContentBlockType2.h; sourceTree = "<group>"; };
-		88DA7D791AF24CE80005FEA3 /* XMMResponseContentBlockType2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMResponseContentBlockType2.m; sourceTree = "<group>"; };
-		88DA7D7A1AF24CE80005FEA3 /* XMMResponseContentBlockType3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMResponseContentBlockType3.h; sourceTree = "<group>"; };
-		88DA7D7B1AF24CE80005FEA3 /* XMMResponseContentBlockType3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMResponseContentBlockType3.m; sourceTree = "<group>"; };
-		88DA7D7C1AF24CE80005FEA3 /* XMMResponseContentBlockType4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMResponseContentBlockType4.h; sourceTree = "<group>"; };
-		88DA7D7D1AF24CE80005FEA3 /* XMMResponseContentBlockType4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMResponseContentBlockType4.m; sourceTree = "<group>"; };
-		88DA7D7E1AF24CE80005FEA3 /* XMMResponseContentBlockType5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMResponseContentBlockType5.h; sourceTree = "<group>"; };
-		88DA7D7F1AF24CE80005FEA3 /* XMMResponseContentBlockType5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMResponseContentBlockType5.m; sourceTree = "<group>"; };
-		88DA7D801AF24CE80005FEA3 /* XMMResponseContentBlockType6.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMResponseContentBlockType6.h; sourceTree = "<group>"; };
-		88DA7D811AF24CE80005FEA3 /* XMMResponseContentBlockType6.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMResponseContentBlockType6.m; sourceTree = "<group>"; };
-		88DA7D821AF24CE80005FEA3 /* XMMResponseContentBlockType7.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMResponseContentBlockType7.h; sourceTree = "<group>"; };
-		88DA7D831AF24CE80005FEA3 /* XMMResponseContentBlockType7.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMResponseContentBlockType7.m; sourceTree = "<group>"; };
-		88DA7D841AF24CE80005FEA3 /* XMMResponseContentBlockType8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMResponseContentBlockType8.h; sourceTree = "<group>"; };
-		88DA7D851AF24CE80005FEA3 /* XMMResponseContentBlockType8.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMResponseContentBlockType8.m; sourceTree = "<group>"; };
-		88DA7D861AF24CE80005FEA3 /* XMMResponseContentBlockType9.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMResponseContentBlockType9.h; sourceTree = "<group>"; };
-		88DA7D871AF24CE80005FEA3 /* XMMResponseContentBlockType9.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMResponseContentBlockType9.m; sourceTree = "<group>"; };
-		88DA7D881AF24CE80005FEA3 /* XMMResponseContentList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMResponseContentList.h; sourceTree = "<group>"; };
-		88DA7D891AF24CE80005FEA3 /* XMMResponseContentList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMResponseContentList.m; sourceTree = "<group>"; };
-		88DA7D8A1AF24CE80005FEA3 /* XMMResponseGetById.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMResponseGetById.h; sourceTree = "<group>"; };
-		88DA7D8B1AF24CE80005FEA3 /* XMMResponseGetById.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMResponseGetById.m; sourceTree = "<group>"; };
-		88DA7D8C1AF24CE80005FEA3 /* XMMResponseGetByLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMResponseGetByLocation.h; sourceTree = "<group>"; };
-		88DA7D8D1AF24CE80005FEA3 /* XMMResponseGetByLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMResponseGetByLocation.m; sourceTree = "<group>"; };
-		88DA7D8E1AF24CE80005FEA3 /* XMMResponseGetByLocationIdentifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMResponseGetByLocationIdentifier.h; sourceTree = "<group>"; };
-		88DA7D8F1AF24CE80005FEA3 /* XMMResponseGetByLocationIdentifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMResponseGetByLocationIdentifier.m; sourceTree = "<group>"; };
-		88DA7D901AF24CE80005FEA3 /* XMMResponseGetByLocationItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMResponseGetByLocationItem.h; sourceTree = "<group>"; };
-		88DA7D911AF24CE80005FEA3 /* XMMResponseGetByLocationItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMResponseGetByLocationItem.m; sourceTree = "<group>"; };
-		88DA7D921AF24CE80005FEA3 /* XMMResponseGetSpotMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMResponseGetSpotMap.h; sourceTree = "<group>"; };
-		88DA7D931AF24CE80005FEA3 /* XMMResponseGetSpotMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMResponseGetSpotMap.m; sourceTree = "<group>"; };
-		88DA7D941AF24CE80005FEA3 /* XMMResponseGetSpotMapItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMResponseGetSpotMapItem.h; sourceTree = "<group>"; };
-		88DA7D951AF24CE80005FEA3 /* XMMResponseGetSpotMapItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMResponseGetSpotMapItem.m; sourceTree = "<group>"; };
-		88DA7D961AF24CE80005FEA3 /* XMMResponseMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMResponseMenuItem.h; sourceTree = "<group>"; };
-		88DA7D971AF24CE80005FEA3 /* XMMResponseMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMResponseMenuItem.m; sourceTree = "<group>"; };
-		88DA7D981AF24CE80005FEA3 /* XMMResponseStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMResponseStyle.h; sourceTree = "<group>"; };
-		88DA7D991AF24CE80005FEA3 /* XMMResponseStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMResponseStyle.m; sourceTree = "<group>"; };
-		88DA7D9B1AF24CE80005FEA3 /* XMMRSSEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMRSSEntry.h; sourceTree = "<group>"; };
-		88DA7D9C1AF24CE80005FEA3 /* XMMRSSEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMRSSEntry.m; sourceTree = "<group>"; };
-		88DA7D9D1AF24CE80005FEA3 /* XMMEnduserApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMEnduserApi.h; sourceTree = "<group>"; };
-		88DA7D9E1AF24CE80005FEA3 /* XMMEnduserApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMEnduserApi.m; sourceTree = "<group>"; };
 		88E2FAE81AF74D5800917AFB /* UIImage+animatedGIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+animatedGIF.h"; sourceTree = "<group>"; };
 		88E2FAE91AF74D5800917AFB /* UIImage+animatedGIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+animatedGIF.m"; sourceTree = "<group>"; };
 		C530CDEFFEDDFCABBEC918B0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -521,7 +371,6 @@
 		88BA01E61AA859F90091A43C = {
 			isa = PBXGroup;
 			children = (
-				88DA7D341AF24CE80005FEA3 /* xamoom-ios-sdk */,
 				88BA01F11AA859F90091A43C /* xamoom-pingeborg-ios */,
 				88BA020B1AA859F90091A43C /* xamoom-pingeborg-iosTests */,
 				88BA01F01AA859F90091A43C /* Products */,
@@ -586,154 +435,6 @@
 				88BA020D1AA859F90091A43C /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		88DA7D341AF24CE80005FEA3 /* xamoom-ios-sdk */ = {
-			isa = PBXGroup;
-			children = (
-				88DA7D351AF24CE80005FEA3 /* coredata */,
-				88DA7D561AF24CE80005FEA3 /* lib */,
-				88DA7D6D1AF24CE80005FEA3 /* mapping */,
-				88DA7D9A1AF24CE80005FEA3 /* RSS */,
-				88DA7D9D1AF24CE80005FEA3 /* XMMEnduserApi.h */,
-				88DA7D9E1AF24CE80005FEA3 /* XMMEnduserApi.m */,
-			);
-			name = "xamoom-ios-sdk";
-			path = "../../xamoom-ios-sdk/src";
-			sourceTree = "<group>";
-		};
-		88DA7D351AF24CE80005FEA3 /* coredata */ = {
-			isa = PBXGroup;
-			children = (
-				88DA7D361AF24CE80005FEA3 /* _XMMCoreData.h */,
-				88DA7D371AF24CE80005FEA3 /* _XMMCoreData.m */,
-				88DA7D381AF24CE80005FEA3 /* _XMMCoreDataContent.h */,
-				88DA7D391AF24CE80005FEA3 /* _XMMCoreDataContent.m */,
-				88DA7D3A1AF24CE80005FEA3 /* _XMMCoreDataContentBlocks.h */,
-				88DA7D3B1AF24CE80005FEA3 /* _XMMCoreDataContentBlocks.m */,
-				88DA7D3C1AF24CE80005FEA3 /* _XMMCoreDataGetById.h */,
-				88DA7D3D1AF24CE80005FEA3 /* _XMMCoreDataGetById.m */,
-				88DA7D3E1AF24CE80005FEA3 /* _XMMCoreDataGetByLocation.h */,
-				88DA7D3F1AF24CE80005FEA3 /* _XMMCoreDataGetByLocation.m */,
-				88DA7D401AF24CE80005FEA3 /* _XMMCoreDataGetByLocationItem.h */,
-				88DA7D411AF24CE80005FEA3 /* _XMMCoreDataGetByLocationItem.m */,
-				88DA7D421AF24CE80005FEA3 /* _XMMCoreDataMenuItem.h */,
-				88DA7D431AF24CE80005FEA3 /* _XMMCoreDataMenuItem.m */,
-				88DA7D441AF24CE80005FEA3 /* _XMMCoreDataStyle.h */,
-				88DA7D451AF24CE80005FEA3 /* _XMMCoreDataStyle.m */,
-				88DA7D461AF24CE80005FEA3 /* Model.xcdatamodeld */,
-				88DA7D481AF24CE80005FEA3 /* XMMCoreDataContent.h */,
-				88DA7D491AF24CE80005FEA3 /* XMMCoreDataContent.m */,
-				88DA7D4A1AF24CE80005FEA3 /* XMMCoreDataContentBlocks.h */,
-				88DA7D4B1AF24CE80005FEA3 /* XMMCoreDataContentBlocks.m */,
-				88DA7D4C1AF24CE80005FEA3 /* XMMCoreDataGetById.h */,
-				88DA7D4D1AF24CE80005FEA3 /* XMMCoreDataGetById.m */,
-				88DA7D4E1AF24CE80005FEA3 /* XMMCoreDataGetByLocation.h */,
-				88DA7D4F1AF24CE80005FEA3 /* XMMCoreDataGetByLocation.m */,
-				88DA7D501AF24CE80005FEA3 /* XMMCoreDataGetByLocationItem.h */,
-				88DA7D511AF24CE80005FEA3 /* XMMCoreDataGetByLocationItem.m */,
-				88DA7D521AF24CE80005FEA3 /* XMMCoreDataMenuItem.h */,
-				88DA7D531AF24CE80005FEA3 /* XMMCoreDataMenuItem.m */,
-				88DA7D541AF24CE80005FEA3 /* XMMCoreDataStyle.h */,
-				88DA7D551AF24CE80005FEA3 /* XMMCoreDataStyle.m */,
-			);
-			path = coredata;
-			sourceTree = "<group>";
-		};
-		88DA7D561AF24CE80005FEA3 /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				88DA7D571AF24CE80005FEA3 /* MWFeedParser */,
-			);
-			path = lib;
-			sourceTree = "<group>";
-		};
-		88DA7D571AF24CE80005FEA3 /* MWFeedParser */ = {
-			isa = PBXGroup;
-			children = (
-				88DA7D581AF24CE80005FEA3 /* DetailTableViewController.h */,
-				88DA7D591AF24CE80005FEA3 /* DetailTableViewController.m */,
-				88DA7D5A1AF24CE80005FEA3 /* GTMNSString+HTML.h */,
-				88DA7D5B1AF24CE80005FEA3 /* GTMNSString+HTML.m */,
-				88DA7D5C1AF24CE80005FEA3 /* MWFeedInfo.h */,
-				88DA7D5D1AF24CE80005FEA3 /* MWFeedInfo.m */,
-				88DA7D5E1AF24CE80005FEA3 /* MWFeedItem.h */,
-				88DA7D5F1AF24CE80005FEA3 /* MWFeedItem.m */,
-				88DA7D601AF24CE80005FEA3 /* MWFeedParser.h */,
-				88DA7D611AF24CE80005FEA3 /* MWFeedParser.m */,
-				88DA7D621AF24CE80005FEA3 /* MWFeedParser_Private.h */,
-				88DA7D631AF24CE80005FEA3 /* MWFeedParserAppDelegate.h */,
-				88DA7D641AF24CE80005FEA3 /* MWFeedParserAppDelegate.m */,
-				88DA7D651AF24CE80005FEA3 /* NSDate+InternetDateTime.h */,
-				88DA7D661AF24CE80005FEA3 /* NSDate+InternetDateTime.m */,
-				88DA7D671AF24CE80005FEA3 /* NSString+HTML.h */,
-				88DA7D681AF24CE80005FEA3 /* NSString+HTML.m */,
-				88DA7D691AF24CE80005FEA3 /* NSString+XMLEntities.h */,
-				88DA7D6A1AF24CE80005FEA3 /* NSString+XMLEntities.m */,
-				88DA7D6B1AF24CE80005FEA3 /* RootViewController.h */,
-				88DA7D6C1AF24CE80005FEA3 /* RootViewController.m */,
-			);
-			path = MWFeedParser;
-			sourceTree = "<group>";
-		};
-		88DA7D6D1AF24CE80005FEA3 /* mapping */ = {
-			isa = PBXGroup;
-			children = (
-				88DA7D6E1AF24CE80005FEA3 /* XMMResponseClosestSpot.h */,
-				88DA7D6F1AF24CE80005FEA3 /* XMMResponseClosestSpot.m */,
-				88DA7D701AF24CE80005FEA3 /* XMMResponseContent.h */,
-				88DA7D711AF24CE80005FEA3 /* XMMResponseContent.m */,
-				88DA7D721AF24CE80005FEA3 /* XMMResponseContentBlock.h */,
-				88DA7D731AF24CE80005FEA3 /* XMMResponseContentBlock.m */,
-				88DA7D741AF24CE80005FEA3 /* XMMResponseContentBlockType0.h */,
-				88DA7D751AF24CE80005FEA3 /* XMMResponseContentBlockType0.m */,
-				88DA7D761AF24CE80005FEA3 /* XMMResponseContentBlockType1.h */,
-				88DA7D771AF24CE80005FEA3 /* XMMResponseContentBlockType1.m */,
-				88DA7D781AF24CE80005FEA3 /* XMMResponseContentBlockType2.h */,
-				88DA7D791AF24CE80005FEA3 /* XMMResponseContentBlockType2.m */,
-				88DA7D7A1AF24CE80005FEA3 /* XMMResponseContentBlockType3.h */,
-				88DA7D7B1AF24CE80005FEA3 /* XMMResponseContentBlockType3.m */,
-				88DA7D7C1AF24CE80005FEA3 /* XMMResponseContentBlockType4.h */,
-				88DA7D7D1AF24CE80005FEA3 /* XMMResponseContentBlockType4.m */,
-				88DA7D7E1AF24CE80005FEA3 /* XMMResponseContentBlockType5.h */,
-				88DA7D7F1AF24CE80005FEA3 /* XMMResponseContentBlockType5.m */,
-				88DA7D801AF24CE80005FEA3 /* XMMResponseContentBlockType6.h */,
-				88DA7D811AF24CE80005FEA3 /* XMMResponseContentBlockType6.m */,
-				88DA7D821AF24CE80005FEA3 /* XMMResponseContentBlockType7.h */,
-				88DA7D831AF24CE80005FEA3 /* XMMResponseContentBlockType7.m */,
-				88DA7D841AF24CE80005FEA3 /* XMMResponseContentBlockType8.h */,
-				88DA7D851AF24CE80005FEA3 /* XMMResponseContentBlockType8.m */,
-				88DA7D861AF24CE80005FEA3 /* XMMResponseContentBlockType9.h */,
-				88DA7D871AF24CE80005FEA3 /* XMMResponseContentBlockType9.m */,
-				88DA7D881AF24CE80005FEA3 /* XMMResponseContentList.h */,
-				88DA7D891AF24CE80005FEA3 /* XMMResponseContentList.m */,
-				88DA7D8A1AF24CE80005FEA3 /* XMMResponseGetById.h */,
-				88DA7D8B1AF24CE80005FEA3 /* XMMResponseGetById.m */,
-				88DA7D8C1AF24CE80005FEA3 /* XMMResponseGetByLocation.h */,
-				88DA7D8D1AF24CE80005FEA3 /* XMMResponseGetByLocation.m */,
-				88DA7D8E1AF24CE80005FEA3 /* XMMResponseGetByLocationIdentifier.h */,
-				88DA7D8F1AF24CE80005FEA3 /* XMMResponseGetByLocationIdentifier.m */,
-				88DA7D901AF24CE80005FEA3 /* XMMResponseGetByLocationItem.h */,
-				88DA7D911AF24CE80005FEA3 /* XMMResponseGetByLocationItem.m */,
-				88DA7D921AF24CE80005FEA3 /* XMMResponseGetSpotMap.h */,
-				88DA7D931AF24CE80005FEA3 /* XMMResponseGetSpotMap.m */,
-				88DA7D941AF24CE80005FEA3 /* XMMResponseGetSpotMapItem.h */,
-				88DA7D951AF24CE80005FEA3 /* XMMResponseGetSpotMapItem.m */,
-				88DA7D961AF24CE80005FEA3 /* XMMResponseMenuItem.h */,
-				88DA7D971AF24CE80005FEA3 /* XMMResponseMenuItem.m */,
-				88DA7D981AF24CE80005FEA3 /* XMMResponseStyle.h */,
-				88DA7D991AF24CE80005FEA3 /* XMMResponseStyle.m */,
-			);
-			path = mapping;
-			sourceTree = "<group>";
-		};
-		88DA7D9A1AF24CE80005FEA3 /* RSS */ = {
-			isa = PBXGroup;
-			children = (
-				88DA7D9B1AF24CE80005FEA3 /* XMMRSSEntry.h */,
-				88DA7D9C1AF24CE80005FEA3 /* XMMRSSEntry.m */,
-			);
-			path = RSS;
 			sourceTree = "<group>";
 		};
 		B091DC0989CBE4B0B40B108B /* Frameworks */ = {
@@ -1009,80 +710,30 @@
 				881457F61B01E8620024E6F4 /* SpotMapBlockTableViewCell.m in Sources */,
 				881457E91B01E8620024E6F4 /* ContentBlockTableViewCell.m in Sources */,
 				881457EF1B01E8620024E6F4 /* ImageBlockTableViewCell.m in Sources */,
-				88DA7DBC1AF24CE80005FEA3 /* XMMResponseContentBlockType0.m in Sources */,
-				88DA7DAF1AF24CE80005FEA3 /* DetailTableViewController.m in Sources */,
-				88DA7DB01AF24CE80005FEA3 /* GTMNSString+HTML.m in Sources */,
-				88DA7DB11AF24CE80005FEA3 /* MWFeedInfo.m in Sources */,
-				88DA7DB81AF24CE80005FEA3 /* RootViewController.m in Sources */,
 				8814585C1B01EE8B0024E6F4 /* FeedItemCell.m in Sources */,
 				8814585F1B01EE8B0024E6F4 /* PingeborgAnnotationView.m in Sources */,
-				88DA7DC81AF24CE80005FEA3 /* XMMResponseGetByLocation.m in Sources */,
 				881457ED1B01E8620024E6F4 /* EbookBlockTableViewCell.m in Sources */,
-				88DA7DA11AF24CE80005FEA3 /* _XMMCoreDataContentBlocks.m in Sources */,
 				88E2FAEA1AF74D5800917AFB /* UIImage+animatedGIF.m in Sources */,
-				88DA7DA41AF24CE80005FEA3 /* _XMMCoreDataGetByLocationItem.m in Sources */,
-				88DA7DA81AF24CE80005FEA3 /* XMMCoreDataContent.m in Sources */,
-				88DA7DB51AF24CE80005FEA3 /* NSDate+InternetDateTime.m in Sources */,
 				881457E71B01E8620024E6F4 /* AudioBlockTableViewCell.m in Sources */,
-				88DA7DB31AF24CE80005FEA3 /* MWFeedParser.m in Sources */,
 				88BA01F81AA859F90091A43C /* AppDelegate.m in Sources */,
-				88DA7DC11AF24CE80005FEA3 /* XMMResponseContentBlockType5.m in Sources */,
-				88DA7DCE1AF24CE80005FEA3 /* XMMResponseStyle.m in Sources */,
-				88DA7DC71AF24CE80005FEA3 /* XMMResponseGetById.m in Sources */,
-				88DA7DCD1AF24CE80005FEA3 /* XMMResponseMenuItem.m in Sources */,
-				88DA7DC51AF24CE80005FEA3 /* XMMResponseContentBlockType9.m in Sources */,
-				88DA7DBB1AF24CE80005FEA3 /* XMMResponseContentBlock.m in Sources */,
-				88DA7DAA1AF24CE80005FEA3 /* XMMCoreDataGetById.m in Sources */,
-				88DA7DAB1AF24CE80005FEA3 /* XMMCoreDataGetByLocation.m in Sources */,
 				881458561B01EE8B0024E6F4 /* AboutViewController.m in Sources */,
-				88DA7DC31AF24CE80005FEA3 /* XMMResponseContentBlockType7.m in Sources */,
 				88052D7B1AE103C300AB433D /* Globals.m in Sources */,
 				881457FC1B01E8620024E6F4 /* XMMContentBlocks.m in Sources */,
-				88DA7DBD1AF24CE80005FEA3 /* XMMResponseContentBlockType1.m in Sources */,
-				88DA7DB61AF24CE80005FEA3 /* NSString+HTML.m in Sources */,
 				881458591B01EE8B0024E6F4 /* MapkitViewController.m in Sources */,
-				88DA7DAE1AF24CE80005FEA3 /* XMMCoreDataStyle.m in Sources */,
-				88DA7DCA1AF24CE80005FEA3 /* XMMResponseGetByLocationItem.m in Sources */,
-				88DA7DCF1AF24CE80005FEA3 /* XMMRSSEntry.m in Sources */,
 				881457F81B01E8620024E6F4 /* TextBlockTableViewCell.m in Sources */,
-				88DA7D9F1AF24CE80005FEA3 /* _XMMCoreData.m in Sources */,
 				8814585A1B01EE8B0024E6F4 /* MainTabBarController.m in Sources */,
 				88BA01F51AA859F90091A43C /* main.m in Sources */,
 				881458621B01EE8B0024E6F4 /* ScanResultViewController.m in Sources */,
-				88DA7DB41AF24CE80005FEA3 /* MWFeedParserAppDelegate.m in Sources */,
 				881457FD1B01E8620024E6F4 /* XMMMusicPlayer.m in Sources */,
-				88DA7DC91AF24CE80005FEA3 /* XMMResponseGetByLocationIdentifier.m in Sources */,
-				88DA7DBE1AF24CE80005FEA3 /* XMMResponseContentBlockType2.m in Sources */,
-				88DA7DA71AF24CE80005FEA3 /* Model.xcdatamodeld in Sources */,
 				881457FA1B01E8620024E6F4 /* YoutubeBlockTableViewCell.m in Sources */,
 				881458551B01EE8B0024E6F4 /* PingebAnnotation.m in Sources */,
 				8814585B1B01EE8B0024E6F4 /* NavigationViewController.m in Sources */,
 				881458581B01EE8B0024E6F4 /* FeedTableViewController.m in Sources */,
-				88DA7DCB1AF24CE80005FEA3 /* XMMResponseGetSpotMap.m in Sources */,
-				88DA7DAD1AF24CE80005FEA3 /* XMMCoreDataMenuItem.m in Sources */,
-				88DA7DB91AF24CE80005FEA3 /* XMMResponseClosestSpot.m in Sources */,
-				88DA7DAC1AF24CE80005FEA3 /* XMMCoreDataGetByLocationItem.m in Sources */,
-				88DA7DB71AF24CE80005FEA3 /* NSString+XMLEntities.m in Sources */,
 				881458571B01EE8B0024E6F4 /* ArtistDetailViewController.m in Sources */,
-				88DA7DBF1AF24CE80005FEA3 /* XMMResponseContentBlockType3.m in Sources */,
 				881457F11B01E8620024E6F4 /* LinkBlockTableViewCell.m in Sources */,
-				88DA7DA21AF24CE80005FEA3 /* _XMMCoreDataGetById.m in Sources */,
 				881457F41B01E8620024E6F4 /* SoundcloudBlockTableViewCell.m in Sources */,
 				881458601B01EE8B0024E6F4 /* PingeborgCalloutView.m in Sources */,
-				88DA7DA91AF24CE80005FEA3 /* XMMCoreDataContentBlocks.m in Sources */,
-				88DA7DC41AF24CE80005FEA3 /* XMMResponseContentBlockType8.m in Sources */,
-				88DA7DC01AF24CE80005FEA3 /* XMMResponseContentBlockType4.m in Sources */,
-				88DA7DC21AF24CE80005FEA3 /* XMMResponseContentBlockType6.m in Sources */,
 				881457EB1B01E8620024E6F4 /* DownloadBlockTableViewCell.m in Sources */,
-				88DA7DBA1AF24CE80005FEA3 /* XMMResponseContent.m in Sources */,
-				88DA7DA51AF24CE80005FEA3 /* _XMMCoreDataMenuItem.m in Sources */,
-				88DA7DB21AF24CE80005FEA3 /* MWFeedItem.m in Sources */,
-				88DA7DD01AF24CE80005FEA3 /* XMMEnduserApi.m in Sources */,
-				88DA7DCC1AF24CE80005FEA3 /* XMMResponseGetSpotMapItem.m in Sources */,
-				88DA7DA01AF24CE80005FEA3 /* _XMMCoreDataContent.m in Sources */,
-				88DA7DA61AF24CE80005FEA3 /* _XMMCoreDataStyle.m in Sources */,
-				88DA7DA31AF24CE80005FEA3 /* _XMMCoreDataGetByLocation.m in Sources */,
-				88DA7DC61AF24CE80005FEA3 /* XMMResponseContentList.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1445,19 +1096,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		88DA7D461AF24CE80005FEA3 /* Model.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				88DA7D471AF24CE80005FEA3 /* Model.xcdatamodel */,
-			);
-			currentVersion = 88DA7D471AF24CE80005FEA3 /* Model.xcdatamodel */;
-			path = Model.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 88BA01E71AA859F90091A43C /* Project object */;
 }

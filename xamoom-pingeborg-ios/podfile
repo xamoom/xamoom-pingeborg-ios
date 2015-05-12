@@ -1,8 +1,9 @@
 source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
-pod 'RestKit', '~> 0.24'
-pod 'QRCodeReaderViewController', '~> 2.0.0'
 pod 'REMenu', '~> 1.10'
 pod 'SMCalloutView'
-pod "youtube-ios-player-helper", "~> 0.1.1"
+pod 'youtube-ios-player-helper', '~> 0.1.1'
 pod 'JGProgressHUD'
+
+#dev pods
+pod 'xamoom-ios-sdk', :path => '~/dev/xamoom-ios-sdk'
