@@ -70,8 +70,7 @@
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
   [self displayContentTitleAndImage];
-  //[self.contentBlocks displayContentBlocksById:nil byLocationIdentifier:self.result];
-  [self.hud dismiss];
+  [self.contentBlocks displayContentBlocksById:nil byLocationIdentifier:self.result withScreenWidth:self.view.frame.size.width];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -118,6 +117,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+  [self.hud dismiss];
   return (self.contentBlocks.itemsToDisplay)[indexPath.row];
 }
 

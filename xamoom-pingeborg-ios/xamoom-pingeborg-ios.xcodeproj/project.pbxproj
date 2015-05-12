@@ -46,7 +46,6 @@
 		8814585F1B01EE8B0024E6F4 /* PingeborgAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8814584F1B01EE8B0024E6F4 /* PingeborgAnnotationView.m */; };
 		881458601B01EE8B0024E6F4 /* PingeborgCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 881458511B01EE8B0024E6F4 /* PingeborgCalloutView.m */; };
 		881458611B01EE8B0024E6F4 /* PingeborgCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881458521B01EE8B0024E6F4 /* PingeborgCalloutView.xib */; };
-		881458621B01EE8B0024E6F4 /* ScanResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 881458541B01EE8B0024E6F4 /* ScanResultViewController.m */; };
 		88166D151AFCAC0B0012CBA6 /* XMMMusicPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88166D0A1AFCAC0A0012CBA6 /* XMMMusicPlayer.framework */; };
 		88166D211AFCAC0B0012CBA6 /* XMMMusicPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88166D0A1AFCAC0A0012CBA6 /* XMMMusicPlayer.framework */; };
 		88166D221AFCAC0B0012CBA6 /* XMMMusicPlayer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 88166D0A1AFCAC0A0012CBA6 /* XMMMusicPlayer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -66,6 +65,7 @@
 		88BA02031AA859F90091A43C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88BA02011AA859F90091A43C /* LaunchScreen.xib */; };
 		88BA020F1AA859F90091A43C /* xamoom_pingeborg_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA020E1AA859F90091A43C /* xamoom_pingeborg_iosTests.m */; };
 		88CBAEE11AA9EC9E000E480A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88CBAEE01AA9EC9E000E480A /* MapKit.framework */; };
+		88DB74DC1B0217DA0064EE7E /* ScanResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DB74DB1B0217DA0064EE7E /* ScanResultViewController.m */; };
 		88E2FAEA1AF74D5800917AFB /* UIImage+animatedGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E2FAE91AF74D5800917AFB /* UIImage+animatedGIF.m */; };
 /* End PBXBuildFile section */
 
@@ -179,8 +179,6 @@
 		881458501B01EE8B0024E6F4 /* PingeborgCalloutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingeborgCalloutView.h; sourceTree = "<group>"; };
 		881458511B01EE8B0024E6F4 /* PingeborgCalloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PingeborgCalloutView.m; sourceTree = "<group>"; };
 		881458521B01EE8B0024E6F4 /* PingeborgCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PingeborgCalloutView.xib; sourceTree = "<group>"; };
-		881458531B01EE8B0024E6F4 /* ScanResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanResultViewController.h; sourceTree = "<group>"; };
-		881458541B01EE8B0024E6F4 /* ScanResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanResultViewController.m; sourceTree = "<group>"; };
 		88166D0A1AFCAC0A0012CBA6 /* XMMMusicPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XMMMusicPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		88166D141AFCAC0B0012CBA6 /* XMMMusicPlayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XMMMusicPlayerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8835747F1AB1CCF40099DF4A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -204,6 +202,8 @@
 		88BA020D1AA859F90091A43C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88BA020E1AA859F90091A43C /* xamoom_pingeborg_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = xamoom_pingeborg_iosTests.m; sourceTree = "<group>"; };
 		88CBAEE01AA9EC9E000E480A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		88DB74DA1B0217DA0064EE7E /* ScanResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanResultViewController.h; sourceTree = "<group>"; };
+		88DB74DB1B0217DA0064EE7E /* ScanResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanResultViewController.m; sourceTree = "<group>"; };
 		88E2FAE81AF74D5800917AFB /* UIImage+animatedGIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+animatedGIF.h"; sourceTree = "<group>"; };
 		88E2FAE91AF74D5800917AFB /* UIImage+animatedGIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+animatedGIF.m"; sourceTree = "<group>"; };
 		C530CDEFFEDDFCABBEC918B0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -317,20 +317,22 @@
 		8814583B1B01EE8B0024E6F4 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				8814583C1B01EE8B0024E6F4 /* AboutViewController.h */,
-				8814583D1B01EE8B0024E6F4 /* AboutViewController.m */,
-				8814583E1B01EE8B0024E6F4 /* ArtistDetailViewController.h */,
-				8814583F1B01EE8B0024E6F4 /* ArtistDetailViewController.m */,
 				881458401B01EE8B0024E6F4 /* FeedTableViewController.h */,
 				881458411B01EE8B0024E6F4 /* FeedTableViewController.m */,
+				8814583E1B01EE8B0024E6F4 /* ArtistDetailViewController.h */,
+				8814583F1B01EE8B0024E6F4 /* ArtistDetailViewController.m */,
 				881458421B01EE8B0024E6F4 /* MapkitViewController.h */,
 				881458431B01EE8B0024E6F4 /* MapkitViewController.m */,
-				881458441B01EE8B0024E6F4 /* navigation */,
+				8814583C1B01EE8B0024E6F4 /* AboutViewController.h */,
+				8814583D1B01EE8B0024E6F4 /* AboutViewController.m */,
+				88DB74DA1B0217DA0064EE7E /* ScanResultViewController.h */,
+				88DB74DB1B0217DA0064EE7E /* ScanResultViewController.m */,
+				881458441B01EE8B0024E6F4 /* Navigation */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		881458441B01EE8B0024E6F4 /* navigation */ = {
+		881458441B01EE8B0024E6F4 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
 				881458451B01EE8B0024E6F4 /* MainTabBarController.h */,
@@ -338,6 +340,7 @@
 				881458471B01EE8B0024E6F4 /* NavigationViewController.h */,
 				881458481B01EE8B0024E6F4 /* NavigationViewController.m */,
 			);
+			name = Navigation;
 			path = navigation;
 			sourceTree = "<group>";
 		};
@@ -353,8 +356,6 @@
 				881458501B01EE8B0024E6F4 /* PingeborgCalloutView.h */,
 				881458511B01EE8B0024E6F4 /* PingeborgCalloutView.m */,
 				881458521B01EE8B0024E6F4 /* PingeborgCalloutView.xib */,
-				881458531B01EE8B0024E6F4 /* ScanResultViewController.h */,
-				881458541B01EE8B0024E6F4 /* ScanResultViewController.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -397,10 +398,10 @@
 				88BA01F71AA859F90091A43C /* AppDelegate.m */,
 				88052D791AE103C300AB433D /* Globals.h */,
 				88052D7A1AE103C300AB433D /* Globals.m */,
-				881457C21B01E8620024E6F4 /* ContentBlocks */,
 				881458381B01EE8B0024E6F4 /* Models */,
 				8814583B1B01EE8B0024E6F4 /* ViewControllers */,
 				881458491B01EE8B0024E6F4 /* Views */,
+				881457C21B01E8620024E6F4 /* ContentBlocks */,
 				88BA01FF1AA859F90091A43C /* Images.xcassets */,
 				88BA02011AA859F90091A43C /* LaunchScreen.xib */,
 				8860DA7B1AE78CDF00DF2239 /* SVGKit */,
@@ -708,6 +709,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				881457F61B01E8620024E6F4 /* SpotMapBlockTableViewCell.m in Sources */,
+				88DB74DC1B0217DA0064EE7E /* ScanResultViewController.m in Sources */,
 				881457E91B01E8620024E6F4 /* ContentBlockTableViewCell.m in Sources */,
 				881457EF1B01E8620024E6F4 /* ImageBlockTableViewCell.m in Sources */,
 				8814585C1B01EE8B0024E6F4 /* FeedItemCell.m in Sources */,
@@ -723,7 +725,6 @@
 				881457F81B01E8620024E6F4 /* TextBlockTableViewCell.m in Sources */,
 				8814585A1B01EE8B0024E6F4 /* MainTabBarController.m in Sources */,
 				88BA01F51AA859F90091A43C /* main.m in Sources */,
-				881458621B01EE8B0024E6F4 /* ScanResultViewController.m in Sources */,
 				881457FD1B01E8620024E6F4 /* XMMMusicPlayer.m in Sources */,
 				881457FA1B01E8620024E6F4 /* YoutubeBlockTableViewCell.m in Sources */,
 				881458551B01EE8B0024E6F4 /* PingebAnnotation.m in Sources */,

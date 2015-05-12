@@ -87,6 +87,9 @@ BOOL isFirstTime;
 - (void)didLoadDataWithLocationIdentifier:(XMMResponseGetByLocationIdentifier *)apiResult {
   [Globals addDiscoveredArtist:apiResult.content.contentId];
   result = apiResult;
+  
+  NSLog(@"Here: %@", apiResult.content.contentBlocks);
+  
   [self performSegueWithIdentifier:@"showScanResult" sender:self];
 }
 
@@ -96,7 +99,7 @@ BOOL isFirstTime;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
   if ( [[segue identifier] isEqualToString:@"showScanResult"] ) {
     ScanResultViewController *srvc = [segue destinationViewController];
-    [srvc setResult:result];
+    srvc.result = result;
   }
 }
 
