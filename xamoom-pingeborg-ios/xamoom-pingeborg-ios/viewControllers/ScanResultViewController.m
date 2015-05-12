@@ -73,6 +73,10 @@
   [self.contentBlocks displayContentBlocksById:nil byLocationIdentifier:self.result withScreenWidth:self.view.frame.size.width];
 }
 
+-(void)viewWillDisappear:(BOOL)animated {
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"pauseAllSounds" object:self];
+}
+
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
 }

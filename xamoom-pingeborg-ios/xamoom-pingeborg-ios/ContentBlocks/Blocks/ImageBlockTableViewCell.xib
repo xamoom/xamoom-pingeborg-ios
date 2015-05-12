@@ -27,20 +27,27 @@
                             <constraint firstAttribute="height" constant="370" id="RAS-ih-13T"/>
                         </constraints>
                     </imageView>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="3na-Wc-qZL">
+                        <rect key="frame" x="150" y="38" width="20" height="20"/>
+                    </activityIndicatorView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Fvj-ka-sv0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="BOn-I8-dqq"/>
                     <constraint firstItem="NfP-Ht-jrX" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="DNu-HQ-71g"/>
+                    <constraint firstItem="3na-Wc-qZL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="142" id="Err-du-34P"/>
                     <constraint firstItem="NfP-Ht-jrX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="H2W-9F-RSr"/>
                     <constraint firstItem="Fvj-ka-sv0" firstAttribute="top" secondItem="NfP-Ht-jrX" secondAttribute="bottom" constant="8" id="Mac-Sw-XsJ"/>
+                    <constraint firstItem="3na-Wc-qZL" firstAttribute="top" secondItem="NfP-Ht-jrX" secondAttribute="bottom" constant="8" id="Pps-xK-h2l"/>
                     <constraint firstItem="NfP-Ht-jrX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="RgF-Pv-5ZS"/>
                     <constraint firstItem="Fvj-ka-sv0" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="fYc-hH-4De"/>
                     <constraint firstItem="Fvj-ka-sv0" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="os1-CM-fah"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="3na-Wc-qZL" secondAttribute="trailing" constant="142" id="tpH-X5-atq"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="image" destination="Fvj-ka-sv0" id="JRJ-wL-cvq"/>
                 <outlet property="imageHeightConstraint" destination="RAS-ih-13T" id="rJ2-hJ-Iax"/>
+                <outlet property="imageLoadingIndicator" destination="3na-Wc-qZL" id="Fle-Na-nx0"/>
                 <outlet property="titleLabel" destination="NfP-Ht-jrX" id="X1m-MY-cGj"/>
             </connections>
             <point key="canvasLocation" x="280" y="447.5"/>

@@ -199,6 +199,8 @@ int const kHorizontalSpaceToSubview = 32;
   cell = nib[0];
   
   cell.titleLabel.text = contentBlock.title;
+  [cell.imageLoadingIndicator startAnimating];
+  
   
   //gif support
   if ([contentBlock.fileId containsString:@".gif"]) {
@@ -216,7 +218,8 @@ int const kHorizontalSpaceToSubview = 32;
           //bigger images will be resized und displayed full-width
           [cell.imageHeightConstraint setConstant:(self.screenWidth / imageRatio)];
         }
-
+        
+        [cell.imageLoadingIndicator stopAnimating];
         [cell.image setImage:gifImage];
         [self reloadTableView];
       });
@@ -236,6 +239,7 @@ int const kHorizontalSpaceToSubview = 32;
           [cell.imageHeightConstraint setConstant:(self.screenWidth / imageRatio)];
         }
         
+        [cell.imageLoadingIndicator stopAnimating];
         [cell.image setImage:image];
         [self reloadTableView];
       }
