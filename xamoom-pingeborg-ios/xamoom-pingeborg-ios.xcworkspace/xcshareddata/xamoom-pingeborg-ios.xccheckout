@@ -10,7 +10,7 @@
 	<string>xamoom-pingeborg-ios</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>22789F54AF91ED8EA1F419BA40368289D1103050</key>
+		<key>B68B86FC1F426C9A73E48C104854B4C23F9B8838</key>
 		<string>https://github.com/xamoom/xamoom-ios-sdk.git</string>
 		<key>B9556834361E3562FAF53130D9E5F3A8ECDAD5F2</key>
 		<string>https://github.com/xamoom/xamoom-pingeborg-ios.git</string>
@@ -19,7 +19,7 @@
 	<string>xamoom-pingeborg-ios/xamoom-pingeborg-ios.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>22789F54AF91ED8EA1F419BA40368289D1103050</key>
+		<key>B68B86FC1F426C9A73E48C104854B4C23F9B8838</key>
 		<string>../../../xamoom-ios-sdk</string>
 		<key>B9556834361E3562FAF53130D9E5F3A8ECDAD5F2</key>
 		<string>../..</string>
@@ -36,7 +36,7 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>22789F54AF91ED8EA1F419BA40368289D1103050</string>
+			<string>B68B86FC1F426C9A73E48C104854B4C23F9B8838</string>
 			<key>IDESourceControlWCCName</key>
 			<string>xamoom-ios-sdk</string>
 		</dict>
