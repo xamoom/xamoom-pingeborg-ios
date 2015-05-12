@@ -15,7 +15,6 @@
 #import "ScanResultViewController.h"
 #import "UIImage+animatedGIF.h"
 #import <JGProgressHUD/JGProgressHUD.h>
-#import <CCBottomRefreshControl/UIScrollView+BottomRefreshControl.h>
 
 extern int const kPageSize;
 

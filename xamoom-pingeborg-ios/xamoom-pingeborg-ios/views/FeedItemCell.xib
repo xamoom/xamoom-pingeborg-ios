@@ -27,7 +27,7 @@
                         <rect key="frame" x="0.0" y="103" width="482" height="27"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GggjqiyKjqlfiaSJalkfj" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4wb-79-OqP">
-                                <rect key="frame" x="12" y="0.0" width="456" height="21"/>
+                                <rect key="frame" x="12" y="2" width="456" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -35,8 +35,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="4wb-79-OqP" secondAttribute="bottom" constant="6" id="6Ax-6O-wch"/>
-                            <constraint firstItem="4wb-79-OqP" firstAttribute="top" secondItem="4MJ-4A-8g2" secondAttribute="top" id="DXP-JA-47g"/>
+                            <constraint firstAttribute="bottom" secondItem="4wb-79-OqP" secondAttribute="bottom" constant="4" id="6Ax-6O-wch"/>
+                            <constraint firstItem="4wb-79-OqP" firstAttribute="top" secondItem="4MJ-4A-8g2" secondAttribute="top" constant="2" id="DXP-JA-47g"/>
                             <constraint firstItem="4wb-79-OqP" firstAttribute="leading" secondItem="4MJ-4A-8g2" secondAttribute="leading" constant="12" id="Tpk-Td-AB3"/>
                             <constraint firstAttribute="height" constant="27" id="YY3-Rc-KZ8"/>
                             <constraint firstAttribute="trailing" secondItem="4wb-79-OqP" secondAttribute="trailing" constant="14" id="uSv-MO-4ps"/>

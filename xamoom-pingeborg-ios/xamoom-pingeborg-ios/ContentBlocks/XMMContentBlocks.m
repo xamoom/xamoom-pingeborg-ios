@@ -140,6 +140,8 @@ int const kHorizontalSpaceToSubview = 32;
   
   //set title
   cell.titleLabel.text = contentBlock.title;
+  
+  //bigger font if it is a contenttype "title"
   if ([contentBlock.contentBlockType isEqualToString:@"title"]) {
     [cell.titleLabel setFont:[UIFont systemFontOfSize:self.fontSize+6]];
   }
@@ -347,7 +349,7 @@ int const kHorizontalSpaceToSubview = 32;
   cell = nib[0];
   
   cell.titleLabel.text = contentBlock.title;
-  cell.spotMapTags = contentBlock.spotMapTag;
+  cell.spotMapTags = [NSArray arrayWithObject:contentBlock.spotMapTag];
   [cell getSpotMap];
   
   [self.itemsToDisplay addObject:cell];
@@ -355,23 +357,36 @@ int const kHorizontalSpaceToSubview = 32;
 
 #pragma mark - Custom Methods
 
-- (NSAttributedString*)attributedStringFromHTML:(NSString*)html {
+- (NSMutableAttributedString*)attributedStringFromHTML:(NSString*)html {
   NSError *err = nil;
   
-  self.style = @"<style>html{font-family: 'HelveticaNeue-Light';font-size: ###fontsize###} body{margin:0 !important;} p:last-child, p:last-of-type{margin:1px !important;}</style>";
+  self.style = @"<style>body{margin:0 !important;} p:last-child, p:last-of-type{margin:1px !important;}</style>";
   
-  //set content (html content transform to textview text)
-  self.style = [self.style stringByReplacingOccurrencesOfString:@"###fontsize###" withString:[NSString stringWithFormat:@"%d", self.fontSize]];
   html = [html stringByReplacingOccurrencesOfString:@"<br></p>" withString:@"</p>"];
   html = [html stringByAppendingString:self.style];
   
-  NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData: [html dataUsingEncoding:NSUTF8StringEncoding]
+  NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithData: [html dataUsingEncoding:NSUTF8StringEncoding]
                                                                           options: @{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
                                                                                       NSCharacterEncodingDocumentAttribute: @(NSUTF8StringEncoding)}
                                                                documentAttributes: nil
                                                                             error: &err];
   if(err)
     NSLog(@"Unable to parse label text: %@", err);
+  
+  //change fontsize
+  NSRange range = (NSRange){0,[attributedString length]};
+  [attributedString enumerateAttribute:NSFontAttributeName inRange:range options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock:^(id value, NSRange range, BOOL *stop) {
+    UIFont* currentFont = value;
+    UIFont *replacementFont = nil;
+    
+    if ([currentFont.fontName rangeOfString:@"bold" options:NSCaseInsensitiveSearch].location != NSNotFound) {
+      replacementFont = [UIFont fontWithName:@"HelveticaNeue-Medium" size:self.fontSize];
+    } else {
+      replacementFont = [UIFont fontWithName:@"HelveticaNeue-Thin" size:self.fontSize];
+    }
+    
+    [attributedString addAttribute:NSFontAttributeName value:replacementFont range:range];
+  }];
   
   return attributedString;
 }
