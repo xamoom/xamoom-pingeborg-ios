@@ -202,7 +202,7 @@
   if (self.savedResponseContent == nil) {
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
     [XMMEnduserApi sharedInstance].delegate = self;
-    [[XMMEnduserApi sharedInstance] closestSpotsWith:self.lastLocation.coordinate.latitude andLon:self.lastLocation.coordinate.longitude withRadius:2000 withLimit:10 withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
+    [[XMMEnduserApi sharedInstance] closestSpotsWithLat:self.lastLocation.coordinate.latitude withLon:self.lastLocation.coordinate.longitude withRadius:2000 withLimit:10 withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
   }
 }
 
