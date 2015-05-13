@@ -515,6 +515,7 @@
     
     //set defaults to images
     cell.feedItemImage.image = nil;
+    [cell.feedItemImage.subviews  makeObjectsPerformSelector: @selector(removeFromSuperview)];
     cell.loadingIndicator.hidden = NO;
     
     //save for out of range
