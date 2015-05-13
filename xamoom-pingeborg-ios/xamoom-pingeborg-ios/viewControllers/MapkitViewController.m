@@ -742,6 +742,10 @@
   FeedItemCell *cell = (FeedItemCell*)sender.view;
   ArtistDetailViewController *artistDetailViewController = [[ArtistDetailViewController alloc] init];
   artistDetailViewController.contentId = cell.contentId;
+  
+  //add to discovered artists
+  [Globals addDiscoveredArtist:cell.contentId];
+  
   [self.navigationController pushViewController:artistDetailViewController animated:YES];
 }
 
