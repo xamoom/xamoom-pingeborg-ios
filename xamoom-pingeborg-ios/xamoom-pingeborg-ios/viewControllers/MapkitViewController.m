@@ -156,7 +156,6 @@
       }
     }
     
-    
     if ([self.savedResponseContent.imagePublicUrl containsString:@".gif"]) {
       //off mainthread gifimage loading
       dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
@@ -174,6 +173,29 @@
           self.geoFenceLabel.text = [NSString stringWithFormat:@"Gefunden: %@", self.savedResponseContent.title];
           
           [self enableGeofenceView];
+        });
+      });
+    } else if ([self.savedResponseContent.imagePublicUrl containsString:@".svg"]) {
+      //off mainthread svg loading
+      dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
+                                               (unsigned long)NULL), ^(void) {
+        
+        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.savedResponseContent.imagePublicUrl]];
+        
+        dispatch_async(dispatch_get_main_queue(), ^(void) {
+          NSArray *paths = NSSearchPathForDirectoriesInDomains
+          (NSDocumentDirectory, NSUserDomainMask, YES);
+          NSString *documentsDirectory = paths[0];
+          NSString *fileName = [NSString stringWithFormat:@"%@/svgimage.svg", documentsDirectory];
+          [imageData writeToFile:fileName atomically:YES];
+          
+          //read svg mapmarker
+          NSData *data = [[NSFileManager defaultManager] contentsAtPath:fileName];
+          SVGKImage *svgImage = [SVGKImage imageWithSource:[SVGKSourceString sourceFromContentsOfString:
+                                                            [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]]];
+          
+          [self.imagesToDisplay setValue:svgImage forKey:self.savedResponseContent.contentId];
+          [self.tableView reloadData];
         });
       });
     } else if(self.savedResponseContent.imagePublicUrl != nil) {
@@ -510,7 +532,11 @@
       float imageRatio = image.size.width / image.size.height;
       [cell.imageHeightConstraint setConstant:(cell.frame.size.width / imageRatio)];
       
-      if (![[Globals savedArtits] containsString:contentItem.contentId]) {
+      if ([(self.imagesToDisplay)[contentItem.contentId] isKindOfClass:[SVGKImage class]]) {
+        SVGKImageView *svgImageView = [[SVGKFastImageView alloc] initWithSVGKImage:(self.imagesToDisplay)[contentItem.contentId]];
+        [svgImageView setFrame:CGRectMake(0, 0, self.view.frame.size.width, (self.view.frame.size.width / imageRatio))];
+        [cell.feedItemImage addSubview:svgImageView];
+      } else if (![[Globals savedArtits] containsString:contentItem.contentId]) {
         cell.feedItemImage.image = [self convertImageToGrayScale:image];
         cell.feedItemOverlayImage.backgroundColor = [UIColor whiteColor];
       } else {

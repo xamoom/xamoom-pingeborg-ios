@@ -28,7 +28,7 @@ int const kPageSize = 7;
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-
+  
   [self.tabBarItem setSelectedImage:[UIImage imageNamed:@"home_filled"]];
   
   //setting up tableView
@@ -64,7 +64,7 @@ int const kPageSize = 7;
   [self.refreshControl addTarget:self
                           action:@selector(pullToRefresh)
                 forControlEvents:UIControlEventValueChanged];
-
+  
   //pingeborg system changing notifcation observer
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(pingeborgSystemChanged)
@@ -82,7 +82,7 @@ int const kPageSize = 7;
   
   //api call
   [[XMMEnduserApi sharedInstance] setDelegate:self];
-  [[XMMEnduserApi sharedInstance] contentListWithSystemId:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:kPageSize withCursor:@"null"];
+  [[XMMEnduserApi sharedInstance] contentListWithSystemId:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:kPageSize withCursor:@"null" withTags:@[@"artists"]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -94,7 +94,7 @@ int const kPageSize = 7;
   //load artists, if there are none
   if (self.itemsToDisplay.count <= 0) {
     [[XMMEnduserApi sharedInstance] setDelegate:self];
-    [[XMMEnduserApi sharedInstance] contentListWithSystemId:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:kPageSize withCursor:@"null"];
+    [[XMMEnduserApi sharedInstance] contentListWithSystemId:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:kPageSize withCursor:@"null" withTags:@[@"artists"]];
   }
 }
 
@@ -105,7 +105,7 @@ int const kPageSize = 7;
 
 -(void)didLoadContentList:(XMMResponseContentList *)result {
   self.contentListCursor = result.cursor;
-
+  
   //check if first startup
   if ([Globals isFirstStart]) {
     [self firstStartup:result];
@@ -130,6 +130,30 @@ int const kPageSize = 7;
           [self.tableView reloadData];
         });
       });
+    } else if ([contentItem.imagePublicUrl containsString:@".svg"]) {
+      //off mainthread svg loading
+      dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
+                                               (unsigned long)NULL), ^(void) {
+        
+        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:contentItem.imagePublicUrl]];
+        
+        dispatch_async(dispatch_get_main_queue(), ^(void) {
+          NSArray *paths = NSSearchPathForDirectoriesInDomains
+          (NSDocumentDirectory, NSUserDomainMask, YES);
+          NSString *documentsDirectory = paths[0];
+          NSString *fileName = [NSString stringWithFormat:@"%@/svgimage.svg", documentsDirectory];
+          [imageData writeToFile:fileName atomically:YES];
+          
+          //read svg mapmarker
+          NSData *data = [[NSFileManager defaultManager] contentsAtPath:fileName];
+          SVGKImage *svgImage = [SVGKImage imageWithSource:[SVGKSourceString sourceFromContentsOfString:
+                                                            [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]]];
+          
+          [self.imagesToDisplay setValue:svgImage forKey:contentItem.contentId];
+          [self.tableView reloadData];
+        });
+      });
+      
     } else if(contentItem.imagePublicUrl != nil) {
       [self downloadImageWithURL:contentItem.imagePublicUrl completionBlock:^(BOOL succeeded, UIImage *image) {
         [self.imagesToDisplay setValue:image forKey:contentItem.contentId];
@@ -171,7 +195,7 @@ int const kPageSize = 7;
   }
   
   [cell.loadingIndicator startAnimating];
-
+  
   //set defaults to images
   cell.feedItemImage.image = nil;
   cell.loadingIndicator.hidden = NO;
@@ -191,7 +215,11 @@ int const kPageSize = 7;
     float imageRatio = image.size.width / image.size.height;
     [cell.imageHeightConstraint setConstant:(self.view.frame.size.width / imageRatio)];
     
-    if (![[Globals savedArtits] containsString:contentItem.contentId]) {
+    if ([(self.imagesToDisplay)[contentItem.contentId] isKindOfClass:[SVGKImage class]]) {
+      SVGKImageView *svgImageView = [[SVGKFastImageView alloc] initWithSVGKImage:(self.imagesToDisplay)[contentItem.contentId]];
+      [svgImageView setFrame:CGRectMake(0, 0, self.view.frame.size.width, (self.view.frame.size.width / imageRatio))];
+      [cell.feedItemImage addSubview:svgImageView];
+    } else if (![[Globals savedArtits] containsString:contentItem.contentId]) {
       cell.feedItemImage.image = [self convertImageToGrayScale:image];
       cell.feedItemOverlayImage.backgroundColor = [UIColor whiteColor];
     } else {
@@ -237,7 +265,7 @@ int const kPageSize = 7;
     
     //api call
     [[XMMEnduserApi sharedInstance] setDelegate:self];
-    [[XMMEnduserApi sharedInstance] contentListWithSystemId:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:5 withCursor:@"null"];
+    [[XMMEnduserApi sharedInstance] contentListWithSystemId:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:5 withCursor:@"null" withTags:@[@"artists"]];
     
     self.isApiCallingBlocked = YES;
   }
@@ -277,7 +305,7 @@ int const kPageSize = 7;
   if (self.hasMore && !self.isApiCallingBlocked) {
     self.isApiCallingBlocked = YES;
     [[XMMEnduserApi sharedInstance] setDelegate:self];
-    [[XMMEnduserApi sharedInstance] contentListWithSystemId:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:kPageSize withCursor:self.contentListCursor];
+    [[XMMEnduserApi sharedInstance] contentListWithSystemId:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:kPageSize withCursor:self.contentListCursor withTags:@[@"artists"]];
   }
 }
 

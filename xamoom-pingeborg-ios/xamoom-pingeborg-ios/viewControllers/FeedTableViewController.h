@@ -15,6 +15,7 @@
 #import "ScanResultViewController.h"
 #import "UIImage+animatedGIF.h"
 #import <JGProgressHUD/JGProgressHUD.h>
+#import <SVGKit.h>
 
 extern int const kPageSize;
 
