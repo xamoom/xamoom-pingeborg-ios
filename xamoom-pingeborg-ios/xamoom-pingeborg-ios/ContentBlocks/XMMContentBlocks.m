@@ -231,6 +231,35 @@ int const kHorizontalSpaceToSubview = 32;
         [self reloadTableView];
       });
     });
+  } else if ([contentBlock.fileId containsString:@".svg"]) {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
+                                             (unsigned long)NULL), ^(void) {
+      
+      NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:contentBlock.fileId]];
+      
+      dispatch_async(dispatch_get_main_queue(), ^(void) {
+        NSArray *paths = NSSearchPathForDirectoriesInDomains
+        (NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = paths[0];
+        NSString *fileName = [NSString stringWithFormat:@"%@/svgimage.svg", documentsDirectory];
+        [imageData writeToFile:fileName atomically:YES];
+        
+        //read svg mapmarker
+        NSData *data = [[NSFileManager defaultManager] contentsAtPath:fileName];
+        SVGKImage *svgImage = [SVGKImage imageWithSource:[SVGKSourceString sourceFromContentsOfString:
+                                                          [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]]];
+        
+        float imageRatio = svgImage.size.width/svgImage.size.height;
+        [cell.imageHeightConstraint setConstant:(self.screenWidth / imageRatio)];
+        
+        SVGKImageView *svgImageView = [[SVGKFastImageView alloc] initWithSVGKImage:svgImage];
+        [svgImageView setFrame:CGRectMake(0, 0, self.screenWidth, (self.screenWidth / imageRatio))];
+        [cell.image addSubview:svgImageView];
+        
+        [cell.imageLoadingIndicator stopAnimating];
+        [self reloadTableView];
+      });
+    });
   } else if(cell.image != nil) {
     [self downloadImageWithURL:contentBlock.fileId completionBlock:^(BOOL succeeded, UIImage *image) {
       if (succeeded && image) {
