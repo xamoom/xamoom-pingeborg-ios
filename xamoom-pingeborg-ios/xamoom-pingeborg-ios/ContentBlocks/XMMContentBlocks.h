@@ -43,6 +43,7 @@ typedef NS_OPTIONS(NSInteger, TextFontSize)
 @property (nonatomic, weak) id<XMMContentBlocksDelegate> delegate;
 @property NSMutableArray *itemsToDisplay;
 @property float screenWidth;
+@property UIColor *linkColor;
 
 
 - (instancetype)init NS_DESIGNATED_INITIALIZER;

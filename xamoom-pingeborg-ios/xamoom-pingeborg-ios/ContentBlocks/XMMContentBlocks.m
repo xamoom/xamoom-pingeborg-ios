@@ -24,6 +24,7 @@ int const kHorizontalSpaceToSubview = 32;
   if(self) {
     self.itemsToDisplay = [[NSMutableArray alloc] init];
     self.fontSize = NormalFontSize;
+    self.linkColor = [UIColor blueColor];
   }
   
   NSString *notificationName = @"reloadTableViewForContentBlocks";
@@ -146,8 +147,12 @@ int const kHorizontalSpaceToSubview = 32;
     [cell.titleLabel setFont:[UIFont systemFontOfSize:self.fontSize+6]];
   }
   
-  if (contentBlock.text != nil)
-    cell.contentLabel.attributedText = [self attributedStringFromHTML:contentBlock.text];
+  if (contentBlock.text != nil) {
+    cell.contentTextBlock.attributedText = [self attributedStringFromHTML:contentBlock.text];
+  }
+  
+  //set the linkcolor to a specific color
+  [cell.contentTextBlock setLinkTextAttributes:@{NSForegroundColorAttributeName : self.linkColor, }];
   
   //add to array
   [self.itemsToDisplay addObject: cell];
@@ -360,7 +365,9 @@ int const kHorizontalSpaceToSubview = 32;
 - (NSMutableAttributedString*)attributedStringFromHTML:(NSString*)html {
   NSError *err = nil;
   
-  self.style = @"<style>body{margin:0 !important;} p:last-child, p:last-of-type{margin:1px !important;}</style>";
+  self.style = [NSString stringWithFormat:@"<style>body{margin:0 !important;} p:last-child, p:last-of-type{margin:1px !important;} </style>"];
+  
+  NSLog(@"a{color:#%@;}", [self colorToWeb:self.linkColor]);
   
   html = [html stringByReplacingOccurrencesOfString:@"<br></p>" withString:@"</p>"];
   html = [html stringByAppendingString:self.style];
@@ -389,6 +396,30 @@ int const kHorizontalSpaceToSubview = 32;
   }];
   
   return attributedString;
+}
+
+- (NSString*)colorToWeb:(UIColor*)color
+{
+  NSString *webColor = nil;
+  
+  // This method only works for RGB colors
+  if (color &&
+      CGColorGetNumberOfComponents(color.CGColor) == 4)
+  {
+    // Get the red, green and blue components
+    const CGFloat *components = CGColorGetComponents(color.CGColor);
+    
+    // These components range from 0.0 till 1.0 and need to be converted to 0 till 255
+    CGFloat red, green, blue;
+    red = roundf(components[0] * 255.0);
+    green = roundf(components[1] * 255.0);
+    blue = roundf(components[2] * 255.0);
+    
+    // Convert with %02x (use 02 to always get two chars)
+    webColor = [[NSString alloc]initWithFormat:@"%02x%02x%02x", (int)red, (int)green, (int)blue];
+  }
+  
+  return webColor;
 }
 
 - (void)updateFontSizeOnTextTo:(TextFontSize)newFontSize {

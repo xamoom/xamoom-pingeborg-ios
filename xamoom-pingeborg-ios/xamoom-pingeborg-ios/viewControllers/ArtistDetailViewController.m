@@ -31,6 +31,7 @@
   
   self.contentBlocks = [[XMMContentBlocks alloc] init];
   self.contentBlocks.delegate = self;
+  self.contentBlocks.linkColor = [Globals sharedObject].pingeborgLinkColor;
   NSString* savedArtists = [Globals savedArtits];
   
   // Do any additional setup after loading the view.
