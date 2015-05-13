@@ -12,7 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
-@property (weak, nonatomic) IBOutlet UITextView *contentTextBlock;
+@property (weak, nonatomic) IBOutlet UITextView *contentTextView;
 
 @property NSString *titleText;
 @property NSString *contentText;

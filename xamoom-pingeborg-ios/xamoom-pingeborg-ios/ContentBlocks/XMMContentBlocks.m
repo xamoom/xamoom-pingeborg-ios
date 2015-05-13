@@ -147,12 +147,11 @@ int const kHorizontalSpaceToSubview = 32;
     [cell.titleLabel setFont:[UIFont systemFontOfSize:self.fontSize+6]];
   }
   
-  if (contentBlock.text != nil) {
-    cell.contentTextBlock.attributedText = [self attributedStringFromHTML:contentBlock.text];
+  if (![cell.contentText isEqualToString:@""]) {
+    cell.contentTextView.attributedText = [self attributedStringFromHTML:contentBlock.text];
   }
-  
   //set the linkcolor to a specific color
-  [cell.contentTextBlock setLinkTextAttributes:@{NSForegroundColorAttributeName : self.linkColor, }];
+  [cell.contentTextView setLinkTextAttributes:@{NSForegroundColorAttributeName : self.linkColor, }];
   
   //add to array
   [self.itemsToDisplay addObject: cell];
@@ -465,7 +464,7 @@ int const kHorizontalSpaceToSubview = 32;
   for (XMMResponseContentBlock *contentItem in self.itemsToDisplay) {
     if ([contentItem isKindOfClass:[TextBlockTableViewCell class]]) {
       TextBlockTableViewCell* textBlock = (TextBlockTableViewCell*)contentItem;
-      textBlock.contentTextBlock.attributedText = [self attributedStringFromHTML:textBlock.contentText];
+      textBlock.contentTextView.attributedText = [self attributedStringFromHTML:textBlock.contentText];
       [textBlock.titleLabel setFont:[UIFont fontWithName:nil size:self.fontSize]];
       
       if ([contentItem.contentBlockType isEqualToString:@"title"]) {
