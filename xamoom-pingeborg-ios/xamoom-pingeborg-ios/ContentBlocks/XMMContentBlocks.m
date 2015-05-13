@@ -465,7 +465,7 @@ int const kHorizontalSpaceToSubview = 32;
   for (XMMResponseContentBlock *contentItem in self.itemsToDisplay) {
     if ([contentItem isKindOfClass:[TextBlockTableViewCell class]]) {
       TextBlockTableViewCell* textBlock = (TextBlockTableViewCell*)contentItem;
-      textBlock.contentLabel.attributedText = [self attributedStringFromHTML:textBlock.contentText];
+      textBlock.contentTextBlock.attributedText = [self attributedStringFromHTML:textBlock.contentText];
       [textBlock.titleLabel setFont:[UIFont fontWithName:nil size:self.fontSize]];
       
       if ([contentItem.contentBlockType isEqualToString:@"title"]) {

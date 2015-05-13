@@ -35,6 +35,7 @@
   
   contentBlocks = [[XMMContentBlocks alloc] init];
   contentBlocks.delegate = self;
+  contentBlocks.linkColor = [Globals sharedObject].pingeborgLinkColor;
   
   self.hud = [[JGProgressHUD alloc] initWithStyle:JGProgressHUDStyleDark];
   [self.hud showInView:self.view];
