@@ -15,6 +15,12 @@ FOUNDATION_EXPORT double XMMMusicPlayerVersionNumber;
 //! Project version string for XMMMusicPlayer.
 FOUNDATION_EXPORT const unsigned char XMMMusicPlayerVersionString[];
 
+@protocol XMMMusicerPlayerDelegate <NSObject>
+
+- (void)didUpdateRemainingSongTime:(NSString*)remainingSongTime;
+
+@end
+
 IB_DESIGNABLE
 @interface XMMMusicPlayer : UIView
 
@@ -26,7 +32,16 @@ IB_DESIGNABLE
 @property AVPlayer *audioPlayer;
 
 @property NSString *mediaUrlString;
+@property NSString *remainingSongTime;
 
--(instancetype)initWithMediaUrlString:(NSString*)mediaUrlString;
+@property (nonatomic, weak) id<XMMMusicerPlayerDelegate> delegate;
+
+- (instancetype)initWithMediaUrlString:(NSString*)mediaUrlString;
+
+- (void)startAudioPlayer;
+
+- (void)play;
+
+- (void)pause;
 
 @end

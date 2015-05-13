@@ -11,10 +11,14 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import <XMMMusicPlayer.h>
 
-@interface AudioBlockTableViewCell : UITableViewCell
+@interface AudioBlockTableViewCell : UITableViewCell <XMMMusicerPlayerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *artistLabel;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *remainingTimeLabel;
+@property (weak, nonatomic) IBOutlet UIButton *audioControlButton;
 @property (weak, nonatomic) IBOutlet XMMMusicPlayer *audioPlayerControl;
+
+- (IBAction)playButtonTouched:(id)sender;
 
 @end

@@ -164,10 +164,16 @@ int const kHorizontalSpaceToSubview = 32;
   NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"AudioBlockTableViewCell" owner:self options:nil];
   cell = nib[0];
   
-  //set title
+  cell.audioPlayerControl.delegate = cell;
   cell.audioPlayerControl.mediaUrlString = contentBlock.fileId;
+  [cell.audioPlayerControl startAudioPlayer];
+  
+  //set title & artist
   cell.titleLabel.text = contentBlock.title;
   cell.artistLabel.text = contentBlock.artist;
+  
+  float songDurationInSeconds = CMTimeGetSeconds(cell.audioPlayerControl.audioPlayer.currentItem.asset.duration);
+  cell.remainingTimeLabel.text = [NSString stringWithFormat:@"%d:%02d", (int)songDurationInSeconds / 60, (int)songDurationInSeconds %60];
   
   [self.itemsToDisplay addObject:cell];
 }
@@ -395,9 +401,7 @@ int const kHorizontalSpaceToSubview = 32;
   NSError *err = nil;
   
   self.style = [NSString stringWithFormat:@"<style>body{margin:0 !important;} p:last-child, p:last-of-type{margin:1px !important;} </style>"];
-  
-  NSLog(@"a{color:#%@;}", [self colorToWeb:self.linkColor]);
-  
+    
   html = [html stringByReplacingOccurrencesOfString:@"<br></p>" withString:@"</p>"];
   html = [html stringByAppendingString:self.style];
   
