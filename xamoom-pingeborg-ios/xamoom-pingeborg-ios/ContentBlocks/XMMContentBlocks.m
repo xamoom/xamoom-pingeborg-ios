@@ -147,8 +147,14 @@ int const kHorizontalSpaceToSubview = 32;
     [cell.titleLabel setFont:[UIFont systemFontOfSize:self.fontSize+6]];
   }
   
+  //set content
   if (![cell.contentText isEqualToString:@""]) {
     cell.contentTextView.attributedText = [self attributedStringFromHTML:contentBlock.text];
+  } else {
+    //make uitextview "disappear"
+    [cell.contentTextView setFont:[UIFont systemFontOfSize:0.0f]];
+    cell.contentTextView.textContainerInset = UIEdgeInsetsZero;
+    cell.contentTextView.textContainer.lineFragmentPadding = 0;
   }
   //set the linkcolor to a specific color
   [cell.contentTextView setLinkTextAttributes:@{NSForegroundColorAttributeName : self.linkColor, }];
