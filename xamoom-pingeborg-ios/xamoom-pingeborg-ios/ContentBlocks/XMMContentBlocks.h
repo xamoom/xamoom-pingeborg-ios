@@ -23,9 +23,9 @@ extern int const kHorizontalSpaceToSubview;
 
 typedef NS_OPTIONS(NSInteger, TextFontSize)
 {
-  NormalFontSize = 17,
-  BigFontSize = 21,
-  BiggerFontSize = 25,
+  NormalFontSize = 12,
+  BigFontSize = 15,
+  BiggerFontSize = 18g,
 };
 
 #pragma mark - XMMContentBlocksDelegate

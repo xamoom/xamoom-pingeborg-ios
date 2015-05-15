@@ -144,7 +144,7 @@ int const kHorizontalSpaceToSubview = 32;
   
   //bigger font if it is a contenttype "title"
   if ([contentBlock.contentBlockType isEqualToString:@"title"]) {
-    [cell.titleLabel setFont:[UIFont systemFontOfSize:self.fontSize+6]];
+    [cell.titleLabel setFont:[UIFont systemFontOfSize:self.fontSize+10]];
   }
   
   //set content
@@ -405,7 +405,7 @@ int const kHorizontalSpaceToSubview = 32;
 - (NSMutableAttributedString*)attributedStringFromHTML:(NSString*)html {
   NSError *err = nil;
   
-  self.style = [NSString stringWithFormat:@"<style>body{margin:0 !important;} p:last-child, p:last-of-type{margin:1px !important;} </style>"];
+  self.style = [NSString stringWithFormat:@"<style>body{font-family: \"HelveticaNeue-Light\", \"Helvetica Neue Light\", \"Helvetica Neue\", Helvetica, Arial, \"Lucida Grande\", sans-serif; font-weight: 300; font-size:%dpt; margin:0 !important;} p:last-child, p:last-of-type{margin:1px !important;} </style>", self.fontSize];
     
   html = [html stringByReplacingOccurrencesOfString:@"<br></p>" withString:@"</p>"];
   html = [html stringByAppendingString:self.style];
@@ -418,6 +418,7 @@ int const kHorizontalSpaceToSubview = 32;
   if(err)
     NSLog(@"Unable to parse label text: %@", err);
   
+  /*
   //change fontsize
   NSRange range = (NSRange){0,[attributedString length]};
   [attributedString enumerateAttribute:NSFontAttributeName inRange:range options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock:^(id value, NSRange range, BOOL *stop) {
@@ -432,8 +433,30 @@ int const kHorizontalSpaceToSubview = 32;
     
     [attributedString addAttribute:NSFontAttributeName value:replacementFont range:range];
   }];
+  */
   
   return attributedString;
+}
+
+- (void)updateFontSizeOnTextTo:(TextFontSize)newFontSize {
+  if (self.fontSize == newFontSize) {
+    return;
+  }
+  
+  self.fontSize = newFontSize;
+  
+  for (XMMResponseContentBlock *contentItem in self.itemsToDisplay) {
+    if ([contentItem isKindOfClass:[TextBlockTableViewCell class]]) {
+      TextBlockTableViewCell* textBlock = (TextBlockTableViewCell*)contentItem;
+      textBlock.contentTextView.attributedText = [self attributedStringFromHTML:textBlock.contentText];
+      
+      if ([contentItem.contentBlockType isEqualToString:@"title"]) {
+        [textBlock.titleLabel setFont:[UIFont systemFontOfSize:self.fontSize+6]];
+      }
+    }
+  }
+  
+  [self reloadTableView];
 }
 
 - (NSString*)colorToWeb:(UIColor*)color
@@ -458,28 +481,6 @@ int const kHorizontalSpaceToSubview = 32;
   }
   
   return webColor;
-}
-
-- (void)updateFontSizeOnTextTo:(TextFontSize)newFontSize {
-  if (self.fontSize == newFontSize) {
-    return;
-  }
-  
-  self.fontSize = newFontSize;
-  
-  for (XMMResponseContentBlock *contentItem in self.itemsToDisplay) {
-    if ([contentItem isKindOfClass:[TextBlockTableViewCell class]]) {
-      TextBlockTableViewCell* textBlock = (TextBlockTableViewCell*)contentItem;
-      textBlock.contentTextView.attributedText = [self attributedStringFromHTML:textBlock.contentText];
-      [textBlock.titleLabel setFont:[UIFont fontWithName:nil size:self.fontSize]];
-      
-      if ([contentItem.contentBlockType isEqualToString:@"title"]) {
-        [textBlock.titleLabel setFont:[UIFont systemFontOfSize:self.fontSize+6]];
-      }
-    }
-  }
-  
-  [self reloadTableView];
 }
 
 - (void)reloadTableView {

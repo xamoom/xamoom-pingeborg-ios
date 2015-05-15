@@ -22,7 +22,6 @@
                     </label>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalCompressionResistancePriority="749" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hdI-Mw-WD2">
                         <rect key="frame" x="3" y="31" width="314" height="27"/>
-                        <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" address="YES" calendarEvent="YES"/>
@@ -38,7 +37,6 @@
                     <constraint firstItem="YCE-yb-Hto" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="mZb-ef-4aC"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" red="0.45841128739999998" green="1" blue="0.1894842233" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="contentTextView" destination="hdI-Mw-WD2" id="Pb4-kh-rxH"/>
                 <outlet property="titleLabel" destination="YCE-yb-Hto" id="oCq-7F-scg"/>
