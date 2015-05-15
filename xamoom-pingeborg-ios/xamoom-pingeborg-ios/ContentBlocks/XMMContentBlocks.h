@@ -25,7 +25,7 @@ typedef NS_OPTIONS(NSInteger, TextFontSize)
 {
   NormalFontSize = 12,
   BigFontSize = 15,
-  BiggerFontSize = 18g,
+  BiggerFontSize = 18,
 };
 
 #pragma mark - XMMContentBlocksDelegate
