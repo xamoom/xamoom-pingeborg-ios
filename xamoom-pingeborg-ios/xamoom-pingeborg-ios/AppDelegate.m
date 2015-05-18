@@ -23,7 +23,7 @@
   [[UITabBar appearance] setTintColor:[Globals sharedObject].pingeborgLinkColor];
   
   //IF DEV
-  [[Globals sharedObject] developmentMode];
+  //[[Globals sharedObject] developmentMode];
   
   return YES;
 }

@@ -23,13 +23,13 @@
 
 @interface MapkitViewController : UIViewController <MKMapViewDelegate, SMCalloutViewDelegate, CLLocationManagerDelegate, XMMEnduserApiDelegate, UITableViewDelegate, UITableViewDataSource>
 
-@property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHeightConstraint;
 @property (weak, nonatomic) IBOutlet UIView *geofenceView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *geoFenceActivityIndicator;
 @property (weak, nonatomic) IBOutlet UIImageView *geoFenceIcon;
 @property (weak, nonatomic) IBOutlet UILabel *geoFenceLabel;
+@property (weak, nonatomic) IBOutlet UIView *viewForMap;
 
 @property (nonatomic, strong) CustomMapView *mapKitWithSMCalloutView;
 @property (nonatomic, strong) MKPointAnnotation *annotationForSMCalloutView;

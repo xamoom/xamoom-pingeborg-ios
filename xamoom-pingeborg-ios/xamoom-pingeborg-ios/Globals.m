@@ -43,22 +43,26 @@ static Globals *globals;
 + (NSString*)systemIdFromInteger:(NSInteger)systemId {
   switch (systemId) {
     case 0: {
-      globals.aboutPageId = @"";
+      globals.aboutPageId = @"d8be762e9b644fc4bb7aedfa8c0e17b7";
+      globals.globalSystemId = @"6588702901927936";
       return @"Kärnten";
       break;
     }
     case 1: {
       globals.aboutPageId = @"";
+      globals.globalSystemId = @"";
       return @"Salzburg";
       break;
     }
     case 2: {
       globals.aboutPageId = @"";
+      globals.globalSystemId = @"";
       return @"Vorarlberg";
       break;
     }
     default:
-      globals.aboutPageId = @"";
+      globals.aboutPageId = @"d8be762e9b644fc4bb7aedfa8c0e17b7";
+      globals.globalSystemId = @"6588702901927936";
       return @"Kärnten";
       break;
   }

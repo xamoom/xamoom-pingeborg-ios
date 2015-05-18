@@ -34,15 +34,12 @@
   [super viewDidLoad];
   
   [self.tabBarItem setSelectedImage:[UIImage imageNamed:@"map_filled"]];
-
-  //hide normal mapView
-  self.mapView.hidden = YES;
   
   //init map
-  self.mapKitWithSMCalloutView = [[CustomMapView alloc] initWithFrame:self.view.bounds];
+  self.mapKitWithSMCalloutView = [[CustomMapView alloc] initWithFrame:self.viewForMap.frame];
   self.mapKitWithSMCalloutView.delegate = self;
   self.mapKitWithSMCalloutView.showsUserLocation = YES;
-  [self.view addSubview:self.mapKitWithSMCalloutView];
+  [self.viewForMap addSubview:self.mapKitWithSMCalloutView];
   
   //setting up tableView
   [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
@@ -223,7 +220,9 @@
         }
       }];
     } else {
-      [self.imagesToDisplay setValue:self.placeholder forKey:self.savedResponseContent.contentId];
+      
+      if (self.savedResponseContent.contentId != nil)
+        [self.imagesToDisplay setValue:self.placeholder forKey:self.savedResponseContent.contentId];
       
       //set geoFenceLabel
       self.geoFenceLabel.text = [NSString stringWithFormat:@"Gefunden: %@", self.savedResponseContent.title];
@@ -426,7 +425,7 @@
     if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1)
       calloutView.constrainedInsets = UIEdgeInsetsMake(self.topLayoutGuide.length, 0, self.bottomLayoutGuide.length, 0);
     
-    [calloutView presentCalloutFromRect:annotationView.bounds inView:annotationView constrainedToView:self.mapView animated:YES];
+    [calloutView presentCalloutFromRect:annotationView.bounds inView:annotationView constrainedToView:self.mapKitWithSMCalloutView animated:YES];
   }
 }
 
@@ -447,14 +446,14 @@
   CLLocationCoordinate2D coordinate = self.mapKitWithSMCalloutView.centerCoordinate;
   
   // where's the center coordinate in terms of our view?
-  CGPoint center = [self.mapKitWithSMCalloutView convertCoordinate:coordinate toPointToView:self.mapView];
+  CGPoint center = [self.mapKitWithSMCalloutView convertCoordinate:coordinate toPointToView:self.mapKitWithSMCalloutView];
   
   // move it by the requested offset
   center.x -= offset.width;
   center.y -= offset.height;
   
   // and translate it back into map coordinates
-  coordinate = [self.mapKitWithSMCalloutView convertPoint:center toCoordinateFromView:self.mapView];
+  coordinate = [self.mapKitWithSMCalloutView convertPoint:center toCoordinateFromView:self.mapKitWithSMCalloutView];
   
   // move the map!
   [self.mapKitWithSMCalloutView setCenterCoordinate:coordinate animated:YES];
@@ -475,50 +474,6 @@
   
   NSDictionary *launchOptions = @{MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving};
   [mapItem openInMapsWithLaunchOptions:launchOptions];
-}
-
-#pragma mark Custom Map Methods
-
-#define MINIMUM_ZOOM_ARC 0.014 //approximately 1 miles (1 degree of arc ~= 69 miles)
-#define ANNOTATION_REGION_PAD_FACTOR 1.15
-#define MAX_DEGREES_ARC 360
-//size the mapView region to fit its annotations
-- (void)zoomMapViewToFitAnnotations:(MKMapView *)mapView animated:(BOOL)animated
-{
-  NSArray *annotations = mapView.annotations;
-  int count = (int)[annotations count];
-  if ( count == 0) { return; } //bail if no annotations
-  
-  //convert NSArray of id <MKAnnotation> into an MKCoordinateRegion that can be used to set the map size
-  //can't use NSArray with MKMapPoint because MKMapPoint is not an id
-  MKMapPoint points[count]; //C array of MKMapPoint struct
-  for( int i=0; i<count; i++ ) //load points C array by converting coordinates to points
-  {
-    CLLocationCoordinate2D coordinate = [(id <MKAnnotation>)annotations[i] coordinate];
-    points[i] = MKMapPointForCoordinate(coordinate);
-  }
-  //create MKMapRect from array of MKMapPoint
-  MKMapRect mapRect = [[MKPolygon polygonWithPoints:points count:count] boundingMapRect];
-  //convert MKCoordinateRegion from MKMapRect
-  MKCoordinateRegion region = MKCoordinateRegionForMapRect(mapRect);
-  
-  //add padding so pins aren't scrunched on the edges
-  region.span.latitudeDelta  *= ANNOTATION_REGION_PAD_FACTOR;
-  region.span.longitudeDelta *= ANNOTATION_REGION_PAD_FACTOR;
-  //but padding can't be bigger than the world
-  if( region.span.latitudeDelta > MAX_DEGREES_ARC ) { region.span.latitudeDelta  = MAX_DEGREES_ARC; }
-  if( region.span.longitudeDelta > MAX_DEGREES_ARC ){ region.span.longitudeDelta = MAX_DEGREES_ARC; }
-  
-  //and don't zoom in stupid-close on small samples
-  if( region.span.latitudeDelta  < MINIMUM_ZOOM_ARC ) { region.span.latitudeDelta  = MINIMUM_ZOOM_ARC; }
-  if( region.span.longitudeDelta < MINIMUM_ZOOM_ARC ) { region.span.longitudeDelta = MINIMUM_ZOOM_ARC; }
-  //and if there is a sample of 1 we want the max zoom-in instead of max zoom-out
-  if( count == 1 )
-  {
-    region.span.latitudeDelta = MINIMUM_ZOOM_ARC;
-    region.span.longitudeDelta = MINIMUM_ZOOM_ARC;
-  }
-  [mapView setRegion:region animated:animated];
 }
 
 #pragma mark - LocationManager
@@ -616,7 +571,7 @@
     
     CLLocation *pointLocation = [[CLLocation alloc] initWithLatitude:item.lat longitude:item.lon];
     CLLocationDistance distance = [self.locationManager.location distanceFromLocation:pointLocation];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Distance: %d meter", (int)distance];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"Entfernung: %d Meter", (int)distance];
     
     //make cell transparent
     [[cell contentView] setBackgroundColor:[UIColor clearColor]];

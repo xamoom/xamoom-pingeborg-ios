@@ -209,6 +209,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="grm-IJ-tqb" userLabel="viewForMap">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="537"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="YcP-f3-HIP">
                                 <rect key="frame" x="0.0" y="487" width="600" height="0.0"/>
                                 <constraints>
@@ -276,22 +280,19 @@
                                     <constraint firstItem="kag-2o-TLE" firstAttribute="top" secondItem="vWz-ei-cp6" secondAttribute="top" constant="10" id="w7r-29-XnC"/>
                                 </constraints>
                             </view>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="OrU-3Y-DR4">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
-                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="OrU-3Y-DR4" secondAttribute="trailing" id="5nZ-Ca-BCd"/>
                             <constraint firstAttribute="trailingMargin" secondItem="YcP-f3-HIP" secondAttribute="trailing" constant="-16" id="6DU-HB-CU9"/>
                             <constraint firstItem="taP-xd-o0S" firstAttribute="top" secondItem="YcP-f3-HIP" secondAttribute="bottom" id="8eS-WD-usU"/>
                             <constraint firstItem="vWz-ei-cp6" firstAttribute="leading" secondItem="8fU-ya-1Zx" secondAttribute="leadingMargin" constant="-16" id="EAW-Em-ugM"/>
                             <constraint firstItem="YcP-f3-HIP" firstAttribute="top" secondItem="vWz-ei-cp6" secondAttribute="bottom" id="GeG-PP-rX8"/>
-                            <constraint firstItem="OrU-3Y-DR4" firstAttribute="top" secondItem="r2z-g0-SZf" secondAttribute="bottom" id="L4T-ll-W0X"/>
+                            <constraint firstItem="grm-IJ-tqb" firstAttribute="leading" secondItem="8fU-ya-1Zx" secondAttribute="leadingMargin" constant="-16" id="IZo-yy-6UQ"/>
+                            <constraint firstItem="grm-IJ-tqb" firstAttribute="top" secondItem="r2z-g0-SZf" secondAttribute="bottom" id="NNY-0v-qfs"/>
                             <constraint firstAttribute="trailingMargin" secondItem="vWz-ei-cp6" secondAttribute="trailing" constant="-16" id="UtG-2D-gJj"/>
-                            <constraint firstItem="taP-xd-o0S" firstAttribute="top" secondItem="OrU-3Y-DR4" secondAttribute="bottom" id="ZEF-4b-EaM"/>
-                            <constraint firstItem="OrU-3Y-DR4" firstAttribute="leading" secondItem="8fU-ya-1Zx" secondAttribute="leading" id="f6d-Q6-GvU"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="grm-IJ-tqb" secondAttribute="trailing" constant="-16" id="VJQ-If-EeU"/>
                             <constraint firstItem="YcP-f3-HIP" firstAttribute="leading" secondItem="8fU-ya-1Zx" secondAttribute="leadingMargin" constant="-16" id="jMA-Z4-aa2"/>
+                            <constraint firstItem="taP-xd-o0S" firstAttribute="top" secondItem="grm-IJ-tqb" secondAttribute="bottom" constant="-50" id="tn6-9H-zIv"/>
                             <constraint firstItem="vWz-ei-cp6" firstAttribute="leading" secondItem="YcP-f3-HIP" secondAttribute="trailing" constant="-600" id="uoA-6b-iVm"/>
                         </constraints>
                         <variation key="default">
@@ -306,9 +307,9 @@
                         <outlet property="geoFenceIcon" destination="vnx-Hm-ayt" id="PLF-kp-gxy"/>
                         <outlet property="geoFenceLabel" destination="ipZ-u8-Z2v" id="cst-UK-ln9"/>
                         <outlet property="geofenceView" destination="vWz-ei-cp6" id="M76-gi-lzF"/>
-                        <outlet property="mapView" destination="OrU-3Y-DR4" id="Vhr-1h-ehd"/>
                         <outlet property="tableView" destination="YcP-f3-HIP" id="zs2-fg-7Nh"/>
                         <outlet property="tableViewHeightConstraint" destination="oZX-iE-fW1" id="cOA-LK-5xe"/>
+                        <outlet property="viewForMap" destination="grm-IJ-tqb" id="iNi-0j-t20"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xcE-VJ-wGD" userLabel="First Responder" sceneMemberID="firstResponder"/>
