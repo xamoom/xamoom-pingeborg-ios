@@ -144,7 +144,7 @@ int const kHorizontalSpaceToSubview = 32;
   
   //bigger font if it is a contenttype "title"
   if ([contentBlock.contentBlockType isEqualToString:@"title"]) {
-    [cell.titleLabel setFont:[UIFont systemFontOfSize:self.fontSize+10]];
+    [cell.titleLabel setFont:[UIFont systemFontOfSize:self.fontSize+15]];
   }
   
   //set content
