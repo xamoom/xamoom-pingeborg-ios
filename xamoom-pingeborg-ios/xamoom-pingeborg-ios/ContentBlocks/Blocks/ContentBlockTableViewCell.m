@@ -20,7 +20,7 @@
   // Configure the view for the selected state
 }
 
-- (void)getContent {
+- (void)getContentWithLanguage:(NSString*)language {
   NSString *notificationName = [NSString stringWithFormat:@"%@%@", @"getByIdFull", self.contentId];
   
   [[NSNotificationCenter defaultCenter]
@@ -30,7 +30,7 @@
    object:nil];
   
   [[XMMEnduserApi sharedInstance] setDelegate:nil];
-  [[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:NO includeMenu:NO withLanguage:@"de" full:NO];
+  [[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:NO includeMenu:NO withLanguage:language full:NO];
 }
 
 - (void)didLoadContentBlockData:(NSNotification *)notification {

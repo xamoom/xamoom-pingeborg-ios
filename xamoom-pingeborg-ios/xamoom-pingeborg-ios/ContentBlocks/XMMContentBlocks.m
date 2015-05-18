@@ -335,7 +335,7 @@ int const kHorizontalSpaceToSubview = 32;
   cell = nib[0];
   
   cell.contentId = contentBlock.contentId;
-  [cell getContent];
+  [cell getContentWithLanguage:self.language];
   
   [self.itemsToDisplay addObject:cell];
 }
