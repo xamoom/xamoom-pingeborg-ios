@@ -25,6 +25,7 @@ int const kHorizontalSpaceToSubview = 32;
     self.itemsToDisplay = [[NSMutableArray alloc] init];
     self.fontSize = NormalFontSize;
     self.linkColor = [UIColor blueColor];
+    self.language = @"en";
   }
   
   NSString *notificationName = @"reloadTableViewForContentBlocks";
@@ -395,7 +396,7 @@ int const kHorizontalSpaceToSubview = 32;
   
   cell.titleLabel.text = contentBlock.title;
   cell.spotMapTags = [NSArray arrayWithObject:contentBlock.spotMapTag];
-  [cell getSpotMap];
+  [cell getSpotMapWithSystemId:self.systemId withLanguage:self.language];
   
   [self.itemsToDisplay addObject:cell];
 }
@@ -438,7 +439,7 @@ int const kHorizontalSpaceToSubview = 32;
   return attributedString;
 }
 
-- (void)updateFontSizeOnTextTo:(TextFontSize)newFontSize {
+- (void)updateFontSizeTo:(TextFontSize)newFontSize {
   if (self.fontSize == newFontSize) {
     return;
   }
@@ -451,7 +452,7 @@ int const kHorizontalSpaceToSubview = 32;
       textBlock.contentTextView.attributedText = [self attributedStringFromHTML:textBlock.contentText];
       
       if ([contentItem.contentBlockType isEqualToString:@"title"]) {
-        [textBlock.titleLabel setFont:[UIFont systemFontOfSize:self.fontSize+6]];
+        [textBlock.titleLabel setFont:[UIFont systemFontOfSize:self.fontSize+15]];
       }
     }
   }
@@ -459,14 +460,11 @@ int const kHorizontalSpaceToSubview = 32;
   [self reloadTableView];
 }
 
-- (NSString*)colorToWeb:(UIColor*)color
-{
+- (NSString*)colorToWeb:(UIColor*)color {
   NSString *webColor = nil;
   
   // This method only works for RGB colors
-  if (color &&
-      CGColorGetNumberOfComponents(color.CGColor) == 4)
-  {
+  if (color && CGColorGetNumberOfComponents(color.CGColor) == 4) {
     // Get the red, green and blue components
     const CGFloat *components = CGColorGetComponents(color.CGColor);
     

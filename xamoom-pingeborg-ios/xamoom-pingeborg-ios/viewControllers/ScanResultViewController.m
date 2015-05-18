@@ -28,6 +28,9 @@
   
   self.contentBlocks = [[XMMContentBlocks alloc] init];
   self.contentBlocks.delegate = self;
+  self.contentBlocks.linkColor = [Globals sharedObject].pingeborgLinkColor;
+  self.contentBlocks.language = @"de";
+  self.contentBlocks.systemId = [Globals sharedObject].globalSystemId;
   
   //dropdown menu
   REMenuItem *NormalFontSizeItem = [[REMenuItem alloc] initWithTitle:@"Normal Font Size"
@@ -35,7 +38,7 @@
                                                                image:nil
                                                     highlightedImage:nil
                                                               action:^(REMenuItem *item) {
-                                                                [self.contentBlocks updateFontSizeOnTextTo:NormalFontSize];
+                                                                [self.contentBlocks updateFontSizeTo:NormalFontSize];
                                                               }];
   
   REMenuItem *BigFontSizeItem = [[REMenuItem alloc] initWithTitle:@"Big Font Size"
@@ -43,7 +46,7 @@
                                                             image:nil
                                                  highlightedImage:nil
                                                            action:^(REMenuItem *item) {
-                                                             [self.contentBlocks updateFontSizeOnTextTo:BigFontSize];
+                                                             [self.contentBlocks updateFontSizeTo:BigFontSize];
                                                            }];
   
   REMenuItem *BiggerFontSizeItem = [[REMenuItem alloc] initWithTitle:@"Really Big Font Size"
@@ -51,7 +54,7 @@
                                                                image:nil
                                                     highlightedImage:nil
                                                               action:^(REMenuItem *item) {
-                                                                [self.contentBlocks updateFontSizeOnTextTo:BiggerFontSize];
+                                                                [self.contentBlocks updateFontSizeTo:BiggerFontSize];
                                                               }];
   
   self.fontSizeDropdownMenu = [[REMenu alloc] initWithItems:@[NormalFontSizeItem, BigFontSizeItem, BiggerFontSizeItem]];

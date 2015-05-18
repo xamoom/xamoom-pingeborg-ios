@@ -36,6 +36,8 @@
   contentBlocks = [[XMMContentBlocks alloc] init];
   contentBlocks.delegate = self;
   contentBlocks.linkColor = [Globals sharedObject].pingeborgLinkColor;
+  self.contentBlocks.language = @"de";
+  self.contentBlocks.systemId = [Globals sharedObject].globalSystemId;
   
   self.hud = [[JGProgressHUD alloc] initWithStyle:JGProgressHUDStyleDark];
   [self.hud showInView:self.view];
@@ -49,7 +51,7 @@
                                                                image:nil
                                                     highlightedImage:nil
                                                               action:^(REMenuItem *item) {
-                                                                [contentBlocks updateFontSizeOnTextTo:NormalFontSize];
+                                                                [contentBlocks updateFontSizeTo:NormalFontSize];
                                                               }];
   
   REMenuItem *BigFontSizeItem = [[REMenuItem alloc] initWithTitle:@"Big Font Size"
@@ -57,7 +59,7 @@
                                                             image:nil
                                                  highlightedImage:nil
                                                            action:^(REMenuItem *item) {
-                                                             [contentBlocks updateFontSizeOnTextTo:BigFontSize];
+                                                             [contentBlocks updateFontSizeTo:BigFontSize];
                                                            }];
   
   REMenuItem *BiggerFontSizeItem = [[REMenuItem alloc] initWithTitle:@"Really Big Font Size"
@@ -65,7 +67,7 @@
                                                                image:nil
                                                     highlightedImage:nil
                                                               action:^(REMenuItem *item) {
-                                                                [contentBlocks updateFontSizeOnTextTo:BiggerFontSize];
+                                                                [contentBlocks updateFontSizeTo:BiggerFontSize];
                                                               }];
   
   self.fontSizeDropdownMenu = [[REMenu alloc] initWithItems:@[NormalFontSizeItem, BigFontSizeItem, BiggerFontSizeItem]];

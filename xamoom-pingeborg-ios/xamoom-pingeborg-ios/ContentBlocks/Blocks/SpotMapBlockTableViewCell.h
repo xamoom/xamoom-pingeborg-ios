@@ -23,6 +23,6 @@
 @property UIImage *customMapMarker;
 @property SVGKImage *customSVGMapMarker;
 
-- (void)getSpotMap;
+- (void)getSpotMapWithSystemId:(NSString*)systemId withLanguage:(NSString*)language;
 
 @end

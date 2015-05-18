@@ -20,10 +20,10 @@
   // Configure the view for the selected state
 }
 
-- (void)getSpotMap {
+- (void)getSpotMapWithSystemId:(NSString*)systemId withLanguage:(NSString*)language {
   self.map.delegate = self;
   [[XMMEnduserApi sharedInstance] setDelegate:self];
-  [[XMMEnduserApi sharedInstance] spotMapWithSystemId:@"6588702901927936" withMapTags:self.spotMapTags withLanguage:@"de"];
+  [[XMMEnduserApi sharedInstance] spotMapWithSystemId:systemId withMapTags:self.spotMapTags withLanguage:language];
 }
 
 #pragma mark - XMMEnduser Delegate

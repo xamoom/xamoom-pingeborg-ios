@@ -44,7 +44,8 @@ typedef NS_OPTIONS(NSInteger, TextFontSize)
 @property NSMutableArray *itemsToDisplay;
 @property float screenWidth;
 @property UIColor *linkColor;
-
+@property NSString *systemId;
+@property NSString *language;
 
 - (instancetype)init NS_DESIGNATED_INITIALIZER;
 
@@ -70,6 +71,6 @@ typedef NS_OPTIONS(NSInteger, TextFontSize)
 
 - (void)displayContentBlock9:(XMMResponseContentBlockType9 *)contentBlock;
 
-- (void)updateFontSizeOnTextTo:(TextFontSize)newFontSize;
+- (void)updateFontSizeTo:(TextFontSize)newFontSize;
 
 @end
