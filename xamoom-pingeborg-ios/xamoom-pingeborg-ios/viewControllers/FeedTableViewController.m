@@ -233,10 +233,8 @@ int const kPageSize = 7;
   }
   
   //overlay image for the first cell "discoverable"
-  if (contentItem == self.itemsToDisplay.firstObject) {
-    if (![[Globals savedArtits] containsString:contentItem.contentId]) {
-      cell.feedItemOverlayImage.image = [UIImage imageNamed:@"discoverable"];
-    }
+  if (contentItem == self.itemsToDisplay.firstObject && ![[Globals savedArtits] containsString:contentItem.contentId]) {
+    cell.feedItemOverlayImage.image = [UIImage imageNamed:@"discoverable"];
   } else {
     cell.feedItemOverlayImage.image = nil;
   }
