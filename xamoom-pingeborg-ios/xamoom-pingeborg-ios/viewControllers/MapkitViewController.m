@@ -35,7 +35,6 @@
   
   [self.tabBarItem setSelectedImage:[UIImage imageNamed:@"map_filled"]];
 
-  
   //init map
   self.mapKitWithSMCalloutView = [[CustomMapView alloc] initWithFrame:self.mapView.bounds];
   self.mapKitWithSMCalloutView.delegate = self;
@@ -76,6 +75,12 @@
   region.span.longitudeDelta = 0.09f;
   region.span.longitudeDelta = 0.09f;
   [self.mapKitWithSMCalloutView setRegion:region animated:YES];
+  
+  self.swipeGeoFenceViewUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(toggleGeoFenceView)];
+  self.swipeGeoFenceViewUp.direction = UISwipeGestureRecognizerDirectionUp;
+  self.swipeGeoFenceViewDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(toggleGeoFenceView)];
+  self.swipeGeoFenceViewDown.direction = UISwipeGestureRecognizerDirectionDown;
+  self.geoFenceTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toggleGeoFenceView)];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -90,7 +95,6 @@
     [[XMMEnduserApi sharedInstance] setDelegate:self];
     [[XMMEnduserApi sharedInstance] spotMapWithSystemId:[Globals sharedObject].globalSystemId withMapTags:@[@"showAllTheSpots"] withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
   }
-
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
@@ -474,8 +478,6 @@
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
   self.lastLocation = [locations lastObject];
   
-  NSLog(@"LastLocation: %@", self.lastLocation.description);
-  
   self.savedResponseContent = nil;
   
   [self disableGeofenceView];
@@ -700,11 +702,6 @@
 }
 
 - (void)enableGeofenceView {
-  self.swipeGeoFenceViewUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(toggleGeoFenceView)];
-  self.swipeGeoFenceViewUp.direction = UISwipeGestureRecognizerDirectionUp;
-  self.swipeGeoFenceViewDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(toggleGeoFenceView)];
-  self.swipeGeoFenceViewDown.direction = UISwipeGestureRecognizerDirectionDown;
-  self.geoFenceTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toggleGeoFenceView)];
   [self.geofenceView addGestureRecognizer:self.geoFenceTapGesture];
   [self.geofenceView addGestureRecognizer:self.swipeGeoFenceViewUp];
   

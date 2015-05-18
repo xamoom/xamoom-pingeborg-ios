@@ -134,7 +134,7 @@ int const kHorizontalSpaceToSubview = 32;
   NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"TextBlockTableViewCell" owner:self options:nil];
   cell = nib[0];
   
-  //save text for later use
+  //save data for later use
   cell.titleText = contentBlock.title;
   cell.contentText = contentBlock.text;
   cell.contentBlockType = contentBlock.contentBlockType;
