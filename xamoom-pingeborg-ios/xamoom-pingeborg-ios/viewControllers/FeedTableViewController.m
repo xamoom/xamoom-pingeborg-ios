@@ -65,10 +65,15 @@ int const kPageSize = 7;
                           action:@selector(pullToRefresh)
                 forControlEvents:UIControlEventValueChanged];
   
-  //pingeborg system changing notifcation observer
+  //pingeborg system notifications
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(pingeborgSystemChanged)
                                                name:@"PingeborgSystemChanged"
+                                             object:nil];
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(reloadData)
+                                               name:@"updateAllArtistLists"
                                              object:nil];
   
   //init variables
@@ -257,6 +262,7 @@ int const kPageSize = 7;
 #pragma mark Table view reload
 
 - (void)pullToRefresh {
+  [self.hud showInView:self.view];
   if(!self.isApiCallingBlocked) {
     
     //delete all items in arrays

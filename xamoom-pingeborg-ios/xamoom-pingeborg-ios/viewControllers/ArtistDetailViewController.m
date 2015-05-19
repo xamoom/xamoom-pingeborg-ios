@@ -93,6 +93,10 @@
 
 -(void)viewWillDisappear:(BOOL)animated {
   [[NSNotificationCenter defaultCenter] postNotificationName:@"pauseAllSounds" object:self];
+  
+  if ([self.contentId isEqualToString:[Globals savedArtitsAsArray].lastObject]) {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"updateAllArtistLists" object:self];
+  }
 }
 
 #pragma mark - NavbarDropdown

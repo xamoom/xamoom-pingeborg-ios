@@ -40,10 +40,6 @@
   self.contentBlocks.systemId = [Globals sharedObject].globalSystemId;
   
   self.hud = [[JGProgressHUD alloc] initWithStyle:JGProgressHUDStyleDark];
-  [self.hud showInView:self.view];
-  
-  [XMMEnduserApi sharedInstance].delegate = self;
-  [[XMMEnduserApi sharedInstance] contentWithContentId:[Globals sharedObject].aboutPageId includeStyle:NO includeMenu:NO withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:YES];
   
   //dropdown menu
   REMenuItem *NormalFontSizeItem = [[REMenuItem alloc] initWithTitle:@"Normal Font Size"
@@ -84,6 +80,7 @@
   self.parentViewController.navigationItem.rightBarButtonItem = self.buttonItem;
   
   if ([self.contentBlocks.itemsToDisplay count] == 0) {
+    [self.hud showInView:self.view];
     [XMMEnduserApi sharedInstance].delegate = self;
     [[XMMEnduserApi sharedInstance] contentWithContentId:[Globals sharedObject].aboutPageId includeStyle:NO includeMenu:NO withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:YES];
 

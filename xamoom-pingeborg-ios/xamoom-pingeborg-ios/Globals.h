@@ -27,6 +27,8 @@
 
 + (NSString*)savedArtits;
 
++ (NSArray*)savedArtitsAsArray;
+
 + (BOOL)isFirstStart;
 
 - (void)developmentMode;

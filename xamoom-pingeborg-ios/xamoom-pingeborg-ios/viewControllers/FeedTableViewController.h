@@ -19,6 +19,6 @@
 
 extern int const kPageSize;
 
-@interface FeedTableViewController : UITableViewController <XMMEnduserApiDelegate, DropDownMenuDelegate>
+@interface FeedTableViewController : UITableViewController <XMMEnduserApiDelegate, DropDownMenuDelegate, UINavigationControllerDelegate>
 
 @end

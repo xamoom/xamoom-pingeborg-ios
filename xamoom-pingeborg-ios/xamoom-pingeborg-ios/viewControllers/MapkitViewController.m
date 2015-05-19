@@ -82,6 +82,12 @@
   self.swipeGeoFenceViewDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(toggleGeoFenceView)];
   self.swipeGeoFenceViewDown.direction = UISwipeGestureRecognizerDirectionDown;
   self.geoFenceTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toggleGeoFenceView)];
+  
+  //pingeborg system notifications
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(refreshContentByLocation)
+                                               name:@"updateAllArtistLists"
+                                             object:nil];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -168,12 +174,8 @@
         UIImage *gifImage = [UIImage animatedImageWithAnimatedGIFURL:[NSURL URLWithString:self.savedResponseContent.imagePublicUrl]];
         
         dispatch_async(dispatch_get_main_queue(), ^(void) {
-          if (![savedArtists containsString:self.savedResponseContent.contentId]) {
-            UIImage *grayscaleImage = [self convertImageToGrayScale:gifImage];
-            [self.imagesToDisplay setValue:grayscaleImage forKey:self.savedResponseContent.contentId];
-          } else {
-            [self.imagesToDisplay setValue:gifImage forKey:self.savedResponseContent.contentId];
-          }
+          [self.imagesToDisplay setValue:gifImage forKey:self.savedResponseContent.contentId];
+          
           //set geoFenceLabel
           self.geoFenceLabel.text = [NSString stringWithFormat:@"Gefunden: %@", self.savedResponseContent.title];
           
@@ -206,9 +208,6 @@
     } else if(self.savedResponseContent.imagePublicUrl != nil) {
       [self downloadImageWithURL:self.savedResponseContent.imagePublicUrl completionBlock:^(BOOL succeeded, UIImage *image) {
         if (succeeded) {
-          if (![savedArtists containsString:self.savedResponseContent.contentId]) {
-            image = [self convertImageToGrayScale:image];
-          }
           
           [self.imagesToDisplay setValue:image forKey:self.savedResponseContent.contentId];
           [self.tableView reloadData];
@@ -545,9 +544,11 @@
       } else if (![[Globals savedArtits] containsString:contentItem.contentId]) {
         cell.feedItemImage.image = [self convertImageToGrayScale:image];
         cell.feedItemOverlayImage.backgroundColor = [UIColor whiteColor];
+        cell.feedItemOverlayImage.image = [UIImage imageNamed:@"discoverable"];
       } else {
         cell.feedItemImage.image = image;
         cell.feedItemOverlayImage.backgroundColor = [UIColor clearColor];
+        cell.feedItemOverlayImage.image = nil;
       }
       
       [cell.loadingIndicator stopAnimating];
@@ -774,6 +775,10 @@
   [Globals addDiscoveredArtist:cell.contentId];
   
   [self.navigationController pushViewController:artistDetailViewController animated:YES];
+}
+
+- (void)refreshContentByLocation {
+  [self.tableView reloadData];
 }
 
 @end

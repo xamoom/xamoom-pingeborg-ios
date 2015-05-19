@@ -64,7 +64,6 @@ static Globals *globals;
   }
 }
 
-
 + (void)addDiscoveredArtist:(NSString *)contentId {
   NSString *savedArtists;
   NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -89,6 +88,16 @@ static Globals *globals;
   
   if ( [userDefaults stringForKey:@"savedArtists"] ) {
     return [userDefaults stringForKey:@"savedArtists"];
+  }
+  
+  return nil;
+}
+
++ (NSArray*)savedArtitsAsArray {
+  NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+  
+  if ( [userDefaults stringForKey:@"savedArtists"] ) {
+    return [[userDefaults stringForKey:@"savedArtists"] componentsSeparatedByString:@","];
   }
   
   return nil;

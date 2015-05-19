@@ -78,6 +78,11 @@
 
 -(void)viewWillDisappear:(BOOL)animated {
   [[NSNotificationCenter defaultCenter] postNotificationName:@"pauseAllSounds" object:self];
+  
+  NSLog(@"Hellyeah Debugging: %@ and %@", self.result.content.contentId, [Globals savedArtitsAsArray].lastObject);
+  if ([self.result.content.contentId isEqualToString: [Globals savedArtitsAsArray].lastObject]) {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"updateAllArtistLists" object:self];
+  }
 }
 
 - (void)didReceiveMemoryWarning {
