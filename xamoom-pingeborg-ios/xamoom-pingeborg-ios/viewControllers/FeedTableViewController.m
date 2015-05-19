@@ -21,6 +21,7 @@ int const kPageSize = 7;
 @property UIBarButtonItem *qrButtonItem;
 @property UIImage *placeholderImage;
 @property JGProgressHUD *hud;
+@property UIRefreshControl *refreshControl;
 
 @end
 
@@ -32,11 +33,9 @@ int const kPageSize = 7;
   [self.tabBarItem setSelectedImage:[UIImage imageNamed:@"home_filled"]];
   
   //setting up tableView
-  self.tableView.dataSource = self;
-  self.tableView.delegate = self;
-  [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-  self.tableView.rowHeight = UITableViewAutomaticDimension;
-  self.tableView.estimatedRowHeight = 150.0;
+  [self.feedTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+  self.feedTableView.rowHeight = UITableViewAutomaticDimension;
+  self.feedTableView.estimatedRowHeight = 150.0;
   
   //set NavigationController delegate
   //NavigationViewController* navController = (NavigationViewController*) self.parentViewController.parentViewController;
@@ -64,6 +63,7 @@ int const kPageSize = 7;
   [self.refreshControl addTarget:self
                           action:@selector(pullToRefresh)
                 forControlEvents:UIControlEventValueChanged];
+  [self.feedTableView addSubview:self.refreshControl];
   
   //pingeborg system notifications
   [[NSNotificationCenter defaultCenter] addObserver:self
@@ -112,7 +112,7 @@ int const kPageSize = 7;
   self.contentListCursor = result.cursor;
   
   //check if first startup
-  if ([Globals isFirstStart]) {
+  if (![Globals isFirstStart]) {
     [self firstStartup:result];
   }
   
@@ -132,7 +132,7 @@ int const kPageSize = 7;
         
         dispatch_async(dispatch_get_main_queue(), ^(void) {
           [self.imagesToDisplay setValue:gifImage forKey:contentItem.contentId];
-          [self.tableView reloadData];
+          [self.feedTableView reloadData];
         });
       });
     } else if ([contentItem.imagePublicUrl containsString:@".svg"]) {
@@ -155,14 +155,14 @@ int const kPageSize = 7;
                                                             [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]]];
           
           [self.imagesToDisplay setValue:svgImage forKey:contentItem.contentId];
-          [self.tableView reloadData];
+          [self.feedTableView reloadData];
         });
       });
       
     } else if(contentItem.imagePublicUrl != nil) {
       [self downloadImageWithURL:contentItem.imagePublicUrl completionBlock:^(BOOL succeeded, UIImage *image) {
         [self.imagesToDisplay setValue:image forKey:contentItem.contentId];
-        [self.tableView reloadData];
+        [self.feedTableView reloadData];
       }];
     } else {
       [self.imagesToDisplay setValue:self.placeholderImage forKey:contentItem.contentId];
@@ -192,7 +192,7 @@ int const kPageSize = 7;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   static NSString *simpleTableIdentifier = @"FeedItemCell";
   
-  FeedItemCell *cell = (FeedItemCell *)[self.tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+  FeedItemCell *cell = (FeedItemCell *)[self.feedTableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
   if (cell == nil)
   {
     NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FeedItemCell" owner:self options:nil];
@@ -280,7 +280,7 @@ int const kPageSize = 7;
 - (void)reloadData
 {
   // Reload table data
-  [self.tableView reloadData];
+  [self.feedTableView reloadData];
   
   // End the refreshing
   if (self.refreshControl) {
@@ -297,7 +297,11 @@ int const kPageSize = 7;
 
 # pragma mark - Custom Methods
 
--(void)firstStartup:(XMMResponseContentList *)result {
+- (void)firstStartup:(XMMResponseContentList *)result {
+  [self addFreeDiscoveredArtists:result];
+}
+
+- (void)addFreeDiscoveredArtists:(XMMResponseContentList *)result {
   //add artist 2-4 to discovered list
   int counter = 1;
   while (counter <= 3) {
@@ -305,6 +309,10 @@ int const kPageSize = 7;
     [Globals addDiscoveredArtist:contentItem.contentId];
     counter++;
   }
+}
+
+- (void)displayInstructionScreen {
+  UIView *instructionView = [[[NSBundle mainBundle] loadNibNamed:@"InstructionView" owner:self options:nil] lastObject];
 }
 
 - (void)loadMoreContent {
