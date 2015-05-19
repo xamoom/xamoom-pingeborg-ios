@@ -299,6 +299,7 @@ int const kPageSize = 7;
 
 - (void)firstStartup:(XMMResponseContentList *)result {
   [self addFreeDiscoveredArtists:result];
+  [self displayInstructionScreen];
 }
 
 - (void)addFreeDiscoveredArtists:(XMMResponseContentList *)result {
@@ -312,7 +313,13 @@ int const kPageSize = 7;
 }
 
 - (void)displayInstructionScreen {
-  UIView *instructionView = [[[NSBundle mainBundle] loadNibNamed:@"InstructionView" owner:self options:nil] lastObject];
+  self.instructionView.hidden = NO;
+  UITapGestureRecognizer *tapOnInstructionView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeInstructionScreen)];
+  [self.instructionView addGestureRecognizer:tapOnInstructionView];
+}
+
+- (void)closeInstructionScreen {
+  self.instructionView.hidden = YES;
 }
 
 - (void)loadMoreContent {

@@ -66,8 +66,6 @@
 		88BA020F1AA859F90091A43C /* xamoom_pingeborg_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA020E1AA859F90091A43C /* xamoom_pingeborg_iosTests.m */; };
 		88CBAEE11AA9EC9E000E480A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88CBAEE01AA9EC9E000E480A /* MapKit.framework */; };
 		88DB74DC1B0217DA0064EE7E /* ScanResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DB74DB1B0217DA0064EE7E /* ScanResultViewController.m */; };
-		88DF226D1B0B169D008B3E7A /* InstructionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DF226B1B0B169D008B3E7A /* InstructionViewController.m */; };
-		88DF226E1B0B169D008B3E7A /* InstructionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88DF226C1B0B169D008B3E7A /* InstructionView.xib */; };
 		88E2FAEA1AF74D5800917AFB /* UIImage+animatedGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E2FAE91AF74D5800917AFB /* UIImage+animatedGIF.m */; };
 /* End PBXBuildFile section */
 
@@ -206,9 +204,6 @@
 		88CBAEE01AA9EC9E000E480A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		88DB74DA1B0217DA0064EE7E /* ScanResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanResultViewController.h; sourceTree = "<group>"; };
 		88DB74DB1B0217DA0064EE7E /* ScanResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanResultViewController.m; sourceTree = "<group>"; };
-		88DF226A1B0B169D008B3E7A /* InstructionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstructionViewController.h; sourceTree = "<group>"; };
-		88DF226B1B0B169D008B3E7A /* InstructionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstructionViewController.m; sourceTree = "<group>"; };
-		88DF226C1B0B169D008B3E7A /* InstructionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InstructionView.xib; sourceTree = "<group>"; };
 		88E2FAE81AF74D5800917AFB /* UIImage+animatedGIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+animatedGIF.h"; sourceTree = "<group>"; };
 		88E2FAE91AF74D5800917AFB /* UIImage+animatedGIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+animatedGIF.m"; sourceTree = "<group>"; };
 		C530CDEFFEDDFCABBEC918B0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -361,9 +356,6 @@
 				881458501B01EE8B0024E6F4 /* PingeborgCalloutView.h */,
 				881458511B01EE8B0024E6F4 /* PingeborgCalloutView.m */,
 				881458521B01EE8B0024E6F4 /* PingeborgCalloutView.xib */,
-				88DF226A1B0B169D008B3E7A /* InstructionViewController.h */,
-				88DF226B1B0B169D008B3E7A /* InstructionViewController.m */,
-				88DF226C1B0B169D008B3E7A /* InstructionView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -640,7 +632,6 @@
 				881457EA1B01E8620024E6F4 /* ContentBlockTableViewCell.xib in Resources */,
 				881457F21B01E8620024E6F4 /* LinkBlockTableViewCell.xib in Resources */,
 				881457F01B01E8620024E6F4 /* ImageBlockTableViewCell.xib in Resources */,
-				88DF226E1B0B169D008B3E7A /* InstructionView.xib in Resources */,
 				8814585D1B01EE8B0024E6F4 /* FeedItemCell.xib in Resources */,
 				881458611B01EE8B0024E6F4 /* PingeborgCalloutView.xib in Resources */,
 				881457FB1B01E8620024E6F4 /* YoutubeBlockTableViewCell.xib in Resources */,
@@ -724,7 +715,6 @@
 				8814585C1B01EE8B0024E6F4 /* FeedItemCell.m in Sources */,
 				8814585F1B01EE8B0024E6F4 /* PingeborgAnnotationView.m in Sources */,
 				881457ED1B01E8620024E6F4 /* EbookBlockTableViewCell.m in Sources */,
-				88DF226D1B0B169D008B3E7A /* InstructionViewController.m in Sources */,
 				88E2FAEA1AF74D5800917AFB /* UIImage+animatedGIF.m in Sources */,
 				881457E71B01E8620024E6F4 /* AudioBlockTableViewCell.m in Sources */,
 				88BA01F81AA859F90091A43C /* AppDelegate.m in Sources */,

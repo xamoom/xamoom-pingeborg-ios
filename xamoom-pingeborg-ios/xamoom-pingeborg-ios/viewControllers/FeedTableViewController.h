@@ -22,5 +22,6 @@ extern int const kPageSize;
 @interface FeedTableViewController : UIViewController <XMMEnduserApiDelegate, DropDownMenuDelegate, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *feedTableView;
+@property (weak, nonatomic) IBOutlet UIView *instructionView;
 
 @end
