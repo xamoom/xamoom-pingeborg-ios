@@ -104,6 +104,7 @@ int const kPageSize = 7;
 }
 
 -(void)viewDidDisappear:(BOOL)animated {
+  [self closeInstructionScreen];
 }
 
 #pragma mark - XMMEnduserApi delegates
@@ -112,7 +113,7 @@ int const kPageSize = 7;
   self.contentListCursor = result.cursor;
   
   //check if first startup
-  if (![Globals isFirstStart]) {
+  if ([Globals isFirstStart]) {
     [self firstStartup:result];
   }
   
@@ -314,8 +315,10 @@ int const kPageSize = 7;
 
 - (void)displayInstructionScreen {
   self.instructionView.hidden = NO;
-  UITapGestureRecognizer *tapOnInstructionView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeInstructionScreen)];
-  [self.instructionView addGestureRecognizer:tapOnInstructionView];
+}
+
+- (IBAction)instructionViewTapGestureRecognizerTapped:(id)sender {
+  [self closeInstructionScreen];
 }
 
 - (void)closeInstructionScreen {

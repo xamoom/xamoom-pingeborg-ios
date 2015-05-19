@@ -24,4 +24,6 @@ extern int const kPageSize;
 @property (weak, nonatomic) IBOutlet UITableView *feedTableView;
 @property (weak, nonatomic) IBOutlet UIView *instructionView;
 
+@property (strong, nonatomic) IBOutlet UITapGestureRecognizer *instructionViewTapGestureRecognizer;
+
 @end

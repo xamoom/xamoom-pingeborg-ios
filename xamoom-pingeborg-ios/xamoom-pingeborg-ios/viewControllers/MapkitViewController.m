@@ -36,7 +36,7 @@
   [self.tabBarItem setSelectedImage:[UIImage imageNamed:@"map_filled"]];
   
   //init map
-  self.mapKitWithSMCalloutView = [[CustomMapView alloc] initWithFrame:self.viewForMap.frame];
+  self.mapKitWithSMCalloutView = [[CustomMapView alloc] initWithFrame:self.view.bounds];
   self.mapKitWithSMCalloutView.delegate = self;
   self.mapKitWithSMCalloutView.showsUserLocation = YES;
   [self.viewForMap addSubview:self.mapKitWithSMCalloutView];
@@ -153,7 +153,6 @@
 }
 
 -(void)didLoadDataWithLocation:(XMMResponseGetByLocation *)result {
-  NSString *savedArtists = [Globals savedArtits];
   self.itemsToDisplay = [[NSMutableArray alloc] init];
   self.imagesToDisplay = [[NSMutableDictionary alloc] init];
   
@@ -176,10 +175,7 @@
         dispatch_async(dispatch_get_main_queue(), ^(void) {
           [self.imagesToDisplay setValue:gifImage forKey:self.savedResponseContent.contentId];
           
-          //set geoFenceLabel
-          self.geoFenceLabel.text = [NSString stringWithFormat:@"Gefunden: %@", self.savedResponseContent.title];
-          
-          [self enableGeofenceView];
+          [self geofenceComplete];
         });
       });
     } else if ([self.savedResponseContent.imagePublicUrl containsString:@".svg"]) {
@@ -203,6 +199,8 @@
           
           [self.imagesToDisplay setValue:svgImage forKey:self.savedResponseContent.contentId];
           [self.tableView reloadData];
+          
+          [self geofenceComplete];
         });
       });
     } else if(self.savedResponseContent.imagePublicUrl != nil) {
@@ -212,10 +210,7 @@
           [self.imagesToDisplay setValue:image forKey:self.savedResponseContent.contentId];
           [self.tableView reloadData];
           
-          //set geoFenceLabel
-          self.geoFenceLabel.text = [NSString stringWithFormat:@"Gefunden: %@", self.savedResponseContent.title];
-          
-          [self enableGeofenceView];
+          [self geofenceComplete];
         }
       }];
     } else {
@@ -223,10 +218,7 @@
       if (self.savedResponseContent.contentId != nil)
         [self.imagesToDisplay setValue:self.placeholder forKey:self.savedResponseContent.contentId];
       
-      //set geoFenceLabel
-      self.geoFenceLabel.text = [NSString stringWithFormat:@"Gefunden: %@", self.savedResponseContent.title];
-      
-      [self enableGeofenceView];
+      [self geofenceComplete];
     }
   }
   
@@ -235,6 +227,12 @@
     [XMMEnduserApi sharedInstance].delegate = self;
     [[XMMEnduserApi sharedInstance] closestSpotsWithLat:self.lastLocation.coordinate.latitude withLon:self.lastLocation.coordinate.longitude withRadius:2000 withLimit:10 withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
   }
+}
+
+- (void)geofenceComplete {
+  //set geoFenceLabel
+  self.geoFenceLabel.text = @"pingeb.org entdeckt!";
+  [self enableGeofenceView];
 }
 
 - (void)didLoadClosestSpots:(XMMResponseClosestSpot *)result {
