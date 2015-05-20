@@ -406,7 +406,7 @@ int const kHorizontalSpaceToSubview = 32;
 - (NSMutableAttributedString*)attributedStringFromHTML:(NSString*)html {
   NSError *err = nil;
   
-  self.style = [NSString stringWithFormat:@"<style>body{font-family: \"HelveticaNeue-Light\", \"Helvetica Neue Light\", \"Helvetica Neue\", Helvetica, Arial, \"Lucida Grande\", sans-serif; font-weight: 300; font-size:%dpt; margin:0 !important;} p:last-child, p:last-of-type{margin:1px !important;} </style>", self.fontSize];
+  self.style = [NSString stringWithFormat:@"<style>body{font-family: \"HelveticaNeue-Light\", \"Helvetica Neue Light\", \"Helvetica Neue\", Helvetica, Arial, \"Lucida Grande\", sans-serif; font-size:%dpt; margin:0 !important;} p:last-child, p:last-of-type{margin:1px !important;} </style>", self.fontSize];
     
   html = [html stringByReplacingOccurrencesOfString:@"<br></p>" withString:@"</p>"];
   html = [html stringByAppendingString:self.style];
@@ -418,23 +418,6 @@ int const kHorizontalSpaceToSubview = 32;
                                                                             error: &err];
   if(err)
     NSLog(@"Unable to parse label text: %@", err);
-  
-  /*
-  //change fontsize
-  NSRange range = (NSRange){0,[attributedString length]};
-  [attributedString enumerateAttribute:NSFontAttributeName inRange:range options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock:^(id value, NSRange range, BOOL *stop) {
-    UIFont* currentFont = value;
-    UIFont *replacementFont = nil;
-    
-    if ([currentFont.fontName rangeOfString:@"bold" options:NSCaseInsensitiveSearch].location != NSNotFound) {
-      replacementFont = [UIFont fontWithName:@"HelveticaNeue-Medium" size:self.fontSize];
-    } else {
-      replacementFont = [UIFont fontWithName:@"HelveticaNeue-Thin" size:self.fontSize];
-    }
-    
-    [attributedString addAttribute:NSFontAttributeName value:replacementFont range:range];
-  }];
-  */
   
   return attributedString;
 }
