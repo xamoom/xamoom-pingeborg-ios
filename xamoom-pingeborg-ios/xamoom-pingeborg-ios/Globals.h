@@ -31,6 +31,8 @@
 
 + (BOOL)isFirstStart;
 
++ (BOOL)isFirstTimeGeofencing;
+
 - (void)developmentMode;
 
 @end

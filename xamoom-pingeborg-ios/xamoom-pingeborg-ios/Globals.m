@@ -114,6 +114,17 @@ static Globals *globals;
   }
 }
 
++ (BOOL)isFirstTimeGeofencing {
+  NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+  
+  if ([userDefaults boolForKey:@"isFirstTimeGeofencing"]) {
+    return NO;
+  } else {
+    [userDefaults setBool:YES forKey:@"isFirstTimeGeofencing"];
+    return YES;
+  }
+}
+
 //IF DEV
 - (void)developmentMode {
   globals.isDev = YES;

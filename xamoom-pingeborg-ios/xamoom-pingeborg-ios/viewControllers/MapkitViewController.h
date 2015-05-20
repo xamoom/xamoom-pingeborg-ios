@@ -30,6 +30,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *geoFenceIcon;
 @property (weak, nonatomic) IBOutlet UILabel *geoFenceLabel;
 @property (weak, nonatomic) IBOutlet UIView *viewForMap;
+@property (weak, nonatomic) IBOutlet UIView *instructionView;
 
 @property (nonatomic, strong) CustomMapView *mapKitWithSMCalloutView;
 @property (nonatomic, strong) MKPointAnnotation *annotationForSMCalloutView;

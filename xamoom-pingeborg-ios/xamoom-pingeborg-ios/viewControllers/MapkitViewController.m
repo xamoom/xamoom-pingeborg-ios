@@ -88,6 +88,11 @@
                                            selector:@selector(refreshContentByLocation)
                                                name:@"updateAllArtistLists"
                                              object:nil];
+  
+  //check for firstTime geofencing
+  if ([Globals isFirstTimeGeofencing]) {
+    self.instructionView.hidden = NO;
+  }
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -482,7 +487,7 @@
   
   [self disableGeofenceView];
   [self.geoFenceActivityIndicator startAnimating];
-  self.geoFenceLabel.text = @"Auf der Suche...";
+  self.geoFenceLabel.text = @"Auf der Suche ...";
   [XMMEnduserApi sharedInstance].delegate = self;
   [[XMMEnduserApi sharedInstance] contentWithLat:[NSString stringWithFormat:@"%f",self.lastLocation.coordinate.latitude] withLon:[NSString stringWithFormat:@"%f",self.lastLocation.coordinate.longitude] withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
 }
@@ -777,6 +782,11 @@
 
 - (void)refreshContentByLocation {
   [self.tableView reloadData];
+}
+
+
+- (IBAction)closeInstructionView:(id)sender {
+  self.instructionView.hidden = YES;
 }
 
 @end

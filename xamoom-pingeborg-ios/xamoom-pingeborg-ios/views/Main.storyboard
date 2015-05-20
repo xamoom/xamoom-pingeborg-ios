@@ -335,7 +335,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                                 <color key="backgroundColor" white="0.91141550159999996" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <view alpha="0.90000000000000013" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vWz-ei-cp6">
+                            <view alpha="0.90000000000000013" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vWz-ei-cp6" userLabel="Geofence Header">
                                 <rect key="frame" x="0.0" y="447" width="600" height="40"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ipZ-u8-Z2v">
@@ -370,7 +370,7 @@
                                     <constraint firstItem="kag-2o-TLE" firstAttribute="top" secondItem="vWz-ei-cp6" secondAttribute="top" constant="10" id="w7r-29-XnC"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="YcP-f3-HIP">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="YcP-f3-HIP" userLabel="Geofence TableView">
                                 <rect key="frame" x="0.0" y="487" width="600" height="0.0"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="oZX-iE-fW1"/>
@@ -402,6 +402,47 @@
                                     <outlet property="delegate" destination="WdT-Q6-mb4" id="TsM-dS-Xdb"/>
                                 </connections>
                             </tableView>
+                            <view hidden="YES" alpha="0.89999999999999991" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N6O-Vd-Jeg" userLabel="InstructionView">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="447"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Berühren zum Schließen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mSQ-hE-GZt">
+                                        <rect key="frame" x="243" y="427" width="114" height="12"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Innerhalb von 40 Metern von einem pingeb.org Sticker kannst du dieses auch ohne Scan entdecken." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Guv-VM-KZR">
+                                        <rect key="frame" x="8" y="279" width="240" height="84"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="84" id="Fpt-B7-huI"/>
+                                            <constraint firstAttribute="width" constant="240" id="V8p-F7-tmb"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow-bended-down" translatesAutoresizingMaskIntoConstraints="NO" id="Fzc-9f-Kn2">
+                                        <rect key="frame" x="224" y="339" width="91" height="49"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="91" id="0c1-56-tRv"/>
+                                            <constraint firstAttribute="height" constant="49" id="b4K-L6-8wR"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="mSQ-hE-GZt" secondAttribute="bottom" constant="8" id="3MF-sg-6ox"/>
+                                    <constraint firstItem="Fzc-9f-Kn2" firstAttribute="bottom" secondItem="Guv-VM-KZR" secondAttribute="bottom" constant="25" id="CKd-jW-dzx"/>
+                                    <constraint firstItem="Guv-VM-KZR" firstAttribute="leading" secondItem="N6O-Vd-Jeg" secondAttribute="leading" constant="8" id="EYc-k1-jxQ"/>
+                                    <constraint firstItem="Fzc-9f-Kn2" firstAttribute="trailing" secondItem="Guv-VM-KZR" secondAttribute="trailing" constant="67" id="WtL-G1-J9c"/>
+                                    <constraint firstAttribute="centerX" secondItem="mSQ-hE-GZt" secondAttribute="centerX" id="ccr-ga-sKG"/>
+                                    <constraint firstAttribute="bottom" secondItem="Guv-VM-KZR" secondAttribute="bottom" constant="84" id="ipL-gH-Pan"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="fd4-jm-cMb" appends="YES" id="DlU-R0-08B"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -412,8 +453,12 @@
                             <constraint firstItem="vWz-ei-cp6" firstAttribute="leading" secondItem="8fU-ya-1Zx" secondAttribute="leading" id="EAW-Em-ugM"/>
                             <constraint firstItem="YcP-f3-HIP" firstAttribute="top" secondItem="vWz-ei-cp6" secondAttribute="bottom" id="GeG-PP-rX8"/>
                             <constraint firstAttribute="trailing" secondItem="grm-IJ-tqb" secondAttribute="trailing" id="OkA-co-Etd"/>
+                            <constraint firstItem="vWz-ei-cp6" firstAttribute="top" secondItem="N6O-Vd-Jeg" secondAttribute="bottom" id="Rd8-sP-Omb"/>
                             <constraint firstAttribute="trailing" secondItem="vWz-ei-cp6" secondAttribute="trailing" id="UtG-2D-gJj"/>
+                            <constraint firstItem="grm-IJ-tqb" firstAttribute="top" secondItem="N6O-Vd-Jeg" secondAttribute="top" id="WyM-nr-3K1"/>
                             <constraint firstItem="grm-IJ-tqb" firstAttribute="top" secondItem="r2z-g0-SZf" secondAttribute="bottom" id="ZZb-Tm-DWX"/>
+                            <constraint firstItem="grm-IJ-tqb" firstAttribute="leading" secondItem="N6O-Vd-Jeg" secondAttribute="leading" id="d5M-A5-cnM"/>
+                            <constraint firstItem="grm-IJ-tqb" firstAttribute="trailing" secondItem="N6O-Vd-Jeg" secondAttribute="trailing" id="gxZ-xq-ABy"/>
                             <constraint firstItem="YcP-f3-HIP" firstAttribute="leading" secondItem="8fU-ya-1Zx" secondAttribute="leadingMargin" constant="-16" id="jMA-Z4-aa2"/>
                         </constraints>
                     </view>
@@ -423,12 +468,19 @@
                         <outlet property="geoFenceIcon" destination="vnx-Hm-ayt" id="PLF-kp-gxy"/>
                         <outlet property="geoFenceLabel" destination="ipZ-u8-Z2v" id="cst-UK-ln9"/>
                         <outlet property="geofenceView" destination="vWz-ei-cp6" id="M76-gi-lzF"/>
+                        <outlet property="instructionView" destination="N6O-Vd-Jeg" id="jjn-bA-545"/>
                         <outlet property="tableView" destination="YcP-f3-HIP" id="zs2-fg-7Nh"/>
                         <outlet property="tableViewHeightConstraint" destination="oZX-iE-fW1" id="cOA-LK-5xe"/>
                         <outlet property="viewForMap" destination="grm-IJ-tqb" id="iNi-0j-t20"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xcE-VJ-wGD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="fd4-jm-cMb">
+                    <connections>
+                        <action selector="closeInstructionView:" destination="WdT-Q6-mb4" id="MJ1-8H-jne"/>
+                        <outlet property="delegate" destination="WdT-Q6-mb4" id="BFP-eY-2rU"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1087" y="785"/>
         </scene>
@@ -439,6 +491,7 @@
         <image name="QR" width="30" height="30"/>
         <image name="Start" width="30" height="30"/>
         <image name="arrow-bended" width="43" height="58"/>
+        <image name="arrow-bended-down" width="43" height="58"/>
         <image name="info" width="32" height="32"/>
     </resources>
 </document>
