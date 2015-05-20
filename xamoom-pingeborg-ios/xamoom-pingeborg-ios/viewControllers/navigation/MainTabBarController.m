@@ -88,7 +88,10 @@ BOOL isFirstTime;
   [Globals addDiscoveredArtist:apiResult.content.contentId];
   result = apiResult;
   
-  [self performSegueWithIdentifier:@"showScanResult" sender:self];
+  if ([result.systemId isEqualToString:[Globals sharedObject].globalSystemId])
+    [self performSegueWithIdentifier:@"showScanResult" sender:self];
+  else
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.xm.gl/content/%@", result.content.contentId]]];
 }
 
 #pragma mark - Navigation
