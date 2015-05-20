@@ -348,6 +348,7 @@
 			isa = PBXGroup;
 			children = (
 				8814584D1B01EE8B0024E6F4 /* Main.storyboard */,
+				88BA02011AA859F90091A43C /* LaunchScreen.xib */,
 				8814584A1B01EE8B0024E6F4 /* FeedItemCell.h */,
 				8814584B1B01EE8B0024E6F4 /* FeedItemCell.m */,
 				8814584C1B01EE8B0024E6F4 /* FeedItemCell.xib */,
@@ -403,7 +404,6 @@
 				881458491B01EE8B0024E6F4 /* Views */,
 				881457C21B01E8620024E6F4 /* ContentBlocks */,
 				88BA01FF1AA859F90091A43C /* Images.xcassets */,
-				88BA02011AA859F90091A43C /* LaunchScreen.xib */,
 				8860DA7B1AE78CDF00DF2239 /* SVGKit */,
 				88BA01F21AA859F90091A43C /* Supporting Files */,
 			);
@@ -778,6 +778,7 @@
 				88BA02021AA859F90091A43C /* Base */,
 			);
 			name = LaunchScreen.xib;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
