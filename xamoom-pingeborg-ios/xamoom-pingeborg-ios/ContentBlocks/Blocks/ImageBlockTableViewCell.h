@@ -10,10 +10,10 @@
 
 @interface ImageBlockTableViewCell : UITableViewCell <UIGestureRecognizerDelegate>
 
+
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *image;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint* imageHeightConstraint;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *imageLoadingIndicator;
-@property (weak, nonatomic) IBOutlet UILongPressGestureRecognizer *longPressRecognizer;
 
 @end
