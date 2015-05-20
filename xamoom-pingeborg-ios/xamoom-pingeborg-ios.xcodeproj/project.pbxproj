@@ -67,6 +67,7 @@
 		88CBAEE11AA9EC9E000E480A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88CBAEE01AA9EC9E000E480A /* MapKit.framework */; };
 		88DB74DC1B0217DA0064EE7E /* ScanResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DB74DB1B0217DA0064EE7E /* ScanResultViewController.m */; };
 		88E2FAEA1AF74D5800917AFB /* UIImage+animatedGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E2FAE91AF74D5800917AFB /* UIImage+animatedGIF.m */; };
+		88F038421B0CB9C600E17573 /* api.txt in Resources */ = {isa = PBXBuildFile; fileRef = 88F038411B0CB9C600E17573 /* api.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -206,6 +207,7 @@
 		88DB74DB1B0217DA0064EE7E /* ScanResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanResultViewController.m; sourceTree = "<group>"; };
 		88E2FAE81AF74D5800917AFB /* UIImage+animatedGIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+animatedGIF.h"; sourceTree = "<group>"; };
 		88E2FAE91AF74D5800917AFB /* UIImage+animatedGIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+animatedGIF.m"; sourceTree = "<group>"; };
+		88F038411B0CB9C600E17573 /* api.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = api.txt; sourceTree = "<group>"; };
 		C530CDEFFEDDFCABBEC918B0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -406,6 +408,7 @@
 				88BA01FF1AA859F90091A43C /* Images.xcassets */,
 				8860DA7B1AE78CDF00DF2239 /* SVGKit */,
 				88BA01F21AA859F90091A43C /* Supporting Files */,
+				88F038411B0CB9C600E17573 /* api.txt */,
 			);
 			path = "xamoom-pingeborg-ios";
 			sourceTree = "<group>";
@@ -636,6 +639,7 @@
 				881458611B01EE8B0024E6F4 /* PingeborgCalloutView.xib in Resources */,
 				881457FB1B01E8620024E6F4 /* YoutubeBlockTableViewCell.xib in Resources */,
 				88BA02031AA859F90091A43C /* LaunchScreen.xib in Resources */,
+				88F038421B0CB9C600E17573 /* api.txt in Resources */,
 				881457F51B01E8620024E6F4 /* SoundcloudBlockTableViewCell.xib in Resources */,
 				8860DA7A1AE78CB800DF2239 /* usr in Resources */,
 				881457E81B01E8620024E6F4 /* AudioBlockTableViewCell.xib in Resources */,
