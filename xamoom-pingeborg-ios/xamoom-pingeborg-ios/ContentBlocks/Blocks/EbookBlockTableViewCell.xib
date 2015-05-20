@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -18,6 +18,7 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ebook" translatesAutoresizingMaskIntoConstraints="NO" id="Zcc-62-G5Y">
                                 <rect key="frame" x="8" y="8" width="52" height="52"/>
+                                <color key="tintColor" red="1" green="0.98679385549999998" blue="0.97868615140000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="62s-JU-6u8"/>
                                     <constraint firstAttribute="width" constant="52" id="uQ8-pO-7Sh"/>
@@ -26,17 +27,26 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xgy-VZ-T9c">
                                 <rect key="frame" x="68" y="12" width="258" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="1" green="0.98679385549999998" blue="0.97868615140000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gTf-w0-lZh">
                                 <rect key="frame" x="68" y="34" width="258" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="1" green="0.98679385549999998" blue="0.97868615140000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3XW-kA-pb1">
+                                <rect key="frame" x="0.0" y="0.0" width="334" height="74"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="downloadButtonClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="zbK-7C-vn5"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.40000000596046448" green="1" blue="0.80000001192092896" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.019607843137254902" green="0.54509803921568623" blue="0.5490196078431373" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="xgy-VZ-T9c" firstAttribute="leading" secondItem="gTf-w0-lZh" secondAttribute="leading" id="3pO-sD-H6O"/>
                             <constraint firstItem="gTf-w0-lZh" firstAttribute="top" secondItem="xgy-VZ-T9c" secondAttribute="bottom" constant="1" id="KOW-qJ-lSf"/>
@@ -50,29 +60,17 @@
                             <constraint firstItem="gTf-w0-lZh" firstAttribute="top" secondItem="xgy-VZ-T9c" secondAttribute="bottom" constant="1" id="t1Q-WE-gyn"/>
                         </constraints>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3XW-kA-pb1">
-                        <rect key="frame" x="0.0" y="0.0" width="334" height="74"/>
-                        <state key="normal">
-                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                        </state>
-                        <connections>
-                            <action selector="downloadButtonClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="zbK-7C-vn5"/>
-                        </connections>
-                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="d3v-f8-ekS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="1fJ-HE-bnO"/>
-                    <constraint firstAttribute="trailing" secondItem="3XW-kA-pb1" secondAttribute="trailing" id="4HX-DX-RUJ"/>
-                    <constraint firstItem="3XW-kA-pb1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Dsx-7Y-bN8"/>
                     <constraint firstItem="d3v-f8-ekS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="E3F-w7-1PC"/>
                     <constraint firstAttribute="trailing" secondItem="d3v-f8-ekS" secondAttribute="trailing" id="Yhm-TQ-hVo"/>
                     <constraint firstAttribute="bottom" secondItem="d3v-f8-ekS" secondAttribute="bottom" constant="6" id="hZX-nq-Z05"/>
-                    <constraint firstAttribute="bottom" secondItem="3XW-kA-pb1" secondAttribute="bottom" id="iTZ-Bd-3fo"/>
-                    <constraint firstItem="3XW-kA-pb1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="m3x-Kl-VtV"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="artistLabel" destination="gTf-w0-lZh" id="3Jk-S1-XD9"/>
+                <outlet property="ebookImageView" destination="Zcc-62-G5Y" id="Vgf-m1-YoL"/>
                 <outlet property="titleLabel" destination="xgy-VZ-T9c" id="79h-ov-dTf"/>
             </connections>
             <point key="canvasLocation" x="595" y="482.5"/>

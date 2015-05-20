@@ -45,7 +45,7 @@ int const kPageSize = 7;
   UIView *iv = [[UIView alloc] initWithFrame:CGRectMake(0,0,(self.view.frame.size.width/1.5),32)];
   self.dropDownButton = [[UIButton alloc] initWithFrame:CGRectMake(0,0,(self.view.frame.size.width/1.5),32)];
   //[dropDownButton addTarget:navController action:@selector(toggleMenu) forControlEvents:UIControlEventTouchUpInside];
-  [self.dropDownButton setTitle:@"pingeborg Kärnten" forState:UIControlStateNormal];
+  [self.dropDownButton setTitle:@"pingeb.org Kärnten" forState:UIControlStateNormal];
   [self.dropDownButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
   
   UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake((iv.frame.size.width/2) - 3.5, iv.frame.size.height-3.5, 7, 3.5)];

@@ -105,7 +105,7 @@
                                     <outlet property="delegate" destination="SWA-yf-kQY" id="KCa-Ae-GAY"/>
                                 </connections>
                             </tableView>
-                            <view alpha="0.89999999999999991" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aqc-vz-hDX" userLabel="InstructionView">
+                            <view hidden="YES" clearsContextBeforeDrawing="NO" alpha="0.89999999999999991" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aqc-vz-hDX" userLabel="InstructionView">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Berühren zum Schließen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xuh-Kn-MLk">
@@ -115,18 +115,18 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scanne jede Woche einen pingeb.org-Sticker um, den neuesten Künstler freizuschalten" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YVS-B9-OUd">
-                                        <rect key="frame" x="8" y="79" width="225" height="55"/>
+                                        <rect key="frame" x="8" y="79" width="239" height="76"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="225" id="mAh-N9-Ecd"/>
-                                            <constraint firstAttribute="height" constant="55" id="rBB-29-q14"/>
+                                            <constraint firstAttribute="width" constant="239" id="mAh-N9-Ecd"/>
+                                            <constraint firstAttribute="height" constant="76" id="rBB-29-q14"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                         <size key="shadowOffset" width="-1" height="-1"/>
                                     </label>
                                     <imageView clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow-bended" translatesAutoresizingMaskIntoConstraints="NO" id="l8V-bZ-cPM">
-                                        <rect key="frame" x="198" y="59" width="35" height="35"/>
+                                        <rect key="frame" x="212" y="79" width="35" height="35"/>
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="35" id="XZn-rM-XKH"/>
@@ -134,18 +134,18 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Künstler haben wir für dich schon freigeschalten" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BFl-ai-jwO">
-                                        <rect key="frame" x="405" y="241" width="187" height="43"/>
+                                        <rect key="frame" x="405" y="266" width="187" height="43"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="187" id="5vO-C8-0PQ"/>
                                             <constraint firstAttribute="height" constant="43" id="Ihg-WS-jC0"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                         <size key="shadowOffset" width="-1" height="-1"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yt1-n1-yUk">
-                                        <rect key="frame" x="364" y="238" width="33" height="49"/>
+                                        <rect key="frame" x="364" y="263" width="33" height="49"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="55" id="N34-k6-IUx"/>
                                             <constraint firstAttribute="width" constant="33" id="yih-1q-xnX"/>
@@ -161,7 +161,7 @@
                                         </variation>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="3arrows-bended" translatesAutoresizingMaskIntoConstraints="NO" id="Uek-AW-JQp">
-                                        <rect key="frame" x="322" y="210" width="34" height="106"/>
+                                        <rect key="frame" x="322" y="235" width="34" height="106"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="106" id="TGp-XZ-Gh8"/>
                                             <constraint firstAttribute="width" constant="34" id="X5U-Eg-MJ2"/>
@@ -172,9 +172,9 @@
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstItem="yt1-n1-yUk" firstAttribute="top" secondItem="Uek-AW-JQp" secondAttribute="top" constant="28" id="32J-Kd-P7s"/>
-                                    <constraint firstItem="BFl-ai-jwO" firstAttribute="top" secondItem="YVS-B9-OUd" secondAttribute="bottom" constant="107" id="9yN-Nv-PML"/>
+                                    <constraint firstItem="BFl-ai-jwO" firstAttribute="top" secondItem="YVS-B9-OUd" secondAttribute="bottom" constant="111" id="90L-e2-cjG"/>
                                     <constraint firstItem="yt1-n1-yUk" firstAttribute="top" secondItem="BFl-ai-jwO" secondAttribute="top" constant="-3" id="Brv-ct-LpL"/>
-                                    <constraint firstItem="YVS-B9-OUd" firstAttribute="top" secondItem="l8V-bZ-cPM" secondAttribute="bottom" constant="-15" id="FVe-pV-2Bn"/>
+                                    <constraint firstItem="YVS-B9-OUd" firstAttribute="top" secondItem="l8V-bZ-cPM" secondAttribute="bottom" constant="-35" id="FVe-pV-2Bn"/>
                                     <constraint firstItem="YVS-B9-OUd" firstAttribute="trailing" secondItem="l8V-bZ-cPM" secondAttribute="trailing" id="GbO-1M-N2K"/>
                                     <constraint firstItem="YVS-B9-OUd" firstAttribute="top" secondItem="aqc-vz-hDX" secondAttribute="top" constant="79" id="Hn1-2l-HfX"/>
                                     <constraint firstItem="yt1-n1-yUk" firstAttribute="bottom" secondItem="Uek-AW-JQp" secondAttribute="bottom" constant="-29" id="Mlp-2r-gTv"/>

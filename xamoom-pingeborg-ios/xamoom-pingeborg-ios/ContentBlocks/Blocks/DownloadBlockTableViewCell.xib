@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -36,7 +36,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.43529412150382996" blue="0.81176471710205078" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Yec-h6-DBB" firstAttribute="leading" secondItem="grh-BE-wCl" secondAttribute="leading" constant="8" id="4iR-H6-34m"/>
                             <constraint firstItem="Yec-h6-DBB" firstAttribute="top" secondItem="LGQ-fC-xb3" secondAttribute="top" constant="-4" id="4k1-Ph-ysr"/>
@@ -71,6 +71,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="backgroundColorView" destination="LM6-J7-YFJ" id="0ia-C9-bMA"/>
                 <outlet property="contentTextLabel" destination="pYX-UX-kgy" id="8Hj-fy-y33"/>
                 <outlet property="icon" destination="Yec-h6-DBB" id="g9V-ni-kZM"/>
                 <outlet property="titleLabel" destination="LGQ-fC-xb3" id="7fw-f7-JEJ"/>

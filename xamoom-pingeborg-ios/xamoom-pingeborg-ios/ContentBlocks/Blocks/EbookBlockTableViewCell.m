@@ -12,6 +12,8 @@
 
 - (void)awakeFromNib {
   // Initialization code
+  self.ebookImageView.image = [[UIImage imageNamed:@"ebook"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+  self.ebookImageView.tintColor = [UIColor whiteColor];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
