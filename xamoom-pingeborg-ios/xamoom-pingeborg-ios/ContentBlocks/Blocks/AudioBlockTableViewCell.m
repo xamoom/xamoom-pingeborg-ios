@@ -45,6 +45,8 @@
   self.remainingTimeLabel.text = remainingSongTime;
 }
 
+#pragma mark - Notification Handler
+
 - (void)pauseAllXMMMusicPlayer {
   [self.audioPlayerControl pause];
 }

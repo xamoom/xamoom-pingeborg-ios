@@ -22,13 +22,7 @@ IB_DESIGNABLE
 
 @synthesize audioPlayer;
 
--(instancetype)initWithMediaUrlString:(NSString*)mediaUrlString {
-  self = [super init];
-  if(self) {
-    self.mediaUrlString = mediaUrlString;
-  }
-  return self;
-}
+#pragma mark - Initialization
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
@@ -36,10 +30,12 @@ IB_DESIGNABLE
   return self;
 }
 
-- (void)startAudioPlayer {
+- (void)initAudioPlayerWithUrlString:(NSString*)mediaUrlString {
+  //init avplayer with URL
   NSURL *mediaURL = [NSURL URLWithString:self.mediaUrlString];
   self.audioPlayer = [[AVPlayer alloc] initWithURL:mediaURL];
-    
+  
+  //addPeriodicTimeObserver for remainingTime and progressBar
   __block XMMMusicPlayer *weakSelf = self;
   [self.audioPlayer addPeriodicTimeObserverForInterval:CMTimeMake(1, 60) queue:NULL usingBlock:^(CMTime time) {
     if (!time.value) {
@@ -50,10 +46,10 @@ IB_DESIGNABLE
       CGFloat remainingSongTime = songDuration - currentSongTime;
       
       if (!isnan(songDuration)) {
-        weakSelf.ringProgress = currentSongTime / songDuration;
+        weakSelf.lineProgress = currentSongTime / songDuration;
         weakSelf.remainingSongTime = [NSString stringWithFormat:@"%d:%02d", (int)remainingSongTime / 60, (int)remainingSongTime %60];
         
-        //delegate call [];
+        //notify delegate with remainingSongTime
         if ([weakSelf.delegate respondsToSelector:@selector(didUpdateRemainingSongTime:)]) {
           [weakSelf.delegate performSelector:@selector(didUpdateRemainingSongTime:) withObject:weakSelf.remainingSongTime];
         }
@@ -64,6 +60,8 @@ IB_DESIGNABLE
   }];
 }
 
+#pragma mark - Drawing
+
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
@@ -73,9 +71,9 @@ IB_DESIGNABLE
   CGContextRef context = UIGraphicsGetCurrentContext();
 
   //draw first line
-  CGContextSetLineWidth(context, self.ringLineWidth);
+  CGContextSetLineWidth(context, self.lineWidth);
   
-  CGColorRef color = self.backgroundRingColor.CGColor;
+  CGColorRef color = self.backgroundLineColor.CGColor;
   
   CGContextSetStrokeColorWithColor(context, color);
   
@@ -85,46 +83,29 @@ IB_DESIGNABLE
   CGContextStrokePath(context);
   
   //draw second line
-  CGContextSetLineWidth(context, self.ringLineWidth);
+  CGContextSetLineWidth(context, self.lineWidth);
   
-  CGColorRef color2 = self.foregroundRingColor.CGColor;
+  CGColorRef color2 = self.foregroundLineColor.CGColor;
   
   CGContextSetStrokeColorWithColor(context, color2);
   
   CGContextMoveToPoint(context, 0, self.drawingFrameSize.height);
-  CGContextAddLineToPoint(context, (self.drawingFrameSize.width * self.ringProgress), self.drawingFrameSize.height);
+  CGContextAddLineToPoint(context, (self.drawingFrameSize.width * self.lineProgress), self.drawingFrameSize.height);
   
   CGContextStrokePath(context);
 }
 
 - (void)layoutSubviews {
   [super layoutSubviews];
-
 }
 
-- (IBAction)audioButton:(id)sender {
-  if (!self.audioPlayer) {
-    NSURL *mediaURL = [NSURL URLWithString:self.mediaUrlString];
-    self.audioPlayer = [[AVPlayer alloc] initWithURL:mediaURL];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(pauseAllXMMMusicPlayer)
-                                                 name:@"pauseAllSounds"
-                                               object:nil];
-  }
-}
+#pragma mark - Audioplayer Controls
 
 - (void)play {
   [self.audioPlayer play];
-  
-
 }
 
 - (void)pause {
-  [self.audioPlayer pause];
-}
-
-- (void)pauseAllXMMMusicPlayer {
   [self.audioPlayer pause];
 }
 

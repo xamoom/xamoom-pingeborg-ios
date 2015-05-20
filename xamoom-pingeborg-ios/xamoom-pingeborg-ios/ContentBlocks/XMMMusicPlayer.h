@@ -15,19 +15,30 @@ FOUNDATION_EXPORT double XMMMusicPlayerVersionNumber;
 //! Project version string for XMMMusicPlayer.
 FOUNDATION_EXPORT const unsigned char XMMMusicPlayerVersionString[];
 
+#pragma mark - XMMMusicerPlayerDelegate Protocol
+
+
 @protocol XMMMusicerPlayerDelegate <NSObject>
 
+/**
+ Notify delegate with the actual remaining song time.
+ 
+ @param remainingSongTime - Remaining song time as string with format 0:00
+ @return void
+ */
 - (void)didUpdateRemainingSongTime:(NSString*)remainingSongTime;
 
 @end
 
+#pragma mark - XMMMusicPlayer Class
+
 IB_DESIGNABLE
 @interface XMMMusicPlayer : UIView
 
-@property IBInspectable float ringProgress;
-@property IBInspectable int ringLineWidth;
-@property IBInspectable UIColor *backgroundRingColor;
-@property IBInspectable UIColor *foregroundRingColor;
+@property IBInspectable float lineProgress;
+@property IBInspectable int lineWidth;
+@property IBInspectable UIColor *backgroundLineColor;
+@property IBInspectable UIColor *foregroundLineColor;
 
 @property AVPlayer *audioPlayer;
 
@@ -36,9 +47,7 @@ IB_DESIGNABLE
 
 @property (nonatomic, weak) id<XMMMusicerPlayerDelegate> delegate;
 
-- (instancetype)initWithMediaUrlString:(NSString*)mediaUrlString;
-
-- (void)startAudioPlayer;
+- (void)initAudioPlayerWithUrlString:(NSString*)mediaUrlString;
 
 - (void)play;
 

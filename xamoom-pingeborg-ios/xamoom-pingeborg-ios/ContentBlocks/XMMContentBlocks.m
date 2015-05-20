@@ -171,15 +171,14 @@ int const kHorizontalSpaceToSubview = 32;
   cell = nib[0];
   
   cell.audioPlayerControl.delegate = cell;
-  cell.audioPlayerControl.mediaUrlString = contentBlock.fileId;
-  [cell.audioPlayerControl startAudioPlayer];
+  [cell.audioPlayerControl initAudioPlayerWithUrlString:contentBlock.fileId];
   
   //set title & artist
   cell.titleLabel.text = contentBlock.title;
   cell.artistLabel.text = contentBlock.artist;
   
   float songDurationInSeconds = CMTimeGetSeconds(cell.audioPlayerControl.audioPlayer.currentItem.asset.duration);
-  cell.remainingTimeLabel.text = [NSString stringWithFormat:@"%d:%02d", (int)songDurationInSeconds / 60, (int)songDurationInSeconds %60];
+  cell.remainingTimeLabel.text = [NSString stringWithFormat:@"%d:%02d", (int)songDurationInSeconds / 60, (int)songDurationInSeconds % 60];
   
   [self.itemsToDisplay addObject:cell];
 }
