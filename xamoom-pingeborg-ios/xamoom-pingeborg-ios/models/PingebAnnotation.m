@@ -23,7 +23,7 @@
   return self;
 }
 
-- (id)initWithName:(NSString*)name location:(CLLocationCoordinate2D)coord {
+- (id)initWithName:(NSString*)name withLocation:(CLLocationCoordinate2D)coord {
   self = [super init];
   if (self) {
     coordinate = coord;

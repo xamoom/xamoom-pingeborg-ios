@@ -17,7 +17,7 @@
 
 - (instancetype)initWithLocation:(CLLocationCoordinate2D)coord NS_DESIGNATED_INITIALIZER;
 
-- (instancetype)initWithName:(NSString*)name location:(CLLocationCoordinate2D)coord NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithName:(NSString*)name withLocation:(CLLocationCoordinate2D)coord NS_DESIGNATED_INITIALIZER;
 
 @property (NS_NONATOMIC_IOSONLY, readonly, strong) MKMapItem *mapItem;
 
