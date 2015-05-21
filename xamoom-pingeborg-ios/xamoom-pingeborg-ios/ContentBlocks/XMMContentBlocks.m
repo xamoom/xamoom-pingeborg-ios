@@ -145,12 +145,14 @@ int const kHorizontalSpaceToSubview = 32;
   //set content
   if (![cell.contentText isEqualToString:@""]) {
     cell.contentTextView.attributedText = [self attributedStringFromHTML:contentBlock.text];
+    [cell.contentTextView sizeToFit];
   } else {
     //make uitextview "disappear"
     [cell.contentTextView setFont:[UIFont systemFontOfSize:0.0f]];
     cell.contentTextView.textContainerInset = UIEdgeInsetsZero;
     cell.contentTextView.textContainer.lineFragmentPadding = 0;
   }
+  
   //set the linkcolor to a specific color
   [cell.contentTextView setLinkTextAttributes:@{NSForegroundColorAttributeName : self.linkColor, }];
   
@@ -401,7 +403,7 @@ int const kHorizontalSpaceToSubview = 32;
   NSString *style = [NSString stringWithFormat:@"<style>body{font-family: \"HelveticaNeue-Light\", \"Helvetica Neue Light\", \"Helvetica Neue\", Helvetica, Arial, \"Lucida Grande\", sans-serif; font-size:%dpt; margin:0 !important;} p:last-child, p:last-of-type{margin:1px !important;} </style>", self.fontSize];
   
   html = [html stringByReplacingOccurrencesOfString:@"<br></p>" withString:@"</p>"];
-  html = [html stringByAppendingString:style];
+  html = [NSString stringWithFormat:@"%@%@", style, html];
   
   NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithData: [html dataUsingEncoding:NSUTF8StringEncoding]
                                                                                         options: @{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
