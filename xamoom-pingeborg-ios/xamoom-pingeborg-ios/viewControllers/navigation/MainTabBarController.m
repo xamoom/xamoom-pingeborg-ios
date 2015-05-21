@@ -77,6 +77,9 @@
 #pragma mark - XMMEnduserApi Delegate Methods
 
 -(void)didScanQR:(NSString *)result {
+  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Hellyeah!" message:result delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
+  [alert show];
+  
   [[XMMEnduserApi sharedInstance] setDelegate:self];
   [[XMMEnduserApi sharedInstance] contentWithLocationIdentifier:result includeStyle:NO includeMenu:NO withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
 }

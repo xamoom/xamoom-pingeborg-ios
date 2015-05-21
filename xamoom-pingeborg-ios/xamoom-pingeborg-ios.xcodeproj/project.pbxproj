@@ -67,6 +67,7 @@
 		88DB74DC1B0217DA0064EE7E /* ScanResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DB74DB1B0217DA0064EE7E /* ScanResultViewController.m */; };
 		88E2FAEA1AF74D5800917AFB /* UIImage+animatedGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E2FAE91AF74D5800917AFB /* UIImage+animatedGIF.m */; };
 		88F038421B0CB9C600E17573 /* api.txt in Resources */ = {isa = PBXBuildFile; fileRef = 88F038411B0CB9C600E17573 /* api.txt */; };
+		88F038471B0E0D1200E17573 /* XMMImageUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F038461B0E0D1200E17573 /* XMMImageUtility.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -206,6 +207,8 @@
 		88E2FAE81AF74D5800917AFB /* UIImage+animatedGIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+animatedGIF.h"; sourceTree = "<group>"; };
 		88E2FAE91AF74D5800917AFB /* UIImage+animatedGIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+animatedGIF.m"; sourceTree = "<group>"; };
 		88F038411B0CB9C600E17573 /* api.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = api.txt; sourceTree = "<group>"; };
+		88F038451B0E0D1200E17573 /* XMMImageUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMImageUtility.h; sourceTree = "<group>"; };
+		88F038461B0E0D1200E17573 /* XMMImageUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMImageUtility.m; sourceTree = "<group>"; };
 		C530CDEFFEDDFCABBEC918B0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -406,6 +409,8 @@
 				8860DA7B1AE78CDF00DF2239 /* SVGKit */,
 				88BA01F21AA859F90091A43C /* Supporting Files */,
 				88F038411B0CB9C600E17573 /* api.txt */,
+				88F038451B0E0D1200E17573 /* XMMImageUtility.h */,
+				88F038461B0E0D1200E17573 /* XMMImageUtility.m */,
 			);
 			path = "xamoom-pingeborg-ios";
 			sourceTree = "<group>";
@@ -721,6 +726,7 @@
 				881458561B01EE8B0024E6F4 /* AboutViewController.m in Sources */,
 				88052D7B1AE103C300AB433D /* Globals.m in Sources */,
 				881457FC1B01E8620024E6F4 /* XMMContentBlocks.m in Sources */,
+				88F038471B0E0D1200E17573 /* XMMImageUtility.m in Sources */,
 				881458591B01EE8B0024E6F4 /* MapkitViewController.m in Sources */,
 				881457F81B01E8620024E6F4 /* TextBlockTableViewCell.m in Sources */,
 				8814585A1B01EE8B0024E6F4 /* MainTabBarController.m in Sources */,

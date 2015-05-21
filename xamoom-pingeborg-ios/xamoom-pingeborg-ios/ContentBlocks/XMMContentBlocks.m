@@ -461,8 +461,7 @@ int const kHorizontalSpaceToSubview = 32;
 
 #pragma mark - Image methods
 
-- (void)downloadImageWithURL:(NSString *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock
-{
+- (void)downloadImageWithURL:(NSString *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock {
   NSURL *realUrl = [[NSURL alloc]initWithString:url];
   NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:realUrl];
   [NSURLConnection sendAsynchronousRequest:request
