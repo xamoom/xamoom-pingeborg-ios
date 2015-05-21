@@ -26,6 +26,7 @@
   self.tableView.rowHeight = UITableViewAutomaticDimension;
   self.tableView.estimatedRowHeight = 150.0;
   
+  //setting up XMMContentBlocks
   self.contentBlocks = [[XMMContentBlocks alloc] init];
   self.contentBlocks.delegate = self;
   self.contentBlocks.linkColor = [Globals sharedObject].pingeborgLinkColor;
@@ -59,20 +60,20 @@
   
   self.fontSizeDropdownMenu = [[REMenu alloc] initWithItems:@[NormalFontSizeItem, BigFontSizeItem, BiggerFontSizeItem]];
   
+  //creating change font size button in navbar
   UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"textsize"]
                                                                  style:UIBarButtonItemStylePlain
                                                                 target:self
                                                                 action:@selector(toggleFontSizeDropdownMenu)];
-  
   self.navigationItem.rightBarButtonItem = buttonItem;
   
+  //init and start progessHud
   self.hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
   [self.hud showInView:self.view];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
-  self.navigationController.title = @"Hellyeah";
   [self displayContentTitleAndImage];
   [self.contentBlocks displayContentBlocksById:nil byLocationIdentifier:self.result withScreenWidth:self.view.frame.size.width];
 }
@@ -80,6 +81,7 @@
 -(void)viewWillDisappear:(BOOL)animated {
   [[NSNotificationCenter defaultCenter] postNotificationName:@"pauseAllSounds" object:self];
   
+  //reload tableViews, when the newest scanned artist is open (So the "discover" overlay disappears)
   if ([self.result.content.contentId isEqualToString: [Globals savedArtitsAsArray].lastObject]) {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"updateAllArtistLists" object:self];
   }
@@ -106,9 +108,10 @@
 
 #pragma mark - Table view data source
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   [tableView deselectRowAtIndexPath:indexPath animated:NO];
+  
+  //open new artistDetailViewController when tap a contentBlock
   if ([(self.contentBlocks.itemsToDisplay)[indexPath.row] isKindOfClass:[ContentBlockTableViewCell class]]) {
     ContentBlockTableViewCell *cell = (self.contentBlocks.itemsToDisplay)[indexPath.row];
     
@@ -136,6 +139,8 @@
 #pragma mark - Custom Methods
 
 - (void)displayContentTitleAndImage {
+  //make text and imageblock for the title, exercpt and the display image
+  
   XMMResponseContentBlockType0 *contentBlock0 = [[XMMResponseContentBlockType0 alloc] init];
   contentBlock0.contentBlockType = @"title";
   contentBlock0.title = self.result.content.title;

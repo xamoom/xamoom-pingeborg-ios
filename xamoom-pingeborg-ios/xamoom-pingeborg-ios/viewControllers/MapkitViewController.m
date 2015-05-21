@@ -35,6 +35,9 @@
   
   [self.tabBarItem setSelectedImage:[UIImage imageNamed:@"map_filled"]];
   
+  self.placeholder = [UIImage imageNamed:@"placeholder"];
+  self.isUp = NO;
+  
   //init map
   self.mapKitWithSMCalloutView = [[CustomMapView alloc] initWithFrame:self.view.bounds];
   self.mapKitWithSMCalloutView.delegate = self;
@@ -55,6 +58,7 @@
   layer.shadowOpacity = 0.20f;
   layer.shadowPath = [[UIBezierPath bezierPathWithRect:layer.bounds] CGPath];
   
+  //init up locationManager
   self.locationManager = [[CLLocationManager alloc] init];
   self.locationManager.delegate = self;
   self.locationManager.distanceFilter = 100.0f; //meter
@@ -64,11 +68,8 @@
   if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
     [self.locationManager requestWhenInUseAuthorization];
   }
-    
-  self.placeholder = [UIImage imageNamed:@"placeholder"];
-  self.isUp = NO;
   
-  //map region
+  //map region for zooming
   MKCoordinateRegion region = { { 0.0, 0.0 }, { 0.0, 0.0 } };
   
   region.center.latitude = 46.623791;
@@ -77,6 +78,7 @@
   region.span.longitudeDelta = 0.09f;
   [self.mapKitWithSMCalloutView setRegion:region animated:YES];
   
+  //create geofence GestureRecognizers
   self.swipeGeoFenceViewUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(toggleGeoFenceView)];
   self.swipeGeoFenceViewUp.direction = UISwipeGestureRecognizerDirectionUp;
   self.swipeGeoFenceViewDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(toggleGeoFenceView)];
@@ -102,6 +104,7 @@
   MKUserTrackingBarButtonItem *buttonItem = [[MKUserTrackingBarButtonItem alloc] initWithMapView:self.mapKitWithSMCalloutView];
   self.parentViewController.navigationItem.rightBarButtonItem = buttonItem;
   
+  //load spotmap if there are no annotations on the map
   if (self.mapKitWithSMCalloutView.annotations.count <= 0 ) {
     [self.geoFenceActivityIndicator startAnimating];
     [[XMMEnduserApi sharedInstance] setDelegate:self];
@@ -118,6 +121,7 @@
 #pragma mark - XMMEnduser Delegate
 
 - (void)didLoadSpotMap:(XMMResponseGetSpotMap *)result {
+  //get the customMarker for the map
   if (result.style.customMarker != nil) {
     NSString *base64String = result.style.customMarker;
     
@@ -129,6 +133,7 @@
     NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:decodedString]];
     self.customMapMarker = [self imageWithImage:[UIImage imageWithData:imageData] scaledToMaxWidth:30.0f maxHeight:30.0f];
     
+    //svg support
     if (!self.customMapMarker) {
       //save svg mapmarker
       NSArray *paths = NSSearchPathForDirectoriesInDomains
@@ -144,14 +149,15 @@
     }
   }
   
+  // Add annotations
   for (XMMResponseGetSpotMapItem *item in result.items) {
-    // Add an annotation
     PingebAnnotation *point = [[PingebAnnotation alloc] initWithLocation: CLLocationCoordinate2DMake(item.lat, item.lon)];
     point.data = item;
     
+    //calculate distance to annotation
     CLLocation *pointLocation = [[CLLocation alloc] initWithLatitude:point.coordinate.latitude longitude:point.coordinate.longitude];
     CLLocationDistance distance = [self.locationManager.location distanceFromLocation:pointLocation];
-    point.distance = [NSString stringWithFormat:@"Distance: %d meter", (int)distance];
+    point.distance = [NSString stringWithFormat:@"Entfernung: %d Meter", (int)distance];
     
     [self.mapKitWithSMCalloutView addAnnotation:point];
   }
@@ -161,72 +167,77 @@
   self.itemsToDisplay = [[NSMutableArray alloc] init];
   self.imagesToDisplay = [[NSMutableDictionary alloc] init];
   
+  //return if there are no items
   if([result.items count] > 0) {
-    
-    for (XMMResponseGetByLocationItem *item in result.items) {
-      if ([item.systemId isEqualToString:[Globals sharedObject].globalSystemId]) {
-        self.savedResponseContent = item;
-        [self.itemsToDisplay addObject:item];
-        break;
-      }
-    }
-    
-    if ([self.savedResponseContent.imagePublicUrl containsString:@".gif"]) {
-      //off mainthread gifimage loading
-      dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
-                                               (unsigned long)NULL), ^(void) {
-        UIImage *gifImage = [UIImage animatedImageWithAnimatedGIFURL:[NSURL URLWithString:self.savedResponseContent.imagePublicUrl]];
-        
-        dispatch_async(dispatch_get_main_queue(), ^(void) {
-          [self.imagesToDisplay setValue:gifImage forKey:self.savedResponseContent.contentId];
-          
-          [self geofenceComplete];
-        });
-      });
-    } else if ([self.savedResponseContent.imagePublicUrl containsString:@".svg"]) {
-      //off mainthread svg loading
-      dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
-                                               (unsigned long)NULL), ^(void) {
-        
-        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.savedResponseContent.imagePublicUrl]];
-        
-        dispatch_async(dispatch_get_main_queue(), ^(void) {
-          NSArray *paths = NSSearchPathForDirectoriesInDomains
-          (NSDocumentDirectory, NSUserDomainMask, YES);
-          NSString *documentsDirectory = paths[0];
-          NSString *fileName = [NSString stringWithFormat:@"%@/svgimage.svg", documentsDirectory];
-          [imageData writeToFile:fileName atomically:YES];
-          
-          //read svg mapmarker
-          NSData *data = [[NSFileManager defaultManager] contentsAtPath:fileName];
-          SVGKImage *svgImage = [SVGKImage imageWithSource:[SVGKSourceString sourceFromContentsOfString:
-                                                            [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]]];
-          
-          [self.imagesToDisplay setValue:svgImage forKey:self.savedResponseContent.contentId];
-          [self.tableView reloadData];
-          
-          [self geofenceComplete];
-        });
-      });
-    } else if(self.savedResponseContent.imagePublicUrl != nil) {
-      [self downloadImageWithURL:self.savedResponseContent.imagePublicUrl completionBlock:^(BOOL succeeded, UIImage *image) {
-        if (succeeded) {
-          
-          [self.imagesToDisplay setValue:image forKey:self.savedResponseContent.contentId];
-          [self.tableView reloadData];
-          
-          [self geofenceComplete];
-        }
-      }];
-    } else {
-      
-      if (self.savedResponseContent.contentId != nil)
-        [self.imagesToDisplay setValue:self.placeholder forKey:self.savedResponseContent.contentId];
-      
-      [self geofenceComplete];
+    return;
+  }
+  
+  for (XMMResponseGetByLocationItem *item in result.items) {
+    //check if item is in pingeborg-system => GEOFENCE
+    if ([item.systemId isEqualToString:[Globals sharedObject].globalSystemId]) {
+      self.savedResponseContent = item;
+      [self.itemsToDisplay addObject:item];
+      break;
     }
   }
   
+  //image loading
+  if ([self.savedResponseContent.imagePublicUrl containsString:@".gif"]) {
+    //off mainthread gifimage loading
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
+                                             (unsigned long)NULL), ^(void) {
+      UIImage *gifImage = [UIImage animatedImageWithAnimatedGIFURL:[NSURL URLWithString:self.savedResponseContent.imagePublicUrl]];
+      
+      dispatch_async(dispatch_get_main_queue(), ^(void) {
+        [self.imagesToDisplay setValue:gifImage forKey:self.savedResponseContent.contentId];
+        
+        [self geofenceComplete];
+      });
+    });
+  } else if ([self.savedResponseContent.imagePublicUrl containsString:@".svg"]) {
+    //off mainthread svg loading
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
+                                             (unsigned long)NULL), ^(void) {
+      
+      NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.savedResponseContent.imagePublicUrl]];
+      
+      dispatch_async(dispatch_get_main_queue(), ^(void) {
+        NSArray *paths = NSSearchPathForDirectoriesInDomains
+        (NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = paths[0];
+        NSString *fileName = [NSString stringWithFormat:@"%@/svgimage.svg", documentsDirectory];
+        [imageData writeToFile:fileName atomically:YES];
+        
+        //read svg mapmarker
+        NSData *data = [[NSFileManager defaultManager] contentsAtPath:fileName];
+        SVGKImage *svgImage = [SVGKImage imageWithSource:[SVGKSourceString sourceFromContentsOfString:
+                                                          [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]]];
+        
+        [self.imagesToDisplay setValue:svgImage forKey:self.savedResponseContent.contentId];
+        [self.tableView reloadData];
+        
+        [self geofenceComplete];
+      });
+    });
+  } else if(self.savedResponseContent.imagePublicUrl != nil) {
+    [self downloadImageWithURL:self.savedResponseContent.imagePublicUrl completionBlock:^(BOOL succeeded, UIImage *image) {
+      if (succeeded) {
+        
+        [self.imagesToDisplay setValue:image forKey:self.savedResponseContent.contentId];
+        [self.tableView reloadData];
+        
+        [self geofenceComplete];
+      }
+    }];
+  } else {
+    
+    if (self.savedResponseContent.contentId != nil)
+      [self.imagesToDisplay setValue:self.placeholder forKey:self.savedResponseContent.contentId];
+    
+    [self geofenceComplete];
+  }
+  
+  //load items in near you, when there is no geofence
   if (self.savedResponseContent == nil) {
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
     [XMMEnduserApi sharedInstance].delegate = self;
@@ -278,12 +289,13 @@
         annotationView.image = [UIImage imageNamed:@"mappoint"];//here we use a nice image instead of the default pins
       }
       
+      //save data in annotationView
       PingebAnnotation *pingebAnnotation = (PingebAnnotation*)annotation;
       annotationView.data = pingebAnnotation.data;
       annotationView.distance = pingebAnnotation.distance;
       annotationView.coordinate = pingebAnnotation.coordinate;
       
-      //gif support
+      //load image with gif support
       if ([pingebAnnotation.data.image containsString:@".gif"]) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
                                                  (unsigned long)NULL), ^(void) {
@@ -374,6 +386,7 @@
       [pingeborgCalloutView addSubview:spotImageView];
     }
     
+    //insert spotdescription
     if (![pingeborgAnnotationView.data.descriptionOfSpot isEqualToString:@""]) {
       UILabel *spotDescriptionLabel;
       if ([pingeborgCalloutView.subviews count] >= 3) {
@@ -401,7 +414,7 @@
       [pingeborgCalloutView addSubview:spotDescriptionLabel];
     }
     
-    //create, design and adjust button
+    //create, design and adjust navigationButton
     UIButton *navigationButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, pingeborgCalloutView.frame.size.height, 300.0f, 60.0f)];
     navigationButton.backgroundColor = [Globals sharedObject].pingeborgLinkColor;
     [navigationButton setImage:[[UIImage imageNamed:@"car"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
@@ -414,7 +427,7 @@
     pingeborgCalloutView.frame = pingeborgCalloutViewRect;
     
     [navigationButton addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mapNavigationTapped)]];
-    
+
     [pingeborgCalloutView addSubview:navigationButton];
     
     //set custom contentView
@@ -435,9 +448,7 @@
   [self.mapKitWithSMCalloutView.calloutView dismissCalloutAnimated:YES];
 }
 
-//
-// SMCalloutView delegate methods
-//
+#pragma mark - SMCalloutView delegate methods
 
 - (NSTimeInterval)calloutView:(SMCalloutView *)calloutView delayForRepositionWithSize:(CGSize)offset {
   
@@ -467,6 +478,7 @@
 #pragma mark User Interaction
 
 - (void)mapNavigationTapped {
+  //navigate to the coordinates of the pingeborgCalloutView
   PingeborgCalloutView *pingeborgCalloutView = (PingeborgCalloutView* )self.mapKitWithSMCalloutView.calloutView.contentView;
   
   MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:pingeborgCalloutView.coordinate addressDictionary:nil];
@@ -485,6 +497,7 @@
   
   self.savedResponseContent = nil;
   
+  //make a geofence
   [self disableGeofenceView];
   [self.geoFenceActivityIndicator startAnimating];
   self.geoFenceLabel.text = @"Auf der Suche ...";
@@ -509,11 +522,11 @@
   UITableViewCell *cell = nil;
   
   if ([self.itemsToDisplay[indexPath.row] isKindOfClass:[XMMResponseGetByLocationItem class]]) {
+    //geofence cell like the feedItemCell
     static NSString *simpleTableIdentifier = @"FeedItemCell";
     
     FeedItemCell *cell = (FeedItemCell *)[self.tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-    if (cell == nil)
-    {
+    if (cell == nil) {
       NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FeedItemCell" owner:self options:nil];
       cell = nib[0];
     }
@@ -564,8 +577,8 @@
     
     return cell;
   } else {
+    //closest spots locationItem Cell defined in storyboard
     cell = [tableView dequeueReusableCellWithIdentifier:@"LocationItem" forIndexPath:indexPath];
-    
     if (cell == nil) {
       cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"LocationItem"];
     }
@@ -573,6 +586,7 @@
     XMMResponseGetSpotMapItem *item = self.itemsToDisplay[indexPath.row];
     cell.textLabel.text = item.displayName;
     
+    //calc distance
     CLLocation *pointLocation = [[CLLocation alloc] initWithLatitude:item.lat longitude:item.lon];
     CLLocationDistance distance = [self.locationManager.location distanceFromLocation:pointLocation];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"Entfernung: %d Meter", (int)distance];
@@ -708,6 +722,7 @@
   [self toggleGeoFenceView];
 }
 
+//add gestures, change icon and stop loading indicator on geofence view
 - (void)enableGeofenceView {
   [self.geofenceView addGestureRecognizer:self.geoFenceTapGesture];
   [self.geofenceView addGestureRecognizer:self.swipeGeoFenceViewUp];
@@ -718,6 +733,7 @@
   [self.tableView reloadData];
 }
 
+//close, remove gestures and start loading indicator
 - (void)disableGeofenceView {
   if (self.isUp) {
     [self toggleGeoFenceView];
@@ -733,10 +749,12 @@
   [self.view layoutIfNeeded];
   
   if (self.isUp) {
+    //hide tableview
     self.tableViewHeightConstraint.constant = 0.0f;
     [self.geofenceView removeGestureRecognizer:self.swipeGeoFenceViewDown];
     [self.geofenceView addGestureRecognizer:self.swipeGeoFenceViewUp];
   } else {
+    //bring up tableview
     if (self.savedResponseContent != nil) {
       UIImage *image = self.imagesToDisplay[self.savedResponseContent.contentId];
       float imageRatio = image.size.width / image.size.height;
@@ -754,6 +772,7 @@
     [self.geofenceView addGestureRecognizer:self.swipeGeoFenceViewDown];
   }
   
+  //animate change
   [UIView animateWithDuration:0.5
                    animations:^{
                      if (self.isUp)
@@ -766,10 +785,10 @@
   
   if (self.isUp)
     [self.tableView reloadData];
-  
 }
 
 - (void)openArtistDetailViewFromSender:(UITapGestureRecognizer*)sender {
+  //open geofence in artistDetailView
   FeedItemCell *cell = (FeedItemCell*)sender.view;
   ArtistDetailViewController *artistDetailViewController = [[ArtistDetailViewController alloc] init];
   artistDetailViewController.contentId = cell.contentId;
@@ -791,12 +810,7 @@
 
 @end
 
-//
-// Custom Map View
-//
-// We need to subclass MKMapView in order to present an SMCalloutView that contains interactive
-// elements.
-//
+#pragma mark - Custom Map View (subclass)
 
 @interface MKMapView (UIGestureRecognizer)
 

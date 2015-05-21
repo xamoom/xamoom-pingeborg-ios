@@ -29,6 +29,7 @@
   self.tableView.rowHeight = UITableViewAutomaticDimension;
   self.tableView.estimatedRowHeight = 150.0;
   
+  //init contentBlocks
   self.contentBlocks = [[XMMContentBlocks alloc] init];
   self.contentBlocks.delegate = self;
   self.contentBlocks.linkColor = [Globals sharedObject].pingeborgLinkColor;
@@ -36,12 +37,11 @@
   self.contentBlocks.systemId = [Globals sharedObject].globalSystemId;
   NSString* savedArtists = [Globals savedArtits];
   
-  // Do any additional setup after loading the view.
-  [[XMMEnduserApi sharedInstance] setDelegate:self];
-  
+  //init progressHud
   self.hud = [[JGProgressHUD alloc] initWithStyle:JGProgressHUDStyleDark];
   [self.hud showInView:self.view];
   
+  [[XMMEnduserApi sharedInstance] setDelegate:self];
   if ([savedArtists containsString:self.contentId]) {
     [[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:NO includeMenu:NO withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:YES];
   } else {
@@ -75,6 +75,7 @@
   
   self.fontSizeDropdownMenu = [[REMenu alloc] initWithItems:@[NormalFontSizeItem, BigFontSizeItem, BiggerFontSizeItem]];
   
+  //create changeFontSize button
   UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"textsize"]
                                                                  style:UIBarButtonItemStylePlain
                                                                 target:self
@@ -118,7 +119,8 @@
 
 - (void)didLoadDataWithContentId:(XMMResponseGetById *)result {
   self.savedResult = result;
-  [self displayContentOnTableView:self.savedResult];
+  [self displayContentTitleAndImage:result];
+  [self.contentBlocks displayContentBlocksById:result byLocationIdentifier:nil withScreenWidth:self.tableView.bounds.size.width];
   [self.hud dismiss];
 }
 
@@ -152,12 +154,9 @@
 
 #pragma mark - Custom Methods
 
-- (void)displayContentOnTableView:(XMMResponseGetById *)result {
-  [self displayContentTitleAndImage:result];
-  [self.contentBlocks displayContentBlocksById:result byLocationIdentifier:nil withScreenWidth:self.tableView.bounds.size.width];
-}
-
 - (void)displayContentTitleAndImage:(XMMResponseGetById *)result {
+  //make text and imageblock for the title, exercpt and the display image
+
   XMMResponseContentBlockType0 *contentBlock0 = [[XMMResponseContentBlockType0 alloc] init];
   contentBlock0.contentBlockType = @"title";
   contentBlock0.title = result.content.title;

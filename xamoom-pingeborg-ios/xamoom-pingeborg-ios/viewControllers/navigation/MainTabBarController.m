@@ -12,29 +12,27 @@
 
 @interface MainTabBarController () <XMMEnduserApiDelegate, QRCodeReaderDelegate>
 
-@property XMMResponseGetByLocationIdentifier *result;
-@property BOOL isFirstTime;
+@property XMMResponseGetByLocationIdentifier *savedApiResult;
 
 @end
 
 @implementation MainTabBarController
 
-XMMResponseGetByLocationIdentifier *result;
-BOOL isFirstTime;
 
 #pragma mark - View Lifecycle
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  isFirstTime = YES;
   
+  self.delegate = self;
+  
+  //center tabbar images
   for (UITabBarItem *item in self.tabBar.items) {
     [item setImageInsets:UIEdgeInsetsMake(4,0,-4,0)];
   }
-
-  self.delegate = self;
   
-  /*//navbar Dropdown Code
+  /*
+  //navbar Dropdown Code
    UIImage *buttonImage = [UIImage imageNamed:@"QR"];
    UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
    button.frame = CGRectMake(0.0, 0.0, buttonImage.size.width, buttonImage.size.height);
@@ -61,7 +59,6 @@ BOOL isFirstTime;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-  isFirstTime = YES;
 }
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
@@ -77,7 +74,7 @@ BOOL isFirstTime;
   }
 }
 
-#pragma mark - QRCodeReader Delegate Methods
+#pragma mark - XMMEnduserApi Delegate Methods
 
 -(void)didScanQR:(NSString *)result {
   [[XMMEnduserApi sharedInstance] setDelegate:self];
@@ -86,12 +83,13 @@ BOOL isFirstTime;
 
 - (void)didLoadDataWithLocationIdentifier:(XMMResponseGetByLocationIdentifier *)apiResult {
   [Globals addDiscoveredArtist:apiResult.content.contentId];
-  result = apiResult;
+  self.savedApiResult = apiResult;
   
-  if ([result.systemId isEqualToString:[Globals sharedObject].globalSystemId])
+  //pingeborg scans will be opened in the app, others will be opened in safari
+  if ([self.savedApiResult.systemId isEqualToString:[Globals sharedObject].globalSystemId])
     [self performSegueWithIdentifier:@"showScanResult" sender:self];
   else
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.xm.gl/content/%@", result.content.contentId]]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.xm.gl/content/%@", self.savedApiResult.content.contentId]]];
 }
 
 #pragma mark - Navigation
@@ -100,7 +98,7 @@ BOOL isFirstTime;
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
   if ( [[segue identifier] isEqualToString:@"showScanResult"] ) {
     ScanResultViewController *srvc = [segue destinationViewController];
-    srvc.result = result;
+    srvc.result = self.savedApiResult;
   }
 }
 

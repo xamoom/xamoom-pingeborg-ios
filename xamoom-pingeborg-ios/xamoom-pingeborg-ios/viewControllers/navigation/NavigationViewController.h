@@ -10,13 +10,7 @@
 #import "Globals.h"
 #import "REMenu.h"
 
-@protocol DropDownMenuDelegate <NSObject>
-
-@required
-
-- (void)didChangeSystem;
-
-@end
+#pragma mark - NavigationViewController Interface
 
 @interface NavigationViewController : UINavigationController
 

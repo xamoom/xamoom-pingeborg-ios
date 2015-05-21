@@ -23,7 +23,7 @@
   // Do any additional setup after loading the view.
   
   //setting up REMenu "navbarDropdown"
-  REMenuItem *klagenfurt = [[REMenuItem alloc] initWithTitle:@"pingeborg Kärnten"
+  REMenuItem *kaernten = [[REMenuItem alloc] initWithTitle:@"pingeborg Kärnten"
                                                        image:nil
                                             highlightedImage:nil
                                                       action:^(REMenuItem *item) {
@@ -45,11 +45,11 @@
                                                         [self changePingeborgSystemWithId:2];
                                                       }];
   //set tags
-  klagenfurt.tag = 0;
+  kaernten.tag = 0;
   salzburg.tag = 1;
   vorarlberg.tag = 2;
   
-  self.menu = [[REMenu alloc] initWithItems:@[klagenfurt, salzburg, vorarlberg]];
+  self.menu = [[REMenu alloc] initWithItems:@[kaernten, salzburg, vorarlberg]];
   
   self.menu.separatorOffset = CGSizeMake(15.0, 0.0);
   self.menu.imageOffset = CGSizeMake(5, -1);
@@ -67,8 +67,7 @@
 
 #pragma mark - navbarDropdown toggle
 
-- (void)toggleMenu
-{
+- (void)toggleMenu {
   if (self.menu.isOpen)
     return [self.menu close];
   

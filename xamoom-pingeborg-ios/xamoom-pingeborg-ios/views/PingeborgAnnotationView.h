@@ -18,6 +18,9 @@
 @property UIImage *spotImage;
 @property CLLocationCoordinate2D coordinate;
 
+/**
+ Changes the size of the SVGKImageView according to the device and adds it as a subview
+ */
 - (void)displaySVG:(SVGKImage*)image;
 
 @end

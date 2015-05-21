@@ -33,6 +33,7 @@
   self.tableView.rowHeight = UITableViewAutomaticDimension;
   self.tableView.estimatedRowHeight = 150.0;
   
+  //setting up XMMContentBlocks
   contentBlocks = [[XMMContentBlocks alloc] init];
   contentBlocks.delegate = self;
   contentBlocks.linkColor = [Globals sharedObject].pingeborgLinkColor;
@@ -68,6 +69,7 @@
   
   self.fontSizeDropdownMenu = [[REMenu alloc] initWithItems:@[NormalFontSizeItem, BigFontSizeItem, BiggerFontSizeItem]];
   
+  //create change font size button in navbar
   self.buttonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"textsize"]
                                                                  style:UIBarButtonItemStylePlain
                                                                 target:self
@@ -79,11 +81,11 @@
 -(void)viewDidAppear:(BOOL)animated {
   self.parentViewController.navigationItem.rightBarButtonItem = self.buttonItem;
   
+  //load items if there are none
   if ([self.contentBlocks.itemsToDisplay count] == 0) {
     [self.hud showInView:self.view];
     [XMMEnduserApi sharedInstance].delegate = self;
     [[XMMEnduserApi sharedInstance] contentWithContentId:[Globals sharedObject].aboutPageId includeStyle:NO includeMenu:NO withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:YES];
-
   }
 }
 
@@ -136,6 +138,8 @@
 #pragma mark - Custom Methods
 
 - (void)displayContentTitleAndImage:(XMMResponseGetById *)result {
+  //make text and image for the title, exercpt and the display image
+
   XMMResponseContentBlockType0 *contentBlock0 = [[XMMResponseContentBlockType0 alloc] init];
   contentBlock0.contentBlockType = @"title";
   contentBlock0.title = result.content.title;

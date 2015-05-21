@@ -20,12 +20,14 @@ int const kPageSize = 7;
 @property UIButton *dropDownButton;
 @property UIBarButtonItem *qrButtonItem;
 @property UIImage *placeholderImage;
-@property JGProgressHUD *hud;
 @property UIRefreshControl *refreshControl;
+@property JGProgressHUD *hud;
 
 @end
 
 @implementation FeedTableViewController
+
+#pragma mark - View Lifecycle
 
 - (void)viewDidLoad {
   [super viewDidLoad];
@@ -194,8 +196,7 @@ int const kPageSize = 7;
   static NSString *simpleTableIdentifier = @"FeedItemCell";
   
   FeedItemCell *cell = (FeedItemCell *)[self.feedTableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-  if (cell == nil)
-  {
+  if (cell == nil) {
     NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FeedItemCell" owner:self options:nil];
     cell = nib[0];
   }
@@ -278,8 +279,7 @@ int const kPageSize = 7;
   }
 }
 
-- (void)reloadData
-{
+- (void)reloadData {
   // Reload table data
   [self.feedTableView reloadData];
   
@@ -335,8 +335,7 @@ int const kPageSize = 7;
 
 #pragma mark - Image Methods
 
-- (void)downloadImageWithURL:(NSString *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock
-{
+- (void)downloadImageWithURL:(NSString *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock {
   NSURL *realUrl = [[NSURL alloc]initWithString:url];
   NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:realUrl];
   [NSURLConnection sendAsynchronousRequest:request
@@ -352,8 +351,7 @@ int const kPageSize = 7;
                          }];
 }
 
-- (UIImage *)convertImageToGrayScale:(UIImage *)image
-{
+- (UIImage *)convertImageToGrayScale:(UIImage *)image {
   // Create image rectangle with current image width/height
   CGRect imageRect = CGRectMake(0, 0, image.size.width, image.size.height);
   
