@@ -168,7 +168,7 @@
   self.imagesToDisplay = [[NSMutableDictionary alloc] init];
   
   //return if there are no items
-  if([result.items count] > 0) {
+  if([result.items count] == 0) {
     return;
   }
   
