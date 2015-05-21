@@ -21,25 +21,11 @@
 }
 
 - (IBAction)linkClicked:(id)sender {
+  //open link in safari
   [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.linkUrl]];
 }
 
 - (void)changeStyleAccordingToLinkType {
-  /*
-   FACEBOOK = 0
-   TWITTER = 1
-   WEB = 2
-   AMAZON = 3
-   WIKIPEDIA = 4
-   LINKEDIN = 5
-   FLICKR = 6
-   SOUNDCLOUD = 7
-   ITUNES = 8
-   YOUTUBE = 9
-   GOOGLEPLUS = 10
-   TEL = 11
-   EMAIL = 12
-   */
   
   switch ([self.linkType integerValue]) {
     case 0: {

@@ -24,6 +24,7 @@
 }
 
 - (void)pauseAllSounds {
+  //reload the webView so the soundcloud don't play anymore
   [self.webView reload];
 }
 

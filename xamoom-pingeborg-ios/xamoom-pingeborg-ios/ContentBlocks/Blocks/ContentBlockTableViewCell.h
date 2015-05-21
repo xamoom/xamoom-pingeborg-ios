@@ -19,6 +19,6 @@
 @property NSString *contentId;
 @property XMMResponseGetById *result;
 
-- (void)getContentWithLanguage:(NSString*)language;
+- (void)initContentBlockWithLanguage:(NSString*)language;
 
 @end

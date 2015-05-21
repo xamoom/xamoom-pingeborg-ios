@@ -18,8 +18,12 @@
 @property NSString *linkUrl;
 @property NSString *linkType;
 
-- (IBAction)linkClicked:(id)sender;
-
+/**
+ Change the style and image of the tableViewCell to look like on http://xm.gl scanned page
+ */
 - (void)changeStyleAccordingToLinkType;
+
+//actions
+- (IBAction)linkClicked:(id)sender;
 
 @end

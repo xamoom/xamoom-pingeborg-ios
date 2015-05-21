@@ -7,11 +7,13 @@
 //
 
 #import "ImageBlockTableViewCell.h"
+#import <SVGKit.h>
 
 @implementation ImageBlockTableViewCell
 
 - (void)awakeFromNib {
-  // Initialization code
+  
+  //longPressGestureRecognizer for saving images
   UILongPressGestureRecognizer *longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(saveImageToPhotoLibary:)];
   longPressGestureRecognizer.delegate = self;
   [self addGestureRecognizer:longPressGestureRecognizer];
@@ -25,17 +27,28 @@
 
 - (void)saveImageToPhotoLibary:(UILongPressGestureRecognizer*)sender {
   if (sender.state == UIGestureRecognizerStateBegan) {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Bild speichern"
-                                                    message:@"Willst du das Bild in dein Fotoalbum speichern?"
-                                                   delegate:self
-                                          cancelButtonTitle:@"Ja"
-                                          otherButtonTitles:@"Abbrechen", nil];
-    [alert show];
+    //check if there is a SVGKImageView as Subview, because you can't save SVGImages
+    if ([self.image.subviews count] == 0) {
+      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Bild speichern"
+                                                      message:@"Willst du das Bild in dein Fotoalbum speichern?"
+                                                     delegate:self
+                                            cancelButtonTitle:@"Ja"
+                                            otherButtonTitles:@"Abbrechen", nil];
+      [alert show];
+    } else {
+      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Tut uns leid"
+                                                      message:@"Du kannst keine SVGs speichern."
+                                                     delegate:nil
+                                            cancelButtonTitle:@"Ok"
+                                            otherButtonTitles:nil];
+      [alert show];
+    }
   }
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
   if(buttonIndex == 0) {
+    //save image to camera roll
     UIImageWriteToSavedPhotosAlbum(self.image.image, nil, nil, nil);
   }
 }

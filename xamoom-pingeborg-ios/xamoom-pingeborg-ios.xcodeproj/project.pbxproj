@@ -22,7 +22,6 @@
 		881457F01B01E8620024E6F4 /* ImageBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881457D21B01E8620024E6F4 /* ImageBlockTableViewCell.xib */; };
 		881457F11B01E8620024E6F4 /* LinkBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 881457D41B01E8620024E6F4 /* LinkBlockTableViewCell.m */; };
 		881457F21B01E8620024E6F4 /* LinkBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881457D51B01E8620024E6F4 /* LinkBlockTableViewCell.xib */; };
-		881457F31B01E8620024E6F4 /* soundcloud.js in Resources */ = {isa = PBXBuildFile; fileRef = 881457D61B01E8620024E6F4 /* soundcloud.js */; };
 		881457F41B01E8620024E6F4 /* SoundcloudBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 881457D81B01E8620024E6F4 /* SoundcloudBlockTableViewCell.m */; };
 		881457F51B01E8620024E6F4 /* SoundcloudBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881457D91B01E8620024E6F4 /* SoundcloudBlockTableViewCell.xib */; };
 		881457F61B01E8620024E6F4 /* SpotMapBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 881457DB1B01E8620024E6F4 /* SpotMapBlockTableViewCell.m */; };
@@ -140,7 +139,6 @@
 		881457D31B01E8620024E6F4 /* LinkBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkBlockTableViewCell.h; sourceTree = "<group>"; };
 		881457D41B01E8620024E6F4 /* LinkBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkBlockTableViewCell.m; sourceTree = "<group>"; };
 		881457D51B01E8620024E6F4 /* LinkBlockTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LinkBlockTableViewCell.xib; sourceTree = "<group>"; };
-		881457D61B01E8620024E6F4 /* soundcloud.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = soundcloud.js; sourceTree = "<group>"; };
 		881457D71B01E8620024E6F4 /* SoundcloudBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundcloudBlockTableViewCell.h; sourceTree = "<group>"; };
 		881457D81B01E8620024E6F4 /* SoundcloudBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundcloudBlockTableViewCell.m; sourceTree = "<group>"; };
 		881457D91B01E8620024E6F4 /* SoundcloudBlockTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SoundcloudBlockTableViewCell.xib; sourceTree = "<group>"; };
@@ -290,7 +288,6 @@
 				881457D31B01E8620024E6F4 /* LinkBlockTableViewCell.h */,
 				881457D41B01E8620024E6F4 /* LinkBlockTableViewCell.m */,
 				881457D51B01E8620024E6F4 /* LinkBlockTableViewCell.xib */,
-				881457D61B01E8620024E6F4 /* soundcloud.js */,
 				881457D71B01E8620024E6F4 /* SoundcloudBlockTableViewCell.h */,
 				881457D81B01E8620024E6F4 /* SoundcloudBlockTableViewCell.m */,
 				881457D91B01E8620024E6F4 /* SoundcloudBlockTableViewCell.xib */,
@@ -631,7 +628,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				881457F71B01E8620024E6F4 /* SpotMapBlockTableViewCell.xib in Resources */,
-				881457F31B01E8620024E6F4 /* soundcloud.js in Resources */,
 				881457EA1B01E8620024E6F4 /* ContentBlockTableViewCell.xib in Resources */,
 				881457F21B01E8620024E6F4 /* LinkBlockTableViewCell.xib in Resources */,
 				881457F01B01E8620024E6F4 /* ImageBlockTableViewCell.xib in Resources */,

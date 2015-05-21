@@ -19,7 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet MKMapView *map;
 
-@property NSArray *spotMapTags;
+@property NSArray *spotMapTags; 
 @property UIImage *customMapMarker;
 @property SVGKImage *customSVGMapMarker;
 

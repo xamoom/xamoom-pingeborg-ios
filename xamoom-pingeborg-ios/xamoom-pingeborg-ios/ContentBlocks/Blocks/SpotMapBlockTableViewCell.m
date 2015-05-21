@@ -8,6 +8,10 @@
 
 #import "SpotMapBlockTableViewCell.h"
 
+#define MINIMUM_ZOOM_ARC 0.014
+#define ANNOTATION_REGION_PAD_FACTOR 1.15
+#define MAX_DEGREES_ARC 360
+
 @implementation SpotMapBlockTableViewCell
 
 - (void)awakeFromNib {
@@ -27,6 +31,7 @@
 }
 
 #pragma mark - XMMEnduser Delegate
+
 - (void)didLoadSpotMap:(XMMResponseGetSpotMap *)result {
   NSString *base64String = result.style.customMarker;
   
@@ -94,9 +99,8 @@
   return nil;
 }
 
-#define MINIMUM_ZOOM_ARC 0.014 //approximately 1 miles (1 degree of arc ~= 69 miles)
-#define ANNOTATION_REGION_PAD_FACTOR 1.15
-#define MAX_DEGREES_ARC 360
+#pragma mark - Custom Methods
+
 //size the mapView region to fit its annotations
 - (void)zoomMapViewToFitAnnotations:(MKMapView *)mapView animated:(BOOL)animated
 {
@@ -136,7 +140,8 @@
   [mapView setRegion:region animated:animated];
 }
 
-#pragma mark imageutility
+#pragma mark - Image Methods
+
 - (UIImage *)imageWithImage:(UIImage *)image scaledToMaxWidth:(CGFloat)width maxHeight:(CGFloat)height {
   CGFloat oldWidth = image.size.width;
   CGFloat oldHeight = image.size.height;

@@ -20,32 +20,34 @@
   // Configure the view for the selected state
 }
 
-- (void)getContentWithLanguage:(NSString*)language {
+- (void)initContentBlockWithLanguage:(NSString*)language {
+  //creating a unique notification for the contentBlock
   NSString *notificationName = [NSString stringWithFormat:@"%@%@", @"getByIdFull", self.contentId];
-  
   [[NSNotificationCenter defaultCenter]
    addObserver:self
    selector:@selector(didLoadContentBlockData:)
    name:notificationName
    object:nil];
   
-  [[XMMEnduserApi sharedInstance] setDelegate:nil];
   [[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:NO includeMenu:NO withLanguage:language full:NO];
 }
 
 - (void)didLoadContentBlockData:(NSNotification *)notification {
   self.result = [notification object];
   
+  //set title and excerpt
   self.contentTitleLabel.text = self.result.content.title;
   self.contentExcerptLabel.text = self.result.content.descriptionOfContent;
   [self.contentExcerptLabel sizeToFit];
   
+  //download and display image
   if (self.result.content.imagePublicUrl != nil) {
     [self downloadImageWithURL:self.result.content.imagePublicUrl completionBlock:^(BOOL succeeded, UIImage *image) {
       if (succeeded && image) {
         self.contentImageView.contentMode = UIViewContentModeScaleAspectFill;
         self.contentImageView.clipsToBounds = YES;
         [self.contentImageView setImage:image];
+        
         NSString *notificationName = @"reloadTableViewForContentBlocks";
         [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil];
       }
@@ -53,8 +55,9 @@
   }
 }
 
-- (void)downloadImageWithURL:(NSString *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock
-{
+#pragma mark - Image Methods
+
+- (void)downloadImageWithURL:(NSString *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock {
   NSURL *realUrl = [[NSURL alloc]initWithString:url];
   NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:realUrl];
   [NSURLConnection sendAsynchronousRequest:request

@@ -25,11 +25,10 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
   [super setSelected:selected animated:animated];
-  
-  // Configure the view for the selected state
 }
 
 - (IBAction)playButtonTouched:(id)sender {
+  //play or pause the audioplayer and change the buttonImage
   if (!self.isPlaying) {
     [self.audioPlayerControl play];
     self.isPlaying = YES;
@@ -40,6 +39,8 @@
     [self.audioControlButton setImage:[UIImage imageNamed:@"playbutton"] forState:UIControlStateNormal];
   }
 }
+
+#pragma mark - XMMMMusicPlayer delegate
 
 -(void)didUpdateRemainingSongTime:(NSString *)remainingSongTime {
   self.remainingTimeLabel.text = remainingSongTime;

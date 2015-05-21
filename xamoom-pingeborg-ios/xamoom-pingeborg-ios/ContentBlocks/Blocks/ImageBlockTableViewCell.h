@@ -10,7 +10,6 @@
 
 @interface ImageBlockTableViewCell : UITableViewCell <UIGestureRecognizerDelegate>
 
-
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *image;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint* imageHeightConstraint;

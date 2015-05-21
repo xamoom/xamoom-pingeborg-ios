@@ -10,17 +10,21 @@
 
 int const kHorizontalSpaceToSubview = 32;
 
+#pragma mark - XMMContentBlocks Interface
+
 @interface XMMContentBlocks ()
 
-@property NSString *style;
 @property int fontSize;
 
 @end
+
+#pragma mark - XMMContentBlocks Implementation
 
 @implementation XMMContentBlocks
 
 - (instancetype)init {
   self = [super init];
+  
   if(self) {
     self.itemsToDisplay = [[NSMutableArray alloc] init];
     self.fontSize = NormalFontSize;
@@ -28,18 +32,19 @@ int const kHorizontalSpaceToSubview = 32;
     self.language = @"en";
   }
   
+  //notification to reload delegates tableview from special contentBlockCells
   NSString *notificationName = @"reloadTableViewForContentBlocks";
-  
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(reloadTableView)
                                                name:notificationName
                                              object:nil];
-  
   return self;
 }
 
 # pragma mark - ContentBlock Methods
+
 - (void)displayContentBlocksById:(XMMResponseGetById *)IdResult byLocationIdentifier:(XMMResponseGetByLocationIdentifier *)locationIdentifierResult withScreenWidth:(float)screenWidth {
+  
   NSInteger contentBlockType;
   NSArray *contentBlocks;
   self.screenWidth = screenWidth - kHorizontalSpaceToSubview;
@@ -58,62 +63,52 @@ int const kHorizontalSpaceToSubview = 32;
     contentBlockType = [contentBlock.contentBlockType integerValue];
     
     switch (contentBlockType) {
-      case 0:
-      {
+      case 0: {
         XMMResponseContentBlockType0 *contentBlock0 = (XMMResponseContentBlockType0*)contentBlock;
         [self displayContentBlock0:contentBlock0];
         break;
       }
-      case 1:
-      {
+      case 1: {
         XMMResponseContentBlockType1 *contentBlock1 = (XMMResponseContentBlockType1*)contentBlock;
         [self displayContentBlock1:contentBlock1];
         break;
       }
-      case 2:
-      {
+      case 2: {
         XMMResponseContentBlockType2 *contentBlock2 = (XMMResponseContentBlockType2*)contentBlock;
         [self displayContentBlock2:contentBlock2];
         break;
       }
-      case 3:
-      {
+      case 3: {
         XMMResponseContentBlockType3 *contentBlock3 = (XMMResponseContentBlockType3*)contentBlock;
         [self displayContentBlock3:contentBlock3];
         break;
       }
-      case 4:
-      {
+      case 4: {
         XMMResponseContentBlockType4 *contentBlock4 = (XMMResponseContentBlockType4*)contentBlock;
         [self displayContentBlock4:contentBlock4];
         break;
       }
-      case 5:
-      {
+      case 5: {
         XMMResponseContentBlockType5 *contentBlock5 = (XMMResponseContentBlockType5*)contentBlock;
         [self displayContentBlock5:contentBlock5];
         break;
       }
-      case 6:
-      {
+      case 6: {
         XMMResponseContentBlockType6 *contentBlock6 = (XMMResponseContentBlockType6*)contentBlock;
         [self displayContentBlock6:contentBlock6];
         break;
       }
-      case 7:
-      {
+      case 7: {
         XMMResponseContentBlockType7 *contentBlock7 = (XMMResponseContentBlockType7*)contentBlock;
         [self displayContentBlock7:contentBlock7];
         break;
       }
-      case 8:
-      {
+      case 8: {
         XMMResponseContentBlockType8 *contentBlock8 = (XMMResponseContentBlockType8*)contentBlock;
         [self displayContentBlock8:contentBlock8];
         break;
       }
-      case 9:
-      {
+      case 9: {
         XMMResponseContentBlockType9 *contentBlock9 = (XMMResponseContentBlockType9*)contentBlock;
         [self displayContentBlock9:contentBlock9];
         break;
@@ -130,7 +125,6 @@ int const kHorizontalSpaceToSubview = 32;
 
 #pragma mark Text Block
 - (void)displayContentBlock0:(XMMResponseContentBlockType0 *)contentBlock {
-  
   TextBlockTableViewCell *cell = [[TextBlockTableViewCell alloc] init];
   NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"TextBlockTableViewCell" owner:self options:nil];
   cell = nib[0];
@@ -170,6 +164,7 @@ int const kHorizontalSpaceToSubview = 32;
   NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"AudioBlockTableViewCell" owner:self options:nil];
   cell = nib[0];
   
+  //set audioPlayerControl delegate and initialize
   cell.audioPlayerControl.delegate = cell;
   [cell.audioPlayerControl initAudioPlayerWithUrlString:contentBlock.fileId];
   
@@ -177,6 +172,7 @@ int const kHorizontalSpaceToSubview = 32;
   cell.titleLabel.text = contentBlock.title;
   cell.artistLabel.text = contentBlock.artist;
   
+  //set songDuration
   float songDurationInSeconds = CMTimeGetSeconds(cell.audioPlayerControl.audioPlayer.currentItem.asset.duration);
   cell.remainingTimeLabel.text = [NSString stringWithFormat:@"%d:%02d", (int)songDurationInSeconds / 60, (int)songDurationInSeconds % 60];
   
@@ -189,19 +185,18 @@ int const kHorizontalSpaceToSubview = 32;
   NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"YoutubeBlockTableViewCell" owner:self options:nil];
   cell = nib[0];
   
+  //set title and youtubeUrl
   cell.titleLabel.text = contentBlock.title;
-  cell.youtubeVideoUrl = contentBlock.youtubeUrl;
   
   //get the videoId from the string
   NSString *regexString = @"((?<=(v|V)/)|(?<=be/)|(?<=(\\?|\\&)v=)|(?<=embed/))([\\w-]++)";
   NSRegularExpression *regExp = [NSRegularExpression regularExpressionWithPattern:regexString
                                                                           options:NSRegularExpressionCaseInsensitive
                                                                             error:nil];
-  
-  NSArray *array = [regExp matchesInString:cell.youtubeVideoUrl options:0 range:NSMakeRange(0,cell.youtubeVideoUrl.length)];
+  NSArray *array = [regExp matchesInString:contentBlock.youtubeUrl options:0 range:NSMakeRange(0,contentBlock.youtubeUrl.length)];
   if (array.count > 0) {
     NSTextCheckingResult *result = array.firstObject;
-    NSString* youtubeVideoId = [cell.youtubeVideoUrl substringWithRange:result.range];
+    NSString* youtubeVideoId = [contentBlock.youtubeUrl substringWithRange:result.range];
     //load video inside playerView
     [cell.playerView loadWithVideoId:youtubeVideoId];
   }
@@ -211,14 +206,13 @@ int const kHorizontalSpaceToSubview = 32;
 
 #pragma mark Image Block
 - (void)displayContentBlock3:(XMMResponseContentBlockType3 *)contentBlock {
-  
   ImageBlockTableViewCell *cell = [[ImageBlockTableViewCell alloc] init];
   NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ImageBlockTableViewCell" owner:self options:nil];
   cell = nib[0];
   
+  //set title
   cell.titleLabel.text = contentBlock.title;
   [cell.imageLoadingIndicator startAnimating];
-  
   
   //gif support
   if ([contentBlock.fileId containsString:@".gif"]) {
@@ -298,27 +292,29 @@ int const kHorizontalSpaceToSubview = 32;
 
 #pragma mark Link Block
 - (void)displayContentBlock4:(XMMResponseContentBlockType4 *)contentBlock {
-  
   LinkBlockTableViewCell *cell = [[LinkBlockTableViewCell alloc] init];
   NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"LinkBlockTableViewCell" owner:self options:nil];
   cell = nib[0];
   
+  //set title, text, linkUrl and linkType
   cell.titleLabel.text = contentBlock.title;
   cell.linkTextLabel.text = contentBlock.text;
   cell.linkUrl = contentBlock.linkUrl;
   cell.linkType = contentBlock.linkType;
   
+  //change style of the cell according to the linktype
   [cell changeStyleAccordingToLinkType];
+  
   [self.itemsToDisplay addObject:cell];
 }
 
 #pragma mark Ebook Block
 - (void)displayContentBlock5:(XMMResponseContentBlockType5 *)contentBlock {
-  
   EbookBlockTableViewCell *cell = [[EbookBlockTableViewCell alloc] init];
   NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"EbookBlockTableViewCell" owner:self options:nil];
   cell = nib[0];
   
+  //set title, artist and downloadUrl
   cell.titleLabel.text = contentBlock.title;
   cell.artistLabel.text = contentBlock.artist;
   cell.downloadUrl = contentBlock.fileId;
@@ -328,23 +324,21 @@ int const kHorizontalSpaceToSubview = 32;
 
 #pragma mark Content Block
 - (void)displayContentBlock6:(XMMResponseContentBlockType6 *)contentBlock {
-  
   ContentBlockTableViewCell *cell = [[ContentBlockTableViewCell alloc] init];
   NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ContentBlockTableViewCell" owner:self options:nil];
   cell = nib[0];
   
+  //set content
   cell.contentId = contentBlock.contentId;
-  [cell getContentWithLanguage:self.language];
+  
+  //init contentBlock
+  [cell initContentBlockWithLanguage:self.language];
   
   [self.itemsToDisplay addObject:cell];
 }
 
 #pragma mark Soundcloud Block
 - (void)displayContentBlock7:(XMMResponseContentBlockType7 *)contentBlock {
-  
-  
-  NSString *soundcloudHTML = @"<iframe width='100%' height='##height##' scrolling='no' frameborder='no' src='https://w.soundcloud.com/player/?url=##url##&auto_play=false&hide_related=true&show_comments=false&show_comments=false&show_user=false&show_reposts=false&sharing=false&download=false&buying=false&visual=true'></iframe> <script src=\"https://w.soundcloud.com/player/api.js\" type=\"text/javascript\"></script>";
-  
   SoundcloudBlockTableViewCell *cell = [[SoundcloudBlockTableViewCell alloc] init];
   NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SoundcloudBlockTableViewCell" owner:self options:nil];
   cell = nib[0];
@@ -356,13 +350,7 @@ int const kHorizontalSpaceToSubview = 32;
   //set title
   cell.titleLabel.text = contentBlock.title;
   
-  //replace url and height from soundcloudJs
-  NSString *soundcloudUrl = contentBlock.soundcloudUrl;
-  soundcloudHTML = [soundcloudHTML stringByReplacingOccurrencesOfString:@"##url##"
-                                                         withString:soundcloudUrl];
-  
-  soundcloudHTML = [soundcloudHTML stringByReplacingOccurrencesOfString:@"##height##"
-                                                         withString:[NSString stringWithFormat:@"%f", cell.webView.frame.size.height]];
+  NSString *soundcloudHTML = [NSString stringWithFormat:@"<iframe width='100%%' height='%f' scrolling='no' frameborder='no' src='https://w.soundcloud.com/player/?url=%@&auto_play=false&hide_related=true&show_comments=false&show_comments=false&show_user=false&show_reposts=false&sharing=false&download=false&buying=false&visual=true'></iframe> <script src=\"https://w.soundcloud.com/player/api.js\" type=\"text/javascript\"></script>",cell.webView.frame.size.height, contentBlock.soundcloudUrl];
   
   //display soundcloud in webview
   [cell.webView loadHTMLString:soundcloudHTML baseURL:nil];
@@ -371,13 +359,12 @@ int const kHorizontalSpaceToSubview = 32;
 }
 
 #pragma mark Download Block
-
 - (void)displayContentBlock8:(XMMResponseContentBlockType8 *)contentBlock {
-  
   DownloadBlockTableViewCell *cell = [[DownloadBlockTableViewCell alloc] init];
   NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"DownloadBlockTableViewCell" owner:self options:nil];
   cell = nib[0];
   
+  //set title, text, fileId and downloadType
   cell.titleLabel.text = contentBlock.title;
   cell.contentTextLabel.text = contentBlock.text;
   cell.fileId = contentBlock.fileId;
@@ -388,13 +375,13 @@ int const kHorizontalSpaceToSubview = 32;
 
 #pragma mark SpotMap Block
 - (void)displayContentBlock9:(XMMResponseContentBlockType9 *)contentBlock {
-  
   SpotMapBlockTableViewCell *cell = [[SpotMapBlockTableViewCell alloc] init];
   NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SpotMapBlockTableViewCell" owner:self options:nil];
   cell = nib[0];
   
+  //set title, spotmapTags
   cell.titleLabel.text = contentBlock.title;
-  cell.spotMapTags = [NSArray arrayWithObject:contentBlock.spotMapTag];
+  cell.spotMapTags = [contentBlock.spotMapTag componentsSeparatedByString:@","];
   [cell getSpotMapWithSystemId:self.systemId withLanguage:self.language];
   
   [self.itemsToDisplay addObject:cell];
@@ -402,19 +389,25 @@ int const kHorizontalSpaceToSubview = 32;
 
 #pragma mark - Custom Methods
 
+- (void)reloadTableView {
+  if ([self.delegate respondsToSelector:@selector(reloadTableViewForContentBlocks)]) {
+    [self.delegate performSelector:@selector(reloadTableViewForContentBlocks)];
+  }
+}
+
 - (NSMutableAttributedString*)attributedStringFromHTML:(NSString*)html {
   NSError *err = nil;
   
-  self.style = [NSString stringWithFormat:@"<style>body{font-family: \"HelveticaNeue-Light\", \"Helvetica Neue Light\", \"Helvetica Neue\", Helvetica, Arial, \"Lucida Grande\", sans-serif; font-size:%dpt; margin:0 !important;} p:last-child, p:last-of-type{margin:1px !important;} </style>", self.fontSize];
-    
+  NSString *style = [NSString stringWithFormat:@"<style>body{font-family: \"HelveticaNeue-Light\", \"Helvetica Neue Light\", \"Helvetica Neue\", Helvetica, Arial, \"Lucida Grande\", sans-serif; font-size:%dpt; margin:0 !important;} p:last-child, p:last-of-type{margin:1px !important;} </style>", self.fontSize];
+  
   html = [html stringByReplacingOccurrencesOfString:@"<br></p>" withString:@"</p>"];
-  html = [html stringByAppendingString:self.style];
+  html = [html stringByAppendingString:style];
   
   NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithData: [html dataUsingEncoding:NSUTF8StringEncoding]
-                                                                          options: @{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
-                                                                                      NSCharacterEncodingDocumentAttribute: @(NSUTF8StringEncoding)}
-                                                               documentAttributes: nil
-                                                                            error: &err];
+                                                                                        options: @{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
+                                                                                                    NSCharacterEncodingDocumentAttribute: @(NSUTF8StringEncoding)}
+                                                                             documentAttributes: nil
+                                                                                          error: &err];
   if(err)
     NSLog(@"Unable to parse label text: %@", err);
   
@@ -428,6 +421,7 @@ int const kHorizontalSpaceToSubview = 32;
   
   self.fontSize = newFontSize;
   
+  //Change fontSize in textblocks
   for (XMMResponseContentBlock *contentItem in self.itemsToDisplay) {
     if ([contentItem isKindOfClass:[TextBlockTableViewCell class]]) {
       TextBlockTableViewCell* textBlock = (TextBlockTableViewCell*)contentItem;
@@ -461,12 +455,6 @@ int const kHorizontalSpaceToSubview = 32;
   }
   
   return webColor;
-}
-
-- (void)reloadTableView {
-  if ([self.delegate respondsToSelector:@selector(reloadTableViewForContentBlocks)]) {
-    [self.delegate performSelector:@selector(reloadTableViewForContentBlocks)];
-  }
 }
 
 #pragma mark - Image methods

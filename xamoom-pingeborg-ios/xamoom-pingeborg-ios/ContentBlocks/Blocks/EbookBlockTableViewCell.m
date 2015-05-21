@@ -23,6 +23,7 @@
 }
 
 - (IBAction)downloadButtonClicked:(id)sender {
+  //open url in safari
   [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.downloadUrl]];
 }
 

@@ -17,8 +17,6 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
   [super setSelected:selected animated:animated];
-  
-  // Configure the view for the selected state
 }
 
 - (void)setDownloadType:(NSString *)type {
@@ -27,6 +25,7 @@
 }
 
 - (UIImage*)selectRightIcon {
+  //choose the right image according to the downloadType
   switch ([downloadType integerValue]) {
     case 0: {
       return [UIImage imageNamed:@"contact"];
@@ -36,7 +35,6 @@
       return [UIImage imageNamed:@"cal"];
       break;
     }
-      
     default:
       break;
   }
@@ -45,7 +43,7 @@
 }
 
 - (IBAction)linkButtonAction:(id)sender {
-  NSLog(@"Hellyeah: %@", self.fileId);
+  //open url in safari
   [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.fileId]];
 }
 

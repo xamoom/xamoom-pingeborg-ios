@@ -11,7 +11,6 @@
 @interface XMMMusicPlayer ()
 
 @property CGSize drawingFrameSize;
-
 @property UIImage *audioButtonPlayIcon;
 @property UIImage *audioButtonPauseIcon;
 

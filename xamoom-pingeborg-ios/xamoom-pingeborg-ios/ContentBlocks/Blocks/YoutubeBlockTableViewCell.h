@@ -14,8 +14,4 @@
 @property (nonatomic, strong) IBOutlet YTPlayerView *playerView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
-@property NSString *youtubeVideoUrl;
-
-- (void)initYoutubeVideo;
-
 @end
