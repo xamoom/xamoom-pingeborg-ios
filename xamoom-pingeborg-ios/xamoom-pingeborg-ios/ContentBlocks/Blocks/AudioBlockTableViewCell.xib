@@ -30,17 +30,17 @@
                                     <constraint firstAttribute="width" secondItem="bNb-P6-22z" secondAttribute="height" multiplier="1:1" id="tZL-F3-ktN"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="ringProgress">
+                                    <userDefinedRuntimeAttribute type="color" keyPath="backgroundLineColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="foregroundLineColor">
+                                        <color key="value" red="0.35149568139999998" green="0.76676925510000005" blue="0.14529067679999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
+                                        <integer key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="lineProgress">
                                         <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="ringLineWidth">
-                                        <integer key="value" value="17"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="backgroundRingColor">
-                                        <color key="value" red="0.75868055555555558" green="0.75868055555555558" blue="0.75868055555555558" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="foregroundRingColor">
-                                        <color key="value" red="0.35149568135567999" green="0.76676925505050508" blue="0.14529067675954899" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <variation key="default">

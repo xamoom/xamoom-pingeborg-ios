@@ -38,7 +38,6 @@ IB_DESIGNABLE
 @property IBInspectable float lineProgress;
 @property IBInspectable int lineWidth;
 @property AVPlayer *audioPlayer;
-@property NSString *mediaUrlString;
 @property NSString *remainingSongTime;
 @property (nonatomic, weak) id<XMMMusicerPlayerDelegate> delegate;
 

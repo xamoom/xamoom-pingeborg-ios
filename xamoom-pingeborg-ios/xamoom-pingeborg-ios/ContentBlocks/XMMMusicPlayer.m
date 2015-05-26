@@ -31,7 +31,7 @@ IB_DESIGNABLE
 
 - (void)initAudioPlayerWithUrlString:(NSString*)mediaUrlString {
   //init avplayer with URL
-  NSURL *mediaURL = [NSURL URLWithString:self.mediaUrlString];
+  NSURL *mediaURL = [NSURL URLWithString:mediaUrlString];
   self.audioPlayer = [[AVPlayer alloc] initWithURL:mediaURL];
   
   //addPeriodicTimeObserver for remainingTime and progressBar
