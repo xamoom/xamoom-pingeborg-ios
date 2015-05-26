@@ -259,7 +259,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		881457C21B01E8620024E6F4 /* ContentBlocks */ = {
+		881457C21B01E8620024E6F4 /* XMMContentBlocks */ = {
 			isa = PBXGroup;
 			children = (
 				881457C31B01E8620024E6F4 /* Blocks */,
@@ -268,6 +268,7 @@
 				881457E51B01E8620024E6F4 /* XMMMusicPlayer.h */,
 				881457E61B01E8620024E6F4 /* XMMMusicPlayer.m */,
 			);
+			name = XMMContentBlocks;
 			path = ContentBlocks;
 			sourceTree = "<group>";
 		};
@@ -403,13 +404,14 @@
 				88BA01F71AA859F90091A43C /* AppDelegate.m */,
 				88052D791AE103C300AB433D /* Globals.h */,
 				88052D7A1AE103C300AB433D /* Globals.m */,
-				88E2431A1B14507200E9E208 /* XMMImageUtility */,
 				881458381B01EE8B0024E6F4 /* Models */,
 				8814583B1B01EE8B0024E6F4 /* ViewControllers */,
 				881458491B01EE8B0024E6F4 /* Views */,
-				881457C21B01E8620024E6F4 /* ContentBlocks */,
-				88BA01FF1AA859F90091A43C /* Images.xcassets */,
+				88E2431A1B14507200E9E208 /* XMMImageUtility */,
+				881457C21B01E8620024E6F4 /* XMMContentBlocks */,
+				8860DA7B1AE78CDF00DF2239 /* SVGKit */,
 				88BA01F21AA859F90091A43C /* Supporting Files */,
+				88BA01FF1AA859F90091A43C /* Images.xcassets */,
 				88F038411B0CB9C600E17573 /* api.txt */,
 			);
 			path = "xamoom-pingeborg-ios";
@@ -448,7 +450,6 @@
 				88F038461B0E0D1200E17573 /* XMMImageUtility.m */,
 				88E2FAE81AF74D5800917AFB /* UIImage+animatedGIF.h */,
 				88E2FAE91AF74D5800917AFB /* UIImage+animatedGIF.m */,
-				8860DA7B1AE78CDF00DF2239 /* SVGKit */,
 			);
 			name = XMMImageUtility;
 			sourceTree = "<group>";
@@ -1005,7 +1006,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1029,7 +1030,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

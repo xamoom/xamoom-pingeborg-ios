@@ -41,12 +41,11 @@
    
    CGFloat heightDifference = buttonImage.size.height - self.tabBar.frame.size.height;
    if (heightDifference < 0)
-   button.center = self.tabBar.center;
-   else
-   {
-   CGPoint center = self.tabBar.center;
-   center.y = center.y - heightDifference/2.0;
-   button.center = center;
+    button.center = self.tabBar.center;
+   else{
+    CGPoint center = self.tabBar.center;
+    center.y = center.y - heightDifference/2.0;
+    button.center = center;
    }
    
    [self.view addSubview:button];
@@ -64,27 +63,51 @@
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
 {
   //instead of switching view the qr code scanner will be opened
-  if(viewController == (tabBarController.viewControllers)[3]){
+  if (viewController == (tabBarController.viewControllers)[3]){
     [[XMMEnduserApi sharedInstance] setDelegate:self];
     [[XMMEnduserApi sharedInstance] setQrCodeViewControllerCancelButtonTitle:@"Abbrechen"];
-    [[XMMEnduserApi sharedInstance] startQRCodeReaderFromViewController:self withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
+    [[XMMEnduserApi sharedInstance] startQRCodeReaderFromViewController:self];
     return NO;
-  }else{
+  } else {
     return YES;
   }
 }
 
 #pragma mark - XMMEnduserApi Delegate Methods
 
--(void)didScanQR:(NSString *)result {
-  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Hellyeah!" message:result delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
-  [alert show];
+-(void)didScanQR:(NSString *)result withCompleteUrl:(NSString *)url{
   
-  [[XMMEnduserApi sharedInstance] setDelegate:self];
-  [[XMMEnduserApi sharedInstance] contentWithLocationIdentifier:result includeStyle:NO includeMenu:NO withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
+  //old pingeborg stickers get a redirect to the xm.gl url
+  if ([url containsString:@"http://pingeb.org/"]) {
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    NSURLConnection *urlConntection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+  } else {
+    [[XMMEnduserApi sharedInstance] setDelegate:self];
+    [[XMMEnduserApi sharedInstance] contentWithLocationIdentifier:result includeStyle:NO includeMenu:NO withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
+  }
 }
 
-- (void)didLoadDataWithLocationIdentifier:(XMMResponseGetByLocationIdentifier *)apiResult {
+-(NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)redirectResponse {
+  
+  //redirect to xm.gl
+  NSURLRequest *newRequest = request;
+  if (redirectResponse) {
+    [[XMMEnduserApi sharedInstance] setDelegate:self];
+    [[XMMEnduserApi sharedInstance] contentWithLocationIdentifier:[self getLocationIdentifierFromURL:[newRequest URL].absoluteString] includeStyle:NO includeMenu:NO withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
+    return nil;
+  }
+  
+  return newRequest;
+}
+
+- (NSString*)getLocationIdentifierFromURL:(NSString*)URL {
+  NSURL* realUrl = [NSURL URLWithString:URL];
+  NSString *path = [realUrl path];
+  path = [path stringByReplacingOccurrencesOfString:@"/" withString:@""];
+  return path;
+}
+
+- (void)didLoadDataWithLocationIdentifier:(XMMResponseGetByLocationIdentifier *)apiResult{
   [Globals addDiscoveredArtist:apiResult.content.contentId];
   self.savedApiResult = apiResult;
   

@@ -14,6 +14,7 @@
 @property XMMResponseGetById *savedResult;
 @property XMMContentBlocks *contentBlocks;
 @property REMenu *fontSizeDropdownMenu;
+@property UIButton *dropDownButton;
 
 @end
 
@@ -81,6 +82,21 @@
                                                                 action:@selector(toggleFontSizeDropdownMenu)];
   
   self.navigationItem.rightBarButtonItem = buttonItem;
+  
+  //navbarDropdown => title
+  UIView *iv = [[UIView alloc] initWithFrame:CGRectMake(0,0,(self.view.frame.size.width/1.5),32)];
+  self.dropDownButton = [[UIButton alloc] initWithFrame:CGRectMake(0,0,(self.view.frame.size.width/1.5),32)];
+  //[dropDownButton addTarget:navController action:@selector(toggleMenu) forControlEvents:UIControlEventTouchUpInside];
+  [self.dropDownButton setTitle:@"pingeb.org Kärnten" forState:UIControlStateNormal];
+  [self.dropDownButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+  
+  UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake((iv.frame.size.width/2) - 3.5, iv.frame.size.height-3.5, 7, 3.5)];
+  UIImage *angleDownImage = [UIImage imageNamed:@"angleDown"];
+  [imageView setImage:angleDownImage];
+  
+  [iv addSubview:self.dropDownButton];
+  //[iv addSubview:imageView];
+  self.navigationItem.titleView = iv;
 }
 
 - (void)didReceiveMemoryWarning {

@@ -411,16 +411,6 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Innerhalb von 40 Metern von einem pingeb.org Sticker kannst du dieses auch ohne Scan entdecken." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Guv-VM-KZR">
-                                        <rect key="frame" x="8" y="279" width="240" height="84"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="84" id="Fpt-B7-huI"/>
-                                            <constraint firstAttribute="width" constant="240" id="V8p-F7-tmb"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow-bended-down" translatesAutoresizingMaskIntoConstraints="NO" id="Fzc-9f-Kn2">
                                         <rect key="frame" x="224" y="339" width="91" height="49"/>
                                         <constraints>
@@ -428,16 +418,26 @@
                                             <constraint firstAttribute="height" constant="49" id="b4K-L6-8wR"/>
                                         </constraints>
                                     </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Du bist in der Nähe eines pingeb.org-Stickers? Dann kannst du auch ohne QR-Code entdecken!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Guv-VM-KZR">
+                                        <rect key="frame" x="8" y="275" width="307" height="84"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="84" id="Fpt-B7-huI"/>
+                                            <constraint firstAttribute="width" constant="307" id="V8p-F7-tmb"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="mSQ-hE-GZt" secondAttribute="bottom" constant="8" id="3MF-sg-6ox"/>
-                                    <constraint firstItem="Fzc-9f-Kn2" firstAttribute="bottom" secondItem="Guv-VM-KZR" secondAttribute="bottom" constant="25" id="CKd-jW-dzx"/>
+                                    <constraint firstItem="Fzc-9f-Kn2" firstAttribute="bottom" secondItem="Guv-VM-KZR" secondAttribute="bottom" constant="29" id="CKd-jW-dzx"/>
                                     <constraint firstItem="Guv-VM-KZR" firstAttribute="leading" secondItem="N6O-Vd-Jeg" secondAttribute="leading" constant="8" id="EYc-k1-jxQ"/>
-                                    <constraint firstItem="Fzc-9f-Kn2" firstAttribute="trailing" secondItem="Guv-VM-KZR" secondAttribute="trailing" constant="67" id="WtL-G1-J9c"/>
+                                    <constraint firstItem="Fzc-9f-Kn2" firstAttribute="trailing" secondItem="Guv-VM-KZR" secondAttribute="trailing" id="WtL-G1-J9c"/>
                                     <constraint firstAttribute="centerX" secondItem="mSQ-hE-GZt" secondAttribute="centerX" id="ccr-ga-sKG"/>
-                                    <constraint firstAttribute="bottom" secondItem="Guv-VM-KZR" secondAttribute="bottom" constant="84" id="ipL-gH-Pan"/>
+                                    <constraint firstAttribute="bottom" secondItem="Guv-VM-KZR" secondAttribute="bottom" constant="88" id="ipL-gH-Pan"/>
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="fd4-jm-cMb" appends="YES" id="DlU-R0-08B"/>
