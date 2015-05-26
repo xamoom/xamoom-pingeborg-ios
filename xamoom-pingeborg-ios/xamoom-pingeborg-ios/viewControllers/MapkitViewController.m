@@ -181,63 +181,6 @@
     }
   }
   
-  /*
-  //image loading
-  if ([self.savedResponseContent.imagePublicUrl containsString:@".gif"]) {
-    //off mainthread gifimage loading
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
-                                             (unsigned long)NULL), ^(void) {
-      UIImage *gifImage = [UIImage animatedImageWithAnimatedGIFURL:[NSURL URLWithString:self.savedResponseContent.imagePublicUrl]];
-      
-      dispatch_async(dispatch_get_main_queue(), ^(void) {
-        [self.imagesToDisplay setValue:gifImage forKey:self.savedResponseContent.contentId];
-        
-        [self geofenceComplete];
-      });
-    });
-  } else if ([self.savedResponseContent.imagePublicUrl containsString:@".svg"]) {
-    //off mainthread svg loading
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
-                                             (unsigned long)NULL), ^(void) {
-      
-      NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.savedResponseContent.imagePublicUrl]];
-      
-      dispatch_async(dispatch_get_main_queue(), ^(void) {
-        NSArray *paths = NSSearchPathForDirectoriesInDomains
-        (NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *documentsDirectory = paths[0];
-        NSString *fileName = [NSString stringWithFormat:@"%@/svgimage.svg", documentsDirectory];
-        [imageData writeToFile:fileName atomically:YES];
-        
-        //read svg mapmarker
-        NSData *data = [[NSFileManager defaultManager] contentsAtPath:fileName];
-        SVGKImage *svgImage = [SVGKImage imageWithSource:[SVGKSourceString sourceFromContentsOfString:
-                                                          [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]]];
-        
-        [self.imagesToDisplay setValue:svgImage forKey:self.savedResponseContent.contentId];
-        [self.tableView reloadData];
-        
-        [self geofenceComplete];
-      });
-    });
-  } else if(self.savedResponseContent.imagePublicUrl != nil) {
-    [self downloadImageWithURL:self.savedResponseContent.imagePublicUrl completionBlock:^(BOOL succeeded, UIImage *image) {
-      if (succeeded) {
-        
-        [self.imagesToDisplay setValue:image forKey:self.savedResponseContent.contentId];
-        [self.tableView reloadData];
-        
-        [self geofenceComplete];
-      }
-    }];
-  } else {
-    
-    if (self.savedResponseContent.contentId != nil)
-      [self.imagesToDisplay setValue:self.placeholder forKey:self.savedResponseContent.contentId];
-    
-  }
-  */
-  
   //download image
   [XMMImageUtility imageWithUrl:self.savedResponseContent.imagePublicUrl completionBlock:^(BOOL succeeded, UIImage *image, SVGKImage *svgImage) {
     if (image != nil) {
@@ -309,26 +252,6 @@
       annotationView.data = pingebAnnotation.data;
       annotationView.distance = pingebAnnotation.distance;
       annotationView.coordinate = pingebAnnotation.coordinate;
-      
-      /*
-      //load image with gif support
-      if ([pingebAnnotation.data.image containsString:@".gif"]) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
-                                                 (unsigned long)NULL), ^(void) {
-          UIImage *gifImage = [UIImage animatedImageWithAnimatedGIFURL:[NSURL URLWithString:pingebAnnotation.data.image]];
-          
-          dispatch_async(dispatch_get_main_queue(), ^(void) {
-            annotationView.spotImage = gifImage;
-          });
-        });
-      } else if(pingebAnnotation.data.image != nil) {
-        [self downloadImageWithURL:pingebAnnotation.data.image completionBlock:^(BOOL succeeded, UIImage *image) {
-          if (succeeded) {
-            annotationView.spotImage = image;
-          }
-        }];
-      }
-      */
       
       //download image
       [XMMImageUtility imageWithUrl:pingebAnnotation.data.image completionBlock:^(BOOL succeeded, UIImage *image, SVGKImage *svgImage) {

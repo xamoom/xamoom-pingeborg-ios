@@ -126,54 +126,7 @@ int const kPageSize = 7;
     self.hasMore = NO;
   
   for (XMMResponseContent *contentItem in result.items) {
-    
-    /*
-    //load images
-    if ([contentItem.imagePublicUrl containsString:@".gif"]) {
-      //off mainthread gifimage loading
-      dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
-                                               (unsigned long)NULL), ^(void) {
-        UIImage *gifImage = [UIImage animatedImageWithAnimatedGIFURL:[NSURL URLWithString:contentItem.imagePublicUrl]];
-        
-        dispatch_async(dispatch_get_main_queue(), ^(void) {
-          [self.imagesToDisplay setValue:gifImage forKey:contentItem.contentId];
-          [self.feedTableView reloadData];
-        });
-      });
-    } else if ([contentItem.imagePublicUrl containsString:@".svg"]) {
-      //off mainthread svg loading
-      dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
-                                               (unsigned long)NULL), ^(void) {
-        
-        NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:contentItem.imagePublicUrl]];
-        
-        dispatch_async(dispatch_get_main_queue(), ^(void) {
-          NSArray *paths = NSSearchPathForDirectoriesInDomains
-          (NSDocumentDirectory, NSUserDomainMask, YES);
-          NSString *documentsDirectory = paths[0];
-          NSString *fileName = [NSString stringWithFormat:@"%@/svgimage.svg", documentsDirectory];
-          [imageData writeToFile:fileName atomically:YES];
-          
-          //read svg mapmarker
-          NSData *data = [[NSFileManager defaultManager] contentsAtPath:fileName];
-          SVGKImage *svgImage = [SVGKImage imageWithSource:[SVGKSourceString sourceFromContentsOfString:
-                                                            [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]]];
-          
-          [self.imagesToDisplay setValue:svgImage forKey:contentItem.contentId];
-          [self.feedTableView reloadData];
-        });
-      });
-      
-    } else if(contentItem.imagePublicUrl != nil) {
-      [XMMImageUtility downloadImageWithURL:contentItem.imagePublicUrl completionBlock:^(BOOL succeeded, UIImage *image) {
-        [self.imagesToDisplay setValue:image forKey:contentItem.contentId];
-        [self.feedTableView reloadData];
-      }];
-    } else {
-      [self.imagesToDisplay setValue:self.placeholderImage forKey:contentItem.contentId];
-    }
-    */
-    
+
     //download image
     [XMMImageUtility imageWithUrl:contentItem.imagePublicUrl completionBlock:^(BOOL succeeded, UIImage *image, SVGKImage *svgImage) {
       if (image != nil) {
