@@ -41,23 +41,46 @@ int const kHorizontalSpaceToSubview = 32;
   return self;
 }
 
+- (instancetype)initWithSystemId:(NSString*)systemId withLanguage:(NSString*)language withWidth:(float)screenWidth {
+  self = [super init];
+  
+  if(self) {
+    self.itemsToDisplay = [[NSMutableArray alloc] init];
+    self.fontSize = NormalFontSize;
+    self.linkColor = [UIColor blueColor];
+    self.language = language;
+    self.screenWidth = screenWidth - kHorizontalSpaceToSubview;
+    self.systemId = systemId;
+  }
+  
+  //notification to reload delegates tableview from special contentBlockCells
+  NSString *notificationName = @"reloadTableViewForContentBlocks";
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(reloadTableView)
+                                               name:notificationName
+                                             object:nil];
+  
+  return self;
+}
+
 # pragma mark - ContentBlock Methods
 
-- (void)displayContentBlocksById:(XMMResponseGetById *)IdResult byLocationIdentifier:(XMMResponseGetByLocationIdentifier *)locationIdentifierResult withScreenWidth:(float)screenWidth {
-  
-  NSInteger contentBlockType;
-  NSArray *contentBlocks;
-  self.screenWidth = screenWidth - kHorizontalSpaceToSubview;
-  
-  if (IdResult != nil) {
-    contentBlocks = IdResult.content.contentBlocks;
-  }
-  else if (locationIdentifierResult != nil) {
-    contentBlocks = locationIdentifierResult.content.contentBlocks;
-  }
-  else {
+- (void)displayContentBlocksByIdResult:(XMMResponseGetById *)idResult {
+  if (idResult == nil) {
     return;
   }
+  [self generateTableViewCellsWithContentBlocks:idResult.content.contentBlocks];
+}
+
+- (void)displayContentBlocksByLocationIdentifierResult:(XMMResponseGetByLocationIdentifier *)locationIdentifierResult {
+  if (locationIdentifierResult == nil) {
+    return;
+  }
+  [self generateTableViewCellsWithContentBlocks:locationIdentifierResult.content.contentBlocks];
+}
+
+- (void)generateTableViewCellsWithContentBlocks:(NSArray*)contentBlocks {
+  NSInteger contentBlockType;
   
   for (XMMResponseContentBlock *contentBlock in contentBlocks) {
     contentBlockType = [contentBlock.contentBlockType integerValue];

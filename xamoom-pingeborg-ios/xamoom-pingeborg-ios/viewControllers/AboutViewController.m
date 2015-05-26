@@ -19,8 +19,6 @@
 
 @implementation AboutViewController
 
-@synthesize contentBlocks;
-
 #pragma mark - View Lifecycle
 
 - (void)viewDidLoad {
@@ -34,11 +32,9 @@
   self.tableView.estimatedRowHeight = 150.0;
   
   //setting up XMMContentBlocks
-  contentBlocks = [[XMMContentBlocks alloc] init];
-  contentBlocks.delegate = self;
-  contentBlocks.linkColor = [Globals sharedObject].pingeborgLinkColor;
-  self.contentBlocks.language = @"de";
-  self.contentBlocks.systemId = [Globals sharedObject].globalSystemId;
+  self.contentBlocks = [[XMMContentBlocks alloc] initWithSystemId:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withWidth:self.view.frame.size.width];
+  self.contentBlocks.delegate = self;
+  self.contentBlocks.linkColor = [Globals sharedObject].pingeborgLinkColor;
   
   self.hud = [[JGProgressHUD alloc] initWithStyle:JGProgressHUDStyleDark];
   
@@ -48,7 +44,7 @@
                                                                image:nil
                                                     highlightedImage:nil
                                                               action:^(REMenuItem *item) {
-                                                                [contentBlocks updateFontSizeTo:NormalFontSize];
+                                                                [self.contentBlocks updateFontSizeTo:NormalFontSize];
                                                               }];
   
   REMenuItem *BigFontSizeItem = [[REMenuItem alloc] initWithTitle:@"Big Font Size"
@@ -56,7 +52,7 @@
                                                             image:nil
                                                  highlightedImage:nil
                                                            action:^(REMenuItem *item) {
-                                                             [contentBlocks updateFontSizeTo:BigFontSize];
+                                                             [self.contentBlocks updateFontSizeTo:BigFontSize];
                                                            }];
   
   REMenuItem *BiggerFontSizeItem = [[REMenuItem alloc] initWithTitle:@"Really Big Font Size"
@@ -64,7 +60,7 @@
                                                                image:nil
                                                     highlightedImage:nil
                                                               action:^(REMenuItem *item) {
-                                                                [contentBlocks updateFontSizeTo:BiggerFontSize];
+                                                                [self.contentBlocks updateFontSizeTo:BiggerFontSize];
                                                               }];
   
   self.fontSizeDropdownMenu = [[REMenu alloc] initWithItems:@[NormalFontSizeItem, BigFontSizeItem, BiggerFontSizeItem]];
@@ -117,7 +113,7 @@
 
 - (void)didLoadDataWithContentId:(XMMResponseGetById *)result {
   [self displayContentTitleAndImage:result];
-  [self.contentBlocks displayContentBlocksById:result byLocationIdentifier:nil withScreenWidth:self.view.frame.size.width];
+  [self.contentBlocks displayContentBlocksByIdResult:result];
   [self.hud dismiss];
 }
 
@@ -128,11 +124,11 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return [contentBlocks.itemsToDisplay count];
+  return [self.contentBlocks.itemsToDisplay count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  return (contentBlocks.itemsToDisplay)[indexPath.row];
+  return (self.contentBlocks.itemsToDisplay)[indexPath.row];
 }
 
 #pragma mark - Custom Methods
@@ -144,12 +140,12 @@
   contentBlock0.contentBlockType = @"title";
   contentBlock0.title = result.content.title;
   contentBlock0.text = result.content.descriptionOfContent;
-  [contentBlocks displayContentBlock0:contentBlock0];
+  [self.contentBlocks displayContentBlock0:contentBlock0];
   
   if (result.content.imagePublicUrl != nil) {
     XMMResponseContentBlockType3 *contentBlock3 = [[XMMResponseContentBlockType3 alloc] init];
     contentBlock3.fileId = result.content.imagePublicUrl;
-    [contentBlocks displayContentBlock3:contentBlock3];
+    [self.contentBlocks displayContentBlock3:contentBlock3];
   }
 }
 

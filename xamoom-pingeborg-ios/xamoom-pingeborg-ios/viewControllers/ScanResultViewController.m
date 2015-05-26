@@ -27,11 +27,9 @@
   self.tableView.estimatedRowHeight = 150.0;
   
   //setting up XMMContentBlocks
-  self.contentBlocks = [[XMMContentBlocks alloc] init];
+  self.contentBlocks = [[XMMContentBlocks alloc] initWithSystemId:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withWidth:self.view.frame.size.width];
   self.contentBlocks.delegate = self;
   self.contentBlocks.linkColor = [Globals sharedObject].pingeborgLinkColor;
-  self.contentBlocks.language = @"de";
-  self.contentBlocks.systemId = [Globals sharedObject].globalSystemId;
   
   //dropdown menu
   REMenuItem *NormalFontSizeItem = [[REMenuItem alloc] initWithTitle:@"Normal Font Size"
@@ -75,7 +73,7 @@
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
   [self displayContentTitleAndImage];
-  [self.contentBlocks displayContentBlocksById:nil byLocationIdentifier:self.result withScreenWidth:self.view.frame.size.width];
+  [self.contentBlocks displayContentBlocksByLocationIdentifierResult:self.result];
 }
 
 -(void)viewWillDisappear:(BOOL)animated {

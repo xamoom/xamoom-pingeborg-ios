@@ -30,11 +30,10 @@
   self.tableView.estimatedRowHeight = 150.0;
   
   //init contentBlocks
-  self.contentBlocks = [[XMMContentBlocks alloc] init];
+  self.contentBlocks = [[XMMContentBlocks alloc] initWithSystemId:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withWidth:self.tableView.bounds.size.width];
   self.contentBlocks.delegate = self;
   self.contentBlocks.linkColor = [Globals sharedObject].pingeborgLinkColor;
-  self.contentBlocks.language = @"de";
-  self.contentBlocks.systemId = [Globals sharedObject].globalSystemId;
+  
   NSString* savedArtists = [Globals savedArtits];
   
   //init progressHud
@@ -120,7 +119,7 @@
 - (void)didLoadDataWithContentId:(XMMResponseGetById *)result {
   self.savedResult = result;
   [self displayContentTitleAndImage:result];
-  [self.contentBlocks displayContentBlocksById:result byLocationIdentifier:nil withScreenWidth:self.tableView.bounds.size.width];
+  [self.contentBlocks displayContentBlocksByIdResult:result];
   [self.hud dismiss];
 }
 
