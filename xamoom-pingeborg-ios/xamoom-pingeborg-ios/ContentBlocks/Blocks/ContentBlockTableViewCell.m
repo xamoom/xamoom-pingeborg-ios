@@ -29,6 +29,7 @@
    name:notificationName
    object:nil];
   
+  [XMMEnduserApi sharedInstance].delegate = nil;
   [[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:NO includeMenu:NO withLanguage:language full:NO];
 }
 
@@ -39,20 +40,24 @@
   self.contentTitleLabel.text = self.result.content.title;
   self.contentExcerptLabel.text = self.result.content.descriptionOfContent;
   [self.contentExcerptLabel sizeToFit];
-  
-  //download and display image
-  if (self.result.content.imagePublicUrl != nil) {
-    [self downloadImageWithURL:self.result.content.imagePublicUrl completionBlock:^(BOOL succeeded, UIImage *image) {
-      if (succeeded && image) {
-        self.contentImageView.contentMode = UIViewContentModeScaleAspectFill;
-        self.contentImageView.clipsToBounds = YES;
-        [self.contentImageView setImage:image];
-        
-        NSString *notificationName = @"reloadTableViewForContentBlocks";
-        [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil];
-      }
-    }];
-  }
+
+  //download image
+  [XMMImageUtility imageWithUrl:self.result.content.imagePublicUrl completionBlock:^(BOOL succeeded, UIImage *image, SVGKImage *svgImage) {
+    self.contentImageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.contentImageView.clipsToBounds = YES;
+    
+    if (image != nil) {
+      [self.contentImageView setImage:image];
+    } else if (svgImage != nil) {
+      SVGKImageView *svgImageView = [[SVGKFastImageView alloc] initWithSVGKImage:svgImage];
+      //[svgImageView setFrame:CGRectMake(0, 0, self.contentImageView.frame.size.width, self.contentImageView.frame.size.height)];
+      [self.contentImageView addSubview:svgImageView];
+      self.contentImageView.image = nil;
+    }
+    
+    NSString *notificationName = @"reloadTableViewForContentBlocks";
+    [[NSNotificationCenter defaultCenter] postNotificationName:notificationName object:nil];
+  }];
 }
 
 #pragma mark - Image Methods
