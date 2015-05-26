@@ -14,10 +14,28 @@
 
 @interface XMMImageUtility : NSObject
 
-- (void)imageWithUrl:(NSString *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image, SVGKImage *svgImage))completionBlock;
+/**
+ */
++ (void)imageWithUrl:(NSString *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image, SVGKImage *svgImage))completionBlock;
 
-- (UIImage *)convertImageToGrayScale:(UIImage *)image;
+/**
+ */
++ (void)downloadImageWithURL:(NSString *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock;
 
+/**
+ */
++ (void)downloadAnimatedImageWithURL:(NSString *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock;
 
+/**
+ */
++ (void)downloadSVGImageWithURL:(NSString *)url completionBlock:(void (^)(BOOL succeeded, SVGKImage *image))completionBlock;
+
+/**
+ */
++ (UIImage *)convertImageToGrayScale:(UIImage *)image;
+
+/**
+ */
++ (UIImage *)imageWithImage:(UIImage *)image scaledToMaxWidth:(CGFloat)width maxHeight:(CGFloat)height;
 
 @end

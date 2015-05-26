@@ -215,7 +215,8 @@ int const kHorizontalSpaceToSubview = 32;
   //set title
   cell.titleLabel.text = contentBlock.title;
   [cell.imageLoadingIndicator startAnimating];
-  
+
+  /*
   //gif support
   if ([contentBlock.fileId containsString:@".gif"]) {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
@@ -256,7 +257,7 @@ int const kHorizontalSpaceToSubview = 32;
         SVGKImage *svgImage = [SVGKImage imageWithSource:[SVGKSourceString sourceFromContentsOfString:
                                                           [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]]];
         
-        float imageRatio = svgImage.size.width/svgImage.size.height;
+        float
         [cell.imageHeightConstraint setConstant:(self.screenWidth / imageRatio)];
         
         SVGKImageView *svgImageView = [[SVGKFastImageView alloc] initWithSVGKImage:svgImage];
@@ -288,6 +289,38 @@ int const kHorizontalSpaceToSubview = 32;
       }
     }];
   }
+  */
+  
+  //download image
+  [XMMImageUtility imageWithUrl:contentBlock.fileId completionBlock:^(BOOL succeeded, UIImage *image, SVGKImage *svgImage) {
+    float imageRatio;
+    
+    if (image != nil) {
+      imageRatio = image.size.width/image.size.height;
+      
+      //smaller images will be displayed normal size and centered
+      if (image.size.width < cell.image.frame.size.width) {
+        [cell.image setContentMode:UIViewContentModeCenter];
+        [cell.imageHeightConstraint setConstant:image.size.height];
+      }
+      else {
+        //bigger images will be resized und displayed full-width
+        [cell.imageHeightConstraint setConstant:(self.screenWidth / imageRatio)];
+      }
+      
+      [cell.image setImage:image];
+    } else if (svgImage != nil) {
+      imageRatio = svgImage.size.width/svgImage.size.height;
+      [cell.imageHeightConstraint setConstant:(self.screenWidth / imageRatio)];
+      
+      SVGKImageView *svgImageView = [[SVGKFastImageView alloc] initWithSVGKImage:svgImage];
+      [svgImageView setFrame:CGRectMake(0, 0, self.screenWidth, (self.screenWidth / imageRatio))];
+      [cell.image addSubview:svgImageView];
+    }
+    
+    [cell.imageLoadingIndicator stopAnimating];
+    [self reloadTableView];
+  }];
   
   [self.itemsToDisplay addObject:cell];
 }

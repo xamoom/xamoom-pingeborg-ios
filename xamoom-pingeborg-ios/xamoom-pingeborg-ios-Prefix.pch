@@ -1,0 +1,17 @@
+//
+//  xamoom-pingeborg-ios-Prefix.pch
+//  xamoom-pingeborg-ios
+//
+//  Created by Raphael Seher on 26.05.15.
+//  Copyright (c) 2015 xamoom GmbH. All rights reserved.
+//
+
+#ifndef xamoom_pingeborg_ios_xamoom_pingeborg_ios_Prefix_pch
+#define xamoom_pingeborg_ios_xamoom_pingeborg_ios_Prefix_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#import "XMMImageUtility.h"
+#import "XMMEnduserApi.h"
+
+#endif

@@ -71,7 +71,6 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="backgroundColorView" destination="LM6-J7-YFJ" id="0ia-C9-bMA"/>
                 <outlet property="contentTextLabel" destination="pYX-UX-kgy" id="8Hj-fy-y33"/>
                 <outlet property="icon" destination="Yec-h6-DBB" id="g9V-ni-kZM"/>
                 <outlet property="titleLabel" destination="LGQ-fC-xb3" id="7fw-f7-JEJ"/>

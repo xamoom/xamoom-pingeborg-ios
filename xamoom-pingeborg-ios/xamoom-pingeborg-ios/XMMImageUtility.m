@@ -10,7 +10,7 @@
 
 @implementation XMMImageUtility
 
-- (void)imageWithUrl:(NSString *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image, SVGKImage *svgImage))completionBlock {
++ (void)imageWithUrl:(NSString *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image, SVGKImage *svgImage))completionBlock {
   
   if ([url containsString:@".gif"]) {
     [self downloadAnimatedImageWithURL:url completionBlock:^(BOOL succeeded, UIImage *image) {
@@ -18,7 +18,6 @@
     }];
     
   } else if ([url containsString:@".svg"]) {
-    //off mainthread svg loading
     [self downloadSVGImageWithURL:url completionBlock:^(BOOL succeeded, SVGKImage *image) {
       completionBlock(YES, nil, image);
     }];
@@ -26,10 +25,12 @@
     [self downloadImageWithURL:url completionBlock:^(BOOL succeeded, UIImage *image) {
       completionBlock(YES, image, nil);
     }];
+  } else {
+    completionBlock(NO, nil, nil);
   }
 }
 
-- (void)downloadImageWithURL:(NSString *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock {
++ (void)downloadImageWithURL:(NSString *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock {
   NSURL *realUrl = [[NSURL alloc]initWithString:url];
   NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:realUrl];
   [NSURLConnection sendAsynchronousRequest:request
@@ -45,7 +46,7 @@
                          }];
 }
 
-- (void)downloadAnimatedImageWithURL:(NSString *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock {
++ (void)downloadAnimatedImageWithURL:(NSString *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock {
   NSURL *realUrl = [[NSURL alloc]initWithString:url];
   NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:realUrl];
   [NSURLConnection sendAsynchronousRequest:request
@@ -60,7 +61,7 @@
                          }];
 }
 
-- (void)downloadSVGImageWithURL:(NSString *)url completionBlock:(void (^)(BOOL succeeded, SVGKImage *image))completionBlock {
++ (void)downloadSVGImageWithURL:(NSString *)url completionBlock:(void (^)(BOOL succeeded, SVGKImage *image))completionBlock {
   NSURL *realUrl = [[NSURL alloc]initWithString:url];
   NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:realUrl];
   [NSURLConnection sendAsynchronousRequest:request
@@ -84,7 +85,9 @@
                          }];
 }
 
-- (UIImage *)convertImageToGrayScale:(UIImage *)image {
+#pragma mark - Image Methods
+
++ (UIImage *)convertImageToGrayScale:(UIImage *)image {
   // Create image rectangle with current image width/height
   CGRect imageRect = CGRectMake(0, 0, image.size.width, image.size.height);
   
@@ -113,7 +116,7 @@
   return newImage;
 }
 
-- (UIImage *)imageWithImage:(UIImage *)image scaledToMaxWidth:(CGFloat)width maxHeight:(CGFloat)height {
++ (UIImage *)imageWithImage:(UIImage *)image scaledToMaxWidth:(CGFloat)width maxHeight:(CGFloat)height {
   CGFloat oldWidth = image.size.width;
   CGFloat oldHeight = image.size.height;
   
@@ -126,7 +129,7 @@
   return [self imageWithImage:image scaledToSize:newSize];
 }
 
-- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)size {
++ (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)size {
   if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
     UIGraphicsBeginImageContextWithOptions(size, NO, [[UIScreen mainScreen] scale]);
   } else {

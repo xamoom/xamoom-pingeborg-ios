@@ -126,6 +126,8 @@ int const kPageSize = 7;
     self.hasMore = NO;
   
   for (XMMResponseContent *contentItem in result.items) {
+    
+    /*
     //load images
     if ([contentItem.imagePublicUrl containsString:@".gif"]) {
       //off mainthread gifimage loading
@@ -163,13 +165,27 @@ int const kPageSize = 7;
       });
       
     } else if(contentItem.imagePublicUrl != nil) {
-      [self downloadImageWithURL:contentItem.imagePublicUrl completionBlock:^(BOOL succeeded, UIImage *image) {
+      [XMMImageUtility downloadImageWithURL:contentItem.imagePublicUrl completionBlock:^(BOOL succeeded, UIImage *image) {
         [self.imagesToDisplay setValue:image forKey:contentItem.contentId];
         [self.feedTableView reloadData];
       }];
     } else {
       [self.imagesToDisplay setValue:self.placeholderImage forKey:contentItem.contentId];
     }
+    */
+    
+    //download image
+    [XMMImageUtility imageWithUrl:contentItem.imagePublicUrl completionBlock:^(BOOL succeeded, UIImage *image, SVGKImage *svgImage) {
+      if (image != nil) {
+        [self.imagesToDisplay setValue:image forKey:contentItem.contentId];
+      } else if (svgImage != nil) {
+        [self.imagesToDisplay setValue:svgImage forKey:contentItem.contentId];
+      } else {
+        [self.imagesToDisplay setValue:self.placeholderImage forKey:contentItem.contentId];
+      }
+      
+      [self.feedTableView reloadData];
+    }];
     
     //add contentItem
     [self.itemsToDisplay addObject:contentItem];
@@ -229,7 +245,7 @@ int const kPageSize = 7;
       [svgImageView setFrame:CGRectMake(0, 0, self.view.frame.size.width, (self.view.frame.size.width / imageRatio))];
       [cell.feedItemImage addSubview:svgImageView];
     } else if (![[Globals savedArtits] containsString:contentItem.contentId]) {
-      cell.feedItemImage.image = [self convertImageToGrayScale:image];
+      cell.feedItemImage.image = [XMMImageUtility convertImageToGrayScale:image];
       cell.feedItemOverlayImage.backgroundColor = [UIColor whiteColor];
     } else {
       cell.feedItemImage.image = image;
@@ -331,53 +347,6 @@ int const kPageSize = 7;
     [[XMMEnduserApi sharedInstance] setDelegate:self];
     [[XMMEnduserApi sharedInstance] contentListWithSystemId:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:kPageSize withCursor:self.contentListCursor withTags:@[@"artists"]];
   }
-}
-
-#pragma mark - Image Methods
-
-- (void)downloadImageWithURL:(NSString *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock {
-  NSURL *realUrl = [[NSURL alloc]initWithString:url];
-  NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:realUrl];
-  [NSURLConnection sendAsynchronousRequest:request
-                                     queue:[NSOperationQueue mainQueue]
-                         completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                           if ( !error )
-                           {
-                             UIImage *image = [[UIImage alloc] initWithData:data];
-                             completionBlock(YES,image);
-                           } else{
-                             completionBlock(NO,nil);
-                           }
-                         }];
-}
-
-- (UIImage *)convertImageToGrayScale:(UIImage *)image {
-  // Create image rectangle with current image width/height
-  CGRect imageRect = CGRectMake(0, 0, image.size.width, image.size.height);
-  
-  // Grayscale color space
-  CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceGray();
-  
-  // Create bitmap content with current image size and grayscale colorspace
-  CGContextRef context = CGBitmapContextCreate(nil, image.size.width, image.size.height, 8, 0, colorSpace, (CGBitmapInfo)kCGImageAlphaNone);
-  
-  // Draw image into current context, with specified rectangle
-  // using previously defined context (with grayscale colorspace)
-  CGContextDrawImage(context, imageRect, [image CGImage]);
-  
-  // Create bitmap image info from pixel data in current context
-  CGImageRef imageRef = CGBitmapContextCreateImage(context);
-  
-  // Create a new UIImage object
-  UIImage *newImage = [UIImage imageWithCGImage:imageRef];
-  
-  // Release colorspace, context and bitmap information
-  CGColorSpaceRelease(colorSpace);
-  CGContextRelease(context);
-  CFRelease(imageRef);
-  
-  // Return the new grayscale image
-  return newImage;
 }
 
 #pragma mark - NavbarDropdown Delegation

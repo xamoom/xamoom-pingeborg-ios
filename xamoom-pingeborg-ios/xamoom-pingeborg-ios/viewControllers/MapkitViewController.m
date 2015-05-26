@@ -131,7 +131,7 @@
     decodedData = [[NSData alloc] initWithBase64EncodedString:decodedString options:0];
     
     NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:decodedString]];
-    self.customMapMarker = [self imageWithImage:[UIImage imageWithData:imageData] scaledToMaxWidth:30.0f maxHeight:30.0f];
+    self.customMapMarker = [XMMImageUtility imageWithImage:[UIImage imageWithData:imageData] scaledToMaxWidth:30.0f maxHeight:30.0f];
     
     //svg support
     if (!self.customMapMarker) {
@@ -181,6 +181,7 @@
     }
   }
   
+  /*
   //image loading
   if ([self.savedResponseContent.imagePublicUrl containsString:@".gif"]) {
     //off mainthread gifimage loading
@@ -234,8 +235,22 @@
     if (self.savedResponseContent.contentId != nil)
       [self.imagesToDisplay setValue:self.placeholder forKey:self.savedResponseContent.contentId];
     
-    [self geofenceComplete];
   }
+  */
+  
+  //download image
+  [XMMImageUtility imageWithUrl:self.savedResponseContent.imagePublicUrl completionBlock:^(BOOL succeeded, UIImage *image, SVGKImage *svgImage) {
+    if (image != nil) {
+      [self.imagesToDisplay setValue:image forKey:self.savedResponseContent.contentId];
+    } else if (svgImage != nil) {
+      [self.imagesToDisplay setValue:svgImage forKey:self.savedResponseContent.contentId];
+    } else {
+      [self.imagesToDisplay setValue:self.placeholder forKey:self.savedResponseContent.contentId];
+    }
+    
+    [self geofenceComplete];
+    [self.tableView reloadData];
+  }];
   
   //load items in near you, when there is no geofence
   if (self.savedResponseContent == nil) {
@@ -295,6 +310,7 @@
       annotationView.distance = pingebAnnotation.distance;
       annotationView.coordinate = pingebAnnotation.coordinate;
       
+      /*
       //load image with gif support
       if ([pingebAnnotation.data.image containsString:@".gif"]) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
@@ -312,6 +328,18 @@
           }
         }];
       }
+      */
+      
+      //download image
+      [XMMImageUtility imageWithUrl:pingebAnnotation.data.image completionBlock:^(BOOL succeeded, UIImage *image, SVGKImage *svgImage) {
+        if (image != nil) {
+          annotationView.spotImage = image;
+        } else if (svgImage != nil) {
+          NSLog(@"There are no svgImages");
+        } else {
+          annotationView.spotImage = image;
+        }
+      }];
       
     } else {
       annotationView.annotation = annotation;
@@ -505,7 +533,6 @@
   [[XMMEnduserApi sharedInstance] contentWithLat:[NSString stringWithFormat:@"%f",self.lastLocation.coordinate.latitude] withLon:[NSString stringWithFormat:@"%f",self.lastLocation.coordinate.longitude] withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
 }
 
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -558,7 +585,7 @@
         [svgImageView setFrame:CGRectMake(0, 0, self.view.frame.size.width, (self.view.frame.size.width / imageRatio))];
         [cell.feedItemImage addSubview:svgImageView];
       } else if (![[Globals savedArtits] containsString:contentItem.contentId]) {
-        cell.feedItemImage.image = [self convertImageToGrayScale:image];
+        cell.feedItemImage.image = [XMMImageUtility convertImageToGrayScale:image];
         cell.feedItemOverlayImage.backgroundColor = [UIColor whiteColor];
         cell.feedItemOverlayImage.image = [UIImage imageNamed:@"discoverable"];
       } else {
@@ -633,56 +660,6 @@
  return YES;
  }
  */
-
-#pragma mark - Image Methods
-
-- (UIImage *)convertImageToGrayScale:(UIImage *)image
-{
-  // Create image rectangle with current image width/height
-  CGRect imageRect = CGRectMake(0, 0, image.size.width, image.size.height);
-  
-  // Grayscale color space
-  CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceGray();
-  
-  // Create bitmap content with current image size and grayscale colorspace
-  CGContextRef context = CGBitmapContextCreate(nil, image.size.width, image.size.height, 8, 0, colorSpace, (CGBitmapInfo)kCGImageAlphaNone);
-  
-  // Draw image into current context, with specified rectangle
-  // using previously defined context (with grayscale colorspace)
-  CGContextDrawImage(context, imageRect, [image CGImage]);
-  
-  // Create bitmap image info from pixel data in current context
-  CGImageRef imageRef = CGBitmapContextCreateImage(context);
-  
-  // Create a new UIImage object
-  UIImage *newImage = [UIImage imageWithCGImage:imageRef];
-  
-  // Release colorspace, context and bitmap information
-  CGColorSpaceRelease(colorSpace);
-  CGContextRelease(context);
-  CFRelease(imageRef);
-  
-  // Return the new grayscale image
-  return newImage;
-}
-
-
-- (void)downloadImageWithURL:(NSString *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock
-{
-  NSURL *realUrl = [[NSURL alloc]initWithString:url];
-  NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:realUrl];
-  [NSURLConnection sendAsynchronousRequest:request
-                                     queue:[NSOperationQueue mainQueue]
-                         completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                           if ( !error )
-                           {
-                             UIImage *image = [[UIImage alloc] initWithData:data];
-                             completionBlock(YES,image);
-                           } else{
-                             completionBlock(NO,nil);
-                           }
-                         }];
-}
 
 #pragma mark - NavbarDropdown Delegation
 

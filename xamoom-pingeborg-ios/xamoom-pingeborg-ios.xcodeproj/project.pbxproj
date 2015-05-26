@@ -204,6 +204,7 @@
 		88CBAEE01AA9EC9E000E480A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		88DB74DA1B0217DA0064EE7E /* ScanResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanResultViewController.h; sourceTree = "<group>"; };
 		88DB74DB1B0217DA0064EE7E /* ScanResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanResultViewController.m; sourceTree = "<group>"; };
+		88E243191B14505000E9E208 /* xamoom-pingeborg-ios-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "xamoom-pingeborg-ios-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		88E2FAE81AF74D5800917AFB /* UIImage+animatedGIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+animatedGIF.h"; sourceTree = "<group>"; };
 		88E2FAE91AF74D5800917AFB /* UIImage+animatedGIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+animatedGIF.m"; sourceTree = "<group>"; };
 		88F038411B0CB9C600E17573 /* api.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = api.txt; sourceTree = "<group>"; };
@@ -397,20 +398,19 @@
 		88BA01F11AA859F90091A43C /* xamoom-pingeborg-ios */ = {
 			isa = PBXGroup;
 			children = (
+				88E243191B14505000E9E208 /* xamoom-pingeborg-ios-Prefix.pch */,
 				88BA01F61AA859F90091A43C /* AppDelegate.h */,
 				88BA01F71AA859F90091A43C /* AppDelegate.m */,
 				88052D791AE103C300AB433D /* Globals.h */,
 				88052D7A1AE103C300AB433D /* Globals.m */,
+				88E2431A1B14507200E9E208 /* XMMImageUtility */,
 				881458381B01EE8B0024E6F4 /* Models */,
 				8814583B1B01EE8B0024E6F4 /* ViewControllers */,
 				881458491B01EE8B0024E6F4 /* Views */,
 				881457C21B01E8620024E6F4 /* ContentBlocks */,
 				88BA01FF1AA859F90091A43C /* Images.xcassets */,
-				8860DA7B1AE78CDF00DF2239 /* SVGKit */,
 				88BA01F21AA859F90091A43C /* Supporting Files */,
 				88F038411B0CB9C600E17573 /* api.txt */,
-				88F038451B0E0D1200E17573 /* XMMImageUtility.h */,
-				88F038461B0E0D1200E17573 /* XMMImageUtility.m */,
 			);
 			path = "xamoom-pingeborg-ios";
 			sourceTree = "<group>";
@@ -420,8 +420,6 @@
 			children = (
 				88BA01F31AA859F90091A43C /* Info.plist */,
 				88BA01F41AA859F90091A43C /* main.m */,
-				88E2FAE81AF74D5800917AFB /* UIImage+animatedGIF.h */,
-				88E2FAE91AF74D5800917AFB /* UIImage+animatedGIF.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -441,6 +439,18 @@
 				88BA020D1AA859F90091A43C /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		88E2431A1B14507200E9E208 /* XMMImageUtility */ = {
+			isa = PBXGroup;
+			children = (
+				88F038451B0E0D1200E17573 /* XMMImageUtility.h */,
+				88F038461B0E0D1200E17573 /* XMMImageUtility.m */,
+				88E2FAE81AF74D5800917AFB /* UIImage+animatedGIF.h */,
+				88E2FAE91AF74D5800917AFB /* UIImage+animatedGIF.m */,
+				8860DA7B1AE78CDF00DF2239 /* SVGKit */,
+			);
+			name = XMMImageUtility;
 			sourceTree = "<group>";
 		};
 		B091DC0989CBE4B0B40B108B /* Frameworks */ = {
@@ -977,6 +987,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "xamoom-pingeborg-ios-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1004,6 +1016,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "xamoom-pingeborg-ios-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				INFOPLIST_FILE = "xamoom-pingeborg-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
