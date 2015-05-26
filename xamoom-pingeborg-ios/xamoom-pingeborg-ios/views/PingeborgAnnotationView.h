@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 #import <SVGKit.h>
-#import "XMMEnduserApi.h"
 
 @interface PingeborgAnnotationView : MKAnnotationView
 

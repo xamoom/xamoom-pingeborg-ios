@@ -10,14 +10,11 @@
 #import <MapKit/MapKit.h>
 #import <SVGKit.h>
 #import <SVGKSourceString.h>
-#import "XMMEnduserApi.h"
-#import "Globals.h"
 #import "SMCalloutView.h"
 #import "PingeborgAnnotationView.h"
 #import "PingeborgCalloutView.h"
 #import "FeedItemCell.h"
 #import "ArtistDetailViewController.h"
-#import "UIImage+animatedGIF.h"
 
 @class CustomMapView;
 

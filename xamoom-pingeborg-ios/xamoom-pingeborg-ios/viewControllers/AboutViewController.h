@@ -7,9 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "XMMEnduserApi.h"
-#import "XMMContentBlocks.h"
-#import "Globals.h"
 #import "ArtistDetailViewController.h"
 #import "FeedItemCell.h"
 #import <JGProgressHUD/JGProgressHUD.h>

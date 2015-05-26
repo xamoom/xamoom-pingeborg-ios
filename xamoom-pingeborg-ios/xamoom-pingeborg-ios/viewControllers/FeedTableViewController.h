@@ -7,13 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Globals.h"
 #import "NavigationViewController.h"
-#import "XMMEnduserApi.h"
 #import "FeedItemCell.h"
 #import "ArtistDetailViewController.h"
 #import "ScanResultViewController.h"
-#import "UIImage+animatedGIF.h"
 #import <JGProgressHUD/JGProgressHUD.h>
 #import <SVGKit.h>
 
