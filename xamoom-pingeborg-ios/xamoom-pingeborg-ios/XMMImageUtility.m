@@ -11,7 +11,6 @@
 @implementation XMMImageUtility
 
 + (void)imageWithUrl:(NSString *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image, SVGKImage *svgImage))completionBlock {
-  
   if ([url containsString:@".gif"]) {
     [self downloadAnimatedImageWithURL:url completionBlock:^(BOOL succeeded, UIImage *image) {
       completionBlock(YES, image, nil);
