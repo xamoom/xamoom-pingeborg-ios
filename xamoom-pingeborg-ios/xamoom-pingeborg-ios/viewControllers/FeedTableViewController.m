@@ -98,6 +98,7 @@ int const kPageSize = 7;
 }
 
 -(void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
   //load artists, if there are none
   if (self.itemsToDisplay.count <= 0) {
     [[XMMEnduserApi sharedInstance] setDelegate:self];
@@ -106,6 +107,7 @@ int const kPageSize = 7;
 }
 
 -(void)viewDidDisappear:(BOOL)animated {
+  [super viewDidDisappear:animated];
   [self closeInstructionScreen];
 }
 

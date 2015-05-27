@@ -148,7 +148,7 @@ int const kHorizontalSpaceToSubview = 32;
 
 #pragma mark Text Block
 - (void)displayContentBlock0:(XMMResponseContentBlockType0 *)contentBlock {
-  TextBlockTableViewCell *cell = [[TextBlockTableViewCell alloc] init];
+  TextBlockTableViewCell *cell;
   NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"TextBlockTableViewCell" owner:self options:nil];
   cell = nib[0];
   
@@ -185,7 +185,7 @@ int const kHorizontalSpaceToSubview = 32;
 
 #pragma mark Audio Block
 - (void)displayContentBlock1:(XMMResponseContentBlockType1 *)contentBlock {
-  AudioBlockTableViewCell *cell = [[AudioBlockTableViewCell alloc] init];
+  AudioBlockTableViewCell *cell;
   NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"AudioBlockTableViewCell" owner:self options:nil];
   cell = nib[0];
   
@@ -206,7 +206,7 @@ int const kHorizontalSpaceToSubview = 32;
 
 #pragma mark Youtube Block
 - (void)displayContentBlock2:(XMMResponseContentBlockType2 *)contentBlock {
-  YoutubeBlockTableViewCell *cell = [[YoutubeBlockTableViewCell alloc] init];
+  YoutubeBlockTableViewCell *cell;
   NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"YoutubeBlockTableViewCell" owner:self options:nil];
   cell = nib[0];
   
@@ -231,88 +231,13 @@ int const kHorizontalSpaceToSubview = 32;
 
 #pragma mark Image Block
 - (void)displayContentBlock3:(XMMResponseContentBlockType3 *)contentBlock {
-  ImageBlockTableViewCell *cell = [[ImageBlockTableViewCell alloc] init];
+  ImageBlockTableViewCell *cell;
   NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ImageBlockTableViewCell" owner:self options:nil];
   cell = nib[0];
   
   //set title
   cell.titleLabel.text = contentBlock.title;
   [cell.imageLoadingIndicator startAnimating];
-
-  /*
-  //gif support
-  if ([contentBlock.fileId containsString:@".gif"]) {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
-                                             (unsigned long)NULL), ^(void) {
-      UIImage *gifImage = [UIImage animatedImageWithAnimatedGIFURL:[NSURL URLWithString:contentBlock.fileId]];
-      float imageRatio = gifImage.size.width/gifImage.size.height;
-      dispatch_async(dispatch_get_main_queue(), ^(void) {
-        //smaller images will be displayed normal size and centered
-        if (gifImage.size.width < cell.image.frame.size.width) {
-          [cell.image setContentMode:UIViewContentModeCenter];
-          [cell.imageHeightConstraint setConstant:gifImage.size.height];
-        }
-        else {
-          //bigger images will be resized und displayed full-width
-          [cell.imageHeightConstraint setConstant:(self.screenWidth / imageRatio)];
-        }
-        
-        [cell.imageLoadingIndicator stopAnimating];
-        [cell.image setImage:gifImage];
-        [self reloadTableView];
-      });
-    });
-  } else if ([contentBlock.fileId containsString:@".svg"]) {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,
-                                             (unsigned long)NULL), ^(void) {
-      
-      NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:contentBlock.fileId]];
-      
-      dispatch_async(dispatch_get_main_queue(), ^(void) {
-        NSArray *paths = NSSearchPathForDirectoriesInDomains
-        (NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *documentsDirectory = paths[0];
-        NSString *fileName = [NSString stringWithFormat:@"%@/svgimage.svg", documentsDirectory];
-        [imageData writeToFile:fileName atomically:YES];
-        
-        //read svg mapmarker
-        NSData *data = [[NSFileManager defaultManager] contentsAtPath:fileName];
-        SVGKImage *svgImage = [SVGKImage imageWithSource:[SVGKSourceString sourceFromContentsOfString:
-                                                          [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]]];
-        
-        float
-        [cell.imageHeightConstraint setConstant:(self.screenWidth / imageRatio)];
-        
-        SVGKImageView *svgImageView = [[SVGKFastImageView alloc] initWithSVGKImage:svgImage];
-        [svgImageView setFrame:CGRectMake(0, 0, self.screenWidth, (self.screenWidth / imageRatio))];
-        [cell.image addSubview:svgImageView];
-        
-        [cell.imageLoadingIndicator stopAnimating];
-        [self reloadTableView];
-      });
-    });
-  } else if(cell.image != nil) {
-    [self downloadImageWithURL:contentBlock.fileId completionBlock:^(BOOL succeeded, UIImage *image) {
-      if (succeeded && image) {
-        float imageRatio = image.size.width/image.size.height;
-        
-        //smaller images will be displayed normal size and centered
-        if (image.size.width < cell.image.frame.size.width) {
-          [cell.image setContentMode:UIViewContentModeCenter];
-          [cell.imageHeightConstraint setConstant:image.size.height];
-        }
-        else {
-          //bigger images will be resized und displayed full-width
-          [cell.imageHeightConstraint setConstant:(self.screenWidth / imageRatio)];
-        }
-        
-        [cell.imageLoadingIndicator stopAnimating];
-        [cell.image setImage:image];
-        [self reloadTableView];
-      }
-    }];
-  }
-  */
   
   //download image
   [XMMImageUtility imageWithUrl:contentBlock.fileId completionBlock:^(BOOL succeeded, UIImage *image, SVGKImage *svgImage) {
@@ -350,7 +275,7 @@ int const kHorizontalSpaceToSubview = 32;
 
 #pragma mark Link Block
 - (void)displayContentBlock4:(XMMResponseContentBlockType4 *)contentBlock {
-  LinkBlockTableViewCell *cell = [[LinkBlockTableViewCell alloc] init];
+  LinkBlockTableViewCell *cell;
   NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"LinkBlockTableViewCell" owner:self options:nil];
   cell = nib[0];
   
@@ -368,7 +293,7 @@ int const kHorizontalSpaceToSubview = 32;
 
 #pragma mark Ebook Block
 - (void)displayContentBlock5:(XMMResponseContentBlockType5 *)contentBlock {
-  EbookBlockTableViewCell *cell = [[EbookBlockTableViewCell alloc] init];
+  EbookBlockTableViewCell *cell;
   NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"EbookBlockTableViewCell" owner:self options:nil];
   cell = nib[0];
   
@@ -382,7 +307,7 @@ int const kHorizontalSpaceToSubview = 32;
 
 #pragma mark Content Block
 - (void)displayContentBlock6:(XMMResponseContentBlockType6 *)contentBlock {
-  ContentBlockTableViewCell *cell = [[ContentBlockTableViewCell alloc] init];
+  ContentBlockTableViewCell *cell;
   NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ContentBlockTableViewCell" owner:self options:nil];
   cell = nib[0];
   
@@ -397,7 +322,7 @@ int const kHorizontalSpaceToSubview = 32;
 
 #pragma mark Soundcloud Block
 - (void)displayContentBlock7:(XMMResponseContentBlockType7 *)contentBlock {
-  SoundcloudBlockTableViewCell *cell = [[SoundcloudBlockTableViewCell alloc] init];
+  SoundcloudBlockTableViewCell *cell;
   NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SoundcloudBlockTableViewCell" owner:self options:nil];
   cell = nib[0];
   
@@ -418,7 +343,7 @@ int const kHorizontalSpaceToSubview = 32;
 
 #pragma mark Download Block
 - (void)displayContentBlock8:(XMMResponseContentBlockType8 *)contentBlock {
-  DownloadBlockTableViewCell *cell = [[DownloadBlockTableViewCell alloc] init];
+  DownloadBlockTableViewCell *cell;
   NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"DownloadBlockTableViewCell" owner:self options:nil];
   cell = nib[0];
   
@@ -433,7 +358,7 @@ int const kHorizontalSpaceToSubview = 32;
 
 #pragma mark SpotMap Block
 - (void)displayContentBlock9:(XMMResponseContentBlockType9 *)contentBlock {
-  SpotMapBlockTableViewCell *cell = [[SpotMapBlockTableViewCell alloc] init];
+  SpotMapBlockTableViewCell *cell;
   NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SpotMapBlockTableViewCell" owner:self options:nil];
   cell = nib[0];
   

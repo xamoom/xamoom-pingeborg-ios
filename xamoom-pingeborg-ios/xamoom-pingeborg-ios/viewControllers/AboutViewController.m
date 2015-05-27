@@ -75,6 +75,7 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
   self.parentViewController.navigationItem.rightBarButtonItem = self.buttonItem;
   
   //load items if there are none
@@ -86,6 +87,7 @@
 }
 
 -(void)viewDidDisappear:(BOOL)animated {
+  [super viewDidDisappear:animated];
   self.parentViewController.navigationItem.rightBarButtonItem = nil;
 }
 

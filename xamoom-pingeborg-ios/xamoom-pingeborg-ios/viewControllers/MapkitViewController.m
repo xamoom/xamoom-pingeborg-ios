@@ -98,6 +98,8 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+  
   [self.locationManager startUpdatingLocation];
   
   //create userTracking button
@@ -128,7 +130,6 @@
     //decode two times!
     NSData *decodedData = [[NSData alloc] initWithBase64EncodedString:base64String options:0];
     NSString *decodedString = [[NSString alloc] initWithData:decodedData encoding:NSUTF8StringEncoding];
-    decodedData = [[NSData alloc] initWithBase64EncodedString:decodedString options:0];
     
     NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:decodedString]];
     self.customMapMarker = [XMMImageUtility imageWithImage:[UIImage imageWithData:imageData] scaledToMaxWidth:30.0f maxHeight:30.0f];

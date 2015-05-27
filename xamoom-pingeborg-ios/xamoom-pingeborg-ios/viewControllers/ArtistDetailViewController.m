@@ -108,6 +108,8 @@
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
+  [super viewWillDisappear:animated];
+  
   [[NSNotificationCenter defaultCenter] postNotificationName:@"pauseAllSounds" object:self];
   
   if ([self.contentId isEqualToString:[Globals savedArtitsAsArray].lastObject]) {

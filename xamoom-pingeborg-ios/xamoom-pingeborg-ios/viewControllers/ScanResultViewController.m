@@ -77,6 +77,7 @@
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
+  [super viewWillDisappear:animated];
   [[NSNotificationCenter defaultCenter] postNotificationName:@"pauseAllSounds" object:self];
   
   //reload tableViews, when the newest scanned artist is open (So the "discover" overlay disappears)
