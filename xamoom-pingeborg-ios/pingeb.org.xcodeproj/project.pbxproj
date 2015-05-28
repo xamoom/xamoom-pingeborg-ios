@@ -48,6 +48,7 @@
 		88166D151AFCAC0B0012CBA6 /* XMMMusicPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88166D0A1AFCAC0A0012CBA6 /* XMMMusicPlayer.framework */; };
 		88166D211AFCAC0B0012CBA6 /* XMMMusicPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88166D0A1AFCAC0A0012CBA6 /* XMMMusicPlayer.framework */; };
 		883574801AB1CCF40099DF4A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8835747F1AB1CCF40099DF4A /* QuartzCore.framework */; };
+		884D075F1B16EB6D005FAB36 /* api.txt in Resources */ = {isa = PBXBuildFile; fileRef = 884D075E1B16EB6D005FAB36 /* api.txt */; };
 		8860DA791AE78CB800DF2239 /* libSVGKit-iOS.1.2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8860DA771AE78CB800DF2239 /* libSVGKit-iOS.1.2.0.a */; };
 		8860DA7A1AE78CB800DF2239 /* usr in Resources */ = {isa = PBXBuildFile; fileRef = 8860DA781AE78CB800DF2239 /* usr */; };
 		8860DA7D1AE78D0500DF2239 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8860DA7C1AE78D0500DF2239 /* CoreText.framework */; };
@@ -65,7 +66,6 @@
 		88CBAEE11AA9EC9E000E480A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88CBAEE01AA9EC9E000E480A /* MapKit.framework */; };
 		88DB74DC1B0217DA0064EE7E /* ScanResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DB74DB1B0217DA0064EE7E /* ScanResultViewController.m */; };
 		88E2FAEA1AF74D5800917AFB /* UIImage+animatedGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E2FAE91AF74D5800917AFB /* UIImage+animatedGIF.m */; };
-		88F038421B0CB9C600E17573 /* api.txt in Resources */ = {isa = PBXBuildFile; fileRef = 88F038411B0CB9C600E17573 /* api.txt */; };
 		88F038471B0E0D1200E17573 /* XMMImageUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F038461B0E0D1200E17573 /* XMMImageUtility.m */; };
 		88F1E92F1B15A95500C60504 /* XMMMusicPlayer.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 88166D0A1AFCAC0A0012CBA6 /* XMMMusicPlayer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -174,6 +174,7 @@
 		88166D0A1AFCAC0A0012CBA6 /* XMMMusicPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XMMMusicPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		88166D141AFCAC0B0012CBA6 /* XMMMusicPlayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XMMMusicPlayerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8835747F1AB1CCF40099DF4A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		884D075E1B16EB6D005FAB36 /* api.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = api.txt; sourceTree = "<group>"; };
 		8860DA771AE78CB800DF2239 /* libSVGKit-iOS.1.2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libSVGKit-iOS.1.2.0.a"; sourceTree = "<group>"; };
 		8860DA781AE78CB800DF2239 /* usr */ = {isa = PBXFileReference; lastKnownFileType = folder; path = usr; sourceTree = "<group>"; };
 		8860DA7C1AE78D0500DF2239 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -183,23 +184,22 @@
 		8860DA841AE78D3B00DF2239 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		88A62C4E1AD55F2C00EAD4C3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		88A62C521AD561DB00EAD4C3 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		88BA01EF1AA859F90091A43C /* xamoom-pingeborg-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "xamoom-pingeborg-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		88BA01EF1AA859F90091A43C /* pingeb.org.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pingeb.org.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88BA01F31AA859F90091A43C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88BA01F41AA859F90091A43C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		88BA01F61AA859F90091A43C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		88BA01F71AA859F90091A43C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		88BA01FF1AA859F90091A43C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		88BA02021AA859F90091A43C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		88BA02081AA859F90091A43C /* xamoom-pingeborg-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "xamoom-pingeborg-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		88BA02081AA859F90091A43C /* pingeb.orgTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pingeb.orgTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		88BA020D1AA859F90091A43C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88BA020E1AA859F90091A43C /* xamoom_pingeborg_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = xamoom_pingeborg_iosTests.m; sourceTree = "<group>"; };
 		88CBAEE01AA9EC9E000E480A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		88DB74DA1B0217DA0064EE7E /* ScanResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanResultViewController.h; sourceTree = "<group>"; };
 		88DB74DB1B0217DA0064EE7E /* ScanResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanResultViewController.m; sourceTree = "<group>"; };
-		88E243191B14505000E9E208 /* xamoom-pingeborg-ios-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "xamoom-pingeborg-ios-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		88E243191B14505000E9E208 /* pingeb.org-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "pingeb.org-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		88E2FAE81AF74D5800917AFB /* UIImage+animatedGIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+animatedGIF.h"; sourceTree = "<group>"; };
 		88E2FAE91AF74D5800917AFB /* UIImage+animatedGIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+animatedGIF.m"; sourceTree = "<group>"; };
-		88F038411B0CB9C600E17573 /* api.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = api.txt; sourceTree = "<group>"; };
 		88F038451B0E0D1200E17573 /* XMMImageUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMImageUtility.h; sourceTree = "<group>"; };
 		88F038461B0E0D1200E17573 /* XMMImageUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMImageUtility.m; sourceTree = "<group>"; };
 		C530CDEFFEDDFCABBEC918B0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -380,8 +380,8 @@
 		88BA01F01AA859F90091A43C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				88BA01EF1AA859F90091A43C /* xamoom-pingeborg-ios.app */,
-				88BA02081AA859F90091A43C /* xamoom-pingeborg-iosTests.xctest */,
+				88BA01EF1AA859F90091A43C /* pingeb.org.app */,
+				88BA02081AA859F90091A43C /* pingeb.orgTests.xctest */,
 				88166D0A1AFCAC0A0012CBA6 /* XMMMusicPlayer.framework */,
 				88166D141AFCAC0B0012CBA6 /* XMMMusicPlayerTests.xctest */,
 			);
@@ -391,7 +391,7 @@
 		88BA01F11AA859F90091A43C /* xamoom-pingeborg-ios */ = {
 			isa = PBXGroup;
 			children = (
-				88E243191B14505000E9E208 /* xamoom-pingeborg-ios-Prefix.pch */,
+				88E243191B14505000E9E208 /* pingeb.org-Prefix.pch */,
 				88BA01F61AA859F90091A43C /* AppDelegate.h */,
 				88BA01F71AA859F90091A43C /* AppDelegate.m */,
 				88052D791AE103C300AB433D /* Globals.h */,
@@ -404,7 +404,7 @@
 				8860DA7B1AE78CDF00DF2239 /* SVGKit */,
 				88BA01F21AA859F90091A43C /* Supporting Files */,
 				88BA01FF1AA859F90091A43C /* Images.xcassets */,
-				88F038411B0CB9C600E17573 /* api.txt */,
+				884D075E1B16EB6D005FAB36 /* api.txt */,
 			);
 			path = "xamoom-pingeborg-ios";
 			sourceTree = "<group>";
@@ -524,9 +524,9 @@
 			productReference = 88166D141AFCAC0B0012CBA6 /* XMMMusicPlayerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		88BA01EE1AA859F90091A43C /* xamoom-pingeborg-ios */ = {
+		88BA01EE1AA859F90091A43C /* pingeb.org */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 88BA02121AA859F90091A43C /* Build configuration list for PBXNativeTarget "xamoom-pingeborg-ios" */;
+			buildConfigurationList = 88BA02121AA859F90091A43C /* Build configuration list for PBXNativeTarget "pingeb.org" */;
 			buildPhases = (
 				67C0B652B053E0CD90BF6C1D /* Check Pods Manifest.lock */,
 				88BA01EB1AA859F90091A43C /* Sources */,
@@ -539,14 +539,14 @@
 			);
 			dependencies = (
 			);
-			name = "xamoom-pingeborg-ios";
+			name = pingeb.org;
 			productName = "xamoom-pingeborg-ios";
-			productReference = 88BA01EF1AA859F90091A43C /* xamoom-pingeborg-ios.app */;
+			productReference = 88BA01EF1AA859F90091A43C /* pingeb.org.app */;
 			productType = "com.apple.product-type.application";
 		};
-		88BA02071AA859F90091A43C /* xamoom-pingeborg-iosTests */ = {
+		88BA02071AA859F90091A43C /* pingeb.orgTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 88BA02151AA859F90091A43C /* Build configuration list for PBXNativeTarget "xamoom-pingeborg-iosTests" */;
+			buildConfigurationList = 88BA02151AA859F90091A43C /* Build configuration list for PBXNativeTarget "pingeb.orgTests" */;
 			buildPhases = (
 				88BA02041AA859F90091A43C /* Sources */,
 				88BA02051AA859F90091A43C /* Frameworks */,
@@ -557,9 +557,9 @@
 			dependencies = (
 				88BA020A1AA859F90091A43C /* PBXTargetDependency */,
 			);
-			name = "xamoom-pingeborg-iosTests";
+			name = pingeb.orgTests;
 			productName = "xamoom-pingeborg-iosTests";
-			productReference = 88BA02081AA859F90091A43C /* xamoom-pingeborg-iosTests.xctest */;
+			productReference = 88BA02081AA859F90091A43C /* pingeb.orgTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -594,7 +594,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 88BA01EA1AA859F90091A43C /* Build configuration list for PBXProject "xamoom-pingeborg-ios" */;
+			buildConfigurationList = 88BA01EA1AA859F90091A43C /* Build configuration list for PBXProject "pingeb.org" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -607,8 +607,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				88BA01EE1AA859F90091A43C /* xamoom-pingeborg-ios */,
-				88BA02071AA859F90091A43C /* xamoom-pingeborg-iosTests */,
+				88BA01EE1AA859F90091A43C /* pingeb.org */,
+				88BA02071AA859F90091A43C /* pingeb.orgTests */,
 				88166D091AFCAC0A0012CBA6 /* XMMMusicPlayer */,
 				88166D131AFCAC0B0012CBA6 /* XMMMusicPlayerTests */,
 			);
@@ -637,12 +637,12 @@
 				881457F71B01E8620024E6F4 /* SpotMapBlockTableViewCell.xib in Resources */,
 				881457EA1B01E8620024E6F4 /* ContentBlockTableViewCell.xib in Resources */,
 				881457F21B01E8620024E6F4 /* LinkBlockTableViewCell.xib in Resources */,
+				884D075F1B16EB6D005FAB36 /* api.txt in Resources */,
 				881457F01B01E8620024E6F4 /* ImageBlockTableViewCell.xib in Resources */,
 				8814585D1B01EE8B0024E6F4 /* FeedItemCell.xib in Resources */,
 				881458611B01EE8B0024E6F4 /* PingeborgCalloutView.xib in Resources */,
 				881457FB1B01E8620024E6F4 /* YoutubeBlockTableViewCell.xib in Resources */,
 				88BA02031AA859F90091A43C /* LaunchScreen.xib in Resources */,
-				88F038421B0CB9C600E17573 /* api.txt in Resources */,
 				881457F51B01E8620024E6F4 /* SoundcloudBlockTableViewCell.xib in Resources */,
 				8860DA7A1AE78CB800DF2239 /* usr in Resources */,
 				881457E81B01E8620024E6F4 /* AudioBlockTableViewCell.xib in Resources */,
@@ -764,12 +764,12 @@
 		};
 		88166D191AFCAC0B0012CBA6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 88BA01EE1AA859F90091A43C /* xamoom-pingeborg-ios */;
+			target = 88BA01EE1AA859F90091A43C /* pingeb.org */;
 			targetProxy = 88166D181AFCAC0B0012CBA6 /* PBXContainerItemProxy */;
 		};
 		88BA020A1AA859F90091A43C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 88BA01EE1AA859F90091A43C /* xamoom-pingeborg-ios */;
+			target = 88BA01EE1AA859F90091A43C /* pingeb.org */;
 			targetProxy = 88BA02091AA859F90091A43C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -974,15 +974,14 @@
 			baseConfigurationReference = 081CE084B2E648F4E71D7D2A /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: xamoom GmbH (55MDUF7392)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: xamoom GmbH (55MDUF7392)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "xamoom-pingeborg-ios-Prefix.pch";
+				GCC_PREFIX_HEADER = "pingeb.org-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$(SRCROOT)/**",
 				);
 				INFOPLIST_FILE = "xamoom-pingeborg-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -993,8 +992,8 @@
 					"$(PROJECT_DIR)/xamoom-pingeborg-ios",
 					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "34b5d008-c232-406a-8867-f24207746d96";
+				PRODUCT_NAME = pingeb.org;
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -1006,10 +1005,10 @@
 			baseConfigurationReference = 48251170F65DFEEAACD48338 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: xamoom GmbH (55MDUF7392)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: xamoom GmbH (55MDUF7392)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "xamoom-pingeborg-ios-Prefix.pch";
+				GCC_PREFIX_HEADER = "pingeb.org-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				HEADER_SEARCH_PATHS = (
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -1030,7 +1029,6 @@
 					"\"${PODS_ROOT}/Headers/Public/Vendor/LibComponentLogging/Core\"",
 					"\"${PODS_ROOT}/Headers/Public/xamoom-ios-sdk\"",
 					"\"${PODS_ROOT}/Headers/Public/youtube-ios-player-helper\"",
-					"$(SRCROOT)/**",
 				);
 				INFOPLIST_FILE = "xamoom-pingeborg-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1041,8 +1039,8 @@
 					"$(PROJECT_DIR)/xamoom-pingeborg-ios",
 					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "34b5d008-c232-406a-8867-f24207746d96";
+				PRODUCT_NAME = pingeb.org;
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -1064,7 +1062,7 @@
 				);
 				INFOPLIST_FILE = "xamoom-pingeborg-iosTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = pingeb.orgTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/xamoom-pingeborg-ios.app/xamoom-pingeborg-ios";
 			};
 			name = Debug;
@@ -1080,7 +1078,7 @@
 				);
 				INFOPLIST_FILE = "xamoom-pingeborg-iosTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = pingeb.orgTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/xamoom-pingeborg-ios.app/xamoom-pingeborg-ios";
 			};
 			name = Release;
@@ -1106,7 +1104,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		88BA01EA1AA859F90091A43C /* Build configuration list for PBXProject "xamoom-pingeborg-ios" */ = {
+		88BA01EA1AA859F90091A43C /* Build configuration list for PBXProject "pingeb.org" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				88BA02101AA859F90091A43C /* Debug */,
@@ -1115,7 +1113,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		88BA02121AA859F90091A43C /* Build configuration list for PBXNativeTarget "xamoom-pingeborg-ios" */ = {
+		88BA02121AA859F90091A43C /* Build configuration list for PBXNativeTarget "pingeb.org" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				88BA02131AA859F90091A43C /* Debug */,
@@ -1124,7 +1122,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		88BA02151AA859F90091A43C /* Build configuration list for PBXNativeTarget "xamoom-pingeborg-iosTests" */ = {
+		88BA02151AA859F90091A43C /* Build configuration list for PBXNativeTarget "pingeb.orgTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				88BA02161AA859F90091A43C /* Debug */,
