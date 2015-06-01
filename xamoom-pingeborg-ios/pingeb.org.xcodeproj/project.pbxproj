@@ -568,6 +568,7 @@
 		88BA01E71AA859F90091A43C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = XMM;
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "xamoom GmbH";
 				TargetAttributes = {
@@ -976,7 +977,7 @@
 			baseConfigurationReference = 081CE084B2E648F4E71D7D2A /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Bruno Hautzenberger (L86QBJXNW2)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "pingeb.org-Prefix.pch";
@@ -1008,7 +1009,7 @@
 			baseConfigurationReference = 48251170F65DFEEAACD48338 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Bruno Hautzenberger (L86QBJXNW2)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "pingeb.org-Prefix.pch";
