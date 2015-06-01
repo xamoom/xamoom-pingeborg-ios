@@ -86,10 +86,6 @@ int const kPageSize = 7;
   //loading hud in view
   self.hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
   [self.hud showInView:self.view];
-  
-  //api call
-  [[XMMEnduserApi sharedInstance] setDelegate:self];
-  [[XMMEnduserApi sharedInstance] contentListWithSystemId:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:kPageSize withCursor:@"null" withTags:@[@"artists"]];
 }
 
 - (void)didReceiveMemoryWarning {
