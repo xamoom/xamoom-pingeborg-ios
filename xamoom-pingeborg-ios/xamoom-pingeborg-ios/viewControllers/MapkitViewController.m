@@ -665,13 +665,22 @@
   //add to discovered artists
   [Globals addDiscoveredArtist:cell.contentId];
   
+  //analytics
+  [[XMMEnduserApi sharedInstance] geofenceAnalyticsMessageWithRequestedLanguage:[XMMEnduserApi sharedInstance].systemLanguage
+                                                          withDeliveredLanguage:self.savedResponseContent.language
+                                                                   withSystemId:self.savedResponseContent.systemId
+                                                                 withSystemName:self.savedResponseContent.systemName
+                                                                  withContentId:self.savedResponseContent.contentId
+                                                                withContentName:self.savedResponseContent.contentName
+                                                                     withSpotId:self.savedResponseContent.spotId
+                                                                   withSpotName:self.savedResponseContent.spotName];
+  
   [self.navigationController pushViewController:artistDetailViewController animated:YES];
 }
 
 - (void)refreshContentByLocation {
   [self.tableView reloadData];
 }
-
 
 - (IBAction)closeInstructionView:(id)sender {
   self.instructionView.hidden = YES;
