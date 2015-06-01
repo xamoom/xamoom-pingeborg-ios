@@ -44,19 +44,19 @@
   self.mapKitWithSMCalloutView.showsUserLocation = YES;
   [self.viewForMap addSubview:self.mapKitWithSMCalloutView];
   
+  //shadow for geoFenceView
+  UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:self.geofenceView.bounds];
+  self.geofenceView.layer.masksToBounds = NO;
+  self.geofenceView.layer.shadowColor = [UIColor blackColor].CGColor;
+  self.geofenceView.layer.shadowOffset = CGSizeMake(0.0f, 2.0f);
+  self.geofenceView.layer.shadowOpacity = 0.9f;
+  self.geofenceView.layer.shadowPath = shadowPath.CGPath;
+  
   //setting up tableView
   [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
   self.tableView.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.9];
   self.tableView.rowHeight = UITableViewAutomaticDimension;
   self.tableView.estimatedRowHeight = 150.0;
-  
-  //add shadow to geofenceView
-  CALayer *layer = self.geofenceView.layer;
-  layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
-  layer.shadowColor = [[UIColor blackColor] CGColor];
-  layer.shadowRadius = 4.0f;
-  layer.shadowOpacity = 0.20f;
-  layer.shadowPath = [[UIBezierPath bezierPathWithRect:layer.bounds] CGPath];
   
   //init up locationManager
   self.locationManager = [[CLLocationManager alloc] init];
@@ -168,8 +168,11 @@
   self.itemsToDisplay = [[NSMutableArray alloc] init];
   self.imagesToDisplay = [[NSMutableDictionary alloc] init];
   
-  //return if there are no items
+  //load items in near you, when there is no geofence
   if([result.items count] == 0) {
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+    [XMMEnduserApi sharedInstance].delegate = self;
+    [[XMMEnduserApi sharedInstance] closestSpotsWithLat:self.lastLocation.coordinate.latitude withLon:self.lastLocation.coordinate.longitude withRadius:2000 withLimit:10 withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
     return;
   }
   
@@ -193,13 +196,6 @@
     [self geofenceComplete];
     [self.tableView reloadData];
   }];
-  
-  //load items in near you, when there is no geofence
-  if (self.savedResponseContent == nil) {
-    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
-    [XMMEnduserApi sharedInstance].delegate = self;
-    [[XMMEnduserApi sharedInstance] closestSpotsWithLat:self.lastLocation.coordinate.latitude withLon:self.lastLocation.coordinate.longitude withRadius:2000 withLimit:10 withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
-  }
 }
 
 - (void)geofenceComplete {
