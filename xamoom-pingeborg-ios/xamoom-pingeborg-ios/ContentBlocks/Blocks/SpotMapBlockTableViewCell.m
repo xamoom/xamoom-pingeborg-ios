@@ -27,7 +27,7 @@
 - (void)getSpotMapWithSystemId:(NSString*)systemId withLanguage:(NSString*)language {
   self.map.delegate = self;
   [[XMMEnduserApi sharedInstance] setDelegate:self];
-  [[XMMEnduserApi sharedInstance] spotMapWithSystemId:systemId withMapTags:self.spotMapTags withLanguage:language];
+  [[XMMEnduserApi sharedInstance] spotMapWithSystemId:0 withMapTags:self.spotMapTags withLanguage:language];
 }
 
 #pragma mark - XMMEnduser Delegate

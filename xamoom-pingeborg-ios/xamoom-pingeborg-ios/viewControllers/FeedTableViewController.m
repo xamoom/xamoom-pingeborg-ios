@@ -98,7 +98,7 @@ int const kPageSize = 7;
   //load artists, if there are none
   if (self.itemsToDisplay.count <= 0) {
     [[XMMEnduserApi sharedInstance] setDelegate:self];
-    [[XMMEnduserApi sharedInstance] contentListWithSystemId:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:kPageSize withCursor:@"null" withTags:@[@"artists"]];
+    [[XMMEnduserApi sharedInstance] contentListWithPageSize:kPageSize withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withCursor:@"null" withTags:@[@"artists"]];
   }
 }
 
@@ -240,7 +240,7 @@ int const kPageSize = 7;
     
     //api call
     [[XMMEnduserApi sharedInstance] setDelegate:self];
-    [[XMMEnduserApi sharedInstance] contentListWithSystemId:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:5 withCursor:@"null" withTags:@[@"artists"]];
+    [[XMMEnduserApi sharedInstance] contentListWithPageSize:kPageSize withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withCursor:@"null" withTags:@[@"artists"]];
     
     self.isApiCallingBlocked = YES;
   }
@@ -296,7 +296,7 @@ int const kPageSize = 7;
   if (self.hasMore && !self.isApiCallingBlocked) {
     self.isApiCallingBlocked = YES;
     [[XMMEnduserApi sharedInstance] setDelegate:self];
-    [[XMMEnduserApi sharedInstance] contentListWithSystemId:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withPageSize:kPageSize withCursor:self.contentListCursor withTags:@[@"artists"]];
+    [[XMMEnduserApi sharedInstance] contentListWithPageSize:kPageSize withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withCursor:self.contentListCursor withTags:@[@"artists"]];
   }
 }
 

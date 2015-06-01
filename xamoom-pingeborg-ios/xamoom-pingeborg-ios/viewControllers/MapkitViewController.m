@@ -110,7 +110,7 @@
   if (self.mapKitWithSMCalloutView.annotations.count <= 0 ) {
     [self.geoFenceActivityIndicator startAnimating];
     [[XMMEnduserApi sharedInstance] setDelegate:self];
-    [[XMMEnduserApi sharedInstance] spotMapWithSystemId:[Globals sharedObject].globalSystemId withMapTags:@[@"showAllTheSpots"] withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
+    [[XMMEnduserApi sharedInstance] spotMapWithSystemId:0 withMapTags:@[@"showAllTheSpots"] withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
   }
 }
 
@@ -175,11 +175,9 @@
   
   for (XMMResponseGetByLocationItem *item in result.items) {
     //check if item is in pingeborg-system => GEOFENCE
-    if ([item.systemId isEqualToString:[Globals sharedObject].globalSystemId]) {
-      self.savedResponseContent = item;
-      [self.itemsToDisplay addObject:item];
-      break;
-    }
+    self.savedResponseContent = item;
+    [self.itemsToDisplay addObject:item];
+    break;
   }
   
   //download image
