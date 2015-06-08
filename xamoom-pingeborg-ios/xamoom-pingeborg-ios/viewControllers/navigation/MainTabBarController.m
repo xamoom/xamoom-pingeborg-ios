@@ -83,9 +83,12 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
     NSURLConnection *urlConntection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO];
     [urlConntection start];
-  } else {
+  } else if([url containsString:@"xm.gl"]) {
     [[XMMEnduserApi sharedInstance] setDelegate:self];
     [[XMMEnduserApi sharedInstance] contentWithLocationIdentifier:result includeStyle:NO includeMenu:NO withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
+  } else {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Nichts gefunden!" message:@"Scanne einen pingeborg.org Sticker." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alertView show];
   }
 }
 
