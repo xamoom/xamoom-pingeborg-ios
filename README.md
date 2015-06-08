@@ -13,7 +13,10 @@ This app is a demonstration to show you, what you can do with the [xamoom-ios-sd
 ## Screenshots
 
 Home Page
-![](https://github.com/xamoom/xamoom-pingeborg-ios/blob/master/screenshots/01.PNG)
+![](https://github.com/xamoom/xamoom-pingeborg-ios/blob/master/screenshots/1.PNG)
+![](https://github.com/xamoom/xamoom-pingeborg-ios/blob/master/screenshots/2.PNG)
+![](https://github.com/xamoom/xamoom-pingeborg-ios/blob/master/screenshots/3.PNG)
+![](https://github.com/xamoom/xamoom-pingeborg-ios/blob/master/screenshots/4.PNG)
 
 ## Requirements
 
