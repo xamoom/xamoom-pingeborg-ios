@@ -999,7 +999,7 @@
 				PRODUCT_NAME = pingeb.org;
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = NO;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -1047,7 +1047,7 @@
 				PRODUCT_NAME = pingeb.org;
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = NO;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
