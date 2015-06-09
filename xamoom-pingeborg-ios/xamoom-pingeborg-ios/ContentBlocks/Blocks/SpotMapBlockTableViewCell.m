@@ -33,27 +33,30 @@
 #pragma mark - XMMEnduser Delegate
 
 - (void)didLoadSpotMap:(XMMResponseGetSpotMap *)result {
-  NSString *base64String = result.style.customMarker;
   
-  //decode two times!
-  NSData *decodedData = [[NSData alloc] initWithBase64EncodedString:base64String options:0];
-  NSString *decodedString = [[NSString alloc] initWithData:decodedData encoding:NSUTF8StringEncoding];
-  
-  NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:decodedString]];
-  self.customMapMarker = [self imageWithImage:[UIImage imageWithData:imageData] scaledToMaxWidth:30.0f maxHeight:30.0f];
-  
-  if (!self.customMapMarker) {
-    //save svg mapmarker
-    NSArray *paths = NSSearchPathForDirectoriesInDomains
-    (NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = paths[0];
-    NSString *fileName = [NSString stringWithFormat:@"%@/mapmarker.svg", documentsDirectory];
-    [imageData writeToFile:fileName atomically:YES];
+  if(result.style.customMarker != nil) {
+    NSString *base64String = result.style.customMarker;
     
-    //read svg mapmarker
-    NSData *data = [[NSFileManager defaultManager] contentsAtPath:fileName];
-    self.customSVGMapMarker = [SVGKImage imageWithSource:[SVGKSourceString sourceFromContentsOfString:
-                                                          [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]]];
+    //decode two times!
+    NSData *decodedData = [[NSData alloc] initWithBase64EncodedString:base64String options:0];
+    NSString *decodedString = [[NSString alloc] initWithData:decodedData encoding:NSUTF8StringEncoding];
+    
+    NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:decodedString]];
+    self.customMapMarker = [self imageWithImage:[UIImage imageWithData:imageData] scaledToMaxWidth:30.0f maxHeight:30.0f];
+    
+    if (!self.customMapMarker) {
+      //save svg mapmarker
+      NSArray *paths = NSSearchPathForDirectoriesInDomains
+      (NSDocumentDirectory, NSUserDomainMask, YES);
+      NSString *documentsDirectory = paths[0];
+      NSString *fileName = [NSString stringWithFormat:@"%@/mapmarker.svg", documentsDirectory];
+      [imageData writeToFile:fileName atomically:YES];
+      
+      //read svg mapmarker
+      NSData *data = [[NSFileManager defaultManager] contentsAtPath:fileName];
+      self.customSVGMapMarker = [SVGKImage imageWithSource:[SVGKSourceString sourceFromContentsOfString:
+                                                            [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]]];
+    }
   }
   
   for (XMMResponseGetSpotMapItem *item in result.items) {

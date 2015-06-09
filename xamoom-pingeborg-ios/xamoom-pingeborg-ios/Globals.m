@@ -27,7 +27,7 @@ static Globals *globals;
   
   //IF DEV
   if (globals.isDev) {
-    globals.aboutPageId = @"a5d1ad92a1fa4f6287d37664b39483c2";
+    globals.aboutPageId = @"f0da3d3d28d3418e9ccc4a6e9b3493c0";
     globals.globalSystemId = @"6588702901927936";
   }
   
