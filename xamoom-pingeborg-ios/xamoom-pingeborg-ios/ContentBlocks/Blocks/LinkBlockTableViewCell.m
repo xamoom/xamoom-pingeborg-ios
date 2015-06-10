@@ -154,8 +154,17 @@
       [self.titleLabel setTextColor:[UIColor whiteColor]];
       break;
     }
+    case 14: {
+      [self.viewForBackgroundColor setBackgroundColor:[UIColor colorWithRed:13/255.0f green:163/255.0f blue:96/255.0f alpha:1.0f]];
+      [self.icon setImage:[UIImage imageNamed:@"directional"]];
+      self.icon.image = [self.icon.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+      [self.icon setTintColor:[UIColor whiteColor]];
+      [self.linkTextLabel setTextColor:[UIColor whiteColor]];
+      [self.titleLabel setTextColor:[UIColor whiteColor]];
+    }
 
     default:
+      NSLog(@"Default LinkType Notification.");
       break;
   }
 }
