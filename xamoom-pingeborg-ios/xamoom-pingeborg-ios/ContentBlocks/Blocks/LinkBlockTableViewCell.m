@@ -145,7 +145,16 @@
       [self.titleLabel setTextColor:[UIColor colorWithRed:51/255.0f green:51/255.0f blue:51/255.0f alpha:1.0f]];
       break;
     }
-      
+    case 13: {
+      [self.viewForBackgroundColor setBackgroundColor:[UIColor colorWithRed:99/255.0f green:144/255.0f blue:1/255.0f alpha:1.0f]];
+      [self.icon setImage:[UIImage imageNamed:@"spotify"]];
+      self.icon.image = [self.icon.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+      [self.icon setTintColor:[UIColor whiteColor]];
+      [self.linkTextLabel setTextColor:[UIColor whiteColor]];
+      [self.titleLabel setTextColor:[UIColor whiteColor]];
+      break;
+    }
+
     default:
       break;
   }
