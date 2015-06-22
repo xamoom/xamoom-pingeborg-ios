@@ -24,15 +24,6 @@
                                     <constraint firstAttribute="height" constant="52" id="rOi-td-l6b"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dMs-iS-weg">
-                                <rect key="frame" x="-8" y="0.0" width="30" height="30"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="linkClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="OVd-N3-xB0"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0mE-iO-IL7">
                                 <rect key="frame" x="68" y="35" width="236" height="21"/>
                                 <constraints>
@@ -48,13 +39,26 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dMs-iS-weg">
+                                <rect key="frame" x="0.0" y="0.0" width="304" height="68"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="linkClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="OVd-N3-xB0"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="dMs-iS-weg" firstAttribute="width" secondItem="oTR-s9-34N" secondAttribute="width" id="49M-Ft-ReJ"/>
                             <constraint firstItem="ra4-P8-pN7" firstAttribute="leading" secondItem="0mE-iO-IL7" secondAttribute="leading" id="4A3-P4-L5a"/>
+                            <constraint firstItem="dMs-iS-weg" firstAttribute="leading" secondItem="oTR-s9-34N" secondAttribute="leading" id="64y-Bp-olO"/>
+                            <constraint firstItem="dMs-iS-weg" firstAttribute="top" secondItem="oTR-s9-34N" secondAttribute="top" id="BeY-Ey-zyZ"/>
                             <constraint firstItem="ra4-P8-pN7" firstAttribute="top" secondItem="oTR-s9-34N" secondAttribute="top" constant="12" id="Cem-Tr-XNb"/>
                             <constraint firstAttribute="trailing" secondItem="ra4-P8-pN7" secondAttribute="trailing" id="NRg-fv-vsO"/>
                             <constraint firstItem="sQI-f1-ya2" firstAttribute="top" secondItem="oTR-s9-34N" secondAttribute="top" constant="8" id="ZAG-en-3vM"/>
+                            <constraint firstItem="dMs-iS-weg" firstAttribute="height" secondItem="oTR-s9-34N" secondAttribute="height" id="bDk-LD-9IJ"/>
                             <constraint firstItem="sQI-f1-ya2" firstAttribute="leading" secondItem="oTR-s9-34N" secondAttribute="leading" constant="8" id="imc-s3-wme"/>
                             <constraint firstItem="ra4-P8-pN7" firstAttribute="leading" secondItem="sQI-f1-ya2" secondAttribute="trailing" constant="8" id="j2W-aj-fOC"/>
                             <constraint firstItem="0mE-iO-IL7" firstAttribute="top" secondItem="ra4-P8-pN7" secondAttribute="bottom" constant="2" id="khq-i9-qXw"/>
