@@ -93,6 +93,8 @@
                                                name:@"updateAllArtistLists"
                                              object:nil];
   
+  [self.locationManager startUpdatingLocation];
+
   //check for firstTime geofencing
   if ([Globals isFirstTimeGeofencing]) {
     self.instructionView.hidden = NO;
@@ -102,7 +104,6 @@
 -(void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
   
-  [self.locationManager startUpdatingLocation];
   
   //create userTracking button
   MKUserTrackingBarButtonItem *buttonItem = [[MKUserTrackingBarButtonItem alloc] initWithMapView:self.mapKitWithSMCalloutView];
@@ -119,7 +120,7 @@
 -(void)viewWillDisappear:(BOOL)animated {
   [super viewWillDisappear:animated];
   self.parentViewController.navigationItem.rightBarButtonItem = nil;
-  [self.locationManager stopUpdatingLocation];
+  //[self.locationManager stopUpdatingLocation];
 }
 
 #pragma mark - XMMEnduser Delegate
