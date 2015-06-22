@@ -66,7 +66,6 @@
   //instead of switching view the qr code scanner will be opened
   if (viewController == (tabBarController.viewControllers)[3]){
     [self setupAnalytics];
-
     [[XMMEnduserApi sharedInstance] setDelegate:self];
     [[XMMEnduserApi sharedInstance] setQrCodeViewControllerCancelButtonTitle:@"Abbrechen"];
     [[XMMEnduserApi sharedInstance] startQRCodeReaderFromViewController:self];
@@ -82,13 +81,19 @@
   
   //old pingeborg stickers get a redirect to the xm.gl url
   if ([url containsString:@"http://pingeb.org/"]) {
+    [self sendEventAnalticsWithAction:@"Scanned Sticker" andLabel:@"Old pingeb.org sticker was scanned."];
+    
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
     NSURLConnection *urlConntection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO];
     [urlConntection start];
   } else if([url containsString:@"xm.gl"]) {
+    [self sendEventAnalticsWithAction:@"Scanned Sticker" andLabel:@"xamoom sticker was scanned."];
+    
     [[XMMEnduserApi sharedInstance] setDelegate:self];
     [[XMMEnduserApi sharedInstance] contentWithLocationIdentifier:result includeStyle:NO includeMenu:NO withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
   } else {
+    [self sendEventAnalticsWithAction:@"Scanned Sticker - Failed" andLabel:[NSString stringWithFormat:@"Scanning sticker failed - URL: %@", url]];
+    
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Nichts gefunden!" message:@"Scanne einen pingeborg.org Sticker." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alertView show];
   }
@@ -141,6 +146,14 @@
   id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
   [tracker send:[[[GAIDictionaryBuilder createScreenView] set:@"QR Scanner"
                                                        forKey:kGAIScreenName] build]];
+}
+
+- (void)sendEventAnalticsWithAction:(NSString*)action andLabel:(NSString*)label {
+  id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+  [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"     // Event category (required)
+                                                        action:action  // Event action (required)
+                                                         label:label          // Event label
+                                                         value:nil] build]];    // Event value
 }
 
 @end
