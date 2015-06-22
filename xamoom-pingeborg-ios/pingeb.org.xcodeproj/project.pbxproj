@@ -433,7 +433,6 @@
 		88BA01F11AA859F90091A43C /* xamoom-pingeborg-ios */ = {
 			isa = PBXGroup;
 			children = (
-				889BE42E1B382916002850D5 /* Google Analytics */,
 				88E243191B14505000E9E208 /* pingeb.org-Prefix.pch */,
 				88BA01F61AA859F90091A43C /* AppDelegate.h */,
 				88BA01F71AA859F90091A43C /* AppDelegate.m */,
@@ -445,6 +444,7 @@
 				88E2431A1B14507200E9E208 /* XMMImageUtility */,
 				881457C21B01E8620024E6F4 /* XMMContentBlocks */,
 				8860DA7B1AE78CDF00DF2239 /* SVGKit */,
+				889BE42E1B382916002850D5 /* Google Analytics */,
 				88BA01F21AA859F90091A43C /* Supporting Files */,
 				88BA01FF1AA859F90091A43C /* Images.xcassets */,
 				884D075E1B16EB6D005FAB36 /* api.txt */,

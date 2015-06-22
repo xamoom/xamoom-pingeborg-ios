@@ -3,6 +3,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -15,10 +16,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xcQ-PM-FgJ">
-                        <rect key="frame" x="0.0" y="0.0" width="318" height="67"/>
+                        <rect key="frame" x="8" y="0.0" width="302" height="67"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bNb-P6-22z" customClass="XMMMusicPlayer">
-                                <rect key="frame" x="0.0" y="55" width="318" height="12"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bNb-P6-22z" customClass="XMMMusicPlayer">
+                                <rect key="frame" x="-8" y="55" width="318" height="12"/>
                                 <color key="backgroundColor" red="0.98594086489999999" green="1" blue="0.2994289685" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="12" id="3Sc-T6-vxn"/>
@@ -69,20 +70,14 @@
                                     <action selector="playButtonTouched:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="4xC-Rf-QCJ"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gold" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v0p-ky-YSc">
-                                <rect key="frame" x="50" y="8" width="247" height="21"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chet Faker" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NkC-Ma-2oK">
-                                <rect key="frame" x="50" y="29" width="205" height="18"/>
+                                <rect key="frame" x="50" y="29" width="189" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s6P-Os-E9n">
-                                <rect key="frame" x="276" y="29" width="34" height="21"/>
+                                <rect key="frame" x="260" y="29" width="34" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="34" id="Bn4-Dm-iuq"/>
                                     <constraint firstAttribute="height" constant="21" id="JHA-qb-sv1"/>
@@ -91,6 +86,12 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gold" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v0p-ky-YSc">
+                                <rect key="frame" x="50" y="8" width="231" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -118,7 +119,17 @@
                     <constraint firstItem="xcQ-PM-FgJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="7PJ-GD-xaP"/>
                     <constraint firstItem="xcQ-PM-FgJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="VIM-Rd-Xhe"/>
                     <constraint firstAttribute="trailing" secondItem="xcQ-PM-FgJ" secondAttribute="trailing" id="f4i-GM-Ls2"/>
+                    <constraint firstItem="xcQ-PM-FgJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="nz7-6v-vX5"/>
+                    <constraint firstItem="xcQ-PM-FgJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="qhS-9L-jG6"/>
+                    <constraint firstItem="xcQ-PM-FgJ" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="rsP-T8-tGE"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="7PJ-GD-xaP"/>
+                        <exclude reference="f4i-GM-Ls2"/>
+                        <exclude reference="nz7-6v-vX5"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="artistLabel" destination="NkC-Ma-2oK" id="vSb-JY-RQn"/>
@@ -127,7 +138,7 @@
                 <outlet property="remainingTimeLabel" destination="s6P-Os-E9n" id="5tz-Fw-6ng"/>
                 <outlet property="titleLabel" destination="v0p-ky-YSc" id="hqh-74-Zo5"/>
             </connections>
-            <point key="canvasLocation" x="111" y="341"/>
+            <point key="canvasLocation" x="161" y="350"/>
         </tableViewCell>
     </objects>
     <resources>
