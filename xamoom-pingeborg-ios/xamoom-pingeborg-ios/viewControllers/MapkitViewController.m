@@ -109,7 +109,7 @@
   self.parentViewController.navigationItem.rightBarButtonItem = buttonItem;
   
   //load spotmap if there are no annotations on the map
-  if (self.mapKitWithSMCalloutView.annotations.count <= 0 ) {
+  if (self.mapKitWithSMCalloutView.annotations.count <= 1) {
     [self.geoFenceActivityIndicator startAnimating];
     [[XMMEnduserApi sharedInstance] setDelegate:self];
     [[XMMEnduserApi sharedInstance] spotMapWithSystemId:0 withMapTags:@[@"showAllTheSpots"] withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
