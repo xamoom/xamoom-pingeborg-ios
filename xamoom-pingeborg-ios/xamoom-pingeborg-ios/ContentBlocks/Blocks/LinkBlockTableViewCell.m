@@ -164,7 +164,7 @@
     }
 
     default:
-      NSLog(@"Default LinkType Notification.");
+      NSLog(@"Linktype not recognized.");
       break;
   }
 }

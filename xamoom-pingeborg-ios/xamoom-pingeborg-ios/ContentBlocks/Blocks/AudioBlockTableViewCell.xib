@@ -127,7 +127,7 @@
                 <outlet property="remainingTimeLabel" destination="s6P-Os-E9n" id="5tz-Fw-6ng"/>
                 <outlet property="titleLabel" destination="v0p-ky-YSc" id="hqh-74-Zo5"/>
             </connections>
-            <point key="canvasLocation" x="659" y="362"/>
+            <point key="canvasLocation" x="111" y="341"/>
         </tableViewCell>
     </objects>
     <resources>
