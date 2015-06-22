@@ -32,6 +32,8 @@ int const kPageSize = 7;
 - (void)viewDidLoad {
   [super viewDidLoad];
   
+  [self setupAnalytics];
+  
   [self.tabBarItem setSelectedImage:[UIImage imageNamed:@"home_filled"]];
   
   //setting up tableView
@@ -352,5 +354,13 @@ int const kPageSize = 7;
  }
  }
  */
+
+#pragma mark - Analytics
+
+- (void)setupAnalytics {
+  id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+  [tracker send:[[[GAIDictionaryBuilder createScreenView] set:@"Home Screen - Artist List"
+                                                      forKey:kGAIScreenName] build]];
+}
 
 @end

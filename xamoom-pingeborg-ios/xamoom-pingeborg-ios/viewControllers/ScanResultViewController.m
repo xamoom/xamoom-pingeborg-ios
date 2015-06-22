@@ -71,6 +71,7 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+  [self setupAnalyticsWithName:[NSString stringWithFormat:@"Scan Result - %@", self.result.content.title]];
   [super viewDidAppear:animated];
   [self displayContentTitleAndImage];
   [self.contentBlocks displayContentBlocksByLocationIdentifierResult:self.result];
@@ -162,5 +163,14 @@
  // Pass the selected object to the new view controller.
  }
  */
+
+#pragma mark - Analytics
+
+- (void)setupAnalyticsWithName:(NSString*)screenName {
+  id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+  [tracker send:[[[GAIDictionaryBuilder createScreenView] set:screenName
+                                                       forKey:kGAIScreenName] build]];
+}
+
 
 @end

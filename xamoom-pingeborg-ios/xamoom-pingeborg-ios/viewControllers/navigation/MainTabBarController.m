@@ -65,6 +65,8 @@
 {
   //instead of switching view the qr code scanner will be opened
   if (viewController == (tabBarController.viewControllers)[3]){
+    [self setupAnalytics];
+
     [[XMMEnduserApi sharedInstance] setDelegate:self];
     [[XMMEnduserApi sharedInstance] setQrCodeViewControllerCancelButtonTitle:@"Abbrechen"];
     [[XMMEnduserApi sharedInstance] startQRCodeReaderFromViewController:self];
@@ -131,6 +133,14 @@
     ScanResultViewController *srvc = [segue destinationViewController];
     srvc.result = self.savedApiResult;
   }
+}
+
+#pragma mark - Analytics
+
+- (void)setupAnalytics {
+  id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+  [tracker send:[[[GAIDictionaryBuilder createScreenView] set:@"QR Scanner"
+                                                       forKey:kGAIScreenName] build]];
 }
 
 @end

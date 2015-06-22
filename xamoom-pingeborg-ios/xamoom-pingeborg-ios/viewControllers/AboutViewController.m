@@ -161,5 +161,13 @@
  }
  */
 
+#pragma mark - Analytics
+
+- (void)setupAnalytics {
+  id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+  [tracker send:[[[GAIDictionaryBuilder createScreenView] set:@"About Screen"
+                                                       forKey:kGAIScreenName] build]];
+}
+
 
 @end

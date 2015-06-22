@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "REMenu.h"  
 #import <JGProgressHUD/JGProgressHUD.h>
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAIFields.h"
 
 @interface ArtistDetailViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource, XMMEnduserApiDelegate>
 

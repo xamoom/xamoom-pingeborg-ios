@@ -135,6 +135,9 @@
 # pragma mark - XMMEnduser Delegate
 
 - (void)didLoadDataWithContentId:(XMMResponseGetById *)result {
+  //do analytics
+  [self setupAnalyticsWithName:[NSString stringWithFormat:@"Artist Detail - %@", result.content.title]];
+  
   self.savedResult = result;
   [self displayContentTitleAndImage:result];
   [self.contentBlocks displayContentBlocksByIdResult:result];
@@ -230,5 +233,14 @@
  UIViewController *vc = [segue destinationViewController];
  }
  */
+
+#pragma mark - Analytics
+
+- (void)setupAnalyticsWithName:(NSString*)screenName {
+  id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+  [tracker send:[[[GAIDictionaryBuilder createScreenView] set:screenName
+                                                       forKey:kGAIScreenName] build]];
+}
+
 
 @end

@@ -33,6 +33,8 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   
+  [self setupAnalytics];
+
   [self.tabBarItem setSelectedImage:[UIImage imageNamed:@"map_filled"]];
   
   self.placeholder = [UIImage imageNamed:@"placeholder"];
@@ -666,6 +668,12 @@
   [Globals addDiscoveredArtist:cell.contentId];
   
   //analytics
+  id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+  [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"     // Event category (required)
+                                                        action:@"Did click Geofence"  // Event action (required)
+                                                         label:[NSString stringWithFormat:@"Title - %@", cell.content.title]          // Event label
+                                                         value:[NSString stringWithFormat:@"Location: %f, %f", self.lastLocation.coordinate.latitude, self.lastLocation.coordinate.longitude]] build]];    // Event value
+  
   [[XMMEnduserApi sharedInstance] geofenceAnalyticsMessageWithRequestedLanguage:[XMMEnduserApi sharedInstance].systemLanguage
                                                           withDeliveredLanguage:self.savedResponseContent.language
                                                                    withSystemId:self.savedResponseContent.systemId
@@ -684,6 +692,14 @@
 
 - (IBAction)closeInstructionView:(id)sender {
   self.instructionView.hidden = YES;
+}
+
+#pragma mark - Analytics
+
+- (void)setupAnalytics {
+  id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+  [tracker send:[[[GAIDictionaryBuilder createScreenView] set:@"Map Screen"
+                                                       forKey:kGAIScreenName] build]];
 }
 
 @end

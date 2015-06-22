@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <JGProgressHUD/JGProgressHUD.h>
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAIFields.h"
 
 @interface ScanResultViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, XMMContentBlocksDelegate>
 

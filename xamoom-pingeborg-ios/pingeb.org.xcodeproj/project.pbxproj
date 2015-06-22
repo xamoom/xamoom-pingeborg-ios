@@ -56,6 +56,11 @@
 		8860DA811AE78D2C00DF2239 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8860DA801AE78D2C00DF2239 /* libxml2.dylib */; };
 		8860DA831AE78D3500DF2239 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8860DA821AE78D3500DF2239 /* CoreGraphics.framework */; };
 		8860DA851AE78D3B00DF2239 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8860DA841AE78D3B00DF2239 /* UIKit.framework */; };
+		889BE4301B38295E002850D5 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 889BE42F1B38295E002850D5 /* libGoogleAnalyticsServices.a */; };
+		889BE4321B3829A0002850D5 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 889BE4311B3829A0002850D5 /* CoreData.framework */; };
+		889BE4341B3829B1002850D5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 889BE4331B3829B1002850D5 /* SystemConfiguration.framework */; };
+		889BE4361B3829BF002850D5 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 889BE4351B3829BF002850D5 /* libz.dylib */; };
+		889BE4381B3829CA002850D5 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 889BE4371B3829CA002850D5 /* libsqlite3.dylib */; };
 		88A62C4F1AD55F2C00EAD4C3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88A62C4E1AD55F2C00EAD4C3 /* AVFoundation.framework */; };
 		88A62C531AD561DB00EAD4C3 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88A62C521AD561DB00EAD4C3 /* MediaPlayer.framework */; };
 		88BA01F51AA859F90091A43C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA01F41AA859F90091A43C /* main.m */; };
@@ -182,6 +187,21 @@
 		8860DA801AE78D2C00DF2239 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		8860DA821AE78D3500DF2239 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		8860DA841AE78D3B00DF2239 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		889BE4241B38290D002850D5 /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
+		889BE4251B38290D002850D5 /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIDictionaryBuilder.h; sourceTree = "<group>"; };
+		889BE42A1B38290D002850D5 /* GAIFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIFields.h; sourceTree = "<group>"; };
+		889BE42B1B38290D002850D5 /* GAILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAILogger.h; sourceTree = "<group>"; };
+		889BE42C1B38290D002850D5 /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
+		889BE42D1B38290D002850D5 /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
+		889BE42F1B38295E002850D5 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
+		889BE4311B3829A0002850D5 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		889BE4331B3829B1002850D5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		889BE4351B3829BF002850D5 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		889BE4371B3829CA002850D5 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		889BE4391B382C8D002850D5 /* GAIEcommerceFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceFields.h; sourceTree = "<group>"; };
+		889BE43A1B382C8D002850D5 /* GAIEcommerceProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceProduct.h; sourceTree = "<group>"; };
+		889BE43B1B382C8D002850D5 /* GAIEcommerceProductAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceProductAction.h; sourceTree = "<group>"; };
+		889BE43C1B382C8D002850D5 /* GAIEcommercePromotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommercePromotion.h; sourceTree = "<group>"; };
 		88A62C4E1AD55F2C00EAD4C3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		88A62C521AD561DB00EAD4C3 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		88BA01EF1AA859F90091A43C /* pingeb.org.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pingeb.org.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -226,6 +246,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				889BE4381B3829CA002850D5 /* libsqlite3.dylib in Frameworks */,
+				889BE4361B3829BF002850D5 /* libz.dylib in Frameworks */,
+				889BE4341B3829B1002850D5 /* SystemConfiguration.framework in Frameworks */,
+				889BE4321B3829A0002850D5 /* CoreData.framework in Frameworks */,
+				889BE4301B38295E002850D5 /* libGoogleAnalyticsServices.a in Frameworks */,
 				8860DA851AE78D3B00DF2239 /* UIKit.framework in Frameworks */,
 				8860DA831AE78D3500DF2239 /* CoreGraphics.framework in Frameworks */,
 				8860DA811AE78D2C00DF2239 /* libxml2.dylib in Frameworks */,
@@ -366,6 +391,23 @@
 			name = SVGKit;
 			sourceTree = "<group>";
 		};
+		889BE42E1B382916002850D5 /* Google Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				889BE4241B38290D002850D5 /* GAI.h */,
+				889BE4251B38290D002850D5 /* GAIDictionaryBuilder.h */,
+				889BE4391B382C8D002850D5 /* GAIEcommerceFields.h */,
+				889BE43A1B382C8D002850D5 /* GAIEcommerceProduct.h */,
+				889BE43B1B382C8D002850D5 /* GAIEcommerceProductAction.h */,
+				889BE43C1B382C8D002850D5 /* GAIEcommercePromotion.h */,
+				889BE42A1B38290D002850D5 /* GAIFields.h */,
+				889BE42B1B38290D002850D5 /* GAILogger.h */,
+				889BE42C1B38290D002850D5 /* GAITrackedViewController.h */,
+				889BE42D1B38290D002850D5 /* GAITracker.h */,
+			);
+			name = "Google Analytics";
+			sourceTree = "<group>";
+		};
 		88BA01E61AA859F90091A43C = {
 			isa = PBXGroup;
 			children = (
@@ -391,6 +433,7 @@
 		88BA01F11AA859F90091A43C /* xamoom-pingeborg-ios */ = {
 			isa = PBXGroup;
 			children = (
+				889BE42E1B382916002850D5 /* Google Analytics */,
 				88E243191B14505000E9E208 /* pingeb.org-Prefix.pch */,
 				88BA01F61AA859F90091A43C /* AppDelegate.h */,
 				88BA01F71AA859F90091A43C /* AppDelegate.m */,
@@ -449,6 +492,11 @@
 		B091DC0989CBE4B0B40B108B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				889BE4371B3829CA002850D5 /* libsqlite3.dylib */,
+				889BE4351B3829BF002850D5 /* libz.dylib */,
+				889BE4331B3829B1002850D5 /* SystemConfiguration.framework */,
+				889BE4311B3829A0002850D5 /* CoreData.framework */,
+				889BE42F1B38295E002850D5 /* libGoogleAnalyticsServices.a */,
 				881457C01B01E7DE0024E6F4 /* libPods.a */,
 				881457BE1B01E7CF0024E6F4 /* libPods-AFNetworking.a */,
 				8860DA841AE78D3B00DF2239 /* UIKit.framework */,
@@ -995,6 +1043,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/xamoom-pingeborg-ios",
 					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+					"$(PROJECT_DIR)",
 				);
 				PRODUCT_NAME = pingeb.org;
 				PROVISIONING_PROFILE = "";
@@ -1043,6 +1092,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/xamoom-pingeborg-ios",
 					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+					"$(PROJECT_DIR)",
 				);
 				PRODUCT_NAME = pingeb.org;
 				PROVISIONING_PROFILE = "";
