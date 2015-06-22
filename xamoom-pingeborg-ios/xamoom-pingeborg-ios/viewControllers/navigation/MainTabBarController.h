@@ -13,4 +13,6 @@
 
 @interface MainTabBarController : UITabBarController <UITabBarControllerDelegate>
 
+@property NSString* scannedUrl;
+
 @end

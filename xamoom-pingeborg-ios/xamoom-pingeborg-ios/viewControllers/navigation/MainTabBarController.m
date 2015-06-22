@@ -31,6 +31,11 @@
     [item setImageInsets:UIEdgeInsetsMake(4,0,-4,0)];
   }
   
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(receivedContentByLocationIdentifierError:)
+                                               name:@"ContentByLocationIdentifierError"
+                                             object:nil];
+  
   /*
   //navbar Dropdown Code
    UIImage *buttonImage = [UIImage imageNamed:@"QR"];
@@ -79,6 +84,8 @@
 
 -(void)didScanQR:(NSString *)result withCompleteUrl:(NSString *)url{
   
+  self.scannedUrl = url; 
+  
   //old pingeborg stickers get a redirect to the xm.gl url
   if ([url containsString:@"http://pingeb.org/"]) {
     [self sendEventAnalticsWithAction:@"Scanned Sticker" andLabel:@"Old pingeb.org sticker was scanned."];
@@ -97,6 +104,12 @@
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Nichts gefunden!" message:@"Scanne einen pingeborg.org Sticker." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alertView show];
   }
+}
+
+- (void)receivedContentByLocationIdentifierError:(NSError*)error {
+  NSLog(@"Error: receivedContentByLocationIdentifierError");
+  NSLog(@"ScannedUrl: %@", self.scannedUrl);
+  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.scannedUrl]];
 }
 
 -(NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)redirectResponse {

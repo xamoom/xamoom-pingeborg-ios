@@ -37,7 +37,6 @@
 		881458571B01EE8B0024E6F4 /* ArtistDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8814583F1B01EE8B0024E6F4 /* ArtistDetailViewController.m */; };
 		881458581B01EE8B0024E6F4 /* FeedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 881458411B01EE8B0024E6F4 /* FeedTableViewController.m */; };
 		881458591B01EE8B0024E6F4 /* MapkitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 881458431B01EE8B0024E6F4 /* MapkitViewController.m */; };
-		8814585A1B01EE8B0024E6F4 /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 881458461B01EE8B0024E6F4 /* MainTabBarController.m */; };
 		8814585B1B01EE8B0024E6F4 /* NavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 881458481B01EE8B0024E6F4 /* NavigationViewController.m */; };
 		8814585C1B01EE8B0024E6F4 /* FeedItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8814584B1B01EE8B0024E6F4 /* FeedItemCell.m */; };
 		8814585D1B01EE8B0024E6F4 /* FeedItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8814584C1B01EE8B0024E6F4 /* FeedItemCell.xib */; };
@@ -61,6 +60,7 @@
 		889BE4341B3829B1002850D5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 889BE4331B3829B1002850D5 /* SystemConfiguration.framework */; };
 		889BE4361B3829BF002850D5 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 889BE4351B3829BF002850D5 /* libz.dylib */; };
 		889BE4381B3829CA002850D5 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 889BE4371B3829CA002850D5 /* libsqlite3.dylib */; };
+		889BE43E1B3854C5002850D5 /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 889BE43D1B3854C5002850D5 /* MainTabBarController.m */; };
 		88A62C4F1AD55F2C00EAD4C3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88A62C4E1AD55F2C00EAD4C3 /* AVFoundation.framework */; };
 		88A62C531AD561DB00EAD4C3 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88A62C521AD561DB00EAD4C3 /* MediaPlayer.framework */; };
 		88BA01F51AA859F90091A43C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA01F41AA859F90091A43C /* main.m */; };
@@ -164,7 +164,6 @@
 		881458421B01EE8B0024E6F4 /* MapkitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapkitViewController.h; sourceTree = "<group>"; };
 		881458431B01EE8B0024E6F4 /* MapkitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapkitViewController.m; sourceTree = "<group>"; };
 		881458451B01EE8B0024E6F4 /* MainTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabBarController.h; sourceTree = "<group>"; };
-		881458461B01EE8B0024E6F4 /* MainTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabBarController.m; sourceTree = "<group>"; };
 		881458471B01EE8B0024E6F4 /* NavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationViewController.h; sourceTree = "<group>"; };
 		881458481B01EE8B0024E6F4 /* NavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationViewController.m; sourceTree = "<group>"; };
 		8814584A1B01EE8B0024E6F4 /* FeedItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedItemCell.h; sourceTree = "<group>"; };
@@ -202,6 +201,7 @@
 		889BE43A1B382C8D002850D5 /* GAIEcommerceProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceProduct.h; sourceTree = "<group>"; };
 		889BE43B1B382C8D002850D5 /* GAIEcommerceProductAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceProductAction.h; sourceTree = "<group>"; };
 		889BE43C1B382C8D002850D5 /* GAIEcommercePromotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommercePromotion.h; sourceTree = "<group>"; };
+		889BE43D1B3854C5002850D5 /* MainTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainTabBarController.m; path = "xamoom-pingeborg-ios/viewControllers/navigation/MainTabBarController.m"; sourceTree = SOURCE_ROOT; };
 		88A62C4E1AD55F2C00EAD4C3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		88A62C521AD561DB00EAD4C3 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		88BA01EF1AA859F90091A43C /* pingeb.org.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pingeb.org.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -357,7 +357,7 @@
 			isa = PBXGroup;
 			children = (
 				881458451B01EE8B0024E6F4 /* MainTabBarController.h */,
-				881458461B01EE8B0024E6F4 /* MainTabBarController.m */,
+				889BE43D1B3854C5002850D5 /* MainTabBarController.m */,
 				881458471B01EE8B0024E6F4 /* NavigationViewController.h */,
 				881458481B01EE8B0024E6F4 /* NavigationViewController.m */,
 			);
@@ -780,13 +780,13 @@
 				88F038471B0E0D1200E17573 /* XMMImageUtility.m in Sources */,
 				881458591B01EE8B0024E6F4 /* MapkitViewController.m in Sources */,
 				881457F81B01E8620024E6F4 /* TextBlockTableViewCell.m in Sources */,
-				8814585A1B01EE8B0024E6F4 /* MainTabBarController.m in Sources */,
 				88BA01F51AA859F90091A43C /* main.m in Sources */,
 				881457FD1B01E8620024E6F4 /* XMMMusicPlayer.m in Sources */,
 				881457FA1B01E8620024E6F4 /* YoutubeBlockTableViewCell.m in Sources */,
 				881458551B01EE8B0024E6F4 /* PingebAnnotation.m in Sources */,
 				8814585B1B01EE8B0024E6F4 /* NavigationViewController.m in Sources */,
 				881458581B01EE8B0024E6F4 /* FeedTableViewController.m in Sources */,
+				889BE43E1B3854C5002850D5 /* MainTabBarController.m in Sources */,
 				881458571B01EE8B0024E6F4 /* ArtistDetailViewController.m in Sources */,
 				881457F11B01E8620024E6F4 /* LinkBlockTableViewCell.m in Sources */,
 				881457F41B01E8620024E6F4 /* SoundcloudBlockTableViewCell.m in Sources */,
