@@ -1,1 +1,1 @@
-../../../../../../xamoom-ios-sdk/src/lib/MWFeedParser/GTMNSString+HTML.h
+../../../xamoom-ios-sdk/src/lib/MWFeedParser/GTMNSString+HTML.h

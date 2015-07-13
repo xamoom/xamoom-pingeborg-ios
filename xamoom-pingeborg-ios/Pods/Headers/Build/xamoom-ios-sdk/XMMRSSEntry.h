@@ -1,1 +1,1 @@
-../../../../../../xamoom-ios-sdk/src/RSS/XMMRSSEntry.h
+../../../xamoom-ios-sdk/src/RSS/XMMRSSEntry.h

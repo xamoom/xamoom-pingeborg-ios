@@ -1,1 +1,1 @@
-../../../../../../xamoom-ios-sdk/src/mapping/XMMResponseStyle.h
+../../../xamoom-ios-sdk/src/mapping/XMMResponseStyle.h

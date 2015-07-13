@@ -14,7 +14,7 @@
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
 
-@interface AboutViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, XMMEnduserApiDelegate, XMMContentBlocksDelegate>
+@interface AboutViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, XMMContentBlocksDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property REMenu *fontSizeDropdownMenu;

@@ -29,8 +29,7 @@
    name:notificationName
    object:nil];
   
-  [XMMEnduserApi sharedInstance].delegate = nil;
-  [[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:NO includeMenu:NO withLanguage:language full:NO];
+  //[[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:NO includeMenu:NO withLanguage:language full:NO];
 }
 
 - (void)didLoadContentBlockData:(NSNotification *)notification {

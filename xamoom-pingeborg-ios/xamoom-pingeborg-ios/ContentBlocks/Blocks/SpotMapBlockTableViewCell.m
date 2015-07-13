@@ -26,13 +26,17 @@
 
 - (void)getSpotMapWithSystemId:(NSString*)systemId withLanguage:(NSString*)language {
   self.map.delegate = self;
-  [[XMMEnduserApi sharedInstance] setDelegate:self];
-  [[XMMEnduserApi sharedInstance] spotMapWithSystemId:0 withMapTags:self.spotMapTags withLanguage:language];
+  [[XMMEnduserApi sharedInstance] spotMapWithSystemId:0 withMapTags:self.spotMapTags withLanguage:language
+                                           completion:^(XMMResponseGetSpotMap *result) {
+                                             [self showSpotMap:result];
+                                           } error:^(XMMError *error) {
+                                             NSLog(@"Error: %@", error.message);
+                                           }];
 }
 
 #pragma mark - XMMEnduser Delegate
 
-- (void)didLoadSpotMap:(XMMResponseGetSpotMap *)result {
+- (void)showSpotMap:(XMMResponseGetSpotMap *)result {
   
   if(result.style.customMarker != nil) {
     NSString *base64String = result.style.customMarker;

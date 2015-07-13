@@ -12,7 +12,6 @@ static Globals *globals;
 
 @implementation Globals
 
-@synthesize globalSystemId;
 @synthesize aboutPageId;
 @synthesize pingeborgLinkColor;
 @synthesize pingeborgYellow;
@@ -23,12 +22,10 @@ static Globals *globals;
     globals.pingeborgYellow = [UIColor colorWithRed:255.0/255.0 green:238.0/255.0 blue:0/255.0 alpha:1];
     globals.pingeborgLinkColor = [UIColor colorWithRed:113.0/255.0 green:148.0/255.0 blue:48.0/255.0 alpha:1];
   }
-  globals.globalSystemId = [self systemIdFromInteger:[globals savedSystemId]];
   
   //IF DEV
   if (globals.isDev) {
     globals.aboutPageId = @"f0da3d3d28d3418e9ccc4a6e9b3493c0";
-    globals.globalSystemId = @"5764497738301440";
   }
   
   return globals;
@@ -39,26 +36,22 @@ static Globals *globals;
   return [userDefaults integerForKey:@"pingeborgSystem"];
 }
 
-+ (NSString*)systemIdFromInteger:(NSInteger)systemId {
++ (void)setSystemFromInteger:(NSInteger)systemId {
   switch (systemId) {
     case 0: {
       globals.aboutPageId = @"d8be762e9b644fc4bb7aedfa8c0e17b7";
-      return @"6588702901927936";
       break;
     }
     case 1: {
       globals.aboutPageId = @"";
-      return @"Salzburg";
       break;
     }
     case 2: {
       globals.aboutPageId = @"";
-      return @"Vorarlberg";
       break;
     }
     default:
       globals.aboutPageId = @"d8be762e9b644fc4bb7aedfa8c0e17b7";
-      return @"6588702901927936";
       break;
   }
 }

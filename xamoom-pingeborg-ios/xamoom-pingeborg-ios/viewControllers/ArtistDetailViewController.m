@@ -31,7 +31,7 @@
   self.tableView.estimatedRowHeight = 150.0;
   
   //init contentBlocks
-  self.contentBlocks = [[XMMContentBlocks alloc] initWithSystemId:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withWidth:self.tableView.bounds.size.width];
+  self.contentBlocks = [[XMMContentBlocks alloc] initWithLanguage:[XMMEnduserApi sharedInstance].systemLanguage withWidth:self.tableView.bounds.size.width];
   self.contentBlocks.delegate = self;
   self.contentBlocks.linkColor = [Globals sharedObject].pingeborgLinkColor;
   
@@ -41,11 +41,10 @@
   self.hud = [[JGProgressHUD alloc] initWithStyle:JGProgressHUDStyleDark];
   [self.hud showInView:self.view];
   
-  [[XMMEnduserApi sharedInstance] setDelegate:self];
   if ([savedArtists containsString:self.contentId]) {
-    [[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:NO includeMenu:NO withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:YES];
+    //[[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:NO includeMenu:NO withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:YES];
   } else {
-    [[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:NO includeMenu:NO withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:NO];
+    //[[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:NO includeMenu:NO withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:NO];
   }
   
   //dropdown menu

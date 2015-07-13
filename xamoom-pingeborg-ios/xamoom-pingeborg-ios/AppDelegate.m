@@ -11,6 +11,9 @@
 #import "Globals.h"
 #import "GAI.h"
 
+NSString* apiKey = @"3441ff29-7113-418b-a5b5-5de2e50de21b";
+NSString* devApiKey = @"4552f99b-2b34-4f18-81a1-0911e25351d7";
+
 @interface AppDelegate ()
 
 @end
@@ -24,7 +27,8 @@
   [[UITabBar appearance] setTintColor:[Globals sharedObject].pingeborgLinkColor];
   
   //IF DEV
-  //[[Globals sharedObject] developmentMode];
+  [[Globals sharedObject] developmentMode];
+  [[XMMEnduserApi sharedInstance] setApiKey:devApiKey];
   
   //Google Analytics
   

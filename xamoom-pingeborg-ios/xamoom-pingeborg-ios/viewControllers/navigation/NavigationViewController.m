@@ -80,7 +80,7 @@
                     forKey:@"pingeborgSystem"];
   [userDefaults synchronize];
   
-  [Globals sharedObject].globalSystemId = [Globals systemIdFromInteger:selectedId];
+  //[Globals sharedObject].globalSystemId = [Globals systemIdFromInteger:selectedId];
   
   [[NSNotificationCenter defaultCenter] postNotificationName:@"PingeborgSystemChanged" object:self];
 }

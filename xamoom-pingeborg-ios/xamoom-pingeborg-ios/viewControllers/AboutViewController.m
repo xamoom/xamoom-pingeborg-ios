@@ -32,7 +32,7 @@
   self.tableView.estimatedRowHeight = 150.0;
   
   //setting up XMMContentBlocks
-  self.contentBlocks = [[XMMContentBlocks alloc] initWithSystemId:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withWidth:self.view.frame.size.width];
+  self.contentBlocks = [[XMMContentBlocks alloc] initWithLanguage:[XMMEnduserApi sharedInstance].systemLanguage withWidth:self.view.frame.size.width];
   self.contentBlocks.delegate = self;
   self.contentBlocks.linkColor = [Globals sharedObject].pingeborgLinkColor;
   
@@ -81,8 +81,7 @@
   //load items if there are none
   if ([self.contentBlocks.itemsToDisplay count] == 0) {
     [self.hud showInView:self.view];
-    [XMMEnduserApi sharedInstance].delegate = self;
-    [[XMMEnduserApi sharedInstance] contentWithContentId:[Globals sharedObject].aboutPageId includeStyle:NO includeMenu:NO withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:YES];
+    //[[XMMEnduserApi sharedInstance] contentWithContentId:[Globals sharedObject].aboutPageId includeStyle:NO includeMenu:NO withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:YES];
   }
 }
 

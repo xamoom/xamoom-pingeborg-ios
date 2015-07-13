@@ -1,1 +1,1 @@
-../../../../../../xamoom-ios-sdk/src/lib/MWFeedParser/NSString+XMLEntities.h
+../../../xamoom-ios-sdk/src/lib/MWFeedParser/NSString+XMLEntities.h

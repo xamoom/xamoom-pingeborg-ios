@@ -1,1 +1,1 @@
-../../../../../../xamoom-ios-sdk/src/coredata/_XMMCoreData.h
+../../../xamoom-ios-sdk/src/coredata/_XMMCoreData.h

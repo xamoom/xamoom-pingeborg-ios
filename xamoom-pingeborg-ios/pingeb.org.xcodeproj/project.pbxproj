@@ -47,7 +47,6 @@
 		88166D151AFCAC0B0012CBA6 /* XMMMusicPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88166D0A1AFCAC0A0012CBA6 /* XMMMusicPlayer.framework */; };
 		88166D211AFCAC0B0012CBA6 /* XMMMusicPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88166D0A1AFCAC0A0012CBA6 /* XMMMusicPlayer.framework */; };
 		883574801AB1CCF40099DF4A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8835747F1AB1CCF40099DF4A /* QuartzCore.framework */; };
-		884D075F1B16EB6D005FAB36 /* api.txt in Resources */ = {isa = PBXBuildFile; fileRef = 884D075E1B16EB6D005FAB36 /* api.txt */; };
 		8860DA791AE78CB800DF2239 /* libSVGKit-iOS.1.2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8860DA771AE78CB800DF2239 /* libSVGKit-iOS.1.2.0.a */; };
 		8860DA7A1AE78CB800DF2239 /* usr in Resources */ = {isa = PBXBuildFile; fileRef = 8860DA781AE78CB800DF2239 /* usr */; };
 		8860DA7D1AE78D0500DF2239 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8860DA7C1AE78D0500DF2239 /* CoreText.framework */; };
@@ -178,7 +177,6 @@
 		88166D0A1AFCAC0A0012CBA6 /* XMMMusicPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XMMMusicPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		88166D141AFCAC0B0012CBA6 /* XMMMusicPlayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XMMMusicPlayerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8835747F1AB1CCF40099DF4A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		884D075E1B16EB6D005FAB36 /* api.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = api.txt; sourceTree = "<group>"; };
 		8860DA771AE78CB800DF2239 /* libSVGKit-iOS.1.2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libSVGKit-iOS.1.2.0.a"; sourceTree = "<group>"; };
 		8860DA781AE78CB800DF2239 /* usr */ = {isa = PBXFileReference; lastKnownFileType = folder; path = usr; sourceTree = "<group>"; };
 		8860DA7C1AE78D0500DF2239 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -447,7 +445,6 @@
 				889BE42E1B382916002850D5 /* Google Analytics */,
 				88BA01F21AA859F90091A43C /* Supporting Files */,
 				88BA01FF1AA859F90091A43C /* Images.xcassets */,
-				884D075E1B16EB6D005FAB36 /* api.txt */,
 			);
 			path = "xamoom-pingeborg-ios";
 			sourceTree = "<group>";
@@ -686,7 +683,6 @@
 				881457F71B01E8620024E6F4 /* SpotMapBlockTableViewCell.xib in Resources */,
 				881457EA1B01E8620024E6F4 /* ContentBlockTableViewCell.xib in Resources */,
 				881457F21B01E8620024E6F4 /* LinkBlockTableViewCell.xib in Resources */,
-				884D075F1B16EB6D005FAB36 /* api.txt in Resources */,
 				881457F01B01E8620024E6F4 /* ImageBlockTableViewCell.xib in Resources */,
 				8814585D1B01EE8B0024E6F4 /* FeedItemCell.xib in Resources */,
 				881458611B01EE8B0024E6F4 /* PingeborgCalloutView.xib in Resources */,

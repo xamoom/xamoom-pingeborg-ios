@@ -1,1 +1,1 @@
-../../../../../../xamoom-ios-sdk/src/mapping/XMMResponseGetByLocationIdentifier.h
+../../../xamoom-ios-sdk/src/mapping/XMMResponseGetByLocationIdentifier.h

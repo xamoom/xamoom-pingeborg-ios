@@ -1,1 +1,1 @@
-../../../../../../xamoom-ios-sdk/src/mapping/XMMResponseContentBlockType5.h
+../../../xamoom-ios-sdk/src/mapping/XMMResponseContentBlockType5.h

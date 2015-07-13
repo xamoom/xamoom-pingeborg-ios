@@ -10,7 +10,7 @@
 #import "XMMEnduserApi.h"
 #import "ArtistDetailViewController.h"
 
-@interface ContentBlockTableViewCell : UITableViewCell <XMMEnduserApiDelegate>
+@interface ContentBlockTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *contentImageView;
 @property (weak, nonatomic) IBOutlet UILabel *contentTitleLabel;

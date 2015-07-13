@@ -44,12 +44,11 @@ typedef NS_OPTIONS(NSInteger, TextFontSize)
 @property NSMutableArray *itemsToDisplay;
 @property float screenWidth;
 @property UIColor *linkColor;
-@property NSString *systemId;
 @property NSString *language;
 
 - (instancetype)init;
 
-- (instancetype)initWithSystemId:(NSString*)systemId withLanguage:(NSString*)language withWidth:(float)screenWidth;
+- (instancetype)initWithLanguage:(NSString*)language withWidth:(float)screenWidth;
 
 - (void)displayContentBlocksByIdResult:(XMMResponseGetById *)idResult;
 

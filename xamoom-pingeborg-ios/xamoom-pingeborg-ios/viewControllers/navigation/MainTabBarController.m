@@ -10,7 +10,7 @@
 #import "XMMEnduserApi.h"
 #import "ScanResultViewController.h"
 
-@interface MainTabBarController () <XMMEnduserApiDelegate, QRCodeReaderDelegate>
+@interface MainTabBarController () <QRCodeReaderDelegate>
 
 @property XMMResponseGetByLocationIdentifier *savedApiResult;
 
@@ -71,9 +71,8 @@
   //instead of switching view the qr code scanner will be opened
   if (viewController == (tabBarController.viewControllers)[3]){
     [self setupAnalytics];
-    [[XMMEnduserApi sharedInstance] setDelegate:self];
     [[XMMEnduserApi sharedInstance] setQrCodeViewControllerCancelButtonTitle:@"Abbrechen"];
-    [[XMMEnduserApi sharedInstance] startQRCodeReaderFromViewController:self];
+    //[[XMMEnduserApi sharedInstance] startQRCodeReaderFromViewController:self];
     return NO;
   } else {
     return YES;
@@ -96,8 +95,7 @@
   } else if([url containsString:@"xm.gl"]) {
     [self sendEventAnalticsWithAction:@"Scanned Sticker" andLabel:@"xamoom sticker was scanned."];
     
-    [[XMMEnduserApi sharedInstance] setDelegate:self];
-    [[XMMEnduserApi sharedInstance] contentWithLocationIdentifier:result includeStyle:NO includeMenu:NO withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
+    //[[XMMEnduserApi sharedInstance] contentWithLocationIdentifier:result includeStyle:NO includeMenu:NO withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
   } else {
     [self sendEventAnalticsWithAction:@"Scanned Sticker - Failed" andLabel:[NSString stringWithFormat:@"Scanning sticker failed - URL: %@", url]];
     
@@ -117,8 +115,7 @@
   //redirect to xm.gl
   NSURLRequest *newRequest = request;
   if (redirectResponse) {
-    [[XMMEnduserApi sharedInstance] setDelegate:self];
-    [[XMMEnduserApi sharedInstance] contentWithLocationIdentifier:[self getLocationIdentifierFromURL:[newRequest URL].absoluteString] includeStyle:NO includeMenu:NO withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
+    //[[XMMEnduserApi sharedInstance] contentWithLocationIdentifier:[self getLocationIdentifierFromURL:[newRequest URL].absoluteString] includeStyle:NO includeMenu:NO withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
     return nil;
   }
   
@@ -136,11 +133,7 @@
   [Globals addDiscoveredArtist:apiResult.content.contentId];
   self.savedApiResult = apiResult;
   
-  //pingeborg scans will be opened in the app, others will be opened in safari
-  if ([self.savedApiResult.systemId isEqualToString:[Globals sharedObject].globalSystemId])
-    [self performSegueWithIdentifier:@"showScanResult" sender:self];
-  else
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.xm.gl/content/%@", self.savedApiResult.content.contentId]]];
+  [self performSegueWithIdentifier:@"showScanResult" sender:self];
 }
 
 #pragma mark - Navigation

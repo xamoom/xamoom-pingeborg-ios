@@ -99,8 +99,12 @@ int const kPageSize = 7;
   [super viewDidAppear:animated];
   //load artists, if there are none
   if (self.itemsToDisplay.count <= 0) {
-    [[XMMEnduserApi sharedInstance] setDelegate:self];
-    [[XMMEnduserApi sharedInstance] contentListWithPageSize:kPageSize withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withCursor:@"null" withTags:@[@"artists"]];
+    [[XMMEnduserApi sharedInstance] contentListWithPageSize:kPageSize withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withCursor:@"null" withTags:@[@"artists"]
+                                                 completion:^(XMMResponseContentList *result) {
+                                                   [self displayContentList:result];
+                                                 } error:^(XMMError *error) {
+                                                   NSLog(@"Error: %@", error.message);
+                                                 }];
   }
 }
 
@@ -111,7 +115,7 @@ int const kPageSize = 7;
 
 #pragma mark - XMMEnduserApi delegates
 
--(void)didLoadContentList:(XMMResponseContentList *)result {
+-(void)displayContentList:(XMMResponseContentList *)result {
   self.contentListCursor = result.cursor;
   
   //check if first startup
@@ -126,7 +130,7 @@ int const kPageSize = 7;
     self.hasMore = NO;
   
   for (XMMResponseContent *contentItem in result.items) {
-
+    
     //download image
     [XMMImageUtility imageWithUrl:contentItem.imagePublicUrl completionBlock:^(BOOL succeeded, UIImage *image, SVGKImage *svgImage) {
       if (image != nil) {
@@ -175,7 +179,7 @@ int const kPageSize = 7;
   //set defaults to images
   cell.feedItemImage.image = nil;
   [cell.feedItemImage.subviews  makeObjectsPerformSelector: @selector(removeFromSuperview)];
-
+  
   cell.loadingIndicator.hidden = NO;
   
   //save for out of range
@@ -241,8 +245,7 @@ int const kPageSize = 7;
     self.imagesToDisplay = [[NSMutableDictionary alloc] init];
     
     //api call
-    [[XMMEnduserApi sharedInstance] setDelegate:self];
-    [[XMMEnduserApi sharedInstance] contentListWithPageSize:kPageSize withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withCursor:@"null" withTags:@[@"artists"]];
+    //[[XMMEnduserApi sharedInstance] contentListWithPageSize:kPageSize withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withCursor:@"null" withTags:@[@"artists"]];
     
     self.isApiCallingBlocked = YES;
   }
@@ -297,8 +300,7 @@ int const kPageSize = 7;
 - (void)loadMoreContent {
   if (self.hasMore && !self.isApiCallingBlocked) {
     self.isApiCallingBlocked = YES;
-    [[XMMEnduserApi sharedInstance] setDelegate:self];
-    [[XMMEnduserApi sharedInstance] contentListWithPageSize:kPageSize withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withCursor:self.contentListCursor withTags:@[@"artists"]];
+    //[[XMMEnduserApi sharedInstance] contentListWithPageSize:kPageSize withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withCursor:self.contentListCursor withTags:@[@"artists"]];
   }
 }
 
@@ -331,6 +333,8 @@ int const kPageSize = 7;
 
 - (void)pingeborgSystemChanged {
   NSString *systemName;
+  systemName = @"pingeborg Kärnten";
+  /*
   if ([[Globals sharedObject].globalSystemId isEqualToString:@"6588702901927936"]) {
     systemName = @"pingeborg Kärnten";
   }
@@ -340,7 +344,7 @@ int const kPageSize = 7;
   else {
     systemName = @"pingeborg Vorarlberg";
   }
-  
+  */
   [self.dropDownButton setTitle:systemName forState:UIControlStateNormal];
   
   [self pullToRefresh];
@@ -360,7 +364,7 @@ int const kPageSize = 7;
 - (void)setupAnalytics {
   id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
   [tracker send:[[[GAIDictionaryBuilder createScreenView] set:@"Home Screen - Artist List"
-                                                      forKey:kGAIScreenName] build]];
+                                                       forKey:kGAIScreenName] build]];
 }
 
 @end

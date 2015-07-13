@@ -1,1 +1,1 @@
-../../../../../../xamoom-ios-sdk/src/lib/MWFeedParser/DetailTableViewController.h
+../../../xamoom-ios-sdk/src/lib/MWFeedParser/DetailTableViewController.h

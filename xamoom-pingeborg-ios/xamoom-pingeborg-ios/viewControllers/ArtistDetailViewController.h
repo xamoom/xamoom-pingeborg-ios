@@ -13,7 +13,7 @@
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
 
-@interface ArtistDetailViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource, XMMEnduserApiDelegate>
+@interface ArtistDetailViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property NSString *contentId;
 

@@ -1,1 +1,1 @@
-../../../../../../xamoom-ios-sdk/src/lib/MWFeedParser/MWFeedParserAppDelegate.h
+../../../xamoom-ios-sdk/src/lib/MWFeedParser/MWFeedParserAppDelegate.h

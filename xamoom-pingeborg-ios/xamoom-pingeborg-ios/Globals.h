@@ -11,7 +11,6 @@
 
 @interface Globals : NSObject
 
-@property (nonatomic) NSString *globalSystemId;
 @property (nonatomic) NSString *aboutPageId;
 
 @property (nonatomic) UIColor *pingeborgYellow;
@@ -21,7 +20,7 @@
 
 + (Globals*)sharedObject;
 
-+ (NSString*)systemIdFromInteger:(NSInteger)systemId;
++ (void)setSystemFromInteger:(NSInteger)systemId;
 
 + (void)addDiscoveredArtist:(NSString*)contentId;
 

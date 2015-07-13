@@ -14,7 +14,7 @@
 #import "PingebAnnotation.h"
 #import "PingeborgAnnotationView.h"
 
-@interface SpotMapBlockTableViewCell : UITableViewCell <MKMapViewDelegate, XMMEnduserApiDelegate>
+@interface SpotMapBlockTableViewCell : UITableViewCell <MKMapViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet MKMapView *map;

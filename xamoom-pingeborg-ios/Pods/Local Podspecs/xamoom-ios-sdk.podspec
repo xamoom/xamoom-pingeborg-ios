@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "xamoom-ios-sdk"
-  s.version          = "0.1.0"
+  s.version          = "1.1"
   s.summary          = "xamoom-ios-sdk is a framework for the xamoom-cloud api. So you can write your own applications for the xamoom-cloud."
   s.homepage         = "http://xamoom.github.io/xamoom-ios-sdk/"
   s.license          = 'GNU'

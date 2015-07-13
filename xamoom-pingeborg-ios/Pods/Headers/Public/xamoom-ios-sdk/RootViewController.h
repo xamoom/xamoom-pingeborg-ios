@@ -1,1 +1,1 @@
-../../../../../../xamoom-ios-sdk/src/lib/MWFeedParser/RootViewController.h
+../../../xamoom-ios-sdk/src/lib/MWFeedParser/RootViewController.h

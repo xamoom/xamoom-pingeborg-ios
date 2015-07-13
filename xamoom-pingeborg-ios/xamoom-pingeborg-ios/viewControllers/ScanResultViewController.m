@@ -27,7 +27,7 @@
   self.tableView.estimatedRowHeight = 150.0;
   
   //setting up XMMContentBlocks
-  self.contentBlocks = [[XMMContentBlocks alloc] initWithSystemId:[Globals sharedObject].globalSystemId withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withWidth:self.view.frame.size.width];
+  self.contentBlocks = [[XMMContentBlocks alloc] initWithLanguage:[XMMEnduserApi sharedInstance].systemLanguage withWidth:self.view.frame.size.width];
   self.contentBlocks.delegate = self;
   self.contentBlocks.linkColor = [Globals sharedObject].pingeborgLinkColor;
   

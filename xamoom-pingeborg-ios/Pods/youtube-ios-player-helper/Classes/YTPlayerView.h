@@ -17,7 +17,7 @@
 @class YTPlayerView;
 
 /** These enums represent the state of the current video in the player. */
-typedef enum {
+typedef NS_ENUM(NSInteger, YTPlayerState) {
     kYTPlayerStateUnstarted,
     kYTPlayerStateEnded,
     kYTPlayerStatePlaying,
@@ -25,35 +25,38 @@ typedef enum {
     kYTPlayerStateBuffering,
     kYTPlayerStateQueued,
     kYTPlayerStateUnknown
-} YTPlayerState;
+};
 
 /** These enums represent the resolution of the currently loaded video. */
-typedef enum {
+typedef NS_ENUM(NSInteger, YTPlaybackQuality) {
     kYTPlaybackQualitySmall,
     kYTPlaybackQualityMedium,
     kYTPlaybackQualityLarge,
     kYTPlaybackQualityHD720,
     kYTPlaybackQualityHD1080,
     kYTPlaybackQualityHighRes,
+    kYTPlaybackQualityAuto, /** Addition for YouTube Live Events. */
+    kYTPlaybackQualityDefault,
     kYTPlaybackQualityUnknown /** This should never be returned. It is here for future proofing. */
-} YTPlaybackQuality;
+};
 
 /** These enums represent error codes thrown by the player. */
-typedef enum {
+typedef NS_ENUM(NSInteger, YTPlayerError) {
     kYTPlayerErrorInvalidParam,
     kYTPlayerErrorHTML5Error,
     kYTPlayerErrorVideoNotFound, // Functionally equivalent error codes 100 and
     // 105 have been collapsed into |kYTPlayerErrorVideoNotFound|.
-    kYTPlayerErrorNotEmbeddable,
+    kYTPlayerErrorNotEmbeddable, // Functionally equivalent error codes 101 and
+    // 150 have been collapsed into |kYTPlayerErrorNotEmbeddable|.
     kYTPlayerErrorUnknown
-} YTPlayerError;
+};
 
 /**
  * A delegate for ViewControllers to respond to YouTube player events outside
  * of the view, such as changes to video playback state or playback errors.
- * The callback functions correlate to the events fired by the JavaScript
- * API. For the full documentation, see the JavaScript documentation here:
- *     https://developers.google.com/youtube/js_api_reference#Events
+ * The callback functions correlate to the events fired by the IFrame API.
+ * For the full documentation, see the IFrame documentation here:
+ *     https://developers.google.com/youtube/iframe_api_reference#Events
  */
 @protocol YTPlayerViewDelegate<NSObject>
 
@@ -88,6 +91,16 @@ typedef enum {
  * @param error YTPlayerError containing the error state.
  */
 - (void)playerView:(YTPlayerView *)playerView receivedError:(YTPlayerError)error;
+
+
+/**
+ * Callback invoked frequently when playBack is plaing.
+ *
+ * @param playerView The YTPlayerView instance where the error has occurred.
+ * @param playTime float containing curretn playback time.
+ */
+- (void)playerView:(YTPlayerView *)playerView didPlayTime:(float)playTime;
+
 @end
 
 /**
@@ -180,10 +193,12 @@ typedef enum {
  */
 - (BOOL)loadWithPlaylistId:(NSString *)playlistId playerVars:(NSDictionary *)playerVars;
 
+- (BOOL)loadWithPlayerParams:(NSDictionary *)additionalPlayerParams;
+
 #pragma mark - Player controls
 
 // These methods correspond to their JavaScript equivalents as documented here:
-//   https://developers.google.com/youtube/js_api_reference#Playback_controls
+//   https://developers.google.com/youtube/iframe_api_reference#Playback_controls
 
 /**
  * Starts or resumes playback on the loaded video. Corresponds to this method from
@@ -228,7 +243,7 @@ typedef enum {
 
 // Queueing functions for videos. These methods correspond to their JavaScript
 // equivalents as documented here:
-//   https://developers.google.com/youtube/js_api_reference#Queueing_Functions
+//   https://developers.google.com/youtube/iframe_api_reference#Queueing_Functions
 
 /**
  * Cues a given video by its video ID for playback starting at the given time and with the
@@ -428,7 +443,7 @@ typedef enum {
 
 // These methods correspond to the JavaScript API as defined under the
 // "Playing a video in a playlist" section here:
-//    https://developers.google.com/youtube/js_api_reference#Playback_status
+//    https://developers.google.com/youtube/iframe_api_reference#Playback_status
 
 /**
  * Loads and plays the next video in the playlist. Corresponds to this method from
@@ -591,7 +606,7 @@ typedef enum {
  *
  * @return Length of the video in seconds.
  */
-- (int)duration;
+- (NSTimeInterval)duration;
 
 /**
  * Returns the YouTube.com URL for the video. This method corresponds
@@ -634,5 +649,7 @@ typedef enum {
  * @return The 0-based index of the currently playing item in the playlist.
  */
 - (int)playlistIndex;
+
+- (void)removeWebView;
 
 @end

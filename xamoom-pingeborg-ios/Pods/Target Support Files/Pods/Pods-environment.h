@@ -22,7 +22,7 @@
 #define COCOAPODS_POD_AVAILABLE_JGProgressHUD
 #define COCOAPODS_VERSION_MAJOR_JGProgressHUD 1
 #define COCOAPODS_VERSION_MINOR_JGProgressHUD 2
-#define COCOAPODS_VERSION_PATCH_JGProgressHUD 5
+#define COCOAPODS_VERSION_PATCH_JGProgressHUD 7
 
 // QRCodeReaderViewController
 #define COCOAPODS_POD_AVAILABLE_QRCodeReaderViewController
@@ -98,13 +98,13 @@
 
 // xamoom-ios-sdk
 #define COCOAPODS_POD_AVAILABLE_xamoom_ios_sdk
-#define COCOAPODS_VERSION_MAJOR_xamoom_ios_sdk 0
+#define COCOAPODS_VERSION_MAJOR_xamoom_ios_sdk 1
 #define COCOAPODS_VERSION_MINOR_xamoom_ios_sdk 1
-#define COCOAPODS_VERSION_PATCH_xamoom_ios_sdk 0
+#define COCOAPODS_VERSION_PATCH_xamoom_ios_sdk 1
 
 // youtube-ios-player-helper
 #define COCOAPODS_POD_AVAILABLE_youtube_ios_player_helper
 #define COCOAPODS_VERSION_MAJOR_youtube_ios_player_helper 0
 #define COCOAPODS_VERSION_MINOR_youtube_ios_player_helper 1
-#define COCOAPODS_VERSION_PATCH_youtube_ios_player_helper 1
+#define COCOAPODS_VERSION_PATCH_youtube_ios_player_helper 3
 

@@ -41,7 +41,7 @@ int const kHorizontalSpaceToSubview = 32;
   return self;
 }
 
-- (instancetype)initWithSystemId:(NSString*)systemId withLanguage:(NSString*)language withWidth:(float)screenWidth {
+- (instancetype)initWithLanguage:(NSString*)language withWidth:(float)screenWidth {
   self = [super init];
   
   if(self) {
@@ -50,7 +50,6 @@ int const kHorizontalSpaceToSubview = 32;
     self.linkColor = [UIColor blueColor];
     self.language = language;
     self.screenWidth = screenWidth - kHorizontalSpaceToSubview;
-    self.systemId = systemId;
   }
   
   //notification to reload delegates tableview from special contentBlockCells
@@ -158,7 +157,8 @@ int const kHorizontalSpaceToSubview = 32;
   cell.contentBlockType = contentBlock.contentBlockType;
   
   //set title
-  cell.titleLabel.text = contentBlock.title;
+  if(contentBlock.title != nil && ![contentBlock.title isEqualToString:@""])
+    cell.titleLabel.text = contentBlock.title;
   
   //bigger font if it is a contenttype "title"
   if ([contentBlock.contentBlockType isEqualToString:@"title"]) {
@@ -194,8 +194,10 @@ int const kHorizontalSpaceToSubview = 32;
   [cell.audioPlayerControl initAudioPlayerWithUrlString:contentBlock.fileId];
   
   //set title & artist
-  cell.titleLabel.text = contentBlock.title;
-  cell.artistLabel.text = contentBlock.artist;
+  if(contentBlock.title != nil && ![contentBlock.title isEqualToString:@""])
+    cell.titleLabel.text = contentBlock.title;
+  if(contentBlock.artist != nil && ![contentBlock.artist isEqualToString:@""])
+    cell.artistLabel.text = contentBlock.artist;
   
   //set songDuration
   float songDurationInSeconds = CMTimeGetSeconds(cell.audioPlayerControl.audioPlayer.currentItem.asset.duration);
@@ -211,7 +213,8 @@ int const kHorizontalSpaceToSubview = 32;
   cell = nib[0];
   
   //set title and youtubeUrl
-  cell.titleLabel.text = contentBlock.title;
+  if(contentBlock.title != nil && ![contentBlock.title isEqualToString:@""])
+    cell.titleLabel.text = contentBlock.title;
   
   //get the videoId from the string
   NSString *regexString = @"((?<=(v|V)/)|(?<=be/)|(?<=(\\?|\\&)v=)|(?<=embed/))([\\w-]++)";
@@ -236,7 +239,9 @@ int const kHorizontalSpaceToSubview = 32;
   cell = nib[0];
   
   //set title
-  cell.titleLabel.text = contentBlock.title;
+  if(contentBlock.title != nil && ![contentBlock.title isEqualToString:@""])
+    cell.titleLabel.text = contentBlock.title;
+  
   [cell.imageLoadingIndicator startAnimating];
   
   //download image
@@ -280,7 +285,9 @@ int const kHorizontalSpaceToSubview = 32;
   cell = nib[0];
   
   //set title, text, linkUrl and linkType
-  cell.titleLabel.text = contentBlock.title;
+  if(contentBlock.title != nil && ![contentBlock.title isEqualToString:@""])
+    cell.titleLabel.text = contentBlock.title;
+  
   cell.linkTextLabel.text = contentBlock.text;
   cell.linkUrl = contentBlock.linkUrl;
   cell.linkType = contentBlock.linkType;
@@ -298,7 +305,9 @@ int const kHorizontalSpaceToSubview = 32;
   cell = nib[0];
   
   //set title, artist and downloadUrl
-  cell.titleLabel.text = contentBlock.title;
+  if(contentBlock.title != nil && ![contentBlock.title isEqualToString:@""])
+    cell.titleLabel.text = contentBlock.title;
+  
   cell.artistLabel.text = contentBlock.artist;
   cell.downloadUrl = contentBlock.fileId;
   
@@ -365,7 +374,7 @@ int const kHorizontalSpaceToSubview = 32;
   //set title, spotmapTags
   cell.titleLabel.text = contentBlock.title;
   cell.spotMapTags = [contentBlock.spotMapTag componentsSeparatedByString:@","];
-  [cell getSpotMapWithSystemId:self.systemId withLanguage:self.language];
+  [cell getSpotMapWithSystemId:0 withLanguage:self.language];
   
   [self.itemsToDisplay addObject:cell];
 }

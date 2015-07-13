@@ -112,8 +112,7 @@
   //load spotmap if there are no annotations on the map
   if (self.mapKitWithSMCalloutView.annotations.count <= 1) {
     [self.geoFenceActivityIndicator startAnimating];
-    [[XMMEnduserApi sharedInstance] setDelegate:self];
-    [[XMMEnduserApi sharedInstance] spotMapWithSystemId:0 withMapTags:@[@"showAllTheSpots"] withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
+    //[[XMMEnduserApi sharedInstance] spotMapWithSystemId:0 withMapTags:@[@"showAllTheSpots"] withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
   }
 }
 
@@ -174,8 +173,7 @@
   //load items in near you, when there is no geofence
   if([result.items count] == 0) {
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
-    [XMMEnduserApi sharedInstance].delegate = self;
-    [[XMMEnduserApi sharedInstance] closestSpotsWithLat:self.lastLocation.coordinate.latitude withLon:self.lastLocation.coordinate.longitude withRadius:2000 withLimit:10 withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
+    //[[XMMEnduserApi sharedInstance] closestSpotsWithLat:self.lastLocation.coordinate.latitude withLon:self.lastLocation.coordinate.longitude withRadius:2000 withLimit:10 withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
     return;
   }
   
@@ -450,8 +448,7 @@
   [self disableGeofenceView];
   [self.geoFenceActivityIndicator startAnimating];
   self.geoFenceLabel.text = @"Auf der Suche ...";
-  [XMMEnduserApi sharedInstance].delegate = self;
-  [[XMMEnduserApi sharedInstance] contentWithLat:[NSString stringWithFormat:@"%f",self.lastLocation.coordinate.latitude] withLon:[NSString stringWithFormat:@"%f",self.lastLocation.coordinate.longitude] withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
+  //[[XMMEnduserApi sharedInstance] contentWithLat:[NSString stringWithFormat:@"%f",self.lastLocation.coordinate.latitude] withLon:[NSString stringWithFormat:@"%f",self.lastLocation.coordinate.longitude] withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
 }
 
 #pragma mark - Table view data source

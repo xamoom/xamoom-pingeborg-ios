@@ -34,6 +34,8 @@ NSString static *const kYTPlaybackQualityLargeQuality = @"large";
 NSString static *const kYTPlaybackQualityHD720Quality = @"hd720";
 NSString static *const kYTPlaybackQualityHD1080Quality = @"hd1080";
 NSString static *const kYTPlaybackQualityHighResQuality = @"highres";
+NSString static *const kYTPlaybackQualityAutoQuality = @"auto";
+NSString static *const kYTPlaybackQualityDefaultQuality = @"default";
 NSString static *const kYTPlaybackQualityUnknownQuality = @"unknown";
 
 // Constants representing YouTube player errors.
@@ -42,15 +44,25 @@ NSString static *const kYTPlayerErrorHTML5ErrorCode = @"5";
 NSString static *const kYTPlayerErrorVideoNotFoundErrorCode = @"100";
 NSString static *const kYTPlayerErrorNotEmbeddableErrorCode = @"101";
 NSString static *const kYTPlayerErrorCannotFindVideoErrorCode = @"105";
+NSString static *const kYTPlayerErrorSameAsNotEmbeddableErrorCode = @"150";
 
 // Constants representing player callbacks.
 NSString static *const kYTPlayerCallbackOnReady = @"onReady";
 NSString static *const kYTPlayerCallbackOnStateChange = @"onStateChange";
 NSString static *const kYTPlayerCallbackOnPlaybackQualityChange = @"onPlaybackQualityChange";
 NSString static *const kYTPlayerCallbackOnError = @"onError";
+NSString static *const kYTPlayerCallbackOnPlayTime = @"onPlayTime";
+
 NSString static *const kYTPlayerCallbackOnYouTubeIframeAPIReady = @"onYouTubeIframeAPIReady";
 
 NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtube.com/embed/(.*)$";
+NSString static *const kYTPlayerAdUrlRegexPattern = @"^http(s)://pubads.g.doubleclick.net/pagead/conversion/";
+
+@interface YTPlayerView()
+
+@property(nonatomic, strong) NSURL *originURL;
+
+@end
 
 @implementation YTPlayerView
 
@@ -89,6 +101,7 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
 }
 
 - (void)pauseVideo {
+  [self notifyDelegateOfYouTubeCallbackUrl:[NSURL URLWithString:[NSString stringWithFormat:@"ytplayer://onStateChange?data=%@", kYTPlayerStatePausedCode]]];
   [self stringFromEvaluatingJavaScript:@"player.pauseVideo();"];
 }
 
@@ -99,8 +112,7 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
 - (void)seekToSeconds:(float)seekToSeconds allowSeekAhead:(BOOL)allowSeekAhead {
   NSNumber *secondsValue = [NSNumber numberWithFloat:seekToSeconds];
   NSString *allowSeekAheadValue = [self stringForJSBoolean:allowSeekAhead];
-  NSString *command =
-      [NSString stringWithFormat:@"player.seekTo(%@, %@);", secondsValue, allowSeekAheadValue];
+  NSString *command = [NSString stringWithFormat:@"player.seekTo(%@, %@);", secondsValue, allowSeekAheadValue];
   [self stringFromEvaluatingJavaScript:command];
 }
 
@@ -127,8 +139,7 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
   NSNumber *startSecondsValue = [NSNumber numberWithFloat:startSeconds];
   NSNumber *endSecondsValue = [NSNumber numberWithFloat:endSeconds];
   NSString *qualityValue = [YTPlayerView stringForPlaybackQuality:suggestedQuality];
-  NSString *command = [NSString stringWithFormat:@"player.cueVideoById('%@', %@, %@, '%@');",
-      videoId, startSecondsValue, endSecondsValue, qualityValue];
+  NSString *command = [NSString stringWithFormat:@"player.cueVideoById({'videoId': '%@', 'startSeconds': %@, 'endSeconds': %@, 'suggestedQuality': '%@'});", videoId, startSecondsValue, endSecondsValue, qualityValue];
   [self stringFromEvaluatingJavaScript:command];
 }
 
@@ -149,8 +160,7 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
   NSNumber *startSecondsValue = [NSNumber numberWithFloat:startSeconds];
   NSNumber *endSecondsValue = [NSNumber numberWithFloat:endSeconds];
   NSString *qualityValue = [YTPlayerView stringForPlaybackQuality:suggestedQuality];
-  NSString *command = [NSString stringWithFormat:@"player.loadVideoById('%@', %@, %@, '%@');",
-      videoId, startSecondsValue, endSecondsValue, qualityValue];
+  NSString *command = [NSString stringWithFormat:@"player.loadVideoById({'videoId': '%@', 'startSeconds': %@, 'endSeconds': %@, 'suggestedQuality': '%@'});",videoId, startSecondsValue, endSecondsValue, qualityValue];
   [self stringFromEvaluatingJavaScript:command];
 }
 
@@ -313,8 +323,8 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
 
 #pragma mark - Video information methods
 
-- (int)duration {
-  return [[self stringFromEvaluatingJavaScript:@"player.getDuration();"] intValue];
+- (NSTimeInterval)duration {
+  return [[self stringFromEvaluatingJavaScript:@"player.getDuration();"] doubleValue];
 }
 
 - (NSURL *)videoUrl {
@@ -367,18 +377,10 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
 
 - (NSArray *)availableQualityLevels {
   NSString *returnValue =
-      [self stringFromEvaluatingJavaScript:@"player.getAvailableQualityLevels();"];
+      [self stringFromEvaluatingJavaScript:@"player.getAvailableQualityLevels().toString();"];
+  if(!returnValue) return nil;
 
-  NSData *availableQualityLevelsData = [returnValue dataUsingEncoding:NSUTF8StringEncoding];
-  NSError *jsonDeserializationError;
-
-  NSArray *rawQualityValues = [NSJSONSerialization JSONObjectWithData:availableQualityLevelsData
-                                                              options:kNilOptions
-                                                                error:&jsonDeserializationError];
-  if (jsonDeserializationError) {
-    return nil;
-  }
-
+  NSArray *rawQualityValues = [returnValue componentsSeparatedByString:@","];
   NSMutableArray *levels = [[NSMutableArray alloc] init];
   for (NSString *rawQualityValue in rawQualityValues) {
     YTPlaybackQuality quality = [YTPlayerView playbackQualityForString:rawQualityValue];
@@ -390,7 +392,9 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
 - (BOOL)webView:(UIWebView *)webView
     shouldStartLoadWithRequest:(NSURLRequest *)request
                 navigationType:(UIWebViewNavigationType)navigationType {
-  if ([request.URL.scheme isEqual:@"ytplayer"]) {
+  if ([request.URL.host isEqual: self.originURL.host]) {
+    return YES;
+  } else if ([request.URL.scheme isEqual:@"ytplayer"]) {
     [self notifyDelegateOfYouTubeCallbackUrl:request.URL];
     return NO;
   } else if ([request.URL.scheme isEqual: @"http"] || [request.URL.scheme isEqual:@"https"]) {
@@ -420,6 +424,8 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
     quality = kYTPlaybackQualityHD1080;
   } else if ([qualityString isEqualToString:kYTPlaybackQualityHighResQuality]) {
     quality = kYTPlaybackQualityHighRes;
+  } else if ([qualityString isEqualToString:kYTPlaybackQualityAutoQuality]) {
+    quality = kYTPlaybackQualityAuto;
   }
 
   return quality;
@@ -445,6 +451,8 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
       return kYTPlaybackQualityHD1080Quality;
     case kYTPlaybackQualityHighRes:
       return kYTPlaybackQualityHighResQuality;
+    case kYTPlaybackQualityAuto:
+      return kYTPlaybackQualityAutoQuality;
     default:
       return kYTPlaybackQualityUnknownQuality;
   }
@@ -503,16 +511,16 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
 
 /**
  * Private method to handle "navigation" to a callback URL of the format
- * http://ytplayer/action?data=someData
+ * ytplayer://action?data=someData
  * This is how the UIWebView communicates with the containing Objective-C code.
  * Side effects of this method are that it calls methods on this class's delegate.
  *
- * @param url A URL of the format http://ytplayer/action.
+ * @param url A URL of the format ytplayer://action?data=value.
  */
 - (void)notifyDelegateOfYouTubeCallbackUrl: (NSURL *) url {
   NSString *action = url.host;
 
-  // We know the query can only be of the format http://ytplayer?data=SOMEVALUE,
+  // We know the query can only be of the format ytplayer://action?data=SOMEVALUE,
   // so we parse out the value.
   NSString *query = url.query;
   NSString *data;
@@ -557,15 +565,22 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
         error = kYTPlayerErrorInvalidParam;
       } else if ([data isEqual:kYTPlayerErrorHTML5ErrorCode]) {
         error = kYTPlayerErrorHTML5Error;
-      } else if ([data isEqual:kYTPlayerErrorNotEmbeddableErrorCode]) {
+      } else if ([data isEqual:kYTPlayerErrorNotEmbeddableErrorCode] ||
+                 [data isEqual:kYTPlayerErrorSameAsNotEmbeddableErrorCode]) {
         error = kYTPlayerErrorNotEmbeddable;
       } else if ([data isEqual:kYTPlayerErrorVideoNotFoundErrorCode] ||
-          [data isEqual:kYTPlayerErrorCannotFindVideoErrorCode]) {
+                 [data isEqual:kYTPlayerErrorCannotFindVideoErrorCode]) {
         error = kYTPlayerErrorVideoNotFound;
       }
 
       [self.delegate playerView:self receivedError:error];
     }
+  } else if ([action isEqualToString:kYTPlayerCallbackOnPlayTime]) {
+      if ([self.delegate respondsToSelector:@selector(playerView:didPlayTime:)]) {
+          float time = [data floatValue];
+          [self.delegate playerView:self didPlayTime:time];
+      }
+      
   }
 }
 
@@ -575,15 +590,24 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
   // UIWebView is the URL for the embed, which is of the format:
   //     http(s)://www.youtube.com/embed/[VIDEO ID]?[PARAMETERS]
   NSError *error = NULL;
-  NSRegularExpression *regex =
+  NSRegularExpression *ytRegex =
       [NSRegularExpression regularExpressionWithPattern:kYTPlayerEmbedUrlRegexPattern
                                                 options:NSRegularExpressionCaseInsensitive
                                                   error:&error];
-  NSTextCheckingResult *match =
-      [regex firstMatchInString:url.absoluteString
+  NSTextCheckingResult *ytMatch =
+      [ytRegex firstMatchInString:url.absoluteString
                         options:0
                           range:NSMakeRange(0, [url.absoluteString length])];
-  if (match) {
+    
+  NSRegularExpression *adRegex =
+      [NSRegularExpression regularExpressionWithPattern:kYTPlayerAdUrlRegexPattern
+                                                options:NSRegularExpressionCaseInsensitive
+                                                  error:&error];
+  NSTextCheckingResult *adMatch =
+      [adRegex firstMatchInString:url.absoluteString
+                        options:0
+                          range:NSMakeRange(0, [url.absoluteString length])];
+  if (ytMatch || adMatch) {
     return YES;
   } else {
     [[UIApplication sharedApplication] openURL:url];
@@ -609,12 +633,26 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
   };
   NSMutableDictionary *playerParams = [[NSMutableDictionary alloc] init];
   [playerParams addEntriesFromDictionary:additionalPlayerParams];
-  [playerParams setValue:@"100%" forKey:@"height"];
-  [playerParams setValue:@"100%" forKey:@"width"];
+  if (![playerParams objectForKey:@"height"]) {
+    [playerParams setValue:@"100%" forKey:@"height"];
+  }
+  if (![playerParams objectForKey:@"width"]) {
+    [playerParams setValue:@"100%" forKey:@"width"];
+  }
+
   [playerParams setValue:playerCallbacks forKey:@"events"];
 
-  // This must not be empty so we can render a '{}' in the output JSON
-  if (![playerParams objectForKey:@"playerVars"]) {
+  if ([playerParams objectForKey:@"playerVars"]) {
+    NSMutableDictionary *playerVars = [[NSMutableDictionary alloc] init];
+    [playerVars addEntriesFromDictionary:[playerParams objectForKey:@"playerVars"]];
+      
+    if (![playerVars objectForKey:@"origin"]) {
+        self.originURL = [NSURL URLWithString:@"about:blank"];
+    } else {
+        self.originURL = [NSURL URLWithString: [playerVars objectForKey:@"origin"]];
+    }
+  } else {
+    // This must not be empty so we can render a '{}' in the output JSON
     [playerParams setValue:[[NSDictionary alloc] init] forKey:@"playerVars"];
   }
 
@@ -651,7 +689,7 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
       [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 
   NSString *embedHTML = [NSString stringWithFormat:embedHTMLTemplate, playerVarsJsonString];
-  [self.webView loadHTMLString:embedHTML baseURL:[NSURL URLWithString:@"about:blank"]];
+  [self.webView loadHTMLString:embedHTML baseURL: self.originURL];
   [self.webView setDelegate:self];
   self.webView.allowsInlineMediaPlayback = YES;
   self.webView.mediaPlaybackRequiresUserAction = NO;
@@ -751,6 +789,11 @@ NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtub
   webView.scrollView.scrollEnabled = NO;
   webView.scrollView.bounces = NO;
   return webView;
+}
+
+- (void)removeWebView {
+  [self.webView removeFromSuperview];
+  self.webView = nil;
 }
 
 @end

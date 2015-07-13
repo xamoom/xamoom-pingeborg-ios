@@ -8,169 +8,141 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>3</integer>
 		</dict>
 		<key>Pods-ISO8601DateFormatterValueTransformer.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>4</integer>
 		</dict>
 		<key>Pods-JGProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>5</integer>
 		</dict>
 		<key>Pods-QRCodeReaderViewController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>6</integer>
 		</dict>
 		<key>Pods-REMenu.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>7</integer>
 		</dict>
 		<key>Pods-RKValueTransformers.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>9</integer>
 		</dict>
 		<key>Pods-RestKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>8</integer>
 		</dict>
 		<key>Pods-SMCalloutView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>10</integer>
 		</dict>
 		<key>Pods-SOCKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>11</integer>
 		</dict>
 		<key>Pods-TransitionKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>12</integer>
 		</dict>
 		<key>Pods-xamoom-ios-sdk.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>13</integer>
 		</dict>
 		<key>Pods-youtube-ios-player-helper.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>14</integer>
 		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>2</integer>
 		</dict>
 		<key>xamoom-ios-sdk.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>15</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>145410950F1FC860DDDAF4E0</key>
+		<key>00D096D6B437C9749A3853AE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1A85F10C15135CB9431A0DB4</key>
+		<key>28C2268A3318FAD4BCC5436C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4AF428E7BA6C40D4B3FB217A</key>
+		<key>2D779CA0205A6CED4BE7B1A7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>59036B9C4ABDBAF0A4701757</key>
+		<key>3189B7C78FC439A0E44928E4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5A68E9F509540B54787D619E</key>
+		<key>36FD90FB23F636C2FF4D6237</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7C5DF5D07FCF02B9AA8A081A</key>
+		<key>46F0773E2FBEF4014A3BCFB6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7DCFE9B39B58094C311D8015</key>
+		<key>639709006C6EB600D447F9D5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7E7DF4444496B2ACAB04AF85</key>
+		<key>660DB8BD4EE7CA6527F79F42</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>91755AD73416CBC0EB47D5C8</key>
+		<key>7722A060D37FFB4FABA7B370</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>963233DBB1191783700816B6</key>
+		<key>BB0B5F34240A9B82509B2C6B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BC4288CB5101DB47FB5EEA54</key>
+		<key>E36AF37EDCE013DA2856427E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CCA3800E3E6C076B02DDA94D</key>
+		<key>E965F66EBAA1A1415746A869</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FE33BDEB92CEC6D3FBC0C6A5</key>
+		<key>EEB5C9399EC4693ACEE51CBC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FEBBDFA77E0F2249CE4C4033</key>
+		<key>FF5B86D9287F61A14F0292D3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
