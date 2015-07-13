@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *contentImageView;
 @property (weak, nonatomic) IBOutlet UILabel *contentTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *contentExcerptLabel;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
 
 @property NSString *contentId;
 @property XMMResponseGetById *result;

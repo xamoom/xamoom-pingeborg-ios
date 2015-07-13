@@ -21,25 +21,22 @@
 }
 
 - (void)initContentBlockWithLanguage:(NSString*)language {
-  //creating a unique notification for the contentBlock
-  NSString *notificationName = [NSString stringWithFormat:@"%@%@", @"getByIdFull", self.contentId];
-  [[NSNotificationCenter defaultCenter]
-   addObserver:self
-   selector:@selector(didLoadContentBlockData:)
-   name:notificationName
-   object:nil];
-  
-  //[[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:NO includeMenu:NO withLanguage:language full:NO];
+  [[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:NO includeMenu:NO withLanguage:language full:NO
+                                            completion:^(XMMResponseGetById *result) {
+                                              [self.loadingIndicator stopAnimating];
+                                              [self showBlockData:result];
+                                            } error:^(XMMError *error) {
+                                            }];
 }
 
-- (void)didLoadContentBlockData:(NSNotification *)notification {
-  self.result = [notification object];
+- (void)showBlockData:(XMMResponseGetById *)result {
+  self.result = result;
   
   //set title and excerpt
   self.contentTitleLabel.text = self.result.content.title;
   self.contentExcerptLabel.text = self.result.content.descriptionOfContent;
   [self.contentExcerptLabel sizeToFit];
-
+  
   //download image
   [XMMImageUtility imageWithUrl:self.result.content.imagePublicUrl completionBlock:^(BOOL succeeded, UIImage *image, SVGKImage *svgImage) {
     self.contentImageView.contentMode = UIViewContentModeScaleAspectFill;
