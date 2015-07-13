@@ -37,7 +37,7 @@
                                              object:nil];
   
   /*
-  //navbar Dropdown Code
+   //navbar Dropdown Code
    UIImage *buttonImage = [UIImage imageNamed:@"QR"];
    UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
    button.frame = CGRectMake(0.0, 0.0, buttonImage.size.width, buttonImage.size.height);
@@ -46,11 +46,11 @@
    
    CGFloat heightDifference = buttonImage.size.height - self.tabBar.frame.size.height;
    if (heightDifference < 0)
-    button.center = self.tabBar.center;
+   button.center = self.tabBar.center;
    else{
-    CGPoint center = self.tabBar.center;
-    center.y = center.y - heightDifference/2.0;
-    button.center = center;
+   CGPoint center = self.tabBar.center;
+   center.y = center.y - heightDifference/2.0;
+   button.center = center;
    }
    
    [self.view addSubview:button];
@@ -71,8 +71,11 @@
   //instead of switching view the qr code scanner will be opened
   if (viewController == (tabBarController.viewControllers)[3]){
     [self setupAnalytics];
-    [[XMMEnduserApi sharedInstance] setQrCodeViewControllerCancelButtonTitle:@"Abbrechen"];
-    //[[XMMEnduserApi sharedInstance] startQRCodeReaderFromViewController:self];
+    [[XMMEnduserApi sharedInstance] setQrCodeViewControllerCancelButtonTitle:NSLocalizedString(@"Cancel", nil)];
+    [[XMMEnduserApi sharedInstance] startQRCodeReaderFromViewController:self
+                                                                didLoad:^(NSString *locationIdentifier, NSString *url) {
+                                                                  [self didScanQR:locationIdentifier withCompleteUrl:url];
+                                                                }];
     return NO;
   } else {
     return YES;
@@ -83,7 +86,7 @@
 
 -(void)didScanQR:(NSString *)result withCompleteUrl:(NSString *)url{
   
-  self.scannedUrl = url; 
+  self.scannedUrl = url;
   
   //old pingeborg stickers get a redirect to the xm.gl url
   if ([url containsString:@"http://pingeb.org/"]) {
@@ -95,19 +98,26 @@
   } else if([url containsString:@"xm.gl"]) {
     [self sendEventAnalticsWithAction:@"Scanned Sticker" andLabel:@"xamoom sticker was scanned."];
     
-    //[[XMMEnduserApi sharedInstance] contentWithLocationIdentifier:result includeStyle:NO includeMenu:NO withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
+    [[XMMEnduserApi sharedInstance] contentWithLocationIdentifier:result includeStyle:NO includeMenu:NO withLanguage:[XMMEnduserApi sharedInstance].systemLanguage
+                                                       completion:^(XMMResponseGetByLocationIdentifier *result) {
+                                                         [self didLoadDataWithLocationIdentifier:result];
+                                                       } error:^(XMMError *error) {
+                                                         NSLog(@"OMG: %@", error.message);
+                                                         [self errorMessageOnScanning];
+                                                       }];
   } else {
     [self sendEventAnalticsWithAction:@"Scanned Sticker - Failed" andLabel:[NSString stringWithFormat:@"Scanning sticker failed - URL: %@", url]];
-    
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Nichts gefunden!" message:@"Scanne einen pingeborg.org Sticker." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alertView show];
+    [self errorMessageOnScanning];
   }
 }
 
-- (void)receivedContentByLocationIdentifierError:(NSError*)error {
-  NSLog(@"Error: receivedContentByLocationIdentifierError");
-  NSLog(@"ScannedUrl: %@", self.scannedUrl);
-  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.scannedUrl]];
+- (void)errorMessageOnScanning {
+  UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Nothing found!", nil)
+                                                      message:NSLocalizedString(@"Scan a pingeb.org sticker.", nil)
+                                                     delegate:nil
+                                            cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                            otherButtonTitles:nil];
+  [alertView show];
 }
 
 -(NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)redirectResponse {
@@ -115,7 +125,11 @@
   //redirect to xm.gl
   NSURLRequest *newRequest = request;
   if (redirectResponse) {
-    //[[XMMEnduserApi sharedInstance] contentWithLocationIdentifier:[self getLocationIdentifierFromURL:[newRequest URL].absoluteString] includeStyle:NO includeMenu:NO withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
+    [[XMMEnduserApi sharedInstance] contentWithLocationIdentifier:[self getLocationIdentifierFromURL:[newRequest URL].absoluteString] includeStyle:NO includeMenu:NO withLanguage:[XMMEnduserApi sharedInstance].systemLanguage
+                                                       completion:^(XMMResponseGetByLocationIdentifier *result) {
+                                                         [self didLoadDataWithLocationIdentifier:result];
+                                                       } error:^(XMMError *error) {
+                                                       }];
     return nil;
   }
   

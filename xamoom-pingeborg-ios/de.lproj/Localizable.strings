@@ -15,3 +15,13 @@
 "Normal Font Size" = "Normaler Text";
 "Big Font Size" = "Großer Text";
 "Really Big Font Size" = "Sehr großer Text";
+
+/* MainTabBar Controller */
+
+"Cancel" = "Abbrechen";
+
+/* Scanning */
+
+"Nothing found!" = "Nichts gefunden!";
+"Scan a pingeb.org sticker." = "Scanne einen pingeb.org-Sticker.";
+"OK" = "OK";
