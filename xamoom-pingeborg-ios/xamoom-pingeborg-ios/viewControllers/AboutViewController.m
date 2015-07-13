@@ -67,11 +67,11 @@
   
   //create change font size button in navbar
   self.buttonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"textsize"]
-                                                                 style:UIBarButtonItemStylePlain
-                                                                target:self
-                                                                action:@selector(toggleFontSizeDropdownMenu)];
+                                                     style:UIBarButtonItemStylePlain
+                                                    target:self
+                                                    action:@selector(toggleFontSizeDropdownMenu)];
   self.parentViewController.navigationItem.rightBarButtonItem = self.buttonItem;
-
+  
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -81,7 +81,11 @@
   //load items if there are none
   if ([self.contentBlocks.itemsToDisplay count] == 0) {
     [self.hud showInView:self.view];
-    //[[XMMEnduserApi sharedInstance] contentWithContentId:[Globals sharedObject].aboutPageId includeStyle:NO includeMenu:NO withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:YES];
+    [[XMMEnduserApi sharedInstance] contentWithContentId:[Globals sharedObject].aboutPageId includeStyle:NO includeMenu:NO withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:YES
+                                              completion:^(XMMResponseGetById *result) {
+                                                [self showDataWithContentId:result];
+                                              } error:^(XMMError *error) {
+                                              }];
   }
 }
 
@@ -112,7 +116,7 @@
 
 #pragma mark - XMMEnduserApi delegates
 
-- (void)didLoadDataWithContentId:(XMMResponseGetById *)result {
+- (void)showDataWithContentId:(XMMResponseGetById *)result {
   [self displayContentTitleAndImage:result];
   [self.contentBlocks displayContentBlocksByIdResult:result];
   [self.hud dismiss];
@@ -136,7 +140,7 @@
 
 - (void)displayContentTitleAndImage:(XMMResponseGetById *)result {
   //make text and image for the title, exercpt and the display image
-
+  
   XMMResponseContentBlockType0 *contentBlock0 = [[XMMResponseContentBlockType0 alloc] init];
   contentBlock0.contentBlockType = @"title";
   contentBlock0.title = result.content.title;
