@@ -54,6 +54,7 @@
 		8860DA811AE78D2C00DF2239 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8860DA801AE78D2C00DF2239 /* libxml2.dylib */; };
 		8860DA831AE78D3500DF2239 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8860DA821AE78D3500DF2239 /* CoreGraphics.framework */; };
 		8860DA851AE78D3B00DF2239 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8860DA841AE78D3B00DF2239 /* UIKit.framework */; };
+		887BE0331B53D43000E9D584 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 887BE0351B53D43000E9D584 /* Localizable.strings */; };
 		889BE4301B38295E002850D5 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 889BE42F1B38295E002850D5 /* libGoogleAnalyticsServices.a */; };
 		889BE4321B3829A0002850D5 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 889BE4311B3829A0002850D5 /* CoreData.framework */; };
 		889BE4341B3829B1002850D5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 889BE4331B3829B1002850D5 /* SystemConfiguration.framework */; };
@@ -184,6 +185,9 @@
 		8860DA801AE78D2C00DF2239 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		8860DA821AE78D3500DF2239 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		8860DA841AE78D3B00DF2239 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		887BE0321B53D40200E9D584 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		887BE0341B53D43000E9D584 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		887BE0361B53D44700E9D584 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		889BE4241B38290D002850D5 /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
 		889BE4251B38290D002850D5 /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIDictionaryBuilder.h; sourceTree = "<group>"; };
 		889BE42A1B38290D002850D5 /* GAIFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIFields.h; sourceTree = "<group>"; };
@@ -436,6 +440,7 @@
 				88BA01F71AA859F90091A43C /* AppDelegate.m */,
 				88052D791AE103C300AB433D /* Globals.h */,
 				88052D7A1AE103C300AB433D /* Globals.m */,
+				887BE0351B53D43000E9D584 /* Localizable.strings */,
 				881458381B01EE8B0024E6F4 /* Models */,
 				8814583B1B01EE8B0024E6F4 /* ViewControllers */,
 				881458491B01EE8B0024E6F4 /* Views */,
@@ -647,6 +652,7 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
 			);
 			mainGroup = 88BA01E61AA859F90091A43C;
 			productRefGroup = 88BA01F01AA859F90091A43C /* Products */;
@@ -680,6 +686,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				887BE0331B53D43000E9D584 /* Localizable.strings in Resources */,
 				881457F71B01E8620024E6F4 /* SpotMapBlockTableViewCell.xib in Resources */,
 				881457EA1B01E8620024E6F4 /* ContentBlockTableViewCell.xib in Resources */,
 				881457F21B01E8620024E6F4 /* LinkBlockTableViewCell.xib in Resources */,
@@ -820,10 +827,21 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		887BE0351B53D43000E9D584 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				887BE0341B53D43000E9D584 /* en */,
+				887BE0361B53D44700E9D584 /* de */,
+			);
+			name = Localizable.strings;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		88BA02011AA859F90091A43C /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				88BA02021AA859F90091A43C /* Base */,
+				887BE0321B53D40200E9D584 /* de */,
 			);
 			name = LaunchScreen.xib;
 			path = ..;
