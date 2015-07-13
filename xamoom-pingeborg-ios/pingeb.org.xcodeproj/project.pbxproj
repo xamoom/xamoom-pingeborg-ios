@@ -440,7 +440,6 @@
 				88BA01F71AA859F90091A43C /* AppDelegate.m */,
 				88052D791AE103C300AB433D /* Globals.h */,
 				88052D7A1AE103C300AB433D /* Globals.m */,
-				887BE0351B53D43000E9D584 /* Localizable.strings */,
 				881458381B01EE8B0024E6F4 /* Models */,
 				8814583B1B01EE8B0024E6F4 /* ViewControllers */,
 				881458491B01EE8B0024E6F4 /* Views */,
@@ -457,6 +456,7 @@
 		88BA01F21AA859F90091A43C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				887BE0351B53D43000E9D584 /* Localizable.strings */,
 				88BA01F31AA859F90091A43C /* Info.plist */,
 				88BA01F41AA859F90091A43C /* main.m */,
 			);

@@ -6,4 +6,12 @@
   Copyright (c) 2015 xamoom GmbH. All rights reserved.
 */
 
+"pingeb.org Carinthia" = "pingeb.org Carinthia";
+
 "Last update: %@" = "Last update: %@";
+
+/* REMenu FontSizes */
+
+"Normal Font Size" = "Normal Font Size";
+"Big Font Size" = "Big Font Size";
+"Really Big Font Size" = "Really Big Font Size";

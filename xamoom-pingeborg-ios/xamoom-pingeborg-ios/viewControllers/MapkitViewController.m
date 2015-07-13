@@ -34,7 +34,7 @@
   [super viewDidLoad];
   
   [self setupAnalytics];
-
+  
   [self.tabBarItem setSelectedImage:[UIImage imageNamed:@"map_filled"]];
   
   self.placeholder = [UIImage imageNamed:@"placeholder"];
@@ -94,7 +94,7 @@
                                              object:nil];
   
   [self.locationManager startUpdatingLocation];
-
+  
   //check for firstTime geofencing
   if ([Globals isFirstTimeGeofencing]) {
     self.instructionView.hidden = NO;
@@ -112,7 +112,12 @@
   //load spotmap if there are no annotations on the map
   if (self.mapKitWithSMCalloutView.annotations.count <= 1) {
     [self.geoFenceActivityIndicator startAnimating];
-    //[[XMMEnduserApi sharedInstance] spotMapWithSystemId:0 withMapTags:@[@"showAllTheSpots"] withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
+    [[XMMEnduserApi sharedInstance] spotMapWithSystemId:0 withMapTags:@[@"showAllTheSpots"] withLanguage:[XMMEnduserApi sharedInstance].systemLanguage
+                                             completion:^(XMMResponseGetSpotMap *result) {
+                                               [self showSpotMap:result];
+                                             } error:^(XMMError *error) {
+                                               
+                                             }];
   }
 }
 
@@ -124,7 +129,7 @@
 
 #pragma mark - XMMEnduser Delegate
 
-- (void)didLoadSpotMap:(XMMResponseGetSpotMap *)result {
+- (void)showSpotMap:(XMMResponseGetSpotMap *)result {
   //get the customMarker for the map
   if (result.style.customMarker != nil) {
     NSString *base64String = result.style.customMarker;
@@ -166,14 +171,19 @@
   }
 }
 
--(void)didLoadDataWithLocation:(XMMResponseGetByLocation *)result {
+-(void)showDataWithLocation:(XMMResponseGetByLocation *)result {
   self.itemsToDisplay = [[NSMutableArray alloc] init];
   self.imagesToDisplay = [[NSMutableDictionary alloc] init];
   
   //load items in near you, when there is no geofence
   if([result.items count] == 0) {
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
-    //[[XMMEnduserApi sharedInstance] closestSpotsWithLat:self.lastLocation.coordinate.latitude withLon:self.lastLocation.coordinate.longitude withRadius:2000 withLimit:10 withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
+    [[XMMEnduserApi sharedInstance] closestSpotsWithLat:self.lastLocation.coordinate.latitude withLon:self.lastLocation.coordinate.longitude withRadius:2000 withLimit:10 withLanguage:[XMMEnduserApi sharedInstance].systemLanguage
+                                             completion:^(XMMResponseClosestSpot *result) {
+                                               [self showClosestSpots:result];
+                                             } error:^(XMMError *error) {
+                                               
+                                             }];
     return;
   }
   
@@ -205,7 +215,7 @@
   [self enableGeofenceView];
 }
 
-- (void)didLoadClosestSpots:(XMMResponseClosestSpot *)result {
+- (void)showClosestSpots:(XMMResponseClosestSpot *)result {
   for (XMMResponseGetSpotMapItem *item in result.items) {
     [self.itemsToDisplay addObject:item];
   }
@@ -374,7 +384,7 @@
     pingeborgCalloutView.frame = pingeborgCalloutViewRect;
     
     [navigationButton addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mapNavigationTapped)]];
-
+    
     [pingeborgCalloutView addSubview:navigationButton];
     
     //set custom contentView
@@ -448,7 +458,12 @@
   [self disableGeofenceView];
   [self.geoFenceActivityIndicator startAnimating];
   self.geoFenceLabel.text = @"Auf der Suche ...";
-  //[[XMMEnduserApi sharedInstance] contentWithLat:[NSString stringWithFormat:@"%f",self.lastLocation.coordinate.latitude] withLon:[NSString stringWithFormat:@"%f",self.lastLocation.coordinate.longitude] withLanguage:[XMMEnduserApi sharedInstance].systemLanguage];
+  [[XMMEnduserApi sharedInstance] contentWithLat:[NSString stringWithFormat:@"%f",self.lastLocation.coordinate.latitude] withLon:[NSString stringWithFormat:@"%f",self.lastLocation.coordinate.longitude] withLanguage:[XMMEnduserApi sharedInstance].systemLanguage
+                                      completion:^(XMMResponseGetByLocation *result) {
+                                        [self showDataWithLocation:result];
+                                      } error:^(XMMError *error) {
+                                        
+                                      }];
 }
 
 #pragma mark - Table view data source
@@ -670,7 +685,7 @@
   [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"     // Event category (required)
                                                         action:@"Did click Geofence"  // Event action (required)
                                                          label:[NSString stringWithFormat:@"Title - %@", cell.content.title]          // Event label
-                                                         value:[NSString stringWithFormat:@"Location: %f, %f", self.lastLocation.coordinate.latitude, self.lastLocation.coordinate.longitude]] build]];    // Event value
+                                                         value:[NSString stringWithFormat:@"Location: %f, %f", self.lastLocation.coordinate.latitude, self.lastLocation.coordinate.longitude]]   build]];    // Event value
   
   [[XMMEnduserApi sharedInstance] geofenceAnalyticsMessageWithRequestedLanguage:[XMMEnduserApi sharedInstance].systemLanguage
                                                           withDeliveredLanguage:self.savedResponseContent.language

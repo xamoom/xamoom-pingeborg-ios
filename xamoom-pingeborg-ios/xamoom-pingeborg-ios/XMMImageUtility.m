@@ -67,16 +67,7 @@
                                      queue:[NSOperationQueue mainQueue]
                          completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                            if ( !error ) {
-                             NSArray *paths = NSSearchPathForDirectoriesInDomains
-                             (NSDocumentDirectory, NSUserDomainMask, YES);
-                             NSString *documentsDirectory = paths[0];
-                             NSString *fileName = [NSString stringWithFormat:@"%@/svgimage.svg", documentsDirectory];
-                             [data writeToFile:fileName atomically:YES];
-                             
-                             //read svg mapmarker
-                             NSData *data = [[NSFileManager defaultManager] contentsAtPath:fileName];
-                             SVGKImage *svgImage = [SVGKImage imageWithSource:[SVGKSourceString sourceFromContentsOfString:
-                                                                               [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]]];
+                             SVGKImage *svgImage = [SVGKImage imageWithSource:[SVGKSourceString sourceFromContentsOfString:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]]];
                              completionBlock(YES,svgImage);
                            } else {
                              completionBlock(NO,nil);

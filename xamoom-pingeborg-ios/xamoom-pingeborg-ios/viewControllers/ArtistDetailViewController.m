@@ -42,35 +42,45 @@
   [self.hud showInView:self.view];
   
   if ([savedArtists containsString:self.contentId]) {
-    //[[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:NO includeMenu:NO withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:YES];
+    [[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:NO includeMenu:NO withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:YES
+                                              completion:^(XMMResponseGetById *result) {
+                                                [self showDataWithContentId:result];
+                                              } error:^(XMMError *error) {
+                                                
+                                              }];
   } else {
-    //[[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:NO includeMenu:NO withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:NO];
+    [[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:NO includeMenu:NO withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:NO
+                                              completion:^(XMMResponseGetById *result) {
+                                                [self showDataWithContentId:result];
+                                              } error:^(XMMError *error) {
+                                                
+                                              }];
   }
   
   //dropdown menu
-  REMenuItem *NormalFontSizeItem = [[REMenuItem alloc] initWithTitle:@"Normal Font Size"
-                                                  subtitle:nil
-                                                     image:nil
-                                          highlightedImage:nil
-                                                    action:^(REMenuItem *item) {
-                                                      [self.contentBlocks updateFontSizeTo:NormalFontSize];
-                                                    }];
+  REMenuItem *NormalFontSizeItem = [[REMenuItem alloc] initWithTitle:NSLocalizedString(@"Normal Font Size", nil)
+                                                            subtitle:nil
+                                                               image:nil
+                                                    highlightedImage:nil
+                                                              action:^(REMenuItem *item) {
+                                                                [self.contentBlocks updateFontSizeTo:NormalFontSize];
+                                                              }];
   
-  REMenuItem *BigFontSizeItem = [[REMenuItem alloc] initWithTitle:@"Big Font Size"
-                                                     subtitle:nil
-                                                        image:nil
-                                             highlightedImage:nil
-                                                       action:^(REMenuItem *item) {
-                                                         [self.contentBlocks updateFontSizeTo:BigFontSize];
-                                                       }];
+  REMenuItem *BigFontSizeItem = [[REMenuItem alloc] initWithTitle:NSLocalizedString(@"Big Font Size", nil)
+                                                         subtitle:nil
+                                                            image:nil
+                                                 highlightedImage:nil
+                                                           action:^(REMenuItem *item) {
+                                                             [self.contentBlocks updateFontSizeTo:BigFontSize];
+                                                           }];
   
-  REMenuItem *BiggerFontSizeItem = [[REMenuItem alloc] initWithTitle:@"Really Big Font Size"
-                                                      subtitle:nil
-                                                         image:nil
-                                              highlightedImage:nil
-                                                        action:^(REMenuItem *item) {
-                                                          [self.contentBlocks updateFontSizeTo:BiggerFontSize];
-                                                        }];
+  REMenuItem *BiggerFontSizeItem = [[REMenuItem alloc] initWithTitle:NSLocalizedString(@"Really Big Font Size", nil)
+                                                            subtitle:nil
+                                                               image:nil
+                                                    highlightedImage:nil
+                                                              action:^(REMenuItem *item) {
+                                                                [self.contentBlocks updateFontSizeTo:BiggerFontSize];
+                                                              }];
   
   self.fontSizeDropdownMenu = [[REMenu alloc] initWithItems:@[NormalFontSizeItem, BigFontSizeItem, BiggerFontSizeItem]];
   
@@ -86,7 +96,7 @@
   UIView *iv = [[UIView alloc] initWithFrame:CGRectMake(0,0,(self.view.frame.size.width/1.5),32)];
   self.dropDownButton = [[UIButton alloc] initWithFrame:CGRectMake(0,0,(self.view.frame.size.width/1.5),32)];
   //[dropDownButton addTarget:navController action:@selector(toggleMenu) forControlEvents:UIControlEventTouchUpInside];
-  [self.dropDownButton setTitle:@"pingeb.org Kärnten" forState:UIControlStateNormal];
+  [self.dropDownButton setTitle:@"pingeb.org" forState:UIControlStateNormal];
   [self.dropDownButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
   
   UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake((iv.frame.size.width/2) - 3.5, iv.frame.size.height-3.5, 7, 3.5)];
@@ -131,9 +141,9 @@
   [self.tableView reloadData];
 }
 
-# pragma mark - XMMEnduser Delegate
+# pragma mark - XMMEnduser Display
 
-- (void)didLoadDataWithContentId:(XMMResponseGetById *)result {
+- (void)showDataWithContentId:(XMMResponseGetById *)result {
   //do analytics
   [self setupAnalyticsWithName:[NSString stringWithFormat:@"Artist Detail - %@", result.content.title]];
   
@@ -175,7 +185,7 @@
 
 - (void)displayContentTitleAndImage:(XMMResponseGetById *)result {
   //make text and imageblock for the title, exercpt and the display image
-
+  
   XMMResponseContentBlockType0 *contentBlock0 = [[XMMResponseContentBlockType0 alloc] init];
   contentBlock0.contentBlockType = @"title";
   contentBlock0.title = result.content.title;

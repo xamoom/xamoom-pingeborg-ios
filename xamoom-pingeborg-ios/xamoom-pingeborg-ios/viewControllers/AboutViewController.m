@@ -39,7 +39,7 @@
   self.hud = [[JGProgressHUD alloc] initWithStyle:JGProgressHUDStyleDark];
   
   //dropdown menu
-  REMenuItem *NormalFontSizeItem = [[REMenuItem alloc] initWithTitle:@"Normal Font Size"
+  REMenuItem *NormalFontSizeItem = [[REMenuItem alloc] initWithTitle:NSLocalizedString(@"Normal Font Size", nil)
                                                             subtitle:nil
                                                                image:nil
                                                     highlightedImage:nil
@@ -47,7 +47,7 @@
                                                                 [self.contentBlocks updateFontSizeTo:NormalFontSize];
                                                               }];
   
-  REMenuItem *BigFontSizeItem = [[REMenuItem alloc] initWithTitle:@"Big Font Size"
+  REMenuItem *BigFontSizeItem = [[REMenuItem alloc] initWithTitle:NSLocalizedString(@"Big Font Size", nil)
                                                          subtitle:nil
                                                             image:nil
                                                  highlightedImage:nil
@@ -55,7 +55,7 @@
                                                              [self.contentBlocks updateFontSizeTo:BigFontSize];
                                                            }];
   
-  REMenuItem *BiggerFontSizeItem = [[REMenuItem alloc] initWithTitle:@"Really Big Font Size"
+  REMenuItem *BiggerFontSizeItem = [[REMenuItem alloc] initWithTitle:NSLocalizedString(@"Really Big Font Size", nil)
                                                             subtitle:nil
                                                                image:nil
                                                     highlightedImage:nil

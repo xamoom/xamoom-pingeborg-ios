@@ -6,4 +6,12 @@
   Copyright (c) 2015 xamoom GmbH. All rights reserved.
 */
 
+"pingeb.org Carinthia" = "pingeb.org Kärnten";
+
 "Last update: %@" = "Letztes Update: %@";
+
+/* REMenu FontSizes */
+
+"Normal Font Size" = "Normaler Text";
+"Big Font Size" = "Großer Text";
+"Really Big Font Size" = "Sehr großer Text";

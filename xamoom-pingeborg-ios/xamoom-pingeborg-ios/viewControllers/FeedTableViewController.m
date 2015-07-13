@@ -49,7 +49,7 @@ int const kPageSize = 7;
   UIView *iv = [[UIView alloc] initWithFrame:CGRectMake(0,0,(self.view.frame.size.width/1.5),32)];
   self.dropDownButton = [[UIButton alloc] initWithFrame:CGRectMake(0,0,(self.view.frame.size.width/1.5),32)];
   //[dropDownButton addTarget:navController action:@selector(toggleMenu) forControlEvents:UIControlEventTouchUpInside];
-  [self.dropDownButton setTitle:@"pingeb.org Kärnten" forState:UIControlStateNormal];
+  [self.dropDownButton setTitle:NSLocalizedString(@"pingeb.org Carinthia", nil) forState:UIControlStateNormal];
   [self.dropDownButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
   
   UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake((iv.frame.size.width/2) - 3.5, iv.frame.size.height-3.5, 7, 3.5)];
@@ -324,15 +324,12 @@ int const kPageSize = 7;
     
     switch (location) {
       case 0:
-        [button setTitle:@"pingeborg Klagenfurt" forState:UIControlStateNormal];
+        [button setTitle:NSLocalizedString(@"pingeb.org Carinthia", nil) forState:UIControlStateNormal];
         break;
       case 1:
         [button setTitle:@"pingeborg Salzburg" forState:UIControlStateNormal];
         break;
       case 2:
-        [button setTitle:@"pingeborg Villach" forState:UIControlStateNormal];
-        break;
-      case 3:
         [button setTitle:@"pingeborg Vorarlberg" forState:UIControlStateNormal];
         break;
       default:
@@ -343,7 +340,7 @@ int const kPageSize = 7;
 
 - (void)pingeborgSystemChanged {
   NSString *systemName;
-  systemName = @"pingeborg Kärnten";
+  systemName = NSLocalizedString(@"pingeb.org Carinthia", nil);
   /*
   if ([[Globals sharedObject].globalSystemId isEqualToString:@"6588702901927936"]) {
     systemName = @"pingeborg Kärnten";
@@ -372,9 +369,12 @@ int const kPageSize = 7;
 #pragma mark - Analytics
 
 - (void)setupAnalytics {
+  /*
   id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+  [[GAI sharedInstance] setOptOut:YES];
   [tracker send:[[[GAIDictionaryBuilder createScreenView] set:@"Home Screen - Artist List"
                                                        forKey:kGAIScreenName] build]];
+   */
 }
 
 @end
