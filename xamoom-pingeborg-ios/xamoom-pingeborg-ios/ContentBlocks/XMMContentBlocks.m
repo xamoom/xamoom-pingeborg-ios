@@ -159,6 +159,8 @@ int const kHorizontalSpaceToSubview = 32;
   //set title
   if(contentBlock.title != nil && ![contentBlock.title isEqualToString:@""])
     cell.titleLabel.text = contentBlock.title;
+  else
+    
   
   //bigger font if it is a contenttype "title"
   if ([contentBlock.contentBlockType isEqualToString:@"title"]) {
