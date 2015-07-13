@@ -71,6 +71,7 @@
     [self.map addAnnotation:point];
   }
   
+  [self.loadingIndicator stopAnimating];
   [self zoomMapViewToFitAnnotations:self.map animated:YES];
 }
 
