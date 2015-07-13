@@ -305,7 +305,12 @@ int const kPageSize = 7;
 - (void)loadMoreContent {
   if (self.hasMore && !self.isApiCallingBlocked) {
     self.isApiCallingBlocked = YES;
-    //[[XMMEnduserApi sharedInstance] contentListWithPageSize:kPageSize withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withCursor:self.contentListCursor withTags:@[@"artists"]];
+    [[XMMEnduserApi sharedInstance] contentListWithPageSize:kPageSize withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withCursor:self.contentListCursor withTags:@[@"artists"]
+                                                 completion:^(XMMResponseContentList *result) {
+                                                   [self displayContentList:result];
+                                                 } error:^(XMMError *error) {
+                                                   NSLog(@"Error: %@", error.message);
+                                                 }];
   }
 }
 
