@@ -162,6 +162,7 @@
     ContentBlockTableViewCell *cell = (self.contentBlocks.itemsToDisplay)[indexPath.row];
     
     ArtistDetailViewController *vc = [[ArtistDetailViewController alloc] init];
+    [Globals addDiscoveredArtist:cell.contentId];
     [vc setContentId:cell.contentId];
     [self.navigationController pushViewController:vc animated:YES];
   }
