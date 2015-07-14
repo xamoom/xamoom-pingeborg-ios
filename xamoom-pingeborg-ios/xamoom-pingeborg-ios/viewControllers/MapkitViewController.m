@@ -104,7 +104,6 @@
 -(void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
   
-  
   //create userTracking button
   MKUserTrackingBarButtonItem *buttonItem = [[MKUserTrackingBarButtonItem alloc] initWithMapView:self.mapKitWithSMCalloutView];
   self.parentViewController.navigationItem.rightBarButtonItem = buttonItem;

@@ -70,13 +70,13 @@
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
   //instead of switching view the qr code scanner will be opened
   self.hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
-  [self.hud showInView:self.view];
   
   if (viewController == (tabBarController.viewControllers)[3]){
     [self setupAnalytics];
     [[XMMEnduserApi sharedInstance] setQrCodeViewControllerCancelButtonTitle:NSLocalizedString(@"Cancel", nil)];
     [[XMMEnduserApi sharedInstance] startQRCodeReaderFromViewController:self
                                                                 didLoad:^(NSString *locationIdentifier, NSString *url) {
+                                                                  [self.hud showInView:self.view];
                                                                   [self didScanQR:locationIdentifier withCompleteUrl:url];
                                                                 }];
     return NO;
