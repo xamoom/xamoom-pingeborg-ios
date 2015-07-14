@@ -34,7 +34,7 @@
   [super viewDidLoad];
   
   [self setupAnalytics];
-  
+    
   [self.tabBarItem setSelectedImage:[UIImage imageNamed:@"map_filled"]];
   
   self.placeholder = [UIImage imageNamed:@"placeholder"];
@@ -96,7 +96,7 @@
   [self.locationManager startUpdatingLocation];
   
   //check for firstTime geofencing
-  if ([Globals isFirstTimeGeofencing]) {
+  if ([[Globals sharedObject] isFirstTimeGeofencing]) {
     self.instructionView.hidden = NO;
   }
 }
@@ -516,7 +516,7 @@
         SVGKImageView *svgImageView = [[SVGKFastImageView alloc] initWithSVGKImage:(self.imagesToDisplay)[contentItem.contentId]];
         [svgImageView setFrame:CGRectMake(0, 0, self.view.frame.size.width, (self.view.frame.size.width / imageRatio))];
         [cell.feedItemImage addSubview:svgImageView];
-      } else if (![[Globals savedArtits] containsString:contentItem.contentId]) {
+      } else if (![[[Globals sharedObject] savedArtits] containsString:contentItem.contentId]) {
         cell.feedItemImage.image = [XMMImageUtility convertImageToGrayScale:image];
         cell.feedItemOverlayImage.backgroundColor = [UIColor whiteColor];
         cell.feedItemOverlayImage.image = [UIImage imageNamed:@"discoverable"];
@@ -677,7 +677,7 @@
   artistDetailViewController.contentId = cell.contentId;
   
   //add to discovered artists
-  [Globals addDiscoveredArtist:cell.contentId];
+  [[Globals sharedObject] addDiscoveredArtist:cell.contentId];
   
   //analytics
   id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];

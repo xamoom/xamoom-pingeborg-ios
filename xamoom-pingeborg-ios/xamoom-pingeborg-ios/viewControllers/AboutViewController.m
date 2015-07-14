@@ -25,7 +25,7 @@
   [super viewDidLoad];
   
   [self.tabBarItem setSelectedImage:[UIImage imageNamed:@"info_filled"]];
-  
+    
   //setting up tableView
   [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
   self.tableView.rowHeight = UITableViewAutomaticDimension;

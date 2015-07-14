@@ -25,6 +25,8 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   
+  self.navigationItem.title = NSLocalizedString(@"pingeb.org", nil);
+  
   //tableview settings
   [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
   self.tableView.rowHeight = UITableViewAutomaticDimension;
@@ -35,7 +37,7 @@
   self.contentBlocks.delegate = self;
   self.contentBlocks.linkColor = [Globals sharedObject].pingeborgLinkColor;
   
-  NSString* savedArtists = [Globals savedArtits];
+  NSString* savedArtists = [[Globals sharedObject] savedArtits];
   
   //init progressHud
   self.hud = [[JGProgressHUD alloc] initWithStyle:JGProgressHUDStyleDark];
@@ -90,22 +92,6 @@
                                                                 target:self
                                                                 action:@selector(toggleFontSizeDropdownMenu)];
   
-  self.navigationItem.rightBarButtonItem = buttonItem;
-  
-  //navbarDropdown => title
-  UIView *iv = [[UIView alloc] initWithFrame:CGRectMake(0,0,(self.view.frame.size.width/1.5),32)];
-  self.dropDownButton = [[UIButton alloc] initWithFrame:CGRectMake(0,0,(self.view.frame.size.width/1.5),32)];
-  //[dropDownButton addTarget:navController action:@selector(toggleMenu) forControlEvents:UIControlEventTouchUpInside];
-  [self.dropDownButton setTitle:@"pingeb.org" forState:UIControlStateNormal];
-  [self.dropDownButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-  
-  UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake((iv.frame.size.width/2) - 3.5, iv.frame.size.height-3.5, 7, 3.5)];
-  UIImage *angleDownImage = [UIImage imageNamed:@"angleDown"];
-  [imageView setImage:angleDownImage];
-  
-  [iv addSubview:self.dropDownButton];
-  //[iv addSubview:imageView];
-  self.navigationItem.titleView = iv;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -121,7 +107,7 @@
   
   [[NSNotificationCenter defaultCenter] postNotificationName:@"pauseAllSounds" object:self];
   
-  if ([self.contentId isEqualToString:[Globals savedArtitsAsArray].lastObject]) {
+  if ([self.contentId isEqualToString:[[Globals sharedObject] savedArtitsAsArray].lastObject]) {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"updateAllArtistLists" object:self];
   }
 }
@@ -162,7 +148,7 @@
     ContentBlockTableViewCell *cell = (self.contentBlocks.itemsToDisplay)[indexPath.row];
     
     ArtistDetailViewController *vc = [[ArtistDetailViewController alloc] init];
-    [Globals addDiscoveredArtist:cell.contentId];
+    [[Globals sharedObject] addDiscoveredArtist:cell.contentId];
     [vc setContentId:cell.contentId];
     [self.navigationController pushViewController:vc animated:YES];
   }

@@ -20,17 +20,17 @@
 
 + (Globals*)sharedObject;
 
-+ (void)setSystemFromInteger:(NSInteger)systemId;
+- (void)setSystemFromInteger:(NSInteger)systemId;
 
-+ (void)addDiscoveredArtist:(NSString*)contentId;
+- (void)addDiscoveredArtist:(NSString*)contentId;
 
-+ (NSString*)savedArtits;
+- (NSString*)savedArtits;
 
-+ (NSArray*)savedArtitsAsArray;
+- (NSArray*)savedArtitsAsArray;
 
-+ (BOOL)isFirstStart;
+- (BOOL)isFirstStart;
 
-+ (BOOL)isFirstTimeGeofencing;
+- (BOOL)isFirstTimeGeofencing;
 
 - (void)developmentMode;
 

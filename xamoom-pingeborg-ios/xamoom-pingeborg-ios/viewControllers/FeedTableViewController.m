@@ -33,6 +33,7 @@ int const kPageSize = 7;
   [super viewDidLoad];
   
   [self setupAnalytics];
+  self.parentViewController.navigationItem.title = NSLocalizedString(@"pingeb.org Carinthia", nil);
   
   [self.tabBarItem setSelectedImage:[UIImage imageNamed:@"home_filled"]];
   
@@ -40,25 +41,6 @@ int const kPageSize = 7;
   [self.feedTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
   self.feedTableView.rowHeight = UITableViewAutomaticDimension;
   self.feedTableView.estimatedRowHeight = 150.0;
-  
-  //set NavigationController delegate
-  //NavigationViewController* navController = (NavigationViewController*) self.parentViewController.parentViewController;
-  //navController.delegate = self;
-  
-  //navbarDropdown => title
-  UIView *iv = [[UIView alloc] initWithFrame:CGRectMake(0,0,(self.view.frame.size.width/1.5),32)];
-  self.dropDownButton = [[UIButton alloc] initWithFrame:CGRectMake(0,0,(self.view.frame.size.width/1.5),32)];
-  //[dropDownButton addTarget:navController action:@selector(toggleMenu) forControlEvents:UIControlEventTouchUpInside];
-  [self.dropDownButton setTitle:NSLocalizedString(@"pingeb.org Carinthia", nil) forState:UIControlStateNormal];
-  [self.dropDownButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-  
-  UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake((iv.frame.size.width/2) - 3.5, iv.frame.size.height-3.5, 7, 3.5)];
-  UIImage *angleDownImage = [UIImage imageNamed:@"angleDown"];
-  [imageView setImage:angleDownImage];
-  
-  [iv addSubview:self.dropDownButton];
-  //[iv addSubview:imageView];
-  self.parentViewController.navigationItem.titleView = iv;
   
   //setting up refresh control
   self.refreshControl = [[UIRefreshControl alloc] init];
@@ -119,7 +101,7 @@ int const kPageSize = 7;
   self.contentListCursor = result.cursor;
   
   //check if first startup
-  if ([Globals isFirstStart]) {
+  if ([[Globals sharedObject] isFirstStart]) {
     [self firstStartup:result];
   }
   
@@ -201,7 +183,7 @@ int const kPageSize = 7;
       SVGKImageView *svgImageView = [[SVGKFastImageView alloc] initWithSVGKImage:(self.imagesToDisplay)[contentItem.contentId]];
       [svgImageView setFrame:CGRectMake(0, 0, self.view.frame.size.width, (self.view.frame.size.width / imageRatio))];
       [cell.feedItemImage addSubview:svgImageView];
-    } else if (![[Globals savedArtits] containsString:contentItem.contentId]) {
+    } else if (![[[Globals sharedObject] savedArtits] containsString:contentItem.contentId]) {
       cell.feedItemImage.image = [XMMImageUtility convertImageToGrayScale:image];
       cell.feedItemOverlayImage.backgroundColor = [UIColor whiteColor];
     } else {
@@ -213,7 +195,7 @@ int const kPageSize = 7;
   }
   
   //overlay image for the first cell "discoverable"
-  if (contentItem == self.itemsToDisplay.firstObject && ![[Globals savedArtits] containsString:contentItem.contentId]) {
+  if (contentItem == self.itemsToDisplay.firstObject && ![[[Globals sharedObject] savedArtits] containsString:contentItem.contentId]) {
     cell.feedItemOverlayImage.image = [UIImage imageNamed:@"discoverable"];
   } else {
     cell.feedItemOverlayImage.image = nil;
@@ -285,7 +267,7 @@ int const kPageSize = 7;
   int counter = 1;
   while (counter <= 3) {
     XMMResponseContent *contentItem = result.items[counter];
-    [Globals addDiscoveredArtist:contentItem.contentId];
+    [[Globals sharedObject] addDiscoveredArtist:contentItem.contentId];
     counter++;
   }
 }

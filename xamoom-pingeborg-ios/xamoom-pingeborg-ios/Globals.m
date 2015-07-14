@@ -21,6 +21,7 @@ static Globals *globals;
     globals = [[Globals alloc] init];
     globals.pingeborgYellow = [UIColor colorWithRed:255.0/255.0 green:238.0/255.0 blue:0/255.0 alpha:1];
     globals.pingeborgLinkColor = [UIColor colorWithRed:113.0/255.0 green:148.0/255.0 blue:48.0/255.0 alpha:1];
+    globals.aboutPageId = @"d8be762e9b644fc4bb7aedfa8c0e17b7";
   }
   
   //IF DEV
@@ -36,7 +37,7 @@ static Globals *globals;
   return [userDefaults integerForKey:@"pingeborgSystem"];
 }
 
-+ (void)setSystemFromInteger:(NSInteger)systemId {
+- (void)setSystemFromInteger:(NSInteger)systemId {
   switch (systemId) {
     case 0: {
       globals.aboutPageId = @"d8be762e9b644fc4bb7aedfa8c0e17b7";
@@ -56,7 +57,7 @@ static Globals *globals;
   }
 }
 
-+ (void)addDiscoveredArtist:(NSString *)contentId {
+- (void)addDiscoveredArtist:(NSString *)contentId {
   NSString *savedArtists;
   NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
   
@@ -75,7 +76,7 @@ static Globals *globals;
   [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-+ (NSString *)savedArtits {
+- (NSString *)savedArtits {
   NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
   
   if ( [userDefaults stringForKey:@"savedArtists"] ) {
@@ -85,7 +86,7 @@ static Globals *globals;
   return nil;
 }
 
-+ (NSArray*)savedArtitsAsArray {
+- (NSArray*)savedArtitsAsArray {
   NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
   
   if ( [userDefaults stringForKey:@"savedArtists"] ) {
@@ -95,7 +96,7 @@ static Globals *globals;
   return nil;
 }
 
-+ (BOOL)isFirstStart {
+- (BOOL)isFirstStart {
   NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
   
   if ([userDefaults boolForKey:@"isNotFirstStart"]) {
@@ -106,7 +107,7 @@ static Globals *globals;
   }
 }
 
-+ (BOOL)isFirstTimeGeofencing {
+- (BOOL)isFirstTimeGeofencing {
   NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
   
   if ([userDefaults boolForKey:@"isFirstTimeGeofencing"]) {

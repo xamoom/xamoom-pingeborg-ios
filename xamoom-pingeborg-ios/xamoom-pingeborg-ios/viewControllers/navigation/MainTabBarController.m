@@ -147,7 +147,7 @@
 }
 
 - (void)didLoadDataWithLocationIdentifier:(XMMResponseGetByLocationIdentifier *)apiResult{
-  [Globals addDiscoveredArtist:apiResult.content.contentId];
+  [[Globals sharedObject] addDiscoveredArtist:apiResult.content.contentId];
   self.savedApiResult = apiResult;
   [self.hud dismiss];
   [self performSegueWithIdentifier:@"showScanResult" sender:self];

@@ -11,9 +11,6 @@
 #import "Globals.h"
 #import "GAI.h"
 
-NSString* apiKey = @"3441ff29-7113-418b-a5b5-5de2e50de21b";
-NSString* devApiKey = @"4552f99b-2b34-4f18-81a1-0911e25351d7";
-
 @interface AppDelegate ()
 
 @end
@@ -25,10 +22,15 @@ NSString* devApiKey = @"4552f99b-2b34-4f18-81a1-0911e25351d7";
   //set UI colors
   [[UINavigationBar appearance] setBarTintColor:[Globals sharedObject].pingeborgYellow];
   [[UITabBar appearance] setTintColor:[Globals sharedObject].pingeborgLinkColor];
-  
+    
   //IF DEV
-  [[Globals sharedObject] developmentMode];
-  [[XMMEnduserApi sharedInstance] setApiKey:devApiKey];
+  //[[Globals sharedObject] developmentMode];
+  
+  NSString *file = [[NSBundle mainBundle] pathForResource:@"apikey" ofType:@"txt"];
+  NSString *apiKey = [NSString stringWithContentsOfFile:file
+                                            encoding:NSUTF8StringEncoding error:NULL];
+  
+  [[XMMEnduserApi sharedInstance] setApiKey:apiKey];
   
   //Google Analytics
   
