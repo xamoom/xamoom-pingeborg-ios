@@ -14,7 +14,6 @@
 @property XMMResponseGetById *savedResult;
 @property XMMContentBlocks *contentBlocks;
 @property REMenu *fontSizeDropdownMenu;
-@property UIButton *dropDownButton;
 
 @end
 

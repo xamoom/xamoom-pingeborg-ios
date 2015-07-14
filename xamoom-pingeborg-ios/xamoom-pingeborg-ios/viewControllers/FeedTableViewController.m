@@ -17,7 +17,6 @@ int const kPageSize = 7;
 @property NSString *contentListCursor;
 @property bool hasMore;
 @property bool isApiCallingBlocked;
-@property UIButton *dropDownButton;
 @property UIBarButtonItem *qrButtonItem;
 @property UIImage *placeholderImage;
 @property UIRefreshControl *refreshControl;
@@ -352,8 +351,6 @@ int const kPageSize = 7;
     systemName = @"pingeborg Vorarlberg";
   }
   */
-  [self.dropDownButton setTitle:systemName forState:UIControlStateNormal];
-  
   [self pullToRefresh];
 }
 
@@ -369,12 +366,10 @@ int const kPageSize = 7;
 #pragma mark - Analytics
 
 - (void)setupAnalytics {
-  /*
   id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
   [[GAI sharedInstance] setOptOut:YES];
   [tracker send:[[[GAIDictionaryBuilder createScreenView] set:@"Home Screen - Artist List"
                                                        forKey:kGAIScreenName] build]];
-   */
 }
 
 @end
