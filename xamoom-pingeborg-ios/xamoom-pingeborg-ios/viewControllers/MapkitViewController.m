@@ -150,29 +150,7 @@
 - (void)showSpotMap:(XMMResponseGetSpotMap *)result {
   //get the customMarker for the map
   if (result.style.customMarker != nil) {
-    NSString *base64String = result.style.customMarker;
-    
-    //decode two times!
-    NSData *decodedData = [[NSData alloc] initWithBase64EncodedString:base64String options:0];
-    NSString *decodedString = [[NSString alloc] initWithData:decodedData encoding:NSUTF8StringEncoding];
-    
-    NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:decodedString]];
-    self.customMapMarker = [XMMImageUtility imageWithImage:[UIImage imageWithData:imageData] scaledToMaxWidth:30.0f maxHeight:30.0f];
-    
-    //svg support
-    if (!self.customMapMarker) {
-      //save svg mapmarker
-      NSArray *paths = NSSearchPathForDirectoriesInDomains
-      (NSDocumentDirectory, NSUserDomainMask, YES);
-      NSString *documentsDirectory = paths[0];
-      NSString *fileName = [NSString stringWithFormat:@"%@/mapmarker.svg", documentsDirectory];
-      [imageData writeToFile:fileName atomically:YES];
-      
-      //read svg mapmarker
-      NSData *data = [[NSFileManager defaultManager] contentsAtPath:fileName];
-      self.customSVGMapMarker = [SVGKImage imageWithSource:[SVGKSourceString sourceFromContentsOfString:
-                                                            [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]]];
-    }
+    [self mapMarkerFromBase64:result.style.customMarker];
   }
   
   // Add annotations
@@ -189,7 +167,24 @@
   }
 }
 
--(void)showDataWithLocation:(XMMResponseGetByLocation *)result {
+- (void)mapMarkerFromBase64:(NSString*)base64String {
+  NSData *decodedData = [[NSData alloc] initWithBase64EncodedString:base64String options:0];
+  NSString *decodedString = [[NSString alloc] initWithData:decodedData encoding:NSUTF8StringEncoding];
+  
+  if ([decodedString containsString:@"data:image/svg"]) {
+    //create svg need to DECODE TWO TIMES!
+    decodedString = [decodedString stringByReplacingOccurrencesOfString:@"data:image/svg+xml;base64," withString:@""];
+    NSData *decodedData2 = [[NSData alloc] initWithBase64EncodedString:decodedString options:0];
+    NSString *decodedString2 = [[NSString alloc] initWithData:decodedData2 encoding:NSUTF8StringEncoding];
+    self.customSVGMapMarker = [SVGKImage imageWithSource:[SVGKSourceString sourceFromContentsOfString:decodedString2]];
+  } else {
+    //create UIImage
+    NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:decodedString]];
+    self.customMapMarker = [XMMImageUtility imageWithImage:[UIImage imageWithData:imageData] scaledToMaxWidth:30.0f maxHeight:30.0f];
+  }
+}
+
+- (void)showDataWithLocation:(XMMResponseGetByLocation *)result {
   self.itemsToDisplay = [[NSMutableArray alloc] init];
   self.imagesToDisplay = [[NSMutableDictionary alloc] init];
   
