@@ -22,9 +22,10 @@
 @interface ArtistDetailViewController () <XMMContentBlocksDelegate>
 
 @property JGProgressHUD *hud;
+@property REMenu *fontSizeDropdownMenu;
+
 @property XMMResponseGetById *savedResult;
 @property XMMContentBlocks *contentBlocks;
-@property REMenu *fontSizeDropdownMenu;
 
 @end
 
@@ -37,38 +38,44 @@
   
   self.navigationItem.title = NSLocalizedString(@"pingeb.org", nil);
   
-  //tableview settings
+  self.hud = [[JGProgressHUD alloc] initWithStyle:JGProgressHUDStyleDark];
+  
+  //setup
+  [self setupTableView];
+  [self setupTextSizeDropdown];
+  [self setupContentBlocks];
+  [self downloadContent];
+}
+
+- (void)didReceiveMemoryWarning {
+  [super didReceiveMemoryWarning];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+  [super viewWillDisappear:animated];
+  
+  //stop all sounds (audioBlock and soundCloudBlock)
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"pauseAllSounds" object:self];
+
+  //reload artistList, when you discovered a new one
+  if ([self.contentId isEqualToString:[[Globals sharedObject] savedArtistsAsArray].lastObject]) {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"updateAllArtistLists" object:self];
+  }
+}
+
+#pragma mark - Setup
+
+- (void)setupTableView {
   [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
   self.tableView.rowHeight = UITableViewAutomaticDimension;
   self.tableView.estimatedRowHeight = 150.0;
-  
-  //init contentBlocks
-  self.contentBlocks = [[XMMContentBlocks alloc] initWithLanguage:[XMMEnduserApi sharedInstance].systemLanguage withWidth:self.tableView.bounds.size.width];
-  self.contentBlocks.delegate = self;
-  self.contentBlocks.linkColor = [Globals sharedObject].pingeborgLinkColor;
-  
-  NSString* savedArtists = [[Globals sharedObject] savedArtits];
-  
-  //init progressHud
-  self.hud = [[JGProgressHUD alloc] initWithStyle:JGProgressHUDStyleDark];
-  [self.hud showInView:self.view];
-  
-  if ([savedArtists containsString:self.contentId]) {
-    [[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:NO includeMenu:NO withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:YES
-                                              completion:^(XMMResponseGetById *result) {
-                                                [self showDataWithContentId:result];
-                                              } error:^(XMMError *error) {
-                                                
-                                              }];
-  } else {
-    [[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:NO includeMenu:NO withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:NO
-                                              completion:^(XMMResponseGetById *result) {
-                                                [self showDataWithContentId:result];
-                                              } error:^(XMMError *error) {
-                                                
-                                              }];
-  }
-  
+}
+
+- (void)setupTextSizeDropdown {
   //dropdown menu
   REMenuItem *NormalFontSizeItem = [[REMenuItem alloc] initWithTitle:NSLocalizedString(@"Normal Font Size", nil)
                                                             subtitle:nil
@@ -101,30 +108,37 @@
                                                                  style:UIBarButtonItemStylePlain
                                                                 target:self
                                                                 action:@selector(toggleFontSizeDropdownMenu)];
-  
+  self.navigationItem.rightBarButtonItem = buttonItem;
 }
 
-- (void)didReceiveMemoryWarning {
-  [super didReceiveMemoryWarning];
+- (void)setupContentBlocks {
+  self.contentBlocks = [[XMMContentBlocks alloc] initWithLanguage:[XMMEnduserApi sharedInstance].systemLanguage withWidth:self.tableView.bounds.size.width];
+  self.contentBlocks.delegate = self;
+  self.contentBlocks.linkColor = [Globals sharedObject].pingeborgLinkColor;
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-  [super viewDidAppear:animated];
-}
+- (void)downloadContent {
+  [self.hud showInView:self.view];
 
--(void)viewWillDisappear:(BOOL)animated {
-  [super viewWillDisappear:animated];
-  
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"pauseAllSounds" object:self];
-  
-  if ([self.contentId isEqualToString:[[Globals sharedObject] savedArtistsAsArray].lastObject]) {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"updateAllArtistLists" object:self];
+  NSString* savedArtists = [[Globals sharedObject] savedArtits];
+  if ([savedArtists containsString:self.contentId]) {
+    [[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:NO includeMenu:NO withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:YES
+                                              completion:^(XMMResponseGetById *result) {
+                                                [self showDataWithContentId:result];
+                                              } error:^(XMMError *error) {
+                                              }];
+  } else {
+    [[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:NO includeMenu:NO withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:NO
+                                              completion:^(XMMResponseGetById *result) {
+                                                [self showDataWithContentId:result];
+                                              } error:^(XMMError *error) {
+                                              }];
   }
 }
 
 #pragma mark - NavbarDropdown
 
--(void)toggleFontSizeDropdownMenu {
+- (void)toggleFontSizeDropdownMenu {
   if (self.fontSizeDropdownMenu.isOpen)
     return [self.fontSizeDropdownMenu close];
   
@@ -137,7 +151,7 @@
   [self.tableView reloadData];
 }
 
-# pragma mark - XMMEnduser Display
+# pragma mark - XMMEnduser Display ContentBlocks
 
 - (void)showDataWithContentId:(XMMResponseGetById *)result {
   //do analytics
@@ -149,10 +163,25 @@
   [self.hud dismiss];
 }
 
+- (void)displayContentTitleAndImage:(XMMResponseGetById *)result {
+  //make text and imageblock for the title, exercpt and the display image
+  
+  XMMResponseContentBlockType0 *contentBlock0 = [[XMMResponseContentBlockType0 alloc] init];
+  contentBlock0.contentBlockType = @"title";
+  contentBlock0.title = result.content.title;
+  contentBlock0.text = result.content.descriptionOfContent;
+  [self.contentBlocks displayContentBlock0:contentBlock0];
+  
+  if (result.content.imagePublicUrl != nil) {
+    XMMResponseContentBlockType3 *contentBlock3 = [[XMMResponseContentBlockType3 alloc] init];
+    contentBlock3.fileId = result.content.imagePublicUrl;
+    [self.contentBlocks displayContentBlock3:contentBlock3];
+  }
+}
+
 #pragma mark - Table view data source
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   [tableView deselectRowAtIndexPath:indexPath animated:NO];
   if ([(self.contentBlocks.itemsToDisplay)[indexPath.row] isKindOfClass:[ContentBlockTableViewCell class]]) {
     ContentBlockTableViewCell *cell = (self.contentBlocks.itemsToDisplay)[indexPath.row];
@@ -178,58 +207,6 @@
   return self.contentBlocks.itemsToDisplay[indexPath.row];
 }
 
-#pragma mark - Custom Methods
-
-- (void)displayContentTitleAndImage:(XMMResponseGetById *)result {
-  //make text and imageblock for the title, exercpt and the display image
-  
-  XMMResponseContentBlockType0 *contentBlock0 = [[XMMResponseContentBlockType0 alloc] init];
-  contentBlock0.contentBlockType = @"title";
-  contentBlock0.title = result.content.title;
-  contentBlock0.text = result.content.descriptionOfContent;
-  [self.contentBlocks displayContentBlock0:contentBlock0];
-  
-  if (result.content.imagePublicUrl != nil) {
-    XMMResponseContentBlockType3 *contentBlock3 = [[XMMResponseContentBlockType3 alloc] init];
-    contentBlock3.fileId = result.content.imagePublicUrl;
-    [self.contentBlocks displayContentBlock3:contentBlock3];
-  }
-}
-
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
-
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- } else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
- */
-
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
- }
- */
-
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
-
 /*
  #pragma mark - Navigation
  
@@ -247,6 +224,5 @@
   [tracker send:[[[GAIDictionaryBuilder createScreenView] set:screenName
                                                        forKey:kGAIScreenName] build]];
 }
-
 
 @end
