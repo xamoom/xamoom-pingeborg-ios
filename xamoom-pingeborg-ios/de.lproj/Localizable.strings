@@ -27,3 +27,11 @@
 "Nothing found!" = "Nichts gefunden!";
 "Scan a pingeb.org sticker." = "Scanne einen pingeb.org-Sticker.";
 "OK" = "OK";
+
+/* MapkitView */
+
+"Distance: %d meter" = "Entfernung: %d meter";
+"Searching ..." = "Auf der Suche ...";
+"Nothing found near you" = "Nichts in der Nähe";
+"Discovered pingeb.org" = "pingeb.org entdeckt";
+"%lu near spots found" = "%lu Spots in der Nähe";

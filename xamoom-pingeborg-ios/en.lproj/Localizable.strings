@@ -28,3 +28,10 @@
 "Scan a pingeb.org sticker." = "Scan a pingeb.org sticker.";
 "OK" = "OK";
 
+/* MapkitView */
+
+"Distance: %d meter" = "Distance: %d meter";
+"Searching ..." = "Searching ...";
+"Nothing found near you" = "Nothing found near you";
+"Discovered pingeb.org" = "Discovered pingeb.org";
+"%lu near spots found" = "%lu near spots found";

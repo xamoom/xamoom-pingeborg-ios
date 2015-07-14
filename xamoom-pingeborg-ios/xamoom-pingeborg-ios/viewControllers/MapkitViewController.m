@@ -210,7 +210,7 @@
 
 - (void)geofenceComplete {
   //set geoFenceLabel
-  self.geoFenceLabel.text = @"pingeb.org entdeckt!";
+  self.geoFenceLabel.text = NSLocalizedString(@"Discovered pingeb.org", nil);
   [self enableGeofenceView];
 }
 
@@ -220,10 +220,10 @@
   }
   
   if ([self.itemsToDisplay count] > 0) {
-    self.geoFenceLabel.text = [NSString stringWithFormat:@"%lu in der Nähe", (unsigned long)[self.itemsToDisplay count]];
+    self.geoFenceLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%lu near spots found", nil), (unsigned long)[self.itemsToDisplay count]];
     [self enableGeofenceView];
   } else {
-    self.geoFenceLabel.text = @"Nichts in deiner Nähe";
+    self.geoFenceLabel.text = NSLocalizedString(@"Nothing found near you", nil);
     [self disableGeofenceView];
   }
 }
@@ -456,7 +456,7 @@
   //make a geofence
   [self disableGeofenceView];
   [self.geoFenceActivityIndicator startAnimating];
-  self.geoFenceLabel.text = @"Auf der Suche ...";
+  self.geoFenceLabel.text = NSLocalizedString(@"Searching ...", nil);
   [[XMMEnduserApi sharedInstance] contentWithLat:[NSString stringWithFormat:@"%f",self.lastLocation.coordinate.latitude] withLon:[NSString stringWithFormat:@"%f",self.lastLocation.coordinate.longitude] withLanguage:[XMMEnduserApi sharedInstance].systemLanguage
                                       completion:^(XMMResponseGetByLocation *result) {
                                         [self showDataWithLocation:result];
@@ -548,7 +548,7 @@
     //calc distance
     CLLocation *pointLocation = [[CLLocation alloc] initWithLatitude:item.lat longitude:item.lon];
     CLLocationDistance distance = [self.locationManager.location distanceFromLocation:pointLocation];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Entfernung: %d Meter", (int)distance];
+    cell.detailTextLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Distance: %d meter", nil), (int)distance];
     
     //make cell transparent
     [[cell contentView] setBackgroundColor:[UIColor clearColor]];
