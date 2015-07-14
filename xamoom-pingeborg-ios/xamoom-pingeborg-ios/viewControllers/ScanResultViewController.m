@@ -93,7 +93,7 @@
   [[NSNotificationCenter defaultCenter] postNotificationName:@"pauseAllSounds" object:self];
   
   //reload tableViews, when the newest scanned artist is open (So the "discover" overlay disappears)
-  if ([self.result.content.contentId isEqualToString: [[Globals sharedObject] savedArtitsAsArray].lastObject]) {
+  if ([self.result.content.contentId isEqualToString: [[Globals sharedObject] savedArtistsAsArray].lastObject]) {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"updateAllArtistLists" object:self];
   }
 }

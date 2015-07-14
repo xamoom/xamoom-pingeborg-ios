@@ -23,15 +23,16 @@ int const kPageSize = 7;
 
 @interface FeedTableViewController ()
 
+@property UIBarButtonItem *qrButtonItem;
+@property UIImage *placeholderImage;
+@property UIRefreshControl *refreshControl;
+@property JGProgressHUD *hud;
+
 @property NSMutableArray *itemsToDisplay;
 @property NSMutableDictionary *imagesToDisplay;
 @property NSString *contentListCursor;
 @property bool hasMore;
 @property bool isApiCallingBlocked;
-@property UIBarButtonItem *qrButtonItem;
-@property UIImage *placeholderImage;
-@property UIRefreshControl *refreshControl;
-@property JGProgressHUD *hud;
 
 @end
 
@@ -42,44 +43,18 @@ int const kPageSize = 7;
 - (void)viewDidLoad {
   [super viewDidLoad];
   
-  [self setupAnalytics];
   self.parentViewController.navigationItem.title = NSLocalizedString(@"pingeb.org Carinthia", nil);
-  
   [self.tabBarItem setSelectedImage:[UIImage imageNamed:@"home_filled"]];
-  
-  //setting up tableView
-  [self.feedTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-  self.feedTableView.rowHeight = UITableViewAutomaticDimension;
-  self.feedTableView.estimatedRowHeight = 150.0;
-  
-  //setting up refresh control
-  self.refreshControl = [[UIRefreshControl alloc] init];
-  self.refreshControl.backgroundColor = [Globals sharedObject].pingeborgLinkColor;
-  self.refreshControl.tintColor = [UIColor whiteColor];
-  [self.refreshControl addTarget:self
-                          action:@selector(pullToRefresh)
-                forControlEvents:UIControlEventValueChanged];
-  [self.feedTableView addSubview:self.refreshControl];
-  
-  //pingeborg system notifications
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(pingeborgSystemChanged)
-                                               name:@"PingeborgSystemChanged"
-                                             object:nil];
-  
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(reloadData)
-                                               name:@"updateAllArtistLists"
-                                             object:nil];
-  
-  //init variables
+
   self.placeholderImage = [UIImage imageNamed:@"placeholder"];
   self.itemsToDisplay = [[NSMutableArray alloc] init];
   self.imagesToDisplay = [[NSMutableDictionary alloc] init];
-  
-  //loading hud in view
   self.hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
-  [self.hud showInView:self.view];
+  
+  [self setupAnalytics];
+  [self setupTableView];
+  [self refreshControl];
+  [self addNotifications];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -91,23 +66,56 @@ int const kPageSize = 7;
   [super viewDidAppear:animated];
   //load artists, if there are none
   if (self.itemsToDisplay.count <= 0) {
-    [[XMMEnduserApi sharedInstance] contentListWithPageSize:kPageSize withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withCursor:@"null" withTags:@[@"artists"]
-                                                 completion:^(XMMResponseContentList *result) {
-                                                   [self displayContentList:result];
-                                                 } error:^(XMMError *error) {
-                                                   NSLog(@"Error: %@", error.message);
-                                                 }];
+    [self loadArtists];
   }
 }
 
--(void)viewDidDisappear:(BOOL)animated {
+- (void)viewDidDisappear:(BOOL)animated {
   [super viewDidDisappear:animated];
   [self closeInstructionScreen];
 }
 
-#pragma mark - XMMEnduserApi Show Data
+#pragma mark - Setup
 
--(void)displayContentList:(XMMResponseContentList *)result {
+- (void)setupTableView {
+  //setting up tableView
+  [self.feedTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+  self.feedTableView.rowHeight = UITableViewAutomaticDimension;
+  self.feedTableView.estimatedRowHeight = 150.0;
+}
+
+- (void)setupRefreshControl {
+  self.refreshControl = [[UIRefreshControl alloc] init];
+  self.refreshControl.backgroundColor = [Globals sharedObject].pingeborgLinkColor;
+  self.refreshControl.tintColor = [UIColor whiteColor];
+  [self.refreshControl addTarget:self
+                          action:@selector(pullToRefresh)
+                forControlEvents:UIControlEventValueChanged];
+  [self.feedTableView addSubview:self.refreshControl];
+}
+
+- (void)addNotifications {
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(reloadData)
+                                               name:@"updateAllArtistLists"
+                                             object:nil];
+}
+
+#pragma mark - XMMEnduserApi
+
+- (void)loadArtists {
+  //loading hud in view
+  [self.hud showInView:self.view];
+  [[XMMEnduserApi sharedInstance] contentListWithPageSize:kPageSize withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withCursor:@"null" withTags:@[@"artists"]
+                                               completion:^(XMMResponseContentList *result) {
+                                                 [self displayContentList:result];
+                                                 [self.hud dismiss];
+                                               } error:^(XMMError *error) {
+                                                 NSLog(@"Error: %@", error.message);
+                                               }];
+}
+
+- (void)displayContentList:(XMMResponseContentList *)result {
   self.contentListCursor = result.cursor;
   
   //check if first startup
@@ -122,7 +130,6 @@ int const kPageSize = 7;
     self.hasMore = NO;
   
   for (XMMResponseContent *contentItem in result.items) {
-    
     //download image
     [XMMImageUtility imageWithUrl:contentItem.imagePublicUrl completionBlock:^(BOOL succeeded, UIImage *image, SVGKImage *svgImage) {
       if (image != nil) {
@@ -140,7 +147,6 @@ int const kPageSize = 7;
     [self.itemsToDisplay addObject:contentItem];
   }
   
-  [self.hud dismiss];
   self.isApiCallingBlocked = NO;
   [self reloadData];
 }
@@ -226,12 +232,9 @@ int const kPageSize = 7;
   [self.navigationController pushViewController:artistDetailViewController animated:YES];
 }
 
-#pragma mark Table view reload
-
 - (void)pullToRefresh {
   [self.hud showInView:self.view];
   if(!self.isApiCallingBlocked) {
-    
     //delete all items in arrays
     self.itemsToDisplay = [[NSMutableArray alloc] init];
     self.imagesToDisplay = [[NSMutableDictionary alloc] init];
@@ -240,10 +243,10 @@ int const kPageSize = 7;
     [[XMMEnduserApi sharedInstance] contentListWithPageSize:kPageSize withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withCursor:@"null" withTags:@[@"artists"]
                                                  completion:^(XMMResponseContentList *result) {
                                                    [self displayContentList:result];
+                                                   [self.hud dismiss];
                                                  } error:^(XMMError *error) {
                                                    NSLog(@"Error: %@", error.message);
                                                  }];
-    
     self.isApiCallingBlocked = YES;
   }
 }
@@ -265,35 +268,6 @@ int const kPageSize = 7;
   }
 }
 
-# pragma mark - Custom Methods
-
-- (void)firstStartup:(XMMResponseContentList *)result {
-  [self addFreeDiscoveredArtists:result];
-  [self displayInstructionScreen];
-}
-
-- (void)addFreeDiscoveredArtists:(XMMResponseContentList *)result {
-  //add artist 2-4 to discovered list
-  int counter = 1;
-  while (counter <= 3) {
-    XMMResponseContent *contentItem = result.items[counter];
-    [[Globals sharedObject] addDiscoveredArtist:contentItem.contentId];
-    counter++;
-  }
-}
-
-- (void)displayInstructionScreen {
-  self.instructionView.hidden = NO;
-}
-
-- (IBAction)instructionViewTapGestureRecognizerTapped:(id)sender {
-  [self closeInstructionScreen];
-}
-
-- (void)closeInstructionScreen {
-  self.instructionView.hidden = YES;
-}
-
 - (void)loadMoreContent {
   if (self.hasMore && !self.isApiCallingBlocked) {
     self.isApiCallingBlocked = YES;
@@ -313,7 +287,7 @@ int const kPageSize = 7;
 - (void)addTableViewLoadingFooter {
   UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
   [headerView setBackgroundColor:[UIColor clearColor]];
-
+  
   //create activity indicator
   UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
   activityIndicator.center = CGPointMake((self.view.frame.size.width/2), 25);
@@ -324,55 +298,42 @@ int const kPageSize = 7;
   self.feedTableView.tableFooterView = headerView;
 }
 
-#pragma mark - NavbarDropdown Delegation
+# pragma mark - Instruction View / First Start
 
-- (void)didChangeSystem {
-  NSInteger location = [[NSUserDefaults standardUserDefaults] integerForKey:@"location"];
-  
-  if ([self.parentViewController.navigationItem.titleView.subviews[0] isKindOfClass:[UIButton class]]) {
-    UIButton *button = self.parentViewController.navigationItem.titleView.subviews[0];
-    
-    switch (location) {
-      case 0:
-        [button setTitle:NSLocalizedString(@"pingeb.org Carinthia", nil) forState:UIControlStateNormal];
-        break;
-      case 1:
-        [button setTitle:@"pingeborg Salzburg" forState:UIControlStateNormal];
-        break;
-      case 2:
-        [button setTitle:@"pingeborg Vorarlberg" forState:UIControlStateNormal];
-        break;
-      default:
-        break;
-    }
-  }
+- (void)firstStartup:(XMMResponseContentList *)result {
+  [self addFreeDiscoveredArtists:result];
+  [self displayInstructionScreen];
 }
 
-- (void)pingeborgSystemChanged {
-  NSString *systemName;
-  systemName = NSLocalizedString(@"pingeb.org Carinthia", nil);
-  /*
-  if ([[Globals sharedObject].globalSystemId isEqualToString:@"6588702901927936"]) {
-    systemName = @"pingeborg Kärnten";
+- (void)displayInstructionScreen {
+  self.instructionView.hidden = NO;
+}
+
+- (IBAction)instructionViewTapGestureRecognizerTapped:(id)sender {
+  [self closeInstructionScreen];
+}
+
+- (void)closeInstructionScreen {
+  self.instructionView.hidden = YES;
+}
+
+- (void)addFreeDiscoveredArtists:(XMMResponseContentList *)result {
+  //add artist 2-4 to discovered list
+  int counter = 1;
+  while (counter <= 3) {
+    XMMResponseContent *contentItem = result.items[counter];
+    [[Globals sharedObject] addDiscoveredArtist:contentItem.contentId];
+    counter++;
   }
-  else if ([[Globals sharedObject].globalSystemId isEqualToString:@"Salzburg"]) {
-    systemName = @"pingeborg Salzburg";
-  }
-  else {
-    systemName = @"pingeborg Vorarlberg";
-  }
-  */
-  [self pullToRefresh];
 }
 
 #pragma mark - Navigation
 /*
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
  
- }
- }
- */
+}
+*/
 
 #pragma mark - Analytics
 

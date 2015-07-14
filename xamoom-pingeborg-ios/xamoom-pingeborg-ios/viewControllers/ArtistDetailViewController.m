@@ -117,7 +117,7 @@
   
   [[NSNotificationCenter defaultCenter] postNotificationName:@"pauseAllSounds" object:self];
   
-  if ([self.contentId isEqualToString:[[Globals sharedObject] savedArtitsAsArray].lastObject]) {
+  if ([self.contentId isEqualToString:[[Globals sharedObject] savedArtistsAsArray].lastObject]) {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"updateAllArtistLists" object:self];
   }
 }

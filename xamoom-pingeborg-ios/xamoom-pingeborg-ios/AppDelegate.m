@@ -29,33 +29,18 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  //IF DEV
+  //[[Globals sharedObject] developmentMode];
   
   //set UI colors
   [[UINavigationBar appearance] setBarTintColor:[Globals sharedObject].pingeborgYellow];
   [[UITabBar appearance] setTintColor:[Globals sharedObject].pingeborgLinkColor];
-    
-  //IF DEV
-  //[[Globals sharedObject] developmentMode];
   
-  NSString *file = [[NSBundle mainBundle] pathForResource:@"apikey" ofType:@"txt"];
-  NSString *apiKey = [NSString stringWithContentsOfFile:file
-                                            encoding:NSUTF8StringEncoding error:NULL];
-  
-  [[XMMEnduserApi sharedInstance] setApiKey:apiKey];
+  //setup API
+  [self setupApi];
   
   //Google Analytics
-  
-  // Optional: automatically send uncaught exceptions to Google Analytics.
-  [GAI sharedInstance].trackUncaughtExceptions = YES;
-  
-  // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
-  [GAI sharedInstance].dispatchInterval = 20;
-  
-  // Optional: set Logger to VERBOSE for debug information.
-  [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
-  
-  // Initialize tracker. Replace with your tracking ID.
-  [[GAI sharedInstance] trackerWithTrackingId:@"UA-57427460-2"];
+  [self setupGoogleAnalytics];
   
   return YES;
 }
@@ -80,6 +65,21 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
   // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)setupApi {
+  NSString *file = [[NSBundle mainBundle] pathForResource:@"apikey" ofType:@"txt"];
+  NSString *apiKey = [NSString stringWithContentsOfFile:file
+                                               encoding:NSUTF8StringEncoding error:NULL];
+  
+  [[XMMEnduserApi sharedInstance] setApiKey:apiKey];
+}
+
+- (void)setupGoogleAnalytics {
+  [GAI sharedInstance].trackUncaughtExceptions = YES;
+  [GAI sharedInstance].dispatchInterval = 20;
+  [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
+  [[GAI sharedInstance] trackerWithTrackingId:@"UA-57427460-2"];
 }
 
 @end

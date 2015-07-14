@@ -23,21 +23,17 @@
 @interface Globals : NSObject
 
 @property (nonatomic) NSString *aboutPageId;
-
 @property (nonatomic) UIColor *pingeborgYellow;
 @property (nonatomic) UIColor *pingeborgLinkColor;
-
 @property BOOL isDev;
 
 + (Globals*)sharedObject;
-
-- (void)setSystemFromInteger:(NSInteger)systemId;
 
 - (void)addDiscoveredArtist:(NSString*)contentId;
 
 - (NSString*)savedArtits;
 
-- (NSArray*)savedArtitsAsArray;
+- (NSArray*)savedArtistsAsArray;
 
 - (BOOL)isFirstStart;
 
