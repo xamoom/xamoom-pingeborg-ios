@@ -1,9 +1,20 @@
 //
-//  MainTabBarControllerViewController.m
-//  xamoom-pingeborg-ios
+// Copyright 2015 by xamoom GmbH <apps@xamoom.com>
 //
-//  Created by Raphael Seher on 09/03/15.
-//  Copyright (c) 2015 xamoom GmbH. All rights reserved.
+// This file is part of some open source application.
+//
+// Some open source application is free software: you can redistribute
+// it and/or modify it under the terms of the GNU General Public
+// License as published by the Free Software Foundation, either
+// version 2 of the License, or (at your option) any later version.
+//
+// Some open source application is distributed in the hope that it will
+// be useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+// of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with xamoom-pingeborg-ios. If not, see <http://www.gnu.org/licenses/>.
 //
 
 #import "MainTabBarController.h"
@@ -31,31 +42,6 @@
   for (UITabBarItem *item in self.tabBar.items) {
     [item setImageInsets:UIEdgeInsetsMake(4,0,-4,0)];
   }
-  
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(receivedContentByLocationIdentifierError:)
-                                               name:@"ContentByLocationIdentifierError"
-                                             object:nil];
-  
-  /*
-   //navbar Dropdown Code
-   UIImage *buttonImage = [UIImage imageNamed:@"QR"];
-   UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
-   button.frame = CGRectMake(0.0, 0.0, buttonImage.size.width, buttonImage.size.height);
-   [button setBackgroundImage:buttonImage forState:UIControlStateNormal];
-   [button setBackgroundImage:[UIImage imageNamed:@"QR"] forState:UIControlStateHighlighted];
-   
-   CGFloat heightDifference = buttonImage.size.height - self.tabBar.frame.size.height;
-   if (heightDifference < 0)
-   button.center = self.tabBar.center;
-   else{
-   CGPoint center = self.tabBar.center;
-   center.y = center.y - heightDifference/2.0;
-   button.center = center;
-   }
-   
-   [self.view addSubview:button];
-   */
 }
 
 - (void)didReceiveMemoryWarning {
@@ -104,7 +90,6 @@
                                                        completion:^(XMMResponseGetByLocationIdentifier *result) {
                                                          [self didLoadDataWithLocationIdentifier:result];
                                                        } error:^(XMMError *error) {
-                                                         NSLog(@"OMG: %@", error.message);
                                                          [self errorMessageOnScanning];
                                                        }];
   } else {
@@ -124,7 +109,6 @@
 }
 
 -(NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)redirectResponse {
-  
   //redirect to xm.gl
   NSURLRequest *newRequest = request;
   if (redirectResponse) {
