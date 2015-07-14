@@ -166,9 +166,9 @@ int const kPageSize = 7;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  static NSString *simpleTableIdentifier = @"FeedItemCell";
+  static NSString *feedItemCellIdentifier = @"FeedItemCell";
   
-  FeedItemCell *cell = (FeedItemCell *)[self.feedTableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+  FeedItemCell *cell = (FeedItemCell *)[self.feedTableView dequeueReusableCellWithIdentifier:feedItemCellIdentifier];
   if (cell == nil) {
     NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FeedItemCell" owner:self options:nil];
     cell = nib[0];
@@ -220,7 +220,7 @@ int const kPageSize = 7;
   }
   
   //load more contents
-  if (indexPath.row == [self.itemsToDisplay count] - 1) {
+  if (indexPath.row == (self.itemsToDisplay.count - 1)) {
     [self loadMoreContent];
   }
   
@@ -308,10 +308,28 @@ int const kPageSize = 7;
     [[XMMEnduserApi sharedInstance] contentListWithPageSize:kPageSize withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withCursor:self.contentListCursor withTags:@[@"artists"]
                                                  completion:^(XMMResponseContentList *result) {
                                                    [self displayContentList:result];
+                                                   self.feedTableView.tableFooterView = nil;
                                                  } error:^(XMMError *error) {
                                                    NSLog(@"Error: %@", error.message);
                                                  }];
+    
+    //add tablefooter as loading indicator to the feedTableView
+    [self addTableViewLoadingFooter];
   }
+}
+
+- (void)addTableViewLoadingFooter {
+  UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
+  [headerView setBackgroundColor:[UIColor clearColor]];
+
+  //create activity indicator
+  UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+  activityIndicator.center = CGPointMake((self.view.frame.size.width/2), 25);
+  activityIndicator.hidesWhenStopped = NO;
+  [headerView addSubview:activityIndicator];
+  [activityIndicator startAnimating];
+  
+  self.feedTableView.tableFooterView = headerView;
 }
 
 #pragma mark - NavbarDropdown Delegation

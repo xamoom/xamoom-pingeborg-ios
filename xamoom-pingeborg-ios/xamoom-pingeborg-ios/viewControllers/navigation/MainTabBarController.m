@@ -13,6 +13,7 @@
 @interface MainTabBarController () <QRCodeReaderDelegate>
 
 @property XMMResponseGetByLocationIdentifier *savedApiResult;
+@property JGProgressHUD *hud;
 
 @end
 
@@ -66,9 +67,11 @@
   [super viewDidAppear:animated];
 }
 
-- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
-{
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
   //instead of switching view the qr code scanner will be opened
+  self.hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+  [self.hud showInView:self.view];
+  
   if (viewController == (tabBarController.viewControllers)[3]){
     [self setupAnalytics];
     [[XMMEnduserApi sharedInstance] setQrCodeViewControllerCancelButtonTitle:NSLocalizedString(@"Cancel", nil)];
@@ -85,7 +88,6 @@
 #pragma mark - XMMEnduserApi Delegate Methods
 
 -(void)didScanQR:(NSString *)result withCompleteUrl:(NSString *)url{
-  
   self.scannedUrl = url;
   
   //old pingeborg stickers get a redirect to the xm.gl url
@@ -112,6 +114,7 @@
 }
 
 - (void)errorMessageOnScanning {
+  [self.hud dismiss];
   UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Nothing found!", nil)
                                                       message:NSLocalizedString(@"Scan a pingeb.org sticker.", nil)
                                                      delegate:nil
@@ -146,7 +149,7 @@
 - (void)didLoadDataWithLocationIdentifier:(XMMResponseGetByLocationIdentifier *)apiResult{
   [Globals addDiscoveredArtist:apiResult.content.contentId];
   self.savedApiResult = apiResult;
-  
+  [self.hud dismiss];
   [self performSegueWithIdentifier:@"showScanResult" sender:self];
 }
 
