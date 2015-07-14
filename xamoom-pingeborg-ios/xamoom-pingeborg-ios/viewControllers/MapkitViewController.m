@@ -19,7 +19,6 @@
 
 #import "MapkitViewController.h"
 
-// We need a custom subclass of MKMapView in order to allow touches on UIControls in our custom callout view.
 @interface CustomMapView : MKMapView
 
 @property (nonatomic, strong) SMCalloutView *calloutView;
@@ -44,67 +43,21 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   
-  [self setupAnalytics];
-    
-  [self.tabBarItem setSelectedImage:[UIImage imageNamed:@"map_filled"]];
-  
   self.placeholder = [UIImage imageNamed:@"placeholder"];
   self.isUp = NO;
   
-  //init map
-  self.mapKitWithSMCalloutView = [[CustomMapView alloc] initWithFrame:self.view.bounds];
-  self.mapKitWithSMCalloutView.delegate = self;
-  self.mapKitWithSMCalloutView.showsUserLocation = YES;
-  [self.viewForMap addSubview:self.mapKitWithSMCalloutView];
-  
-  //shadow for geoFenceView
-  UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:self.geofenceView.bounds];
-  self.geofenceView.layer.masksToBounds = NO;
-  self.geofenceView.layer.shadowColor = [UIColor blackColor].CGColor;
-  self.geofenceView.layer.shadowOffset = CGSizeMake(0.0f, 2.0f);
-  self.geofenceView.layer.shadowOpacity = 0.9f;
-  self.geofenceView.layer.shadowPath = shadowPath.CGPath;
-  
-  //setting up tableView
-  [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-  self.tableView.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.9];
-  self.tableView.rowHeight = UITableViewAutomaticDimension;
-  self.tableView.estimatedRowHeight = 150.0;
-  
-  //init up locationManager
-  self.locationManager = [[CLLocationManager alloc] init];
-  self.locationManager.delegate = self;
-  self.locationManager.distanceFilter = 100.0f; //meter
-  self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-  self.locationManager.activityType = CLActivityTypeOther;
-  // Check for iOS 8. Without this guard the code will crash with "unknown selector" on iOS 7.
-  if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
-    [self.locationManager requestWhenInUseAuthorization];
-  }
-  
-  //map region for zooming
-  MKCoordinateRegion region = { { 0.0, 0.0 }, { 0.0, 0.0 } };
-  
-  region.center.latitude = 46.623791;
-  region.center.longitude = 14.308549;
-  region.span.longitudeDelta = 0.09f;
-  region.span.longitudeDelta = 0.09f;
-  [self.mapKitWithSMCalloutView setRegion:region animated:YES];
-  
-  //create geofence GestureRecognizers
-  self.swipeGeoFenceViewUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(toggleGeoFenceView)];
-  self.swipeGeoFenceViewUp.direction = UISwipeGestureRecognizerDirectionUp;
-  self.swipeGeoFenceViewDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(toggleGeoFenceView)];
-  self.swipeGeoFenceViewDown.direction = UISwipeGestureRecognizerDirectionDown;
-  self.geoFenceTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toggleGeoFenceView)];
-  
-  //pingeborg system notifications
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(refreshContentByLocation)
-                                               name:@"updateAllArtistLists"
-                                             object:nil];
-  
+  [self.tabBarItem setSelectedImage:[UIImage imageNamed:@"map_filled"]];
+
+  [self setupAnalytics];
+  [self setupTableView];
+  [self setupMapView];
+  [self setupGeofenceView];
+  [self setupLocationManager];
   [self.locationManager startUpdatingLocation];
+  
+  [self addNotifications];
+  
+  [self zoomMapToLat:46.623791 andLon:14.308549 andDelta:0.09f];
   
   //check for firstTime geofencing
   if ([[Globals sharedObject] isFirstTimeGeofencing]) {
@@ -126,7 +79,6 @@
                                              completion:^(XMMResponseGetSpotMap *result) {
                                                [self showSpotMap:result];
                                              } error:^(XMMError *error) {
-                                               
                                              }];
   }
 }
@@ -135,6 +87,62 @@
   [super viewWillDisappear:animated];
   self.parentViewController.navigationItem.rightBarButtonItem = nil;
   //[self.locationManager stopUpdatingLocation];
+}
+
+#pragma mark - Setup
+
+- (void)setupTableView {
+  //setting up tableView
+  [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+  self.tableView.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.9];
+  self.tableView.rowHeight = UITableViewAutomaticDimension;
+  self.tableView.estimatedRowHeight = 150.0;
+}
+
+- (void)setupMapView {
+  //init map
+  self.mapKitWithSMCalloutView = [[CustomMapView alloc] initWithFrame:self.view.bounds];
+  self.mapKitWithSMCalloutView.delegate = self;
+  self.mapKitWithSMCalloutView.showsUserLocation = YES;
+  [self.viewForMap addSubview:self.mapKitWithSMCalloutView];
+}
+
+- (void)setupGeofenceView {
+  //shadow for geoFenceView
+  UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:self.geofenceView.bounds];
+  self.geofenceView.layer.masksToBounds = NO;
+  self.geofenceView.layer.shadowColor = [UIColor blackColor].CGColor;
+  self.geofenceView.layer.shadowOffset = CGSizeMake(0.0f, 2.0f);
+  self.geofenceView.layer.shadowOpacity = 0.9f;
+  self.geofenceView.layer.shadowPath = shadowPath.CGPath;
+  
+  //create geofence GestureRecognizers
+  self.swipeGeoFenceViewUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(toggleGeoFenceView)];
+  self.swipeGeoFenceViewUp.direction = UISwipeGestureRecognizerDirectionUp;
+  self.swipeGeoFenceViewDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(toggleGeoFenceView)];
+  self.swipeGeoFenceViewDown.direction = UISwipeGestureRecognizerDirectionDown;
+  self.geoFenceTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toggleGeoFenceView)];
+}
+
+- (void)setupLocationManager {
+  //init up locationManager
+  self.locationManager = [[CLLocationManager alloc] init];
+  self.locationManager.delegate = self;
+  self.locationManager.distanceFilter = 100.0f; //meter
+  self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+  self.locationManager.activityType = CLActivityTypeOther;
+  // Check for iOS 8. Without this guard the code will crash with "unknown selector" on iOS 7.
+  if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+    [self.locationManager requestWhenInUseAuthorization];
+  }
+}
+
+- (void)addNotifications {
+  //pingeborg system notifications
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(refreshContentByLocation)
+                                               name:@"updateAllArtistLists"
+                                             object:nil];
 }
 
 #pragma mark - XMMEnduser Delegate
@@ -237,6 +245,18 @@
     self.geoFenceLabel.text = NSLocalizedString(@"Nothing found near you", nil);
     [self disableGeofenceView];
   }
+}
+
+#pragma mark - MapView Methods
+
+- (void)zoomMapToLat:(double)lat andLon:(double)lon andDelta:(float)delta {
+  //map region for zooming
+  MKCoordinateRegion region = { { 0.0, 0.0 }, { 0.0, 0.0 } };
+  region.center.latitude = lat;
+  region.center.longitude = lon;
+  region.span.longitudeDelta = delta;
+  region.span.longitudeDelta = delta;
+  [self.mapKitWithSMCalloutView setRegion:region animated:YES];
 }
 
 #pragma mark - MKMapView delegate methods
