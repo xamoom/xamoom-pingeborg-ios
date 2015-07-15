@@ -195,7 +195,6 @@
                                              completion:^(XMMResponseClosestSpot *result) {
                                                [self showClosestSpots:result];
                                              } error:^(XMMError *error) {
-                                               
                                              }];
     return;
   }
@@ -254,6 +253,109 @@
   [self.mapKitWithSMCalloutView setRegion:region animated:YES];
 }
 
+- (PingeborgCalloutView*)createMapCalloutFrom:(MKAnnotationView *)annotationView {
+  PingeborgAnnotationView* pingeborgAnnotationView = (PingeborgAnnotationView *)annotationView;
+  PingeborgCalloutView* pingeborgCalloutView = [[PingeborgCalloutView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 300.0f, 35.0f)];
+  pingeborgCalloutView.nameOfSpot = pingeborgAnnotationView.data.displayName;
+  
+  //create titleLabel
+  UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, 10.0f, 280.0f, 25.0f)];
+  titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+  titleLabel.numberOfLines = 0;
+  titleLabel.text = pingeborgAnnotationView.data.displayName;
+  
+  //size label to fit content
+  CGRect titleLabelRect = titleLabel.frame;
+  titleLabelRect.size = [titleLabel sizeThatFits:titleLabelRect.size];
+  titleLabel.frame = titleLabelRect;
+  
+  [pingeborgCalloutView addSubview:titleLabel];
+  
+  //increase pingeborCalloutView height
+  CGRect pingeborgCalloutViewRect = pingeborgCalloutView.frame;
+  pingeborgCalloutViewRect.size.height += titleLabel.frame.size.height;
+  pingeborgCalloutView.frame = pingeborgCalloutViewRect;
+  
+  //create distance label
+  UILabel* distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, titleLabel.frame.size.height + 10.0f, 280.0f, 25.0f)];
+  distanceLabel.font = [UIFont systemFontOfSize:12];
+  distanceLabel.text = pingeborgAnnotationView.distance;
+  
+  //set coordinates (for navigating)
+  pingeborgCalloutView.coordinate = pingeborgAnnotationView.coordinate;
+  
+  
+  [pingeborgCalloutView addSubview:distanceLabel];
+  
+  UIImageView *spotImageView;
+  
+  //insert image
+  if(pingeborgAnnotationView.spotImage != nil) {
+    if (pingeborgAnnotationView.spotImage.size.width < pingeborgAnnotationView.spotImage.size.height) {
+      spotImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, distanceLabel.frame.origin.y + distanceLabel.frame.size.height, pingeborgCalloutView.frame.size.width, pingeborgCalloutView.frame.size.width)];
+    } else {
+      float imageRatio = pingeborgAnnotationView.spotImage.size.width / pingeborgAnnotationView.spotImage.size.height;
+      spotImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, distanceLabel.frame.origin.y + distanceLabel.frame.size.height, pingeborgCalloutView.frame.size.width, pingeborgCalloutView.frame.size.width / imageRatio)];
+    }
+    
+    [spotImageView setContentMode: UIViewContentModeScaleToFill];
+    spotImageView.image = pingeborgAnnotationView.spotImage;
+    
+    //increase pingeborCalloutView height
+    CGRect pingeborgCalloutViewRect = pingeborgCalloutView.frame;
+    pingeborgCalloutViewRect.size.height += spotImageView.frame.size.height;
+    pingeborgCalloutView.frame = pingeborgCalloutViewRect;
+    
+    [pingeborgCalloutView addSubview:spotImageView];
+  }
+  
+  //insert spotdescription
+  if (![pingeborgAnnotationView.data.descriptionOfSpot isEqualToString:@""]) {
+    UILabel *spotDescriptionLabel;
+    if ([pingeborgCalloutView.subviews count] >= 3) {
+      spotDescriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, spotImageView.frame.size.height + spotImageView.frame.origin.y + 5.0f, 280.0f, 25.0f)];
+    } else {
+      spotDescriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, distanceLabel.frame.origin.y + distanceLabel.frame.size.height + 5.0f, 280.0f, 25.0f)];
+    }
+    
+    spotDescriptionLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    spotDescriptionLabel.numberOfLines = 0;
+    spotDescriptionLabel.font = [UIFont systemFontOfSize:12];
+    spotDescriptionLabel.textColor = [UIColor darkGrayColor];
+    spotDescriptionLabel.text = pingeborgAnnotationView.data.descriptionOfSpot;
+    
+    //resize label depending on content
+    CGRect spotDescriptionLabelRect = spotDescriptionLabel.frame;
+    spotDescriptionLabelRect.size = [spotDescriptionLabel sizeThatFits:spotDescriptionLabelRect.size];
+    spotDescriptionLabel.frame = spotDescriptionLabelRect;
+    
+    //increase pingeborCalloutView height
+    CGRect pingeborgCalloutViewRect = pingeborgCalloutView.frame;
+    pingeborgCalloutViewRect.size.height += spotDescriptionLabel.frame.size.height + 10.0f;
+    pingeborgCalloutView.frame = pingeborgCalloutViewRect;
+    
+    [pingeborgCalloutView addSubview:spotDescriptionLabel];
+  }
+  
+  //create, design and adjust navigationButton
+  UIButton *navigationButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, pingeborgCalloutView.frame.size.height, 300.0f, 60.0f)];
+  navigationButton.backgroundColor = [Globals sharedObject].pingeborgLinkColor;
+  [navigationButton setImage:[[UIImage imageNamed:@"car"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+  navigationButton.tintColor = [UIColor whiteColor];
+  [navigationButton setImageEdgeInsets: UIEdgeInsetsMake(-10.0f, navigationButton.titleEdgeInsets.right, 10.0f, navigationButton.titleEdgeInsets.left)];
+  
+  //increase pingeborCalloutView height
+  pingeborgCalloutViewRect = pingeborgCalloutView.frame;
+  pingeborgCalloutViewRect.size.height += navigationButton.frame.size.height - 20.0f;
+  pingeborgCalloutView.frame = pingeborgCalloutViewRect;
+  
+  [navigationButton addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mapNavigationTapped)]];
+  
+  [pingeborgCalloutView addSubview:navigationButton];
+  
+  return pingeborgCalloutView;
+}
+
 #pragma mark - MKMapView delegate methods
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
@@ -305,7 +407,6 @@
 }
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)annotationView {
-  
   // create our custom callout view
   SMCalloutView *calloutView = [SMCalloutView platformCalloutView];
   calloutView.delegate = self;
@@ -313,109 +414,7 @@
   self.mapKitWithSMCalloutView.calloutView = calloutView;
   
   if ([annotationView isKindOfClass:[PingeborgAnnotationView class]]) {
-    PingeborgAnnotationView* pingeborgAnnotationView = (PingeborgAnnotationView *)annotationView;
-    PingeborgCalloutView* pingeborgCalloutView = [[PingeborgCalloutView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 300.0f, 35.0f)];
-    pingeborgCalloutView.nameOfSpot = pingeborgAnnotationView.data.displayName;
-    
-    //create titleLabel
-    UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, 10.0f, 280.0f, 25.0f)];
-    titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    titleLabel.numberOfLines = 0;
-    titleLabel.text = pingeborgAnnotationView.data.displayName;
-    
-    //size label to fit content
-    CGRect titleLabelRect = titleLabel.frame;
-    titleLabelRect.size = [titleLabel sizeThatFits:titleLabelRect.size];
-    titleLabel.frame = titleLabelRect;
-    
-    [pingeborgCalloutView addSubview:titleLabel];
-    
-    //increase pingeborCalloutView height
-    CGRect pingeborgCalloutViewRect = pingeborgCalloutView.frame;
-    pingeborgCalloutViewRect.size.height += titleLabel.frame.size.height;
-    pingeborgCalloutView.frame = pingeborgCalloutViewRect;
-    
-    //create distance label
-    UILabel* distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, titleLabel.frame.size.height + 10.0f, 280.0f, 25.0f)];
-    distanceLabel.font = [UIFont systemFontOfSize:12];
-    distanceLabel.text = pingeborgAnnotationView.distance;
-    
-    //set coordinates (for navigating)
-    pingeborgCalloutView.coordinate = pingeborgAnnotationView.coordinate;
-    
-    
-    [pingeborgCalloutView addSubview:distanceLabel];
-    
-    UIImageView *spotImageView;
-    
-    //insert image
-    if(pingeborgAnnotationView.spotImage != nil) {
-      if (pingeborgAnnotationView.spotImage.size.width < pingeborgAnnotationView.spotImage.size.height) {
-        spotImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, distanceLabel.frame.origin.y + distanceLabel.frame.size.height, pingeborgCalloutView.frame.size.width, pingeborgCalloutView.frame.size.width)];
-      } else {
-        float imageRatio = pingeborgAnnotationView.spotImage.size.width / pingeborgAnnotationView.spotImage.size.height;
-        spotImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, distanceLabel.frame.origin.y + distanceLabel.frame.size.height, pingeborgCalloutView.frame.size.width, pingeborgCalloutView.frame.size.width / imageRatio)];
-      }
-      
-      [spotImageView setContentMode: UIViewContentModeScaleToFill];
-      spotImageView.image = pingeborgAnnotationView.spotImage;
-      
-      //increase pingeborCalloutView height
-      CGRect pingeborgCalloutViewRect = pingeborgCalloutView.frame;
-      pingeborgCalloutViewRect.size.height += spotImageView.frame.size.height;
-      pingeborgCalloutView.frame = pingeborgCalloutViewRect;
-      
-      [pingeborgCalloutView addSubview:spotImageView];
-    }
-    
-    //insert spotdescription
-    if (![pingeborgAnnotationView.data.descriptionOfSpot isEqualToString:@""]) {
-      UILabel *spotDescriptionLabel;
-      if ([pingeborgCalloutView.subviews count] >= 3) {
-        spotDescriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, spotImageView.frame.size.height + spotImageView.frame.origin.y + 5.0f, 280.0f, 25.0f)];
-      } else {
-        spotDescriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, distanceLabel.frame.origin.y + distanceLabel.frame.size.height + 5.0f, 280.0f, 25.0f)];
-      }
-      
-      spotDescriptionLabel.lineBreakMode = NSLineBreakByWordWrapping;
-      spotDescriptionLabel.numberOfLines = 0;
-      spotDescriptionLabel.font = [UIFont systemFontOfSize:12];
-      spotDescriptionLabel.textColor = [UIColor darkGrayColor];
-      spotDescriptionLabel.text = pingeborgAnnotationView.data.descriptionOfSpot;
-      
-      //resize label depending on content
-      CGRect spotDescriptionLabelRect = spotDescriptionLabel.frame;
-      spotDescriptionLabelRect.size = [spotDescriptionLabel sizeThatFits:spotDescriptionLabelRect.size];
-      spotDescriptionLabel.frame = spotDescriptionLabelRect;
-      
-      //increase pingeborCalloutView height
-      CGRect pingeborgCalloutViewRect = pingeborgCalloutView.frame;
-      pingeborgCalloutViewRect.size.height += spotDescriptionLabel.frame.size.height + 10.0f;
-      pingeborgCalloutView.frame = pingeborgCalloutViewRect;
-      
-      [pingeborgCalloutView addSubview:spotDescriptionLabel];
-    }
-    
-    //create, design and adjust navigationButton
-    UIButton *navigationButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, pingeborgCalloutView.frame.size.height, 300.0f, 60.0f)];
-    navigationButton.backgroundColor = [Globals sharedObject].pingeborgLinkColor;
-    [navigationButton setImage:[[UIImage imageNamed:@"car"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
-    navigationButton.tintColor = [UIColor whiteColor];
-    [navigationButton setImageEdgeInsets: UIEdgeInsetsMake(-10.0f, navigationButton.titleEdgeInsets.right, 10.0f, navigationButton.titleEdgeInsets.left)];
-    
-    //increase pingeborCalloutView height
-    pingeborgCalloutViewRect = pingeborgCalloutView.frame;
-    pingeborgCalloutViewRect.size.height += navigationButton.frame.size.height - 20.0f;
-    pingeborgCalloutView.frame = pingeborgCalloutViewRect;
-    
-    [navigationButton addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mapNavigationTapped)]];
-    
-    [pingeborgCalloutView addSubview:navigationButton];
-    
-    //set custom contentView
-    calloutView.contentView = pingeborgCalloutView;
-    
-    // Apply the MKAnnotationView's desired calloutOffset (from the top-middle of the view)
+    calloutView.contentView = [self createMapCalloutFrom:annotationView];
     calloutView.calloutOffset = annotationView.calloutOffset;
     
     // iOS 7 only: Apply our view controller's edge insets to the allowable area in which the callout can be displayed.
@@ -433,11 +432,7 @@
 #pragma mark - SMCalloutView delegate methods
 
 - (NSTimeInterval)calloutView:(SMCalloutView *)calloutView delayForRepositionWithSize:(CGSize)offset {
-  
-  // When the callout is being asked to present in a way where it or its target will be partially offscreen, it asks us
-  // if we'd like to reposition our surface first so the callout is completely visible. Here we scroll the map into view,
-  // but it takes some math because we have to deal in lon/lat instead of the given offset in pixels.
-  
+  // reposition if offscreen
   CLLocationCoordinate2D coordinate = self.mapKitWithSMCalloutView.centerCoordinate;
   
   // where's the center coordinate in terms of our view?
@@ -450,10 +445,8 @@
   // and translate it back into map coordinates
   coordinate = [self.mapKitWithSMCalloutView convertPoint:center toCoordinateFromView:self.mapKitWithSMCalloutView];
   
-  // move the map!
   [self.mapKitWithSMCalloutView setCenterCoordinate:coordinate animated:YES];
   
-  // tell the callout to wait for a while while we scroll (we assume the scroll delay for MKMapView matches UIScrollView)
   return kSMCalloutViewRepositionDelayForUIScrollView;
 }
 
@@ -585,46 +578,6 @@
   return cell;
 }
 
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
-
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- } else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
- */
-
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
- }
- */
-
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
-
-#pragma mark - NavbarDropdown Delegation
-
-- (void)pingeborgSystemChanged {
-  NSLog(@"pingeborgSystemChanged");
-}
-
 #pragma mark - GeoFencing UI/UX
 
 - (IBAction)openGeoFencing:(UIButton *)sender {
@@ -709,8 +662,8 @@
   id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
   [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"     // Event category (required)
                                                         action:@"Did click Geofence"  // Event action (required)
-                                                         label:[NSString stringWithFormat:@"Title - %@", cell.content.title]          // Event label
-                                                         value:[NSString stringWithFormat:@"Location: %f, %f", self.lastLocation.coordinate.latitude, self.lastLocation.coordinate.longitude]]   build]];    // Event value
+                                                         label:[NSString stringWithFormat:@"Location: %f, %f", self.lastLocation.coordinate.latitude, self.lastLocation.coordinate.longitude]         // Event label
+                                                         value:nil] build]];
   
   [[XMMEnduserApi sharedInstance] geofenceAnalyticsMessageWithRequestedLanguage:[XMMEnduserApi sharedInstance].systemLanguage
                                                           withDeliveredLanguage:self.savedResponseContent.language
