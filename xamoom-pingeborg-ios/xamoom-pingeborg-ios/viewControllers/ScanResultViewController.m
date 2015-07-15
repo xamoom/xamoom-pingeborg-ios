@@ -32,16 +32,47 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   
-  //tableview settings
+  //init and start progessHud
+  self.hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+  
+  //setup
+  [self setupTableView];
+  [self setupTextSizeDropdown];
+  [self setupContentBlocks];
+  
+  [self.hud showInView:self.view];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+  [self setupAnalyticsWithName:[NSString stringWithFormat:@"Scan Result - %@", self.result.content.title]];
+  [super viewDidAppear:animated];
+  [self displayContentTitleAndImage];
+  [self.contentBlocks displayContentBlocksByLocationIdentifierResult:self.result];
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+  [super viewWillDisappear:animated];
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"pauseAllSounds" object:self];
+  
+  //reload tableViews, when the newest scanned artist is open (So the "discover" overlay disappears)
+  if ([self.result.content.contentId isEqualToString: [[Globals sharedObject] savedArtistsAsArray].lastObject]) {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"updateAllArtistLists" object:self];
+  }
+}
+
+- (void)didReceiveMemoryWarning {
+  [super didReceiveMemoryWarning];
+}
+
+# pragma mark - Setup
+
+- (void)setupTableView {
   [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
   self.tableView.rowHeight = UITableViewAutomaticDimension;
   self.tableView.estimatedRowHeight = 150.0;
-  
-  //setting up XMMContentBlocks
-  self.contentBlocks = [[XMMContentBlocks alloc] initWithLanguage:[XMMEnduserApi sharedInstance].systemLanguage withWidth:self.view.frame.size.width];
-  self.contentBlocks.delegate = self;
-  self.contentBlocks.linkColor = [Globals sharedObject].pingeborgLinkColor;
-  
+}
+
+- (void)setupTextSizeDropdown {
   //dropdown menu
   REMenuItem *NormalFontSizeItem = [[REMenuItem alloc] initWithTitle:NSLocalizedString(@"Normal Font Size", nil)
                                                             subtitle:nil
@@ -69,37 +100,18 @@
   
   self.fontSizeDropdownMenu = [[REMenu alloc] initWithItems:@[NormalFontSizeItem, BigFontSizeItem, BiggerFontSizeItem]];
   
-  //creating change font size button in navbar
+  //create changeFontSize button
   UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"textsize"]
                                                                  style:UIBarButtonItemStylePlain
                                                                 target:self
                                                                 action:@selector(toggleFontSizeDropdownMenu)];
   self.navigationItem.rightBarButtonItem = buttonItem;
-  
-  //init and start progessHud
-  self.hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
-  [self.hud showInView:self.view];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-  [self setupAnalyticsWithName:[NSString stringWithFormat:@"Scan Result - %@", self.result.content.title]];
-  [super viewDidAppear:animated];
-  [self displayContentTitleAndImage];
-  [self.contentBlocks displayContentBlocksByLocationIdentifierResult:self.result];
-}
-
--(void)viewWillDisappear:(BOOL)animated {
-  [super viewWillDisappear:animated];
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"pauseAllSounds" object:self];
-  
-  //reload tableViews, when the newest scanned artist is open (So the "discover" overlay disappears)
-  if ([self.result.content.contentId isEqualToString: [[Globals sharedObject] savedArtistsAsArray].lastObject]) {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"updateAllArtistLists" object:self];
-  }
-}
-
-- (void)didReceiveMemoryWarning {
-  [super didReceiveMemoryWarning];
+- (void)setupContentBlocks {
+  self.contentBlocks = [[XMMContentBlocks alloc] initWithLanguage:[XMMEnduserApi sharedInstance].systemLanguage withWidth:self.tableView.bounds.size.width];
+  self.contentBlocks.delegate = self;
+  self.contentBlocks.linkColor = [Globals sharedObject].pingeborgLinkColor;
 }
 
 #pragma mark - NavbarDropdown

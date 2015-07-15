@@ -36,19 +36,57 @@
   [super viewDidLoad];
   
   [self.tabBarItem setSelectedImage:[UIImage imageNamed:@"info_filled"]];
-    
+  
+  self.hud = [[JGProgressHUD alloc] initWithStyle:JGProgressHUDStyleDark];
+
+  [self setupAnalytics];
+  [self setupTableView];
+  [self setupContentBlocks];
+  [self setupTextSizeDropdown];
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+  self.parentViewController.navigationItem.rightBarButtonItem = self.buttonItem;
+  
+  //load items if there are none
+  if ([self.contentBlocks.itemsToDisplay count] == 0) {
+    [self.hud showInView:self.view];
+    [[XMMEnduserApi sharedInstance] contentWithContentId:[Globals sharedObject].aboutPageId includeStyle:NO includeMenu:NO withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:YES
+                                              completion:^(XMMResponseGetById *result) {
+                                                [self showDataWithContentId:result];
+                                              } error:^(XMMError *error) {
+                                              }];
+  }
+}
+
+-(void)viewDidDisappear:(BOOL)animated {
+  [super viewDidDisappear:animated];
+  self.parentViewController.navigationItem.rightBarButtonItem = nil;
+}
+
+- (void)didReceiveMemoryWarning {
+  [super didReceiveMemoryWarning];
+  // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Setup
+
+- (void)setupTableView {
   //setting up tableView
   [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
   self.tableView.rowHeight = UITableViewAutomaticDimension;
   self.tableView.estimatedRowHeight = 150.0;
-  
+}
+
+- (void)setupContentBlocks {
   //setting up XMMContentBlocks
   self.contentBlocks = [[XMMContentBlocks alloc] initWithLanguage:[XMMEnduserApi sharedInstance].systemLanguage withWidth:self.view.frame.size.width];
   self.contentBlocks.delegate = self;
   self.contentBlocks.linkColor = [Globals sharedObject].pingeborgLinkColor;
-  
-  self.hud = [[JGProgressHUD alloc] initWithStyle:JGProgressHUDStyleDark];
-  
+}
+
+- (void)setupTextSizeDropdown {
   //dropdown menu
   REMenuItem *NormalFontSizeItem = [[REMenuItem alloc] initWithTitle:NSLocalizedString(@"Normal Font Size", nil)
                                                             subtitle:nil
@@ -82,32 +120,6 @@
                                                     target:self
                                                     action:@selector(toggleFontSizeDropdownMenu)];
   self.parentViewController.navigationItem.rightBarButtonItem = self.buttonItem;
-  
-}
-
--(void)viewDidAppear:(BOOL)animated {
-  [super viewDidAppear:animated];
-  self.parentViewController.navigationItem.rightBarButtonItem = self.buttonItem;
-  
-  //load items if there are none
-  if ([self.contentBlocks.itemsToDisplay count] == 0) {
-    [self.hud showInView:self.view];
-    [[XMMEnduserApi sharedInstance] contentWithContentId:[Globals sharedObject].aboutPageId includeStyle:NO includeMenu:NO withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:YES
-                                              completion:^(XMMResponseGetById *result) {
-                                                [self showDataWithContentId:result];
-                                              } error:^(XMMError *error) {
-                                              }];
-  }
-}
-
--(void)viewDidDisappear:(BOOL)animated {
-  [super viewDidDisappear:animated];
-  self.parentViewController.navigationItem.rightBarButtonItem = nil;
-}
-
-- (void)didReceiveMemoryWarning {
-  [super didReceiveMemoryWarning];
-  // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - NavbarDropdown
