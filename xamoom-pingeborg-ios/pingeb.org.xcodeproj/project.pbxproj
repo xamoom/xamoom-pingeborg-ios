@@ -32,7 +32,6 @@
 		881457FB1B01E8620024E6F4 /* YoutubeBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881457E21B01E8620024E6F4 /* YoutubeBlockTableViewCell.xib */; };
 		881457FC1B01E8620024E6F4 /* XMMContentBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 881457E41B01E8620024E6F4 /* XMMContentBlocks.m */; };
 		881457FD1B01E8620024E6F4 /* XMMMusicPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 881457E61B01E8620024E6F4 /* XMMMusicPlayer.m */; };
-		881458551B01EE8B0024E6F4 /* PingebAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8814583A1B01EE8B0024E6F4 /* PingebAnnotation.m */; };
 		881458561B01EE8B0024E6F4 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8814583D1B01EE8B0024E6F4 /* AboutViewController.m */; };
 		881458571B01EE8B0024E6F4 /* ArtistDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8814583F1B01EE8B0024E6F4 /* ArtistDetailViewController.m */; };
 		881458581B01EE8B0024E6F4 /* FeedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 881458411B01EE8B0024E6F4 /* FeedTableViewController.m */; };
@@ -41,9 +40,6 @@
 		8814585C1B01EE8B0024E6F4 /* FeedItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8814584B1B01EE8B0024E6F4 /* FeedItemCell.m */; };
 		8814585D1B01EE8B0024E6F4 /* FeedItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8814584C1B01EE8B0024E6F4 /* FeedItemCell.xib */; };
 		8814585E1B01EE8B0024E6F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8814584D1B01EE8B0024E6F4 /* Main.storyboard */; };
-		8814585F1B01EE8B0024E6F4 /* PingeborgAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8814584F1B01EE8B0024E6F4 /* PingeborgAnnotationView.m */; };
-		881458601B01EE8B0024E6F4 /* PingeborgCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 881458511B01EE8B0024E6F4 /* PingeborgCalloutView.m */; };
-		881458611B01EE8B0024E6F4 /* PingeborgCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881458521B01EE8B0024E6F4 /* PingeborgCalloutView.xib */; };
 		88166D151AFCAC0B0012CBA6 /* XMMMusicPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88166D0A1AFCAC0A0012CBA6 /* XMMMusicPlayer.framework */; };
 		88166D211AFCAC0B0012CBA6 /* XMMMusicPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88166D0A1AFCAC0A0012CBA6 /* XMMMusicPlayer.framework */; };
 		883574801AB1CCF40099DF4A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8835747F1AB1CCF40099DF4A /* QuartzCore.framework */; };
@@ -72,6 +68,10 @@
 		88E2FAEA1AF74D5800917AFB /* UIImage+animatedGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E2FAE91AF74D5800917AFB /* UIImage+animatedGIF.m */; };
 		88EB481C1B56390D00A6C63F /* apikey.txt in Resources */ = {isa = PBXBuildFile; fileRef = 88EB481B1B56390D00A6C63F /* apikey.txt */; };
 		88EB481D1B563C8700A6C63F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88BA01FF1AA859F90091A43C /* Images.xcassets */; };
+		88EB48241B565FCC00A6C63F /* XMMAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EB48201B565FCC00A6C63F /* XMMAnnotationView.m */; };
+		88EB48251B565FCC00A6C63F /* XMMCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EB48221B565FCC00A6C63F /* XMMCalloutView.m */; };
+		88EB48261B565FCC00A6C63F /* XMMCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88EB48231B565FCC00A6C63F /* XMMCalloutView.xib */; };
+		88EB48291B5663E400A6C63F /* XMMAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EB48281B5663E400A6C63F /* XMMAnnotation.m */; };
 		88F038471B0E0D1200E17573 /* XMMImageUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F038461B0E0D1200E17573 /* XMMImageUtility.m */; };
 		88F1E92F1B15A95500C60504 /* XMMMusicPlayer.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 88166D0A1AFCAC0A0012CBA6 /* XMMMusicPlayer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -154,8 +154,6 @@
 		881457E41B01E8620024E6F4 /* XMMContentBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMContentBlocks.m; sourceTree = "<group>"; };
 		881457E51B01E8620024E6F4 /* XMMMusicPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMMusicPlayer.h; sourceTree = "<group>"; };
 		881457E61B01E8620024E6F4 /* XMMMusicPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMMusicPlayer.m; sourceTree = "<group>"; };
-		881458391B01EE8B0024E6F4 /* PingebAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingebAnnotation.h; sourceTree = "<group>"; };
-		8814583A1B01EE8B0024E6F4 /* PingebAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PingebAnnotation.m; sourceTree = "<group>"; };
 		8814583C1B01EE8B0024E6F4 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		8814583D1B01EE8B0024E6F4 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		8814583E1B01EE8B0024E6F4 /* ArtistDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtistDetailViewController.h; sourceTree = "<group>"; };
@@ -171,11 +169,6 @@
 		8814584B1B01EE8B0024E6F4 /* FeedItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedItemCell.m; sourceTree = "<group>"; };
 		8814584C1B01EE8B0024E6F4 /* FeedItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedItemCell.xib; sourceTree = "<group>"; };
 		8814584D1B01EE8B0024E6F4 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		8814584E1B01EE8B0024E6F4 /* PingeborgAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingeborgAnnotationView.h; sourceTree = "<group>"; };
-		8814584F1B01EE8B0024E6F4 /* PingeborgAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PingeborgAnnotationView.m; sourceTree = "<group>"; };
-		881458501B01EE8B0024E6F4 /* PingeborgCalloutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingeborgCalloutView.h; sourceTree = "<group>"; };
-		881458511B01EE8B0024E6F4 /* PingeborgCalloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PingeborgCalloutView.m; sourceTree = "<group>"; };
-		881458521B01EE8B0024E6F4 /* PingeborgCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PingeborgCalloutView.xib; sourceTree = "<group>"; };
 		88166D0A1AFCAC0A0012CBA6 /* XMMMusicPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XMMMusicPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		88166D141AFCAC0B0012CBA6 /* XMMMusicPlayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XMMMusicPlayerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8835747F1AB1CCF40099DF4A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -224,6 +217,13 @@
 		88E2FAE81AF74D5800917AFB /* UIImage+animatedGIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+animatedGIF.h"; sourceTree = "<group>"; };
 		88E2FAE91AF74D5800917AFB /* UIImage+animatedGIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+animatedGIF.m"; sourceTree = "<group>"; };
 		88EB481B1B56390D00A6C63F /* apikey.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = apikey.txt; sourceTree = "<group>"; };
+		88EB481F1B565FCC00A6C63F /* XMMAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMMAnnotationView.h; path = MapViews/XMMAnnotationView.h; sourceTree = "<group>"; };
+		88EB48201B565FCC00A6C63F /* XMMAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMMAnnotationView.m; path = MapViews/XMMAnnotationView.m; sourceTree = "<group>"; };
+		88EB48211B565FCC00A6C63F /* XMMCalloutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMMCalloutView.h; path = MapViews/XMMCalloutView.h; sourceTree = "<group>"; };
+		88EB48221B565FCC00A6C63F /* XMMCalloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMMCalloutView.m; path = MapViews/XMMCalloutView.m; sourceTree = "<group>"; };
+		88EB48231B565FCC00A6C63F /* XMMCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = XMMCalloutView.xib; path = MapViews/XMMCalloutView.xib; sourceTree = "<group>"; };
+		88EB48271B5663E400A6C63F /* XMMAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMMAnnotation.h; path = MapViews/XMMAnnotation.h; sourceTree = "<group>"; };
+		88EB48281B5663E400A6C63F /* XMMAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMMAnnotation.m; path = MapViews/XMMAnnotation.m; sourceTree = "<group>"; };
 		88F038451B0E0D1200E17573 /* XMMImageUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMImageUtility.h; sourceTree = "<group>"; };
 		88F038461B0E0D1200E17573 /* XMMImageUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMImageUtility.m; sourceTree = "<group>"; };
 		C530CDEFFEDDFCABBEC918B0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -283,6 +283,7 @@
 		881457C21B01E8620024E6F4 /* XMMContentBlocks */ = {
 			isa = PBXGroup;
 			children = (
+				88EB481E1B565F8E00A6C63F /* Map Views */,
 				881457C31B01E8620024E6F4 /* Blocks */,
 				881457E31B01E8620024E6F4 /* XMMContentBlocks.h */,
 				881457E41B01E8620024E6F4 /* XMMContentBlocks.m */,
@@ -330,15 +331,6 @@
 			path = Blocks;
 			sourceTree = "<group>";
 		};
-		881458381B01EE8B0024E6F4 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				881458391B01EE8B0024E6F4 /* PingebAnnotation.h */,
-				8814583A1B01EE8B0024E6F4 /* PingebAnnotation.m */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		8814583B1B01EE8B0024E6F4 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -377,11 +369,6 @@
 				8814584A1B01EE8B0024E6F4 /* FeedItemCell.h */,
 				8814584B1B01EE8B0024E6F4 /* FeedItemCell.m */,
 				8814584C1B01EE8B0024E6F4 /* FeedItemCell.xib */,
-				8814584E1B01EE8B0024E6F4 /* PingeborgAnnotationView.h */,
-				8814584F1B01EE8B0024E6F4 /* PingeborgAnnotationView.m */,
-				881458501B01EE8B0024E6F4 /* PingeborgCalloutView.h */,
-				881458511B01EE8B0024E6F4 /* PingeborgCalloutView.m */,
-				881458521B01EE8B0024E6F4 /* PingeborgCalloutView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -442,7 +429,6 @@
 				88BA01F71AA859F90091A43C /* AppDelegate.m */,
 				88052D791AE103C300AB433D /* Globals.h */,
 				88052D7A1AE103C300AB433D /* Globals.m */,
-				881458381B01EE8B0024E6F4 /* Models */,
 				8814583B1B01EE8B0024E6F4 /* ViewControllers */,
 				881458491B01EE8B0024E6F4 /* Views */,
 				88E2431A1B14507200E9E208 /* XMMImageUtility */,
@@ -492,6 +478,20 @@
 				88E2FAE91AF74D5800917AFB /* UIImage+animatedGIF.m */,
 			);
 			name = XMMImageUtility;
+			sourceTree = "<group>";
+		};
+		88EB481E1B565F8E00A6C63F /* Map Views */ = {
+			isa = PBXGroup;
+			children = (
+				88EB48271B5663E400A6C63F /* XMMAnnotation.h */,
+				88EB48281B5663E400A6C63F /* XMMAnnotation.m */,
+				88EB481F1B565FCC00A6C63F /* XMMAnnotationView.h */,
+				88EB48201B565FCC00A6C63F /* XMMAnnotationView.m */,
+				88EB48211B565FCC00A6C63F /* XMMCalloutView.h */,
+				88EB48221B565FCC00A6C63F /* XMMCalloutView.m */,
+				88EB48231B565FCC00A6C63F /* XMMCalloutView.xib */,
+			);
+			name = "Map Views";
 			sourceTree = "<group>";
 		};
 		B091DC0989CBE4B0B40B108B /* Frameworks */ = {
@@ -696,13 +696,13 @@
 				881457F21B01E8620024E6F4 /* LinkBlockTableViewCell.xib in Resources */,
 				881457F01B01E8620024E6F4 /* ImageBlockTableViewCell.xib in Resources */,
 				8814585D1B01EE8B0024E6F4 /* FeedItemCell.xib in Resources */,
-				881458611B01EE8B0024E6F4 /* PingeborgCalloutView.xib in Resources */,
 				881457FB1B01E8620024E6F4 /* YoutubeBlockTableViewCell.xib in Resources */,
 				88BA02031AA859F90091A43C /* LaunchScreen.xib in Resources */,
 				88EB481C1B56390D00A6C63F /* apikey.txt in Resources */,
 				881457F51B01E8620024E6F4 /* SoundcloudBlockTableViewCell.xib in Resources */,
 				8860DA7A1AE78CB800DF2239 /* usr in Resources */,
 				881457E81B01E8620024E6F4 /* AudioBlockTableViewCell.xib in Resources */,
+				88EB48261B565FCC00A6C63F /* XMMCalloutView.xib in Resources */,
 				8814585E1B01EE8B0024E6F4 /* Main.storyboard in Resources */,
 				881457EC1B01E8620024E6F4 /* DownloadBlockTableViewCell.xib in Resources */,
 				881457F91B01E8620024E6F4 /* TextBlockTableViewCell.xib in Resources */,
@@ -776,10 +776,11 @@
 				881457E91B01E8620024E6F4 /* ContentBlockTableViewCell.m in Sources */,
 				881457EF1B01E8620024E6F4 /* ImageBlockTableViewCell.m in Sources */,
 				8814585C1B01EE8B0024E6F4 /* FeedItemCell.m in Sources */,
-				8814585F1B01EE8B0024E6F4 /* PingeborgAnnotationView.m in Sources */,
 				881457ED1B01E8620024E6F4 /* EbookBlockTableViewCell.m in Sources */,
+				88EB48241B565FCC00A6C63F /* XMMAnnotationView.m in Sources */,
 				88E2FAEA1AF74D5800917AFB /* UIImage+animatedGIF.m in Sources */,
 				881457E71B01E8620024E6F4 /* AudioBlockTableViewCell.m in Sources */,
+				88EB48251B565FCC00A6C63F /* XMMCalloutView.m in Sources */,
 				88BA01F81AA859F90091A43C /* AppDelegate.m in Sources */,
 				881458561B01EE8B0024E6F4 /* AboutViewController.m in Sources */,
 				88052D7B1AE103C300AB433D /* Globals.m in Sources */,
@@ -790,14 +791,13 @@
 				88BA01F51AA859F90091A43C /* main.m in Sources */,
 				881457FD1B01E8620024E6F4 /* XMMMusicPlayer.m in Sources */,
 				881457FA1B01E8620024E6F4 /* YoutubeBlockTableViewCell.m in Sources */,
-				881458551B01EE8B0024E6F4 /* PingebAnnotation.m in Sources */,
+				88EB48291B5663E400A6C63F /* XMMAnnotation.m in Sources */,
 				8814585B1B01EE8B0024E6F4 /* NavigationViewController.m in Sources */,
 				881458581B01EE8B0024E6F4 /* FeedTableViewController.m in Sources */,
 				889BE43E1B3854C5002850D5 /* MainTabBarController.m in Sources */,
 				881458571B01EE8B0024E6F4 /* ArtistDetailViewController.m in Sources */,
 				881457F11B01E8620024E6F4 /* LinkBlockTableViewCell.m in Sources */,
 				881457F41B01E8620024E6F4 /* SoundcloudBlockTableViewCell.m in Sources */,
-				881458601B01EE8B0024E6F4 /* PingeborgCalloutView.m in Sources */,
 				881457EB1B01E8620024E6F4 /* DownloadBlockTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

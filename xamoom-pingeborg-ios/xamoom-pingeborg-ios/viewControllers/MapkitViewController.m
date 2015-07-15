@@ -145,7 +145,7 @@
                                              object:nil];
 }
 
-#pragma mark - XMMEnduser Delegate
+#pragma mark - XMMEnduser Methods
 
 - (void)showSpotMap:(XMMResponseGetSpotMap *)result {
   //get the customMarker for the map
@@ -155,7 +155,7 @@
   
   // Add annotations
   for (XMMResponseGetSpotMapItem *item in result.items) {
-    PingebAnnotation *point = [[PingebAnnotation alloc] initWithLocation: CLLocationCoordinate2DMake(item.lat, item.lon)];
+    XMMAnnotation *point = [[XMMAnnotation alloc] initWithLocation: CLLocationCoordinate2DMake(item.lat, item.lon)];
     point.data = item;
     
     //calculate distance to annotation
@@ -253,66 +253,66 @@
   [self.mapKitWithSMCalloutView setRegion:region animated:YES];
 }
 
-- (PingeborgCalloutView*)createMapCalloutFrom:(MKAnnotationView *)annotationView {
-  PingeborgAnnotationView* pingeborgAnnotationView = (PingeborgAnnotationView *)annotationView;
-  PingeborgCalloutView* pingeborgCalloutView = [[PingeborgCalloutView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 300.0f, 35.0f)];
-  pingeborgCalloutView.nameOfSpot = pingeborgAnnotationView.data.displayName;
+- (XMMCalloutView*)createMapCalloutFrom:(MKAnnotationView *)annotationView {
+  XMMAnnotationView* xamoomAnnotationView = (XMMAnnotationView *)annotationView;
+  XMMCalloutView* xamoomCalloutView = [[XMMCalloutView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 300.0f, 35.0f)];
+  xamoomCalloutView.nameOfSpot = xamoomAnnotationView.data.displayName;
   
   //create titleLabel
   UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, 10.0f, 280.0f, 25.0f)];
   titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
   titleLabel.numberOfLines = 0;
-  titleLabel.text = pingeborgAnnotationView.data.displayName;
+  titleLabel.text = xamoomAnnotationView.data.displayName;
   
   //size label to fit content
   CGRect titleLabelRect = titleLabel.frame;
   titleLabelRect.size = [titleLabel sizeThatFits:titleLabelRect.size];
   titleLabel.frame = titleLabelRect;
   
-  [pingeborgCalloutView addSubview:titleLabel];
+  [xamoomCalloutView addSubview:titleLabel];
   
   //increase pingeborCalloutView height
-  CGRect pingeborgCalloutViewRect = pingeborgCalloutView.frame;
-  pingeborgCalloutViewRect.size.height += titleLabel.frame.size.height;
-  pingeborgCalloutView.frame = pingeborgCalloutViewRect;
+  CGRect xamoomCalloutViewRect = xamoomCalloutView.frame;
+  xamoomCalloutViewRect.size.height += titleLabel.frame.size.height;
+  xamoomCalloutView.frame = xamoomCalloutViewRect;
   
   //create distance label
   UILabel* distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, titleLabel.frame.size.height + 10.0f, 280.0f, 25.0f)];
   distanceLabel.font = [UIFont systemFontOfSize:12];
-  distanceLabel.text = pingeborgAnnotationView.distance;
+  distanceLabel.text = xamoomAnnotationView.distance;
   
   //set coordinates (for navigating)
-  pingeborgCalloutView.coordinate = pingeborgAnnotationView.coordinate;
+  xamoomCalloutView.coordinate = xamoomAnnotationView.coordinate;
   
   
-  [pingeborgCalloutView addSubview:distanceLabel];
+  [xamoomCalloutView addSubview:distanceLabel];
   
   UIImageView *spotImageView;
   
   //insert image
-  if(pingeborgAnnotationView.spotImage != nil) {
-    if (pingeborgAnnotationView.spotImage.size.width < pingeborgAnnotationView.spotImage.size.height) {
-      spotImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, distanceLabel.frame.origin.y + distanceLabel.frame.size.height, pingeborgCalloutView.frame.size.width, pingeborgCalloutView.frame.size.width)];
+  if(xamoomAnnotationView.spotImage != nil) {
+    if (xamoomAnnotationView.spotImage.size.width < xamoomAnnotationView.spotImage.size.height) {
+      spotImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, distanceLabel.frame.origin.y + distanceLabel.frame.size.height, xamoomCalloutView.frame.size.width, xamoomCalloutView.frame.size.width)];
     } else {
-      float imageRatio = pingeborgAnnotationView.spotImage.size.width / pingeborgAnnotationView.spotImage.size.height;
-      spotImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, distanceLabel.frame.origin.y + distanceLabel.frame.size.height, pingeborgCalloutView.frame.size.width, pingeborgCalloutView.frame.size.width / imageRatio)];
+      float imageRatio = xamoomAnnotationView.spotImage.size.width / xamoomAnnotationView.spotImage.size.height;
+      spotImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, distanceLabel.frame.origin.y + distanceLabel.frame.size.height, xamoomCalloutView.frame.size.width, xamoomCalloutView.frame.size.width / imageRatio)];
     }
     
     [spotImageView setContentMode: UIViewContentModeScaleToFill];
-    spotImageView.image = pingeborgAnnotationView.spotImage;
+    spotImageView.image = xamoomAnnotationView.spotImage;
     
     //increase pingeborCalloutView height
-    CGRect pingeborgCalloutViewRect = pingeborgCalloutView.frame;
-    pingeborgCalloutViewRect.size.height += spotImageView.frame.size.height;
-    pingeborgCalloutView.frame = pingeborgCalloutViewRect;
+    CGRect xamoomCalloutViewRect = xamoomCalloutView.frame;
+    xamoomCalloutViewRect.size.height += spotImageView.frame.size.height;
+    xamoomCalloutView.frame = xamoomCalloutViewRect;
     
-    [pingeborgCalloutView addSubview:spotImageView];
+    [xamoomCalloutView addSubview:spotImageView];
   }
   
   //insert spotdescription
-  if (![pingeborgAnnotationView.data.descriptionOfSpot isEqualToString:@""]) {
+  if (![xamoomAnnotationView.data.descriptionOfSpot isEqualToString:@""]) {
     UILabel *spotDescriptionLabel;
-    if ([pingeborgCalloutView.subviews count] >= 3) {
+    if ([xamoomCalloutView.subviews count] >= 3) {
       spotDescriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, spotImageView.frame.size.height + spotImageView.frame.origin.y + 5.0f, 280.0f, 25.0f)];
     } else {
       spotDescriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, distanceLabel.frame.origin.y + distanceLabel.frame.size.height + 5.0f, 280.0f, 25.0f)];
@@ -322,7 +322,7 @@
     spotDescriptionLabel.numberOfLines = 0;
     spotDescriptionLabel.font = [UIFont systemFontOfSize:12];
     spotDescriptionLabel.textColor = [UIColor darkGrayColor];
-    spotDescriptionLabel.text = pingeborgAnnotationView.data.descriptionOfSpot;
+    spotDescriptionLabel.text = xamoomAnnotationView.data.descriptionOfSpot;
     
     //resize label depending on content
     CGRect spotDescriptionLabelRect = spotDescriptionLabel.frame;
@@ -330,30 +330,30 @@
     spotDescriptionLabel.frame = spotDescriptionLabelRect;
     
     //increase pingeborCalloutView height
-    CGRect pingeborgCalloutViewRect = pingeborgCalloutView.frame;
-    pingeborgCalloutViewRect.size.height += spotDescriptionLabel.frame.size.height + 10.0f;
-    pingeborgCalloutView.frame = pingeborgCalloutViewRect;
+    CGRect xamoomCalloutViewRect = xamoomCalloutView.frame;
+    xamoomCalloutViewRect.size.height += spotDescriptionLabel.frame.size.height + 10.0f;
+    xamoomCalloutView.frame = xamoomCalloutViewRect;
     
-    [pingeborgCalloutView addSubview:spotDescriptionLabel];
+    [xamoomCalloutView addSubview:spotDescriptionLabel];
   }
   
   //create, design and adjust navigationButton
-  UIButton *navigationButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, pingeborgCalloutView.frame.size.height, 300.0f, 60.0f)];
+  UIButton *navigationButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, xamoomCalloutView.frame.size.height, 300.0f, 60.0f)];
   navigationButton.backgroundColor = [Globals sharedObject].pingeborgLinkColor;
   [navigationButton setImage:[[UIImage imageNamed:@"car"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
   navigationButton.tintColor = [UIColor whiteColor];
   [navigationButton setImageEdgeInsets: UIEdgeInsetsMake(-10.0f, navigationButton.titleEdgeInsets.right, 10.0f, navigationButton.titleEdgeInsets.left)];
   
   //increase pingeborCalloutView height
-  pingeborgCalloutViewRect = pingeborgCalloutView.frame;
-  pingeborgCalloutViewRect.size.height += navigationButton.frame.size.height - 20.0f;
-  pingeborgCalloutView.frame = pingeborgCalloutViewRect;
+  xamoomCalloutViewRect = xamoomCalloutView.frame;
+  xamoomCalloutViewRect.size.height += navigationButton.frame.size.height - 20.0f;
+  xamoomCalloutView.frame = xamoomCalloutViewRect;
   
   [navigationButton addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mapNavigationTapped)]];
   
-  [pingeborgCalloutView addSubview:navigationButton];
+  [xamoomCalloutView addSubview:navigationButton];
   
-  return pingeborgCalloutView;
+  return xamoomCalloutView;
 }
 
 #pragma mark - MKMapView delegate methods
@@ -363,11 +363,11 @@
   if ([annotation isKindOfClass:[MKUserLocation class]])
     return nil;
   
-  if ([annotation isKindOfClass:[PingebAnnotation class]]) {
-    static NSString *identifier = @"PingebAnnotation";
-    PingeborgAnnotationView *annotationView;
+  if ([annotation isKindOfClass:[XMMAnnotation class]]) {
+    static NSString *identifier = @"xamoomAnnotation";
+    XMMAnnotationView *annotationView;
     if (annotationView == nil) {
-      annotationView = [[PingeborgAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+      annotationView = [[XMMAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
       annotationView.enabled = YES;
       annotationView.canShowCallout = NO;
       
@@ -381,13 +381,13 @@
       }
       
       //save data in annotationView
-      PingebAnnotation *pingebAnnotation = (PingebAnnotation*)annotation;
-      annotationView.data = pingebAnnotation.data;
-      annotationView.distance = pingebAnnotation.distance;
-      annotationView.coordinate = pingebAnnotation.coordinate;
+      XMMAnnotation *xamoomAnnotation = (XMMAnnotation*)annotation;
+      annotationView.data = xamoomAnnotation.data;
+      annotationView.distance = xamoomAnnotation.distance;
+      annotationView.coordinate = xamoomAnnotation.coordinate;
       
       //download image
-      [XMMImageUtility imageWithUrl:pingebAnnotation.data.image completionBlock:^(BOOL succeeded, UIImage *image, SVGKImage *svgImage) {
+      [XMMImageUtility imageWithUrl:xamoomAnnotation.data.image completionBlock:^(BOOL succeeded, UIImage *image, SVGKImage *svgImage) {
         if (image != nil) {
           annotationView.spotImage = image;
         } else if (svgImage != nil) {
@@ -413,13 +413,9 @@
   [calloutView setContentViewInset:UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f)];
   self.mapKitWithSMCalloutView.calloutView = calloutView;
   
-  if ([annotationView isKindOfClass:[PingeborgAnnotationView class]]) {
+  if ([annotationView isKindOfClass:[XMMAnnotationView class]]) {
     calloutView.contentView = [self createMapCalloutFrom:annotationView];
     calloutView.calloutOffset = annotationView.calloutOffset;
-    
-    // iOS 7 only: Apply our view controller's edge insets to the allowable area in which the callout can be displayed.
-    if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1)
-      calloutView.constrainedInsets = UIEdgeInsetsMake(self.topLayoutGuide.length, 0, self.bottomLayoutGuide.length, 0);
     
     [calloutView presentCalloutFromRect:annotationView.bounds inView:annotationView constrainedToView:self.mapKitWithSMCalloutView animated:YES];
   }
@@ -453,13 +449,13 @@
 #pragma mark User Interaction
 
 - (void)mapNavigationTapped {
-  //navigate to the coordinates of the pingeborgCalloutView
-  PingeborgCalloutView *pingeborgCalloutView = (PingeborgCalloutView* )self.mapKitWithSMCalloutView.calloutView.contentView;
+  //navigate to the coordinates of the xamoomCalloutView
+  XMMCalloutView *xamoomCalloutView = (XMMCalloutView* )self.mapKitWithSMCalloutView.calloutView.contentView;
   
-  MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:pingeborgCalloutView.coordinate addressDictionary:nil];
+  MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:xamoomCalloutView.coordinate addressDictionary:nil];
   
   MKMapItem *mapItem = [[MKMapItem alloc] initWithPlacemark:placemark];
-  mapItem.name = pingeborgCalloutView.nameOfSpot;
+  mapItem.name = xamoomCalloutView.nameOfSpot;
   
   NSDictionary *launchOptions = @{MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving};
   [mapItem openInMapsWithLaunchOptions:launchOptions];
@@ -480,7 +476,6 @@
                                       completion:^(XMMResponseGetByLocation *result) {
                                         [self showDataWithLocation:result];
                                       } error:^(XMMError *error) {
-                                        
                                       }];
 }
 

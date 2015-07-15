@@ -17,7 +17,7 @@
 // along with xamoom-pingeborg-ios. If not, see <http://www.gnu.org/licenses/>.
 //
 
-#import "PingeborgAnnotationView.h"
+#import "XMMAnnotationView.h"
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
@@ -33,7 +33,7 @@
 #define IS_IPHONE_6 (IS_IPHONE && SCREEN_MAX_LENGTH == 667.0)
 #define IS_IPHONE_6P (IS_IPHONE && SCREEN_MAX_LENGTH == 736.0)
 
-@implementation PingeborgAnnotationView
+@implementation XMMAnnotationView
 
 - (instancetype)initWithAnnotation:(id <MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier
 {

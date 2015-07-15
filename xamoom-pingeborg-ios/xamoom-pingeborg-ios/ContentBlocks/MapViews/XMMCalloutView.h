@@ -17,30 +17,11 @@
 // along with xamoom-pingeborg-ios. If not, see <http://www.gnu.org/licenses/>.
 //
 
-#import "PingeborgCalloutView.h"
+#import <UIKit/UIKit.h>
 
-@implementation PingeborgCalloutView
+@interface XMMCalloutView : UIView
 
-- (instancetype)initWithCoder:(NSCoder *)aDecoder {
-  self = [super initWithCoder:aDecoder];
-  if (self) {
-    self.layer.cornerRadius = 6.0f;
-    self.layer.masksToBounds = YES;
-  }
-  return self;
-}
-
-- (instancetype)init{
-  id mainView = [[[NSBundle mainBundle] loadNibNamed:@"PingeborgCalloutView" owner:self options:nil] lastObject];
-  return mainView;
-}
-
-/*
- // Only override drawRect: if you perform custom drawing.
- // An empty implementation adversely affects performance during animation.
- - (void)drawRect:(CGRect)rect {
- // Drawing code
- }
- */
+@property CLLocationCoordinate2D coordinate;
+@property NSString *nameOfSpot;
 
 @end

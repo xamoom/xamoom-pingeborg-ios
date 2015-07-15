@@ -22,8 +22,8 @@
 #import <SVGKit.h>
 #import <SVGKSourceString.h>
 #import "SMCalloutView.h"
-#import "PingeborgAnnotationView.h"
-#import "PingeborgCalloutView.h"
+#import "XMMAnnotationView.h"
+#import "XMMCalloutView.h"
 #import "FeedItemCell.h"
 #import "ArtistDetailViewController.h"
 #import "GAI.h"

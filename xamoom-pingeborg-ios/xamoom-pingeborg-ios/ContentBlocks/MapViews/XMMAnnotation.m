@@ -17,10 +17,10 @@
 // along with xamoom-pingeborg-ios. If not, see <http://www.gnu.org/licenses/>.
 //
 
-#import "PingebAnnotation.h"
+#import "XMMAnnotation.h"
 #import <MapKit/MapKit.h>
 
-@implementation PingebAnnotation
+@implementation XMMAnnotation
 
 @synthesize coordinate;
 @synthesize title;

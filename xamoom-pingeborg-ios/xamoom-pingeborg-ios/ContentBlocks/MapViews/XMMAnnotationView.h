@@ -21,7 +21,7 @@
 #import <MapKit/MapKit.h>
 #import <SVGKit.h>
 
-@interface PingeborgAnnotationView : MKAnnotationView
+@interface XMMAnnotationView : MKAnnotationView
 
 @property XMMResponseGetSpotMapItem *data;
 @property NSString *distance;

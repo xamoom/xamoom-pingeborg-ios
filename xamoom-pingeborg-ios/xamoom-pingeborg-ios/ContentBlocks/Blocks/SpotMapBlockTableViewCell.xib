@@ -20,13 +20,13 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="a9J-kR-AmO">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xbq-ej-AT0">
                         <rect key="frame" x="8" y="37" width="304" height="291"/>
-                        <gestureRecognizers/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="291" id="G2V-Gy-qIY"/>
+                            <constraint firstAttribute="height" constant="291" id="xQs-el-AtM"/>
                         </constraints>
-                    </mapView>
+                    </view>
                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="DWs-nj-B0z">
                         <rect key="frame" x="150" y="173" width="20" height="20"/>
                         <constraints>
@@ -37,20 +37,20 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="centerY" secondItem="DWs-nj-B0z" secondAttribute="centerY" constant="-15" id="0BE-94-RaT"/>
-                    <constraint firstItem="Hk4-tD-Bjj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="4wJ-IN-wHg"/>
-                    <constraint firstItem="a9J-kR-AmO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="7Ik-eC-4RO"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="a9J-kR-AmO" secondAttribute="bottom" id="9yv-zX-FGW"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="a9J-kR-AmO" secondAttribute="trailing" id="Cny-Ue-YSc"/>
+                    <constraint firstItem="xbq-ej-AT0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="4y5-gf-jjE"/>
+                    <constraint firstItem="Hk4-tD-Bjj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="7lL-jK-1d8"/>
+                    <constraint firstItem="xbq-ej-AT0" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="NXW-fT-cfT"/>
+                    <constraint firstItem="xbq-ej-AT0" firstAttribute="top" secondItem="Hk4-tD-Bjj" secondAttribute="bottom" constant="8" id="Ut1-jI-FKH"/>
                     <constraint firstAttribute="centerX" secondItem="DWs-nj-B0z" secondAttribute="centerX" id="Wpz-0W-vPu"/>
-                    <constraint firstItem="Hk4-tD-Bjj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="nGc-sO-u5Y"/>
-                    <constraint firstItem="Hk4-tD-Bjj" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="pPp-gx-i0T"/>
-                    <constraint firstItem="a9J-kR-AmO" firstAttribute="top" secondItem="Hk4-tD-Bjj" secondAttribute="bottom" constant="8" id="unm-Ti-3yg"/>
+                    <constraint firstItem="xbq-ej-AT0" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="hKd-l4-XLV"/>
+                    <constraint firstItem="Hk4-tD-Bjj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="oPE-rF-wg7"/>
+                    <constraint firstItem="Hk4-tD-Bjj" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="ocB-hT-T8Z"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="loadingIndicator" destination="DWs-nj-B0z" id="hVM-HR-qPh"/>
-                <outlet property="map" destination="a9J-kR-AmO" id="8V4-aK-Ock"/>
                 <outlet property="titleLabel" destination="Hk4-tD-Bjj" id="hWE-PI-VOd"/>
+                <outlet property="viewForMap" destination="xbq-ej-AT0" id="4ZO-3q-I8u"/>
             </connections>
             <point key="canvasLocation" x="392" y="602.5"/>
         </tableViewCell>

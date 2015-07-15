@@ -17,12 +17,19 @@
 // along with xamoom-pingeborg-ios. If not, see <http://www.gnu.org/licenses/>.
 //
 
-#import <UIKit/UIKit.h>
-#import "PingebAnnotation.h"
+#import <Foundation/Foundation.h>
+#import <MapKit/MapKit.h>
+#import "XMMEnduserApi.h"
 
-@interface PingeborgCalloutView : UIView
+@interface XMMAnnotation : NSObject <MKAnnotation>
 
-@property CLLocationCoordinate2D coordinate;
-@property NSString *nameOfSpot;
+@property XMMResponseGetSpotMapItem *data;
+@property NSString *distance;
+
+- (instancetype)initWithLocation:(CLLocationCoordinate2D)coord NS_DESIGNATED_INITIALIZER;
+
+- (instancetype)initWithName:(NSString*)name withLocation:(CLLocationCoordinate2D)coord NS_DESIGNATED_INITIALIZER;
+
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) MKMapItem *mapItem;
 
 @end

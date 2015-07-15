@@ -17,19 +17,30 @@
 // along with xamoom-pingeborg-ios. If not, see <http://www.gnu.org/licenses/>.
 //
 
-#import <Foundation/Foundation.h>
-#import <MapKit/MapKit.h>
-#import "XMMEnduserApi.h"
+#import "XMMCalloutView.h"
 
-@interface PingebAnnotation : NSObject <MKAnnotation>
+@implementation XMMCalloutView 
 
-@property XMMResponseGetSpotMapItem *data;
-@property NSString *distance;
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+  self = [super initWithCoder:aDecoder];
+  if (self) {
+    self.layer.cornerRadius = 6.0f;
+    self.layer.masksToBounds = YES;
+  }
+  return self;
+}
 
-- (instancetype)initWithLocation:(CLLocationCoordinate2D)coord NS_DESIGNATED_INITIALIZER;
+- (instancetype)init{
+  id mainView = [[[NSBundle mainBundle] loadNibNamed:@"XamoomCalloutView" owner:self options:nil] lastObject];
+  return mainView;
+}
 
-- (instancetype)initWithName:(NSString*)name withLocation:(CLLocationCoordinate2D)coord NS_DESIGNATED_INITIALIZER;
-
-@property (NS_NONATOMIC_IOSONLY, readonly, strong) MKMapItem *mapItem;
+/*
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
+ - (void)drawRect:(CGRect)rect {
+ // Drawing code
+ }
+ */
 
 @end

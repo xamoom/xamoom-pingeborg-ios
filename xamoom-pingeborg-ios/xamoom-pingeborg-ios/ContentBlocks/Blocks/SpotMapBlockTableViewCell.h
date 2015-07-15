@@ -11,15 +11,20 @@
 #import <SVGKit.h>
 #import <SVGKSourceString.h>
 #import "XMMEnduserApi.h"
-#import "PingebAnnotation.h"
-#import "PingeborgAnnotationView.h"
+#import "XMMAnnotation.h"
+#import "XMMAnnotationView.h"
+#import "XMMCalloutView.h"
+#import <SMCalloutView/SMCalloutView.h>
 
-@interface SpotMapBlockTableViewCell : UITableViewCell <MKMapViewDelegate>
+@class CustomMapView2;
+
+@interface SpotMapBlockTableViewCell : UITableViewCell <MKMapViewDelegate, SMCalloutViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet MKMapView *map;
+@property (weak, nonatomic) IBOutlet UIView *viewForMap;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
 
+@property (nonatomic, strong) CustomMapView2 *mapKitWithSMCalloutView;
 @property NSArray *spotMapTags; 
 @property UIImage *customMapMarker;
 @property SVGKImage *customSVGMapMarker;
