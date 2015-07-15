@@ -32,8 +32,8 @@
 @property (nonatomic, copy) NSString *systemName;
 @property (nonatomic, copy) NSString *systemUrl;
 @property (nonatomic, copy) NSString *systemId;
-@property (nonatomic, copy) NSString *hasContent;
-@property (nonatomic, copy) NSString *hasSpot;
+@property (nonatomic) BOOL hasContent;
+@property (nonatomic) BOOL hasSpot;
 @property (nonatomic) XMMResponseContent *content;
 @property (nonatomic) XMMResponseStyle *style;
 @property (nonatomic) NSArray *menu;

@@ -59,7 +59,6 @@ static XMMEnduserApi *sharedInstance;
   //create RKObjectManager
   RKObjectManager *objectManager = [RKObjectManager managerWithBaseURL:apiBaseURL];
   [RKObjectManager setSharedManager:objectManager];
-  
   return self;
 }
 
@@ -72,21 +71,6 @@ static XMMEnduserApi *sharedInstance;
 
 #pragma mark public methods
 #pragma mark API calls
-
-- (void)contentWithContentId:(NSString*)contentId includeStyle:(BOOL)style includeMenu:(BOOL)menu withLanguage:(NSString*)language completion:(void(^)(XMMResponseGetById *result))completionHandler error:(void(^)(XMMError *error))errorHandler {
-  
-  NSDictionary *queryParams = @{@"content_id":contentId,
-                                @"include_style":(style) ? @"True" : @"False",
-                                @"include_menu":(menu) ? @"True" : @"False",
-                                @"language":language,
-                                };
-  
-  
-  
-  NSString *path = @"xamoomEndUserApi/v1/get_content_by_content_id";
-  
-  [self apiPostWithPath:path andDescriptor:[XMMResponseGetById contentDescriptor] andParams:queryParams completion:completionHandler error:errorHandler];
-}
 
 - (void)contentWithContentId:(NSString*)contentId includeStyle:(BOOL)style includeMenu:(BOOL)menu withLanguage:(NSString*)language full:(BOOL)full completion:(void(^)(XMMResponseGetById *result))completionHandler error:(void(^)(XMMError *error))errorHandler {
   NSDictionary *queryParams = @{@"content_id":contentId,
@@ -128,9 +112,9 @@ static XMMEnduserApi *sharedInstance;
   [self apiPostWithPath:path andDescriptor:[XMMResponseGetByLocation contentDescriptor] andParams:queryParams completion:completionHandler error:errorHandler];
 }
 
-- (void)spotMapWithSystemId:(int)systemId withMapTags:(NSArray *)mapTags withLanguage:(NSString *)language completion:(void(^)(XMMResponseGetSpotMap *result))completionHandler error:(void(^)(XMMError *error))errorHandler {
+- (void)spotMapWithMapTags:(NSArray *)mapTags withLanguage:(NSString *)language completion:(void(^)(XMMResponseGetSpotMap *result))completionHandler error:(void(^)(XMMError *error))errorHandler {
   
-  NSString *path = [NSString stringWithFormat:@"xamoomEndUserApi/v1/spotmap/%i/%@/%@", systemId, [mapTags componentsJoinedByString:@","], language];
+  NSString *path = [NSString stringWithFormat:@"xamoomEndUserApi/v1/spotmap/%i/%@/%@", 0, [mapTags componentsJoinedByString:@","], language];
   
   [self apiGetWithPath:path andDescriptor:[XMMResponseGetSpotMap contentDescriptor] andParams:nil completion:completionHandler error:errorHandler];
 }

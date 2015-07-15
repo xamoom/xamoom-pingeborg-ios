@@ -39,7 +39,7 @@
 }
 
 - (void)getSpotMapWithSystemId:(NSString*)systemId withLanguage:(NSString*)language {
-  [[XMMEnduserApi sharedInstance] spotMapWithSystemId:0 withMapTags:self.spotMapTags withLanguage:language
+  [[XMMEnduserApi sharedInstance] spotMapWithMapTags:self.spotMapTags withLanguage:language
                                            completion:^(XMMResponseGetSpotMap *result) {
                                              [self.loadingIndicator stopAnimating];
                                              [self setupMapView];

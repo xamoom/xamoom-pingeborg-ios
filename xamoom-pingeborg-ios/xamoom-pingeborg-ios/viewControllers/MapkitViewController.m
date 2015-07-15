@@ -75,7 +75,7 @@
   //load spotmap if there are no annotations on the map
   if (self.mapKitWithSMCalloutView.annotations.count <= 1) {
     [self.geoFenceActivityIndicator startAnimating];
-    [[XMMEnduserApi sharedInstance] spotMapWithSystemId:0 withMapTags:@[@"showAllTheSpots"] withLanguage:[XMMEnduserApi sharedInstance].systemLanguage
+    [[XMMEnduserApi sharedInstance] spotMapWithMapTags:@[@"showAllTheSpots"] withLanguage:[XMMEnduserApi sharedInstance].systemLanguage
                                              completion:^(XMMResponseGetSpotMap *result) {
                                                [self showSpotMap:result];
                                              } error:^(XMMError *error) {

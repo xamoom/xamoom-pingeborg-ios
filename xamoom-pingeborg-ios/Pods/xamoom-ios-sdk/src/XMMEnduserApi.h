@@ -119,23 +119,6 @@ extern NSString * const kApiBaseURLString;
  
  @param contentId   The id of the content from xamoom backend.
  @param style       True or False for returning the style from xamoom backend.
- @param menu        True of False for returning the menu from xamoom backend.
- @param language    The requested language of the content from xamoom backend.
- @param completionHandler CompletionHandler returns the result
- 
-  - *param1* result The result from xamoom backend as XMMResponseGetById
- @param errorHandler ErrorHandler returns an error if one occures
-  
-  - *param1* error A XMMError with error informations
- @return void
- */
-- (void)contentWithContentId:(NSString*)contentId includeStyle:(BOOL)style includeMenu:(BOOL)menu withLanguage:(NSString*)language completion:(void(^)(XMMResponseGetById *result))completionHandler error:(void(^)(XMMError *error))errorHandler;
-
-/**
- Makes an api call to xamoom with a unique contentId. If the selected language is not available the default language will be returned.
- 
- @param contentId   The id of the content from xamoom backend.
- @param style       True or False for returning the style from xamoom backend.
  @param menu        True or False for returning the menu from xamoom backend.
  @param language    The requested language of the content from xamoom backend.
  @param full        True or false for returning "unsynced" data or not
@@ -198,7 +181,7 @@ extern NSString * const kApiBaseURLString;
  - *param1* error A XMMError with error informations
  @return void
  */
-- (void)spotMapWithSystemId:(int)systemId withMapTags:(NSArray*)mapTags withLanguage:(NSString*)language completion:(void(^)(XMMResponseGetSpotMap *result))completionHandler error:(void(^)(XMMError *error))errorHandler;
+- (void)spotMapWithMapTags:(NSArray*)mapTags withLanguage:(NSString*)language completion:(void(^)(XMMResponseGetSpotMap *result))completionHandler error:(void(^)(XMMError *error))errorHandler;
 
 /**
  Makes an api call to xamoom with a unique contentId. If the selected language is not available the default language will be returned.

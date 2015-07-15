@@ -32,7 +32,8 @@
                                                 @"system_id":@"systemId",
                                                 @"has_content":@"hasContent",
                                                 @"has_spot":@"hasSpot",
-                                                }];  RKObjectMapping* responseContentMapping = [XMMResponseContent mapping];
+                                                }];
+  RKObjectMapping* responseContentMapping = [XMMResponseContent mapping];
   RKObjectMapping* responseStyleMapping = [XMMResponseStyle mapping];
   RKObjectMapping* responseMenuMapping = [XMMResponseMenuItem mapping];
   

@@ -124,10 +124,7 @@ int const kPageSize = 7;
   }
   
   //save if there are more items available over api
-  if ([result.hasMore isEqualToString:@"True"])
-    self.hasMore = YES;
-  else
-    self.hasMore = NO;
+  self.hasMore = result.hasMore;
   
   for (XMMResponseContent *contentItem in result.items) {
     //download image

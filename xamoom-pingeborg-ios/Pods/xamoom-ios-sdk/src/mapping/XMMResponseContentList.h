@@ -17,7 +17,7 @@
 @interface XMMResponseContentList : NSObject
 
 @property (nonatomic, copy) NSString* cursor;
-@property (nonatomic, copy) NSString* hasMore;
+@property (nonatomic) BOOL hasMore;
 @property (nonatomic, copy) NSArray* items;
 
 /// @name Mapping

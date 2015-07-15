@@ -12,6 +12,8 @@
 
 - (void)awakeFromNib {
   // Initialization code
+  self.contentTitleLabel.text = @"";
+  self.contentExcerptLabel.text = @"";
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
