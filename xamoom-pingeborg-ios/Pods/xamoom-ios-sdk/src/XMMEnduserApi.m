@@ -21,7 +21,7 @@
 #import <RestKit/RestKit.h>
 #import <dispatch/dispatch.h>
 
-NSString * const kApiBaseURLString = @"https://xamoom-api-dot-xamoom-cloud-dev.appspot.com/_ah/api/";
+NSString * const kApiBaseURLString = @"https://xamoom-api-dot-xamoom-cloud.appspot.com/_ah/api/";
 
 static XMMEnduserApi *sharedInstance;
 

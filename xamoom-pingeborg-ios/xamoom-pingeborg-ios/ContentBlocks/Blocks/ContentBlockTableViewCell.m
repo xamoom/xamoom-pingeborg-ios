@@ -21,9 +21,12 @@
 }
 
 - (void)initContentBlockWithLanguage:(NSString*)language {
+  self.contentView.backgroundColor = [UIColor colorWithRed: 222/255.0f green: 222/255.0f blue: 222/255.0f alpha:1.0];
+  
   [[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:NO includeMenu:NO withLanguage:language full:NO
                                             completion:^(XMMResponseGetById *result) {
                                               [self.loadingIndicator stopAnimating];
+                                              self.contentView.backgroundColor = [UIColor clearColor];
                                               [self showBlockData:result];
                                             } error:^(XMMError *error) {
                                             }];

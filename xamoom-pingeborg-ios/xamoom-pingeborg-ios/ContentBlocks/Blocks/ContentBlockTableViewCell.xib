@@ -14,7 +14,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="page" translatesAutoresizingMaskIntoConstraints="NO" id="nIv-r2-k2O">
+                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nIv-r2-k2O">
                         <rect key="frame" x="8" y="8" width="100" height="100"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="100" id="6K4-Pj-6KN"/>
@@ -31,7 +31,7 @@
                         <rect key="frame" x="319" y="53" width="8" height="13"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gkk-b8-aKr">
-                        <rect key="frame" x="116" y="37" width="195" height="21"/>
+                        <rect key="frame" x="116" y="37" width="195" height="71"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="lessThanOrEqual" constant="71" id="6Yu-pJ-qLO"/>
                         </constraints>
@@ -67,6 +67,7 @@
                 <outlet property="contentExcerptLabel" destination="Gkk-b8-aKr" id="HNn-Pi-FfQ"/>
                 <outlet property="contentImageView" destination="nIv-r2-k2O" id="bir-Uh-6EZ"/>
                 <outlet property="contentTitleLabel" destination="khd-fo-I9i" id="KoO-F4-pdP"/>
+                <outlet property="contentView" destination="H2p-sc-9uM" id="Eh7-DO-1Ux"/>
                 <outlet property="loadingIndicator" destination="3LZ-YK-XVu" id="0ri-Lg-0CD"/>
             </connections>
             <point key="canvasLocation" x="491.5" y="485.5"/>
@@ -74,6 +75,5 @@
     </objects>
     <resources>
         <image name="angleRight" width="8" height="13"/>
-        <image name="page" width="35" height="48"/>
     </resources>
 </document>
