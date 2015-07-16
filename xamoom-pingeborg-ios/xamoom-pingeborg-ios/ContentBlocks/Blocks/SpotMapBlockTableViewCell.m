@@ -34,6 +34,9 @@
 - (void)setupMapView {
   //init map
   self.mapKitWithSMCalloutView = [[CustomMapView2 alloc] initWithFrame:self.viewForMap.bounds];
+  [self.mapKitWithSMCalloutView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+
+  [self.mapKitWithSMCalloutView sizeToFit];
   self.mapKitWithSMCalloutView.delegate = self;
   self.mapKitWithSMCalloutView.showsUserLocation = YES;
   [self.viewForMap addSubview:self.mapKitWithSMCalloutView];
