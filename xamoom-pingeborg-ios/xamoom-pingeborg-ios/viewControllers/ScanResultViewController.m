@@ -48,12 +48,13 @@
 
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
-  [self displayContentTitleAndImage];
   
   //analytics
   [[Analytics sharedObject] sendEventWithCategorie:@"pingeb.org" andAction:@"Show content" andLabel:self.result.content.contentId andValue:nil];
-
+  
+  [self displayContentTitleAndImage];
   [self.contentBlocks displayContentBlocksByLocationIdentifierResult:self.result];
+  [self.hud dismiss];
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
@@ -118,7 +119,7 @@
 }
 
 - (void)setupContentBlocks {
-  self.contentBlocks = [[XMMContentBlocks alloc] initWithLanguage:[XMMEnduserApi sharedInstance].systemLanguage withWidth:self.tableView.bounds.size.width];
+  self.contentBlocks = [[XMMContentBlocks alloc] initWithLanguage:[XMMEnduserApi sharedInstance].systemLanguage withWidth:self.view.bounds.size.width];
   self.contentBlocks.delegate = self;
   self.contentBlocks.linkColor = [Globals sharedObject].pingeborgLinkColor;
 }
@@ -165,7 +166,6 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  [self.hud dismiss];
   return (self.contentBlocks.itemsToDisplay)[indexPath.row];
 }
 
