@@ -32,6 +32,9 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   
+  //analytics
+  [[Analytics sharedObject] setScreenName:@"Scan Result"];
+  
   //init and start progessHud
   self.hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
   
@@ -44,9 +47,12 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-  [self setupAnalyticsWithName:[NSString stringWithFormat:@"Scan Result - %@", self.result.content.title]];
   [super viewDidAppear:animated];
   [self displayContentTitleAndImage];
+  
+  //analytics
+  [[Analytics sharedObject] sendEventWithCategorie:@"pingeb.org" andAction:@"Show content" andLabel:self.result.content.contentId andValue:nil];
+
   [self.contentBlocks displayContentBlocksByLocationIdentifierResult:self.result];
 }
 
@@ -79,6 +85,7 @@
                                                                image:nil
                                                     highlightedImage:nil
                                                               action:^(REMenuItem *item) {
+                                                                [[Analytics sharedObject] sendEventWithCategorie:@"UX" andAction:@"Changed Fontsize" andLabel:@"Normal Font Size" andValue:nil];
                                                                 [self.contentBlocks updateFontSizeTo:NormalFontSize];
                                                               }];
   
@@ -87,6 +94,7 @@
                                                             image:nil
                                                  highlightedImage:nil
                                                            action:^(REMenuItem *item) {
+                                                             [[Analytics sharedObject] sendEventWithCategorie:@"UX" andAction:@"Changed Fontsize" andLabel:@"Big Font Size" andValue:nil];
                                                              [self.contentBlocks updateFontSizeTo:BigFontSize];
                                                            }];
   
@@ -95,6 +103,7 @@
                                                                image:nil
                                                     highlightedImage:nil
                                                               action:^(REMenuItem *item) {
+                                                                [[Analytics sharedObject] sendEventWithCategorie:@"UX" andAction:@"Changed Fontsize" andLabel:@"Really Big Font Size" andValue:nil];
                                                                 [self.contentBlocks updateFontSizeTo:BiggerFontSize];
                                                               }];
   
@@ -116,10 +125,11 @@
 
 #pragma mark - NavbarDropdown
 
--(void)toggleFontSizeDropdownMenu {
+- (void)toggleFontSizeDropdownMenu {
   if (self.fontSizeDropdownMenu.isOpen)
     return [self.fontSizeDropdownMenu close];
   
+  [[Analytics sharedObject] sendEventWithCategorie:@"UX" andAction:@"Click" andLabel:@"FontSizeMenu" andValue:nil];
   [self.fontSizeDropdownMenu showFromNavigationController:self.navigationController];
 }
 
@@ -186,14 +196,6 @@
  // Pass the selected object to the new view controller.
  }
  */
-
-#pragma mark - Analytics
-
-- (void)setupAnalyticsWithName:(NSString*)screenName {
-  id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-  [tracker send:[[[GAIDictionaryBuilder createScreenView] set:screenName
-                                                       forKey:kGAIScreenName] build]];
-}
 
 
 @end

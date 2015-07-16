@@ -20,7 +20,6 @@
 #import "AppDelegate.h"
 #import "XMMEnduserApi.h"
 #import "Globals.h"
-#import "GAI.h"
 
 @interface AppDelegate ()
 
@@ -29,18 +28,12 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  //IF DEV
-  //[[Globals sharedObject] developmentMode];
-  
   //set UI colors
   [[UINavigationBar appearance] setBarTintColor:[Globals sharedObject].pingeborgYellow];
   [[UITabBar appearance] setTintColor:[Globals sharedObject].pingeborgLinkColor];
   
   //setup API
   [self setupApi];
-  
-  //Google Analytics
-  //[self setupGoogleAnalytics];
   
   return YES;
 }
@@ -75,11 +68,5 @@
   [[XMMEnduserApi sharedInstance] setApiKey:apiKey];
 }
 
-- (void)setupGoogleAnalytics {
-  [GAI sharedInstance].trackUncaughtExceptions = YES;
-  [GAI sharedInstance].dispatchInterval = 20;
-  [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
-  [[GAI sharedInstance] trackerWithTrackingId:@"UA-57427460-2"];
-}
 
 @end

@@ -18,6 +18,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Google/Analytics.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

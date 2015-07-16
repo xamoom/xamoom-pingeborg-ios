@@ -58,7 +58,9 @@
   self.hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
   
   if (viewController == (tabBarController.viewControllers)[3]){
-    [self setupAnalytics];
+    //analytics
+    [[Analytics sharedObject] sendEventWithCategorie:@"UX" andAction:@"Click" andLabel:@"QR Code Reader" andValue:nil];
+    
     [[XMMEnduserApi sharedInstance] setQrCodeViewControllerCancelButtonTitle:NSLocalizedString(@"Cancel", nil)];
     [[XMMEnduserApi sharedInstance] startQRCodeReaderFromViewController:self
                                                                 didLoad:^(NSString *locationIdentifier, NSString *url) {
@@ -78,13 +80,15 @@
   
   //old pingeborg stickers get a redirect to the xm.gl url
   if ([url containsString:@"http://pingeb.org/"]) {
-    [self sendEventAnalticsWithAction:@"Scanned Sticker" andLabel:@"Old pingeb.org sticker was scanned."];
+    //analytics
+    [[Analytics sharedObject] sendEventWithCategorie:@"pingeb.org" andAction:@"Scan" andLabel:@"pingeb.org Sticker" andValue:nil];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
     NSURLConnection *urlConntection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO];
     [urlConntection start];
   } else if([url containsString:@"xm.gl"]) {
-    [self sendEventAnalticsWithAction:@"Scanned Sticker" andLabel:@"xamoom sticker was scanned."];
+    //analytics
+    [[Analytics sharedObject] sendEventWithCategorie:@"pingeb.org" andAction:@"Scan" andLabel:@"xm.gl Sticker" andValue:nil];
     
     [[XMMEnduserApi sharedInstance] contentWithLocationIdentifier:result includeStyle:NO includeMenu:NO withLanguage:[XMMEnduserApi sharedInstance].systemLanguage
                                                        completion:^(XMMResponseGetByLocationIdentifier *result) {
@@ -93,7 +97,8 @@
                                                          [self errorMessageOnScanning];
                                                        }];
   } else {
-    [self sendEventAnalticsWithAction:@"Scanned Sticker - Failed" andLabel:[NSString stringWithFormat:@"Scanning sticker failed - URL: %@", url]];
+    //analytics
+    [[Analytics sharedObject] sendEventWithCategorie:@"pingeb.org" andAction:@"Scan" andLabel:@"Other QR Code" andValue:nil];
     [self errorMessageOnScanning];
   }
 }
@@ -145,22 +150,6 @@
     ScanResultViewController *srvc = [segue destinationViewController];
     srvc.result = self.savedApiResult;
   }
-}
-
-#pragma mark - Analytics
-
-- (void)setupAnalytics {
-  id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-  [tracker send:[[[GAIDictionaryBuilder createScreenView] set:@"QR Scanner"
-                                                       forKey:kGAIScreenName] build]];
-}
-
-- (void)sendEventAnalticsWithAction:(NSString*)action andLabel:(NSString*)label {
-  id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-  [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"     // Event category (required)
-                                                        action:action  // Event action (required)
-                                                         label:label          // Event label
-                                                         value:nil] build]];    // Event value
 }
 
 @end

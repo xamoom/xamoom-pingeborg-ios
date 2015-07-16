@@ -42,13 +42,15 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+
+  //analytics
+  [[Analytics sharedObject] setScreenName:@"Map View"];
   
   self.placeholder = [UIImage imageNamed:@"placeholder"];
   self.isUp = NO;
   
   [self.tabBarItem setSelectedImage:[UIImage imageNamed:@"map_filled"]];
 
-  [self setupAnalytics];
   [self setupTableView];
   [self setupMapView];
   [self setupGeofenceView];
@@ -200,7 +202,12 @@
   }
   
   for (XMMResponseGetByLocationItem *item in result.items) {
-    //check if item is in pingeborg-system => GEOFENCE
+    //analytics
+    [[Analytics sharedObject] sendEventWithCategorie:@"pingeb.org"
+                                           andAction:@"Geofence found"
+                                            andLabel:[NSString stringWithFormat:@"User found Geofence at lat: %f lon: %f", self.lastLocation.coordinate.latitude, self.lastLocation.coordinate.longitude]
+                                            andValue:nil];
+    
     self.savedResponseContent = item;
     [self.itemsToDisplay addObject:item];
     break;
@@ -414,6 +421,9 @@
   self.mapKitWithSMCalloutView.calloutView = calloutView;
   
   if ([annotationView isKindOfClass:[XMMAnnotationView class]]) {
+    //analytics
+    [[Analytics sharedObject] sendEventWithCategorie:@"UX" andAction:@"Click" andLabel:[NSString stringWithFormat:@"Map Pin"] andValue:nil];
+    
     calloutView.contentView = [self createMapCalloutFrom:annotationView];
     calloutView.calloutOffset = annotationView.calloutOffset;
     
@@ -451,6 +461,9 @@
 - (void)mapNavigationTapped {
   //navigate to the coordinates of the xamoomCalloutView
   XMMCalloutView *xamoomCalloutView = (XMMCalloutView* )self.mapKitWithSMCalloutView.calloutView.contentView;
+  
+  //analytics
+  [[Analytics sharedObject] sendEventWithCategorie:@"UX" andAction:@"Click" andLabel:@"Map Callout Navigation Button" andValue:nil];
   
   MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:xamoomCalloutView.coordinate addressDictionary:nil];
   
@@ -654,12 +667,7 @@
   [[Globals sharedObject] addDiscoveredArtist:cell.contentId];
   
   //analytics
-  id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-  [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"UX"     // Event category (required)
-                                                        action:@"Did click Geofence"  // Event action (required)
-                                                         label:[NSString stringWithFormat:@"Location: %f, %f", self.lastLocation.coordinate.latitude, self.lastLocation.coordinate.longitude]         // Event label
-                                                         value:nil] build]];
-  
+  [[Analytics sharedObject] sendEventWithCategorie:@"UX" andAction:@"Click" andLabel:@"Geofence" andValue:nil];
   [[XMMEnduserApi sharedInstance] geofenceAnalyticsMessageWithRequestedLanguage:[XMMEnduserApi sharedInstance].systemLanguage
                                                           withDeliveredLanguage:self.savedResponseContent.language
                                                                    withSystemId:self.savedResponseContent.systemId
@@ -678,14 +686,6 @@
 
 - (IBAction)closeInstructionView:(id)sender {
   self.instructionView.hidden = YES;
-}
-
-#pragma mark - Analytics
-
-- (void)setupAnalytics {
-  id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-  [tracker send:[[[GAIDictionaryBuilder createScreenView] set:@"Map Screen"
-                                                       forKey:kGAIScreenName] build]];
 }
 
 @end

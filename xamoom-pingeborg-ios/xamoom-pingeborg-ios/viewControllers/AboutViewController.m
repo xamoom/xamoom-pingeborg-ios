@@ -35,11 +35,13 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   
+  //analytics
+  [[Analytics sharedObject] setScreenName:@"About View"];
+  
   [self.tabBarItem setSelectedImage:[UIImage imageNamed:@"info_filled"]];
   
   self.hud = [[JGProgressHUD alloc] initWithStyle:JGProgressHUDStyleDark];
 
-  [self setupAnalytics];
   [self setupTableView];
   [self setupContentBlocks];
   [self setupTextSizeDropdown];
@@ -93,6 +95,7 @@
                                                                image:nil
                                                     highlightedImage:nil
                                                               action:^(REMenuItem *item) {
+                                                                [[Analytics sharedObject] sendEventWithCategorie:@"UX" andAction:@"Changed Fontsize" andLabel:@"Normal Font Size" andValue:nil];
                                                                 [self.contentBlocks updateFontSizeTo:NormalFontSize];
                                                               }];
   
@@ -101,6 +104,7 @@
                                                             image:nil
                                                  highlightedImage:nil
                                                            action:^(REMenuItem *item) {
+                                                             [[Analytics sharedObject] sendEventWithCategorie:@"UX" andAction:@"Changed Fontsize" andLabel:@"Big Font Size" andValue:nil];
                                                              [self.contentBlocks updateFontSizeTo:BigFontSize];
                                                            }];
   
@@ -109,25 +113,27 @@
                                                                image:nil
                                                     highlightedImage:nil
                                                               action:^(REMenuItem *item) {
+                                                                [[Analytics sharedObject] sendEventWithCategorie:@"UX" andAction:@"Changed Fontsize" andLabel:@"Really Big Font Size" andValue:nil];
                                                                 [self.contentBlocks updateFontSizeTo:BiggerFontSize];
                                                               }];
   
   self.fontSizeDropdownMenu = [[REMenu alloc] initWithItems:@[NormalFontSizeItem, BigFontSizeItem, BiggerFontSizeItem]];
   
-  //create change font size button in navbar
-  self.buttonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"textsize"]
-                                                     style:UIBarButtonItemStylePlain
-                                                    target:self
-                                                    action:@selector(toggleFontSizeDropdownMenu)];
-  self.parentViewController.navigationItem.rightBarButtonItem = self.buttonItem;
+  //create changeFontSize button
+  UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"textsize"]
+                                                                 style:UIBarButtonItemStylePlain
+                                                                target:self
+                                                                action:@selector(toggleFontSizeDropdownMenu)];
+  self.navigationItem.rightBarButtonItem = buttonItem;
 }
 
 #pragma mark - NavbarDropdown
 
--(void)toggleFontSizeDropdownMenu {
+- (void)toggleFontSizeDropdownMenu {
   if (self.fontSizeDropdownMenu.isOpen)
     return [self.fontSizeDropdownMenu close];
   
+  [[Analytics sharedObject] sendEventWithCategorie:@"UX" andAction:@"Click" andLabel:@"FontSizeMenu" andValue:nil];
   [self.fontSizeDropdownMenu showFromNavigationController:self.navigationController];
 }
 
@@ -186,14 +192,5 @@
  // Pass the selected object to the new view controller.
  }
  */
-
-#pragma mark - Analytics
-
-- (void)setupAnalytics {
-  id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-  [tracker send:[[[GAIDictionaryBuilder createScreenView] set:@"About Screen"
-                                                       forKey:kGAIScreenName] build]];
-}
-
 
 @end

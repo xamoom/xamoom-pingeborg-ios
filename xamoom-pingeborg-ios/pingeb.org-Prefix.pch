@@ -15,5 +15,6 @@
 #import "XMMImageUtility.h"
 #import "XMMContentBlocks.h"
 #import "Globals.h"
+#import "Analytics.h"
 
 #endif

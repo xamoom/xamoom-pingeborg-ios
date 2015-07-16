@@ -24,9 +24,7 @@
 #import "ScanResultViewController.h"
 #import <JGProgressHUD/JGProgressHUD.h>
 #import <SVGKit.h>
-#import "GAI.h"
-#import "GAIDictionaryBuilder.h"
-#import "GAIFields.h"
+#import <Google/Analytics.h>
 
 extern int const kPageSize;
 

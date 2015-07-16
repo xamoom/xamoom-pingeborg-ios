@@ -42,7 +42,11 @@ int const kPageSize = 7;
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  
+
+  //do analytics
+  [[Analytics sharedObject] setScreenName:@"Artist List"];
+  [[Analytics sharedObject] sendEventWithCategorie:@"App" andAction:@"Started" andLabel:@"pingeb.org app started." andValue:nil];
+
   self.parentViewController.navigationItem.title = NSLocalizedString(@"pingeb.org Carinthia", nil);
   [self.tabBarItem setSelectedImage:[UIImage imageNamed:@"home_filled"]];
 
@@ -51,7 +55,6 @@ int const kPageSize = 7;
   self.imagesToDisplay = [[NSMutableDictionary alloc] init];
   self.hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
   
-  [self setupAnalytics];
   [self setupTableView];
   [self refreshControl];
   [self addNotifications];
@@ -230,6 +233,9 @@ int const kPageSize = 7;
 }
 
 - (void)pullToRefresh {
+  //analytics
+  [[Analytics sharedObject] sendEventWithCategorie:@"UX" andAction:@"Reload" andLabel:@"Artist View reloaded." andValue:nil];
+  
   [self.hud showInView:self.view];
   if(!self.isApiCallingBlocked) {
     //delete all items in arrays
@@ -267,6 +273,9 @@ int const kPageSize = 7;
 
 - (void)loadMoreContent {
   if (self.hasMore && !self.isApiCallingBlocked) {
+    //analytics
+    [[Analytics sharedObject] sendEventWithCategorie:@"UX" andAction:@"Load More" andLabel:@"Artist List load more." andValue:nil];
+    
     self.isApiCallingBlocked = YES;
     [[XMMEnduserApi sharedInstance] contentListWithPageSize:kPageSize withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withCursor:self.contentListCursor withTags:@[@"artists"]
                                                  completion:^(XMMResponseContentList *result) {
@@ -331,14 +340,5 @@ int const kPageSize = 7;
  
 }
 */
-
-#pragma mark - Analytics
-
-- (void)setupAnalytics {
-  id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-  [[GAI sharedInstance] setOptOut:YES];
-  [tracker send:[[[GAIDictionaryBuilder createScreenView] set:@"Home Screen - Artist List"
-                                                       forKey:kGAIScreenName] build]];
-}
 
 @end

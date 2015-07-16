@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		594E123E6C9FD768422C1CEE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C530CDEFFEDDFCABBEC918B0 /* libPods.a */; };
+		880246DC1B57AF2E00E585CE /* Analytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 880246DB1B57AF2E00E585CE /* Analytics.m */; };
+		880246E11B57CD9000E585CE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 880246DF1B57CCC400E585CE /* GoogleService-Info.plist */; };
 		88052D7B1AE103C300AB433D /* Globals.m in Sources */ = {isa = PBXBuildFile; fileRef = 88052D7A1AE103C300AB433D /* Globals.m */; };
 		881457C11B01E7DE0024E6F4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 881457C01B01E7DE0024E6F4 /* libPods.a */; };
 		881457E71B01E8620024E6F4 /* AudioBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 881457C51B01E8620024E6F4 /* AudioBlockTableViewCell.m */; };
@@ -51,7 +53,6 @@
 		8860DA831AE78D3500DF2239 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8860DA821AE78D3500DF2239 /* CoreGraphics.framework */; };
 		8860DA851AE78D3B00DF2239 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8860DA841AE78D3B00DF2239 /* UIKit.framework */; };
 		887BE0331B53D43000E9D584 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 887BE0351B53D43000E9D584 /* Localizable.strings */; };
-		889BE4301B38295E002850D5 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 889BE42F1B38295E002850D5 /* libGoogleAnalyticsServices.a */; };
 		889BE4321B3829A0002850D5 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 889BE4311B3829A0002850D5 /* CoreData.framework */; };
 		889BE4341B3829B1002850D5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 889BE4331B3829B1002850D5 /* SystemConfiguration.framework */; };
 		889BE4361B3829BF002850D5 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 889BE4351B3829BF002850D5 /* libz.dylib */; };
@@ -115,6 +116,9 @@
 /* Begin PBXFileReference section */
 		081CE084B2E648F4E71D7D2A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		48251170F65DFEEAACD48338 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		880246DA1B57AF2E00E585CE /* Analytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Analytics.h; sourceTree = "<group>"; };
+		880246DB1B57AF2E00E585CE /* Analytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Analytics.m; sourceTree = "<group>"; };
+		880246DF1B57CCC400E585CE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		88052D791AE103C300AB433D /* Globals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Globals.h; sourceTree = "<group>"; };
 		88052D7A1AE103C300AB433D /* Globals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Globals.m; sourceTree = "<group>"; };
 		881457BE1B01E7CF0024E6F4 /* libPods-AFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AFNetworking.a"; path = "Pods/build/Debug-iphoneos/libPods-AFNetworking.a"; sourceTree = "<group>"; };
@@ -252,7 +256,6 @@
 				889BE4361B3829BF002850D5 /* libz.dylib in Frameworks */,
 				889BE4341B3829B1002850D5 /* SystemConfiguration.framework in Frameworks */,
 				889BE4321B3829A0002850D5 /* CoreData.framework in Frameworks */,
-				889BE4301B38295E002850D5 /* libGoogleAnalyticsServices.a in Frameworks */,
 				8860DA851AE78D3B00DF2239 /* UIKit.framework in Frameworks */,
 				8860DA831AE78D3500DF2239 /* CoreGraphics.framework in Frameworks */,
 				8860DA811AE78D2C00DF2239 /* libxml2.dylib in Frameworks */,
@@ -427,6 +430,8 @@
 				88BA01F71AA859F90091A43C /* AppDelegate.m */,
 				88052D791AE103C300AB433D /* Globals.h */,
 				88052D7A1AE103C300AB433D /* Globals.m */,
+				880246DA1B57AF2E00E585CE /* Analytics.h */,
+				880246DB1B57AF2E00E585CE /* Analytics.m */,
 				8814583B1B01EE8B0024E6F4 /* ViewControllers */,
 				881458491B01EE8B0024E6F4 /* Views */,
 				88E2431A1B14507200E9E208 /* XMMImageUtility */,
@@ -442,6 +447,7 @@
 		88BA01F21AA859F90091A43C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				880246DF1B57CCC400E585CE /* GoogleService-Info.plist */,
 				88EB481B1B56390D00A6C63F /* apikey.txt */,
 				887BE0351B53D43000E9D584 /* Localizable.strings */,
 				88BA01F31AA859F90091A43C /* Info.plist */,
@@ -686,6 +692,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				880246E11B57CD9000E585CE /* GoogleService-Info.plist in Resources */,
 				88EB481D1B563C8700A6C63F /* Images.xcassets in Resources */,
 				887BE0331B53D43000E9D584 /* Localizable.strings in Resources */,
 				881457F71B01E8620024E6F4 /* SpotMapBlockTableViewCell.xib in Resources */,
@@ -783,6 +790,7 @@
 				881457FC1B01E8620024E6F4 /* XMMContentBlocks.m in Sources */,
 				88F038471B0E0D1200E17573 /* XMMImageUtility.m in Sources */,
 				881458591B01EE8B0024E6F4 /* MapkitViewController.m in Sources */,
+				880246DC1B57AF2E00E585CE /* Analytics.m in Sources */,
 				881457F81B01E8620024E6F4 /* TextBlockTableViewCell.m in Sources */,
 				88BA01F51AA859F90091A43C /* main.m in Sources */,
 				881457FD1B01E8620024E6F4 /* XMMMusicPlayer.m in Sources */,

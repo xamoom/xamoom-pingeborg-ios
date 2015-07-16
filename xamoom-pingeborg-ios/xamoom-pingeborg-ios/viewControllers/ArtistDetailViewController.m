@@ -36,6 +36,9 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   
+  //analytics
+  [[Analytics sharedObject] setScreenName:@"Artist Detail"];
+  
   self.navigationItem.title = NSLocalizedString(@"pingeb.org", nil);
   
   self.hud = [[JGProgressHUD alloc] initWithStyle:JGProgressHUDStyleDark];
@@ -82,6 +85,7 @@
                                                                image:nil
                                                     highlightedImage:nil
                                                               action:^(REMenuItem *item) {
+                                                                [[Analytics sharedObject] sendEventWithCategorie:@"UX" andAction:@"Changed Fontsize" andLabel:@"Normal Font Size" andValue:nil];
                                                                 [self.contentBlocks updateFontSizeTo:NormalFontSize];
                                                               }];
   
@@ -90,6 +94,7 @@
                                                             image:nil
                                                  highlightedImage:nil
                                                            action:^(REMenuItem *item) {
+                                                             [[Analytics sharedObject] sendEventWithCategorie:@"UX" andAction:@"Changed Fontsize" andLabel:@"Big Font Size" andValue:nil];
                                                              [self.contentBlocks updateFontSizeTo:BigFontSize];
                                                            }];
   
@@ -98,6 +103,7 @@
                                                                image:nil
                                                     highlightedImage:nil
                                                               action:^(REMenuItem *item) {
+                                                                [[Analytics sharedObject] sendEventWithCategorie:@"UX" andAction:@"Changed Fontsize" andLabel:@"Really Big Font Size" andValue:nil];
                                                                 [self.contentBlocks updateFontSizeTo:BiggerFontSize];
                                                               }];
   
@@ -142,6 +148,7 @@
   if (self.fontSizeDropdownMenu.isOpen)
     return [self.fontSizeDropdownMenu close];
   
+  [[Analytics sharedObject] sendEventWithCategorie:@"UX" andAction:@"Click" andLabel:@"FontSizeMenu" andValue:nil];
   [self.fontSizeDropdownMenu showFromNavigationController:self.navigationController];
 }
 
@@ -154,8 +161,8 @@
 # pragma mark - XMMEnduser Display ContentBlocks
 
 - (void)showDataWithContentId:(XMMResponseGetById *)result {
-  //do analytics
-  [self setupAnalyticsWithName:[NSString stringWithFormat:@"Artist Detail - %@", result.content.title]];
+  //analytics
+  [[Analytics sharedObject] sendEventWithCategorie:@"pingeb.org" andAction:@"Show content" andLabel:result.content.contentId andValue:nil];
   
   self.savedResult = result;
   [self displayContentTitleAndImage:result];
@@ -216,13 +223,5 @@
  UIViewController *vc = [segue destinationViewController];
  }
  */
-
-#pragma mark - Analytics
-
-- (void)setupAnalyticsWithName:(NSString*)screenName {
-  id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-  [tracker send:[[[GAIDictionaryBuilder createScreenView] set:screenName
-                                                       forKey:kGAIScreenName] build]];
-}
 
 @end

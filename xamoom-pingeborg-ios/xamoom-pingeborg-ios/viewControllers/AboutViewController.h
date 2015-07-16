@@ -21,9 +21,6 @@
 #import "ArtistDetailViewController.h"
 #import "FeedItemCell.h"
 #import <JGProgressHUD/JGProgressHUD.h>
-#import "GAI.h"
-#import "GAIDictionaryBuilder.h"
-#import "GAIFields.h"
 
 @interface AboutViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, XMMContentBlocksDelegate>
 

@@ -26,9 +26,6 @@
 #import "XMMCalloutView.h"
 #import "FeedItemCell.h"
 #import "ArtistDetailViewController.h"
-#import "GAI.h"
-#import "GAIDictionaryBuilder.h"
-#import "GAIFields.h"
 
 @class CustomMapView;
 
