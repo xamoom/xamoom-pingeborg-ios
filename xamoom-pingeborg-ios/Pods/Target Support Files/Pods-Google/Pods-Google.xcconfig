@@ -1,0 +1,2 @@
+PODS_GOOGLE_LIBRARY_SEARCH_PATHS = "$(PODS_ROOT)/Google/Libraries" "$(PODS_ROOT)/Google/Libraries"
+PODS_GOOGLE_OTHER_LDFLAGS = -l"GGLAnalytics" -l"GGLCore" -l"sqlite3" -framework "AddressBook" -framework "SystemConfiguration"

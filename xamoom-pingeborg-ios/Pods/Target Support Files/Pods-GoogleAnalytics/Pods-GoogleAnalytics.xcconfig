@@ -1,0 +1,2 @@
+PODS_GOOGLEANALYTICS_LIBRARY_SEARCH_PATHS = "$(PODS_ROOT)/GoogleAnalytics/Libraries"
+PODS_GOOGLEANALYTICS_OTHER_LDFLAGS = -l"GoogleAnalytics" -l"sqlite3" -l"z" -framework "CoreData" -framework "SystemConfiguration"
