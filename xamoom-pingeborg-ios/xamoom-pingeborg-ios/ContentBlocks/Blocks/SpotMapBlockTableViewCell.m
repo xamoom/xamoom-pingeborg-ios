@@ -22,6 +22,7 @@
 
 - (void)awakeFromNib {
   // Initialization code
+  [self setupLocationManager];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -49,6 +50,20 @@
                                            }];
 }
 
+- (void)setupLocationManager {
+  //init up locationManager
+  self.locationManager = [[CLLocationManager alloc] init];
+  self.locationManager.delegate = self;
+  self.locationManager.distanceFilter = 100.0f; //meter
+  self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+  self.locationManager.activityType = CLActivityTypeOther;
+  
+  // Check for iOS 8. Without this guard the code will crash with "unknown selector" on iOS 7.
+  if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+    [self.locationManager requestWhenInUseAuthorization];
+  }
+}
+
 #pragma mark - XMMEnduser Delegate
 
 - (void)showSpotMap:(XMMResponseGetSpotMap *)result {
@@ -61,6 +76,10 @@
   for (XMMResponseGetSpotMapItem *item in result.items) {
     XMMAnnotation *point = [[XMMAnnotation alloc] initWithLocation: CLLocationCoordinate2DMake(item.lat, item.lon)];
     point.data = item;
+
+    CLLocation *pointLocation = [[CLLocation alloc] initWithLatitude:point.coordinate.latitude longitude:point.coordinate.longitude];
+    CLLocationDistance distance = [self.locationManager.location distanceFromLocation:pointLocation];
+    point.distance = [NSString stringWithFormat:@"Entfernung: %d Meter", (int)distance];
     
     [self.mapKitWithSMCalloutView addAnnotation:point];
   }
@@ -143,6 +162,7 @@
   self.mapKitWithSMCalloutView.calloutView = calloutView;
   
   if ([annotationView isKindOfClass:[XMMAnnotationView class]]) {
+    
     calloutView.contentView = [self createMapCalloutFrom:annotationView];
     calloutView.calloutOffset = annotationView.calloutOffset;
     
@@ -238,15 +258,26 @@
   xamoomCalloutViewRect.size.height += titleLabel.frame.size.height;
   xamoomCalloutView.frame = xamoomCalloutViewRect;
   
+  //create distance label
+  UILabel* distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, titleLabel.frame.size.height + 10.0f, 280.0f, 25.0f)];
+  distanceLabel.font = [UIFont systemFontOfSize:12];
+  distanceLabel.text = xamoomAnnotationView.distance;
+  
+  //set coordinates (for navigating)
+  xamoomCalloutView.coordinate = xamoomAnnotationView.coordinate;
+  
+  
+  [xamoomCalloutView addSubview:distanceLabel];
+  
   UIImageView *spotImageView;
   
   //insert image
   if(xamoomAnnotationView.spotImage != nil) {
     if (xamoomAnnotationView.spotImage.size.width < xamoomAnnotationView.spotImage.size.height) {
-      spotImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, titleLabel.frame.origin.y + titleLabel.frame.size.height, xamoomCalloutView.frame.size.width, xamoomCalloutView.frame.size.width)];
+      spotImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, distanceLabel.frame.origin.y + distanceLabel.frame.size.height, xamoomCalloutView.frame.size.width, xamoomCalloutView.frame.size.width)];
     } else {
       float imageRatio = xamoomAnnotationView.spotImage.size.width / xamoomAnnotationView.spotImage.size.height;
-      spotImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, titleLabel.frame.origin.y + titleLabel.frame.size.height, xamoomCalloutView.frame.size.width, xamoomCalloutView.frame.size.width / imageRatio)];
+      spotImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, distanceLabel.frame.origin.y + distanceLabel.frame.size.height, xamoomCalloutView.frame.size.width, xamoomCalloutView.frame.size.width / imageRatio)];
     }
     
     [spotImageView setContentMode: UIViewContentModeScaleToFill];
@@ -263,10 +294,10 @@
   //insert spotdescription
   if (![xamoomAnnotationView.data.descriptionOfSpot isEqualToString:@""]) {
     UILabel *spotDescriptionLabel;
-    if ([xamoomCalloutView.subviews count] >= 2) {
+    if ([xamoomCalloutView.subviews count] >= 3) {
       spotDescriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, spotImageView.frame.size.height + spotImageView.frame.origin.y + 5.0f, 280.0f, 25.0f)];
     } else {
-      spotDescriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, titleLabel.frame.origin.y + titleLabel.frame.size.height + 5.0f, 280.0f, 25.0f)];
+      spotDescriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0f, distanceLabel.frame.origin.y + distanceLabel.frame.size.height + 5.0f, 280.0f, 25.0f)];
     }
     
     spotDescriptionLabel.lineBreakMode = NSLineBreakByWordWrapping;
@@ -282,14 +313,46 @@
     
     //increase pingeborCalloutView height
     CGRect xamoomCalloutViewRect = xamoomCalloutView.frame;
-    xamoomCalloutViewRect.size.height += spotDescriptionLabel.frame.size.height;
+    xamoomCalloutViewRect.size.height += spotDescriptionLabel.frame.size.height + 10.0f;
     xamoomCalloutView.frame = xamoomCalloutViewRect;
     
     [xamoomCalloutView addSubview:spotDescriptionLabel];
   }
   
+  //create, design and adjust navigationButton
+  UIButton *navigationButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, xamoomCalloutView.frame.size.height, 300.0f, 60.0f)];
+  navigationButton.backgroundColor = [Globals sharedObject].pingeborgLinkColor;
+  [navigationButton setImage:[[UIImage imageNamed:@"car"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+  navigationButton.tintColor = [UIColor whiteColor];
+  [navigationButton setImageEdgeInsets: UIEdgeInsetsMake(-10.0f, navigationButton.titleEdgeInsets.right, 10.0f, navigationButton.titleEdgeInsets.left)];
+  
+  //increase pingeborCalloutView height
+  xamoomCalloutViewRect = xamoomCalloutView.frame;
+  xamoomCalloutViewRect.size.height += navigationButton.frame.size.height - 20.0f;
+  xamoomCalloutView.frame = xamoomCalloutViewRect;
+  
+  [navigationButton addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mapNavigationTapped)]];
+  
+  [xamoomCalloutView addSubview:navigationButton];
+  
   return xamoomCalloutView;
 }
+
+#pragma mark User Interaction
+
+- (void)mapNavigationTapped {
+  //navigate to the coordinates of the xamoomCalloutView
+  XMMCalloutView *xamoomCalloutView = (XMMCalloutView* )self.mapKitWithSMCalloutView.calloutView.contentView;
+  
+  MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:xamoomCalloutView.coordinate addressDictionary:nil];
+  
+  MKMapItem *mapItem = [[MKMapItem alloc] initWithPlacemark:placemark];
+  mapItem.name = xamoomCalloutView.nameOfSpot;
+  
+  NSDictionary *launchOptions = @{MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving};
+  [mapItem openInMapsWithLaunchOptions:launchOptions];
+}
+
 
 #pragma mark - Image Methods
 

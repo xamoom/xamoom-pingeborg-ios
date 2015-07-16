@@ -40,7 +40,7 @@
   [self setupApi];
   
   //Google Analytics
-  [self setupGoogleAnalytics];
+  //[self setupGoogleAnalytics];
   
   return YES;
 }

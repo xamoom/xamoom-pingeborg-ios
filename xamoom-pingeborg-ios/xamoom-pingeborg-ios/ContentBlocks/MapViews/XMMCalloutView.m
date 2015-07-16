@@ -30,17 +30,4 @@
   return self;
 }
 
-- (instancetype)init{
-  id mainView = [[[NSBundle mainBundle] loadNibNamed:@"XamoomCalloutView" owner:self options:nil] lastObject];
-  return mainView;
-}
-
-/*
- // Only override drawRect: if you perform custom drawing.
- // An empty implementation adversely affects performance during animation.
- - (void)drawRect:(CGRect)rect {
- // Drawing code
- }
- */
-
 @end

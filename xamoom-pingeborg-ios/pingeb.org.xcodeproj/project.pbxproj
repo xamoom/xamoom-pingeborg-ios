@@ -70,7 +70,6 @@
 		88EB481D1B563C8700A6C63F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88BA01FF1AA859F90091A43C /* Images.xcassets */; };
 		88EB48241B565FCC00A6C63F /* XMMAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EB48201B565FCC00A6C63F /* XMMAnnotationView.m */; };
 		88EB48251B565FCC00A6C63F /* XMMCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EB48221B565FCC00A6C63F /* XMMCalloutView.m */; };
-		88EB48261B565FCC00A6C63F /* XMMCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88EB48231B565FCC00A6C63F /* XMMCalloutView.xib */; };
 		88EB48291B5663E400A6C63F /* XMMAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EB48281B5663E400A6C63F /* XMMAnnotation.m */; };
 		88F038471B0E0D1200E17573 /* XMMImageUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F038461B0E0D1200E17573 /* XMMImageUtility.m */; };
 		88F1E92F1B15A95500C60504 /* XMMMusicPlayer.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 88166D0A1AFCAC0A0012CBA6 /* XMMMusicPlayer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -221,7 +220,6 @@
 		88EB48201B565FCC00A6C63F /* XMMAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMMAnnotationView.m; path = MapViews/XMMAnnotationView.m; sourceTree = "<group>"; };
 		88EB48211B565FCC00A6C63F /* XMMCalloutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMMCalloutView.h; path = MapViews/XMMCalloutView.h; sourceTree = "<group>"; };
 		88EB48221B565FCC00A6C63F /* XMMCalloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMMCalloutView.m; path = MapViews/XMMCalloutView.m; sourceTree = "<group>"; };
-		88EB48231B565FCC00A6C63F /* XMMCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = XMMCalloutView.xib; path = MapViews/XMMCalloutView.xib; sourceTree = "<group>"; };
 		88EB48271B5663E400A6C63F /* XMMAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMMAnnotation.h; path = MapViews/XMMAnnotation.h; sourceTree = "<group>"; };
 		88EB48281B5663E400A6C63F /* XMMAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMMAnnotation.m; path = MapViews/XMMAnnotation.m; sourceTree = "<group>"; };
 		88F038451B0E0D1200E17573 /* XMMImageUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMImageUtility.h; sourceTree = "<group>"; };
@@ -489,7 +487,6 @@
 				88EB48201B565FCC00A6C63F /* XMMAnnotationView.m */,
 				88EB48211B565FCC00A6C63F /* XMMCalloutView.h */,
 				88EB48221B565FCC00A6C63F /* XMMCalloutView.m */,
-				88EB48231B565FCC00A6C63F /* XMMCalloutView.xib */,
 			);
 			name = "Map Views";
 			sourceTree = "<group>";
@@ -702,7 +699,6 @@
 				881457F51B01E8620024E6F4 /* SoundcloudBlockTableViewCell.xib in Resources */,
 				8860DA7A1AE78CB800DF2239 /* usr in Resources */,
 				881457E81B01E8620024E6F4 /* AudioBlockTableViewCell.xib in Resources */,
-				88EB48261B565FCC00A6C63F /* XMMCalloutView.xib in Resources */,
 				8814585E1B01EE8B0024E6F4 /* Main.storyboard in Resources */,
 				881457EC1B01E8620024E6F4 /* DownloadBlockTableViewCell.xib in Resources */,
 				881457F91B01E8620024E6F4 /* TextBlockTableViewCell.xib in Resources */,

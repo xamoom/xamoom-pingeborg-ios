@@ -18,7 +18,7 @@
 
 @class CustomMapView2;
 
-@interface SpotMapBlockTableViewCell : UITableViewCell <MKMapViewDelegate, SMCalloutViewDelegate>
+@interface SpotMapBlockTableViewCell : UITableViewCell <MKMapViewDelegate, SMCalloutViewDelegate, CLLocationManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIView *viewForMap;
@@ -28,6 +28,7 @@
 @property NSArray *spotMapTags; 
 @property UIImage *customMapMarker;
 @property SVGKImage *customSVGMapMarker;
+@property CLLocationManager *locationManager;
 
 - (void)getSpotMapWithSystemId:(NSString*)systemId withLanguage:(NSString*)language;
 
