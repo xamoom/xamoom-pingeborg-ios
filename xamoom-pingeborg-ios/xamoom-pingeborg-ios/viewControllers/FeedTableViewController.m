@@ -56,7 +56,7 @@ int const kPageSize = 7;
   self.hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
   
   [self setupTableView];
-  [self refreshControl];
+  [self setupRefreshControl];
   [self addNotifications];
 }
 
