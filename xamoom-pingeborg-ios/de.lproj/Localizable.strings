@@ -30,6 +30,7 @@
 
 /* MapkitView */
 
+"No Location" = "Kein Position gefunden";
 "Distance: %d meter" = "Entfernung: %d meter";
 "Searching ..." = "Auf der Suche ...";
 "Nothing found near you" = "Nichts in der Nähe";

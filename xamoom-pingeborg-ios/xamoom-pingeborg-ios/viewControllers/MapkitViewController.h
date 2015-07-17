@@ -27,7 +27,7 @@
 #import "FeedItemCell.h"
 #import "ArtistDetailViewController.h"
 
-@class CustomMapView;
+@class PingeborgMapView;
 
 @interface MapkitViewController : UIViewController <MKMapViewDelegate, SMCalloutViewDelegate, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource>
 
@@ -40,7 +40,7 @@
 @property (weak, nonatomic) IBOutlet UIView *viewForMap;
 @property (weak, nonatomic) IBOutlet UIView *instructionView;
 
-@property (nonatomic, strong) CustomMapView *mapKitWithSMCalloutView;
+@property (nonatomic, strong) PingeborgMapView *mapKitWithSMCalloutView;
 @property (nonatomic, strong) MKPointAnnotation *annotationForSMCalloutView;
 
 @property CLLocationManager *locationManager;

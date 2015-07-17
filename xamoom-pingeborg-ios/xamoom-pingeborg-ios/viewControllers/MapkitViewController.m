@@ -19,7 +19,7 @@
 
 #import "MapkitViewController.h"
 
-@interface CustomMapView : MKMapView
+@interface PingeborgMapView : MKMapView
 
 @property (nonatomic, strong) SMCalloutView *calloutView;
 
@@ -70,6 +70,12 @@
 -(void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
   
+  //no location permission
+  if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
+    [self.geoFenceActivityIndicator stopAnimating];
+    self.geoFenceLabel.text = NSLocalizedString(@"No Location", nil);
+  }
+  
   //create userTracking button
   MKUserTrackingBarButtonItem *buttonItem = [[MKUserTrackingBarButtonItem alloc] initWithMapView:self.mapKitWithSMCalloutView];
   self.parentViewController.navigationItem.rightBarButtonItem = buttonItem;
@@ -103,7 +109,7 @@
 
 - (void)setupMapView {
   //init map
-  self.mapKitWithSMCalloutView = [[CustomMapView alloc] initWithFrame:self.view.bounds];
+  self.mapKitWithSMCalloutView = [[PingeborgMapView alloc] initWithFrame:self.view.bounds];
   self.mapKitWithSMCalloutView.delegate = self;
   self.mapKitWithSMCalloutView.showsUserLocation = YES;
   [self.viewForMap addSubview:self.mapKitWithSMCalloutView];
@@ -699,7 +705,7 @@
 
 @end
 
-@implementation CustomMapView
+@implementation PingeborgMapView
 
 // override UIGestureRecognizer's delegate method so we can prevent MKMapView's recognizer from firing
 // when we interact with UIControl subclasses inside our callout view.

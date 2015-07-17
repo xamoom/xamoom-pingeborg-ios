@@ -12,7 +12,7 @@
 #define ANNOTATION_REGION_PAD_FACTOR 1.15
 #define MAX_DEGREES_ARC 360
 
-@interface CustomMapView2 : MKMapView
+@interface XamoomMapView : MKMapView
 
 @property (nonatomic, strong) SMCalloutView *calloutView;
 
@@ -33,7 +33,7 @@
 
 - (void)setupMapView {
   //init map
-  self.mapKitWithSMCalloutView = [[CustomMapView2 alloc] initWithFrame:self.viewForMap.bounds];
+  self.mapKitWithSMCalloutView = [[XamoomMapView alloc] initWithFrame:self.viewForMap.bounds];
   [self.mapKitWithSMCalloutView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
 
   [self.mapKitWithSMCalloutView sizeToFit];
@@ -396,7 +396,7 @@
 
 @end
 
-@implementation CustomMapView2
+@implementation XamoomMapView
 
 // override UIGestureRecognizer's delegate method so we can prevent MKMapView's recognizer from firing
 // when we interact with UIControl subclasses inside our callout view.

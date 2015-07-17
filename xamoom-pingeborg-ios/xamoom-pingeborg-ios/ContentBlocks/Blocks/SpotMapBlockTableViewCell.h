@@ -16,7 +16,7 @@
 #import "XMMCalloutView.h"
 #import <SMCalloutView/SMCalloutView.h>
 
-@class CustomMapView2;
+@class XamoomMapView;
 
 @interface SpotMapBlockTableViewCell : UITableViewCell <MKMapViewDelegate, SMCalloutViewDelegate, CLLocationManagerDelegate>
 
@@ -24,7 +24,7 @@
 @property (weak, nonatomic) IBOutlet UIView *viewForMap;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingIndicator;
 
-@property (nonatomic, strong) CustomMapView2 *mapKitWithSMCalloutView;
+@property (nonatomic, strong) XamoomMapView *mapKitWithSMCalloutView;
 @property NSArray *spotMapTags; 
 @property UIImage *customMapMarker;
 @property SVGKImage *customSVGMapMarker;
