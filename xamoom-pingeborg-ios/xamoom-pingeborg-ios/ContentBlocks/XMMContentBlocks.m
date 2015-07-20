@@ -170,8 +170,7 @@ int const kHorizontalSpaceToSubview = 32;
   //set title
   if(contentBlock.title != nil && ![contentBlock.title isEqualToString:@""])
     cell.titleLabel.text = contentBlock.title;
-  else
-    
+  
   
   //bigger font if it is a contenttype "title"
   if ([contentBlock.contentBlockType isEqualToString:@"title"]) {
@@ -179,7 +178,7 @@ int const kHorizontalSpaceToSubview = 32;
   }
   
   //set content
-  if (![cell.contentText isEqualToString:@""]) {
+  if (contentBlock.text != nil && ![cell.contentText isEqualToString:@""]) {
     cell.contentTextView.attributedText = [self attributedStringFromHTML:contentBlock.text];
     [cell.contentTextView sizeToFit];
   } else {
@@ -403,7 +402,7 @@ int const kHorizontalSpaceToSubview = 32;
 - (NSMutableAttributedString*)attributedStringFromHTML:(NSString*)html {
   NSError *err = nil;
   
-  NSString *style = [NSString stringWithFormat:@"<style>body{font-family: \"HelveticaNeue-Light\", \"Helvetica Neue Light\", \"Helvetica Neue\", Helvetica, Arial, \"Lucida Grande\", sans-serif; font-size:%dpt; margin:0 !important;} p:last-child, p:last-of-type{margin:1px !important;} </style>", self.fontSize];
+  NSString *style = [NSString stringWithFormat:@"<style>body{font-family: \"Helvetica Neue Light\", \"Helvetica Neue\", Helvetica, Arial, \"Lucida Grande\", sans-serif; font-size:%dpt; margin:0 !important;} p:last-child, p:last-of-type{margin:1px !important;} </style>", self.fontSize];
   
   html = [html stringByReplacingOccurrencesOfString:@"<br></p>" withString:@"</p>"];
   html = [NSString stringWithFormat:@"%@%@", style, html];
