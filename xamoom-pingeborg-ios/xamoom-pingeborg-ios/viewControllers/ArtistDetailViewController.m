@@ -174,7 +174,7 @@
   //make text and imageblock for the title, exercpt and the display image
   
   XMMResponseContentBlockType0 *contentBlock0 = [[XMMResponseContentBlockType0 alloc] init];
-  contentBlock0.contentBlockType = @"title";
+  contentBlock0.contentBlockType = 0;
   contentBlock0.title = result.content.title;
   contentBlock0.text = result.content.descriptionOfContent;
   [self.contentBlocks displayContentBlock0:contentBlock0];

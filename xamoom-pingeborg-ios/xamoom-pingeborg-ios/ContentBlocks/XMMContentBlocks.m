@@ -171,12 +171,6 @@ int const kHorizontalSpaceToSubview = 32;
   if(contentBlock.title != nil && ![contentBlock.title isEqualToString:@""])
     cell.titleLabel.text = contentBlock.title;
   
-  
-  //bigger font if it is a contenttype "title"
-  if ([contentBlock.contentBlockType isEqualToString:@"title"]) {
-    [cell.titleLabel setFont:[UIFont systemFontOfSize:self.fontSize+15]];
-  }
-  
   //set content
   if (contentBlock.text != nil && ![cell.contentText isEqualToString:@""]) {
     cell.contentTextView.attributedText = [self attributedStringFromHTML:contentBlock.text];
