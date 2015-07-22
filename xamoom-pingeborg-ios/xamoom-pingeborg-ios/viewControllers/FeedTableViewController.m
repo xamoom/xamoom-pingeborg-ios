@@ -261,7 +261,7 @@ int const kPageSize = 7;
   // End the refreshing
   if (self.refreshControl) {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"MMM d, hh:mm"];
+    [formatter setDateFormat:@"MMM d, HH:mm"];
     NSString *title = [NSString stringWithFormat:NSLocalizedString(@"Last update: %@", nil), [formatter stringFromDate:[NSDate date]]];
     NSDictionary *attrsDictionary = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:attrsDictionary];

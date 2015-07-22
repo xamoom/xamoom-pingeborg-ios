@@ -33,6 +33,7 @@
 @property UISwipeGestureRecognizer *swipeGeoFenceViewDown;
 @property UITapGestureRecognizer *geoFenceTapGesture;
 @property XMMResponseGetByLocationItem *savedResponseContent;
+@property JGProgressHUD *hud;
 
 @end
 
@@ -48,7 +49,8 @@
   
   self.placeholder = [UIImage imageNamed:@"placeholder"];
   self.isUp = NO;
-  
+  self.hud = [[JGProgressHUD alloc] initWithStyle:JGProgressHUDStyleDark];
+
   [self.tabBarItem setSelectedImage:[UIImage imageNamed:@"map_filled"]];
 
   [self setupTableView];
@@ -83,9 +85,11 @@
   //load spotmap if there are no annotations on the map
   if (self.mapKitWithSMCalloutView.annotations.count <= 1) {
     [self.geoFenceActivityIndicator startAnimating];
+    [self.hud showInView:self.view];
     [[XMMEnduserApi sharedInstance] spotMapWithMapTags:@[@"showAllTheSpots"] withLanguage:[XMMEnduserApi sharedInstance].systemLanguage
                                              completion:^(XMMResponseGetSpotMap *result) {
                                                [self showSpotMap:result];
+                                               [self.hud dismissAnimated:YES];
                                              } error:^(XMMError *error) {
                                              }];
   }
