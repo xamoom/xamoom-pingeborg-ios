@@ -168,8 +168,11 @@ int const kHorizontalSpaceToSubview = 32;
   cell.contentBlockType = contentBlock.contentBlockType;
   
   //set title
-  if(contentBlock.title != nil && ![contentBlock.title isEqualToString:@""])
+  if(contentBlock.title != nil && ![contentBlock.title isEqualToString:@""]) {
     cell.titleLabel.text = contentBlock.title;
+    [cell.titleLabel setFont:[UIFont boldSystemFontOfSize:self.fontSize+7]];
+    //[cell.titleLabel setFont:[UIFont fontWithName:[NSString stringWithFormat:@"%@-Bold",cell.titleLabel.font.fontName] size:self.fontSize+10]];
+  }
   
   //set content
   if (contentBlock.text != nil && ![cell.contentText isEqualToString:@""]) {
@@ -424,10 +427,7 @@ int const kHorizontalSpaceToSubview = 32;
     if ([contentItem isKindOfClass:[TextBlockTableViewCell class]]) {
       TextBlockTableViewCell* textBlock = (TextBlockTableViewCell*)contentItem;
       textBlock.contentTextView.attributedText = [self attributedStringFromHTML:textBlock.contentText];
-      
-      if ([contentItem.contentBlockType isEqualToString:@"title"]) {
-        [textBlock.titleLabel setFont:[UIFont systemFontOfSize:self.fontSize+15]];
-      }
+      [textBlock.titleLabel setFont:[UIFont boldSystemFontOfSize:self.fontSize+7]];
     }
   }
   
