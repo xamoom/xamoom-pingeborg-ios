@@ -109,7 +109,7 @@ int const kPageSize = 7;
 - (void)loadArtists {
   //loading hud in view
   [self.hud showInView:self.view];
-  [[XMMEnduserApi sharedInstance] contentListWithPageSize:kPageSize withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withCursor:@"null" withTags:@[@"artists"]
+  [[XMMEnduserApi sharedInstance] contentListWithPageSize:kPageSize withLanguage:@"" withCursor:@"null" withTags:@[@"artists"]
                                                completion:^(XMMResponseContentList *result) {
                                                  [self displayContentList:result];
                                                  [self.hud dismiss];
@@ -243,7 +243,7 @@ int const kPageSize = 7;
     self.imagesToDisplay = [[NSMutableDictionary alloc] init];
     
     //api call
-    [[XMMEnduserApi sharedInstance] contentListWithPageSize:kPageSize withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withCursor:@"null" withTags:@[@"artists"]
+    [[XMMEnduserApi sharedInstance] contentListWithPageSize:kPageSize withLanguage:@"" withCursor:@"null" withTags:@[@"artists"]
                                                  completion:^(XMMResponseContentList *result) {
                                                    [self displayContentList:result];
                                                    [self.hud dismiss];
@@ -277,7 +277,7 @@ int const kPageSize = 7;
     [[Analytics sharedObject] sendEventWithCategorie:@"UX" andAction:@"Load More" andLabel:@"Artist List load more." andValue:nil];
     
     self.isApiCallingBlocked = YES;
-    [[XMMEnduserApi sharedInstance] contentListWithPageSize:kPageSize withLanguage:[XMMEnduserApi sharedInstance].systemLanguage withCursor:self.contentListCursor withTags:@[@"artists"]
+    [[XMMEnduserApi sharedInstance] contentListWithPageSize:kPageSize withLanguage:@"" withCursor:self.contentListCursor withTags:@[@"artists"]
                                                  completion:^(XMMResponseContentList *result) {
                                                    [self displayContentList:result];
                                                    self.feedTableView.tableFooterView = nil;

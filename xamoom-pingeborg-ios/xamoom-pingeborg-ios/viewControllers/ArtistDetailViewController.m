@@ -128,13 +128,13 @@
 
   NSString* savedArtists = [[Globals sharedObject] savedArtits];
   if ([savedArtists containsString:self.contentId]) {
-    [[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:NO includeMenu:NO withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:YES
+    [[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:NO includeMenu:NO withLanguage:@"" full:YES
                                               completion:^(XMMResponseGetById *result) {
                                                 [self showDataWithContentId:result];
                                               } error:^(XMMError *error) {
                                               }];
   } else {
-    [[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:NO includeMenu:NO withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:NO
+    [[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:NO includeMenu:NO withLanguage:@"" full:NO
                                               completion:^(XMMResponseGetById *result) {
                                                 [self showDataWithContentId:result];
                                               } error:^(XMMError *error) {

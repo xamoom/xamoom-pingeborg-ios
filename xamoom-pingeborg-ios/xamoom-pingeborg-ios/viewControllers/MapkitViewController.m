@@ -203,7 +203,7 @@
   //load items in near you, when there is no geofence
   if([result.items count] == 0) {
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
-    [[XMMEnduserApi sharedInstance] closestSpotsWithLat:self.lastLocation.coordinate.latitude withLon:self.lastLocation.coordinate.longitude withRadius:2000 withLimit:10 withLanguage:[XMMEnduserApi sharedInstance].systemLanguage
+    [[XMMEnduserApi sharedInstance] closestSpotsWithLat:self.lastLocation.coordinate.latitude withLon:self.lastLocation.coordinate.longitude withRadius:2000 withLimit:10 withLanguage:@""
                                              completion:^(XMMResponseClosestSpot *result) {
                                                [self showClosestSpots:result];
                                              } error:^(XMMError *error) {
@@ -495,7 +495,7 @@
   [self disableGeofenceView];
   [self.geoFenceActivityIndicator startAnimating];
   self.geoFenceLabel.text = NSLocalizedString(@"Searching ...", nil);
-  [[XMMEnduserApi sharedInstance] contentWithLat:[NSString stringWithFormat:@"%f",self.lastLocation.coordinate.latitude] withLon:[NSString stringWithFormat:@"%f",self.lastLocation.coordinate.longitude] withLanguage:[XMMEnduserApi sharedInstance].systemLanguage
+  [[XMMEnduserApi sharedInstance] contentWithLat:[NSString stringWithFormat:@"%f",self.lastLocation.coordinate.latitude] withLon:[NSString stringWithFormat:@"%f",self.lastLocation.coordinate.longitude] withLanguage:@""
                                       completion:^(XMMResponseGetByLocation *result) {
                                         [self showDataWithLocation:result];
                                       } error:^(XMMError *error) {

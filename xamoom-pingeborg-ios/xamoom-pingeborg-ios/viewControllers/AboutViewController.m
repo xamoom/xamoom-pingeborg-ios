@@ -54,7 +54,7 @@
   //load items if there are none
   if ([self.contentBlocks.itemsToDisplay count] == 0) {
     [self.hud showInView:self.view];
-    [[XMMEnduserApi sharedInstance] contentWithContentId:[Globals sharedObject].aboutPageId includeStyle:NO includeMenu:NO withLanguage:[XMMEnduserApi sharedInstance].systemLanguage full:YES
+    [[XMMEnduserApi sharedInstance] contentWithContentId:[Globals sharedObject].aboutPageId includeStyle:NO includeMenu:NO withLanguage:@"" full:YES
                                               completion:^(XMMResponseGetById *result) {
                                                 [self showDataWithContentId:result];
                                               } error:^(XMMError *error) {

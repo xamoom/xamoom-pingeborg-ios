@@ -136,7 +136,7 @@
 #define COCOAPODS_POD_AVAILABLE_xamoom_ios_sdk
 #define COCOAPODS_VERSION_MAJOR_xamoom_ios_sdk 1
 #define COCOAPODS_VERSION_MINOR_xamoom_ios_sdk 1
-#define COCOAPODS_VERSION_PATCH_xamoom_ios_sdk 6
+#define COCOAPODS_VERSION_PATCH_xamoom_ios_sdk 7
 
 // youtube-ios-player-helper
 #define COCOAPODS_POD_AVAILABLE_youtube_ios_player_helper

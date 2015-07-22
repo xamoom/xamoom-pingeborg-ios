@@ -119,7 +119,7 @@
 }
 
 - (void)setupContentBlocks {
-  self.contentBlocks = [[XMMContentBlocks alloc] initWithLanguage:[XMMEnduserApi sharedInstance].systemLanguage withWidth:self.view.bounds.size.width];
+  self.contentBlocks = [[XMMContentBlocks alloc] initWithLanguage:@"" withWidth:self.view.bounds.size.width];
   self.contentBlocks.delegate = self;
   self.contentBlocks.linkColor = [Globals sharedObject].pingeborgLinkColor;
 }

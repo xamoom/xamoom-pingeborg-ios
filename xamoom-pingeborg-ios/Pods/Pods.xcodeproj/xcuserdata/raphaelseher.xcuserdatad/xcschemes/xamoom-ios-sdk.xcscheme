@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "993BA18550512C24496AFD90"
-               BuildableName = "libPods-GoogleAnalytics.a"
-               BlueprintName = "Pods-GoogleAnalytics"
+               BlueprintIdentifier = "A23BA8A049F0DB6C9331348A"
+               BuildableName = "xamoom-ios-sdk.bundle"
+               BlueprintName = "xamoom-ios-sdk"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "416D076DDAE22D4C5EFE1845"
+               BlueprintIdentifier = "64890AFAB49138C6AAE22C6F"
                BuildableName = "libPods-GoogleSymbolUtilities.a"
                BlueprintName = "Pods-GoogleSymbolUtilities"
                ReferencedContainer = "container:Pods.xcodeproj">

@@ -73,6 +73,10 @@ static XMMEnduserApi *sharedInstance;
 #pragma mark API calls
 
 - (void)contentWithContentId:(NSString*)contentId includeStyle:(BOOL)style includeMenu:(BOOL)menu withLanguage:(NSString*)language full:(BOOL)full completion:(void(^)(XMMResponseGetById *result))completionHandler error:(void(^)(XMMError *error))errorHandler {
+  if ([language isEqual:@""]) {
+    language = self.systemLanguage;
+  }
+  
   NSDictionary *queryParams = @{@"content_id":contentId,
                                 @"include_style":(style) ? @"True" : @"False",
                                 @"include_menu":(menu) ? @"True" : @"False",
@@ -86,6 +90,9 @@ static XMMEnduserApi *sharedInstance;
 }
 
 - (void)contentWithLocationIdentifier:(NSString*)locationIdentifier includeStyle:(BOOL)style includeMenu:(BOOL)menu withLanguage:(NSString*)language completion:(void(^)(XMMResponseGetByLocationIdentifier *result))completionHandler error:(void(^)(XMMError *error))errorHandler{
+  if ([language isEqual:@""]) {
+    language = self.systemLanguage;
+  }
   
   NSDictionary *queryParams = @{@"location_identifier":locationIdentifier,
                                 @"include_style":(style) ? @"True" : @"False",
@@ -99,6 +106,10 @@ static XMMEnduserApi *sharedInstance;
 }
 
 - (void)contentWithLat:(NSString*)lat withLon:(NSString*)lon withLanguage:(NSString*)language completion:(void(^)(XMMResponseGetByLocation *result))completionHandler error:(void(^)(XMMError *error))errorHandler {
+  if ([language isEqual:@""]) {
+    language = self.systemLanguage;
+  }
+  
   NSDictionary *queryParams = @{@"location":
                                   @{@"lat":lat,
                                     @"lon":lon,
@@ -113,6 +124,9 @@ static XMMEnduserApi *sharedInstance;
 }
 
 - (void)spotMapWithMapTags:(NSArray *)mapTags withLanguage:(NSString *)language completion:(void(^)(XMMResponseGetSpotMap *result))completionHandler error:(void(^)(XMMError *error))errorHandler {
+  if ([language isEqual:@""]) {
+    language = self.systemLanguage;
+  }
   
   NSString *path = [NSString stringWithFormat:@"xamoomEndUserApi/v1/spotmap/%i/%@/%@", 0, [mapTags componentsJoinedByString:@","], language];
   
@@ -120,7 +134,10 @@ static XMMEnduserApi *sharedInstance;
 }
 
 - (void)contentListWithPageSize:(int)pageSize withLanguage:(NSString*)language withCursor:(NSString*)cursor withTags:(NSArray*)tags completion:(void(^)(XMMResponseContentList *result))completionHandler error:(void(^)(XMMError *error))errorHandler {
-
+  if ([language isEqual:@""]) {
+    language = self.systemLanguage;
+  }
+  
   NSString* tagsAsString;
   if (tags != nil)
     tagsAsString = [tags componentsJoinedByString:@","];
@@ -133,6 +150,10 @@ static XMMEnduserApi *sharedInstance;
 }
 
 - (void)closestSpotsWithLat:(float)lat withLon:(float)lon withRadius:(int)radius withLimit:(int)limit withLanguage:(NSString*)language completion:(void(^)(XMMResponseClosestSpot *result))completionHandler error:(void(^)(XMMError *error))errorHandler {
+  if ([language isEqual:@""]) {
+    language = self.systemLanguage;
+  }
+  
   NSDictionary *queryParams = @{@"location":
                                   @{@"lat":[NSString stringWithFormat:@"%f", lat],
                                     @"lon":[NSString stringWithFormat:@"%f", lon],
@@ -148,7 +169,6 @@ static XMMEnduserApi *sharedInstance;
 }
 
 - (void)geofenceAnalyticsMessageWithRequestedLanguage:(NSString*)requestedLanguage withDeliveredLanguage:(NSString*)deliveredLanguage withSystemId:(NSString*)systemId withSystemName:(NSString*)sytemName withContentId:(NSString*)contentId withContentName:(NSString*)contentName withSpotId:(NSString*)spotId withSpotName:(NSString*)spotName {
-  
   NSDictionary *queryParams = @{@"requested_language":requestedLanguage,
                                 @"delivered_language":deliveredLanguage,
                                 @"system_id":systemId,
