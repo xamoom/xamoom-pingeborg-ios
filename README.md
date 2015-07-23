@@ -7,7 +7,7 @@ This app is a demonstration to show you, what you can do with the [xamoom-ios-sd
 ## Getting Started
 
 * Read what the [pingeb.org](http://pingeb.org/) project is all about
-* Download the [pingeb.org iOS App]() from the appstore and try it out
+* Download the pingeb.org iOS App from the appstore and try it out
 * Look at our sourcecode, if you want to know how something works
 
 ## Screenshots
