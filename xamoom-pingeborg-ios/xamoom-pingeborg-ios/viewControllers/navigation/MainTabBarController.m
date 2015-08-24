@@ -79,7 +79,7 @@
   self.scannedUrl = url;
   
   //old pingeborg stickers get a redirect to the xm.gl url
-  if ([url containsString:@"http://pingeb.org/"]) {
+  if ([url containsString:@"pingeb.org/"]) {
     //analytics
     [[Analytics sharedObject] sendEventWithCategorie:@"pingeb.org" andAction:@"Scan" andLabel:@"pingeb.org Sticker" andValue:nil];
     
