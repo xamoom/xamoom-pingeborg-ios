@@ -1,5 +1,5 @@
 //
-// Copyright 2015 by Raphael Seher <raphael@xamoom.com>
+// Copyright 2015 by xamoom GmbH <apps@xamoom.com>
 //
 // This file is part of some open source application.
 //
@@ -20,8 +20,6 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 #import <RestKit/RestKit.h>
-#import "XMMRSSEntry.h"
-#import "NSString+HTML.h"
 #import "QRCodeReaderViewController.h"
 #import "XMMError.h"
 #import "XMMResponseGetById.h"
@@ -64,13 +62,8 @@ extern NSString * const kApiBaseURLString;
  
  For everything just use the shared instance: [XMMEnduserApi sharedInstance].
  
- To get the results from the api calls, you have to listen to the delegate methods. Set the delegate like this:
+ Before you can start you have to set a API key: [[XMMEnduserApi sharedInstance] setApiKey:apiKey];
  
- `[XMMEnduserApi sharedInstance].delegate = self;`
- 
- If you want to use the build-in CoreData Code, you have to call the initCoreData method.
- 
- `[[XMMEnduserApi sharedInstance] initCoreData];`
  
  */
 @interface XMMEnduserApi : NSObject <NSXMLParserDelegate>
@@ -99,7 +92,7 @@ extern NSString * const kApiBaseURLString;
 /// @name Inits
 
 /**
- Inits the XMMEnduserApi: generates the apiBaseUrl and the rssBaseUrl and gets the preferred systemLanguage.
+ Inits the XMMEnduserApi: sets the apiBaseUrl and gets the preferred systemLanguage.
  
  @return id
  */
@@ -109,6 +102,8 @@ extern NSString * const kApiBaseURLString;
 
 /**
  * Set your API Key from the xamoom-system.
+ *
+ * @param apiKey The API key from your xamoom system
  */
 - (void)setApiKey:(NSString*)apiKey;
 
@@ -117,10 +112,10 @@ extern NSString * const kApiBaseURLString;
 /**
  Makes an api call to xamoom with a unique contentId. If the selected language is not available the default language will be returned.
  
- @param contentId   The id of the content from xamoom backend.
- @param style       True or False for returning the style from xamoom backend.
- @param menu        True or False for returning the menu from xamoom backend.
- @param language    The requested language of the content from xamoom backend.
+ @param contentId   The id of the content from xamoom backend
+ @param style       True or False for returning the style from xamoom backend as XMMResponseStyle
+ @param menu        True or False for returning the menu from xamoom backend as Array of XMMResponseMenuItem
+ @param language    The requested language of the content from xamoom backend
  @param full        True or false for returning "unsynced" data or not
  @param completionHandler CompletionHandler returns the result
  
@@ -136,10 +131,10 @@ extern NSString * const kApiBaseURLString;
  Makes an api call to xamoom with a unique locationIdentifier (code saved on NFC or QR). If the selected language is not available the
  default language will be returned.
  
- @param locationIdentifier  The locationidentifier (code saved on NFC or QR) of the marker from xamoom backend.
- @param style               True or False for returning the style from xamoom backend.
- @param menu                True of False for returning the menu from xamoom backend.
- @param language            The requested language of the content from xamoom backend.
+ @param locationIdentifier  The locationidentifier (code saved on NFC or QR) of the marker from xamoom backend
+ @param style               True or False for returning the style from xamoom backend as XMMResponseStyle
+ @param menu                True of False for returning the menu from xamoom backend as Array of XMMResponseMenuItem
+ @param language            The requested language of the content from xamoom backend
  @param completionHandler CompletionHandler returns the result
  
  - *param1* result The result from xamoom backend as XMMResponseGetByLocationIdentifier
@@ -154,8 +149,10 @@ extern NSString * const kApiBaseURLString;
  Makes an api call to xamoom with a location (lat & lon). If the selected language is not available the
  default language will be returned.
  
- @param lat         The latitude of a location.
- @param lon         The longitude of a location.
+ After the user interacts with a geofence call geofenceAnalyticsMessageWithRequestedLanguage:withDeliveredLanguage:withSystemId:withSystemName:withContentId:withContentName:withSpotId:withSpotName:
+ 
+ @param lat         The latitude of a location
+ @param lon         The longitude of a location
  @param language    The requested language of the content from xamoom backend
  @param completionHandler CompletionHandler returns the result
  
@@ -168,10 +165,9 @@ extern NSString * const kApiBaseURLString;
 - (void)contentWithLat:(NSString*)lat withLon:(NSString*)lon withLanguage:(NSString*)language completion:(void(^)(XMMResponseGetByLocation *result))completionHandler error:(void(^)(XMMError *error))errorHandler;
 
 /**
- Makes an api call to xamoom with params to get a list of all items, so you can show them on a map.
+ Makes an api call to xamoom with params to get a list of all items, so you can show them on a map
  
- @param systemId    The id of the wanted system.
- @param mapTags     The Tags of the wanted spots.
+ @param mapTags     The tags of the wanted spots
  @param language    The requested language of the content from xamoom backend
  @param completionHandler CompletionHandler returns the result
  
@@ -186,7 +182,6 @@ extern NSString * const kApiBaseURLString;
 /**
  Makes an api call to xamoom with a unique contentId. If the selected language is not available the default language will be returned.
  
- @param systemId   The id of the system from xamoom.
  @param language   The requested language of the content from xamoom backend
  @param pageSize   Number of items you will get returned
  @param cursor     Cursor for paging
@@ -223,16 +218,16 @@ extern NSString * const kApiBaseURLString;
 /**
  Makes an api call to xamoom when a user clicks a geofenced content for analytics.
  
- @param requestedLanguage
- @param deliveredLanguage
- @param systemId
- @param systemName
- @param contentId
- @param contentName
- @param spotId
- @param spotName
+ @param requestedLanguage The language you requested from the xamoom system
+ @param deliveredLanguage The language you got from the xamoom system
+ @param systemId The systemId you got from the xamoom system
+ @param systemName The systemName you got from the xamoom system
+ @param contentId The contentId you got from the xamoom system
+ @param contentName The contentName you got from the xamoom system
+ @param spotId The spotId you got from the system
+ @param spotName The spotName you got from the system
  */
-- (void)geofenceAnalyticsMessageWithRequestedLanguage:(NSString*)requestedLanguage withDeliveredLanguage:(NSString*)deliveredLanguage withSystemId:(NSString*)systemId withSystemName:(NSString*)sytemName withContentId:(NSString*)contentId withContentName:(NSString*)contentName withSpotId:(NSString*)spotId withSpotName:(NSString*)spotName;
+- (void)geofenceAnalyticsMessageWithRequestedLanguage:(NSString*)requestedLanguage withDeliveredLanguage:(NSString*)deliveredLanguage withSystemId:(NSString*)systemId withSystemName:(NSString*)systemName withContentId:(NSString*)contentId withContentName:(NSString*)contentName withSpotId:(NSString*)spotId withSpotName:(NSString*)spotName;
 
 #pragma mark - QRCodeReaderViewController
 

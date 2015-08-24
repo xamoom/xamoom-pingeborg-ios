@@ -1,5 +1,5 @@
 //
-// Copyright 2015 by Raphael Seher <raphael@xamoom.com>
+// Copyright 2015 by xamoom GmbH <apps@xamoom.com>
 //
 // This file is part of some open source application.
 //
@@ -25,6 +25,9 @@
  */
 @interface XMMResponseGetByLocation : NSObject
 
+/**
+ Array containing XMMResponseGetByLocation items.
+ */
 @property (nonatomic) NSArray *items;
 @property (nonatomic,copy) NSString *kind;
 

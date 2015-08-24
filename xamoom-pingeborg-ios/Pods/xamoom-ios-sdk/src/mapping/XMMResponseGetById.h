@@ -1,5 +1,5 @@
 //
-// Copyright 2015 by Raphael Seher <raphael@xamoom.com>
+// Copyright 2015 by xamoom GmbH <apps@xamoom.com>
 //
 // This file is part of some open source application.
 //
@@ -17,7 +17,6 @@
 // along with xamoom-ios-sdk. If not, see <http://www.gnu.org/licenses/>.
 //
 
-
 #import <Foundation/Foundation.h>
 #import "XMMEnduserApi.h"
 
@@ -29,11 +28,29 @@
  */
 @interface XMMResponseGetById : NSObject
 
+/**
+ The systemName on our system.
+ */
 @property (nonatomic, copy) NSString *systemName;
+/**
+ Url to the homepage.
+ */
 @property (nonatomic, copy) NSString *systemUrl;
+/**
+ The unique systemId on our system.
+ */
 @property (nonatomic, copy) NSString *systemId;
+/**
+ The content as XMMResponseContent to display.
+ */
 @property (nonatomic) XMMResponseContent *content;
+/**
+ Array containing items of XMMResponseMenuItem.
+ */
 @property (nonatomic) NSArray *menu;
+/**
+ The style of the system as XMMResponseStyle.
+ */
 @property (nonatomic) XMMResponseStyle* style;
 
 /// @name Mapping

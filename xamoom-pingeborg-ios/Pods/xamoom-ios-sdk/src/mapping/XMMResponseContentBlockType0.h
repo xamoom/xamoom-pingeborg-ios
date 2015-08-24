@@ -1,5 +1,5 @@
 //
-// Copyright 2015 by Raphael Seher <raphael@xamoom.com>
+// Copyright 2015 by xamoom GmbH <apps@xamoom.com>
 //
 // This file is part of some open source application.
 //
@@ -24,9 +24,17 @@
  `XMMResponseContentBlockType0` is used for mapping the JSON sended by the api.
  
  This class represents the contentBlockType 'TEXT'.
+ 
+ *Default behavior*
+ 
+ 1. Display title as bold
+ 2. Display text as html-formatted text.
  */
 @interface XMMResponseContentBlockType0 : XMMResponseContentBlock
 
+/**
+ The text from our system as HTML.
+ */
 @property (nonatomic, copy) NSString *text;
 
 /// @name Mapping

@@ -1,5 +1,5 @@
 //
-// Copyright 2015 by Raphael Seher <raphael@xamoom.com>
+// Copyright 2015 by xamoom GmbH <apps@xamoom.com>
 //
 // This file is part of some open source application.
 //
@@ -24,9 +24,17 @@
  `XMMResponseContentBlockType3` is used for mapping the JSON sended by the api.
  
  This class represents the contentBlockType 'IMAGE'.
+ 
+ *Default behavior*
+ 
+ 1. Display title as bold.
+ 2. Display image scaled to device width.
  */
 @interface XMMResponseContentBlockType3 : XMMResponseContentBlock
 
+/**
+ Url to a imageFile (jpg, png, webp, svg)
+ */
 @property (nonatomic, copy) NSString *fileId;
 
 /// @name Mapping

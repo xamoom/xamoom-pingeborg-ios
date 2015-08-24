@@ -1,5 +1,5 @@
 //
-// Copyright 2015 by Raphael Seher <raphael@xamoom.com>
+// Copyright 2015 by xamoom GmbH <apps@xamoom.com>
 //
 // This file is part of some open source application.
 //
@@ -25,7 +25,13 @@
  */
 @interface XMMResponseMenuItem : NSObject
 
+/**
+ Name of the menu item.
+ */
 @property (nonatomic, copy) NSString* itemLabel;
+/**
+ ContentId of the item.
+ */
 @property (nonatomic, copy) NSString* contentId;
 
 /// @name Mapping

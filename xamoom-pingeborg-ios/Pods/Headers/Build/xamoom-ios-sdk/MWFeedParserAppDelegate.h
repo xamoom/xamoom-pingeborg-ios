@@ -1,1 +1,0 @@
-../../../xamoom-ios-sdk/src/lib/MWFeedParser/MWFeedParserAppDelegate.h

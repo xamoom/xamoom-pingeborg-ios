@@ -1,5 +1,5 @@
 //
-// Copyright 2015 by Raphael Seher <raphael@xamoom.com>
+// Copyright 2015 by xamoom GmbH <apps@xamoom.com>
 //
 // This file is part of some open source application.
 //
@@ -26,11 +26,32 @@
  */
 @interface XMMResponseContent : NSObject
 
+#pragma mark Properties
+/// @name Properties
+/**
+ The unique contentId on our system.
+ */
 @property (nonatomic, copy) NSString *contentId;
+/**
+ Public url pointing to an image on our system.
+ */
 @property (nonatomic, copy) NSString *imagePublicUrl;
+/**
+ Description (Excerpt) of the content.
+ */
 @property (nonatomic, copy) NSString *descriptionOfContent;
+/**
+ The language of the content
+ */
 @property (nonatomic, copy) NSString *language;
+/**
+ The title of the content.
+ */
 @property (nonatomic, copy) NSString *title;
+/**
+ Array containing items of XMMResponseContentBlock.
+ Display all different contentBlocks.
+ */
 @property (nonatomic) NSArray *contentBlocks;
 
 /// @name Mapping

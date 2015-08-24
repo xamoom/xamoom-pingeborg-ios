@@ -1,5 +1,5 @@
 //
-// Copyright 2015 by Raphael Seher <raphael@xamoom.com>
+// Copyright 2015 by xamoom GmbH <apps@xamoom.com>
 //
 // This file is part of some open source application.
 //
@@ -26,10 +26,25 @@
  */
 @interface XMMResponseGetSpotMapItem : NSObject
 
+/**
+ The displayName of the spot.
+ */
 @property (nonatomic, copy) NSString* displayName;
+/**
+ The description of the spot. (E.g. "on the front door of the xamoom office")
+ */
 @property (nonatomic, copy) NSString* descriptionOfSpot;
+/**
+ The latitude of the spot.
+ */
 @property (nonatomic) float lat;
+/**
+ The longitude of the spot.
+ */
 @property (nonatomic) float lon;
+/**
+ Public url pointing to an image on our system.
+ */
 @property (nonatomic, copy) NSString* image;
 
 /// @name Mapping

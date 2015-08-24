@@ -1,5 +1,5 @@
 //
-// Copyright 2015 by Raphael Seher <raphael@xamoom.com>
+// Copyright 2015 by xamoom GmbH <apps@xamoom.com>
 //
 // This file is part of some open source application.
 //
@@ -25,12 +25,14 @@
  */
 @interface XMMResponseGetSpotMap : NSObject
 
+/**
+ Array containing XMMResponseSpotMapItem items.
+ */
 @property (nonatomic) NSArray* items;
+/**
+ The style of the system as XMMResponseStyle.
+ */
 @property (nonatomic) XMMResponseStyle* style;
-
-//only when calling closestSpots
-@property (nonatomic) int radius;
-@property (nonatomic) int limit;
 
 /// @name Mapping
 

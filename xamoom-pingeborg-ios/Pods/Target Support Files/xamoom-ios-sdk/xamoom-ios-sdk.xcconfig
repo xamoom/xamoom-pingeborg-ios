@@ -1,0 +1,2 @@
+XAMOOM_IOS_SDK_LIBRARY_SEARCH_PATHS = "$(PODS_ROOT)/xamoom-ios-sdk/src/lib/SVGKit"
+XAMOOM_IOS_SDK_OTHER_LDFLAGS = -l"SVGKit-iOS.1.2.0" -l"xml2" -framework "CFNetwork" -framework "CoreGraphics" -framework "CoreImage" -framework "CoreText" -framework "MobileCoreServices" -framework "QuartzCore" -framework "Security" -framework "SystemConfiguration"

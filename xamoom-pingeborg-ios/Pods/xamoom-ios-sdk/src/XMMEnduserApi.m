@@ -1,5 +1,5 @@
 //
-// Copyright 2015 by Raphael Seher <raphael@xamoom.com>
+// Copyright 2015 by xamoom GmbH <apps@xamoom.com>
 //
 // This file is part of some open source application.
 //
@@ -29,7 +29,6 @@ static XMMEnduserApi *sharedInstance;
 
 @property NSMutableArray *rssEntries;
 @property NSMutableString *element;
-@property XMMRSSEntry *rssItem;
 @property BOOL isQRCodeScanFinished;
 @property dispatch_queue_t backgroundQueue;
 @property UIViewController *qrCodeParentViewController;
@@ -136,6 +135,10 @@ static XMMEnduserApi *sharedInstance;
 - (void)contentListWithPageSize:(int)pageSize withLanguage:(NSString*)language withCursor:(NSString*)cursor withTags:(NSArray*)tags completion:(void(^)(XMMResponseContentList *result))completionHandler error:(void(^)(XMMError *error))errorHandler {
   if ([language isEqual:@""]) {
     language = self.systemLanguage;
+  }
+  
+  if (cursor == nil) {
+    cursor = @"null";
   }
   
   NSString* tagsAsString;

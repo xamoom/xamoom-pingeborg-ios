@@ -1,5 +1,5 @@
 //
-// Copyright 2015 by Raphael Seher <raphael@xamoom.com>
+// Copyright 2015 by xamoom GmbH <apps@xamoom.com>
 //
 // This file is part of some open source application.
 //
@@ -24,10 +24,21 @@
  `XMMResponseContentBlockType1` is used for mapping the JSON sended by the api.
  
  This class represents the contentBlockType 'AUDIO'.
+ 
+ *Default behavior*
+ 
+ 1. Display title as bold
+ 2. Display an audioplayer to play (stream) the audio file.
  */
 @interface XMMResponseContentBlockType1 : XMMResponseContentBlock
 
+/**
+ Url to a audioFile (mp3, m4a, aac).
+ */
 @property (nonatomic, copy) NSString *fileId;
+/**
+ The name of the artist(s).
+ */
 @property (nonatomic, copy) NSString *artist;
 
 /// @name Mapping

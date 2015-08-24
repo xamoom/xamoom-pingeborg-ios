@@ -1,5 +1,5 @@
 //
-// Copyright 2015 by Raphael Seher <raphael@xamoom.com>
+// Copyright 2015 by xamoom GmbH <apps@xamoom.com>
 //
 // This file is part of some open source application.
 //
@@ -24,9 +24,19 @@
  `XMMResponseContentBlockType6` is used for mapping the JSON sended by the api.
  
  This class represents the contentBlockType 'CONTENT'.
+ 
+ *Default behavior*
+ 
+ 1. Load via [XMMEnduserApi contentWithContentId:includeStyle:includeMenu:withLanguage:full:completion:error:]
+ 2. Display tile, image and descriptionOfContent
+ 3. Open new content on user interaction
+ 
  */
 @interface XMMResponseContentBlockType6 : XMMResponseContentBlock
 
+/*
+ The unique contentId on our system.
+ **/
 @property (nonatomic, copy) NSString *contentId;
 
 /// @name Mapping

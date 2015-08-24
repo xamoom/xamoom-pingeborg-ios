@@ -1,5 +1,5 @@
 //
-// Copyright 2015 by Raphael Seher <raphael@xamoom.com>
+// Copyright 2015 by xamoom GmbH <apps@xamoom.com>
 //
 // This file is part of some open source application.
 //
@@ -24,9 +24,17 @@
  `XMMResponseContentBlockType7` is used for mapping the JSON sended by the api.
  
  This class represents the contentBlockType 'SOUNDCLOUD'.
+ 
+ *Default behavior*
+ 
+ 1. Use the soundcloud widget to display inside a webView
+ 
  */
 @interface XMMResponseContentBlockType7 : XMMResponseContentBlock
 
+/**
+ A soundcloud url.
+ */
 @property (nonatomic, copy) NSString *soundcloudUrl;
 
 /// @name Mapping

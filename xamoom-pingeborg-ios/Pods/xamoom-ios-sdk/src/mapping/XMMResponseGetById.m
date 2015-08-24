@@ -1,5 +1,5 @@
 //
-// Copyright 2015 by Raphael Seher <raphael@xamoom.com>
+// Copyright 2015 by xamoom GmbH <apps@xamoom.com>
 //
 // This file is part of some open source application.
 //
@@ -16,7 +16,6 @@
 // You should have received a copy of the GNU General Public License
 // along with xamoom-ios-sdk. If not, see <http://www.gnu.org/licenses/>.
 //
-
 
 #import "XMMResponseGetById.h"
 

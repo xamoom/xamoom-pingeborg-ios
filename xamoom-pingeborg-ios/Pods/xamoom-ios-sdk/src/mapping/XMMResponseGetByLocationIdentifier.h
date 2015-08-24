@@ -1,5 +1,5 @@
 //
-// Copyright 2015 by Raphael Seher <raphael@xamoom.com>
+// Copyright 2015 by xamoom GmbH <apps@xamoom.com>
 //
 // This file is part of some open source application.
 //
@@ -17,7 +17,6 @@
 // along with xamoom-ios-sdk. If not, see <http://www.gnu.org/licenses/>.
 //
 
-
 #import <Foundation/Foundation.h>
 #import "XMMResponseContent.h"
 
@@ -29,13 +28,37 @@
  */
 @interface XMMResponseGetByLocationIdentifier : NSObject
 
+/**
+ The systemName on our system.
+ */
 @property (nonatomic, copy) NSString *systemName;
+/**
+ Url to the homepage.
+ */
 @property (nonatomic, copy) NSString *systemUrl;
+/**
+ The unique systemId on our system.
+ */
 @property (nonatomic, copy) NSString *systemId;
+/**
+ Bool to determine if there is a XMMResponseContent linked to the locationIdentifier on our system.
+ */
 @property (nonatomic) BOOL hasContent;
+/**
+ Bool to determine if there is a Spot linked to the locationIdentifier on our system.
+ */
 @property (nonatomic) BOOL hasSpot;
+/**
+ The content as XMMResponseContent to display.
+ */
 @property (nonatomic) XMMResponseContent *content;
+/**
+ The style of the system as XMMResponseStyle.
+ */
 @property (nonatomic) XMMResponseStyle *style;
+/**
+ Array containing items of XMMResponseMenuItem.
+ */
 @property (nonatomic) NSArray *menu;
 
 /// @name Mapping

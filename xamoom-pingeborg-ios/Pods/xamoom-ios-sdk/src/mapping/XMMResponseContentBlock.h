@@ -1,5 +1,5 @@
 //
-// Copyright 2015 by Raphael Seher <raphael@xamoom.com>
+// Copyright 2015 by xamoom GmbH <apps@xamoom.com>
 //
 // This file is part of some open source application.
 //
@@ -22,12 +22,24 @@
 
 /**
  `XMMResponseContentBlock` is used for mapping the JSON sended by the api.
+ 
+ If you don't know how to handle contentBlocks look at our sample app "pingeb.org".
  */
 @interface XMMResponseContentBlock : NSObject
 
+/**
+ The title of this contentBlock.
+ */
 @property (nonatomic, copy) NSString *title;
-@property (nonatomic, copy) NSString *publicStatus;
-@property (nonatomic, copy) NSString *contentBlockType;
+/**
+ The publicStatus of the content. Yes means public. 
+ Changed on our system when check "Syncronisation" on the contentBlock.
+ */
+@property (nonatomic) BOOL publicStatus;
+/**
+ The contentBlockType (0-9) determining the type of the contentBlock.
+ */
+@property (nonatomic) int contentBlockType;
 
 /// @name Mapping
 

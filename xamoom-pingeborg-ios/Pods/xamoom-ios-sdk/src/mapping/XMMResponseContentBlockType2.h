@@ -1,5 +1,5 @@
 //
-// Copyright 2015 by Raphael Seher <raphael@xamoom.com>
+// Copyright 2015 by xamoom GmbH <apps@xamoom.com>
 //
 // This file is part of some open source application.
 //
@@ -24,9 +24,17 @@
  `XMMResponseContentBlockType2` is used for mapping the JSON sended by the api.
  
  This class represents the contentBlockType 'YOUTUBE'.
+ 
+ *Default behavior*
+ 
+ 1. Display title as bold.
+ 2. Display youtube-inline-player.
  */
 @interface XMMResponseContentBlockType2 : XMMResponseContentBlock
 
+/**
+ A youtube url.
+ */
 @property (nonatomic, copy) NSString *youtubeUrl;
 
 /// @name Mapping

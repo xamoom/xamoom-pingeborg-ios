@@ -1,5 +1,5 @@
 //
-// Copyright 2015 by Raphael Seher <raphael@xamoom.com>
+// Copyright 2015 by xamoom GmbH <apps@xamoom.com>
 //
 // This file is part of some open source application.
 //
@@ -24,10 +24,23 @@
  `XMMResponseContentBlockType5` is used for mapping the JSON sended by the api.
  
  This class represents the contentBlockType 'EBOOK'.
+ 
+ *Default behavior*
+ 
+ 1. Display like a link block with another icon
+ 
+ Example implementation is on our sample app "pingeb.org" https://github.com/xamoom/xamoom-pingeborg-ios
+ 
  */
 @interface XMMResponseContentBlockType5 : XMMResponseContentBlock
 
+/**
+ Url to a ebook file (epub, mobi, pdf).
+ */
 @property (nonatomic, copy) NSString *fileId;
+/**
+ The name of the artist(s).
+ */
 @property (nonatomic, copy) NSString *artist;
 
 /// @name Mapping

@@ -1,5 +1,5 @@
 //
-// Copyright 2015 by Raphael Seher <raphael@xamoom.com>
+// Copyright 2015 by xamoom GmbH <apps@xamoom.com>
 //
 // This file is part of some open source application.
 //
@@ -24,12 +24,49 @@
  `XMMResponseContentBlockType4` is used for mapping the JSON sended by the api.
  
  This class represents the contentBlockType 'LINK'.
+ 
+ *Default behavior*
+ 
+ 1. On the left a icon according to type
+ 2. Next to the image title and below text
+ 3. Backgroundcolor according to type
+ 
+ Example implementation is on our sample app "pingeb.org" https://github.com/xamoom/xamoom-pingeborg-ios
+ 
  */
 @interface XMMResponseContentBlockType4 : XMMResponseContentBlock
 
+/**
+ A url inputed by the user.
+ */
 @property (nonatomic, copy) NSString *linkUrl;
+/**
+ Text as description for the url.
+ */
 @property (nonatomic, copy) NSString *text;
-@property (nonatomic, copy) NSString *linkType;
+/**
+ Link type to determine the type of the link.
+ 
+ - FACEBOOK = 0
+ - TWITTER = 1
+ - WEB = 2
+ - AMAZON = 3
+ - WIKIPEDIA = 4
+ - LINKEDIN = 5
+ - FLICKR = 6
+ - SOUNDCLOUD = 7
+ - ITUNES = 8
+ - YOUTUBE = 9
+ - GOOGLEPLUS = 10
+ - TEL = 11
+ - EMAIL = 12
+ - SPOTIFY = 13
+ - GOOGLE_MAPS = 14
+ - ITUNES_APP = 15
+ - GOOGLE_PLAY = 16
+ - WINDOWS_STORE = 17
+ */
+@property (nonatomic) int linkType;
 
 /// @name Mapping
 

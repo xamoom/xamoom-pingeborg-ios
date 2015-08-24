@@ -1,5 +1,5 @@
 //
-// Copyright 2015 by Raphael Seher <raphael@xamoom.com>
+// Copyright 2015 by xamoom GmbH <apps@xamoom.com>
 //
 // This file is part of some open source application.
 //
@@ -24,11 +24,30 @@
  `XMMResponseContentBlockType8` is used for mapping the JSON sended by the api.
  
  This class represents the contentBlockType 'DOWNLOAD'.
+ 
+ *Default behavior*
+ 
+ 1. Display like a link block with another icon
+ 
+ Example implementation is on our sample app "pingeb.org" https://github.com/xamoom/xamoom-pingeborg-ios
+ 
  */
 @interface XMMResponseContentBlockType8 : XMMResponseContentBlock
 
+/**
+ Url to a file (vcf, ical)
+ */
 @property (nonatomic, copy) NSString *fileId;
-@property (nonatomic, copy) NSString *downloadType;
+/**
+ Download type to determine the type of the download.
+ 
+ - VCF = 0
+ - ICAL = 1
+ */
+@property (nonatomic) int downloadType;
+/**
+ Text as description for the url.
+ */
 @property (nonatomic, copy) NSString *text;
 
 /// @name Mapping
