@@ -21,9 +21,10 @@
 #import <MapKit/MapKit.h>
 #import <SVGKit.h>
 #import <SVGKSourceString.h>
+#import <REMenu/REMenu.h>
+#import <xamoom-ios-sdk/XMMAnnotationView.h>
+#import <xamoom-ios-sdk/XMMCalloutView.h>
 #import "SMCalloutView.h"
-#import "XMMAnnotationView.h"
-#import "XMMCalloutView.h"
 #import "FeedItemCell.h"
 #import "ArtistDetailViewController.h"
 

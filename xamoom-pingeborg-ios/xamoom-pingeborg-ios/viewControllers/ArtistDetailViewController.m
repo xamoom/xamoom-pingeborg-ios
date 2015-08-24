@@ -165,25 +165,8 @@
   [[Analytics sharedObject] sendEventWithCategorie:@"pingeb.org" andAction:@"Show content" andLabel:result.content.contentId andValue:nil];
   
   self.savedResult = result;
-  [self displayContentTitleAndImage:result];
   [self.contentBlocks displayContentBlocksByIdResult:result];
   [self.hud dismiss];
-}
-
-- (void)displayContentTitleAndImage:(XMMResponseGetById *)result {
-  //make text and imageblock for the title, exercpt and the display image
-  
-  XMMResponseContentBlockType0 *contentBlock0 = [[XMMResponseContentBlockType0 alloc] init];
-  contentBlock0.contentBlockType = 0;
-  contentBlock0.title = result.content.title;
-  contentBlock0.text = result.content.descriptionOfContent;
-  [self.contentBlocks displayContentBlock0:contentBlock0];
-  
-  if (result.content.imagePublicUrl != nil) {
-    XMMResponseContentBlockType3 *contentBlock3 = [[XMMResponseContentBlockType3 alloc] init];
-    contentBlock3.fileId = result.content.imagePublicUrl;
-    [self.contentBlocks displayContentBlock3:contentBlock3];
-  }
 }
 
 #pragma mark - Table view data source

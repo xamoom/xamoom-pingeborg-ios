@@ -19,6 +19,7 @@
 
 #import <UIKit/UIKit.h>
 #import <JGProgressHUD/JGProgressHUD.h>
+#import "ArtistDetailViewController.h"
 
 @interface ScanResultViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, XMMContentBlocksDelegate>
 

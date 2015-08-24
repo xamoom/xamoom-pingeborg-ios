@@ -11,29 +11,6 @@
 		880246DC1B57AF2E00E585CE /* Analytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 880246DB1B57AF2E00E585CE /* Analytics.m */; };
 		880246E11B57CD9000E585CE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 880246DF1B57CCC400E585CE /* GoogleService-Info.plist */; };
 		88052D7B1AE103C300AB433D /* Globals.m in Sources */ = {isa = PBXBuildFile; fileRef = 88052D7A1AE103C300AB433D /* Globals.m */; };
-		881457C11B01E7DE0024E6F4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 881457C01B01E7DE0024E6F4 /* libPods.a */; };
-		881457E71B01E8620024E6F4 /* AudioBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 881457C51B01E8620024E6F4 /* AudioBlockTableViewCell.m */; };
-		881457E81B01E8620024E6F4 /* AudioBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881457C61B01E8620024E6F4 /* AudioBlockTableViewCell.xib */; };
-		881457E91B01E8620024E6F4 /* ContentBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 881457C81B01E8620024E6F4 /* ContentBlockTableViewCell.m */; };
-		881457EA1B01E8620024E6F4 /* ContentBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881457C91B01E8620024E6F4 /* ContentBlockTableViewCell.xib */; };
-		881457EB1B01E8620024E6F4 /* DownloadBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 881457CB1B01E8620024E6F4 /* DownloadBlockTableViewCell.m */; };
-		881457EC1B01E8620024E6F4 /* DownloadBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881457CC1B01E8620024E6F4 /* DownloadBlockTableViewCell.xib */; };
-		881457ED1B01E8620024E6F4 /* EbookBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 881457CE1B01E8620024E6F4 /* EbookBlockTableViewCell.m */; };
-		881457EE1B01E8620024E6F4 /* EbookBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881457CF1B01E8620024E6F4 /* EbookBlockTableViewCell.xib */; };
-		881457EF1B01E8620024E6F4 /* ImageBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 881457D11B01E8620024E6F4 /* ImageBlockTableViewCell.m */; };
-		881457F01B01E8620024E6F4 /* ImageBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881457D21B01E8620024E6F4 /* ImageBlockTableViewCell.xib */; };
-		881457F11B01E8620024E6F4 /* LinkBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 881457D41B01E8620024E6F4 /* LinkBlockTableViewCell.m */; };
-		881457F21B01E8620024E6F4 /* LinkBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881457D51B01E8620024E6F4 /* LinkBlockTableViewCell.xib */; };
-		881457F41B01E8620024E6F4 /* SoundcloudBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 881457D81B01E8620024E6F4 /* SoundcloudBlockTableViewCell.m */; };
-		881457F51B01E8620024E6F4 /* SoundcloudBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881457D91B01E8620024E6F4 /* SoundcloudBlockTableViewCell.xib */; };
-		881457F61B01E8620024E6F4 /* SpotMapBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 881457DB1B01E8620024E6F4 /* SpotMapBlockTableViewCell.m */; };
-		881457F71B01E8620024E6F4 /* SpotMapBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881457DC1B01E8620024E6F4 /* SpotMapBlockTableViewCell.xib */; };
-		881457F81B01E8620024E6F4 /* TextBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 881457DE1B01E8620024E6F4 /* TextBlockTableViewCell.m */; };
-		881457F91B01E8620024E6F4 /* TextBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881457DF1B01E8620024E6F4 /* TextBlockTableViewCell.xib */; };
-		881457FA1B01E8620024E6F4 /* YoutubeBlockTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 881457E11B01E8620024E6F4 /* YoutubeBlockTableViewCell.m */; };
-		881457FB1B01E8620024E6F4 /* YoutubeBlockTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881457E21B01E8620024E6F4 /* YoutubeBlockTableViewCell.xib */; };
-		881457FC1B01E8620024E6F4 /* XMMContentBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 881457E41B01E8620024E6F4 /* XMMContentBlocks.m */; };
-		881457FD1B01E8620024E6F4 /* XMMMusicPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 881457E61B01E8620024E6F4 /* XMMMusicPlayer.m */; };
 		881458561B01EE8B0024E6F4 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8814583D1B01EE8B0024E6F4 /* AboutViewController.m */; };
 		881458571B01EE8B0024E6F4 /* ArtistDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8814583F1B01EE8B0024E6F4 /* ArtistDetailViewController.m */; };
 		881458581B01EE8B0024E6F4 /* FeedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 881458411B01EE8B0024E6F4 /* FeedTableViewController.m */; };
@@ -42,8 +19,6 @@
 		8814585C1B01EE8B0024E6F4 /* FeedItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8814584B1B01EE8B0024E6F4 /* FeedItemCell.m */; };
 		8814585D1B01EE8B0024E6F4 /* FeedItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8814584C1B01EE8B0024E6F4 /* FeedItemCell.xib */; };
 		8814585E1B01EE8B0024E6F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8814584D1B01EE8B0024E6F4 /* Main.storyboard */; };
-		88166D151AFCAC0B0012CBA6 /* XMMMusicPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88166D0A1AFCAC0A0012CBA6 /* XMMMusicPlayer.framework */; };
-		88166D211AFCAC0B0012CBA6 /* XMMMusicPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88166D0A1AFCAC0A0012CBA6 /* XMMMusicPlayer.framework */; };
 		883574801AB1CCF40099DF4A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8835747F1AB1CCF40099DF4A /* QuartzCore.framework */; };
 		8860DA791AE78CB800DF2239 /* libSVGKit-iOS.1.2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8860DA771AE78CB800DF2239 /* libSVGKit-iOS.1.2.0.a */; };
 		8860DA7A1AE78CB800DF2239 /* usr in Resources */ = {isa = PBXBuildFile; fileRef = 8860DA781AE78CB800DF2239 /* usr */; };
@@ -69,28 +44,10 @@
 		88E2FAEA1AF74D5800917AFB /* UIImage+animatedGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E2FAE91AF74D5800917AFB /* UIImage+animatedGIF.m */; };
 		88EB481C1B56390D00A6C63F /* apikey.txt in Resources */ = {isa = PBXBuildFile; fileRef = 88EB481B1B56390D00A6C63F /* apikey.txt */; };
 		88EB481D1B563C8700A6C63F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88BA01FF1AA859F90091A43C /* Images.xcassets */; };
-		88EB48241B565FCC00A6C63F /* XMMAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EB48201B565FCC00A6C63F /* XMMAnnotationView.m */; };
-		88EB48251B565FCC00A6C63F /* XMMCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EB48221B565FCC00A6C63F /* XMMCalloutView.m */; };
-		88EB48291B5663E400A6C63F /* XMMAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 88EB48281B5663E400A6C63F /* XMMAnnotation.m */; };
 		88F038471B0E0D1200E17573 /* XMMImageUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F038461B0E0D1200E17573 /* XMMImageUtility.m */; };
-		88F1E92F1B15A95500C60504 /* XMMMusicPlayer.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 88166D0A1AFCAC0A0012CBA6 /* XMMMusicPlayer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		88166D161AFCAC0B0012CBA6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 88BA01E71AA859F90091A43C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 88166D091AFCAC0A0012CBA6;
-			remoteInfo = XMMMusicPlayer;
-		};
-		88166D181AFCAC0B0012CBA6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 88BA01E71AA859F90091A43C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 88BA01EE1AA859F90091A43C;
-			remoteInfo = "xamoom-pingeborg-ios";
-		};
 		88BA02091AA859F90091A43C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 88BA01E71AA859F90091A43C /* Project object */;
@@ -107,7 +64,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				88F1E92F1B15A95500C60504 /* XMMMusicPlayer.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,40 +79,6 @@
 		88052D7A1AE103C300AB433D /* Globals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Globals.m; sourceTree = "<group>"; };
 		881457BE1B01E7CF0024E6F4 /* libPods-AFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AFNetworking.a"; path = "Pods/build/Debug-iphoneos/libPods-AFNetworking.a"; sourceTree = "<group>"; };
 		881457C01B01E7DE0024E6F4 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
-		881457C41B01E8620024E6F4 /* AudioBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioBlockTableViewCell.h; sourceTree = "<group>"; };
-		881457C51B01E8620024E6F4 /* AudioBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioBlockTableViewCell.m; sourceTree = "<group>"; };
-		881457C61B01E8620024E6F4 /* AudioBlockTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioBlockTableViewCell.xib; sourceTree = "<group>"; };
-		881457C71B01E8620024E6F4 /* ContentBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentBlockTableViewCell.h; sourceTree = "<group>"; };
-		881457C81B01E8620024E6F4 /* ContentBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentBlockTableViewCell.m; sourceTree = "<group>"; };
-		881457C91B01E8620024E6F4 /* ContentBlockTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContentBlockTableViewCell.xib; sourceTree = "<group>"; };
-		881457CA1B01E8620024E6F4 /* DownloadBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadBlockTableViewCell.h; sourceTree = "<group>"; };
-		881457CB1B01E8620024E6F4 /* DownloadBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadBlockTableViewCell.m; sourceTree = "<group>"; };
-		881457CC1B01E8620024E6F4 /* DownloadBlockTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DownloadBlockTableViewCell.xib; sourceTree = "<group>"; };
-		881457CD1B01E8620024E6F4 /* EbookBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EbookBlockTableViewCell.h; sourceTree = "<group>"; };
-		881457CE1B01E8620024E6F4 /* EbookBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EbookBlockTableViewCell.m; sourceTree = "<group>"; };
-		881457CF1B01E8620024E6F4 /* EbookBlockTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EbookBlockTableViewCell.xib; sourceTree = "<group>"; };
-		881457D01B01E8620024E6F4 /* ImageBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageBlockTableViewCell.h; sourceTree = "<group>"; };
-		881457D11B01E8620024E6F4 /* ImageBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageBlockTableViewCell.m; sourceTree = "<group>"; };
-		881457D21B01E8620024E6F4 /* ImageBlockTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageBlockTableViewCell.xib; sourceTree = "<group>"; };
-		881457D31B01E8620024E6F4 /* LinkBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkBlockTableViewCell.h; sourceTree = "<group>"; };
-		881457D41B01E8620024E6F4 /* LinkBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinkBlockTableViewCell.m; sourceTree = "<group>"; };
-		881457D51B01E8620024E6F4 /* LinkBlockTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LinkBlockTableViewCell.xib; sourceTree = "<group>"; };
-		881457D71B01E8620024E6F4 /* SoundcloudBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundcloudBlockTableViewCell.h; sourceTree = "<group>"; };
-		881457D81B01E8620024E6F4 /* SoundcloudBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundcloudBlockTableViewCell.m; sourceTree = "<group>"; };
-		881457D91B01E8620024E6F4 /* SoundcloudBlockTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SoundcloudBlockTableViewCell.xib; sourceTree = "<group>"; };
-		881457DA1B01E8620024E6F4 /* SpotMapBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpotMapBlockTableViewCell.h; sourceTree = "<group>"; };
-		881457DB1B01E8620024E6F4 /* SpotMapBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpotMapBlockTableViewCell.m; sourceTree = "<group>"; };
-		881457DC1B01E8620024E6F4 /* SpotMapBlockTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SpotMapBlockTableViewCell.xib; sourceTree = "<group>"; };
-		881457DD1B01E8620024E6F4 /* TextBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextBlockTableViewCell.h; sourceTree = "<group>"; };
-		881457DE1B01E8620024E6F4 /* TextBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextBlockTableViewCell.m; sourceTree = "<group>"; };
-		881457DF1B01E8620024E6F4 /* TextBlockTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextBlockTableViewCell.xib; sourceTree = "<group>"; };
-		881457E01B01E8620024E6F4 /* YoutubeBlockTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YoutubeBlockTableViewCell.h; sourceTree = "<group>"; };
-		881457E11B01E8620024E6F4 /* YoutubeBlockTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YoutubeBlockTableViewCell.m; sourceTree = "<group>"; };
-		881457E21B01E8620024E6F4 /* YoutubeBlockTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YoutubeBlockTableViewCell.xib; sourceTree = "<group>"; };
-		881457E31B01E8620024E6F4 /* XMMContentBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMContentBlocks.h; sourceTree = "<group>"; };
-		881457E41B01E8620024E6F4 /* XMMContentBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMContentBlocks.m; sourceTree = "<group>"; };
-		881457E51B01E8620024E6F4 /* XMMMusicPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMMusicPlayer.h; sourceTree = "<group>"; };
-		881457E61B01E8620024E6F4 /* XMMMusicPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMMusicPlayer.m; sourceTree = "<group>"; };
 		8814583C1B01EE8B0024E6F4 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		8814583D1B01EE8B0024E6F4 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		8814583E1B01EE8B0024E6F4 /* ArtistDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtistDetailViewController.h; sourceTree = "<group>"; };
@@ -172,8 +94,6 @@
 		8814584B1B01EE8B0024E6F4 /* FeedItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedItemCell.m; sourceTree = "<group>"; };
 		8814584C1B01EE8B0024E6F4 /* FeedItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedItemCell.xib; sourceTree = "<group>"; };
 		8814584D1B01EE8B0024E6F4 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		88166D0A1AFCAC0A0012CBA6 /* XMMMusicPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XMMMusicPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		88166D141AFCAC0B0012CBA6 /* XMMMusicPlayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XMMMusicPlayerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8835747F1AB1CCF40099DF4A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8860DA771AE78CB800DF2239 /* libSVGKit-iOS.1.2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libSVGKit-iOS.1.2.0.a"; sourceTree = "<group>"; };
 		8860DA781AE78CB800DF2239 /* usr */ = {isa = PBXFileReference; lastKnownFileType = folder; path = usr; sourceTree = "<group>"; };
@@ -220,34 +140,12 @@
 		88E2FAE81AF74D5800917AFB /* UIImage+animatedGIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+animatedGIF.h"; sourceTree = "<group>"; };
 		88E2FAE91AF74D5800917AFB /* UIImage+animatedGIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+animatedGIF.m"; sourceTree = "<group>"; };
 		88EB481B1B56390D00A6C63F /* apikey.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = apikey.txt; sourceTree = "<group>"; };
-		88EB481F1B565FCC00A6C63F /* XMMAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMMAnnotationView.h; path = MapViews/XMMAnnotationView.h; sourceTree = "<group>"; };
-		88EB48201B565FCC00A6C63F /* XMMAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMMAnnotationView.m; path = MapViews/XMMAnnotationView.m; sourceTree = "<group>"; };
-		88EB48211B565FCC00A6C63F /* XMMCalloutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMMCalloutView.h; path = MapViews/XMMCalloutView.h; sourceTree = "<group>"; };
-		88EB48221B565FCC00A6C63F /* XMMCalloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMMCalloutView.m; path = MapViews/XMMCalloutView.m; sourceTree = "<group>"; };
-		88EB48271B5663E400A6C63F /* XMMAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMMAnnotation.h; path = MapViews/XMMAnnotation.h; sourceTree = "<group>"; };
-		88EB48281B5663E400A6C63F /* XMMAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMMAnnotation.m; path = MapViews/XMMAnnotation.m; sourceTree = "<group>"; };
 		88F038451B0E0D1200E17573 /* XMMImageUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMImageUtility.h; sourceTree = "<group>"; };
 		88F038461B0E0D1200E17573 /* XMMImageUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMImageUtility.m; sourceTree = "<group>"; };
 		C530CDEFFEDDFCABBEC918B0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		88166D061AFCAC0A0012CBA6 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				881457C11B01E7DE0024E6F4 /* libPods.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		88166D111AFCAC0B0012CBA6 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				88166D151AFCAC0B0012CBA6 /* XMMMusicPlayer.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		88BA01EC1AA859F90091A43C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -264,7 +162,6 @@
 				88A62C531AD561DB00EAD4C3 /* MediaPlayer.framework in Frameworks */,
 				88A62C4F1AD55F2C00EAD4C3 /* AVFoundation.framework in Frameworks */,
 				883574801AB1CCF40099DF4A /* QuartzCore.framework in Frameworks */,
-				88166D211AFCAC0B0012CBA6 /* XMMMusicPlayer.framework in Frameworks */,
 				88CBAEE11AA9EC9E000E480A /* MapKit.framework in Frameworks */,
 				8860DA791AE78CB800DF2239 /* libSVGKit-iOS.1.2.0.a in Frameworks */,
 				594E123E6C9FD768422C1CEE /* libPods.a in Frameworks */,
@@ -281,57 +178,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		881457C21B01E8620024E6F4 /* XMMContentBlocks */ = {
-			isa = PBXGroup;
-			children = (
-				88EB481E1B565F8E00A6C63F /* Map Views */,
-				881457C31B01E8620024E6F4 /* Blocks */,
-				881457E31B01E8620024E6F4 /* XMMContentBlocks.h */,
-				881457E41B01E8620024E6F4 /* XMMContentBlocks.m */,
-				881457E51B01E8620024E6F4 /* XMMMusicPlayer.h */,
-				881457E61B01E8620024E6F4 /* XMMMusicPlayer.m */,
-			);
-			name = XMMContentBlocks;
-			path = ContentBlocks;
-			sourceTree = "<group>";
-		};
-		881457C31B01E8620024E6F4 /* Blocks */ = {
-			isa = PBXGroup;
-			children = (
-				881457C41B01E8620024E6F4 /* AudioBlockTableViewCell.h */,
-				881457C51B01E8620024E6F4 /* AudioBlockTableViewCell.m */,
-				881457C61B01E8620024E6F4 /* AudioBlockTableViewCell.xib */,
-				881457C71B01E8620024E6F4 /* ContentBlockTableViewCell.h */,
-				881457C81B01E8620024E6F4 /* ContentBlockTableViewCell.m */,
-				881457C91B01E8620024E6F4 /* ContentBlockTableViewCell.xib */,
-				881457CA1B01E8620024E6F4 /* DownloadBlockTableViewCell.h */,
-				881457CB1B01E8620024E6F4 /* DownloadBlockTableViewCell.m */,
-				881457CC1B01E8620024E6F4 /* DownloadBlockTableViewCell.xib */,
-				881457CD1B01E8620024E6F4 /* EbookBlockTableViewCell.h */,
-				881457CE1B01E8620024E6F4 /* EbookBlockTableViewCell.m */,
-				881457CF1B01E8620024E6F4 /* EbookBlockTableViewCell.xib */,
-				881457D01B01E8620024E6F4 /* ImageBlockTableViewCell.h */,
-				881457D11B01E8620024E6F4 /* ImageBlockTableViewCell.m */,
-				881457D21B01E8620024E6F4 /* ImageBlockTableViewCell.xib */,
-				881457D31B01E8620024E6F4 /* LinkBlockTableViewCell.h */,
-				881457D41B01E8620024E6F4 /* LinkBlockTableViewCell.m */,
-				881457D51B01E8620024E6F4 /* LinkBlockTableViewCell.xib */,
-				881457D71B01E8620024E6F4 /* SoundcloudBlockTableViewCell.h */,
-				881457D81B01E8620024E6F4 /* SoundcloudBlockTableViewCell.m */,
-				881457D91B01E8620024E6F4 /* SoundcloudBlockTableViewCell.xib */,
-				881457DA1B01E8620024E6F4 /* SpotMapBlockTableViewCell.h */,
-				881457DB1B01E8620024E6F4 /* SpotMapBlockTableViewCell.m */,
-				881457DC1B01E8620024E6F4 /* SpotMapBlockTableViewCell.xib */,
-				881457DD1B01E8620024E6F4 /* TextBlockTableViewCell.h */,
-				881457DE1B01E8620024E6F4 /* TextBlockTableViewCell.m */,
-				881457DF1B01E8620024E6F4 /* TextBlockTableViewCell.xib */,
-				881457E01B01E8620024E6F4 /* YoutubeBlockTableViewCell.h */,
-				881457E11B01E8620024E6F4 /* YoutubeBlockTableViewCell.m */,
-				881457E21B01E8620024E6F4 /* YoutubeBlockTableViewCell.xib */,
-			);
-			path = Blocks;
-			sourceTree = "<group>";
-		};
 		8814583B1B01EE8B0024E6F4 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -416,8 +262,6 @@
 			children = (
 				88BA01EF1AA859F90091A43C /* pingeb.org.app */,
 				88BA02081AA859F90091A43C /* pingeb.orgTests.xctest */,
-				88166D0A1AFCAC0A0012CBA6 /* XMMMusicPlayer.framework */,
-				88166D141AFCAC0B0012CBA6 /* XMMMusicPlayerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -435,7 +279,6 @@
 				8814583B1B01EE8B0024E6F4 /* ViewControllers */,
 				881458491B01EE8B0024E6F4 /* Views */,
 				88E2431A1B14507200E9E208 /* XMMImageUtility */,
-				881457C21B01E8620024E6F4 /* XMMContentBlocks */,
 				8860DA7B1AE78CDF00DF2239 /* SVGKit */,
 				889BE42E1B382916002850D5 /* Google Analytics */,
 				88BA01F21AA859F90091A43C /* Supporting Files */,
@@ -484,19 +327,6 @@
 			name = XMMImageUtility;
 			sourceTree = "<group>";
 		};
-		88EB481E1B565F8E00A6C63F /* Map Views */ = {
-			isa = PBXGroup;
-			children = (
-				88EB48271B5663E400A6C63F /* XMMAnnotation.h */,
-				88EB48281B5663E400A6C63F /* XMMAnnotation.m */,
-				88EB481F1B565FCC00A6C63F /* XMMAnnotationView.h */,
-				88EB48201B565FCC00A6C63F /* XMMAnnotationView.m */,
-				88EB48211B565FCC00A6C63F /* XMMCalloutView.h */,
-				88EB48221B565FCC00A6C63F /* XMMCalloutView.m */,
-			);
-			name = "Map Views";
-			sourceTree = "<group>";
-		};
 		B091DC0989CBE4B0B40B108B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -532,54 +362,7 @@
 		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		88166D071AFCAC0A0012CBA6 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
-		88166D091AFCAC0A0012CBA6 /* XMMMusicPlayer */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 88166D231AFCAC0B0012CBA6 /* Build configuration list for PBXNativeTarget "XMMMusicPlayer" */;
-			buildPhases = (
-				88166D051AFCAC0A0012CBA6 /* Sources */,
-				88166D061AFCAC0A0012CBA6 /* Frameworks */,
-				88166D071AFCAC0A0012CBA6 /* Headers */,
-				88166D081AFCAC0A0012CBA6 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = XMMMusicPlayer;
-			productName = XMMMusicPlayer;
-			productReference = 88166D0A1AFCAC0A0012CBA6 /* XMMMusicPlayer.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		88166D131AFCAC0B0012CBA6 /* XMMMusicPlayerTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 88166D271AFCAC0B0012CBA6 /* Build configuration list for PBXNativeTarget "XMMMusicPlayerTests" */;
-			buildPhases = (
-				88166D101AFCAC0B0012CBA6 /* Sources */,
-				88166D111AFCAC0B0012CBA6 /* Frameworks */,
-				88166D121AFCAC0B0012CBA6 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				88166D171AFCAC0B0012CBA6 /* PBXTargetDependency */,
-				88166D191AFCAC0B0012CBA6 /* PBXTargetDependency */,
-			);
-			name = XMMMusicPlayerTests;
-			productName = XMMMusicPlayerTests;
-			productReference = 88166D141AFCAC0B0012CBA6 /* XMMMusicPlayerTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		88BA01EE1AA859F90091A43C /* pingeb.org */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 88BA02121AA859F90091A43C /* Build configuration list for PBXNativeTarget "pingeb.org" */;
@@ -628,14 +411,6 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "xamoom GmbH";
 				TargetAttributes = {
-					88166D091AFCAC0A0012CBA6 = {
-						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = 55MDUF7392;
-					};
-					88166D131AFCAC0B0012CBA6 = {
-						CreatedOnToolsVersion = 6.3.1;
-						TestTargetID = 88BA01EE1AA859F90091A43C;
-					};
 					88BA01EE1AA859F90091A43C = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = 55MDUF7392;
@@ -667,27 +442,11 @@
 			targets = (
 				88BA01EE1AA859F90091A43C /* pingeb.org */,
 				88BA02071AA859F90091A43C /* pingeb.orgTests */,
-				88166D091AFCAC0A0012CBA6 /* XMMMusicPlayer */,
-				88166D131AFCAC0B0012CBA6 /* XMMMusicPlayerTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		88166D081AFCAC0A0012CBA6 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		88166D121AFCAC0B0012CBA6 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		88BA01ED1AA859F90091A43C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -695,21 +454,11 @@
 				880246E11B57CD9000E585CE /* GoogleService-Info.plist in Resources */,
 				88EB481D1B563C8700A6C63F /* Images.xcassets in Resources */,
 				887BE0331B53D43000E9D584 /* Localizable.strings in Resources */,
-				881457F71B01E8620024E6F4 /* SpotMapBlockTableViewCell.xib in Resources */,
-				881457EA1B01E8620024E6F4 /* ContentBlockTableViewCell.xib in Resources */,
-				881457F21B01E8620024E6F4 /* LinkBlockTableViewCell.xib in Resources */,
-				881457F01B01E8620024E6F4 /* ImageBlockTableViewCell.xib in Resources */,
 				8814585D1B01EE8B0024E6F4 /* FeedItemCell.xib in Resources */,
-				881457FB1B01E8620024E6F4 /* YoutubeBlockTableViewCell.xib in Resources */,
 				88BA02031AA859F90091A43C /* LaunchScreen.xib in Resources */,
 				88EB481C1B56390D00A6C63F /* apikey.txt in Resources */,
-				881457F51B01E8620024E6F4 /* SoundcloudBlockTableViewCell.xib in Resources */,
 				8860DA7A1AE78CB800DF2239 /* usr in Resources */,
-				881457E81B01E8620024E6F4 /* AudioBlockTableViewCell.xib in Resources */,
 				8814585E1B01EE8B0024E6F4 /* Main.storyboard in Resources */,
-				881457EC1B01E8620024E6F4 /* DownloadBlockTableViewCell.xib in Resources */,
-				881457F91B01E8620024E6F4 /* TextBlockTableViewCell.xib in Resources */,
-				881457EE1B01E8620024E6F4 /* EbookBlockTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -756,53 +505,24 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		88166D051AFCAC0A0012CBA6 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		88166D101AFCAC0B0012CBA6 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		88BA01EB1AA859F90091A43C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				881457F61B01E8620024E6F4 /* SpotMapBlockTableViewCell.m in Sources */,
 				88DB74DC1B0217DA0064EE7E /* ScanResultViewController.m in Sources */,
-				881457E91B01E8620024E6F4 /* ContentBlockTableViewCell.m in Sources */,
-				881457EF1B01E8620024E6F4 /* ImageBlockTableViewCell.m in Sources */,
 				8814585C1B01EE8B0024E6F4 /* FeedItemCell.m in Sources */,
-				881457ED1B01E8620024E6F4 /* EbookBlockTableViewCell.m in Sources */,
-				88EB48241B565FCC00A6C63F /* XMMAnnotationView.m in Sources */,
 				88E2FAEA1AF74D5800917AFB /* UIImage+animatedGIF.m in Sources */,
-				881457E71B01E8620024E6F4 /* AudioBlockTableViewCell.m in Sources */,
-				88EB48251B565FCC00A6C63F /* XMMCalloutView.m in Sources */,
 				88BA01F81AA859F90091A43C /* AppDelegate.m in Sources */,
 				881458561B01EE8B0024E6F4 /* AboutViewController.m in Sources */,
 				88052D7B1AE103C300AB433D /* Globals.m in Sources */,
-				881457FC1B01E8620024E6F4 /* XMMContentBlocks.m in Sources */,
 				88F038471B0E0D1200E17573 /* XMMImageUtility.m in Sources */,
 				881458591B01EE8B0024E6F4 /* MapkitViewController.m in Sources */,
 				880246DC1B57AF2E00E585CE /* Analytics.m in Sources */,
-				881457F81B01E8620024E6F4 /* TextBlockTableViewCell.m in Sources */,
 				88BA01F51AA859F90091A43C /* main.m in Sources */,
-				881457FD1B01E8620024E6F4 /* XMMMusicPlayer.m in Sources */,
-				881457FA1B01E8620024E6F4 /* YoutubeBlockTableViewCell.m in Sources */,
-				88EB48291B5663E400A6C63F /* XMMAnnotation.m in Sources */,
 				8814585B1B01EE8B0024E6F4 /* NavigationViewController.m in Sources */,
 				881458581B01EE8B0024E6F4 /* FeedTableViewController.m in Sources */,
 				889BE43E1B3854C5002850D5 /* MainTabBarController.m in Sources */,
 				881458571B01EE8B0024E6F4 /* ArtistDetailViewController.m in Sources */,
-				881457F11B01E8620024E6F4 /* LinkBlockTableViewCell.m in Sources */,
-				881457F41B01E8620024E6F4 /* SoundcloudBlockTableViewCell.m in Sources */,
-				881457EB1B01E8620024E6F4 /* DownloadBlockTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -817,16 +537,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		88166D171AFCAC0B0012CBA6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 88166D091AFCAC0A0012CBA6 /* XMMMusicPlayer */;
-			targetProxy = 88166D161AFCAC0B0012CBA6 /* PBXContainerItemProxy */;
-		};
-		88166D191AFCAC0B0012CBA6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 88BA01EE1AA859F90091A43C /* pingeb.org */;
-			targetProxy = 88166D181AFCAC0B0012CBA6 /* PBXContainerItemProxy */;
-		};
 		88BA020A1AA859F90091A43C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 88BA01EE1AA859F90091A43C /* pingeb.org */;
@@ -858,112 +568,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		88166D241AFCAC0B0012CBA6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = XMMMusicPlayer/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		88166D251AFCAC0B0012CBA6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = XMMMusicPlayer/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		88166D281AFCAC0B0012CBA6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = XMMMusicPlayerTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/xamoom-pingeborg-ios.app/xamoom-pingeborg-ios";
-			};
-			name = Debug;
-		};
-		88166D291AFCAC0B0012CBA6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = XMMMusicPlayerTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/xamoom-pingeborg-ios.app/xamoom-pingeborg-ios";
-			};
-			name = Release;
-		};
 		88BA02101AA859F90091A43C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 081CE084B2E648F4E71D7D2A /* Pods.debug.xcconfig */;
@@ -1163,24 +767,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		88166D231AFCAC0B0012CBA6 /* Build configuration list for PBXNativeTarget "XMMMusicPlayer" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				88166D241AFCAC0B0012CBA6 /* Debug */,
-				88166D251AFCAC0B0012CBA6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		88166D271AFCAC0B0012CBA6 /* Build configuration list for PBXNativeTarget "XMMMusicPlayerTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				88166D281AFCAC0B0012CBA6 /* Debug */,
-				88166D291AFCAC0B0012CBA6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		88BA01EA1AA859F90091A43C /* Build configuration list for PBXProject "pingeb.org" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

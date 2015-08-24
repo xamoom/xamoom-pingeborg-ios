@@ -392,7 +392,7 @@
       if(self.customMapMarker) {
         annotationView.image = self.customMapMarker;
       } else if (self.customSVGMapMarker) {
-        [annotationView displaySVG:self.customSVGMapMarker];
+        annotationView.image = self.customSVGMapMarker.UIImage;
       } else {
         annotationView.image = [UIImage imageNamed:@"mappoint"];//here we use a nice image instead of the default pins
       }

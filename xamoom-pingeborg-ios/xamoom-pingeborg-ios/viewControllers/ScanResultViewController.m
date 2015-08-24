@@ -52,7 +52,6 @@
   //analytics
   [[Analytics sharedObject] sendEventWithCategorie:@"pingeb.org" andAction:@"Show content" andLabel:self.result.content.contentId andValue:nil];
   
-  [self displayContentTitleAndImage];
   [self.contentBlocks displayContentBlocksByLocationIdentifierResult:self.result];
   [self.hud dismiss];
 }
@@ -167,24 +166,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   return (self.contentBlocks.itemsToDisplay)[indexPath.row];
-}
-
-#pragma mark - Custom Methods
-
-- (void)displayContentTitleAndImage {
-  //make text and imageblock for the title, exercpt and the display image
-  
-  XMMResponseContentBlockType0 *contentBlock0 = [[XMMResponseContentBlockType0 alloc] init];
-  contentBlock0.contentBlockType = @"title";
-  contentBlock0.title = self.result.content.title;
-  contentBlock0.text = self.result.content.descriptionOfContent;
-  [self.contentBlocks displayContentBlock0:contentBlock0];
-  
-  if (self.result.content.imagePublicUrl != nil) {
-    XMMResponseContentBlockType3 *contentBlock3 = [[XMMResponseContentBlockType3 alloc] init];
-    contentBlock3.fileId = self.result.content.imagePublicUrl;
-    [self.contentBlocks displayContentBlock3:contentBlock3];
-  }
 }
 
 /*
