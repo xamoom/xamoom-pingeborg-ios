@@ -108,7 +108,8 @@
                                                               }];
   
   self.fontSizeDropdownMenu = [[REMenu alloc] initWithItems:@[NormalFontSizeItem, BigFontSizeItem, BiggerFontSizeItem]];
-  
+  self.fontSizeDropdownMenu.textColor = [UIColor whiteColor];
+
   //create changeFontSize button
   UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"textsize"]
                                                                  style:UIBarButtonItemStylePlain

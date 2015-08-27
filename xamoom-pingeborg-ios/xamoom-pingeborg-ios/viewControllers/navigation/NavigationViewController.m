@@ -61,6 +61,7 @@
   vorarlberg.tag = 2;
   
   self.menu = [[REMenu alloc] initWithItems:@[kaernten, salzburg, vorarlberg]];
+  self.menu.textColor = [UIColor whiteColor];
   
   self.menu.separatorOffset = CGSizeMake(15.0, 0.0);
   self.menu.imageOffset = CGSizeMake(5, -1);
