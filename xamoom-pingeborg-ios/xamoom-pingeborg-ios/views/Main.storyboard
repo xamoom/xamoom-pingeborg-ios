@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xLe-gR-03r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xLe-gR-03r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -66,7 +66,7 @@
             </objects>
             <point key="canvasLocation" x="723" y="1559"/>
         </scene>
-        <!--View Controller-->
+        <!--QR Scan-->
         <scene sceneID="qEf-v5-WpB">
             <objects>
                 <viewController id="wda-of-8Qb" sceneMemberID="viewController">
@@ -79,7 +79,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="3" title="" image="QR" id="Vcg-w0-tv5"/>
+                    <tabBarItem key="tabBarItem" tag="3" title="QR Scan" image="QR" id="Vcg-w0-tv5"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GHE-vJ-7Mb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -215,7 +215,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" image="Start" id="dth-qL-o1J"/>
+                    <tabBarItem key="tabBarItem" title="Start" image="Start" id="dth-qL-o1J"/>
                     <connections>
                         <outlet property="feedTableView" destination="gHW-kj-eSX" id="MBJ-f6-mtD"/>
                         <outlet property="instructionView" destination="aqc-vz-hDX" id="WOu-Ei-u8O"/>
@@ -261,7 +261,7 @@
                             <constraint firstItem="46F-Jo-ObI" firstAttribute="leading" secondItem="QE4-ny-WZo" secondAttribute="leading" id="nCn-WW-kca"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="2" title="" image="info" id="fBt-P2-bzm"/>
+                    <tabBarItem key="tabBarItem" tag="2" title="Info" image="info" id="fBt-P2-bzm"/>
                     <connections>
                         <outlet property="tableView" destination="46F-Jo-ObI" id="w1v-cG-UaI"/>
                     </connections>
@@ -462,7 +462,7 @@
                             <constraint firstItem="YcP-f3-HIP" firstAttribute="leading" secondItem="8fU-ya-1Zx" secondAttribute="leadingMargin" constant="-16" id="jMA-Z4-aa2"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="Map" id="Tov-nI-9zY"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="Map" id="Tov-nI-9zY"/>
                     <connections>
                         <outlet property="geoFenceActivityIndicator" destination="kag-2o-TLE" id="Pvu-Va-ubE"/>
                         <outlet property="geoFenceIcon" destination="vnx-Hm-ayt" id="PLF-kp-gxy"/>

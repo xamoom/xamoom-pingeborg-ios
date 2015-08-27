@@ -35,13 +35,8 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  
   self.delegate = self;
-  
-  //center tabbar images
-  for (UITabBarItem *item in self.tabBar.items) {
-    [item setImageInsets:UIEdgeInsetsMake(4,0,-4,0)];
-  }
+  [self initTabbarItems];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,6 +46,16 @@
 
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
+}
+
+- (void)initTabbarItems {
+  //center tabbar images
+  for (UITabBarItem *item in self.tabBar.items) {
+    [item setImageInsets:UIEdgeInsetsMake(4,0,-4,0)];
+    
+    //"hide" the title, to have better accessibility instead of don't set the item name
+    item.titlePositionAdjustment = UIOffsetMake(0, 100);
+  }
 }
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
