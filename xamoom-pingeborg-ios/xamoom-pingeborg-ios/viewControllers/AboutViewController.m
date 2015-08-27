@@ -145,7 +145,6 @@
 #pragma mark - XMMEnduserApi delegates
 
 - (void)showDataWithContentId:(XMMResponseGetById *)result {
-  [self displayContentTitleAndImage:result];
   [self.contentBlocks displayContentBlocksByIdResult:result];
   [self.hud dismiss];
 }
