@@ -24,7 +24,7 @@
 @property JGProgressHUD *hud;
 @property REMenu *fontSizeDropdownMenu;
 
-@property XMMResponseGetById *savedResult;
+@property XMMContentById *savedResult;
 @property XMMContentBlocks *contentBlocks;
 
 @end
@@ -130,13 +130,13 @@
   NSString* savedArtists = [[Globals sharedObject] savedArtits];
   if ([savedArtists containsString:self.contentId]) {
     [[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:NO includeMenu:NO withLanguage:@"" full:YES
-                                              completion:^(XMMResponseGetById *result) {
+                                              completion:^(XMMContentById *result) {
                                                 [self showDataWithContentId:result];
                                               } error:^(XMMError *error) {
                                               }];
   } else {
     [[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:NO includeMenu:NO withLanguage:@"" full:NO
-                                              completion:^(XMMResponseGetById *result) {
+                                              completion:^(XMMContentById *result) {
                                                 [self showDataWithContentId:result];
                                               } error:^(XMMError *error) {
                                               }];
@@ -161,12 +161,12 @@
 
 # pragma mark - XMMEnduser Display ContentBlocks
 
-- (void)showDataWithContentId:(XMMResponseGetById *)result {
+- (void)showDataWithContentId:(XMMContentById *)result {
   //analytics
   [[Analytics sharedObject] sendEventWithCategorie:@"pingeb.org" andAction:@"Show content" andLabel:result.content.contentId andValue:nil];
   
   self.savedResult = result;
-  [self.contentBlocks displayContentBlocksByIdResult:result];
+  [self.contentBlocks displayContentBlocksWithIdResult:result];
   [self.hud dismiss];
 }
 
@@ -174,8 +174,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   [tableView deselectRowAtIndexPath:indexPath animated:NO];
-  if ([(self.contentBlocks.itemsToDisplay)[indexPath.row] isKindOfClass:[ContentBlockTableViewCell class]]) {
-    ContentBlockTableViewCell *cell = (self.contentBlocks.itemsToDisplay)[indexPath.row];
+  if ([(self.contentBlocks.itemsToDisplay)[indexPath.row] isKindOfClass:[XMMContentBlock6TableViewCell class]]) {
+    XMMContentBlock6TableViewCell *cell = (self.contentBlocks.itemsToDisplay)[indexPath.row];
     
     ArtistDetailViewController *vc = [[ArtistDetailViewController alloc] init];
     [[Globals sharedObject] addDiscoveredArtist:cell.contentId];

@@ -23,7 +23,7 @@
 
 @interface MainTabBarController () <QRCodeReaderDelegate>
 
-@property XMMResponseGetByLocationIdentifier *savedApiResult;
+@property XMMContentByLocationIdentifier *savedApiResult;
 @property JGProgressHUD *hud;
 
 @end
@@ -96,7 +96,7 @@
     [[Analytics sharedObject] sendEventWithCategorie:@"pingeb.org" andAction:@"Scan" andLabel:@"xm.gl Sticker" andValue:nil];
     
     [[XMMEnduserApi sharedInstance] contentWithLocationIdentifier:result includeStyle:NO includeMenu:NO withLanguage:@""
-                                                       completion:^(XMMResponseGetByLocationIdentifier *result) {
+                                                       completion:^(XMMContentByLocationIdentifier *result) {
                                                          [self didLoadDataWithLocationIdentifier:result];
                                                        } error:^(XMMError *error) {
                                                          [self errorMessageOnScanning];
@@ -123,7 +123,7 @@
   NSURLRequest *newRequest = request;
   if (redirectResponse) {
     [[XMMEnduserApi sharedInstance] contentWithLocationIdentifier:[self getLocationIdentifierFromURL:[newRequest URL].absoluteString] includeStyle:NO includeMenu:NO withLanguage:@""
-                                                       completion:^(XMMResponseGetByLocationIdentifier *result) {
+                                                       completion:^(XMMContentByLocationIdentifier *result) {
                                                          [self didLoadDataWithLocationIdentifier:result];
                                                        } error:^(XMMError *error) {
                                                        }];
@@ -140,7 +140,7 @@
   return path;
 }
 
-- (void)didLoadDataWithLocationIdentifier:(XMMResponseGetByLocationIdentifier *)apiResult{
+- (void)didLoadDataWithLocationIdentifier:(XMMContentByLocationIdentifier *)apiResult{
   [[Globals sharedObject] addDiscoveredArtist:apiResult.content.contentId];
   self.savedApiResult = apiResult;
   [self.hud dismiss];

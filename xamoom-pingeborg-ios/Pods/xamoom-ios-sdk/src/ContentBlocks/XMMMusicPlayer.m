@@ -14,16 +14,16 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with xamoom-pingeborg-ios. If not, see <http://www.gnu.org/licenses/>.
+// along with xamoom-ios-sdk. If not, see <http://www.gnu.org/licenses/>.
 //
 
 #import "XMMMusicPlayer.h"
 
 @interface XMMMusicPlayer ()
 
-@property CGSize drawingFrameSize;
-@property UIImage *audioButtonPlayIcon;
-@property UIImage *audioButtonPauseIcon;
+@property (nonatomic) CGSize drawingFrameSize;
+@property (strong, nonatomic) UIImage *audioButtonPlayIcon;
+@property (strong, nonatomic) UIImage *audioButtonPauseIcon;
 
 @end
 

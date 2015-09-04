@@ -21,16 +21,16 @@
 #import <RestKit/RestKit.h>
 
 /**
- `XMMError` is used for mapping error messages from the xamoom backend.
+ * `XMMError` is used for mapping error messages from the xamoom backend.
  */
 @interface XMMError : NSObject
 
 /**
- Error code from the xamoom backend.
+ * Error code from the xamoom backend.
  */
 @property NSString* code;
 /**
- Error message from the xamoom backend.
+ * Error message from the xamoom backend.
  */
 @property NSString* message;
 

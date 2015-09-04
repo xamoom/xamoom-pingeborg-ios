@@ -1,1 +1,0 @@
-../../../xamoom-ios-sdk/src/ContentBlocks/Blocks/SpotMapBlockTableViewCell.h

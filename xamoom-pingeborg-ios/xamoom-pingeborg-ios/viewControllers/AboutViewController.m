@@ -55,7 +55,7 @@
   if ([self.contentBlocks.itemsToDisplay count] == 0) {
     [self.hud showInView:self.view];
     [[XMMEnduserApi sharedInstance] contentWithContentId:[Globals sharedObject].aboutPageId includeStyle:NO includeMenu:NO withLanguage:@"" full:YES
-                                              completion:^(XMMResponseGetById *result) {
+                                              completion:^(XMMContentById *result) {
                                                 [self showDataWithContentId:result];
                                               } error:^(XMMError *error) {
                                               }];
@@ -145,8 +145,8 @@
 
 #pragma mark - XMMEnduserApi delegates
 
-- (void)showDataWithContentId:(XMMResponseGetById *)result {
-  [self.contentBlocks displayContentBlocksByIdResult:result];
+- (void)showDataWithContentId:(XMMContentById *)result {
+  [self.contentBlocks displayContentBlocksWithIdResult:result];
   [self.hud dismiss];
 }
 
@@ -166,17 +166,17 @@
 
 #pragma mark - Custom Methods
 
-- (void)displayContentTitleAndImage:(XMMResponseGetById *)result {
+- (void)displayContentTitleAndImage:(XMMContentById *)result {
   //make text and image for the title, exercpt and the display image
   
-  XMMResponseContentBlockType0 *contentBlock0 = [[XMMResponseContentBlockType0 alloc] init];
+  XMMContentBlockType0 *contentBlock0 = [[XMMContentBlockType0 alloc] init];
   contentBlock0.contentBlockType = 0;
   contentBlock0.title = result.content.title;
   contentBlock0.text = result.content.descriptionOfContent;
-  [self.contentBlocks displayContentBlock0:contentBlock0];
+  [self.contentBlocks displayContentBlock0:contentBlock0 addTitleFontOffset:0];
   
   if (result.content.imagePublicUrl != nil) {
-    XMMResponseContentBlockType3 *contentBlock3 = [[XMMResponseContentBlockType3 alloc] init];
+    XMMContentBlockType3 *contentBlock3 = [[XMMContentBlockType3 alloc] init];
     contentBlock3.fileId = result.content.imagePublicUrl;
     [self.contentBlocks displayContentBlock3:contentBlock3];
   }

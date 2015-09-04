@@ -57,6 +57,8 @@ NSString static *const kYTPlayerCallbackOnYouTubeIframeAPIReady = @"onYouTubeIfr
 
 NSString static *const kYTPlayerEmbedUrlRegexPattern = @"^http(s)://(www.)youtube.com/embed/(.*)$";
 NSString static *const kYTPlayerAdUrlRegexPattern = @"^http(s)://pubads.g.doubleclick.net/pagead/conversion/";
+NSString static *const kYTPlayerOAuthRegexPattern = @"^http(s)://accounts.google.com/o/oauth2/(.*)$";
+NSString static *const kYTPlayerStaticProxyRegexPattern = @"^https://content.googleapis.com/static/proxy.html(.*)$";
 
 @interface YTPlayerView()
 
@@ -607,7 +609,26 @@ NSString static *const kYTPlayerAdUrlRegexPattern = @"^http(s)://pubads.g.double
       [adRegex firstMatchInString:url.absoluteString
                         options:0
                           range:NSMakeRange(0, [url.absoluteString length])];
-  if (ytMatch || adMatch) {
+
+  NSRegularExpression *oauthRegex =
+      [NSRegularExpression regularExpressionWithPattern:kYTPlayerOAuthRegexPattern
+                                              options:NSRegularExpressionCaseInsensitive
+                                                error:&error];
+  NSTextCheckingResult *oauthMatch =
+    [oauthRegex firstMatchInString:url.absoluteString
+                           options:0
+                             range:NSMakeRange(0, [url.absoluteString length])];
+    
+  NSRegularExpression *staticProxyRegex =
+    [NSRegularExpression regularExpressionWithPattern:kYTPlayerStaticProxyRegexPattern
+                                              options:NSRegularExpressionCaseInsensitive
+                                                error:&error];
+  NSTextCheckingResult *staticProxyMatch =
+    [staticProxyRegex firstMatchInString:url.absoluteString
+                                  options:0
+                                    range:NSMakeRange(0, [url.absoluteString length])];
+
+  if (ytMatch || adMatch || oauthMatch || staticProxyMatch) {
     return YES;
   } else {
     [[UIApplication sharedApplication] openURL:url];
@@ -665,6 +686,15 @@ NSString static *const kYTPlayerAdUrlRegexPattern = @"^http(s)://pubads.g.double
   NSString *path = [[NSBundle mainBundle] pathForResource:@"YTPlayerView-iframe-player"
                                                    ofType:@"html"
                                               inDirectory:@"Assets"];
+    
+  // in case of using Swift and embedded frameworks, resources included not in main bundle,
+  // but in framework bundle
+  if (!path) {
+      path = [[[self class] frameworkBundle] pathForResource:@"YTPlayerView-iframe-player"
+                                                     ofType:@"html"
+                                                inDirectory:@"Assets"];
+  }
+    
   NSString *embedHTMLTemplate =
       [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
 
@@ -794,6 +824,17 @@ NSString static *const kYTPlayerAdUrlRegexPattern = @"^http(s)://pubads.g.double
 - (void)removeWebView {
   [self.webView removeFromSuperview];
   self.webView = nil;
+}
+
++ (NSBundle *)frameworkBundle {
+    static NSBundle* frameworkBundle = nil;
+    static dispatch_once_t predicate;
+    dispatch_once(&predicate, ^{
+        NSString* mainBundlePath = [[NSBundle bundleForClass:[self class]] resourcePath];
+        NSString* frameworkBundlePath = [mainBundlePath stringByAppendingPathComponent:@"Assets.bundle"];
+        frameworkBundle = [NSBundle bundleWithPath:frameworkBundlePath];
+    });
+    return frameworkBundle;
 }
 
 @end

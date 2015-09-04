@@ -25,7 +25,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (nonatomic, strong) XMMResponseGetByLocationIdentifier *result;
+@property (nonatomic, strong) XMMContentByLocationIdentifier *result;
 @property XMMContentBlocks *contentBlocks;
 @property REMenu *fontSizeDropdownMenu;
 

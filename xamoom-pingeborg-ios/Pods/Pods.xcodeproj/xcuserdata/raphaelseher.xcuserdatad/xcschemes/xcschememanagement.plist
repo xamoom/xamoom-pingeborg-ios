@@ -74,6 +74,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>youtube-ios-player-helper-Assets.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>youtube-ios-player-helper.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -82,7 +87,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>13EC4DBB723CBA747647425AB6F5C73C</key>
+		<key>00E7B9D53D2FF1D28DDEC9EB1BA3DEED</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -92,7 +97,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>31AC9AF7B9CAC2B7CDB0AD318C418D58</key>
+		<key>27654F123DF5D97DBCED7A01C0D13382</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3964580FA5DD130B07B0BF78DABA85F2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3AACD080F1C03488277A154879B45DF3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -102,7 +117,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5767E299E16335A23BD4E4F06EFBD007</key>
+		<key>4F4FF58DAAC9AD035BD0FEE244A48051</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5DC6424C9393774B6D1DD81C97244D5E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -112,47 +132,37 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6B1C75BD947BD1BE75130389B1881D54</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>761D7EEA51A21D7A5E2E263FD97B480A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>84793F05BDB4191BADA6A1EE4C8548F6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8F189AC999AC83BA3FF013E5DBFB13A1</key>
+		<key>8562BC0E000301715DE95DAB73089362</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9051484F30F18781D38C9810BDCD97B5</key>
+		<key>8920A1C0C42179D3F2143BCCD8388E01</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A84F28DB6688FABD6CC1D15E88C59DC9</key>
+		<key>8A1599E2467E3C0FE576A8C4624C54A6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AF22F2949B43469D27A9341B291A3489</key>
+		<key>A2B505B1BBAEA20C5DF6A6DF0A050F0C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CA39F6A68970CDD293B6B53CF409B4F2</key>
+		<key>EA0D50F9BA71AE72D5674299CA3674DE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CF1C42D0C7C4E75DB44B584D223407FC</key>
+		<key>F7FC9AF05C828C390D6021BB1FAA7365</key>
 		<dict>
 			<key>primary</key>
 			<true/>

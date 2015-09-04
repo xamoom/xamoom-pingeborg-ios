@@ -32,7 +32,7 @@
 @property UISwipeGestureRecognizer *swipeGeoFenceViewUp;
 @property UISwipeGestureRecognizer *swipeGeoFenceViewDown;
 @property UITapGestureRecognizer *geoFenceTapGesture;
-@property XMMResponseGetByLocationItem *savedResponseContent;
+@property XMMContentByLocationItem *savedResponseContent;
 @property JGProgressHUD *hud;
 
 @end
@@ -87,7 +87,7 @@
     [self.geoFenceActivityIndicator startAnimating];
     [self.hud showInView:self.view];
     [[XMMEnduserApi sharedInstance] spotMapWithMapTags:@[@"showAllTheSpots"] withLanguage:[XMMEnduserApi sharedInstance].systemLanguage
-                                             completion:^(XMMResponseGetSpotMap *result) {
+                                             completion:^(XMMSpotMap *result) {
                                                [self showSpotMap:result];
                                                [self.hud dismissAnimated:YES];
                                              } error:^(XMMError *error) {
@@ -159,14 +159,14 @@
 
 #pragma mark - XMMEnduser Methods
 
-- (void)showSpotMap:(XMMResponseGetSpotMap *)result {
+- (void)showSpotMap:(XMMSpotMap *)result {
   //get the customMarker for the map
   if (result.style.customMarker != nil) {
     [self mapMarkerFromBase64:result.style.customMarker];
   }
   
   // Add annotations
-  for (XMMResponseGetSpotMapItem *item in result.items) {
+  for (XMMSpot *item in result.items) {
     XMMAnnotation *point = [[XMMAnnotation alloc] initWithLocation: CLLocationCoordinate2DMake(item.lat, item.lon)];
     point.data = item;
     
@@ -196,7 +196,7 @@
   }
 }
 
-- (void)showDataWithLocation:(XMMResponseGetByLocation *)result {
+- (void)showDataWithLocation:(XMMContentByLocation *)result {
   self.itemsToDisplay = [[NSMutableArray alloc] init];
   self.imagesToDisplay = [[NSMutableDictionary alloc] init];
   
@@ -204,14 +204,14 @@
   if([result.items count] == 0) {
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
     [[XMMEnduserApi sharedInstance] closestSpotsWithLat:self.lastLocation.coordinate.latitude withLon:self.lastLocation.coordinate.longitude withRadius:2000 withLimit:10 withLanguage:@""
-                                             completion:^(XMMResponseClosestSpot *result) {
+                                             completion:^(XMMClosestSpot *result) {
                                                [self showClosestSpots:result];
                                              } error:^(XMMError *error) {
                                              }];
     return;
   }
   
-  for (XMMResponseGetByLocationItem *item in result.items) {
+  for (XMMContentByLocationItem *item in result.items) {
     //analytics
     [[Analytics sharedObject] sendEventWithCategorie:@"pingeb.org"
                                            andAction:@"Geofence found"
@@ -244,8 +244,8 @@
   [self enableGeofenceView];
 }
 
-- (void)showClosestSpots:(XMMResponseClosestSpot *)result {
-  for (XMMResponseGetSpotMapItem *item in result.items) {
+- (void)showClosestSpots:(XMMClosestSpot *)result {
+  for (XMMSpot *item in result.items) {
     [self.itemsToDisplay addObject:item];
   }
   
@@ -496,7 +496,7 @@
   [self.geoFenceActivityIndicator startAnimating];
   self.geoFenceLabel.text = NSLocalizedString(@"Searching ...", nil);
   [[XMMEnduserApi sharedInstance] contentWithLat:[NSString stringWithFormat:@"%f",self.lastLocation.coordinate.latitude] withLon:[NSString stringWithFormat:@"%f",self.lastLocation.coordinate.longitude] withLanguage:@""
-                                      completion:^(XMMResponseGetByLocation *result) {
+                                      completion:^(XMMContentByLocation *result) {
                                         [self showDataWithLocation:result];
                                       } error:^(XMMError *error) {
                                       }];
@@ -517,7 +517,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   UITableViewCell *cell = nil;
   
-  if ([self.itemsToDisplay[indexPath.row] isKindOfClass:[XMMResponseGetByLocationItem class]]) {
+  if ([self.itemsToDisplay[indexPath.row] isKindOfClass:[XMMContentByLocationItem class]]) {
     //geofence cell like the feedItemCell
     static NSString *simpleTableIdentifier = @"FeedItemCell";
     
@@ -538,7 +538,8 @@
     if (indexPath.row >= [self.itemsToDisplay count]) {
       return cell;
     }
-    XMMResponseContent *contentItem = (self.itemsToDisplay)[indexPath.row];
+    
+    XMMContent *contentItem = (self.itemsToDisplay)[indexPath.row];
     
     //set title
     cell.feedItemTitle.text = contentItem.title;
@@ -579,7 +580,7 @@
       cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"LocationItem"];
     }
     
-    XMMResponseGetSpotMapItem *item = self.itemsToDisplay[indexPath.row];
+    XMMSpot *item = self.itemsToDisplay[indexPath.row];
     cell.textLabel.text = item.displayName;
     
     //calc distance

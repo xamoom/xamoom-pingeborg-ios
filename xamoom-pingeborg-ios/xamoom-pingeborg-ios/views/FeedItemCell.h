@@ -29,6 +29,6 @@
 
 @property NSString *contentId;
 @property UIImage *image;
-@property XMMResponseContent *content;
+@property XMMContent *content;
 
 @end

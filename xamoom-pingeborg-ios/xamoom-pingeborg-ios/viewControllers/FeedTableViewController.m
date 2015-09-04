@@ -110,7 +110,7 @@ int const kPageSize = 7;
   //loading hud in view
   [self.hud showInView:self.view];
   [[XMMEnduserApi sharedInstance] contentListWithPageSize:kPageSize withLanguage:@"" withCursor:@"null" withTags:@[@"artists"]
-                                               completion:^(XMMResponseContentList *result) {
+                                               completion:^(XMMContentList *result) {
                                                  [self displayContentList:result];
                                                  [self.hud dismiss];
                                                } error:^(XMMError *error) {
@@ -118,7 +118,7 @@ int const kPageSize = 7;
                                                }];
 }
 
-- (void)displayContentList:(XMMResponseContentList *)result {
+- (void)displayContentList:(XMMContentList *)result {
   self.contentListCursor = result.cursor;
   
   //check if first startup
@@ -129,7 +129,7 @@ int const kPageSize = 7;
   //save if there are more items available over api
   self.hasMore = result.hasMore;
   
-  for (XMMResponseContent *contentItem in result.items) {
+  for (XMMContent *contentItem in result.items) {
     //download image
     [XMMImageUtility imageWithUrl:contentItem.imagePublicUrl completionBlock:^(BOOL succeeded, UIImage *image, SVGKImage *svgImage) {
       if (image != nil) {
@@ -184,7 +184,7 @@ int const kPageSize = 7;
   if (indexPath.row >= [self.itemsToDisplay count]) {
     return cell;
   }
-  XMMResponseContent *contentItem = (self.itemsToDisplay)[indexPath.row];
+  XMMContent *contentItem = (self.itemsToDisplay)[indexPath.row];
   
   //set title
   cell.feedItemTitle.text = contentItem.title;
@@ -227,7 +227,7 @@ int const kPageSize = 7;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   ArtistDetailViewController *artistDetailViewController = [[ArtistDetailViewController alloc] init];
-  XMMResponseContent *data = (XMMResponseContent*)(self.itemsToDisplay)[indexPath.row];
+  XMMContent *data = (XMMContent*)(self.itemsToDisplay)[indexPath.row];
   artistDetailViewController.contentId = data.contentId;
   [self.navigationController pushViewController:artistDetailViewController animated:YES];
 }
@@ -244,7 +244,7 @@ int const kPageSize = 7;
     
     //api call
     [[XMMEnduserApi sharedInstance] contentListWithPageSize:kPageSize withLanguage:@"" withCursor:@"null" withTags:@[@"artists"]
-                                                 completion:^(XMMResponseContentList *result) {
+                                                 completion:^(XMMContentList *result) {
                                                    [self displayContentList:result];
                                                    [self.hud dismiss];
                                                  } error:^(XMMError *error) {
@@ -278,7 +278,7 @@ int const kPageSize = 7;
     
     self.isApiCallingBlocked = YES;
     [[XMMEnduserApi sharedInstance] contentListWithPageSize:kPageSize withLanguage:@"" withCursor:self.contentListCursor withTags:@[@"artists"]
-                                                 completion:^(XMMResponseContentList *result) {
+                                                 completion:^(XMMContentList *result) {
                                                    [self displayContentList:result];
                                                    self.feedTableView.tableFooterView = nil;
                                                  } error:^(XMMError *error) {
@@ -306,7 +306,7 @@ int const kPageSize = 7;
 
 # pragma mark - Instruction View / First Start
 
-- (void)firstStartup:(XMMResponseContentList *)result {
+- (void)firstStartup:(XMMContentList *)result {
   [self addFreeDiscoveredArtists:result];
   [self displayInstructionScreen];
 }
@@ -323,11 +323,11 @@ int const kPageSize = 7;
   self.instructionView.hidden = YES;
 }
 
-- (void)addFreeDiscoveredArtists:(XMMResponseContentList *)result {
+- (void)addFreeDiscoveredArtists:(XMMContentList *)result {
   //add artist 2-4 to discovered list
   int counter = 1;
   while (counter <= 3) {
-    XMMResponseContent *contentItem = result.items[counter];
+    XMMContent *contentItem = result.items[counter];
     [[Globals sharedObject] addDiscoveredArtist:contentItem.contentId];
     counter++;
   }

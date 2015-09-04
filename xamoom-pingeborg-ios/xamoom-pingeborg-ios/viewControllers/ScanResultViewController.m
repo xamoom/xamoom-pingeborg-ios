@@ -52,7 +52,7 @@
   //analytics
   [[Analytics sharedObject] sendEventWithCategorie:@"pingeb.org" andAction:@"Show content" andLabel:self.result.content.contentId andValue:nil];
   
-  [self.contentBlocks displayContentBlocksByLocationIdentifierResult:self.result];
+  [self.contentBlocks displayContentBlocksWithLocationIdentifierResult:self.result];
   [self.hud dismiss];
 }
 
@@ -146,8 +146,8 @@
   [tableView deselectRowAtIndexPath:indexPath animated:NO];
   
   //open new artistDetailViewController when tap a contentBlock
-  if ([(self.contentBlocks.itemsToDisplay)[indexPath.row] isKindOfClass:[ContentBlockTableViewCell class]]) {
-    ContentBlockTableViewCell *cell = (self.contentBlocks.itemsToDisplay)[indexPath.row];
+  if ([(self.contentBlocks.itemsToDisplay)[indexPath.row] isKindOfClass:[XMMContentBlock6TableViewCell class]]) {
+    XMMContentBlock6TableViewCell *cell = (self.contentBlocks.itemsToDisplay)[indexPath.row];
     
     ArtistDetailViewController *vc = [[ArtistDetailViewController alloc] init];
     [vc setContentId:cell.contentId];
