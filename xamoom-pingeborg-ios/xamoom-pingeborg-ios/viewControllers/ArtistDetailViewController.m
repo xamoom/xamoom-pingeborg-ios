@@ -44,8 +44,8 @@
   self.hud = [[JGProgressHUD alloc] initWithStyle:JGProgressHUDStyleDark];
   
   //setup
-  [self setupTableView];
   [self setupContentBlocks];
+  [self setupTableView];
   [self setupTextSizeDropdown];
   [self downloadContent];
 }
@@ -156,7 +156,9 @@
 #pragma mark - XMMContentBlock Delegate
 
 - (void)didClickContentBlock:(NSString *)contentId {
-  ArtistDetailViewController *vc = [[ArtistDetailViewController alloc] init];
+  UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+  ArtistDetailViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ArtistDetailView"];
+  
   [[Globals sharedObject] addDiscoveredArtist:contentId];
   [vc setContentId:contentId];
   [self.navigationController pushViewController:vc animated:YES];

@@ -226,7 +226,10 @@ int const kPageSize = 7;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  ArtistDetailViewController *artistDetailViewController = [[ArtistDetailViewController alloc] init];
+  UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+  ArtistDetailViewController *artistDetailViewController =
+  [storyboard instantiateViewControllerWithIdentifier:@"ArtistDetailView"];
+  
   XMMContent *data = (XMMContent*)(self.itemsToDisplay)[indexPath.row];
   artistDetailViewController.contentId = data.contentId;
   [self.navigationController pushViewController:artistDetailViewController animated:YES];

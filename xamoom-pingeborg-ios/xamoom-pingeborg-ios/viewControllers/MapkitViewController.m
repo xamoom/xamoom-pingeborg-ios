@@ -671,7 +671,9 @@
 - (void)openArtistDetailViewFromSender:(UITapGestureRecognizer*)sender {
   //open geofence in artistDetailView
   FeedItemCell *cell = (FeedItemCell*)sender.view;
-  ArtistDetailViewController *artistDetailViewController = [[ArtistDetailViewController alloc] init];
+  UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+  ArtistDetailViewController *artistDetailViewController = [storyboard instantiateViewControllerWithIdentifier:@"ArtistDetailView"];
+  
   artistDetailViewController.contentId = cell.contentId;
   
   //add to discovered artists

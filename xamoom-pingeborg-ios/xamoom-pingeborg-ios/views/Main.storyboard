@@ -289,7 +289,7 @@
         <!--Artist Detail View Controller-->
         <scene sceneID="5HL-de-DCB">
             <objects>
-                <viewController id="laG-KW-rW7" customClass="ArtistDetailViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ArtistDetailView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="laG-KW-rW7" customClass="ArtistDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="e9S-Jp-gkL"/>
                         <viewControllerLayoutGuide type="bottom" id="C4i-Lk-Hgz"/>
