@@ -408,7 +408,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = XMM;
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "xamoom GmbH";
 				TargetAttributes = {
 					88BA01EE1AA859F90091A43C = {
@@ -589,6 +589,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -672,6 +673,7 @@
 					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
 					"$(PROJECT_DIR)",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.xamoom.xamoom-pingeborg-ios";
 				PRODUCT_NAME = pingeb.org;
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = NO;
@@ -722,6 +724,7 @@
 					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
 					"$(PROJECT_DIR)",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.xamoom.xamoom-pingeborg-ios";
 				PRODUCT_NAME = pingeb.org;
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = NO;
@@ -745,6 +748,7 @@
 				);
 				INFOPLIST_FILE = "xamoom-pingeborg-iosTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.xamoom.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = pingeb.orgTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/xamoom-pingeborg-ios.app/xamoom-pingeborg-ios";
 			};
@@ -761,6 +765,7 @@
 				);
 				INFOPLIST_FILE = "xamoom-pingeborg-iosTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.xamoom.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = pingeb.orgTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/xamoom-pingeborg-ios.app/xamoom-pingeborg-ios";
 			};
