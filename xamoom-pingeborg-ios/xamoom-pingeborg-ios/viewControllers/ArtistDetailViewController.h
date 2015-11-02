@@ -21,8 +21,9 @@
 #import "REMenu.h"  
 #import <JGProgressHUD/JGProgressHUD.h>
 
-@interface ArtistDetailViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
+@interface ArtistDetailViewController : UIViewController <XMMContentBlocksDelegate>
 
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property NSString *contentId;
 
 @end

@@ -42,8 +42,8 @@
   
   self.hud = [[JGProgressHUD alloc] initWithStyle:JGProgressHUDStyleDark];
 
-  [self setupTableView];
   [self setupContentBlocks];
+  [self setupTableView];
   [self setupTextSizeDropdown];
 }
 
@@ -52,7 +52,7 @@
   self.parentViewController.navigationItem.rightBarButtonItem = self.buttonItem;
   
   //load items if there are none
-  if ([self.contentBlocks.itemsToDisplay count] == 0) {
+  if ([self.contentBlocks.items count] == 0) {
     [self.hud showInView:self.view];
     [[XMMEnduserApi sharedInstance] contentWithContentId:[Globals sharedObject].aboutPageId includeStyle:NO includeMenu:NO withLanguage:@"" full:YES
                                               completion:^(XMMContentById *result) {
@@ -76,14 +76,14 @@
 
 - (void)setupTableView {
   //setting up tableView
-  [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-  self.tableView.rowHeight = UITableViewAutomaticDimension;
-  self.tableView.estimatedRowHeight = 150.0;
+  self.tableView.dataSource = self.contentBlocks;
+  self.tableView.delegate = self.contentBlocks;
 }
 
 - (void)setupContentBlocks {
   //setting up XMMContentBlocks
-  self.contentBlocks = [[XMMContentBlocks alloc] initWithLanguage:[XMMEnduserApi sharedInstance].systemLanguage withWidth:self.view.frame.size.width];
+  self.contentBlocks = [[XMMContentBlocks alloc] initWithTableView:self.tableView
+                                                          language:[XMMEnduserApi sharedInstance].systemLanguage];
   self.contentBlocks.delegate = self;
   self.contentBlocks.linkColor = [Globals sharedObject].pingeborgLinkColor;
 }
@@ -139,47 +139,15 @@
 
 #pragma mark - XMMContentBlocks delegates
 
-- (void)reloadTableViewForContentBlocks {
-  [self.tableView reloadData];
+- (void)didClickContentBlock:(NSString *)contentId {
+  
 }
 
 #pragma mark - XMMEnduserApi delegates
 
 - (void)showDataWithContentId:(XMMContentById *)result {
-  [self.contentBlocks displayContentBlocksWithIdResult:result];
+  self.contentBlocks.content = result.content;
   [self.hud dismiss];
-}
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return [self.contentBlocks.itemsToDisplay count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  return (self.contentBlocks.itemsToDisplay)[indexPath.row];
-}
-
-#pragma mark - Custom Methods
-
-- (void)displayContentTitleAndImage:(XMMContentById *)result {
-  //make text and image for the title, exercpt and the display image
-  
-  XMMContentBlockType0 *contentBlock0 = [[XMMContentBlockType0 alloc] init];
-  contentBlock0.contentBlockType = 0;
-  contentBlock0.title = result.content.title;
-  contentBlock0.text = result.content.descriptionOfContent;
-  [self.contentBlocks displayContentBlock0:contentBlock0 addTitleFontOffset:0];
-  
-  if (result.content.imagePublicUrl != nil) {
-    XMMContentBlockType3 *contentBlock3 = [[XMMContentBlockType3 alloc] init];
-    contentBlock3.fileId = result.content.imagePublicUrl;
-    [self.contentBlocks displayContentBlock3:contentBlock3];
-  }
 }
 
 /*

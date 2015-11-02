@@ -52,7 +52,7 @@
   //analytics
   [[Analytics sharedObject] sendEventWithCategorie:@"pingeb.org" andAction:@"Show content" andLabel:self.result.content.contentId andValue:nil];
   
-  [self.contentBlocks displayContentBlocksWithLocationIdentifierResult:self.result];
+  self.contentBlocks.content = self.result.content;
   [self.hud dismiss];
 }
 
@@ -73,9 +73,8 @@
 # pragma mark - Setup
 
 - (void)setupTableView {
-  [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-  self.tableView.rowHeight = UITableViewAutomaticDimension;
-  self.tableView.estimatedRowHeight = 150.0;
+  self.tableView.dataSource = self.contentBlocks;
+  self.tableView.delegate = self.contentBlocks;
 }
 
 - (void)setupTextSizeDropdown {
@@ -119,7 +118,8 @@
 }
 
 - (void)setupContentBlocks {
-  self.contentBlocks = [[XMMContentBlocks alloc] initWithLanguage:@"" withWidth:self.view.bounds.size.width];
+  self.contentBlocks = [[XMMContentBlocks alloc] initWithTableView:self.tableView
+                                                          language:[XMMEnduserApi sharedInstance].systemLanguage];
   self.contentBlocks.delegate = self;
   self.contentBlocks.linkColor = [Globals sharedObject].pingeborgLinkColor;
 }
@@ -136,37 +136,10 @@
 
 #pragma mark - XMMContentBlocks delegates
 
-- (void)reloadTableViewForContentBlocks {
-  [self.tableView reloadData];
-}
-
-#pragma mark - Table view data source
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  [tableView deselectRowAtIndexPath:indexPath animated:NO];
-  
-  //open new artistDetailViewController when tap a contentBlock
-  if ([(self.contentBlocks.itemsToDisplay)[indexPath.row] isKindOfClass:[XMMContentBlock6TableViewCell class]]) {
-    XMMContentBlock6TableViewCell *cell = (self.contentBlocks.itemsToDisplay)[indexPath.row];
-    
-    ArtistDetailViewController *vc = [[ArtistDetailViewController alloc] init];
-    [vc setContentId:cell.contentId];
-    [self.navigationController pushViewController:vc animated:YES];
-  }
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  // Return the number of sections.
-  return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  // Return the number of rows in the section.
-  return [self.contentBlocks.itemsToDisplay count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  return (self.contentBlocks.itemsToDisplay)[indexPath.row];
+- (void)didClickContentBlock:(NSString *)contentId {
+  ArtistDetailViewController *vc = [[ArtistDetailViewController alloc] init];
+  [vc setContentId:contentId];
+  [self.navigationController pushViewController:vc animated:YES];
 }
 
 /*

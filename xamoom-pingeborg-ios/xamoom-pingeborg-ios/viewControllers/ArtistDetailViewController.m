@@ -45,8 +45,8 @@
   
   //setup
   [self setupTableView];
-  [self setupTextSizeDropdown];
   [self setupContentBlocks];
+  [self setupTextSizeDropdown];
   [self downloadContent];
 }
 
@@ -73,9 +73,8 @@
 #pragma mark - Setup
 
 - (void)setupTableView {
-  [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-  self.tableView.rowHeight = UITableViewAutomaticDimension;
-  self.tableView.estimatedRowHeight = 150.0;
+  self.tableView.dataSource = self.contentBlocks;
+  self.tableView.delegate = self.contentBlocks;
 }
 
 - (void)setupTextSizeDropdown {
@@ -119,7 +118,8 @@
 }
 
 - (void)setupContentBlocks {
-  self.contentBlocks = [[XMMContentBlocks alloc] initWithLanguage:[XMMEnduserApi sharedInstance].systemLanguage withWidth:self.tableView.bounds.size.width];
+  self.contentBlocks = [[XMMContentBlocks alloc] initWithTableView:self.tableView
+                                                          language:[XMMEnduserApi sharedInstance].systemLanguage];
   self.contentBlocks.delegate = self;
   self.contentBlocks.linkColor = [Globals sharedObject].pingeborgLinkColor;
 }
@@ -155,8 +155,11 @@
 
 #pragma mark - XMMContentBlock Delegate
 
-- (void)reloadTableViewForContentBlocks {
-  [self.tableView reloadData];
+- (void)didClickContentBlock:(NSString *)contentId {
+  ArtistDetailViewController *vc = [[ArtistDetailViewController alloc] init];
+  [[Globals sharedObject] addDiscoveredArtist:contentId];
+  [vc setContentId:contentId];
+  [self.navigationController pushViewController:vc animated:YES];
 }
 
 # pragma mark - XMMEnduser Display ContentBlocks
@@ -166,36 +169,8 @@
   [[Analytics sharedObject] sendEventWithCategorie:@"pingeb.org" andAction:@"Show content" andLabel:result.content.contentId andValue:nil];
   
   self.savedResult = result;
-  [self.contentBlocks displayContentBlocksWithIdResult:result];
+  self.contentBlocks.content = result.content;
   [self.hud dismiss];
-}
-
-#pragma mark - Table view data source
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  [tableView deselectRowAtIndexPath:indexPath animated:NO];
-  if ([(self.contentBlocks.itemsToDisplay)[indexPath.row] isKindOfClass:[XMMContentBlock6TableViewCell class]]) {
-    XMMContentBlock6TableViewCell *cell = (self.contentBlocks.itemsToDisplay)[indexPath.row];
-    
-    ArtistDetailViewController *vc = [[ArtistDetailViewController alloc] init];
-    [[Globals sharedObject] addDiscoveredArtist:cell.contentId];
-    [vc setContentId:cell.contentId];
-    [self.navigationController pushViewController:vc animated:YES];
-  }
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  // Return the number of sections.
-  return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  // Return the number of rows in the section.
-  return [self.contentBlocks.itemsToDisplay count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  return self.contentBlocks.itemsToDisplay[indexPath.row];
 }
 
 /*

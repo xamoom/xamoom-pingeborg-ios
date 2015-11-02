@@ -95,7 +95,11 @@
     //analytics
     [[Analytics sharedObject] sendEventWithCategorie:@"pingeb.org" andAction:@"Scan" andLabel:@"xm.gl Sticker" andValue:nil];
     
-    [[XMMEnduserApi sharedInstance] contentWithLocationIdentifier:result includeStyle:NO includeMenu:NO withLanguage:@""
+    [[XMMEnduserApi sharedInstance] contentWithLocationIdentifier:result
+                                                          majorId:nil
+                                                     includeStyle:NO
+                                                      includeMenu:NO
+                                                     withLanguage:@""
                                                        completion:^(XMMContentByLocationIdentifier *result) {
                                                          [self didLoadDataWithLocationIdentifier:result];
                                                        } error:^(XMMError *error) {
@@ -122,7 +126,11 @@
   //redirect to xm.gl
   NSURLRequest *newRequest = request;
   if (redirectResponse) {
-    [[XMMEnduserApi sharedInstance] contentWithLocationIdentifier:[self getLocationIdentifierFromURL:[newRequest URL].absoluteString] includeStyle:NO includeMenu:NO withLanguage:@""
+    [[XMMEnduserApi sharedInstance] contentWithLocationIdentifier:[self getLocationIdentifierFromURL:[newRequest URL].absoluteString]
+                                                          majorId:nil
+                                                     includeStyle:NO
+                                                      includeMenu:NO
+                                                     withLanguage:@""
                                                        completion:^(XMMContentByLocationIdentifier *result) {
                                                          [self didLoadDataWithLocationIdentifier:result];
                                                        } error:^(XMMError *error) {
