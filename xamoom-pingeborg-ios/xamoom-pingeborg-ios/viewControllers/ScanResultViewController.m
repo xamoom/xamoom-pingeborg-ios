@@ -39,9 +39,9 @@
   self.hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
   
   //setup
+  [self setupContentBlocks];
   [self setupTableView];
   [self setupTextSizeDropdown];
-  [self setupContentBlocks];
   
   [self.hud showInView:self.view];
 }
@@ -86,6 +86,7 @@
                                                               action:^(REMenuItem *item) {
                                                                 [[Analytics sharedObject] sendEventWithCategorie:@"UX" andAction:@"Changed Fontsize" andLabel:@"Normal Font Size" andValue:nil];
                                                                 [self.contentBlocks updateFontSizeTo:NormalFontSize];
+                                                                [self.tableView reloadData];
                                                               }];
   
   REMenuItem *BigFontSizeItem = [[REMenuItem alloc] initWithTitle:NSLocalizedString(@"Big Font Size", nil)
@@ -95,6 +96,7 @@
                                                            action:^(REMenuItem *item) {
                                                              [[Analytics sharedObject] sendEventWithCategorie:@"UX" andAction:@"Changed Fontsize" andLabel:@"Big Font Size" andValue:nil];
                                                              [self.contentBlocks updateFontSizeTo:BigFontSize];
+                                                             [self.tableView reloadData];
                                                            }];
   
   REMenuItem *BiggerFontSizeItem = [[REMenuItem alloc] initWithTitle:NSLocalizedString(@"Really Big Font Size", nil)
@@ -104,6 +106,7 @@
                                                               action:^(REMenuItem *item) {
                                                                 [[Analytics sharedObject] sendEventWithCategorie:@"UX" andAction:@"Changed Fontsize" andLabel:@"Really Big Font Size" andValue:nil];
                                                                 [self.contentBlocks updateFontSizeTo:BiggerFontSize];
+                                                                [self.tableView reloadData];
                                                               }];
   
   self.fontSizeDropdownMenu = [[REMenu alloc] initWithItems:@[NormalFontSizeItem, BigFontSizeItem, BiggerFontSizeItem]];
