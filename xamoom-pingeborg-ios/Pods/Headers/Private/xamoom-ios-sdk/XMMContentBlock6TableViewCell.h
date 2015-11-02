@@ -1,1 +1,1 @@
-../../../xamoom-ios-sdk/src/ContentBlocks/Blocks/XMMContentBlock6TableViewCell.h
+../../../../../../xamoom-ios-sdk/src/ContentBlocks/Blocks/XMMContentBlock6TableViewCell.h

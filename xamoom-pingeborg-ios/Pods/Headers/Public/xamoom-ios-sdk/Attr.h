@@ -1,1 +1,1 @@
-../../../xamoom-ios-sdk/src/lib/SVGKit/usr/local/include/Attr.h
+../../../../../../xamoom-ios-sdk/src/lib/SVGKit/usr/local/include/Attr.h

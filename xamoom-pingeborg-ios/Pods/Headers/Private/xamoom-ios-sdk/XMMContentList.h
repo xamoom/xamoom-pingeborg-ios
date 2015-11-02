@@ -1,1 +1,1 @@
-../../../xamoom-ios-sdk/src/mapping/XMMContentList.h
+../../../../../../xamoom-ios-sdk/src/mapping/XMMContentList.h

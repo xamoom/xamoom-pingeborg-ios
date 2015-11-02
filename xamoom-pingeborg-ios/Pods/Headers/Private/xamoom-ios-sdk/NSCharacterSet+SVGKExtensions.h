@@ -1,1 +1,1 @@
-../../../xamoom-ios-sdk/src/lib/SVGKit/usr/local/include/NSCharacterSet+SVGKExtensions.h
+../../../../../../xamoom-ios-sdk/src/lib/SVGKit/usr/local/include/NSCharacterSet+SVGKExtensions.h

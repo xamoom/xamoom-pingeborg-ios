@@ -1,1 +1,1 @@
-../../../xamoom-ios-sdk/src/ContentBlocks/MapViews/XMMCalloutView.h
+../../../../../../xamoom-ios-sdk/src/ContentBlocks/MapViews/XMMCalloutView.h

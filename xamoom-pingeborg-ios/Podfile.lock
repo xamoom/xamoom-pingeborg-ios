@@ -57,8 +57,12 @@ DEPENDENCIES:
   - JGProgressHUD
   - REMenu (~> 1.10)
   - SMCalloutView
-  - xamoom-ios-sdk (~> 1.3.2)
+  - xamoom-ios-sdk (from `./../../xamoom-ios-sdk/`)
   - youtube-ios-player-helper (~> 0.1.1)
+
+EXTERNAL SOURCES:
+  xamoom-ios-sdk:
+    :path: ./../../xamoom-ios-sdk/
 
 SPEC CHECKSUMS:
   AFNetworking: cf8e418e16f0c9c7e5c3150d019a3c679d015018
