@@ -1,1 +1,1 @@
-../../../../../../xamoom-ios-sdk/src/lib/SVGKit/usr/local/include/NSData+NSInputStream.h
+../../../xamoom-ios-sdk/src/lib/SVGKit/usr/local/include/NSData+NSInputStream.h

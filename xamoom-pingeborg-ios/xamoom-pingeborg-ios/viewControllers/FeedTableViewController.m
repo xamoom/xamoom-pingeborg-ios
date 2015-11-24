@@ -31,6 +31,8 @@ int const kPageSize = 7;
 @property NSMutableArray *itemsToDisplay;
 @property NSMutableDictionary *imagesToDisplay;
 @property NSString *contentListCursor;
+@property CLBeacon *lastBeacon;
+@property XMMContentByLocationIdentifier *beaconResult;
 @property bool hasMore;
 @property bool isApiCallingBlocked;
 

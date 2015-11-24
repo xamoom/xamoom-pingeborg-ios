@@ -28,7 +28,7 @@
 
 extern int const kPageSize;
 
-@interface FeedTableViewController : UIViewController <UINavigationControllerDelegate>
+@interface FeedTableViewController : UIViewController <UINavigationControllerDelegate, CLLocationManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *feedTableView;
 @property (weak, nonatomic) IBOutlet UIView *instructionView;

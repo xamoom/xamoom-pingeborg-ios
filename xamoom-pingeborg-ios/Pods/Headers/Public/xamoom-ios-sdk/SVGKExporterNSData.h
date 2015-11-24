@@ -1,1 +1,1 @@
-../../../../../../xamoom-ios-sdk/src/lib/SVGKit/usr/local/include/SVGKExporterNSData.h
+../../../xamoom-ios-sdk/src/lib/SVGKit/usr/local/include/SVGKExporterNSData.h

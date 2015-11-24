@@ -23,6 +23,9 @@
 
 @interface AppDelegate ()
 
+@property (strong, nonatomic) CLLocationManager *locationManager;
+@property (strong, nonatomic) CLBeaconRegion *beaconRegion;
+
 @end
 
 @implementation AppDelegate
@@ -34,7 +37,7 @@
   
   //setup API
   [self setupApi];
-  
+    
   return YES;
 }
 

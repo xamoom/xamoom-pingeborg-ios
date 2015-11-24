@@ -1,1 +1,1 @@
-../../../../../../xamoom-ios-sdk/src/lib/SVGKit/usr/local/include/CGPathAdditions.h
+../../../xamoom-ios-sdk/src/lib/SVGKit/usr/local/include/CGPathAdditions.h

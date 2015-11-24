@@ -1,1 +1,1 @@
-../../../../../../xamoom-ios-sdk/src/lib/SVGKit/usr/local/include/SVGGradientElement.h
+../../../xamoom-ios-sdk/src/lib/SVGKit/usr/local/include/SVGGradientElement.h

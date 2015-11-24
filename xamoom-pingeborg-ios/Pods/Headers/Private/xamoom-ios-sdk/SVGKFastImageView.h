@@ -1,1 +1,1 @@
-../../../../../../xamoom-ios-sdk/src/lib/SVGKit/usr/local/include/SVGKFastImageView.h
+../../../xamoom-ios-sdk/src/lib/SVGKit/usr/local/include/SVGKFastImageView.h

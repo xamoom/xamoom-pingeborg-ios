@@ -6,9 +6,6 @@
 //  Copyright (c) 2014 Jonas Gessner. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-
 #import "JGProgressHUD-Defines.h"
 
 #import "JGProgressHUDAnimation.h"
@@ -55,23 +52,26 @@
 @end
 
 /**
- A HUD view to indicate progress, success, error, warnings or other notifications to the user.
- @note Remember to call every method from the main thread! UIKit = always main thread!
+ A HUD to indicate progress, success, error, warnings or other notifications to the user.
+ @note Remember to call every method from the main thread! UIKit => main thread!
  @attention This applies only to iOS 8 and higher: You may not add JGProgressHUD to a view which has an alpha value < 1.0 or to a view which is a subview of a view with an alpha value < 1.0.
  */
 @interface JGProgressHUD : UIView
 
 /**
- Always initialize JGProgressHUD using this method or it's convenience method @c progressHUDWithStyle:.
+ Designated initializer.
  @param style The appearance style of the HUD.
  */
 - (instancetype)initWithStyle:(JGProgressHUDStyle)style;
 
 /**
- Convenience method to initialize a new HUD.
+ Convenience initializer.
  @param style The appearance style of the HUD.
  */
 + (instancetype)progressHUDWithStyle:(JGProgressHUDStyle)style;
+
+
+
 
 /**
  The view in which the HUD is presented.
@@ -212,7 +212,6 @@
  */
 - (void)setProgress:(float)progress animated:(BOOL)animated;
 
-
 /**
  Specifies a minimum time that the HUD will be on-screen. Useful to prevent the HUD from flashing quickly on the screen when indeterminate tasks complete more quickly than expected.
  
@@ -221,11 +220,6 @@
 @property (nonatomic, assign) NSTimeInterval minimumDisplayTime;
 
 
-
-
-/////////////
-// Showing //
-/////////////
 
 
 /**
@@ -259,11 +253,6 @@
 
 
 
-////////////////
-// Dismissing //
-////////////////
-
-
 /**
  Dismisses the HUD animated.
  */
@@ -288,8 +277,8 @@
  */
 - (void)dismissAfterDelay:(NSTimeInterval)delay animated:(BOOL)animated;
 
-
 @end
+
 
 
 
@@ -300,7 +289,6 @@
  @return All visible progress HUDs in the view.
  */
 + (NSArray *)allProgressHUDsInView:(UIView *)view;
-
 
 /**
  @param view The view to return all visible progress HUDs for.
