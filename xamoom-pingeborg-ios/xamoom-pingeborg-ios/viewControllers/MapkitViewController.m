@@ -29,9 +29,6 @@
 
 @property bool isUp;
 @property UIImage *placeholder;
-@property UISwipeGestureRecognizer *swipeGeoFenceViewUp;
-@property UISwipeGestureRecognizer *swipeGeoFenceViewDown;
-@property UITapGestureRecognizer *geoFenceTapGesture;
 @property XMMContentByLocationItem *savedResponseContent;
 @property JGProgressHUD *hud;
 
@@ -53,13 +50,9 @@
 
   [self.tabBarItem setSelectedImage:[UIImage imageNamed:@"map_filled"]];
 
-  [self setupTableView];
   [self setupMapView];
-  [self setupGeofenceView];
   [self setupLocationManager];
   [self.locationManager startUpdatingLocation];
-  
-  [self addNotifications];
   
   [self zoomMapToLat:46.623791 andLon:14.308549 andDelta:0.09f];
   
@@ -72,19 +65,12 @@
 -(void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
   
-  //no location permission
-  if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
-    [self.geoFenceActivityIndicator stopAnimating];
-    self.geoFenceLabel.text = NSLocalizedString(@"No Location", nil);
-  }
-  
   //create userTracking button
   MKUserTrackingBarButtonItem *buttonItem = [[MKUserTrackingBarButtonItem alloc] initWithMapView:self.mapKitWithSMCalloutView];
   self.parentViewController.navigationItem.rightBarButtonItem = buttonItem;
   
   //load spotmap if there are no annotations on the map
   if (self.mapKitWithSMCalloutView.annotations.count <= 1) {
-    [self.geoFenceActivityIndicator startAnimating];
     [self.hud showInView:self.view];
     [[XMMEnduserApi sharedInstance] spotMapWithMapTags:@[@"showAllTheSpots"] withLanguage:[XMMEnduserApi sharedInstance].systemLanguage
                                              completion:^(XMMSpotMap *result) {
@@ -103,37 +89,12 @@
 
 #pragma mark - Setup
 
-- (void)setupTableView {
-  //setting up tableView
-  [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-  self.tableView.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.9];
-  self.tableView.rowHeight = UITableViewAutomaticDimension;
-  self.tableView.estimatedRowHeight = 150.0;
-}
-
 - (void)setupMapView {
   //init map
   self.mapKitWithSMCalloutView = [[PingeborgMapView alloc] initWithFrame:self.view.bounds];
   self.mapKitWithSMCalloutView.delegate = self;
   self.mapKitWithSMCalloutView.showsUserLocation = YES;
   [self.viewForMap addSubview:self.mapKitWithSMCalloutView];
-}
-
-- (void)setupGeofenceView {
-  //shadow for geoFenceView
-  UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:self.geofenceView.bounds];
-  self.geofenceView.layer.masksToBounds = NO;
-  self.geofenceView.layer.shadowColor = [UIColor blackColor].CGColor;
-  self.geofenceView.layer.shadowOffset = CGSizeMake(0.0f, 2.0f);
-  self.geofenceView.layer.shadowOpacity = 0.9f;
-  self.geofenceView.layer.shadowPath = shadowPath.CGPath;
-  
-  //create geofence GestureRecognizers
-  self.swipeGeoFenceViewUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(toggleGeoFenceView)];
-  self.swipeGeoFenceViewUp.direction = UISwipeGestureRecognizerDirectionUp;
-  self.swipeGeoFenceViewDown = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(toggleGeoFenceView)];
-  self.swipeGeoFenceViewDown.direction = UISwipeGestureRecognizerDirectionDown;
-  self.geoFenceTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(toggleGeoFenceView)];
 }
 
 - (void)setupLocationManager {
@@ -147,14 +108,6 @@
   if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
     [self.locationManager requestWhenInUseAuthorization];
   }
-}
-
-- (void)addNotifications {
-  //pingeborg system notifications
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(refreshContentByLocation)
-                                               name:@"updateAllArtistLists"
-                                             object:nil];
 }
 
 #pragma mark - XMMEnduser Methods
@@ -193,68 +146,6 @@
     //create UIImage
     NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:decodedString]];
     self.customMapMarker = [XMMImageUtility imageWithImage:[UIImage imageWithData:imageData] scaledToMaxWidth:30.0f maxHeight:30.0f];
-  }
-}
-
-- (void)showDataWithLocation:(XMMContentByLocation *)result {
-  self.itemsToDisplay = [[NSMutableArray alloc] init];
-  self.imagesToDisplay = [[NSMutableDictionary alloc] init];
-  
-  //load items in near you, when there is no geofence
-  if([result.items count] == 0) {
-    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
-    [[XMMEnduserApi sharedInstance] closestSpotsWithLat:self.lastLocation.coordinate.latitude withLon:self.lastLocation.coordinate.longitude withRadius:2000 withLimit:10 withLanguage:@""
-                                             completion:^(XMMClosestSpot *result) {
-                                               [self showClosestSpots:result];
-                                             } error:^(XMMError *error) {
-                                             }];
-    return;
-  }
-  
-  for (XMMContentByLocationItem *item in result.items) {
-    //analytics
-    [[Analytics sharedObject] sendEventWithCategorie:@"pingeb.org"
-                                           andAction:@"Geofence found"
-                                            andLabel:[NSString stringWithFormat:@"User found Geofence at lat: %f lon: %f", self.lastLocation.coordinate.latitude, self.lastLocation.coordinate.longitude]
-                                            andValue:nil];
-    
-    self.savedResponseContent = item;
-    [self.itemsToDisplay addObject:item];
-    break;
-  }
-  
-  //download image
-  [XMMImageUtility imageWithUrl:self.savedResponseContent.imagePublicUrl completionBlock:^(BOOL succeeded, UIImage *image, SVGKImage *svgImage) {
-    if (image != nil) {
-      [self.imagesToDisplay setValue:image forKey:self.savedResponseContent.contentId];
-    } else if (svgImage != nil) {
-      [self.imagesToDisplay setValue:svgImage forKey:self.savedResponseContent.contentId];
-    } else {
-      [self.imagesToDisplay setValue:self.placeholder forKey:self.savedResponseContent.contentId];
-    }
-    
-    [self geofenceComplete];
-    [self.tableView reloadData];
-  }];
-}
-
-- (void)geofenceComplete {
-  //set geoFenceLabel
-  self.geoFenceLabel.text = NSLocalizedString(@"Discovered pingeb.org", nil);
-  [self enableGeofenceView];
-}
-
-- (void)showClosestSpots:(XMMClosestSpot *)result {
-  for (XMMSpot *item in result.items) {
-    [self.itemsToDisplay addObject:item];
-  }
-  
-  if ([self.itemsToDisplay count] > 0) {
-    self.geoFenceLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%lu near spots found", nil), (unsigned long)[self.itemsToDisplay count]];
-    [self enableGeofenceView];
-  } else {
-    self.geoFenceLabel.text = NSLocalizedString(@"Nothing found near you", nil);
-    [self disableGeofenceView];
   }
 }
 
@@ -490,183 +381,9 @@
   self.lastLocation = [locations lastObject];
   
   self.savedResponseContent = nil;
-  
-  //make a geofence
-  [self disableGeofenceView];
-  [self.geoFenceActivityIndicator startAnimating];
-  self.geoFenceLabel.text = NSLocalizedString(@"Searching ...", nil);
-  [[XMMEnduserApi sharedInstance] contentWithLat:[NSString stringWithFormat:@"%f",self.lastLocation.coordinate.latitude] withLon:[NSString stringWithFormat:@"%f",self.lastLocation.coordinate.longitude] withLanguage:@""
-                                      completion:^(XMMContentByLocation *result) {
-                                        [self showDataWithLocation:result];
-                                      } error:^(XMMError *error) {
-                                      }];
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  // Return the number of sections.
-  return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  // Return the number of rows in the section.
-  return [self.itemsToDisplay count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  UITableViewCell *cell = nil;
-  
-  if ([self.itemsToDisplay[indexPath.row] isKindOfClass:[XMMContentByLocationItem class]]) {
-    //geofence cell like the feedItemCell
-    static NSString *simpleTableIdentifier = @"FeedItemCell";
-    
-    FeedItemCell *cell = (FeedItemCell *)[self.tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-    if (cell == nil) {
-      NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FeedItemCell" owner:self options:nil];
-      cell = nib[0];
-    }
-    
-    [cell.loadingIndicator startAnimating];
-    
-    //set defaults to images
-    cell.feedItemImage.image = nil;
-    [cell.feedItemImage.subviews  makeObjectsPerformSelector: @selector(removeFromSuperview)];
-    cell.loadingIndicator.hidden = NO;
-    
-    //save for out of range
-    if (indexPath.row >= [self.itemsToDisplay count]) {
-      return cell;
-    }
-    
-    XMMContent *contentItem = (self.itemsToDisplay)[indexPath.row];
-    
-    //set title
-    cell.feedItemTitle.text = contentItem.title;
-    
-    //set image & grayscale if needed
-    if((self.imagesToDisplay)[contentItem.contentId] != nil) {
-      UIImage *image = (self.imagesToDisplay)[contentItem.contentId];
-      float imageRatio = image.size.width / image.size.height;
-      [cell.imageHeightConstraint setConstant:(cell.frame.size.width / imageRatio)];
-      
-      if ([(self.imagesToDisplay)[contentItem.contentId] isKindOfClass:[SVGKImage class]]) {
-        SVGKImageView *svgImageView = [[SVGKFastImageView alloc] initWithSVGKImage:(self.imagesToDisplay)[contentItem.contentId]];
-        [svgImageView setFrame:CGRectMake(0, 0, self.view.frame.size.width, (self.view.frame.size.width / imageRatio))];
-        [cell.feedItemImage addSubview:svgImageView];
-      } else if (![[[Globals sharedObject] savedArtits] containsString:contentItem.contentId]) {
-        cell.feedItemImage.image = [XMMImageUtility convertImageToGrayScale:image];
-        cell.feedItemOverlayImage.backgroundColor = [UIColor whiteColor];
-        cell.feedItemOverlayImage.image = [UIImage imageNamed:@"discoverable"];
-      } else {
-        cell.feedItemImage.image = image;
-        cell.feedItemOverlayImage.backgroundColor = [UIColor clearColor];
-        cell.feedItemOverlayImage.image = nil;
-      }
-      
-      [cell.loadingIndicator stopAnimating];
-    }
-    
-    cell.contentId = contentItem.contentId;
-    
-    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openArtistDetailViewFromSender:)];
-    [cell addGestureRecognizer:tapGestureRecognizer];
-    
-    return cell;
-  } else {
-    //closest spots locationItem Cell defined in storyboard
-    cell = [tableView dequeueReusableCellWithIdentifier:@"LocationItem" forIndexPath:indexPath];
-    if (cell == nil) {
-      cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"LocationItem"];
-    }
-    
-    XMMSpot *item = self.itemsToDisplay[indexPath.row];
-    cell.textLabel.text = item.displayName;
-    
-    //calc distance
-    CLLocation *pointLocation = [[CLLocation alloc] initWithLatitude:item.lat longitude:item.lon];
-    CLLocationDistance distance = [self.locationManager.location distanceFromLocation:pointLocation];
-    cell.detailTextLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Distance: %d meter", nil), (int)distance];
-    
-    //make cell transparent
-    [[cell contentView] setBackgroundColor:[UIColor clearColor]];
-    [[cell backgroundView] setBackgroundColor:[UIColor clearColor]];
-    [cell setBackgroundColor:[UIColor clearColor]];
-  }
-  
-  return cell;
-}
-
-#pragma mark - GeoFencing UI/UX
-
-- (IBAction)openGeoFencing:(UIButton *)sender {
-  [self toggleGeoFenceView];
-}
-
-//add gestures, change icon and stop loading indicator on geofence view
-- (void)enableGeofenceView {
-  [self.geofenceView addGestureRecognizer:self.geoFenceTapGesture];
-  [self.geofenceView addGestureRecognizer:self.swipeGeoFenceViewUp];
-  
-  self.geoFenceIcon.image = [UIImage imageNamed:@"angleDown"];
-  self.geoFenceIcon.transform = CGAffineTransformMakeRotation(M_PI);
-  [self.geoFenceActivityIndicator stopAnimating];
-  [self.tableView reloadData];
-}
-
-//close, remove gestures and start loading indicator
-- (void)disableGeofenceView {
-  if (self.isUp) {
-    [self toggleGeoFenceView];
-  }
-  [self.geofenceView removeGestureRecognizer:self.swipeGeoFenceViewDown];
-  [self.geofenceView removeGestureRecognizer:self.swipeGeoFenceViewUp];
-  [self.geofenceView removeGestureRecognizer:self.geoFenceTapGesture];
-  self.geoFenceIcon.image = nil;
-  [self.geoFenceActivityIndicator stopAnimating];
-}
-
-- (void)toggleGeoFenceView {
-  [self.view layoutIfNeeded];
-  
-  if (self.isUp) {
-    //hide tableview
-    self.tableViewHeightConstraint.constant = 0.0f;
-    [self.geofenceView removeGestureRecognizer:self.swipeGeoFenceViewDown];
-    [self.geofenceView addGestureRecognizer:self.swipeGeoFenceViewUp];
-  } else {
-    //bring up tableview
-    if (self.savedResponseContent != nil) {
-      UIImage *image = self.imagesToDisplay[self.savedResponseContent.contentId];
-      float imageRatio = image.size.width / image.size.height;
-      if (!isnan(imageRatio))
-        self.tableViewHeightConstraint.constant = (self.view.frame.size.width / imageRatio);
-      else
-        self.tableViewHeightConstraint.constant = self.view.frame.size.height / 2;
-      self.tableView.scrollEnabled = NO;
-      self.tableView.bounces = NO;
-    } else {
-      self.tableViewHeightConstraint.constant = (self.view.frame.size.height/2) + 40;
-    }
-    
-    [self.geofenceView removeGestureRecognizer:self.swipeGeoFenceViewUp];
-    [self.geofenceView addGestureRecognizer:self.swipeGeoFenceViewDown];
-  }
-  
-  //animate change
-  [UIView animateWithDuration:0.5
-                   animations:^{
-                     if (self.isUp)
-                       self.geoFenceIcon.transform = CGAffineTransformMakeRotation(M_PI);
-                     else
-                       self.geoFenceIcon.transform = CGAffineTransformMakeRotation(0);
-                     [self.view layoutIfNeeded]; // Called on parent view
-                     self.isUp = !self.isUp;
-                   }];
-  
-  if (self.isUp)
-    [self.tableView reloadData];
-}
+#pragma mark - UI/UX
 
 - (void)openArtistDetailViewFromSender:(UITapGestureRecognizer*)sender {
   //open geofence in artistDetailView
@@ -691,10 +408,6 @@
                                                                    withSpotName:self.savedResponseContent.spotName];
   
   [self.navigationController pushViewController:artistDetailViewController animated:YES];
-}
-
-- (void)refreshContentByLocation {
-  [self.tableView reloadData];
 }
 
 - (IBAction)closeInstructionView:(id)sender {

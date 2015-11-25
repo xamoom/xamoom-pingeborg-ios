@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Navigation View Controller-->
@@ -349,98 +348,18 @@
                                 <animations/>
                                 <color key="backgroundColor" white="0.91141550159999996" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <view alpha="0.90000000000000013" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vWz-ei-cp6" userLabel="Geofence View">
-                                <rect key="frame" x="0.0" y="447" width="600" height="40"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ipZ-u8-Z2v">
-                                        <rect key="frame" x="8" y="9" width="556" height="21"/>
-                                        <animations/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="kag-2o-TLE">
-                                        <rect key="frame" x="572" y="10" width="20" height="20"/>
-                                        <animations/>
-                                    </activityIndicatorView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vnx-Hm-ayt">
-                                        <rect key="frame" x="572" y="10" width="20" height="20"/>
-                                        <animations/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="20" id="Gnq-77-xHV"/>
-                                            <constraint firstAttribute="height" constant="20" id="yNf-Nt-rLx"/>
-                                        </constraints>
-                                    </imageView>
-                                </subviews>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="8Vn-ui-r4H"/>
-                                    <constraint firstAttribute="bottom" secondItem="kag-2o-TLE" secondAttribute="bottom" constant="10" id="ARQ-Bu-AQH"/>
-                                    <constraint firstAttribute="bottom" secondItem="vnx-Hm-ayt" secondAttribute="bottom" constant="10" id="F0u-df-7XM"/>
-                                    <constraint firstItem="ipZ-u8-Z2v" firstAttribute="leading" secondItem="vWz-ei-cp6" secondAttribute="leading" constant="8" id="H3z-th-CUQ"/>
-                                    <constraint firstAttribute="trailing" secondItem="kag-2o-TLE" secondAttribute="trailing" constant="8" id="J6I-Be-Q8c"/>
-                                    <constraint firstAttribute="trailing" secondItem="vnx-Hm-ayt" secondAttribute="trailing" constant="8" id="LUj-P9-a0E"/>
-                                    <constraint firstItem="vnx-Hm-ayt" firstAttribute="leading" secondItem="ipZ-u8-Z2v" secondAttribute="trailing" constant="8" id="fpZ-y7-3Q4"/>
-                                    <constraint firstItem="vnx-Hm-ayt" firstAttribute="top" secondItem="vWz-ei-cp6" secondAttribute="top" constant="10" id="jE7-uz-igj"/>
-                                    <constraint firstAttribute="bottom" secondItem="ipZ-u8-Z2v" secondAttribute="bottom" constant="10" id="nIH-kT-jgs"/>
-                                    <constraint firstItem="ipZ-u8-Z2v" firstAttribute="top" secondItem="vWz-ei-cp6" secondAttribute="top" constant="9" id="rUz-6Q-uun"/>
-                                    <constraint firstItem="kag-2o-TLE" firstAttribute="top" secondItem="vWz-ei-cp6" secondAttribute="top" constant="10" id="w7r-29-XnC"/>
-                                </constraints>
-                            </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="YcP-f3-HIP" userLabel="Geofence TableView">
-                                <rect key="frame" x="4" y="487" width="596" height="0.0"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="height" id="oZX-iE-fW1"/>
-                                </constraints>
-                                <prototypes>
-                                    <tableViewCell alpha="0.0" contentMode="scaleToFill" restorationIdentifier="LocationItem" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LocationItem" textLabel="8kS-sX-XxL" detailTextLabel="JnA-7C-jre" style="IBUITableViewCellStyleSubtitle" id="wKt-WY-Jcf">
-                                        <rect key="frame" x="0.0" y="22" width="596" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wKt-WY-Jcf" id="gQH-pq-GX5">
-                                            <rect key="frame" x="0.0" y="0.0" width="596" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8kS-sX-XxL">
-                                                    <rect key="frame" x="15" y="5" width="32" height="20"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <animations/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JnA-7C-jre">
-                                                    <rect key="frame" x="15" y="25" width="41" height="14"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <animations/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <animations/>
-                                        </tableViewCellContentView>
-                                        <animations/>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="WdT-Q6-mb4" id="erJ-uW-G32"/>
-                                    <outlet property="delegate" destination="WdT-Q6-mb4" id="TsM-dS-Xdb"/>
-                                </connections>
-                            </tableView>
                             <view hidden="YES" alpha="0.89999999999999991" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N6O-Vd-Jeg" userLabel="InstructionView">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="447"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Berühren zum Schließen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mSQ-hE-GZt">
-                                        <rect key="frame" x="241" y="427" width="118" height="12"/>
+                                        <rect key="frame" x="241" y="467" width="118" height="12"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow-bended-down" translatesAutoresizingMaskIntoConstraints="NO" id="Fzc-9f-Kn2">
-                                        <rect key="frame" x="224" y="339" width="91" height="49"/>
+                                        <rect key="frame" x="224" y="379" width="91" height="49"/>
                                         <animations/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="91" id="0c1-56-tRv"/>
@@ -448,7 +367,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Du bist in der Nähe eines pingeb.org-Stickers? Dann kannst du auch ohne QR-Code entdecken!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Guv-VM-KZR">
-                                        <rect key="frame" x="8" y="275" width="307" height="84"/>
+                                        <rect key="frame" x="8" y="315" width="307" height="84"/>
                                         <animations/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="84" id="Fpt-B7-huI"/>
@@ -478,31 +397,19 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="YcP-f3-HIP" secondAttribute="trailing" id="6DU-HB-CU9"/>
                             <constraint firstItem="taP-xd-o0S" firstAttribute="top" secondItem="grm-IJ-tqb" secondAttribute="bottom" id="7do-sh-Pi9"/>
-                            <constraint firstItem="taP-xd-o0S" firstAttribute="top" secondItem="YcP-f3-HIP" secondAttribute="bottom" id="8eS-WD-usU"/>
                             <constraint firstItem="grm-IJ-tqb" firstAttribute="leading" secondItem="8fU-ya-1Zx" secondAttribute="leading" id="AkY-Dj-W1v"/>
-                            <constraint firstItem="vWz-ei-cp6" firstAttribute="leading" secondItem="8fU-ya-1Zx" secondAttribute="leading" id="EAW-Em-ugM"/>
-                            <constraint firstItem="YcP-f3-HIP" firstAttribute="top" secondItem="vWz-ei-cp6" secondAttribute="bottom" id="GeG-PP-rX8"/>
+                            <constraint firstItem="taP-xd-o0S" firstAttribute="top" secondItem="N6O-Vd-Jeg" secondAttribute="bottom" id="OjB-wH-0r0"/>
                             <constraint firstAttribute="trailing" secondItem="grm-IJ-tqb" secondAttribute="trailing" id="OkA-co-Etd"/>
-                            <constraint firstItem="vWz-ei-cp6" firstAttribute="top" secondItem="N6O-Vd-Jeg" secondAttribute="bottom" id="Rd8-sP-Omb"/>
-                            <constraint firstAttribute="trailing" secondItem="vWz-ei-cp6" secondAttribute="trailing" id="UtG-2D-gJj"/>
                             <constraint firstItem="grm-IJ-tqb" firstAttribute="top" secondItem="N6O-Vd-Jeg" secondAttribute="top" id="WyM-nr-3K1"/>
                             <constraint firstItem="grm-IJ-tqb" firstAttribute="top" secondItem="r2z-g0-SZf" secondAttribute="bottom" id="ZZb-Tm-DWX"/>
                             <constraint firstItem="grm-IJ-tqb" firstAttribute="leading" secondItem="N6O-Vd-Jeg" secondAttribute="leading" id="d5M-A5-cnM"/>
                             <constraint firstItem="grm-IJ-tqb" firstAttribute="trailing" secondItem="N6O-Vd-Jeg" secondAttribute="trailing" id="gxZ-xq-ABy"/>
-                            <constraint firstItem="YcP-f3-HIP" firstAttribute="leading" secondItem="8fU-ya-1Zx" secondAttribute="leadingMargin" constant="-16" id="jMA-Z4-aa2"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="Map" id="Tov-nI-9zY"/>
                     <connections>
-                        <outlet property="geoFenceActivityIndicator" destination="kag-2o-TLE" id="Pvu-Va-ubE"/>
-                        <outlet property="geoFenceIcon" destination="vnx-Hm-ayt" id="PLF-kp-gxy"/>
-                        <outlet property="geoFenceLabel" destination="ipZ-u8-Z2v" id="cst-UK-ln9"/>
-                        <outlet property="geofenceView" destination="vWz-ei-cp6" id="M76-gi-lzF"/>
                         <outlet property="instructionView" destination="N6O-Vd-Jeg" id="jjn-bA-545"/>
-                        <outlet property="tableView" destination="YcP-f3-HIP" id="zs2-fg-7Nh"/>
-                        <outlet property="tableViewHeightConstraint" destination="oZX-iE-fW1" id="cOA-LK-5xe"/>
                         <outlet property="viewForMap" destination="grm-IJ-tqb" id="iNi-0j-t20"/>
                     </connections>
                 </viewController>

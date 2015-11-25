@@ -30,14 +30,8 @@
 
 @class PingeborgMapView;
 
-@interface MapkitViewController : UIViewController <MKMapViewDelegate, SMCalloutViewDelegate, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface MapkitViewController : UIViewController <MKMapViewDelegate, SMCalloutViewDelegate, CLLocationManagerDelegate>
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHeightConstraint;
-@property (weak, nonatomic) IBOutlet UIView *geofenceView;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *geoFenceActivityIndicator;
-@property (weak, nonatomic) IBOutlet UIImageView *geoFenceIcon;
-@property (weak, nonatomic) IBOutlet UILabel *geoFenceLabel;
 @property (weak, nonatomic) IBOutlet UIView *viewForMap;
 @property (weak, nonatomic) IBOutlet UIView *instructionView;
 
