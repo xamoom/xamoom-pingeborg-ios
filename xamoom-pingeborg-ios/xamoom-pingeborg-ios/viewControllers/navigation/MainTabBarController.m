@@ -246,6 +246,9 @@
   [self.extendedView updateConstraints];
   [self.extendedViewTitle updateConstraints];
   
+  UISwipeGestureRecognizer *swipeDownGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(closeExtendedView)];
+  swipeDownGestureRecognizer.direction = UISwipeGestureRecognizerDirectionDown;
+  [self.extendedView addGestureRecognizer:swipeDownGestureRecognizer];
   [self.extendedView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickedTabbarExtendedView)]];
 }
 
@@ -286,7 +289,7 @@
      } error:^(XMMError *error) {
        [self.hud dismiss];
      }];
-    
+
   }
   
   if (self.geofence != nil) {
