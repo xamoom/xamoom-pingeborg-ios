@@ -278,6 +278,9 @@
      contentWithLocationIdentifier:self.lastBeacon.minor.stringValue
      majorId:@"52414" includeStyle:NO includeMenu:NO withLanguage:nil completion:^(XMMContentByLocationIdentifier *result) {
        [self.hud dismiss];
+       if (![[Globals sharedObject].savedArtits containsString:result.content.contentId]) {
+         [[Globals sharedObject] addDiscoveredArtist:result.content.contentId];
+       }
        scanResultViewController.result = result;
        [self.navigationController pushViewController:scanResultViewController animated:YES];
      } error:^(XMMError *error) {
@@ -292,6 +295,11 @@
     [storyboard instantiateViewControllerWithIdentifier:@"ArtistDetailView"];
     
     artistDetailViewController.contentId = self.geofence.contentId;
+    
+    if (![[Globals sharedObject].savedArtits containsString:self.geofence.contentId]) {
+      [[Globals sharedObject] addDiscoveredArtist:self.geofence.contentId];
+    }
+    
     [self.navigationController pushViewController:artistDetailViewController animated:YES];
   }
 }
