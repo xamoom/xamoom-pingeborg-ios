@@ -1,1 +1,1 @@
-../../../xamoom-ios-sdk/src/lib/SVGKit/usr/local/include/BaseClassForAllSVGBasicShapes_ForSubclasses.h
+../../../../../../xamoom-ios-sdk/xamoom-ios-sdk/lib/SVGKit/usr/local/include/BaseClassForAllSVGBasicShapes_ForSubclasses.h

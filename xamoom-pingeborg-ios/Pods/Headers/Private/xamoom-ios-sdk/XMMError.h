@@ -1,1 +1,1 @@
-../../../xamoom-ios-sdk/src/mapping/XMMError.h
+../../../../../../xamoom-ios-sdk/xamoom-ios-sdk/mapping/XMMError.h

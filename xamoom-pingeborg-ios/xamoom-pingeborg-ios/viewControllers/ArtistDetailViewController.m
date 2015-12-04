@@ -122,7 +122,8 @@
 
 - (void)setupContentBlocks {
   self.contentBlocks = [[XMMContentBlocks alloc] initWithTableView:self.tableView
-                                                          language:[XMMEnduserApi sharedInstance].systemLanguage];
+                                                          language:[XMMEnduserApi sharedInstance].systemLanguage
+                        showContentLinks:YES];
   self.contentBlocks.delegate = self;
   self.contentBlocks.linkColor = [Globals sharedObject].pingeborgLinkColor;
 }
@@ -132,13 +133,13 @@
 
   NSString* savedArtists = [[Globals sharedObject] savedArtits];
   if ([savedArtists containsString:self.contentId]) {
-    [[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:NO includeMenu:NO withLanguage:@"" full:YES
+    [[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:NO includeMenu:NO withLanguage:@"" full:YES preview:NO
                                               completion:^(XMMContentById *result) {
                                                 [self showDataWithContentId:result];
                                               } error:^(XMMError *error) {
                                               }];
   } else {
-    [[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:NO includeMenu:NO withLanguage:@"" full:NO
+    [[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:NO includeMenu:NO withLanguage:@"" full:NO preview:NO
                                               completion:^(XMMContentById *result) {
                                                 [self showDataWithContentId:result];
                                               } error:^(XMMError *error) {

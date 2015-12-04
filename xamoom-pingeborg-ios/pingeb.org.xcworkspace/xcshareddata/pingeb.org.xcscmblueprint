@@ -7,9 +7,9 @@
     "B9556834361E3562FAF53130D9E5F3A8ECDAD5F2" : 0,
     "B68B86FC1F426C9A73E48C104854B4C23F9B8838" : 0
   },
-  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "4A00938A-BDA8-456D-85DD-BA86BBF559EA",
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "59EDC499-E4AC-48A0-BED3-0A9804096DEA",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "B9556834361E3562FAF53130D9E5F3A8ECDAD5F2" : "xamoom-pingeborg-ios",
+    "B9556834361E3562FAF53130D9E5F3A8ECDAD5F2" : "xamoom-pingeborg-ios\/",
     "B68B86FC1F426C9A73E48C104854B4C23F9B8838" : "xamoom-ios-sdk\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "pingeb.org",

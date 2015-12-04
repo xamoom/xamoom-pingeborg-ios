@@ -121,8 +121,8 @@
 }
 
 - (void)setupContentBlocks {
-  self.contentBlocks = [[XMMContentBlocks alloc] initWithTableView:self.tableView
-                                                          language:[XMMEnduserApi sharedInstance].systemLanguage];
+  self.contentBlocks = [[XMMContentBlocks alloc] initWithTableView:self.tableView language:[XMMEnduserApi sharedInstance].systemLanguage showContentLinks:YES];
+  
   self.contentBlocks.delegate = self;
   self.contentBlocks.linkColor = [Globals sharedObject].pingeborgLinkColor;
 }

@@ -51,10 +51,13 @@
   [super viewDidAppear:animated];
   self.parentViewController.navigationItem.rightBarButtonItem = self.buttonItem;
   
+  [self setupContentBlocks];
+  [self setupTableView];
+
   //load items if there are none
   if ([self.contentBlocks.items count] == 0) {
     [self.hud showInView:self.view];
-    [[XMMEnduserApi sharedInstance] contentWithContentId:[Globals sharedObject].aboutPageId includeStyle:NO includeMenu:NO withLanguage:@"" full:YES
+    [[XMMEnduserApi sharedInstance] contentWithContentId:[Globals sharedObject].aboutPageId includeStyle:NO includeMenu:NO withLanguage:@"" full:YES preview:NO
                                               completion:^(XMMContentById *result) {
                                                 [self showDataWithContentId:result];
                                               } error:^(XMMError *error) {
@@ -83,7 +86,7 @@
 - (void)setupContentBlocks {
   //setting up XMMContentBlocks
   self.contentBlocks = [[XMMContentBlocks alloc] initWithTableView:self.tableView
-                                                          language:[XMMEnduserApi sharedInstance].systemLanguage];
+                                                          language:[XMMEnduserApi sharedInstance].systemLanguage showContentLinks:YES];
   self.contentBlocks.delegate = self;
   self.contentBlocks.linkColor = [Globals sharedObject].pingeborgLinkColor;
 }
@@ -143,7 +146,12 @@
 #pragma mark - XMMContentBlocks delegates
 
 - (void)didClickContentBlock:(NSString *)contentId {
+  UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+  ArtistDetailViewController *artistDetailViewController =
+  [storyboard instantiateViewControllerWithIdentifier:@"ArtistDetailView"];
   
+  artistDetailViewController.contentId = contentId;
+  [self.navigationController pushViewController:artistDetailViewController animated:YES];
 }
 
 #pragma mark - XMMEnduserApi delegates

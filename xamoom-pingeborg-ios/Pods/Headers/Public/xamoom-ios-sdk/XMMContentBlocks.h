@@ -1,1 +1,1 @@
-../../../xamoom-ios-sdk/src/ContentBlocks/XMMContentBlocks.h
+../../../../../../xamoom-ios-sdk/xamoom-ios-sdk/ContentBlocks/XMMContentBlocks.h

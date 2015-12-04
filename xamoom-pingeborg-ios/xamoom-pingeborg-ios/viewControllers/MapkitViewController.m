@@ -72,7 +72,7 @@
   //load spotmap if there are no annotations on the map
   if (self.mapKitWithSMCalloutView.annotations.count <= 1) {
     [self.hud showInView:self.view];
-    [[XMMEnduserApi sharedInstance] spotMapWithMapTags:@[@"showAllTheSpots"] withLanguage:[XMMEnduserApi sharedInstance].systemLanguage
+    [[XMMEnduserApi sharedInstance] spotMapWithMapTags:@[@"showAllTheSpots"] withLanguage:[XMMEnduserApi sharedInstance].systemLanguage includeContent:YES
                                              completion:^(XMMSpotMap *result) {
                                                [self showSpotMap:result];
                                                [self.hud dismissAnimated:YES];

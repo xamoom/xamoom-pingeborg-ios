@@ -1,1 +1,1 @@
-../../../xamoom-ios-sdk/src/lib/SVGKit/usr/local/include/Text.h
+../../../../../../xamoom-ios-sdk/xamoom-ios-sdk/lib/SVGKit/usr/local/include/Text.h

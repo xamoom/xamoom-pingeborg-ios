@@ -64,11 +64,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>xamoom-ios-sdk-xamoom-ios-sdk.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>xamoom-ios-sdk.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -87,82 +82,77 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>00BBCD4FC76D32515B5826BBFBC6FB3C</key>
+		<key>080AF914A09167DB5759A733917B840F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>14B80CBFE724625CE5D91B8DCA7E4B52</key>
+		<key>1F27BDBD9A95F06D81FBFA89284C4DCC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>158FA7063DFDCD770736ACDBC5F36DEC</key>
+		<key>26AC54962E736AFB8B2B165DEFF96663</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>27654F123DF5D97DBCED7A01C0D13382</key>
+		<key>3116F685117B044E8E119EA475203BA9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3673BAABA782BAEE7966CEC1A26DC06B</key>
+		<key>61681BF0E677683490353B846C61A129</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>411B7FA31818A8F12E56EE6136471081</key>
+		<key>7B2B23DC6B446293792500C1D8E655DC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4223EC97092E9628D1AE72A1BB56DDDD</key>
+		<key>7DFF40F85127C261F1F06EBCAA883C7F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>823F073D090D400954292B13A6446C1D</key>
+		<key>7F2F7B9B9F5EBF16356B61F8D130963F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>84793F05BDB4191BADA6A1EE4C8548F6</key>
+		<key>8E7E76BFC781D65AA27E74C8C8925F41</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8A1599E2467E3C0FE576A8C4624C54A6</key>
+		<key>9DA5C236BB8C29AA735B0F174F22A480</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8BDBD785E301C554A07625AA1B685B7E</key>
+		<key>AF18FDD4C38F7152801EB986715827EB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8E213616F3BEA9B80338D277202DE772</key>
+		<key>B8435F111562F8E8E4025B3A1B6F0124</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9E5A7BCA2952982459F9B752C67C52D5</key>
+		<key>C47E006176ABF4755350B88C088C3F0D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B75997C9EB160DA9C9F4F1B0C825A4F4</key>
+		<key>CA9598687986CFF200A99D0D97F12536</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FB1881233020D3C1F3B3BC67E6FEE94B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FE0E6BAA5F90314378369E3962D86DB8</key>
+		<key>E6806BB3D8F2F6153343252F5F79B4A4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
