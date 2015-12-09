@@ -37,3 +37,8 @@
 "Discovered pingeb.org" = "Neuen Künstler entdeckt";
 "open artist description" = "Hier klicken und entdecken";
 "%lu near spots found" = "%lu Spots in der Nähe";
+
+/* Bluetooth AlertView */
+
+"bluetooth alert title" = "Bluetooth";
+"bluetooth alert message" = "Wir nutzen Bluetooth um Künstler via iBeacons zu entdecken";

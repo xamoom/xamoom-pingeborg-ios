@@ -18,6 +18,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreBluetooth/CoreBluetooth.h>
 #import "NavigationViewController.h"
 #import "FeedItemCell.h"
 #import "ArtistDetailViewController.h"
@@ -28,7 +29,7 @@
 
 extern int const kPageSize;
 
-@interface FeedTableViewController : UIViewController <UINavigationControllerDelegate, CLLocationManagerDelegate>
+@interface FeedTableViewController : UIViewController <UINavigationControllerDelegate, CLLocationManagerDelegate, CBCentralManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *feedTableView;
 @property (weak, nonatomic) IBOutlet UIView *instructionView;

@@ -27,7 +27,7 @@ int const kPageSize = 7;
 @property UIImage *placeholderImage;
 @property UIRefreshControl *refreshControl;
 @property JGProgressHUD *hud;
-
+@property CBCentralManager *bluetoothManager;
 @property NSMutableArray *itemsToDisplay;
 @property NSMutableDictionary *imagesToDisplay;
 @property NSString *contentListCursor;
@@ -44,14 +44,14 @@ int const kPageSize = 7;
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-
+  
   //do analytics
   [[Analytics sharedObject] setScreenName:@"Artist List"];
   [[Analytics sharedObject] sendEventWithCategorie:@"App" andAction:@"Started" andLabel:@"pingeb.org app started." andValue:nil];
-
+  
   self.parentViewController.navigationItem.title = NSLocalizedString(@"pingeb.org Carinthia", nil);
   [self.tabBarItem setSelectedImage:[UIImage imageNamed:@"home_filled"]];
-
+  
   self.placeholderImage = [UIImage imageNamed:@"placeholder"];
   self.itemsToDisplay = [[NSMutableArray alloc] init];
   self.imagesToDisplay = [[NSMutableDictionary alloc] init];
@@ -60,6 +60,7 @@ int const kPageSize = 7;
   [self setupTableView];
   [self setupRefreshControl];
   [self addNotifications];
+  [self detectBluetooth];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -309,6 +310,31 @@ int const kPageSize = 7;
   self.feedTableView.tableFooterView = headerView;
 }
 
+#pragma mark - Bluetooth View
+
+- (void)detectBluetooth {
+  if(!self.bluetoothManager)
+  {
+    // Put on main queue so we can call UIAlertView from delegate callbacks.
+    self.bluetoothManager = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_main_queue()];
+  }
+  [self centralManagerDidUpdateState:self.bluetoothManager]; // Show initial state
+}
+
+- (void)centralManagerDidUpdateState:(CBCentralManager *)central {
+  if (self.bluetoothManager.state == CBCentralManagerStatePoweredOff) {
+    [self showBlueToothAlert];
+  }
+}
+- (void)showBlueToothAlert {
+  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"bluetooth alert title", nil)
+                                                  message:NSLocalizedString(@"bluetooth alert message", nil)
+                                                 delegate:nil
+                                        cancelButtonTitle:@"Ok"
+                                        otherButtonTitles:nil, nil];
+  [alert show];
+}
+
 # pragma mark - Instruction View / First Start
 
 - (void)firstStartup:(XMMContentList *)result {
@@ -340,10 +366,10 @@ int const kPageSize = 7;
 
 #pragma mark - Navigation
 /*
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
  
-}
-*/
+ }
+ */
 
 @end
