@@ -20,15 +20,13 @@
 #import "MainTabBarController.h"
 #import "XMMEnduserApi.h"
 #import "ScanResultViewController.h"
+#import "ExtendedTabbarView.h"
 
 @interface MainTabBarController () <QRCodeReaderDelegate>
 
 @property (strong, nonatomic) XMMContentByLocationIdentifier *savedApiResult;
 @property (strong, nonatomic) JGProgressHUD *hud;
-@property (strong, nonatomic) UIView *extendedView;
-@property (strong, nonatomic) UILabel *extendedViewTitle;
-@property (strong, nonatomic) NSLayoutConstraint *extendedViewHeightConstraint;
-@property (strong, nonatomic) NSLayoutConstraint *extendedViewImageHeightConstraint;
+@property (strong, nonatomic) ExtendedTabbarView *extendedView;
 
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLBeaconRegion *beaconRegion;
@@ -124,32 +122,22 @@
 #pragma mark - iBeacon & Geofence
 
 - (void)initExtendedView {
-  self.extendedView = [[UIView alloc] initWithFrame:CGRectMake(10, 10, 100, 100)];
-  self.extendedView.backgroundColor = [Globals sharedObject].pingeborgYellow;
+  self.extendedView = [[[NSBundle mainBundle] loadNibNamed:@"ExtendedTabbarView" owner:self options:nil] firstObject];
   self.extendedView.translatesAutoresizingMaskIntoConstraints = NO;
+  self.extendedView.hidden = YES;
+  
+  self.extendedView.titleLabel.text = NSLocalizedString(@"Discovered pingeb.org", nil);
+  self.extendedView.descriptionLabel.text = NSLocalizedString(@"open artist description", nil);
   
   [self.view addSubview:self.extendedView];
   
-  self.extendedViewTitle = [[UILabel alloc] init];
-  self.extendedViewTitle.translatesAutoresizingMaskIntoConstraints = NO;
-  
-  [self.extendedView addSubview:self.extendedViewTitle];
-  
-  UIImageView *imageView = [[UIImageView alloc] init];
-  imageView.translatesAutoresizingMaskIntoConstraints = NO;
-  imageView.image = [UIImage imageNamed:@"angleRight"];
-  
-  [self.extendedView addSubview:imageView];
-  
-  self.extendedViewHeightConstraint = [NSLayoutConstraint constraintWithItem:self.extendedView
-                                                                   attribute:NSLayoutAttributeHeight
-                                                                   relatedBy:NSLayoutRelationEqual
-                                                                      toItem:nil
-                                                                   attribute:NSLayoutAttributeNotAnAttribute
-                                                                  multiplier:1.0f
-                                                                    constant:0];
-  
-  [self.extendedView addConstraint:self.extendedViewHeightConstraint];
+  [self.extendedView addConstraint:[NSLayoutConstraint constraintWithItem:self.extendedView
+                                                        attribute:NSLayoutAttributeHeight
+                                                        relatedBy:NSLayoutRelationEqual
+                                                           toItem:nil
+                                                        attribute:NSLayoutAttributeNotAnAttribute
+                                                       multiplier:1.0f
+                                                         constant:70]];
   
   [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.extendedView
                                                         attribute:NSLayoutAttributeBottom
@@ -174,103 +162,23 @@
                                                         attribute:NSLayoutAttributeTrailing
                                                        multiplier:1.0f
                                                          constant:0]];
-  //label constraints
-  
-  [self.extendedView addConstraint:[NSLayoutConstraint constraintWithItem:self.extendedViewTitle
-                                                                attribute:NSLayoutAttributeTop
-                                                                relatedBy:NSLayoutRelationEqual
-                                                                   toItem:self.extendedView
-                                                                attribute:NSLayoutAttributeTop
-                                                               multiplier:1.0f
-                                                                 constant:0]];
-  
-  [self.extendedView addConstraint:[NSLayoutConstraint constraintWithItem:self.extendedViewTitle
-                                                                attribute:NSLayoutAttributeBottom
-                                                                relatedBy:NSLayoutRelationEqual
-                                                                   toItem:self.extendedView
-                                                                attribute:NSLayoutAttributeBottom
-                                                               multiplier:1.0f
-                                                                 constant:0]];
-  
-  [self.extendedView addConstraint:[NSLayoutConstraint constraintWithItem:self.extendedViewTitle
-                                                                attribute:NSLayoutAttributeLeading
-                                                                relatedBy:NSLayoutRelationEqual
-                                                                   toItem:self.extendedView
-                                                                attribute:NSLayoutAttributeLeading
-                                                               multiplier:1.0f
-                                                                 constant:8]];
-  
-  [self.extendedView addConstraint:[NSLayoutConstraint constraintWithItem:self.extendedViewTitle
-                                                                attribute:NSLayoutAttributeTrailing
-                                                                relatedBy:NSLayoutRelationEqual
-                                                                   toItem:self.extendedView
-                                                                attribute:NSLayoutAttributeTrailing
-                                                               multiplier:1.0f
-                                                                 constant:8]];
-  
-  //image constraints
-  
-  self.extendedViewImageHeightConstraint = [NSLayoutConstraint constraintWithItem:imageView
-                                                                   attribute:NSLayoutAttributeWidth
-                                                                   relatedBy:NSLayoutRelationEqual
-                                                                      toItem:nil
-                                                                   attribute:NSLayoutAttributeNotAnAttribute
-                                                                  multiplier:1.0f
-                                                                    constant:0];
-  [imageView addConstraint:self.extendedViewImageHeightConstraint];
-  
-  [imageView addConstraint:[NSLayoutConstraint constraintWithItem:imageView
-                                                        attribute:NSLayoutAttributeHeight
-                                                        relatedBy:NSLayoutRelationEqual
-                                                           toItem:nil
-                                                        attribute:NSLayoutAttributeNotAnAttribute
-                                                       multiplier:1.0f
-                                                         constant:13]];
-  
-  [self.extendedView addConstraint:[NSLayoutConstraint constraintWithItem:imageView
-                                                                attribute:NSLayoutAttributeCenterY
-                                                                relatedBy:NSLayoutRelationEqual
-                                                                   toItem:self.extendedView
-                                                                attribute:NSLayoutAttributeCenterY
-                                                               multiplier:1.0f
-                                                                 constant:0]];
-  
-  [self.extendedView addConstraint:[NSLayoutConstraint constraintWithItem:imageView
-                                                                attribute:NSLayoutAttributeTrailing
-                                                                relatedBy:NSLayoutRelationEqual
-                                                                   toItem:self.extendedView
-                                                                attribute:NSLayoutAttributeTrailing
-                                                               multiplier:1.0f
-                                                                 constant:-8]];
-  
+  [self.view updateConstraints];
   [self.extendedView updateConstraints];
-  [self.extendedViewTitle updateConstraints];
   
-  UISwipeGestureRecognizer *swipeDownGestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(closeExtendedView)];
-  swipeDownGestureRecognizer.direction = UISwipeGestureRecognizerDirectionDown;
-  [self.extendedView addGestureRecognizer:swipeDownGestureRecognizer];
-  [self.extendedView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickedTabbarExtendedView)]];
+  [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickedTabbarExtendedView)]];
 }
 
 - (void)openExtendedView {
-  self.extendedViewHeightConstraint.constant = 35;
-  self.extendedViewImageHeightConstraint.constant = 8;
-  [UIView animateWithDuration:0.5
-                   animations:^{
-                     [self.view layoutIfNeeded]; // Called on parent view
-                   }];
+  self.extendedView.hidden = NO;
 }
 
 - (void)closeExtendedView {
-  self.extendedViewHeightConstraint.constant = 0;
-  self.extendedViewImageHeightConstraint.constant = 0;
-  [UIView animateWithDuration:0.5
-                   animations:^{
-                     [self.view layoutIfNeeded]; // Called on parent view
-                   }];
+  self.extendedView.hidden = YES;
 }
 
 - (void)clickedTabbarExtendedView {
+  [self closeExtendedView];
+  
   if (self.lastBeacon != nil) {
     [self.hud showInView:self.view];
     
@@ -405,7 +313,6 @@
     if (self.lastBeacon == nil) {
       [self openExtendedView];
       self.geofence = [result.items firstObject];
-      self.extendedViewTitle.text = NSLocalizedString(@"Discovered pingeb.org", nil);
     }
   } error:^(XMMError *error) {
     //
@@ -422,7 +329,6 @@
   
   if (self.lastBeacon.minor != [beacons firstObject].minor) {
     self.lastBeacon = [beacons firstObject];
-    self.extendedViewTitle.text = NSLocalizedString(@"Discovered pingeb.org", nil);
     self.geofence = nil;
   }
 }

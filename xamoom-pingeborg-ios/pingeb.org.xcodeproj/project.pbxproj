@@ -28,6 +28,8 @@
 		8860DA831AE78D3500DF2239 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8860DA821AE78D3500DF2239 /* CoreGraphics.framework */; };
 		8860DA851AE78D3B00DF2239 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8860DA841AE78D3B00DF2239 /* UIKit.framework */; };
 		887BE0331B53D43000E9D584 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 887BE0351B53D43000E9D584 /* Localizable.strings */; };
+		888E74521C18256E00233AA1 /* ExtendedTabbarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 888E74511C18256E00233AA1 /* ExtendedTabbarView.xib */; };
+		888E74551C18322B00233AA1 /* ExtendedTabbarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 888E74541C18322B00233AA1 /* ExtendedTabbarView.m */; };
 		889BE4321B3829A0002850D5 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 889BE4311B3829A0002850D5 /* CoreData.framework */; };
 		889BE4341B3829B1002850D5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 889BE4331B3829B1002850D5 /* SystemConfiguration.framework */; };
 		889BE4361B3829BF002850D5 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 889BE4351B3829BF002850D5 /* libz.dylib */; };
@@ -105,6 +107,9 @@
 		887BE0321B53D40200E9D584 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		887BE0341B53D43000E9D584 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		887BE0361B53D44700E9D584 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		888E74511C18256E00233AA1 /* ExtendedTabbarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ExtendedTabbarView.xib; path = "xamoom-pingeborg-ios/views/ExtendedTabbarView.xib"; sourceTree = SOURCE_ROOT; };
+		888E74531C18322B00233AA1 /* ExtendedTabbarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExtendedTabbarView.h; path = "xamoom-pingeborg-ios/views/ExtendedTabbarView.h"; sourceTree = SOURCE_ROOT; };
+		888E74541C18322B00233AA1 /* ExtendedTabbarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExtendedTabbarView.m; path = "xamoom-pingeborg-ios/views/ExtendedTabbarView.m"; sourceTree = SOURCE_ROOT; };
 		889BE4241B38290D002850D5 /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
 		889BE4251B38290D002850D5 /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIDictionaryBuilder.h; sourceTree = "<group>"; };
 		889BE42A1B38290D002850D5 /* GAIFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIFields.h; sourceTree = "<group>"; };
@@ -216,6 +221,9 @@
 				8814584A1B01EE8B0024E6F4 /* FeedItemCell.h */,
 				8814584B1B01EE8B0024E6F4 /* FeedItemCell.m */,
 				8814584C1B01EE8B0024E6F4 /* FeedItemCell.xib */,
+				888E74531C18322B00233AA1 /* ExtendedTabbarView.h */,
+				888E74541C18322B00233AA1 /* ExtendedTabbarView.m */,
+				888E74511C18256E00233AA1 /* ExtendedTabbarView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -455,6 +463,7 @@
 				880246E11B57CD9000E585CE /* GoogleService-Info.plist in Resources */,
 				88EB481D1B563C8700A6C63F /* Images.xcassets in Resources */,
 				887BE0331B53D43000E9D584 /* Localizable.strings in Resources */,
+				888E74521C18256E00233AA1 /* ExtendedTabbarView.xib in Resources */,
 				8814585D1B01EE8B0024E6F4 /* FeedItemCell.xib in Resources */,
 				88BA02031AA859F90091A43C /* LaunchScreen.xib in Resources */,
 				88EB481C1B56390D00A6C63F /* apikey.txt in Resources */,
@@ -535,6 +544,7 @@
 				881458591B01EE8B0024E6F4 /* MapkitViewController.m in Sources */,
 				880246DC1B57AF2E00E585CE /* Analytics.m in Sources */,
 				88BA01F51AA859F90091A43C /* main.m in Sources */,
+				888E74551C18322B00233AA1 /* ExtendedTabbarView.m in Sources */,
 				8814585B1B01EE8B0024E6F4 /* NavigationViewController.m in Sources */,
 				881458581B01EE8B0024E6F4 /* FeedTableViewController.m in Sources */,
 				889BE43E1B3854C5002850D5 /* MainTabBarController.m in Sources */,

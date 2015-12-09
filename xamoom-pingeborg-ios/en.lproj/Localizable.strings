@@ -34,5 +34,6 @@
 "Distance: %d meter" = "Distance: %d meter";
 "Searching ..." = "Searching ...";
 "Nothing found near you" = "Nothing found near you";
-"Discovered pingeb.org" = "Discovered pingeb.org";
+"Discovered pingeb.org" = "Found new artist";
+"open artist description" = "Click here to discover";
 "%lu near spots found" = "%lu near spots found";
