@@ -165,7 +165,7 @@
   [self.view updateConstraints];
   [self.extendedView updateConstraints];
   
-  [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickedTabbarExtendedView)]];
+  [self.extendedView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickedTabbarExtendedView)]];
 }
 
 - (void)openExtendedView {
