@@ -310,7 +310,7 @@
   NSString *lon = [NSString stringWithFormat:@"%f", location.coordinate.longitude];
   
   [[XMMEnduserApi sharedInstance] contentWithLat:lat withLon:lon withLanguage:nil completion:^(XMMContentByLocation *result) {
-    if (self.lastBeacon == nil) {
+    if (self.lastBeacon == nil && result.items != nil) {
       [self openExtendedView];
       self.geofence = [result.items firstObject];
     }
