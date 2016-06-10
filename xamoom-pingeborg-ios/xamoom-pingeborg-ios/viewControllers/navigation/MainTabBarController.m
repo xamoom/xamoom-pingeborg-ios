@@ -109,7 +109,9 @@
     [[Analytics sharedObject] sendEventWithCategorie:@"UX" andAction:@"Click" andLabel:@"QR Code Reader" andValue:nil];
     
     QRCodeReader *reader = [QRCodeReader readerWithMetadataObjectTypes:@[AVMetadataObjectTypeQRCode]];
-    QRCodeReaderViewController *qrCodeReaderViewController = [[QRCodeReaderViewController alloc] initWithCancelButtonTitle:NSLocalizedString(@"Cancel", nil) codeReader:reader startScanningAtLoad:YES];
+    QRCodeReaderViewController *qrCodeReaderViewController =
+    [[QRCodeReaderViewController alloc] initWithCancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                                       codeReader:reader startScanningAtLoad:YES];
     qrCodeReaderViewController.modalPresentationStyle = UIModalPresentationFormSheet;
     qrCodeReaderViewController.delegate = self;
     
@@ -126,12 +128,12 @@
 - (void)initExtendedView {
   self.extendedView = [[[NSBundle mainBundle] loadNibNamed:@"ExtendedTabbarView" owner:self options:nil] firstObject];
   self.extendedView.translatesAutoresizingMaskIntoConstraints = NO;
-  self.extendedView.hidden = YES;
   
   self.extendedView.titleLabel.text = NSLocalizedString(@"Discovered pingeb.org", nil);
   self.extendedView.descriptionLabel.text = NSLocalizedString(@"open artist description", nil);
   
   [self.view addSubview:self.extendedView];
+  self.extendedView.hidden = YES;
   
   [self.extendedView addConstraint:[NSLayoutConstraint constraintWithItem:self.extendedView
                                                                 attribute:NSLayoutAttributeHeight
@@ -213,7 +215,7 @@
   }
 }
 
-#pragma mark - XMMEnduserApi Delegate Methods
+#pragma mark - QRCodeReaderViewController Delegate Methods
 
 - (void)reader:(QRCodeReaderViewController *)reader didScanResult:(NSString *)url {
   [reader stopScanning];
@@ -303,7 +305,7 @@
   CLLocation *location = [locations firstObject];
   
   [[XMMEnduserApi sharedInstance] contentsWithLocation:location pageSize:10 cursor:nil sort:0 completion:^(NSArray *contents, bool hasMore, NSString *cursor, NSError *error) {
-    if (self.lastBeacon == nil && contents != nil) {
+    if (self.lastBeacon == nil && contents.count > 0) {
       [self openExtendedView];
       self.geofence = [contents firstObject];
     }

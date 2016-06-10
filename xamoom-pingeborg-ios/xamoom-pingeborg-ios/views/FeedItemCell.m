@@ -19,7 +19,15 @@
 
 #import "FeedItemCell.h"
 
+@interface FeedItemCell()
+
+@end
+
 @implementation FeedItemCell
+
++ (BOOL)requiresConstraintBasedLayout {
+  return YES;
+}
 
 - (void)awakeFromNib {
   // Initialization code
@@ -36,8 +44,25 @@
   self.feedItemOverlayImage.image = nil;
 }
 
-+ (BOOL)requiresConstraintBasedLayout {
-  return YES;
+- (void)setupCellWithContent:(XMMContent *)content discoverable:(Boolean)isDiscoverable {
+  self.feedItemTitle.text = content.title;
+  
+  //set image
+  [self.feedItemImage sd_setImageWithURL:[NSURL URLWithString:content.imagePublicUrl]
+                        placeholderImage:[UIImage imageNamed:@"placeholder"]];
+  
+  if (![[[Globals sharedObject] savedArtits] containsString:content.ID]) {
+    self.feedItemOverlayImage.hidden = NO;
+  } else {
+    self.feedItemOverlayImage.hidden = YES;
+  }
+  
+  //overlay image for the first cell "discoverable"
+  if (isDiscoverable) {
+    self.feedItemOverlayImage.image = [UIImage imageNamed:@"discoverable"];
+  }
 }
+
+
 
 @end

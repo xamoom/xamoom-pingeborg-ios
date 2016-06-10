@@ -30,4 +30,6 @@
 @property UIImage *image;
 @property XMMContent *content;
 
+- (void)setupCellWithContent:(XMMContent *)content discoverable:(Boolean)isDiscoverable;
+
 @end

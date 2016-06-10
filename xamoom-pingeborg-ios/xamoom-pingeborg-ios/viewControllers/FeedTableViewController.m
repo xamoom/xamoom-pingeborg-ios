@@ -20,19 +20,17 @@
 #import "FeedTableViewController.h"
 
 int const kPageSize = 7;
+NSString const *kFeedItemCellIdentifier = @"FeedItemCell";
 
 @interface FeedTableViewController ()
 
 @property UIBarButtonItem *qrButtonItem;
-@property UIImage *placeholderImage;
 @property UIRefreshControl *refreshControl;
 @property JGProgressHUD *hud;
 @property CBCentralManager *bluetoothManager;
 @property NSMutableArray *itemsToDisplay;
-@property NSMutableDictionary *imagesToDisplay;
 @property NSString *contentListCursor;
 @property CLBeacon *lastBeacon;
-@property XMMContentByLocationIdentifier *beaconResult;
 @property bool hasMore;
 @property bool isApiCallingBlocked;
 
@@ -52,9 +50,7 @@ int const kPageSize = 7;
   self.parentViewController.navigationItem.title = NSLocalizedString(@"pingeb.org Carinthia", nil);
   [self.tabBarItem setSelectedImage:[UIImage imageNamed:@"home_filled"]];
   
-  self.placeholderImage = [UIImage imageNamed:@"placeholder"];
   self.itemsToDisplay = [[NSMutableArray alloc] init];
-  self.imagesToDisplay = [[NSMutableDictionary alloc] init];
   self.hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
   
   [self setupTableView];
@@ -71,7 +67,8 @@ int const kPageSize = 7;
   [super viewDidAppear:animated];
   //load artists, if there are none
   if (self.itemsToDisplay.count <= 0) {
-    [self loadArtists];
+    [self.hud showInView:self.view];
+    [self downloadContent];
   } else {
     [self.feedTableView reloadData];
   }
@@ -101,28 +98,11 @@ int const kPageSize = 7;
   [self.feedTableView addSubview:self.refreshControl];
 }
 
-#pragma mark - XMMEnduserApi
-
-- (void)loadArtists {
-  //loading hud in view
-  [self.hud showInView:self.view];
-  
-  [[XMMEnduserApi sharedInstance] contentsWithTags:@[@"artists"] pageSize:kPageSize cursor:nil sort:XMMContentSortOptionsNameDesc completion:^(NSArray *contents, bool hasMore, NSString *cursor, NSError *error) {
-    [self displayContentList:contents cursor:cursor hasMore:(bool)hasMore];
-    [self.hud dismiss];
-  }];
-}
-
-- (void)displayContentList:(NSArray *)contents cursor:(NSString *)cursor hasMore:(bool)hasMore {
-  self.contentListCursor = cursor;
-  
+- (void)displayContentList:(NSArray *)contents {
   //check if first startup
   if ([[Globals sharedObject] isFirstStart]) {
     [self firstStartup:contents];
   }
-  
-  //save if there are more items available over api
-  self.hasMore = hasMore;
   
   [self.itemsToDisplay addObjectsFromArray:contents];
   
@@ -130,70 +110,31 @@ int const kPageSize = 7;
   [self reloadData];
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  // Return the number of sections.
-  return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  // Return the number of rows in the section.
-  return [self.itemsToDisplay count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  static NSString *feedItemCellIdentifier = @"FeedItemCell";
-  
-  FeedItemCell *cell = (FeedItemCell *)[self.feedTableView dequeueReusableCellWithIdentifier:feedItemCellIdentifier];
-  if (cell == nil) {
-    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FeedItemCell" owner:self options:nil];
-    cell = nib[0];
-  }
-  
-  //set defaults to images
-  cell.feedItemImage.image = nil;
-  
-  //save for out of range
-  if (indexPath.row >= [self.itemsToDisplay count]) {
-    return cell;
-  }
-  
-  XMMContent *contentItem = (self.itemsToDisplay)[indexPath.row];
-  
-  cell.feedItemTitle.text = contentItem.title;
-  
-  //set image
-  [cell.feedItemImage sd_setImageWithURL:[NSURL URLWithString:contentItem.imagePublicUrl] placeholderImage:self.placeholderImage];
-  
-  if (![[[Globals sharedObject] savedArtits] containsString:contentItem.ID]) {
-    cell.feedItemOverlayImage.hidden = NO;
-  } else {
-    cell.feedItemOverlayImage.hidden = YES;
-  }
-  
-  //overlay image for the first cell "discoverable"
-  if (contentItem == self.itemsToDisplay.firstObject && ![[[Globals sharedObject] savedArtits] containsString:contentItem.ID]) {
-    cell.feedItemOverlayImage.image = [UIImage imageNamed:@"discoverable"];
-  }
-  
-  //load more contents
-  if (indexPath.row == (self.itemsToDisplay.count - 1)) {
-    [self loadMoreContent];
-  }
-  
-  return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)openArtist:(XMMContent *)content {
   UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
   ArtistDetailViewController *artistDetailViewController =
   [storyboard instantiateViewControllerWithIdentifier:@"ArtistDetailView"];
   
-  XMMContent *data = (XMMContent*)(self.itemsToDisplay)[indexPath.row];
-  artistDetailViewController.contentId = data.ID;
+  artistDetailViewController.contentId = content.ID;
   [self.navigationController pushViewController:artistDetailViewController animated:YES];
 }
+
+# pragma mark - XMMEnduserApi
+
+- (void)downloadContent {
+  [[XMMEnduserApi sharedInstance] contentsWithTags:@[@"artists"]
+                                          pageSize:kPageSize
+                                            cursor:self.contentListCursor
+                                              sort:XMMContentSortOptionsNameDesc
+                                        completion:^(NSArray *contents, bool hasMore, NSString *cursor, NSError *error) {
+                                          self.contentListCursor = cursor;
+                                          self.hasMore = hasMore;
+                                          [self displayContentList:contents];
+                                          [self.hud dismiss];
+                                        }];
+}
+
+# pragma mark - Pull to refresh
 
 - (void)pullToRefresh {
   //analytics
@@ -202,15 +143,9 @@ int const kPageSize = 7;
   [self.hud showInView:self.view];
   if(!self.isApiCallingBlocked) {
     //delete all items in arrays
-    self.itemsToDisplay = [[NSMutableArray alloc] init];
-    self.imagesToDisplay = [[NSMutableDictionary alloc] init];
-    
-    //api call
-    [[XMMEnduserApi sharedInstance] contentsWithTags:@[@"artists"] pageSize:kPageSize cursor:nil sort:XMMContentSortOptionsNameDesc completion:^(NSArray *contents, bool hasMore, NSString *cursor, NSError *error) {
-      [self displayContentList:contents cursor:cursor hasMore:hasMore];
-      [self.hud dismiss];
-    }];
-
+    [self.itemsToDisplay removeAllObjects];
+    self.contentListCursor = nil;
+    [self downloadContent];
     self.isApiCallingBlocked = YES;
   }
 }
@@ -232,6 +167,8 @@ int const kPageSize = 7;
   }
 }
 
+# pragma mark - Load more
+
 - (void)loadMoreContent {
   if (self.hasMore && !self.isApiCallingBlocked) {
     //analytics
@@ -239,12 +176,8 @@ int const kPageSize = 7;
     
     self.isApiCallingBlocked = YES;
     
-    [[XMMEnduserApi sharedInstance] contentsWithTags:@[@"artists"] pageSize:kPageSize cursor:self.contentListCursor sort:XMMContentSortOptionsNameDesc completion:^(NSArray *contents, bool hasMore, NSString *cursor, NSError *error) {
-      [self displayContentList:contents cursor:cursor hasMore:hasMore];
-      self.feedTableView.tableFooterView = nil;
-    }];
+    [self downloadContent];
     
-    //add tablefooter as loading indicator to the feedTableView
     [self addTableViewLoadingFooter];
   }
 }
@@ -317,12 +250,46 @@ int const kPageSize = 7;
   }
 }
 
-#pragma mark - Navigation
-/*
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- 
- }
- */
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+  // Return the number of sections.
+  return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+  // Return the number of rows in the section.
+  return [self.itemsToDisplay count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+  FeedItemCell *cell = (FeedItemCell *)[self.feedTableView dequeueReusableCellWithIdentifier:kFeedItemCellIdentifier];
+  if (cell == nil) {
+    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FeedItemCell" owner:self options:nil];
+    cell = nib[0];
+  }
+  
+  //save for out of range
+  if (indexPath.row >= [self.itemsToDisplay count]) {
+    return cell;
+  }
+  
+  XMMContent *contentItem = (self.itemsToDisplay)[indexPath.row];
+  Boolean isDiscoverable = (![[Globals sharedObject].savedArtits containsString:contentItem.ID] && indexPath.row == 0);
+  [cell setupCellWithContent:contentItem
+                discoverable:isDiscoverable];
+  
+  //load more contents
+  if (indexPath.row == (self.itemsToDisplay.count - 1)) {
+    [self loadMoreContent];
+  }
+  
+  return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+  XMMContent *data = (XMMContent*)(self.itemsToDisplay)[indexPath.row];
+  [self openArtist:data];
+}
 
 @end
