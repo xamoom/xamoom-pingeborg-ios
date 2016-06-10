@@ -266,6 +266,8 @@
     }];
     
     return nil;
+  } else {
+    [self errorMessageOnScanning];
   }
   
   return newRequest;
