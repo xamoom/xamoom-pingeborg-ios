@@ -108,14 +108,13 @@
     //analytics
     [[Analytics sharedObject] sendEventWithCategorie:@"UX" andAction:@"Click" andLabel:@"QR Code Reader" andValue:nil];
     
-    /*
-    [[XMMEnduserApi sharedInstance] setQrCodeViewControllerCancelButtonTitle:NSLocalizedString(@"Cancel", nil)];
-    [[XMMEnduserApi sharedInstance] startQRCodeReaderFromViewController:self
-                                                                didLoad:^(NSString *locationIdentifier, NSString *url) {
-                                                                  [self.hud showInView:self.view];
-                                                                  [self didScanQR:locationIdentifier withCompleteUrl:url];
-                                                                }];
-    */
+    QRCodeReader *reader = [QRCodeReader readerWithMetadataObjectTypes:@[AVMetadataObjectTypeQRCode]];
+    QRCodeReaderViewController *qrCodeReaderViewController = [[QRCodeReaderViewController alloc] initWithCancelButtonTitle:NSLocalizedString(@"Cancel", nil) codeReader:reader startScanningAtLoad:YES];
+    qrCodeReaderViewController.modalPresentationStyle = UIModalPresentationFormSheet;
+    qrCodeReaderViewController.delegate = self;
+    
+    [self presentViewController:qrCodeReaderViewController animated:YES completion:nil];
+    
     return NO;
   } else {
     return YES;
@@ -135,12 +134,12 @@
   [self.view addSubview:self.extendedView];
   
   [self.extendedView addConstraint:[NSLayoutConstraint constraintWithItem:self.extendedView
-                                                        attribute:NSLayoutAttributeHeight
-                                                        relatedBy:NSLayoutRelationEqual
-                                                           toItem:nil
-                                                        attribute:NSLayoutAttributeNotAnAttribute
-                                                       multiplier:1.0f
-                                                         constant:70]];
+                                                                attribute:NSLayoutAttributeHeight
+                                                                relatedBy:NSLayoutRelationEqual
+                                                                   toItem:nil
+                                                                attribute:NSLayoutAttributeNotAnAttribute
+                                                               multiplier:1.0f
+                                                                 constant:70]];
   
   [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.extendedView
                                                         attribute:NSLayoutAttributeBottom
@@ -196,7 +195,7 @@
       scanResultViewController.result = content;
       [self.navigationController pushViewController:scanResultViewController animated:YES];
     }];
-
+    
   }
   
   if (self.geofence != nil) {
@@ -216,7 +215,8 @@
 
 #pragma mark - XMMEnduserApi Delegate Methods
 
--(void)didScanQR:(NSString *)result withCompleteUrl:(NSString *)url{
+- (void)reader:(QRCodeReaderViewController *)reader didScanResult:(NSString *)url {
+  [reader stopScanning];
   self.scannedUrl = url;
   
   //old pingeborg stickers get a redirect to the xm.gl url
@@ -231,14 +231,20 @@
     //analytics
     [[Analytics sharedObject] sendEventWithCategorie:@"pingeb.org" andAction:@"Scan" andLabel:@"xm.gl Sticker" andValue:nil];
     
-    [[XMMEnduserApi sharedInstance] contentWithLocationIdentifier:result completion:^(XMMContent *content, NSError *error) {
-      [self didLoadDataWithLocationIdentifier:content];
-    }];
+    [[XMMEnduserApi sharedInstance] contentWithLocationIdentifier:[self getLocationIdentifierFromURL:url]
+                                                       completion:^(XMMContent *content, NSError *error) {
+                                                         [self dismissViewControllerAnimated:reader completion:nil];
+                                                         [self didLoadDataWithLocationIdentifier:content];
+                                                       }];
   } else {
     //analytics
     [[Analytics sharedObject] sendEventWithCategorie:@"pingeb.org" andAction:@"Scan" andLabel:@"Other QR Code" andValue:nil];
     [self errorMessageOnScanning];
   }
+}
+
+- (void)readerDidCancel:(QRCodeReaderViewController *)reader {
+  [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (void)errorMessageOnScanning {
@@ -272,7 +278,7 @@
   return path;
 }
 
-- (void)didLoadDataWithLocationIdentifier:(XMMContent *)content{
+- (void)didLoadDataWithLocationIdentifier:(XMMContent *)content {
   [[Globals sharedObject] addDiscoveredArtist:content.ID];
   self.savedApiResult = content;
   [self.hud dismiss];
