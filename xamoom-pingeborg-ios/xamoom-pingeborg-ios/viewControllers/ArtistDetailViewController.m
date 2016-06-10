@@ -60,14 +60,7 @@
 
 -(void)viewWillDisappear:(BOOL)animated {
   [super viewWillDisappear:animated];
-  
-  //stop all sounds (audioBlock and soundCloudBlock)
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"pauseAllSounds" object:self];
-
-  //reload artistList, when you discovered a new one
-  if ([self.contentId isEqualToString:[[Globals sharedObject] savedArtistsAsArray].lastObject]) {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"updateAllArtistLists" object:self];
-  }
+  [self.contentBlocks viewWillDisappear];
 }
 
 #pragma mark - Setup
