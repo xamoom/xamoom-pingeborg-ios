@@ -59,7 +59,6 @@ int const kPageSize = 7;
   
   [self setupTableView];
   [self setupRefreshControl];
-  [self addNotifications];
   [self detectBluetooth];
 }
 
@@ -73,6 +72,8 @@ int const kPageSize = 7;
   //load artists, if there are none
   if (self.itemsToDisplay.count <= 0) {
     [self loadArtists];
+  } else {
+    [self.feedTableView reloadData];
   }
 }
 
@@ -100,20 +101,13 @@ int const kPageSize = 7;
   [self.feedTableView addSubview:self.refreshControl];
 }
 
-- (void)addNotifications {
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(reloadData)
-                                               name:@"updateAllArtistLists"
-                                             object:nil];
-}
-
 #pragma mark - XMMEnduserApi
 
 - (void)loadArtists {
   //loading hud in view
   [self.hud showInView:self.view];
   
-  [[XMMEnduserApi sharedInstance] contentsWithTags:@[@"artists"] pageSize:kPageSize cursor:nil sort:0 completion:^(NSArray *contents, bool hasMore, NSString *cursor, NSError *error) {
+  [[XMMEnduserApi sharedInstance] contentsWithTags:@[@"artists"] pageSize:kPageSize cursor:nil sort:XMMContentSortOptionsNameDesc completion:^(NSArray *contents, bool hasMore, NSString *cursor, NSError *error) {
     [self displayContentList:contents cursor:cursor hasMore:(bool)hasMore];
     [self.hud dismiss];
   }];
@@ -157,55 +151,30 @@ int const kPageSize = 7;
     cell = nib[0];
   }
   
-  [cell.loadingIndicator startAnimating];
-  
   //set defaults to images
   cell.feedItemImage.image = nil;
-  //[cell.feedItemImage.subviews makeObjectsPerformSelector: @selector(removeFromSuperview)];
-  
-  cell.loadingIndicator.hidden = NO;
   
   //save for out of range
   if (indexPath.row >= [self.itemsToDisplay count]) {
     return cell;
   }
+  
   XMMContent *contentItem = (self.itemsToDisplay)[indexPath.row];
   
-  //set title
   cell.feedItemTitle.text = contentItem.title;
   
-  //set image & grayscale if needed
-  if (self.placeholderImage != nil) {
-    [cell.feedItemImage sd_setImageWithURL:[NSURL URLWithString:contentItem.imagePublicUrl] placeholderImage:self.placeholderImage];
-  }
+  //set image
+  [cell.feedItemImage sd_setImageWithURL:[NSURL URLWithString:contentItem.imagePublicUrl] placeholderImage:self.placeholderImage];
   
-  /*
-  if((self.imagesToDisplay)[contentItem.ID] != nil) {
-    UIImage *image = (self.imagesToDisplay)[contentItem.contentId];
-    float imageRatio = image.size.width / image.size.height;
-    [cell.imageHeightConstraint setConstant:(self.view.frame.size.width / imageRatio)];
-    
-    if ([(self.imagesToDisplay)[contentItem.contentId] isKindOfClass:[SVGKImage class]]) {
-      SVGKImageView *svgImageView = [[SVGKFastImageView alloc] initWithSVGKImage:(self.imagesToDisplay)[contentItem.contentId]];
-      [svgImageView setFrame:CGRectMake(0, 0, self.view.frame.size.width, (self.view.frame.size.width / imageRatio))];
-      [cell.feedItemImage addSubview:svgImageView];
-    } else if (![[[Globals sharedObject] savedArtits] containsString:contentItem.contentId]) {
-      cell.feedItemImage.image = [XMMImageUtility convertImageToGrayScale:image];
-      cell.feedItemOverlayImage.backgroundColor = [UIColor whiteColor];
-    } else {
-      cell.feedItemImage.image = image;
-      cell.feedItemOverlayImage.backgroundColor = [UIColor clearColor];
-    }
-    
-    [cell.loadingIndicator stopAnimating];
+  if (![[[Globals sharedObject] savedArtits] containsString:contentItem.ID]) {
+    cell.feedItemOverlayImage.hidden = NO;
+  } else {
+    cell.feedItemOverlayImage.hidden = YES;
   }
-  */
   
   //overlay image for the first cell "discoverable"
   if (contentItem == self.itemsToDisplay.firstObject && ![[[Globals sharedObject] savedArtits] containsString:contentItem.ID]) {
     cell.feedItemOverlayImage.image = [UIImage imageNamed:@"discoverable"];
-  } else {
-    cell.feedItemOverlayImage.image = nil;
   }
   
   //load more contents
@@ -237,7 +206,7 @@ int const kPageSize = 7;
     self.imagesToDisplay = [[NSMutableDictionary alloc] init];
     
     //api call
-    [[XMMEnduserApi sharedInstance] contentsWithTags:@[@"artists"] pageSize:kPageSize cursor:nil sort:0 completion:^(NSArray *contents, bool hasMore, NSString *cursor, NSError *error) {
+    [[XMMEnduserApi sharedInstance] contentsWithTags:@[@"artists"] pageSize:kPageSize cursor:nil sort:XMMContentSortOptionsNameDesc completion:^(NSArray *contents, bool hasMore, NSString *cursor, NSError *error) {
       [self displayContentList:contents cursor:cursor hasMore:hasMore];
       [self.hud dismiss];
     }];
@@ -270,7 +239,7 @@ int const kPageSize = 7;
     
     self.isApiCallingBlocked = YES;
     
-    [[XMMEnduserApi sharedInstance] contentsWithTags:@[@"artists"] pageSize:kPageSize cursor:self.contentListCursor sort:0 completion:^(NSArray *contents, bool hasMore, NSString *cursor, NSError *error) {
+    [[XMMEnduserApi sharedInstance] contentsWithTags:@[@"artists"] pageSize:kPageSize cursor:self.contentListCursor sort:XMMContentSortOptionsNameDesc completion:^(NSArray *contents, bool hasMore, NSString *cursor, NSError *error) {
       [self displayContentList:contents cursor:cursor hasMore:hasMore];
       self.feedTableView.tableFooterView = nil;
     }];

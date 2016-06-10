@@ -31,6 +31,11 @@
   // Configure the view for the selected state
 }
 
+- (void)prepareForReuse {
+  self.feedItemOverlayImage.hidden = NO;
+  self.feedItemOverlayImage.image = nil;
+}
+
 + (BOOL)requiresConstraintBasedLayout {
   return YES;
 }
