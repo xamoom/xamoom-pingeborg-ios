@@ -259,7 +259,7 @@
   [alertView show];
 }
 
--(NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)redirectResponse {
+- (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)redirectResponse {
   //redirect to xm.gl
   NSURLRequest *newRequest = request;
   if (redirectResponse) {
