@@ -19,11 +19,7 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-#import <SVGKit.h>
-#import <SVGKSourceString.h>
 #import <REMenu/REMenu.h>
-#import <xamoom-ios-sdk/XMMAnnotationView.h>
-#import <xamoom-ios-sdk/XMMCalloutView.h>
 #import "SMCalloutView.h"
 #import "FeedItemCell.h"
 #import "ArtistDetailViewController.h"
@@ -42,7 +38,6 @@
 @property CLLocation *lastLocation;
 
 @property UIImage *customMapMarker;
-@property SVGKImage *customSVGMapMarker;
 @property NSMutableArray *itemsToDisplay;
 @property NSMutableDictionary *imagesToDisplay;
 

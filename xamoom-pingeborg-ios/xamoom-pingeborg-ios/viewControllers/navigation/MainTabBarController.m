@@ -21,10 +21,11 @@
 #import "XMMEnduserApi.h"
 #import "ScanResultViewController.h"
 #import "ExtendedTabbarView.h"
+#import <QRCodeReaderViewController/QRCodeReaderViewController.h>
 
 @interface MainTabBarController () <QRCodeReaderDelegate>
 
-@property (strong, nonatomic) XMMContentByLocationIdentifier *savedApiResult;
+@property (strong, nonatomic) XMMContent *savedApiResult;
 @property (strong, nonatomic) JGProgressHUD *hud;
 @property (strong, nonatomic) ExtendedTabbarView *extendedView;
 
@@ -107,12 +108,14 @@
     //analytics
     [[Analytics sharedObject] sendEventWithCategorie:@"UX" andAction:@"Click" andLabel:@"QR Code Reader" andValue:nil];
     
+    /*
     [[XMMEnduserApi sharedInstance] setQrCodeViewControllerCancelButtonTitle:NSLocalizedString(@"Cancel", nil)];
     [[XMMEnduserApi sharedInstance] startQRCodeReaderFromViewController:self
                                                                 didLoad:^(NSString *locationIdentifier, NSString *url) {
                                                                   [self.hud showInView:self.view];
                                                                   [self didScanQR:locationIdentifier withCompleteUrl:url];
                                                                 }];
+    */
     return NO;
   } else {
     return YES;
@@ -185,18 +188,14 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     ScanResultViewController *scanResultViewController = [storyboard instantiateViewControllerWithIdentifier:@"ScanResultViewController"];
     
-    [[XMMEnduserApi sharedInstance]
-     contentWithLocationIdentifier:self.lastBeacon.minor.stringValue
-     majorId:@"52414" includeStyle:NO includeMenu:NO withLanguage:nil completion:^(XMMContentByLocationIdentifier *result) {
-       [self.hud dismiss];
-       if (![[Globals sharedObject].savedArtits containsString:result.content.contentId]) {
-         [[Globals sharedObject] addDiscoveredArtist:result.content.contentId];
-       }
-       scanResultViewController.result = result;
-       [self.navigationController pushViewController:scanResultViewController animated:YES];
-     } error:^(XMMError *error) {
-       [self.hud dismiss];
-     }];
+    [[XMMEnduserApi sharedInstance] contentWithBeaconMajor:@52414 minor:self.lastBeacon.minor completion:^(XMMContent *content, NSError *error) {
+      [self.hud dismiss];
+      if (![[Globals sharedObject].savedArtits containsString:content.ID]) {
+        [[Globals sharedObject] addDiscoveredArtist:content.ID];
+      }
+      scanResultViewController.result = content;
+      [self.navigationController pushViewController:scanResultViewController animated:YES];
+    }];
 
   }
   
@@ -205,10 +204,10 @@
     ArtistDetailViewController *artistDetailViewController =
     [storyboard instantiateViewControllerWithIdentifier:@"ArtistDetailView"];
     
-    artistDetailViewController.contentId = self.geofence.contentId;
+    artistDetailViewController.contentId = self.geofence.ID;
     
-    if (![[Globals sharedObject].savedArtits containsString:self.geofence.contentId]) {
-      [[Globals sharedObject] addDiscoveredArtist:self.geofence.contentId];
+    if (![[Globals sharedObject].savedArtits containsString:self.geofence.ID]) {
+      [[Globals sharedObject] addDiscoveredArtist:self.geofence.ID];
     }
     
     [self.navigationController pushViewController:artistDetailViewController animated:YES];
@@ -232,16 +231,9 @@
     //analytics
     [[Analytics sharedObject] sendEventWithCategorie:@"pingeb.org" andAction:@"Scan" andLabel:@"xm.gl Sticker" andValue:nil];
     
-    [[XMMEnduserApi sharedInstance] contentWithLocationIdentifier:result
-                                                          majorId:nil
-                                                     includeStyle:NO
-                                                      includeMenu:NO
-                                                     withLanguage:@""
-                                                       completion:^(XMMContentByLocationIdentifier *result) {
-                                                         [self didLoadDataWithLocationIdentifier:result];
-                                                       } error:^(XMMError *error) {
-                                                         [self errorMessageOnScanning];
-                                                       }];
+    [[XMMEnduserApi sharedInstance] contentWithLocationIdentifier:result completion:^(XMMContent *content, NSError *error) {
+      [self didLoadDataWithLocationIdentifier:content];
+    }];
   } else {
     //analytics
     [[Analytics sharedObject] sendEventWithCategorie:@"pingeb.org" andAction:@"Scan" andLabel:@"Other QR Code" andValue:nil];
@@ -263,15 +255,10 @@
   //redirect to xm.gl
   NSURLRequest *newRequest = request;
   if (redirectResponse) {
-    [[XMMEnduserApi sharedInstance] contentWithLocationIdentifier:[self getLocationIdentifierFromURL:[newRequest URL].absoluteString]
-                                                          majorId:nil
-                                                     includeStyle:NO
-                                                      includeMenu:NO
-                                                     withLanguage:@""
-                                                       completion:^(XMMContentByLocationIdentifier *result) {
-                                                         [self didLoadDataWithLocationIdentifier:result];
-                                                       } error:^(XMMError *error) {
-                                                       }];
+    [[XMMEnduserApi sharedInstance] contentWithLocationIdentifier:[self getLocationIdentifierFromURL:[newRequest URL].absoluteString] completion:^(XMMContent *content, NSError *error) {
+      [self didLoadDataWithLocationIdentifier:content];
+    }];
+    
     return nil;
   }
   
@@ -285,9 +272,9 @@
   return path;
 }
 
-- (void)didLoadDataWithLocationIdentifier:(XMMContentByLocationIdentifier *)apiResult{
-  [[Globals sharedObject] addDiscoveredArtist:apiResult.content.contentId];
-  self.savedApiResult = apiResult;
+- (void)didLoadDataWithLocationIdentifier:(XMMContent *)content{
+  [[Globals sharedObject] addDiscoveredArtist:content.ID];
+  self.savedApiResult = content;
   [self.hud dismiss];
   [self performSegueWithIdentifier:@"showScanResult" sender:self];
 }
@@ -306,16 +293,12 @@
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
   CLLocation *location = [locations firstObject];
-  NSString *lat = [NSString stringWithFormat:@"%f", location.coordinate.latitude];
-  NSString *lon = [NSString stringWithFormat:@"%f", location.coordinate.longitude];
   
-  [[XMMEnduserApi sharedInstance] contentWithLat:lat withLon:lon withLanguage:nil completion:^(XMMContentByLocation *result) {
-    if (self.lastBeacon == nil && result.items != nil) {
+  [[XMMEnduserApi sharedInstance] contentsWithLocation:location pageSize:10 cursor:nil sort:0 completion:^(NSArray *contents, bool hasMore, NSString *cursor, NSError *error) {
+    if (self.lastBeacon == nil && contents != nil) {
       [self openExtendedView];
-      self.geofence = [result.items firstObject];
+      self.geofence = [contents firstObject];
     }
-  } error:^(XMMError *error) {
-    //
   }];
 }
 

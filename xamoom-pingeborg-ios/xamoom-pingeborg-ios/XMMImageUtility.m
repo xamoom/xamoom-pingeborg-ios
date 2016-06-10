@@ -21,6 +21,7 @@
 
 @implementation XMMImageUtility
 
+/*
 + (void)imageWithUrl:(NSString *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image, SVGKImage *svgImage))completionBlock {
   if ([url containsString:@".gif"]) {
     [self downloadAnimatedImageWithURL:url completionBlock:^(BOOL succeeded, UIImage *image) {
@@ -39,7 +40,7 @@
     completionBlock(NO, nil, nil);
   }
 }
-
+*/
 + (void)downloadImageWithURL:(NSString *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock {
   NSURL *realUrl = [[NSURL alloc]initWithString:url];
   NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:realUrl];
@@ -71,6 +72,7 @@
                          }];
 }
 
+/*
 + (void)downloadSVGImageWithURL:(NSString *)url completionBlock:(void (^)(BOOL succeeded, SVGKImage *image))completionBlock {
   NSURL *realUrl = [[NSURL alloc]initWithString:url];
   NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:realUrl];
@@ -85,6 +87,7 @@
                            }
                          }];
 }
+*/
 
 #pragma mark - Image Methods
 

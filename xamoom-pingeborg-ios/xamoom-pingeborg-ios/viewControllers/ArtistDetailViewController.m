@@ -24,7 +24,7 @@
 @property JGProgressHUD *hud;
 @property REMenu *fontSizeDropdownMenu;
 
-@property XMMContentById *savedResult;
+@property XMMContent *savedResult;
 @property XMMContentBlocks *contentBlocks;
 
 @end
@@ -121,9 +121,7 @@
 }
 
 - (void)setupContentBlocks {
-  self.contentBlocks = [[XMMContentBlocks alloc] initWithTableView:self.tableView
-                                                          language:[XMMEnduserApi sharedInstance].systemLanguage
-                        showContentLinks:YES];
+  self.contentBlocks = [[XMMContentBlocks alloc] initWithTableView:self.tableView api:[XMMEnduserApi sharedInstance]];
   self.contentBlocks.delegate = self;
   self.contentBlocks.linkColor = [Globals sharedObject].pingeborgLinkColor;
 }
@@ -133,17 +131,14 @@
 
   NSString* savedArtists = [[Globals sharedObject] savedArtits];
   if ([savedArtists containsString:self.contentId]) {
-    [[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:NO includeMenu:NO withLanguage:@"" full:YES preview:NO
-                                              completion:^(XMMContentById *result) {
-                                                [self showDataWithContentId:result];
-                                              } error:^(XMMError *error) {
-                                              }];
+    
+    [[XMMEnduserApi sharedInstance] contentWithID:self.contentId completion:^(XMMContent *content, NSError *error) {
+      [self showDataWithContentId:content];
+    }];
   } else {
-    [[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:NO includeMenu:NO withLanguage:@"" full:NO preview:NO
-                                              completion:^(XMMContentById *result) {
-                                                [self showDataWithContentId:result];
-                                              } error:^(XMMError *error) {
-                                              }];
+    [[XMMEnduserApi sharedInstance] contentWithID:self.contentId options:XMMContentOptionsPrivate completion:^(XMMContent *content, NSError *error) {
+      [self showDataWithContentId:content];
+    }];
   }
 }
 
@@ -170,12 +165,12 @@
 
 # pragma mark - XMMEnduser Display ContentBlocks
 
-- (void)showDataWithContentId:(XMMContentById *)result {
+- (void)showDataWithContentId:(XMMContent *)result {
   //analytics
-  [[Analytics sharedObject] sendEventWithCategorie:@"pingeb.org" andAction:@"Show content" andLabel:result.content.contentId andValue:nil];
+  [[Analytics sharedObject] sendEventWithCategorie:@"pingeb.org" andAction:@"Show content" andLabel:result.ID andValue:nil];
   
   self.savedResult = result;
-  self.contentBlocks.content = result.content;
+  [self.contentBlocks displayContent:result];
   [self.hud dismiss];
 }
 

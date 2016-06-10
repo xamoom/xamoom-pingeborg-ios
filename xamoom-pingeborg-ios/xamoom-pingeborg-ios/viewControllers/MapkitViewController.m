@@ -29,7 +29,7 @@
 
 @property bool isUp;
 @property UIImage *placeholder;
-@property XMMContentByLocationItem *savedResponseContent;
+@property XMMContent *savedResponseContent;
 @property JGProgressHUD *hud;
 
 @end
@@ -72,12 +72,11 @@
   //load spotmap if there are no annotations on the map
   if (self.mapKitWithSMCalloutView.annotations.count <= 1) {
     [self.hud showInView:self.view];
-    [[XMMEnduserApi sharedInstance] spotMapWithMapTags:@[@"showAllTheSpots"] withLanguage:[XMMEnduserApi sharedInstance].systemLanguage includeContent:YES
-                                             completion:^(XMMSpotMap *result) {
-                                               [self showSpotMap:result];
-                                               [self.hud dismissAnimated:YES];
-                                             } error:^(XMMError *error) {
-                                             }];
+    
+    [[XMMEnduserApi sharedInstance] spotsWithTags:@[@"showAllTheSpots"] options:XMMSpotOptionsIncludeContent completion:^(NSArray *spots, bool hasMore, NSString *cursor, NSError *error) {
+      [self showSpotMap:spots];
+      [self.hud dismissAnimated:YES];
+    }];
   }
 }
 
@@ -112,16 +111,18 @@
 
 #pragma mark - XMMEnduser Methods
 
-- (void)showSpotMap:(XMMSpotMap *)result {
+- (void)showSpotMap:(NSArray *)spots {
   //get the customMarker for the map
+  /*
   if (result.style.customMarker != nil) {
     [self mapMarkerFromBase64:result.style.customMarker];
   }
+  */
   
   // Add annotations
-  for (XMMSpot *item in result.items) {
-    XMMAnnotation *point = [[XMMAnnotation alloc] initWithLocation: CLLocationCoordinate2DMake(item.lat, item.lon)];
-    point.data = item;
+  for (XMMSpot *item in spots) {
+    XMMAnnotation *point = [[XMMAnnotation alloc] initWithLocation: CLLocationCoordinate2DMake(item.latitude, item.longitude)];
+    //point.data = item;
     
     //calculate distance to annotation
     CLLocation *pointLocation = [[CLLocation alloc] initWithLatitude:point.coordinate.latitude longitude:point.coordinate.longitude];
@@ -132,6 +133,7 @@
   }
 }
 
+/*
 - (void)mapMarkerFromBase64:(NSString*)base64String {
   NSData *decodedData = [[NSData alloc] initWithBase64EncodedString:base64String options:0];
   NSString *decodedString = [[NSString alloc] initWithData:decodedData encoding:NSUTF8StringEncoding];
@@ -141,13 +143,14 @@
     decodedString = [decodedString stringByReplacingOccurrencesOfString:@"data:image/svg+xml;base64," withString:@""];
     NSData *decodedData2 = [[NSData alloc] initWithBase64EncodedString:decodedString options:0];
     NSString *decodedString2 = [[NSString alloc] initWithData:decodedData2 encoding:NSUTF8StringEncoding];
-    self.customSVGMapMarker = [SVGKImage imageWithSource:[SVGKSourceString sourceFromContentsOfString:decodedString2]];
+    //self.customSVGMapMarker = [SVGKImage imageWithSource:[SVGKSourceString sourceFromContentsOfString:decodedString2]];
   } else {
     //create UIImage
     NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:decodedString]];
     self.customMapMarker = [XMMImageUtility imageWithImage:[UIImage imageWithData:imageData] scaledToMaxWidth:30.0f maxHeight:30.0f];
   }
 }
+*/
 
 #pragma mark - MapView Methods
 
@@ -161,6 +164,7 @@
   [self.mapKitWithSMCalloutView setRegion:region animated:YES];
 }
 
+/*
 - (XMMCalloutView*)createMapCalloutFrom:(MKAnnotationView *)annotationView {
   XMMAnnotationView* xamoomAnnotationView = (XMMAnnotationView *)annotationView;
   XMMCalloutView* xamoomCalloutView = [[XMMCalloutView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 300.0f, 35.0f)];
@@ -263,6 +267,7 @@
   
   return xamoomCalloutView;
 }
+*/
 
 #pragma mark - MKMapView delegate methods
 
@@ -273,27 +278,23 @@
   
   if ([annotation isKindOfClass:[XMMAnnotation class]]) {
     static NSString *identifier = @"xamoomAnnotation";
-    XMMAnnotationView *annotationView;
+    MKAnnotationView *annotationView;
     if (annotationView == nil) {
-      annotationView = [[XMMAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+      annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
       annotationView.enabled = YES;
       annotationView.canShowCallout = NO;
       
       //set mapmarker
-      if(self.customMapMarker) {
-        annotationView.image = self.customMapMarker;
-      } else if (self.customSVGMapMarker) {
-        annotationView.image = self.customSVGMapMarker.UIImage;
-      } else {
-        annotationView.image = [UIImage imageNamed:@"mappoint"];//here we use a nice image instead of the default pins
-      }
+      annotationView.image = [UIImage imageNamed:@"mappoint"];//here we use a nice image instead of the default pins
       
       //save data in annotationView
+      /*
       XMMAnnotation *xamoomAnnotation = (XMMAnnotation*)annotation;
       annotationView.data = xamoomAnnotation.data;
       annotationView.distance = xamoomAnnotation.distance;
       annotationView.coordinate = xamoomAnnotation.coordinate;
-      
+      */
+      /*
       //download image
       [XMMImageUtility imageWithUrl:xamoomAnnotation.data.image completionBlock:^(BOOL succeeded, UIImage *image, SVGKImage *svgImage) {
         if (image != nil) {
@@ -304,6 +305,7 @@
           annotationView.spotImage = image;
         }
       }];
+       */
       
     } else {
       annotationView.annotation = annotation;
@@ -321,11 +323,11 @@
   [calloutView setContentViewInset:UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f)];
   self.mapKitWithSMCalloutView.calloutView = calloutView;
   
-  if ([annotationView isKindOfClass:[XMMAnnotationView class]]) {
+  if ([annotationView isKindOfClass:[MKAnnotationView class]]) {
     //analytics
     [[Analytics sharedObject] sendEventWithCategorie:@"UX" andAction:@"Click" andLabel:[NSString stringWithFormat:@"Map Pin"] andValue:nil];
     
-    calloutView.contentView = [self createMapCalloutFrom:annotationView];
+    //calloutView.contentView = [self createMapCalloutFrom:annotationView];
     calloutView.calloutOffset = annotationView.calloutOffset;
     
     [calloutView presentCalloutFromRect:annotationView.bounds inView:annotationView constrainedToView:self.mapKitWithSMCalloutView animated:YES];
@@ -361,7 +363,8 @@
 
 - (void)mapNavigationTapped {
   //navigate to the coordinates of the xamoomCalloutView
-  XMMCalloutView *xamoomCalloutView = (XMMCalloutView* )self.mapKitWithSMCalloutView.calloutView.contentView;
+  /*
+  XMMCalloutView *xamoomCalloutView = self.mapKitWithSMCalloutView.calloutView.contentView;
   
   //analytics
   [[Analytics sharedObject] sendEventWithCategorie:@"UX" andAction:@"Click" andLabel:@"Map Callout Navigation Button" andValue:nil];
@@ -373,6 +376,7 @@
   
   NSDictionary *launchOptions = @{MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving};
   [mapItem openInMapsWithLaunchOptions:launchOptions];
+  */
 }
 
 #pragma mark - LocationManager
@@ -398,14 +402,6 @@
   
   //analytics
   [[Analytics sharedObject] sendEventWithCategorie:@"UX" andAction:@"Click" andLabel:@"Geofence" andValue:nil];
-  [[XMMEnduserApi sharedInstance] geofenceAnalyticsMessageWithRequestedLanguage:[XMMEnduserApi sharedInstance].systemLanguage
-                                                          withDeliveredLanguage:self.savedResponseContent.language
-                                                                   withSystemId:self.savedResponseContent.systemId
-                                                                 withSystemName:self.savedResponseContent.systemName
-                                                                  withContentId:self.savedResponseContent.contentId
-                                                                withContentName:self.savedResponseContent.contentName
-                                                                     withSpotId:self.savedResponseContent.spotId
-                                                                   withSpotName:self.savedResponseContent.spotName];
   
   [self.navigationController pushViewController:artistDetailViewController animated:YES];
 }

@@ -18,8 +18,6 @@
 //
 
 #import "AppDelegate.h"
-#import "XMMEnduserApi.h"
-#import "Globals.h"
 
 @interface AppDelegate ()
 
@@ -69,7 +67,7 @@
   NSString *apiKey = [NSString stringWithContentsOfFile:file
                                                encoding:NSUTF8StringEncoding error:NULL];
   
-  [[XMMEnduserApi sharedInstance] setApiKey:apiKey];
+  [XMMEnduserApi sharedInstanceWithKey:apiKey];
 }
 
 /**

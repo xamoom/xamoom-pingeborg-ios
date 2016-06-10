@@ -57,11 +57,12 @@
   //load items if there are none
   if ([self.contentBlocks.items count] == 0) {
     [self.hud showInView:self.view];
-    [[XMMEnduserApi sharedInstance] contentWithContentId:[Globals sharedObject].aboutPageId includeStyle:NO includeMenu:NO withLanguage:@"" full:YES preview:NO
-                                              completion:^(XMMContentById *result) {
-                                                [self showDataWithContentId:result];
-                                              } error:^(XMMError *error) {
-                                              }];
+    
+    
+    [[XMMEnduserApi sharedInstance] contentWithID:[Globals sharedObject].aboutPageId  completion:^(XMMContent *content, NSError *error) {
+      [self showDataWithContentId:content];
+    }];
+    
   }
 }
 
@@ -85,8 +86,7 @@
 
 - (void)setupContentBlocks {
   //setting up XMMContentBlocks
-  self.contentBlocks = [[XMMContentBlocks alloc] initWithTableView:self.tableView
-                                                          language:[XMMEnduserApi sharedInstance].systemLanguage showContentLinks:YES];
+  self.contentBlocks = [[XMMContentBlocks alloc] initWithTableView:self.tableView api:[XMMEnduserApi sharedInstance]];
   self.contentBlocks.delegate = self;
   self.contentBlocks.linkColor = [Globals sharedObject].pingeborgLinkColor;
 }
@@ -156,8 +156,8 @@
 
 #pragma mark - XMMEnduserApi delegates
 
-- (void)showDataWithContentId:(XMMContentById *)result {
-  self.contentBlocks.content = result.content;
+- (void)showDataWithContentId:(XMMContent *)result {
+  [self.contentBlocks displayContent:result];
   [self.hud dismiss];
 }
 

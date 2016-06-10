@@ -1,0 +1,1 @@
+../../../JSONAPI/Classes/JSONAPIResourceBase.h

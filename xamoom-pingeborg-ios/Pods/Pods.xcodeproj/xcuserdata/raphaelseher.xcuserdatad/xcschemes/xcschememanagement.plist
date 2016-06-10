@@ -4,12 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>AFNetworking.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>ISO8601DateFormatterValueTransformer.xcscheme</key>
+		<key>JAMSVGImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -19,7 +14,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods.xcscheme</key>
+		<key>JSONAPI.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-pingeb.org.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -34,16 +34,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>RKValueTransformers.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>RestKit.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -54,17 +44,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>SOCKit.xcscheme</key>
+		<key>XamoomSDK-XamoomSDK.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>TransitionKit.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>xamoom-ios-sdk.xcscheme</key>
+		<key>XamoomSDK.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -82,17 +67,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>080AF914A09167DB5759A733917B840F</key>
+		<key>10F8BA331B7A2D4313AF901C96E4474B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1F27BDBD9A95F06D81FBFA89284C4DCC</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>26AC54962E736AFB8B2B165DEFF96663</key>
+		<key>1C6ED963043BC9B3C39239A7295FAE84</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -102,57 +82,47 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>61681BF0E677683490353B846C61A129</key>
+		<key>35FD6C78799153C4EDCDC2226EC727AA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7B2B23DC6B446293792500C1D8E655DC</key>
+		<key>3F451B5DBD7A6E4FFF70EE888A4CC58F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7DFF40F85127C261F1F06EBCAA883C7F</key>
+		<key>57433A07C85A12E3CCF336DF27AC961B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7F2F7B9B9F5EBF16356B61F8D130963F</key>
+		<key>57E9C5655B09A2ACB0C0339E9BC22FA4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8E7E76BFC781D65AA27E74C8C8925F41</key>
+		<key>A140B33BAE44A466EF692E3E889BE21C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9DA5C236BB8C29AA735B0F174F22A480</key>
+		<key>BA96974D83A5873D150E33DDFE38E24F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AF18FDD4C38F7152801EB986715827EB</key>
+		<key>C76B1B91569F1E6508FAFE54DD31EFAB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B8435F111562F8E8E4025B3A1B6F0124</key>
+		<key>D5DF82BFD37BCC69B2C159B8B655AA3F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C47E006176ABF4755350B88C088C3F0D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>CA9598687986CFF200A99D0D97F12536</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E6806BB3D8F2F6153343252F5F79B4A4</key>
+		<key>E7E2BC59AD63EC00456468E79C9A6F1C</key>
 		<dict>
 			<key>primary</key>
 			<true/>

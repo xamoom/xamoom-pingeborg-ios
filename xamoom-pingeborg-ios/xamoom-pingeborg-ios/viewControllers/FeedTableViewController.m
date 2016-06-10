@@ -112,43 +112,25 @@ int const kPageSize = 7;
 - (void)loadArtists {
   //loading hud in view
   [self.hud showInView:self.view];
-  [[XMMEnduserApi sharedInstance] contentListWithPageSize:kPageSize withLanguage:@"" withCursor:@"null" withTags:@[@"artists"]
-                                               completion:^(XMMContentList *result) {
-                                                 [self displayContentList:result];
-                                                 [self.hud dismiss];
-                                               } error:^(XMMError *error) {
-                                                 NSLog(@"Error: %@", error.message);
-                                               }];
+  
+  [[XMMEnduserApi sharedInstance] contentsWithTags:@[@"artists"] pageSize:kPageSize cursor:nil sort:0 completion:^(NSArray *contents, bool hasMore, NSString *cursor, NSError *error) {
+    [self displayContentList:contents cursor:cursor hasMore:(bool)hasMore];
+    [self.hud dismiss];
+  }];
 }
 
-- (void)displayContentList:(XMMContentList *)result {
-  self.contentListCursor = result.cursor;
+- (void)displayContentList:(NSArray *)contents cursor:(NSString *)cursor hasMore:(bool)hasMore {
+  self.contentListCursor = cursor;
   
   //check if first startup
   if ([[Globals sharedObject] isFirstStart]) {
-    [self firstStartup:result];
+    [self firstStartup:contents];
   }
   
   //save if there are more items available over api
-  self.hasMore = result.hasMore;
+  self.hasMore = hasMore;
   
-  for (XMMContent *contentItem in result.items) {
-    //download image
-    [XMMImageUtility imageWithUrl:contentItem.imagePublicUrl completionBlock:^(BOOL succeeded, UIImage *image, SVGKImage *svgImage) {
-      if (image != nil) {
-        [self.imagesToDisplay setValue:image forKey:contentItem.contentId];
-      } else if (svgImage != nil) {
-        [self.imagesToDisplay setValue:svgImage forKey:contentItem.contentId];
-      } else {
-        [self.imagesToDisplay setValue:self.placeholderImage forKey:contentItem.contentId];
-      }
-      
-      [self.feedTableView reloadData];
-    }];
-    
-    //add contentItem
-    [self.itemsToDisplay addObject:contentItem];
-  }
+  [self.itemsToDisplay addObjectsFromArray:contents];
   
   self.isApiCallingBlocked = NO;
   [self reloadData];
@@ -179,7 +161,7 @@ int const kPageSize = 7;
   
   //set defaults to images
   cell.feedItemImage.image = nil;
-  [cell.feedItemImage.subviews  makeObjectsPerformSelector: @selector(removeFromSuperview)];
+  //[cell.feedItemImage.subviews makeObjectsPerformSelector: @selector(removeFromSuperview)];
   
   cell.loadingIndicator.hidden = NO;
   
@@ -193,7 +175,12 @@ int const kPageSize = 7;
   cell.feedItemTitle.text = contentItem.title;
   
   //set image & grayscale if needed
-  if((self.imagesToDisplay)[contentItem.contentId] != nil) {
+  if (self.placeholderImage != nil) {
+    [cell.feedItemImage sd_setImageWithURL:[NSURL URLWithString:contentItem.imagePublicUrl] placeholderImage:self.placeholderImage];
+  }
+  
+  /*
+  if((self.imagesToDisplay)[contentItem.ID] != nil) {
     UIImage *image = (self.imagesToDisplay)[contentItem.contentId];
     float imageRatio = image.size.width / image.size.height;
     [cell.imageHeightConstraint setConstant:(self.view.frame.size.width / imageRatio)];
@@ -212,9 +199,10 @@ int const kPageSize = 7;
     
     [cell.loadingIndicator stopAnimating];
   }
+  */
   
   //overlay image for the first cell "discoverable"
-  if (contentItem == self.itemsToDisplay.firstObject && ![[[Globals sharedObject] savedArtits] containsString:contentItem.contentId]) {
+  if (contentItem == self.itemsToDisplay.firstObject && ![[[Globals sharedObject] savedArtits] containsString:contentItem.ID]) {
     cell.feedItemOverlayImage.image = [UIImage imageNamed:@"discoverable"];
   } else {
     cell.feedItemOverlayImage.image = nil;
@@ -234,7 +222,7 @@ int const kPageSize = 7;
   [storyboard instantiateViewControllerWithIdentifier:@"ArtistDetailView"];
   
   XMMContent *data = (XMMContent*)(self.itemsToDisplay)[indexPath.row];
-  artistDetailViewController.contentId = data.contentId;
+  artistDetailViewController.contentId = data.ID;
   [self.navigationController pushViewController:artistDetailViewController animated:YES];
 }
 
@@ -249,13 +237,11 @@ int const kPageSize = 7;
     self.imagesToDisplay = [[NSMutableDictionary alloc] init];
     
     //api call
-    [[XMMEnduserApi sharedInstance] contentListWithPageSize:kPageSize withLanguage:@"" withCursor:@"null" withTags:@[@"artists"]
-                                                 completion:^(XMMContentList *result) {
-                                                   [self displayContentList:result];
-                                                   [self.hud dismiss];
-                                                 } error:^(XMMError *error) {
-                                                   NSLog(@"Error: %@", error.message);
-                                                 }];
+    [[XMMEnduserApi sharedInstance] contentsWithTags:@[@"artists"] pageSize:kPageSize cursor:nil sort:0 completion:^(NSArray *contents, bool hasMore, NSString *cursor, NSError *error) {
+      [self displayContentList:contents cursor:cursor hasMore:hasMore];
+      [self.hud dismiss];
+    }];
+
     self.isApiCallingBlocked = YES;
   }
 }
@@ -283,13 +269,11 @@ int const kPageSize = 7;
     [[Analytics sharedObject] sendEventWithCategorie:@"UX" andAction:@"Load More" andLabel:@"Artist List load more." andValue:nil];
     
     self.isApiCallingBlocked = YES;
-    [[XMMEnduserApi sharedInstance] contentListWithPageSize:kPageSize withLanguage:@"" withCursor:self.contentListCursor withTags:@[@"artists"]
-                                                 completion:^(XMMContentList *result) {
-                                                   [self displayContentList:result];
-                                                   self.feedTableView.tableFooterView = nil;
-                                                 } error:^(XMMError *error) {
-                                                   NSLog(@"Error: %@", error.message);
-                                                 }];
+    
+    [[XMMEnduserApi sharedInstance] contentsWithTags:@[@"artists"] pageSize:kPageSize cursor:self.contentListCursor sort:0 completion:^(NSArray *contents, bool hasMore, NSString *cursor, NSError *error) {
+      [self displayContentList:contents cursor:cursor hasMore:hasMore];
+      self.feedTableView.tableFooterView = nil;
+    }];
     
     //add tablefooter as loading indicator to the feedTableView
     [self addTableViewLoadingFooter];
@@ -337,7 +321,7 @@ int const kPageSize = 7;
 
 # pragma mark - Instruction View / First Start
 
-- (void)firstStartup:(XMMContentList *)result {
+- (void)firstStartup:(NSArray *)result {
   [self addFreeDiscoveredArtists:result];
   [self displayInstructionScreen];
 }
@@ -354,12 +338,12 @@ int const kPageSize = 7;
   self.instructionView.hidden = YES;
 }
 
-- (void)addFreeDiscoveredArtists:(XMMContentList *)result {
+- (void)addFreeDiscoveredArtists:(NSArray *)contents {
   //add artist 2-4 to discovered list
   int counter = 1;
   while (counter <= 3) {
-    XMMContent *contentItem = result.items[counter];
-    [[Globals sharedObject] addDiscoveredArtist:contentItem.contentId];
+    XMMContent *contentItem = contents[counter];
+    [[Globals sharedObject] addDiscoveredArtist:contentItem.ID];
     counter++;
   }
 }

@@ -27,42 +27,94 @@
 #import "QRCodeReaderViewController.h"
 #import "QRCameraSwitchButton.h"
 #import "QRCodeReaderView.h"
+#import "QRToggleTorchButton.h"
 
-@interface QRCodeReaderViewController () <AVCaptureMetadataOutputObjectsDelegate>
+@interface QRCodeReaderViewController ()
 @property (strong, nonatomic) QRCameraSwitchButton *switchCameraButton;
+@property (strong, nonatomic) QRToggleTorchButton *toggleTorchButton;
 @property (strong, nonatomic) QRCodeReaderView     *cameraView;
 @property (strong, nonatomic) UIButton             *cancelButton;
+@property (strong, nonatomic) QRCodeReader         *codeReader;
+@property (assign, nonatomic) BOOL                 startScanningAtLoad;
+@property (assign, nonatomic) BOOL                 showSwitchCameraButton;
+@property (assign, nonatomic) BOOL                 showTorchButton;
 
-@property (strong, nonatomic) AVCaptureDevice            *defaultDevice;
-@property (strong, nonatomic) AVCaptureDeviceInput       *defaultDeviceInput;
-@property (strong, nonatomic) AVCaptureDevice            *frontDevice;
-@property (strong, nonatomic) AVCaptureDeviceInput       *frontDeviceInput;
-@property (strong, nonatomic) AVCaptureMetadataOutput    *metadataOutput;
-@property (strong, nonatomic) AVCaptureSession           *session;
-@property (strong, nonatomic) AVCaptureVideoPreviewLayer *previewLayer;
-
-@property (copy, nonatomic) void (^completionBlock) (NSString *);
+@property (copy, nonatomic) void (^completionBlock) (NSString * __nullable);
 
 @end
 
 @implementation QRCodeReaderViewController
 
+- (void)dealloc
+{
+  [self stopScanning];
+
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (id)init
 {
-  return [self initWithCancelButtonTitle:NSLocalizedString(@"Cancel", @"Cancel")];
+  return [self initWithCancelButtonTitle:nil];
 }
 
 - (id)initWithCancelButtonTitle:(NSString *)cancelTitle
 {
+  return [self initWithCancelButtonTitle:cancelTitle metadataObjectTypes:@[AVMetadataObjectTypeQRCode]];
+}
+
+- (id)initWithMetadataObjectTypes:(NSArray *)metadataObjectTypes
+{
+  return [self initWithCancelButtonTitle:nil metadataObjectTypes:metadataObjectTypes];
+}
+
+- (id)initWithCancelButtonTitle:(NSString *)cancelTitle metadataObjectTypes:(NSArray *)metadataObjectTypes
+{
+  QRCodeReader *reader = [QRCodeReader readerWithMetadataObjectTypes:metadataObjectTypes];
+
+  return [self initWithCancelButtonTitle:cancelTitle codeReader:reader];
+}
+
+- (id)initWithCancelButtonTitle:(NSString *)cancelTitle codeReader:(QRCodeReader *)codeReader
+{
+  return [self initWithCancelButtonTitle:cancelTitle codeReader:codeReader startScanningAtLoad:true];
+}
+
+- (id)initWithCancelButtonTitle:(NSString *)cancelTitle codeReader:(QRCodeReader *)codeReader startScanningAtLoad:(BOOL)startScanningAtLoad
+{
+  return [self initWithCancelButtonTitle:cancelTitle codeReader:codeReader startScanningAtLoad:startScanningAtLoad showSwitchCameraButton:YES showTorchButton:NO];
+}
+
+- (id)initWithCancelButtonTitle:(nullable NSString *)cancelTitle codeReader:(nonnull QRCodeReader *)codeReader startScanningAtLoad:(BOOL)startScanningAtLoad showSwitchCameraButton:(BOOL)showSwitchCameraButton showTorchButton:(BOOL)showTorchButton
+{
   if ((self = [super init])) {
-    self.view.backgroundColor = [UIColor blackColor];
-    
-    [self setupAVComponents];
-    [self configureDefaultComponents];
+    self.view.backgroundColor   = [UIColor blackColor];
+    self.codeReader             = codeReader;
+    self.startScanningAtLoad    = startScanningAtLoad;
+    self.showSwitchCameraButton = showSwitchCameraButton;
+    self.showTorchButton        = showTorchButton;
+
+    if (cancelTitle == nil) {
+      cancelTitle = NSLocalizedString(@"Cancel", @"Cancel");
+    }
+
     [self setupUIComponentsWithCancelButtonTitle:cancelTitle];
     [self setupAutoLayoutConstraints];
-    
-    [_cameraView.layer insertSublayer:self.previewLayer atIndex:0];
+
+    [_cameraView.layer insertSublayer:_codeReader.previewLayer atIndex:0];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification object:nil];
+
+    __weak typeof(self) weakSelf = self;
+
+    [codeReader setCompletionWithBlock:^(NSString *resultAsString) {
+      if (weakSelf.completionBlock != nil) {
+        weakSelf.completionBlock(resultAsString);
+      }
+
+      if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(reader:didScanResult:)]) {
+        [weakSelf.delegate reader:weakSelf didScanResult:resultAsString];
+      }
+    }];
   }
   return self;
 }
@@ -72,25 +124,52 @@
   return [[self alloc] initWithCancelButtonTitle:cancelTitle];
 }
 
++ (instancetype)readerWithMetadataObjectTypes:(NSArray *)metadataObjectTypes
+{
+  return [[self alloc] initWithMetadataObjectTypes:metadataObjectTypes];
+}
+
++ (instancetype)readerWithCancelButtonTitle:(NSString *)cancelTitle metadataObjectTypes:(NSArray *)metadataObjectTypes
+{
+  return [[self alloc] initWithCancelButtonTitle:cancelTitle metadataObjectTypes:metadataObjectTypes];
+}
+
++ (instancetype)readerWithCancelButtonTitle:(NSString *)cancelTitle codeReader:(QRCodeReader *)codeReader
+{
+  return [[self alloc] initWithCancelButtonTitle:cancelTitle codeReader:codeReader];
+}
+
++ (instancetype)readerWithCancelButtonTitle:(NSString *)cancelTitle codeReader:(QRCodeReader *)codeReader startScanningAtLoad:(BOOL)startScanningAtLoad
+{
+  return [[self alloc] initWithCancelButtonTitle:cancelTitle codeReader:codeReader startScanningAtLoad:startScanningAtLoad];
+}
+
++ (instancetype)readerWithCancelButtonTitle:(NSString *)cancelTitle codeReader:(QRCodeReader *)codeReader startScanningAtLoad:(BOOL)startScanningAtLoad showSwitchCameraButton:(BOOL)showSwitchCameraButton showTorchButton:(BOOL)showTorchButton
+{
+  return [[self alloc] initWithCancelButtonTitle:cancelTitle codeReader:codeReader startScanningAtLoad:startScanningAtLoad showSwitchCameraButton:showSwitchCameraButton showTorchButton:showTorchButton];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
   [super viewWillAppear:animated];
-  
-  [self startScanning];
+
+  if (_startScanningAtLoad) {
+    [self startScanning];
+  }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
   [self stopScanning];
-  
+
   [super viewWillDisappear:animated];
 }
 
 - (void)viewWillLayoutSubviews
 {
   [super viewWillLayoutSubviews];
-  
-  _previewLayer.frame = self.view.bounds;
+
+  _codeReader.previewLayer.frame = self.view.bounds;
 }
 
 - (BOOL)shouldAutorotate
@@ -98,30 +177,27 @@
   return YES;
 }
 
-#pragma mark - Managing the Orientation
+#pragma mark - Controlling the Reader
 
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-{
-  [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
-  
-  [_cameraView setNeedsDisplay];
-  
-  if (self.previewLayer.connection.isVideoOrientationSupported) {
-    self.previewLayer.connection.videoOrientation = [[self class] videoOrientationFromInterfaceOrientation:toInterfaceOrientation];
-  }
+- (void)startScanning {
+  [_codeReader startScanning];
 }
 
-+ (AVCaptureVideoOrientation)videoOrientationFromInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (void)stopScanning {
+  [_codeReader stopScanning];
+}
+
+#pragma mark - Managing the Orientation
+
+- (void)orientationChanged:(NSNotification *)notification
 {
-  switch (interfaceOrientation) {
-    case UIInterfaceOrientationLandscapeLeft:
-      return AVCaptureVideoOrientationLandscapeLeft;
-    case UIInterfaceOrientationLandscapeRight:
-      return AVCaptureVideoOrientationLandscapeRight;
-    case UIInterfaceOrientationPortrait:
-      return AVCaptureVideoOrientationPortrait;
-    default:
-      return AVCaptureVideoOrientationPortraitUpsideDown;
+  [_cameraView setNeedsDisplay];
+
+  if (_codeReader.previewLayer.connection.isVideoOrientationSupported) {
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+
+    _codeReader.previewLayer.connection.videoOrientation = [QRCodeReader videoOrientationFromInterfaceOrientation:
+                                                            orientation];
   }
 }
 
@@ -140,14 +216,31 @@
   _cameraView.translatesAutoresizingMaskIntoConstraints = NO;
   _cameraView.clipsToBounds                             = YES;
   [self.view addSubview:_cameraView];
-  
-  if (_frontDevice) {
+
+  [_codeReader.previewLayer setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+
+  if ([_codeReader.previewLayer.connection isVideoOrientationSupported]) {
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+
+    _codeReader.previewLayer.connection.videoOrientation = [QRCodeReader videoOrientationFromInterfaceOrientation:orientation];
+  }
+
+  if (_showSwitchCameraButton && [_codeReader hasFrontDevice]) {
     _switchCameraButton = [[QRCameraSwitchButton alloc] init];
+    
     [_switchCameraButton setTranslatesAutoresizingMaskIntoConstraints:false];
     [_switchCameraButton addTarget:self action:@selector(switchCameraAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_switchCameraButton];
   }
-  
+
+  if (_showTorchButton && [_codeReader isTorchAvailable]) {
+    _toggleTorchButton = [[QRToggleTorchButton alloc] init];
+
+    [_toggleTorchButton setTranslatesAutoresizingMaskIntoConstraints:false];
+    [_toggleTorchButton addTarget:self action:@selector(toggleTorchAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_toggleTorchButton];
+  }
+
   self.cancelButton                                       = [[UIButton alloc] init];
   _cancelButton.translatesAutoresizingMaskIntoConstraints = NO;
   [_cancelButton setTitle:cancelButtonTitle forState:UIControlStateNormal];
@@ -159,91 +252,50 @@
 - (void)setupAutoLayoutConstraints
 {
   NSDictionary *views = NSDictionaryOfVariableBindings(_cameraView, _cancelButton);
-  
+
   [self.view addConstraints:
    [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_cameraView][_cancelButton(40)]|" options:0 metrics:nil views:views]];
   [self.view addConstraints:
    [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_cameraView]|" options:0 metrics:nil views:views]];
   [self.view addConstraints:
    [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_cancelButton]-|" options:0 metrics:nil views:views]];
+
+  id topLayoutGuide = self.topLayoutGuide;
   
   if (_switchCameraButton) {
-    NSDictionary *switchViews = NSDictionaryOfVariableBindings(_switchCameraButton);
-    
+    NSDictionary *switchViews = NSDictionaryOfVariableBindings(_switchCameraButton, topLayoutGuide);
+
     [self.view addConstraints:
-     [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_switchCameraButton(50)]" options:0 metrics:nil views:switchViews]];
+     [NSLayoutConstraint constraintsWithVisualFormat:@"V:[topLayoutGuide]-[_switchCameraButton(50)]" options:0 metrics:nil views:switchViews]];
     [self.view addConstraints:
      [NSLayoutConstraint constraintsWithVisualFormat:@"H:[_switchCameraButton(70)]|" options:0 metrics:nil views:switchViews]];
   }
-}
 
-- (void)setupAVComponents
-{
-  self.defaultDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-  
-  if (_defaultDevice) {
-    self.defaultDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:_defaultDevice error:nil];
-    self.metadataOutput     = [[AVCaptureMetadataOutput alloc] init];
-    self.session            = [[AVCaptureSession alloc] init];
-    self.previewLayer       = [AVCaptureVideoPreviewLayer layerWithSession:self.session];
-    
-    for (AVCaptureDevice *device in [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo]) {
-      if (device.position == AVCaptureDevicePositionFront) {
-        self.frontDevice = device;
-      }
-    }
-    
-    if (_frontDevice) {
-      self.frontDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:_frontDevice error:nil];
-    }
-  }
-}
+  if (_toggleTorchButton) {
+    NSDictionary *torchViews = NSDictionaryOfVariableBindings(_toggleTorchButton, topLayoutGuide);
 
-- (void)configureDefaultComponents
-{
-  [_session addOutput:_metadataOutput];
-  
-  if (_defaultDeviceInput) {
-    [_session addInput:_defaultDeviceInput];
-  }
-  
-  [_metadataOutput setMetadataObjectsDelegate:self queue:dispatch_get_main_queue()];
-  if ([[_metadataOutput availableMetadataObjectTypes] containsObject:AVMetadataObjectTypeQRCode]) {
-    [_metadataOutput setMetadataObjectTypes:@[ AVMetadataObjectTypeQRCode ]];
-  }
-  [_previewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
-  [_previewLayer setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-  
-  if ([_previewLayer.connection isVideoOrientationSupported]) {
-    _previewLayer.connection.videoOrientation = [[self class] videoOrientationFromInterfaceOrientation:self.interfaceOrientation];
+    [self.view addConstraints:
+     [NSLayoutConstraint constraintsWithVisualFormat:@"V:[topLayoutGuide]-[_toggleTorchButton(50)]" options:0 metrics:nil views:torchViews]];
+    [self.view addConstraints:
+     [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_toggleTorchButton(70)]" options:0 metrics:nil views:torchViews]];
   }
 }
 
 - (void)switchDeviceInput
 {
-  if (_frontDeviceInput) {
-    [_session beginConfiguration];
-    
-    AVCaptureDeviceInput *currentInput = [_session.inputs firstObject];
-    [_session removeInput:currentInput];
-    
-    AVCaptureDeviceInput *newDeviceInput = (currentInput.device.position == AVCaptureDevicePositionFront) ? _defaultDeviceInput : _frontDeviceInput;
-    [_session addInput:newDeviceInput];
-    
-    [_session commitConfiguration];
-  }
+  [_codeReader switchDeviceInput];
 }
 
 #pragma mark - Catching Button Events
 
 - (void)cancelAction:(UIButton *)button
 {
-  [self stopScanning];
-  
+  [_codeReader stopScanning];
+
   if (_completionBlock) {
     _completionBlock(nil);
   }
-  
+
   if (_delegate && [_delegate respondsToSelector:@selector(readerDidCancel:)]) {
     [_delegate readerDidCancel:self];
   }
@@ -254,70 +306,9 @@
   [self switchDeviceInput];
 }
 
-#pragma mark - Controlling Reader
-
-- (void)startScanning;
+- (void)toggleTorchAction:(UIButton *)button
 {
-  if (![self.session isRunning]) {
-    [self.session startRunning];
-  }
-}
-
-- (void)stopScanning;
-{
-  if ([self.session isRunning]) {
-    [self.session stopRunning];
-  }
-}
-
-#pragma mark - AVCaptureMetadataOutputObjects Delegate Methods
-
-- (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection
-{
-  for(AVMetadataObject *current in metadataObjects) {
-    if ([current isKindOfClass:[AVMetadataMachineReadableCodeObject class]]
-        && [current.type isEqualToString:AVMetadataObjectTypeQRCode]) {
-      NSString *scannedResult = [(AVMetadataMachineReadableCodeObject *) current stringValue];
-      
-      if (_completionBlock) {
-        _completionBlock(scannedResult);
-      }
-      
-      if (_delegate && [_delegate respondsToSelector:@selector(reader:didScanResult:)]) {
-        [_delegate reader:self didScanResult:scannedResult];
-      }
-      
-      break;
-    }
-  }
-}
-
-#pragma mark - Checking the Metadata Items Types
-
-+ (BOOL)isAvailable
-{
-  @autoreleasepool {
-    AVCaptureDevice *captureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-    
-    if (!captureDevice) {
-      return NO;
-    }
-    
-    NSError *error;
-    AVCaptureDeviceInput *deviceInput = [AVCaptureDeviceInput deviceInputWithDevice:captureDevice error:&error];
-    
-    if (!deviceInput || error) {
-      return NO;
-    }
-    
-    AVCaptureMetadataOutput *output = [[AVCaptureMetadataOutput alloc] init];
-    
-    if (![output.availableMetadataObjectTypes containsObject:AVMetadataObjectTypeQRCode]) {
-      return NO;
-    }
-    
-    return YES;
-  }
+  [_codeReader toggleTorch];
 }
 
 @end

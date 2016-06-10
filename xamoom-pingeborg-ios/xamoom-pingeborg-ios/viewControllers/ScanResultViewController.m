@@ -50,9 +50,9 @@
   [super viewDidAppear:animated];
   
   //analytics
-  [[Analytics sharedObject] sendEventWithCategorie:@"pingeb.org" andAction:@"Show content" andLabel:self.result.content.contentId andValue:nil];
+  [[Analytics sharedObject] sendEventWithCategorie:@"pingeb.org" andAction:@"Show content" andLabel:self.result.ID andValue:nil];
   
-  self.contentBlocks.content = self.result.content;
+  [self.contentBlocks displayContent:self.result];
   [self.hud dismiss];
 }
 
@@ -61,7 +61,7 @@
   [[NSNotificationCenter defaultCenter] postNotificationName:@"pauseAllSounds" object:self];
   
   //reload tableViews, when the newest scanned artist is open (So the "discover" overlay disappears)
-  if ([self.result.content.contentId isEqualToString: [[Globals sharedObject] savedArtistsAsArray].lastObject]) {
+  if ([self.result.ID isEqualToString: [[Globals sharedObject] savedArtistsAsArray].lastObject]) {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"updateAllArtistLists" object:self];
   }
 }
@@ -121,7 +121,7 @@
 }
 
 - (void)setupContentBlocks {
-  self.contentBlocks = [[XMMContentBlocks alloc] initWithTableView:self.tableView language:[XMMEnduserApi sharedInstance].systemLanguage showContentLinks:YES];
+  self.contentBlocks = [[XMMContentBlocks alloc] initWithTableView:self.tableView api:[XMMEnduserApi sharedInstance]];
   
   self.contentBlocks.delegate = self;
   self.contentBlocks.linkColor = [Globals sharedObject].pingeborgLinkColor;

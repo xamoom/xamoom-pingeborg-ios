@@ -1,0 +1,1 @@
+../../../../../../xamoom-ios-sdk/XamoomSDK/Classes/XMMQuery.h

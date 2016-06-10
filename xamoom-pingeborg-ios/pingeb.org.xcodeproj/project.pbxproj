@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		594E123E6C9FD768422C1CEE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C530CDEFFEDDFCABBEC918B0 /* libPods.a */; };
+		79DC49A6DAEB906DC669BE74 /* libPods-pingeb.org.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 661FA2D3378D47C4579F159E /* libPods-pingeb.org.a */; };
 		880246DC1B57AF2E00E585CE /* Analytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 880246DB1B57AF2E00E585CE /* Analytics.m */; };
 		880246E11B57CD9000E585CE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 880246DF1B57CCC400E585CE /* GoogleService-Info.plist */; };
 		88052D7B1AE103C300AB433D /* Globals.m in Sources */ = {isa = PBXBuildFile; fileRef = 88052D7A1AE103C300AB433D /* Globals.m */; };
@@ -20,8 +20,6 @@
 		8814585D1B01EE8B0024E6F4 /* FeedItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8814584C1B01EE8B0024E6F4 /* FeedItemCell.xib */; };
 		8814585E1B01EE8B0024E6F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8814584D1B01EE8B0024E6F4 /* Main.storyboard */; };
 		883574801AB1CCF40099DF4A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8835747F1AB1CCF40099DF4A /* QuartzCore.framework */; };
-		8860DA791AE78CB800DF2239 /* libSVGKit-iOS.1.2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8860DA771AE78CB800DF2239 /* libSVGKit-iOS.1.2.0.a */; };
-		8860DA7A1AE78CB800DF2239 /* usr in Resources */ = {isa = PBXBuildFile; fileRef = 8860DA781AE78CB800DF2239 /* usr */; };
 		8860DA7D1AE78D0500DF2239 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8860DA7C1AE78D0500DF2239 /* CoreText.framework */; };
 		8860DA7F1AE78D0E00DF2239 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8860DA7E1AE78D0E00DF2239 /* CoreImage.framework */; };
 		8860DA811AE78D2C00DF2239 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8860DA801AE78D2C00DF2239 /* libxml2.dylib */; };
@@ -43,7 +41,6 @@
 		88BA020F1AA859F90091A43C /* xamoom_pingeborg_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA020E1AA859F90091A43C /* xamoom_pingeborg_iosTests.m */; };
 		88CBAEE11AA9EC9E000E480A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88CBAEE01AA9EC9E000E480A /* MapKit.framework */; };
 		88DB74DC1B0217DA0064EE7E /* ScanResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DB74DB1B0217DA0064EE7E /* ScanResultViewController.m */; };
-		88E2FAEA1AF74D5800917AFB /* UIImage+animatedGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 88E2FAE91AF74D5800917AFB /* UIImage+animatedGIF.m */; };
 		88EB481C1B56390D00A6C63F /* apikey.txt in Resources */ = {isa = PBXBuildFile; fileRef = 88EB481B1B56390D00A6C63F /* apikey.txt */; };
 		88EB481D1B563C8700A6C63F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88BA01FF1AA859F90091A43C /* Images.xcassets */; };
 		88F038471B0E0D1200E17573 /* XMMImageUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F038461B0E0D1200E17573 /* XMMImageUtility.m */; };
@@ -72,8 +69,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		081CE084B2E648F4E71D7D2A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		48251170F65DFEEAACD48338 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		661FA2D3378D47C4579F159E /* libPods-pingeb.org.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-pingeb.org.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A7AAAFE8FE8D63A51F10A08 /* Pods-pingeb.org.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pingeb.org.debug.xcconfig"; path = "Pods/Target Support Files/Pods-pingeb.org/Pods-pingeb.org.debug.xcconfig"; sourceTree = "<group>"; };
 		880246DA1B57AF2E00E585CE /* Analytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Analytics.h; sourceTree = "<group>"; };
 		880246DB1B57AF2E00E585CE /* Analytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Analytics.m; sourceTree = "<group>"; };
 		880246DF1B57CCC400E585CE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -97,8 +94,6 @@
 		8814584C1B01EE8B0024E6F4 /* FeedItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedItemCell.xib; sourceTree = "<group>"; };
 		8814584D1B01EE8B0024E6F4 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		8835747F1AB1CCF40099DF4A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		8860DA771AE78CB800DF2239 /* libSVGKit-iOS.1.2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libSVGKit-iOS.1.2.0.a"; sourceTree = "<group>"; };
-		8860DA781AE78CB800DF2239 /* usr */ = {isa = PBXFileReference; lastKnownFileType = folder; path = usr; sourceTree = "<group>"; };
 		8860DA7C1AE78D0500DF2239 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		8860DA7E1AE78D0E00DF2239 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		8860DA801AE78D2C00DF2239 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -110,21 +105,11 @@
 		888E74511C18256E00233AA1 /* ExtendedTabbarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ExtendedTabbarView.xib; path = "xamoom-pingeborg-ios/views/ExtendedTabbarView.xib"; sourceTree = SOURCE_ROOT; };
 		888E74531C18322B00233AA1 /* ExtendedTabbarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExtendedTabbarView.h; path = "xamoom-pingeborg-ios/views/ExtendedTabbarView.h"; sourceTree = SOURCE_ROOT; };
 		888E74541C18322B00233AA1 /* ExtendedTabbarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExtendedTabbarView.m; path = "xamoom-pingeborg-ios/views/ExtendedTabbarView.m"; sourceTree = SOURCE_ROOT; };
-		889BE4241B38290D002850D5 /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
-		889BE4251B38290D002850D5 /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIDictionaryBuilder.h; sourceTree = "<group>"; };
-		889BE42A1B38290D002850D5 /* GAIFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIFields.h; sourceTree = "<group>"; };
-		889BE42B1B38290D002850D5 /* GAILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAILogger.h; sourceTree = "<group>"; };
-		889BE42C1B38290D002850D5 /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
-		889BE42D1B38290D002850D5 /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
 		889BE42F1B38295E002850D5 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
 		889BE4311B3829A0002850D5 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		889BE4331B3829B1002850D5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		889BE4351B3829BF002850D5 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		889BE4371B3829CA002850D5 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		889BE4391B382C8D002850D5 /* GAIEcommerceFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceFields.h; sourceTree = "<group>"; };
-		889BE43A1B382C8D002850D5 /* GAIEcommerceProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceProduct.h; sourceTree = "<group>"; };
-		889BE43B1B382C8D002850D5 /* GAIEcommerceProductAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceProductAction.h; sourceTree = "<group>"; };
-		889BE43C1B382C8D002850D5 /* GAIEcommercePromotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommercePromotion.h; sourceTree = "<group>"; };
 		889BE43D1B3854C5002850D5 /* MainTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainTabBarController.m; path = "xamoom-pingeborg-ios/viewControllers/navigation/MainTabBarController.m"; sourceTree = SOURCE_ROOT; };
 		88A62C4E1AD55F2C00EAD4C3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		88A62C521AD561DB00EAD4C3 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -142,12 +127,10 @@
 		88DB74DA1B0217DA0064EE7E /* ScanResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanResultViewController.h; sourceTree = "<group>"; };
 		88DB74DB1B0217DA0064EE7E /* ScanResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanResultViewController.m; sourceTree = "<group>"; };
 		88E243191B14505000E9E208 /* pingeb.org-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "pingeb.org-Prefix.pch"; sourceTree = SOURCE_ROOT; };
-		88E2FAE81AF74D5800917AFB /* UIImage+animatedGIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+animatedGIF.h"; sourceTree = "<group>"; };
-		88E2FAE91AF74D5800917AFB /* UIImage+animatedGIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+animatedGIF.m"; sourceTree = "<group>"; };
 		88EB481B1B56390D00A6C63F /* apikey.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = apikey.txt; sourceTree = "<group>"; };
 		88F038451B0E0D1200E17573 /* XMMImageUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMMImageUtility.h; sourceTree = "<group>"; };
 		88F038461B0E0D1200E17573 /* XMMImageUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMMImageUtility.m; sourceTree = "<group>"; };
-		C530CDEFFEDDFCABBEC918B0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3C3C2BE620C2FEB34D47145 /* Pods-pingeb.org.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pingeb.org.release.xcconfig"; path = "Pods/Target Support Files/Pods-pingeb.org/Pods-pingeb.org.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,8 +151,7 @@
 				88A62C4F1AD55F2C00EAD4C3 /* AVFoundation.framework in Frameworks */,
 				883574801AB1CCF40099DF4A /* QuartzCore.framework in Frameworks */,
 				88CBAEE11AA9EC9E000E480A /* MapKit.framework in Frameworks */,
-				8860DA791AE78CB800DF2239 /* libSVGKit-iOS.1.2.0.a in Frameworks */,
-				594E123E6C9FD768422C1CEE /* libPods.a in Frameworks */,
+				79DC49A6DAEB906DC669BE74 /* libPods-pingeb.org.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,40 +210,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		8860DA7B1AE78CDF00DF2239 /* SVGKit */ = {
-			isa = PBXGroup;
-			children = (
-				8860DA771AE78CB800DF2239 /* libSVGKit-iOS.1.2.0.a */,
-				8860DA781AE78CB800DF2239 /* usr */,
-			);
-			name = SVGKit;
-			sourceTree = "<group>";
-		};
-		889BE42E1B382916002850D5 /* Google Analytics */ = {
-			isa = PBXGroup;
-			children = (
-				889BE4241B38290D002850D5 /* GAI.h */,
-				889BE4251B38290D002850D5 /* GAIDictionaryBuilder.h */,
-				889BE4391B382C8D002850D5 /* GAIEcommerceFields.h */,
-				889BE43A1B382C8D002850D5 /* GAIEcommerceProduct.h */,
-				889BE43B1B382C8D002850D5 /* GAIEcommerceProductAction.h */,
-				889BE43C1B382C8D002850D5 /* GAIEcommercePromotion.h */,
-				889BE42A1B38290D002850D5 /* GAIFields.h */,
-				889BE42B1B38290D002850D5 /* GAILogger.h */,
-				889BE42C1B38290D002850D5 /* GAITrackedViewController.h */,
-				889BE42D1B38290D002850D5 /* GAITracker.h */,
-			);
-			name = "Google Analytics";
-			sourceTree = "<group>";
-		};
 		88BA01E61AA859F90091A43C = {
 			isa = PBXGroup;
 			children = (
 				88BA01F11AA859F90091A43C /* xamoom-pingeborg-ios */,
 				88BA020B1AA859F90091A43C /* xamoom-pingeborg-iosTests */,
 				88BA01F01AA859F90091A43C /* Products */,
-				F58201F992BD4B4517D1E332 /* Pods */,
 				B091DC0989CBE4B0B40B108B /* Frameworks */,
+				F816285B85C0D2E014595D1A /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -287,8 +243,6 @@
 				8814583B1B01EE8B0024E6F4 /* ViewControllers */,
 				881458491B01EE8B0024E6F4 /* Views */,
 				88E2431A1B14507200E9E208 /* XMMImageUtility */,
-				8860DA7B1AE78CDF00DF2239 /* SVGKit */,
-				889BE42E1B382916002850D5 /* Google Analytics */,
 				88BA01F21AA859F90091A43C /* Supporting Files */,
 				88BA01FF1AA859F90091A43C /* Images.xcassets */,
 			);
@@ -329,8 +283,6 @@
 			children = (
 				88F038451B0E0D1200E17573 /* XMMImageUtility.h */,
 				88F038461B0E0D1200E17573 /* XMMImageUtility.m */,
-				88E2FAE81AF74D5800917AFB /* UIImage+animatedGIF.h */,
-				88E2FAE91AF74D5800917AFB /* UIImage+animatedGIF.m */,
 			);
 			name = XMMImageUtility;
 			sourceTree = "<group>";
@@ -354,16 +306,16 @@
 				88A62C4E1AD55F2C00EAD4C3 /* AVFoundation.framework */,
 				8835747F1AB1CCF40099DF4A /* QuartzCore.framework */,
 				88CBAEE01AA9EC9E000E480A /* MapKit.framework */,
-				C530CDEFFEDDFCABBEC918B0 /* libPods.a */,
+				661FA2D3378D47C4579F159E /* libPods-pingeb.org.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		F58201F992BD4B4517D1E332 /* Pods */ = {
+		F816285B85C0D2E014595D1A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				081CE084B2E648F4E71D7D2A /* Pods.debug.xcconfig */,
-				48251170F65DFEEAACD48338 /* Pods.release.xcconfig */,
+				7A7AAAFE8FE8D63A51F10A08 /* Pods-pingeb.org.debug.xcconfig */,
+				B3C3C2BE620C2FEB34D47145 /* Pods-pingeb.org.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -375,13 +327,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 88BA02121AA859F90091A43C /* Build configuration list for PBXNativeTarget "pingeb.org" */;
 			buildPhases = (
-				67C0B652B053E0CD90BF6C1D /* Check Pods Manifest.lock */,
+				D0B697EB8708C981F5277141 /* [CP] Check Pods Manifest.lock */,
 				88BA01EB1AA859F90091A43C /* Sources */,
 				88BA01EC1AA859F90091A43C /* Frameworks */,
 				88BA01ED1AA859F90091A43C /* Resources */,
-				90EA120C81E9206AB860F36C /* Copy Pods Resources */,
 				88F1E92E1B15A94800C60504 /* CopyFiles */,
-				8972175E373B4ADCF0AD2779 /* Embed Pods Frameworks */,
+				85F80058693BC1F783843D8A /* [CP] Embed Pods Frameworks */,
+				90F828CE026235F6250759C9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -467,7 +419,6 @@
 				8814585D1B01EE8B0024E6F4 /* FeedItemCell.xib in Resources */,
 				88BA02031AA859F90091A43C /* LaunchScreen.xib in Resources */,
 				88EB481C1B56390D00A6C63F /* apikey.txt in Resources */,
-				8860DA7A1AE78CB800DF2239 /* usr in Resources */,
 				8814585E1B01EE8B0024E6F4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -482,49 +433,49 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		67C0B652B053E0CD90BF6C1D /* Check Pods Manifest.lock */ = {
+		85F80058693BC1F783843D8A /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-pingeb.org/Pods-pingeb.org-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		90F828CE026235F6250759C9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-pingeb.org/Pods-pingeb.org-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D0B697EB8708C981F5277141 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		8972175E373B4ADCF0AD2779 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		90EA120C81E9206AB860F36C /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -536,7 +487,6 @@
 			files = (
 				88DB74DC1B0217DA0064EE7E /* ScanResultViewController.m in Sources */,
 				8814585C1B01EE8B0024E6F4 /* FeedItemCell.m in Sources */,
-				88E2FAEA1AF74D5800917AFB /* UIImage+animatedGIF.m in Sources */,
 				88BA01F81AA859F90091A43C /* AppDelegate.m in Sources */,
 				881458561B01EE8B0024E6F4 /* AboutViewController.m in Sources */,
 				88052D7B1AE103C300AB433D /* Globals.m in Sources */,
@@ -596,7 +546,6 @@
 /* Begin XCBuildConfiguration section */
 		88BA02101AA859F90091A43C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 081CE084B2E648F4E71D7D2A /* Pods.debug.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -639,7 +588,6 @@
 		};
 		88BA02111AA859F90091A43C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 48251170F65DFEEAACD48338 /* Pods.release.xcconfig */;
 			buildSettings = {
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -675,7 +623,7 @@
 		};
 		88BA02131AA859F90091A43C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 081CE084B2E648F4E71D7D2A /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 7A7AAAFE8FE8D63A51F10A08 /* Pods-pingeb.org.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -684,11 +632,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "pingeb.org-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"${SRCROOT}/**",
-				);
 				INFOPLIST_FILE = "xamoom-pingeborg-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -704,13 +647,12 @@
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = 1;
-				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
 		};
 		88BA02141AA859F90091A43C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 48251170F65DFEEAACD48338 /* Pods.release.xcconfig */;
+			baseConfigurationReference = B3C3C2BE620C2FEB34D47145 /* Pods-pingeb.org.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -719,27 +661,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "pingeb.org-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
-				HEADER_SEARCH_PATHS = (
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
-					"\"${PODS_ROOT}/Headers/Public/ISO8601DateFormatterValueTransformer\"",
-					"\"${PODS_ROOT}/Headers/Public/JGProgressHUD\"",
-					"\"${PODS_ROOT}/Headers/Public/QRCodeReaderViewController\"",
-					"\"${PODS_ROOT}/Headers/Public/REMenu\"",
-					"\"${PODS_ROOT}/Headers/Public/RKValueTransformers\"",
-					"\"${PODS_ROOT}/Headers/Public/RestKit\"",
-					"\"${PODS_ROOT}/Headers/Public/RestKit/CoreData\"",
-					"\"${PODS_ROOT}/Headers/Public/RestKit/Network\"",
-					"\"${PODS_ROOT}/Headers/Public/RestKit/ObjectMapping\"",
-					"\"${PODS_ROOT}/Headers/Public/RestKit/Support\"",
-					"\"${PODS_ROOT}/Headers/Public/SMCalloutView\"",
-					"\"${PODS_ROOT}/Headers/Public/SOCKit\"",
-					"\"${PODS_ROOT}/Headers/Public/TransitionKit\"",
-					"\"${PODS_ROOT}/Headers/Public/Vendor/LibComponentLogging/Core\"",
-					"\"${PODS_ROOT}/Headers/Public/xamoom-ios-sdk\"",
-					"\"${PODS_ROOT}/Headers/Public/youtube-ios-player-helper\"",
-					"${SRCROOT}/**",
-				);
 				INFOPLIST_FILE = "xamoom-pingeborg-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -755,13 +676,11 @@
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = 1;
-				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
 		};
 		88BA02161AA859F90091A43C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 081CE084B2E648F4E71D7D2A /* Pods.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -782,7 +701,6 @@
 		};
 		88BA02171AA859F90091A43C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 48251170F65DFEEAACD48338 /* Pods.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (

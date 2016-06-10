@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xLe-gR-03r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xLe-gR-03r">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
         <!--Navigation View Controller-->
@@ -12,7 +12,6 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="UMV-yg-V7g">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                         <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -40,7 +39,6 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="BNS-G0-8LQ">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
-                                <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="g8c-6b-oU9" id="aRl-8X-aO1"/>
@@ -48,7 +46,6 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="BNS-G0-8LQ" secondAttribute="trailing" id="9w2-t5-NH2"/>
@@ -80,7 +77,6 @@
                     <view key="view" contentMode="scaleToFill" id="bKd-Ua-hIb" customClass="QRCodeReaderView">
                         <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" tag="3" title="QR Scan" image="QR" id="Vcg-w0-tv5"/>
@@ -103,7 +99,6 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gHW-kj-eSX">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
-                                <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="SWA-yf-kQY" id="tui-ag-JOj"/>
@@ -115,14 +110,12 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Berühren zum Schließen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xuh-Kn-MLk">
                                         <rect key="frame" x="241" y="467" width="118" height="12"/>
-                                        <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scanne jede Woche einen pingeb.org-Sticker um, den neuesten Künstler freizuschalten" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YVS-B9-OUd">
                                         <rect key="frame" x="8" y="79" width="239" height="76"/>
-                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="239" id="mAh-N9-Ecd"/>
                                             <constraint firstAttribute="height" constant="76" id="rBB-29-q14"/>
@@ -134,7 +127,6 @@
                                     </label>
                                     <imageView clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow-bended" translatesAutoresizingMaskIntoConstraints="NO" id="l8V-bZ-cPM">
                                         <rect key="frame" x="212" y="79" width="35" height="35"/>
-                                        <animations/>
                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="35" id="XZn-rM-XKH"/>
@@ -143,7 +135,6 @@
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Künstler haben wir für dich schon freigeschalten" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BFl-ai-jwO">
                                         <rect key="frame" x="405" y="266" width="187" height="43"/>
-                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="187" id="5vO-C8-0PQ"/>
                                             <constraint firstAttribute="height" constant="43" id="Ihg-WS-jC0"/>
@@ -155,7 +146,6 @@
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yt1-n1-yUk">
                                         <rect key="frame" x="364" y="263" width="33" height="49"/>
-                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="55" id="N34-k6-IUx"/>
                                             <constraint firstAttribute="width" constant="33" id="yih-1q-xnX"/>
@@ -172,14 +162,12 @@
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="3arrows-bended" translatesAutoresizingMaskIntoConstraints="NO" id="Uek-AW-JQp">
                                         <rect key="frame" x="322" y="235" width="34" height="106"/>
-                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="106" id="TGp-XZ-Gh8"/>
                                             <constraint firstAttribute="width" constant="34" id="X5U-Eg-MJ2"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
-                                <animations/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <constraints>
@@ -203,7 +191,6 @@
                                 </connections>
                             </view>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="aqc-vz-hDX" secondAttribute="trailing" id="3d1-89-gGG"/>
@@ -247,7 +234,6 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="46F-Jo-ObI">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
-                                <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="evs-Oh-Jun" id="zWi-24-EDr"/>
@@ -255,7 +241,6 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="46F-Jo-ObI" firstAttribute="top" secondItem="ORa-fX-SH4" secondAttribute="bottom" id="F68-UI-eGx"/>
@@ -287,11 +272,9 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Cm1-eu-qfd">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Cm1-eu-qfd" firstAttribute="top" secondItem="98c-7r-uZ6" secondAttribute="top" id="Gt1-HH-vyk"/>
@@ -317,7 +300,6 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="3wJ-8M-eMu">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </tabBar>
                     <connections>
                         <segue destination="g8c-6b-oU9" kind="show" identifier="showScanResult" id="TM5-d9-Bxu"/>
@@ -345,7 +327,6 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="grm-IJ-tqb" userLabel="viewForMap">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
-                                <animations/>
                                 <color key="backgroundColor" white="0.91141550159999996" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view hidden="YES" alpha="0.89999999999999991" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N6O-Vd-Jeg" userLabel="InstructionView">
@@ -353,14 +334,12 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Berühren zum Schließen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mSQ-hE-GZt">
                                         <rect key="frame" x="241" y="467" width="118" height="12"/>
-                                        <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow-bended-down" translatesAutoresizingMaskIntoConstraints="NO" id="Fzc-9f-Kn2">
                                         <rect key="frame" x="224" y="379" width="91" height="49"/>
-                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="91" id="0c1-56-tRv"/>
                                             <constraint firstAttribute="height" constant="49" id="b4K-L6-8wR"/>
@@ -368,7 +347,6 @@
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Du bist in der Nähe eines pingeb.org-Stickers? Dann kannst du auch ohne QR-Code entdecken!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Guv-VM-KZR">
                                         <rect key="frame" x="8" y="315" width="307" height="84"/>
-                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="84" id="Fpt-B7-huI"/>
                                             <constraint firstAttribute="width" constant="307" id="V8p-F7-tmb"/>
@@ -378,7 +356,6 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <animations/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <constraints>
@@ -394,7 +371,6 @@
                                 </connections>
                             </view>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="taP-xd-o0S" firstAttribute="top" secondItem="grm-IJ-tqb" secondAttribute="bottom" id="7do-sh-Pi9"/>
