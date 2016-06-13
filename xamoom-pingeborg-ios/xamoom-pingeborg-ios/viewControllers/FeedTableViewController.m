@@ -47,7 +47,6 @@ NSString const *kFeedItemCellIdentifier = @"FeedItemCell";
   [[Analytics sharedObject] setScreenName:@"Artist List"];
   [[Analytics sharedObject] sendEventWithCategorie:@"App" andAction:@"Started" andLabel:@"pingeb.org app started." andValue:nil];
   
-  self.parentViewController.navigationItem.title = NSLocalizedString(@"pingeb.org Carinthia", nil);
   [self.tabBarItem setSelectedImage:[UIImage imageNamed:@"home_filled"]];
   
   self.itemsToDisplay = [[NSMutableArray alloc] init];
@@ -63,6 +62,10 @@ NSString const *kFeedItemCellIdentifier = @"FeedItemCell";
   // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+  self.parentViewController.navigationItem.title = NSLocalizedString(@"pingeb.org Carinthia", nil);
+}
+
 -(void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
   //load artists, if there are none
@@ -72,6 +75,11 @@ NSString const *kFeedItemCellIdentifier = @"FeedItemCell";
   } else {
     [self.feedTableView reloadData];
   }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+  self.parentViewController.navigationItem.title = nil;
+
 }
 
 - (void)viewDidDisappear:(BOOL)animated {

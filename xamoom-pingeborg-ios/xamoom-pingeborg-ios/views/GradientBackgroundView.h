@@ -11,5 +11,8 @@
 @interface GradientBackgroundView : UIView
 
 @property (strong, nonatomic) CAGradientLayer *gradientLayer;
+@property (strong, nonatomic) UIColor *firstColor;
+@property (strong, nonatomic) UIColor *secondColor;
+@property (nonatomic) double opacity;
 
 @end

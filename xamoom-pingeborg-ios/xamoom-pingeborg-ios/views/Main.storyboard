@@ -261,7 +261,7 @@
         <!--Artist Detail View Controller-->
         <scene sceneID="5HL-de-DCB">
             <objects>
-                <viewController storyboardIdentifier="ArtistDetailView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="laG-KW-rW7" customClass="ArtistDetailViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ArtistDetailView" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="laG-KW-rW7" customClass="ArtistDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="e9S-Jp-gkL"/>
                         <viewControllerLayoutGuide type="bottom" id="C4i-Lk-Hgz"/>
@@ -270,20 +270,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Cm1-eu-qfd">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Cm1-eu-qfd">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="Fz7-CG-95Y">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oxv-CI-0Sn">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstItem="oxv-CI-0Sn" firstAttribute="leading" secondItem="Fz7-CG-95Y" secondAttribute="leading" id="Q6q-5g-F5H"/>
+                                        <constraint firstAttribute="trailing" secondItem="oxv-CI-0Sn" secondAttribute="trailing" id="RUC-b0-gxb"/>
+                                        <constraint firstItem="oxv-CI-0Sn" firstAttribute="top" secondItem="Fz7-CG-95Y" secondAttribute="top" id="fHC-dY-vbr"/>
+                                        <constraint firstAttribute="bottom" secondItem="oxv-CI-0Sn" secondAttribute="bottom" id="gpv-4J-CTY"/>
+                                    </constraints>
+                                </view>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Cm1-eu-qfd" firstAttribute="top" secondItem="98c-7r-uZ6" secondAttribute="top" id="Gt1-HH-vyk"/>
-                            <constraint firstItem="C4i-Lk-Hgz" firstAttribute="top" secondItem="Cm1-eu-qfd" secondAttribute="bottom" id="Kf3-Vt-bzf"/>
                             <constraint firstItem="Cm1-eu-qfd" firstAttribute="leading" secondItem="98c-7r-uZ6" secondAttribute="leading" id="hYb-Ma-FAQ"/>
+                            <constraint firstItem="Cm1-eu-qfd" firstAttribute="top" secondItem="98c-7r-uZ6" secondAttribute="top" id="jly-Pm-5Gu"/>
                             <constraint firstAttribute="trailing" secondItem="Cm1-eu-qfd" secondAttribute="trailing" id="m3r-cv-kJp"/>
+                            <constraint firstAttribute="bottom" secondItem="Cm1-eu-qfd" secondAttribute="bottom" id="xxo-qW-D67"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="headerImageView" destination="oxv-CI-0Sn" id="EWq-Zg-k9m"/>
                         <outlet property="tableView" destination="Cm1-eu-qfd" id="But-Hv-pbl"/>
                     </connections>
                 </viewController>

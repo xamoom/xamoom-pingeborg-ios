@@ -10,9 +10,17 @@
 
 @implementation GradientBackgroundView
 
+- (instancetype)initWithFrame:(CGRect)frame {
+  self = [super initWithFrame:frame];
+  [self addBackgroundGradient];
+  self.opacity = 1.0f;
+  return self;
+}
+
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   [self addBackgroundGradient];
+  self.opacity = 1.0f;
   return self;
 }
 
@@ -24,10 +32,31 @@
 - (void)addBackgroundGradient {
   self.gradientLayer = [CAGradientLayer layer];
   self.gradientLayer.frame = self.bounds;
-  self.gradientLayer.colors = [NSArray arrayWithObjects:(id)[[UIColor clearColor] CGColor], (id)[[UIColor blackColor] CGColor], nil];
-  self.gradientLayer.opacity = 0.7f;
+  self.gradientLayer.colors = [NSArray arrayWithObjects:(id)[self.firstColor CGColor], (id)[self.secondColor CGColor], nil];
+  self.gradientLayer.opacity = self.opacity;
   
   [self.layer insertSublayer:self.gradientLayer atIndex:0];
+}
+
+- (void)setFirstColor:(UIColor *)firstColor {
+  _firstColor = firstColor;
+  
+  [self.gradientLayer removeFromSuperlayer];
+  [self addBackgroundGradient];
+}
+
+- (void)setSecondColor:(UIColor *)secondColor {
+  _secondColor = secondColor;
+  
+  [self.gradientLayer removeFromSuperlayer];
+  [self addBackgroundGradient];
+}
+
+- (void)setOpacity:(double)opacity {
+  _opacity = opacity;
+  
+  [self.gradientLayer removeFromSuperlayer];
+  [self addBackgroundGradient];
 }
 
 @end

@@ -31,6 +31,9 @@
 
 - (void)awakeFromNib {
   // Initialization code
+  self.feedItemTitleView.firstColor = [UIColor clearColor];
+  self.feedItemTitleView.secondColor = [UIColor blackColor];
+  self.feedItemTitleView.opacity = 0.7f;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
