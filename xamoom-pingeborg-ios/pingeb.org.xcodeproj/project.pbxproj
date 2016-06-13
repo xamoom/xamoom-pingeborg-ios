@@ -11,12 +11,13 @@
 		880246DC1B57AF2E00E585CE /* Analytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 880246DB1B57AF2E00E585CE /* Analytics.m */; };
 		880246E11B57CD9000E585CE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 880246DF1B57CCC400E585CE /* GoogleService-Info.plist */; };
 		88052D7B1AE103C300AB433D /* Globals.m in Sources */ = {isa = PBXBuildFile; fileRef = 88052D7A1AE103C300AB433D /* Globals.m */; };
+		880E6C6B1D0E98BE00E8335F /* FeedItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 880E6C6A1D0E98BE00E8335F /* FeedItemCell.m */; };
+		880E6C6E1D0EA12200E8335F /* GradientBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 880E6C6D1D0EA12200E8335F /* GradientBackgroundView.m */; };
 		881458561B01EE8B0024E6F4 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8814583D1B01EE8B0024E6F4 /* AboutViewController.m */; };
 		881458571B01EE8B0024E6F4 /* ArtistDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8814583F1B01EE8B0024E6F4 /* ArtistDetailViewController.m */; };
 		881458581B01EE8B0024E6F4 /* FeedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 881458411B01EE8B0024E6F4 /* FeedTableViewController.m */; };
 		881458591B01EE8B0024E6F4 /* MapkitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 881458431B01EE8B0024E6F4 /* MapkitViewController.m */; };
 		8814585B1B01EE8B0024E6F4 /* NavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 881458481B01EE8B0024E6F4 /* NavigationViewController.m */; };
-		8814585C1B01EE8B0024E6F4 /* FeedItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8814584B1B01EE8B0024E6F4 /* FeedItemCell.m */; };
 		8814585D1B01EE8B0024E6F4 /* FeedItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8814584C1B01EE8B0024E6F4 /* FeedItemCell.xib */; };
 		8814585E1B01EE8B0024E6F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8814584D1B01EE8B0024E6F4 /* Main.storyboard */; };
 		883574801AB1CCF40099DF4A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8835747F1AB1CCF40099DF4A /* QuartzCore.framework */; };
@@ -76,6 +77,9 @@
 		880246DF1B57CCC400E585CE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		88052D791AE103C300AB433D /* Globals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Globals.h; sourceTree = "<group>"; };
 		88052D7A1AE103C300AB433D /* Globals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Globals.m; sourceTree = "<group>"; };
+		880E6C6A1D0E98BE00E8335F /* FeedItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedItemCell.m; path = "xamoom-pingeborg-ios/views/FeedItemCell.m"; sourceTree = SOURCE_ROOT; };
+		880E6C6C1D0EA12200E8335F /* GradientBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GradientBackgroundView.h; path = "xamoom-pingeborg-ios/views/GradientBackgroundView.h"; sourceTree = SOURCE_ROOT; };
+		880E6C6D1D0EA12200E8335F /* GradientBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GradientBackgroundView.m; path = "xamoom-pingeborg-ios/views/GradientBackgroundView.m"; sourceTree = SOURCE_ROOT; };
 		881457BE1B01E7CF0024E6F4 /* libPods-AFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AFNetworking.a"; path = "Pods/build/Debug-iphoneos/libPods-AFNetworking.a"; sourceTree = "<group>"; };
 		881457C01B01E7DE0024E6F4 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		8814583C1B01EE8B0024E6F4 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
@@ -90,7 +94,6 @@
 		881458471B01EE8B0024E6F4 /* NavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationViewController.h; sourceTree = "<group>"; };
 		881458481B01EE8B0024E6F4 /* NavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationViewController.m; sourceTree = "<group>"; };
 		8814584A1B01EE8B0024E6F4 /* FeedItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedItemCell.h; sourceTree = "<group>"; };
-		8814584B1B01EE8B0024E6F4 /* FeedItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedItemCell.m; sourceTree = "<group>"; };
 		8814584C1B01EE8B0024E6F4 /* FeedItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedItemCell.xib; sourceTree = "<group>"; };
 		8814584D1B01EE8B0024E6F4 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		8835747F1AB1CCF40099DF4A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -201,11 +204,13 @@
 				8814584D1B01EE8B0024E6F4 /* Main.storyboard */,
 				88BA02011AA859F90091A43C /* LaunchScreen.xib */,
 				8814584A1B01EE8B0024E6F4 /* FeedItemCell.h */,
-				8814584B1B01EE8B0024E6F4 /* FeedItemCell.m */,
+				880E6C6A1D0E98BE00E8335F /* FeedItemCell.m */,
 				8814584C1B01EE8B0024E6F4 /* FeedItemCell.xib */,
 				888E74531C18322B00233AA1 /* ExtendedTabbarView.h */,
 				888E74541C18322B00233AA1 /* ExtendedTabbarView.m */,
 				888E74511C18256E00233AA1 /* ExtendedTabbarView.xib */,
+				880E6C6C1D0EA12200E8335F /* GradientBackgroundView.h */,
+				880E6C6D1D0EA12200E8335F /* GradientBackgroundView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -486,7 +491,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				88DB74DC1B0217DA0064EE7E /* ScanResultViewController.m in Sources */,
-				8814585C1B01EE8B0024E6F4 /* FeedItemCell.m in Sources */,
 				88BA01F81AA859F90091A43C /* AppDelegate.m in Sources */,
 				881458561B01EE8B0024E6F4 /* AboutViewController.m in Sources */,
 				88052D7B1AE103C300AB433D /* Globals.m in Sources */,
@@ -494,7 +498,9 @@
 				881458591B01EE8B0024E6F4 /* MapkitViewController.m in Sources */,
 				880246DC1B57AF2E00E585CE /* Analytics.m in Sources */,
 				88BA01F51AA859F90091A43C /* main.m in Sources */,
+				880E6C6B1D0E98BE00E8335F /* FeedItemCell.m in Sources */,
 				888E74551C18322B00233AA1 /* ExtendedTabbarView.m in Sources */,
+				880E6C6E1D0EA12200E8335F /* GradientBackgroundView.m in Sources */,
 				8814585B1B01EE8B0024E6F4 /* NavigationViewController.m in Sources */,
 				881458581B01EE8B0024E6F4 /* FeedTableViewController.m in Sources */,
 				889BE43E1B3854C5002850D5 /* MainTabBarController.m in Sources */,

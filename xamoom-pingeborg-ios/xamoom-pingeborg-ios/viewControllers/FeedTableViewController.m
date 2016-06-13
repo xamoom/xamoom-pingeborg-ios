@@ -84,8 +84,7 @@ NSString const *kFeedItemCellIdentifier = @"FeedItemCell";
 - (void)setupTableView {
   //setting up tableView
   [self.feedTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-  self.feedTableView.rowHeight = UITableViewAutomaticDimension;
-  self.feedTableView.estimatedRowHeight = 150.0;
+  self.feedTableView.rowHeight = 180.0f;
 }
 
 - (void)setupRefreshControl {
