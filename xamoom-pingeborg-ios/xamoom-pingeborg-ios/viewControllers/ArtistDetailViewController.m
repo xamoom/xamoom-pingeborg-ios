@@ -228,11 +228,11 @@ static int kHeaderViewHeight = 200;
   
   if (self.tableView.contentOffset.y < 0) {
     if (self.verticalVelocity > 0) {
-      self.headerImageViewOverlay.opacity = (1-((-self.tableView.contentOffset.y - self.topBarOffset)/136) - self.verticalVelocity/2);
+      self.headerImageViewOverlay.opacity = 1;
     } else if (self.verticalVelocity < 0) {
-      self.headerImageViewOverlay.opacity = (1-((-self.tableView.contentOffset.y - self.topBarOffset)/136) + self.verticalVelocity/2);
+      self.headerImageViewOverlay.opacity = 0;
     } else {
-      self.headerImageViewOverlay.opacity = (1-((-self.tableView.contentOffset.y - self.topBarOffset)/136));
+      self.headerImageViewOverlay.opacity = (0.8-((-self.tableView.contentOffset.y - self.topBarOffset)/136));
     }
   } else {
     self.headerImageViewOverlay.opacity = 0.0f;
