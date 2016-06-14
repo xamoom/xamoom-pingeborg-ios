@@ -22,7 +22,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="482" height="179"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </imageView>
-                    <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="4MJ-4A-8g2" customClass="GradientBackgroundView">
+                    <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="4MJ-4A-8g2" customClass="GradientView" customModule="pingeb_org" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="138" width="482" height="42"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="1000" text="Lorem Ipsum Lorem Ipsum Lorem" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4wb-79-OqP">
@@ -64,7 +64,7 @@
                 <outlet property="feedItemImage" destination="RLb-uj-IBD" id="itO-c7-W5s"/>
                 <outlet property="feedItemOverlayImage" destination="XeV-xf-ZXR" id="fOV-HY-725"/>
                 <outlet property="feedItemTitle" destination="4wb-79-OqP" id="fkH-01-jWG"/>
-                <outlet property="feedItemTitleView" destination="4MJ-4A-8g2" id="XOc-qk-r75"/>
+                <outlet property="feedItemTitleView" destination="4MJ-4A-8g2" id="twP-In-e0f"/>
             </connections>
             <point key="canvasLocation" x="405" y="279"/>
         </tableViewCell>

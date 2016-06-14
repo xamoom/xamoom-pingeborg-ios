@@ -20,12 +20,12 @@
 #import <UIKit/UIKit.h>
 #import "REMenu.h"  
 #import <JGProgressHUD/JGProgressHUD.h>
-#import "GradientBackgroundView.h"
+
 
 @interface ArtistDetailViewController : UIViewController <XMMContentBlocksDelegate, UITableViewDelegate, UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *headerImageView;
-@property (strong, nonatomic) GradientBackgroundView *headerImageGradientView;
+@property (strong, nonatomic) GradientView *headerImageGradientView;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property NSString *contentId;
 

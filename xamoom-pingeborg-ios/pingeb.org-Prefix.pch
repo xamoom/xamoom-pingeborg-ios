@@ -15,5 +15,6 @@
 #import "XMMImageUtility.h"
 #import "Globals.h"
 #import "Analytics.h"
+#import "pingeb_org-Swift.h"
 
 #endif

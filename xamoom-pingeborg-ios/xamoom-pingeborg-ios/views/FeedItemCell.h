@@ -18,15 +18,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GradientBackgroundView.h"
 
 @interface FeedItemCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet GradientBackgroundView *feedItemTitleView;
+@property (weak, nonatomic) IBOutlet GradientView *feedItemTitleView;
 @property (weak, nonatomic) IBOutlet UILabel *feedItemTitle;
 @property (weak, nonatomic) IBOutlet UIImageView *feedItemImage;
 @property (weak, nonatomic) IBOutlet UIImageView *feedItemOverlayImage;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageHeightConstraint;
 
 @property NSString *contentId;
 @property UIImage *image;

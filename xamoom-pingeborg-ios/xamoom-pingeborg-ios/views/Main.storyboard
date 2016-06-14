@@ -342,10 +342,9 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="grm-IJ-tqb" userLabel="viewForMap">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="cnz-Wf-IIR">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
-                                <color key="backgroundColor" white="0.91141550159999996" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
+                            </mapView>
                             <view hidden="YES" alpha="0.89999999999999991" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N6O-Vd-Jeg" userLabel="InstructionView">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                                 <subviews>
@@ -390,20 +389,20 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="taP-xd-o0S" firstAttribute="top" secondItem="grm-IJ-tqb" secondAttribute="bottom" id="7do-sh-Pi9"/>
-                            <constraint firstItem="grm-IJ-tqb" firstAttribute="leading" secondItem="8fU-ya-1Zx" secondAttribute="leading" id="AkY-Dj-W1v"/>
                             <constraint firstItem="taP-xd-o0S" firstAttribute="top" secondItem="N6O-Vd-Jeg" secondAttribute="bottom" id="OjB-wH-0r0"/>
-                            <constraint firstAttribute="trailing" secondItem="grm-IJ-tqb" secondAttribute="trailing" id="OkA-co-Etd"/>
-                            <constraint firstItem="grm-IJ-tqb" firstAttribute="top" secondItem="N6O-Vd-Jeg" secondAttribute="top" id="WyM-nr-3K1"/>
-                            <constraint firstItem="grm-IJ-tqb" firstAttribute="top" secondItem="r2z-g0-SZf" secondAttribute="bottom" id="ZZb-Tm-DWX"/>
-                            <constraint firstItem="grm-IJ-tqb" firstAttribute="leading" secondItem="N6O-Vd-Jeg" secondAttribute="leading" id="d5M-A5-cnM"/>
-                            <constraint firstItem="grm-IJ-tqb" firstAttribute="trailing" secondItem="N6O-Vd-Jeg" secondAttribute="trailing" id="gxZ-xq-ABy"/>
+                            <constraint firstItem="cnz-Wf-IIR" firstAttribute="leading" secondItem="8fU-ya-1Zx" secondAttribute="leading" id="Qz1-Oq-cPn"/>
+                            <constraint firstItem="N6O-Vd-Jeg" firstAttribute="leading" secondItem="cnz-Wf-IIR" secondAttribute="leading" id="Yca-VQ-ymj"/>
+                            <constraint firstItem="N6O-Vd-Jeg" firstAttribute="trailing" secondItem="cnz-Wf-IIR" secondAttribute="trailing" id="d8a-0L-qgf"/>
+                            <constraint firstItem="cnz-Wf-IIR" firstAttribute="top" secondItem="r2z-g0-SZf" secondAttribute="bottom" id="qQ6-os-Pxv"/>
+                            <constraint firstItem="N6O-Vd-Jeg" firstAttribute="top" secondItem="cnz-Wf-IIR" secondAttribute="top" id="s5g-Dv-lpz"/>
+                            <constraint firstAttribute="trailing" secondItem="cnz-Wf-IIR" secondAttribute="trailing" id="sBc-wL-jHg"/>
+                            <constraint firstItem="taP-xd-o0S" firstAttribute="top" secondItem="cnz-Wf-IIR" secondAttribute="bottom" id="zH7-cY-Trg"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="Map" id="Tov-nI-9zY"/>
                     <connections>
                         <outlet property="instructionView" destination="N6O-Vd-Jeg" id="jjn-bA-545"/>
-                        <outlet property="viewForMap" destination="grm-IJ-tqb" id="iNi-0j-t20"/>
+                        <outlet property="mapView" destination="cnz-Wf-IIR" id="swo-6m-XGL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xcE-VJ-wGD" userLabel="First Responder" sceneMemberID="firstResponder"/>

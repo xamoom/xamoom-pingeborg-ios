@@ -12,7 +12,7 @@
 		880246E11B57CD9000E585CE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 880246DF1B57CCC400E585CE /* GoogleService-Info.plist */; };
 		88052D7B1AE103C300AB433D /* Globals.m in Sources */ = {isa = PBXBuildFile; fileRef = 88052D7A1AE103C300AB433D /* Globals.m */; };
 		880E6C6B1D0E98BE00E8335F /* FeedItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 880E6C6A1D0E98BE00E8335F /* FeedItemCell.m */; };
-		880E6C6E1D0EA12200E8335F /* GradientBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 880E6C6D1D0EA12200E8335F /* GradientBackgroundView.m */; };
+		880E6C741D0FDB1A00E8335F /* GradientBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880E6C731D0FDB1A00E8335F /* GradientBackgroundView.swift */; };
 		881458561B01EE8B0024E6F4 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8814583D1B01EE8B0024E6F4 /* AboutViewController.m */; };
 		881458571B01EE8B0024E6F4 /* ArtistDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8814583F1B01EE8B0024E6F4 /* ArtistDetailViewController.m */; };
 		881458581B01EE8B0024E6F4 /* FeedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 881458411B01EE8B0024E6F4 /* FeedTableViewController.m */; };
@@ -78,8 +78,8 @@
 		88052D791AE103C300AB433D /* Globals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Globals.h; sourceTree = "<group>"; };
 		88052D7A1AE103C300AB433D /* Globals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Globals.m; sourceTree = "<group>"; };
 		880E6C6A1D0E98BE00E8335F /* FeedItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedItemCell.m; path = "xamoom-pingeborg-ios/views/FeedItemCell.m"; sourceTree = SOURCE_ROOT; };
-		880E6C6C1D0EA12200E8335F /* GradientBackgroundView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GradientBackgroundView.h; path = "xamoom-pingeborg-ios/views/GradientBackgroundView.h"; sourceTree = SOURCE_ROOT; };
-		880E6C6D1D0EA12200E8335F /* GradientBackgroundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GradientBackgroundView.m; path = "xamoom-pingeborg-ios/views/GradientBackgroundView.m"; sourceTree = SOURCE_ROOT; };
+		880E6C721D0FDB1A00E8335F /* pingeb.org-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "pingeb.org-Bridging-Header.h"; path = "Views/pingeb.org-Bridging-Header.h"; sourceTree = "<group>"; };
+		880E6C731D0FDB1A00E8335F /* GradientBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientBackgroundView.swift; sourceTree = "<group>"; };
 		881457BE1B01E7CF0024E6F4 /* libPods-AFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AFNetworking.a"; path = "Pods/build/Debug-iphoneos/libPods-AFNetworking.a"; sourceTree = "<group>"; };
 		881457C01B01E7DE0024E6F4 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		8814583C1B01EE8B0024E6F4 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
@@ -209,8 +209,7 @@
 				888E74531C18322B00233AA1 /* ExtendedTabbarView.h */,
 				888E74541C18322B00233AA1 /* ExtendedTabbarView.m */,
 				888E74511C18256E00233AA1 /* ExtendedTabbarView.xib */,
-				880E6C6C1D0EA12200E8335F /* GradientBackgroundView.h */,
-				880E6C6D1D0EA12200E8335F /* GradientBackgroundView.m */,
+				880E6C731D0FDB1A00E8335F /* GradientBackgroundView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -239,6 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				88E243191B14505000E9E208 /* pingeb.org-Prefix.pch */,
+				880E6C721D0FDB1A00E8335F /* pingeb.org-Bridging-Header.h */,
 				88BA01F61AA859F90091A43C /* AppDelegate.h */,
 				88BA01F71AA859F90091A43C /* AppDelegate.m */,
 				88052D791AE103C300AB433D /* Globals.h */,
@@ -374,6 +374,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = XMM;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "xamoom GmbH";
 				TargetAttributes = {
@@ -490,6 +491,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				880E6C741D0FDB1A00E8335F /* GradientBackgroundView.swift in Sources */,
 				88DB74DC1B0217DA0064EE7E /* ScanResultViewController.m in Sources */,
 				88BA01F81AA859F90091A43C /* AppDelegate.m in Sources */,
 				881458561B01EE8B0024E6F4 /* AboutViewController.m in Sources */,
@@ -500,7 +502,6 @@
 				88BA01F51AA859F90091A43C /* main.m in Sources */,
 				880E6C6B1D0E98BE00E8335F /* FeedItemCell.m in Sources */,
 				888E74551C18322B00233AA1 /* ExtendedTabbarView.m in Sources */,
-				880E6C6E1D0EA12200E8335F /* GradientBackgroundView.m in Sources */,
 				8814585B1B01EE8B0024E6F4 /* NavigationViewController.m in Sources */,
 				881458581B01EE8B0024E6F4 /* FeedTableViewController.m in Sources */,
 				889BE43E1B3854C5002850D5 /* MainTabBarController.m in Sources */,
@@ -569,6 +570,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				DEFINES_MODULE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -611,6 +613,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				DEFINES_MODULE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -631,7 +634,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7A7AAAFE8FE8D63A51F10A08 /* Pods-pingeb.org.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
@@ -652,6 +657,8 @@
 				PRODUCT_NAME = pingeb.org;
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "xamoom-pingeborg-ios/Views/pingeb.org-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -660,7 +667,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3C3C2BE620C2FEB34D47145 /* Pods-pingeb.org.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
@@ -681,6 +690,7 @@
 				PRODUCT_NAME = pingeb.org;
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "xamoom-pingeborg-ios/Views/pingeb.org-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

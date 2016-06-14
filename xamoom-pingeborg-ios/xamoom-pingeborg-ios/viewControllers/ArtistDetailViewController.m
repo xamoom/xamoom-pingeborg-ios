@@ -144,7 +144,7 @@ static int kHeaderViewHeight = 200;
   [self.headerImageView.layer insertSublayer:self.headerImageViewOverlay atIndex:0];
   
   
-  self.headerImageGradientView = [[GradientBackgroundView alloc] initWithFrame:
+  self.headerImageGradientView = [[GradientView alloc] initWithFrame:
                                   CGRectMake(0,
                                              0,
                                              self.headerImageView.frame.size.width,
