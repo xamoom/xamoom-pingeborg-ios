@@ -39,12 +39,15 @@
   [[Analytics sharedObject] setScreenName:@"About View"];
   
   [self.tabBarItem setSelectedImage:[UIImage imageNamed:@"info_filled"]];
-  
   self.hud = [[JGProgressHUD alloc] initWithStyle:JGProgressHUDStyleDark];
 
   [self setupContentBlocks];
   [self setupTableView];
   [self setupTextSizeDropdown];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+  self.parentViewController.navigationItem.title = NSLocalizedString(@"About", nil);
 }
 
 -(void)viewDidAppear:(BOOL)animated {

@@ -77,10 +77,6 @@ NSString const *kFeedItemCellIdentifier = @"FeedItemCell";
   }
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-  self.parentViewController.navigationItem.title = nil;
-
-}
 
 - (void)viewDidDisappear:(BOOL)animated {
   [super viewDidDisappear:animated];
@@ -296,6 +292,7 @@ NSString const *kFeedItemCellIdentifier = @"FeedItemCell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   XMMContent *data = (XMMContent*)(self.itemsToDisplay)[indexPath.row];
+  self.parentViewController.navigationItem.title = nil;
   [self openArtist:data];
 }
 

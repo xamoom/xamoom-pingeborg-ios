@@ -24,21 +24,9 @@
 #import "FeedItemCell.h"
 #import "ArtistDetailViewController.h"
 
-@class PingeborgMapView;
+@interface MapkitViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate>
 
-@interface MapkitViewController : UIViewController <MKMapViewDelegate, SMCalloutViewDelegate, CLLocationManagerDelegate>
-
-@property (weak, nonatomic) IBOutlet UIView *viewForMap;
 @property (weak, nonatomic) IBOutlet UIView *instructionView;
-
-@property (nonatomic, strong) PingeborgMapView *mapKitWithSMCalloutView;
-@property (nonatomic, strong) MKPointAnnotation *annotationForSMCalloutView;
-
-@property CLLocationManager *locationManager;
-@property CLLocation *lastLocation;
-
-@property UIImage *customMapMarker;
-@property NSMutableArray *itemsToDisplay;
-@property NSMutableDictionary *imagesToDisplay;
+@property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
 @end

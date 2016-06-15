@@ -12,7 +12,9 @@
 		880246E11B57CD9000E585CE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 880246DF1B57CCC400E585CE /* GoogleService-Info.plist */; };
 		88052D7B1AE103C300AB433D /* Globals.m in Sources */ = {isa = PBXBuildFile; fileRef = 88052D7A1AE103C300AB433D /* Globals.m */; };
 		880E6C6B1D0E98BE00E8335F /* FeedItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 880E6C6A1D0E98BE00E8335F /* FeedItemCell.m */; };
-		880E6C741D0FDB1A00E8335F /* GradientBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880E6C731D0FDB1A00E8335F /* GradientBackgroundView.swift */; };
+		880E6C741D0FDB1A00E8335F /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880E6C731D0FDB1A00E8335F /* GradientView.swift */; };
+		880E6C781D0FF7D700E8335F /* MapItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880E6C771D0FF7D700E8335F /* MapItemDetailView.swift */; };
+		880E6C7A1D0FF80300E8335F /* MapItemDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 880E6C791D0FF80300E8335F /* MapItemDetailView.xib */; };
 		881458561B01EE8B0024E6F4 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8814583D1B01EE8B0024E6F4 /* AboutViewController.m */; };
 		881458571B01EE8B0024E6F4 /* ArtistDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8814583F1B01EE8B0024E6F4 /* ArtistDetailViewController.m */; };
 		881458581B01EE8B0024E6F4 /* FeedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 881458411B01EE8B0024E6F4 /* FeedTableViewController.m */; };
@@ -79,7 +81,9 @@
 		88052D7A1AE103C300AB433D /* Globals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Globals.m; sourceTree = "<group>"; };
 		880E6C6A1D0E98BE00E8335F /* FeedItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedItemCell.m; path = "xamoom-pingeborg-ios/views/FeedItemCell.m"; sourceTree = SOURCE_ROOT; };
 		880E6C721D0FDB1A00E8335F /* pingeb.org-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "pingeb.org-Bridging-Header.h"; path = "Views/pingeb.org-Bridging-Header.h"; sourceTree = "<group>"; };
-		880E6C731D0FDB1A00E8335F /* GradientBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientBackgroundView.swift; sourceTree = "<group>"; };
+		880E6C731D0FDB1A00E8335F /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		880E6C771D0FF7D700E8335F /* MapItemDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapItemDetailView.swift; path = "xamoom-pingeborg-ios/views/MapItemDetailView.swift"; sourceTree = SOURCE_ROOT; };
+		880E6C791D0FF80300E8335F /* MapItemDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapItemDetailView.xib; sourceTree = "<group>"; };
 		881457BE1B01E7CF0024E6F4 /* libPods-AFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AFNetworking.a"; path = "Pods/build/Debug-iphoneos/libPods-AFNetworking.a"; sourceTree = "<group>"; };
 		881457C01B01E7DE0024E6F4 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		8814583C1B01EE8B0024E6F4 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
@@ -209,7 +213,9 @@
 				888E74531C18322B00233AA1 /* ExtendedTabbarView.h */,
 				888E74541C18322B00233AA1 /* ExtendedTabbarView.m */,
 				888E74511C18256E00233AA1 /* ExtendedTabbarView.xib */,
-				880E6C731D0FDB1A00E8335F /* GradientBackgroundView.swift */,
+				880E6C731D0FDB1A00E8335F /* GradientView.swift */,
+				880E6C771D0FF7D700E8335F /* MapItemDetailView.swift */,
+				880E6C791D0FF80300E8335F /* MapItemDetailView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -422,6 +428,7 @@
 				88EB481D1B563C8700A6C63F /* Images.xcassets in Resources */,
 				887BE0331B53D43000E9D584 /* Localizable.strings in Resources */,
 				888E74521C18256E00233AA1 /* ExtendedTabbarView.xib in Resources */,
+				880E6C7A1D0FF80300E8335F /* MapItemDetailView.xib in Resources */,
 				8814585D1B01EE8B0024E6F4 /* FeedItemCell.xib in Resources */,
 				88BA02031AA859F90091A43C /* LaunchScreen.xib in Resources */,
 				88EB481C1B56390D00A6C63F /* apikey.txt in Resources */,
@@ -491,7 +498,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				880E6C741D0FDB1A00E8335F /* GradientBackgroundView.swift in Sources */,
+				880E6C741D0FDB1A00E8335F /* GradientView.swift in Sources */,
 				88DB74DC1B0217DA0064EE7E /* ScanResultViewController.m in Sources */,
 				88BA01F81AA859F90091A43C /* AppDelegate.m in Sources */,
 				881458561B01EE8B0024E6F4 /* AboutViewController.m in Sources */,
@@ -504,6 +511,7 @@
 				888E74551C18322B00233AA1 /* ExtendedTabbarView.m in Sources */,
 				8814585B1B01EE8B0024E6F4 /* NavigationViewController.m in Sources */,
 				881458581B01EE8B0024E6F4 /* FeedTableViewController.m in Sources */,
+				880E6C781D0FF7D700E8335F /* MapItemDetailView.swift in Sources */,
 				889BE43E1B3854C5002850D5 /* MainTabBarController.m in Sources */,
 				881458571B01EE8B0024E6F4 /* ArtistDetailViewController.m in Sources */,
 			);

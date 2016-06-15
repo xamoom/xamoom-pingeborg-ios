@@ -12,6 +12,10 @@
 
 "Last update: %@" = "Letztes Update: %@";
 
+"Map" = "Karte";
+
+"About" = "Über pingeb.org";
+
 /* REMenu FontSizes */
 
 "Normal Font Size" = "Normaler Text";
