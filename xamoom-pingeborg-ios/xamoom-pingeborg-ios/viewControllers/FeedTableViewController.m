@@ -20,7 +20,7 @@
 #import "FeedTableViewController.h"
 
 int const kPageSize = 7;
-NSString const *kFeedItemCellIdentifier = @"FeedItemCell";
+NSString * const kFeedItemCellIdentifier = @"FeedItemCell";
 
 @interface FeedTableViewController ()
 

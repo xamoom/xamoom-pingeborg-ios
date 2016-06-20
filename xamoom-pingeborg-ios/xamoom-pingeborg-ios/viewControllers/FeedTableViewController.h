@@ -27,7 +27,7 @@
 #import <Google/Analytics.h>
 
 extern int const kPageSize;
-extern NSString const *kFeedItemCellIdentifier;
+extern NSString * const kFeedItemCellIdentifier;
 
 
 @interface FeedTableViewController : UIViewController <UINavigationControllerDelegate, CLLocationManagerDelegate, CBCentralManagerDelegate>

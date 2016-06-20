@@ -73,7 +73,7 @@
 /**
  *  Allows the MPMoviePlayerViewController to display in landscape-mode, when you only support portrait mode.
  */
-- (NSUInteger) application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
   if ([[window.rootViewController presentedViewController]
        isKindOfClass:[MPMoviePlayerViewController class]] || [[window.rootViewController presentedViewController] isKindOfClass:NSClassFromString(@"MPInlineVideoFullscreenViewController")] || [[window.rootViewController presentedViewController] isKindOfClass:NSClassFromString(@"AVFullScreenViewController")]) {
     
@@ -100,5 +100,4 @@
   
   return UIInterfaceOrientationMaskPortrait;
 }
-
 @end

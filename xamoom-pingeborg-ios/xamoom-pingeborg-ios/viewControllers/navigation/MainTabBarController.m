@@ -235,7 +235,7 @@
     
     [[XMMEnduserApi sharedInstance] contentWithLocationIdentifier:[self getLocationIdentifierFromURL:url]
                                                        completion:^(XMMContent *content, NSError *error) {
-                                                         [self dismissViewControllerAnimated:reader completion:nil];
+                                                         [reader dismissViewControllerAnimated:YES completion:nil];
                                                          [self didLoadDataWithLocationIdentifier:content];
                                                        }];
   } else {
