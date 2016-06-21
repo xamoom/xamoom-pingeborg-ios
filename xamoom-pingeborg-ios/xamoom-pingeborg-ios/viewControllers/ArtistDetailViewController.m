@@ -275,7 +275,6 @@ static int kHeaderViewHeight = 200;
 }
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
-  NSLog(@"Veloctiy: %f", velocity.y);
   self.verticalVelocity = velocity.y;
 }
 

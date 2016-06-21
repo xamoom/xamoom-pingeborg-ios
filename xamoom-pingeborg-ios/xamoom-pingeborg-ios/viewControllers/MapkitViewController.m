@@ -161,13 +161,8 @@
   
   // Add annotations
   for (XMMSpot *item in spots) {
-    XMMAnnotation *point = [[XMMAnnotation alloc] initWithName:item.name withLocation:CLLocationCoordinate2DMake(item.latitude, item.longitude)];
-    
-    //calculate distance to annotation
-    CLLocation *pointLocation = [[CLLocation alloc] initWithLatitude:point.coordinate.latitude longitude:point.coordinate.longitude];
-    CLLocationDistance distance = [self.locationManager.location distanceFromLocation:pointLocation];
-    point.distance = [NSString stringWithFormat:@"Entfernung: %d Meter", (int)distance];
-    
+    PingebAnnotation *point = [[PingebAnnotation alloc] initWithSpot:item
+                                                        userLocation:self.locationManager.location];
     [self.mapView addAnnotation:point];
   }
 }
@@ -205,7 +200,7 @@
   if ([annotation isKindOfClass:[MKUserLocation class]])
     return nil;
   
-  if ([annotation isKindOfClass:[XMMAnnotation class]]) {
+  if ([annotation isKindOfClass:[PingebAnnotation class]]) {
     static NSString *identifier = @"xamoomAnnotation";
     MKAnnotationView *annotationView;
     if (annotationView == nil) {

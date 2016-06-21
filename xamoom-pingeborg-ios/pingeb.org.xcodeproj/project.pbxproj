@@ -23,6 +23,7 @@
 		8814585D1B01EE8B0024E6F4 /* FeedItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8814584C1B01EE8B0024E6F4 /* FeedItemCell.xib */; };
 		8814585E1B01EE8B0024E6F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8814584D1B01EE8B0024E6F4 /* Main.storyboard */; };
 		883574801AB1CCF40099DF4A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8835747F1AB1CCF40099DF4A /* QuartzCore.framework */; };
+		885F683F1D17E98800DC0B9C /* PingebAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885F683E1D17E98800DC0B9C /* PingebAnnotation.swift */; };
 		8860DA7D1AE78D0500DF2239 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8860DA7C1AE78D0500DF2239 /* CoreText.framework */; };
 		8860DA7F1AE78D0E00DF2239 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8860DA7E1AE78D0E00DF2239 /* CoreImage.framework */; };
 		8860DA811AE78D2C00DF2239 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8860DA801AE78D2C00DF2239 /* libxml2.dylib */; };
@@ -101,6 +102,7 @@
 		8814584C1B01EE8B0024E6F4 /* FeedItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedItemCell.xib; sourceTree = "<group>"; };
 		8814584D1B01EE8B0024E6F4 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		8835747F1AB1CCF40099DF4A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		885F683E1D17E98800DC0B9C /* PingebAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PingebAnnotation.swift; path = "xamoom-pingeborg-ios/views/PingebAnnotation.swift"; sourceTree = SOURCE_ROOT; };
 		8860DA7C1AE78D0500DF2239 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		8860DA7E1AE78D0E00DF2239 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		8860DA801AE78D2C00DF2239 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -216,6 +218,7 @@
 				880E6C731D0FDB1A00E8335F /* GradientView.swift */,
 				880E6C771D0FF7D700E8335F /* MapItemDetailView.swift */,
 				880E6C791D0FF80300E8335F /* MapItemDetailView.xib */,
+				885F683E1D17E98800DC0B9C /* PingebAnnotation.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -223,6 +226,7 @@
 		88BA01E61AA859F90091A43C = {
 			isa = PBXGroup;
 			children = (
+				887BE0351B53D43000E9D584 /* Localizable.strings */,
 				88BA01F11AA859F90091A43C /* xamoom-pingeborg-ios */,
 				88BA020B1AA859F90091A43C /* xamoom-pingeborg-iosTests */,
 				88BA01F01AA859F90091A43C /* Products */,
@@ -265,7 +269,6 @@
 			children = (
 				880246DF1B57CCC400E585CE /* GoogleService-Info.plist */,
 				88EB481B1B56390D00A6C63F /* apikey.txt */,
-				887BE0351B53D43000E9D584 /* Localizable.strings */,
 				88BA01F31AA859F90091A43C /* Info.plist */,
 				88BA01F41AA859F90091A43C /* main.m */,
 			);
@@ -512,6 +515,7 @@
 				8814585B1B01EE8B0024E6F4 /* NavigationViewController.m in Sources */,
 				881458581B01EE8B0024E6F4 /* FeedTableViewController.m in Sources */,
 				880E6C781D0FF7D700E8335F /* MapItemDetailView.swift in Sources */,
+				885F683F1D17E98800DC0B9C /* PingebAnnotation.swift in Sources */,
 				889BE43E1B3854C5002850D5 /* MainTabBarController.m in Sources */,
 				881458571B01EE8B0024E6F4 /* ArtistDetailViewController.m in Sources */,
 			);
@@ -543,7 +547,6 @@
 				887BE0361B53D44700E9D584 /* de */,
 			);
 			name = Localizable.strings;
-			path = ..;
 			sourceTree = "<group>";
 		};
 		88BA02011AA859F90091A43C /* LaunchScreen.xib */ = {

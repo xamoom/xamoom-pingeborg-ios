@@ -35,7 +35,9 @@
 /* MapkitView */
 
 "No Location" = "No Location";
-"Distance: %d meter" = "Distance: %d meter";
+"map.annotation.distance" = "Distance: %.0f %@";
+"map.annotation.meter" = "m";
+"map.annotation.kilometer" = "km";
 "Searching ..." = "Searching ...";
 "Nothing found near you" = "Nothing found near you";
 "Discovered pingeb.org" = "Found new artist";

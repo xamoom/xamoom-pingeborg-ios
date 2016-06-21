@@ -11,18 +11,25 @@ import CoreLocation
 
 class PingebAnnotation: NSObject, MKAnnotation {
 
-  var spot : XMMSpot
-  var coordinate : CLLocationCoordinate2D
+  let title: String?
+  let subtitle: String?
+  let spot : XMMSpot
+  let coordinate : CLLocationCoordinate2D
   var distance : Double = 0.0
 
-  init(spot : XMMSpot, location : CLLocation) {
+  init(spot : XMMSpot, userLocation : CLLocation) {
     self.spot = spot
+    self.title = spot.name
     self.coordinate = CLLocationCoordinate2D.init(latitude: spot.latitude,
                                                   longitude: spot.longitude)
-    super.init()
+    self.distance = userLocation.distanceFromLocation(CLLocation.init(latitude: spot.latitude,longitude: spot.longitude))
+    if (distance < 1000.0) {
+      self.subtitle = String.localizedStringWithFormat(NSLocalizedString("map.annotation.distance", comment: ""), distance, NSLocalizedString("map.annotation.meter", comment: ""))
+    } else {
+      self.subtitle = String.localizedStringWithFormat(NSLocalizedString("map.annotation.distance", comment: ""), distance/1000, NSLocalizedString("map.annotation.kilometer", comment: ""))
+    }
     
-    self.distance = calcuateDistance(CLLocation.init(latitude: spot.latitude,
-      longitude: spot.longitude), userLocation: location)
+    super.init()
   }
   
   func calcuateDistance(pointLocation: CLLocation, userLocation: CLLocation) -> Double {

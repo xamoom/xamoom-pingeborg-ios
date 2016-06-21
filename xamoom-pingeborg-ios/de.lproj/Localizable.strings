@@ -35,7 +35,9 @@
 /* MapkitView */
 
 "No Location" = "Kein Position gefunden";
-"Distance: %d meter" = "Entfernung: %d meter";
+"map.annotation.distance" = "Entfernung: %.0f %@";
+"map.annotation.meter" = "m";
+"map.annotation.kilometer" = "km";
 "Searching ..." = "Auf der Suche ...";
 "Nothing found near you" = "Nichts in der Nähe";
 "Discovered pingeb.org" = "Neuen Künstler entdeckt";
