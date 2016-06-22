@@ -23,6 +23,7 @@ class PingebAnnotation: NSObject, MKAnnotation {
     self.coordinate = CLLocationCoordinate2D.init(latitude: spot.latitude,
                                                   longitude: spot.longitude)
     self.distance = userLocation.distanceFromLocation(CLLocation.init(latitude: spot.latitude,longitude: spot.longitude))
+    
     if (distance < 1000.0) {
       self.subtitle = String.localizedStringWithFormat(NSLocalizedString("map.annotation.distance", comment: ""), distance, NSLocalizedString("map.annotation.meter", comment: ""))
     } else {

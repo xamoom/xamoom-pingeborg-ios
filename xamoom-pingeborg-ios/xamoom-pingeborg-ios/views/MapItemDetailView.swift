@@ -11,28 +11,79 @@ import UIKit
 
 class MapItemDetailView: UIView {
   
-  @IBOutlet weak var titleLabel: UILabel!
+  var view: UIView!
+  
+  @IBOutlet weak var detailImageView: UIImageView!
+  @IBOutlet weak var detailTitleLabel: UILabel!
+  @IBOutlet weak var detailDescriptionLabel: UILabel!
+  @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+  @IBOutlet weak var imageHeightConstraint: NSLayoutConstraint!
+  
+  init() {
+    super.init(frame: CGRectNull)
+    
+    nibSetup()
+  }
   
   override init(frame: CGRect) {
     super.init(frame: frame)
     
-    let view = loadViewFromNib()
-    view.frame = frame;
-    addSubview(view)
+    nibSetup()
   }
   
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
-    if (self.subviews.count == 0) {
-      let view = loadViewFromNib()
-      view.frame = frame;
-      addSubview(view)
-    }
+    
+    nibSetup()
   }
   
-  func loadViewFromNib() -> UIView {
+  private func nibSetup() {
+    backgroundColor = .clearColor()
+    
+    view = loadViewFromNib()
+    view.frame = bounds
+    view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+    view.translatesAutoresizingMaskIntoConstraints = true
+    
+    addSubview(view)
+  }
+  
+  private func loadViewFromNib() -> UIView {
     let bundle = NSBundle(forClass: self.dynamicType)
-    let nib = UINib(nibName: "MapItemDetailView", bundle: bundle)
-    return nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+    let nib = UINib(nibName: String(self.dynamicType), bundle: bundle)
+    let nibViews = nib.instantiateWithOwner(self, options: nil)
+    
+    return nibViews.first as! UIView
+  }
+  
+  @IBAction func didClickRouteButton(sender: AnyObject) {
+  }
+  
+  @IBAction func didClickOpenButton(sender: AnyObject) {
+  }
+  
+  func displaySpotInfo(spot : XMMSpot) {
+    if let imageUrl = spot.image {
+      let url : NSURL = NSURL(string: imageUrl)!
+      imageHeightConstraint.constant = 150
+      detailImageView.sd_setImageWithURL(url, placeholderImage: UIImage.init(named: "placeholder"))
+    } else {
+      detailImageView.image = nil
+      imageHeightConstraint.constant = 0
+    }
+    
+    if let name = spot.name {
+      detailTitleLabel.text = name
+    } else {
+      detailTitleLabel.text = nil
+    }
+    
+    if let description = spot.spotDescription {
+      detailDescriptionLabel.text = description
+    } else {
+      detailDescriptionLabel.text = nil
+    }
+    
+    setNeedsLayout()
   }
 }

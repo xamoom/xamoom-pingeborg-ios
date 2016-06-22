@@ -21,16 +21,17 @@
 
 @interface MapkitViewController ()
 
-@property JGProgressHUD *hud;
-@property MapItemDetailView *mapItemDetailView;
+@property (nonatomic, strong) JGProgressHUD *hud;
+@property (nonatomic, strong) MapItemDetailView *mapItemDetailView;
+@property (nonatomic, strong) NSLayoutConstraint *mapItemDetailViewBottomConstraint;
 
-@property CLLocationManager *locationManager;
-@property CLLocation *lastLocation;
+@property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic, strong) CLLocation *lastLocation;
 
-@property UIImage *mapMarker;
-@property XMMContent *savedResponseContent;
+@property (nonatomic, strong) UIImage *mapMarker;
+@property (nonatomic, strong) XMMContent *savedResponseContent;
 
-@property NSArray *spots;
+@property (nonatomic, strong) NSArray *spots;
 
 @end
 
@@ -99,6 +100,10 @@
 - (void)setupMapView {
   self.mapView.delegate = self;
   self.mapView.showsUserLocation = YES;
+  
+  UITapGestureRecognizer *mapTapRecognizer = [[UITapGestureRecognizer alloc]
+                                              initWithTarget:self action:@selector(hideMapItemDetailView)];
+  [self.mapView addGestureRecognizer:mapTapRecognizer];
 }
 
 - (void)setupLocationManager {
@@ -119,6 +124,9 @@
   self.mapItemDetailView.translatesAutoresizingMaskIntoConstraints = NO;
   [self.view addSubview:self.mapItemDetailView];
   
+  UISwipeGestureRecognizer *mapItemDetailSwipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(hideMapItemDetailView)];
+  mapItemDetailSwipeRecognizer.direction = UISwipeGestureRecognizerDirectionDown;
+  [self.mapItemDetailView addGestureRecognizer:mapItemDetailSwipeRecognizer];
   
   [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.mapItemDetailView
                                                         attribute:NSLayoutAttributeLeading
@@ -136,22 +144,15 @@
                                                        multiplier:1.0f
                                                          constant:0.0f]];
   
-  [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.mapItemDetailView
-                                                        attribute:NSLayoutAttributeTop
-                                                        relatedBy:NSLayoutRelationEqual
-                                                           toItem:self.view
-                                                        attribute:NSLayoutAttributeTop
-                                                       multiplier:1.0f
-                                                         constant:0.0f]];
+  self.mapItemDetailViewBottomConstraint = [NSLayoutConstraint constraintWithItem:self.mapItemDetailView
+                                                                        attribute:NSLayoutAttributeTop
+                                                                        relatedBy:NSLayoutRelationEqual
+                                                                           toItem:self.view
+                                                                        attribute:NSLayoutAttributeBottom
+                                                                       multiplier:1.0f
+                                                                         constant:0.0f];
   
-  [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.mapItemDetailView
-                                                        attribute:NSLayoutAttributeBottom
-                                                        relatedBy:NSLayoutRelationEqual
-                                                           toItem:self.view
-                                                        attribute:NSLayoutAttributeBottom
-                                                       multiplier:1.0f
-                                                         constant:0.0f]];
-  
+  [self.view addConstraint:self.mapItemDetailViewBottomConstraint];
 }
 
 #pragma mark - XMMEnduser Methods
@@ -219,47 +220,61 @@
   return nil;
 }
 
+
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)annotationView {
-  
+  NSLog(@"didSelect");
+  if ([annotationView.annotation isKindOfClass:[PingebAnnotation class]]) {
+    PingebAnnotation *pingebAnnotation = annotationView.annotation;
+    [self.mapItemDetailView displaySpotInfo:pingebAnnotation.spot];
+    [self.view layoutIfNeeded];
+
+    double diff = 0;
+    if (self.mapItemDetailViewBottomConstraint.constant < 0) {
+      diff = -self.mapItemDetailViewBottomConstraint.constant - self.mapItemDetailView.frame.size.height;
+      self.mapItemDetailView.bottomConstraint.constant += diff;
+    }
+    
+    [self showMapItemDetailView: diff];
+  }
 }
 
 -(void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
-  
 }
 
 #pragma mark User Interaction
 
-- (void)showMapItemDetailView {
-  [UIView animateWithDuration:0.5
-                        delay:0.0
+- (void)showMapItemDetailView:(double)diff {
+  [self.view layoutIfNeeded];
+  
+  self.mapItemDetailViewBottomConstraint.constant = -self.mapItemDetailView.frame.size.height + diff;
+  self.mapItemDetailView.bottomConstraint.constant = 8;
+  
+  [UIView animateWithDuration:0.7f
+                        delay:0.0f
+       usingSpringWithDamping:5.0f
+        initialSpringVelocity:15.0f
                       options:UIViewAnimationOptionCurveEaseIn
                    animations:^{
-                     CGRect frame = self.mapItemDetailView.frame;
-                     frame.origin.y = 0;
-                     self.mapItemDetailView.frame = frame;
-                   } completion:NULL];
+                     [self.view layoutIfNeeded];
+
+                   }
+                   completion:nil];
 }
 
 - (void)hideMapItemDetailView {
+  for (id<MKAnnotation> anno in self.mapView.selectedAnnotations) {
+    [self.mapView deselectAnnotation:anno animated:YES];
+  }
   
-}
-
-- (void)mapNavigationTapped {
-  //navigate to the coordinates of the xamoomCalloutView
-  /*
-   XMMCalloutView *xamoomCalloutView = self.mapKitWithSMCalloutView.calloutView.contentView;
-   
-   //analytics
-   [[Analytics sharedObject] sendEventWithCategorie:@"UX" andAction:@"Click" andLabel:@"Map Callout Navigation Button" andValue:nil];
-   
-   MKPlacemark *placemark = [[MKPlacemark alloc] initWithCoordinate:xamoomCalloutView.coordinate addressDictionary:nil];
-   
-   MKMapItem *mapItem = [[MKMapItem alloc] initWithPlacemark:placemark];
-   mapItem.name = xamoomCalloutView.nameOfSpot;
-   
-   NSDictionary *launchOptions = @{MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving};
-   [mapItem openInMapsWithLaunchOptions:launchOptions];
-   */
+  [self.view layoutIfNeeded];
+  
+  self.mapItemDetailViewBottomConstraint.constant = 0;
+  [UIView animateWithDuration:0.3
+                        delay:0.0
+                      options:UIViewAnimationOptionCurveEaseIn
+                   animations:^{
+                     [self.view layoutIfNeeded];
+                   } completion:NULL];
 }
 
 #pragma mark - LocationManager

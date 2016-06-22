@@ -3,3 +3,4 @@
 //
 
 #import <XamoomSDK/XamoomSDK.h>
+#import "UIImageView+WebCache.h"
