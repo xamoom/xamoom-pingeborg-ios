@@ -18,12 +18,8 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RLb-uj-IBD">
                         <rect key="frame" x="0.0" y="0.0" width="482" height="179"/>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XeV-xf-ZXR">
-                        <rect key="frame" x="0.0" y="0.0" width="482" height="179"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </imageView>
                     <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" translatesAutoresizingMaskIntoConstraints="NO" id="4MJ-4A-8g2" customClass="GradientView" customModule="pingeb_org" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="138" width="482" height="42"/>
+                        <rect key="frame" x="0.0" y="137" width="482" height="42"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="1000" text="Lorem Ipsum Lorem Ipsum Lorem" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4wb-79-OqP">
                                 <rect key="frame" x="8" y="13" width="466" height="21"/>
@@ -39,9 +35,13 @@
                             <constraint firstAttribute="trailing" secondItem="4wb-79-OqP" secondAttribute="trailing" constant="8" id="hSh-f1-mib"/>
                         </constraints>
                     </view>
+                    <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XeV-xf-ZXR">
+                        <rect key="frame" x="0.0" y="0.0" width="482" height="179"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottomMargin" secondItem="4MJ-4A-8g2" secondAttribute="bottom" constant="-9" id="5Pj-8D-K4P"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="4MJ-4A-8g2" secondAttribute="bottom" constant="-8" id="5Pj-8D-K4P"/>
                     <constraint firstItem="XeV-xf-ZXR" firstAttribute="top" secondItem="RLb-uj-IBD" secondAttribute="top" id="7fD-LG-20h"/>
                     <constraint firstAttribute="trailingMargin" secondItem="4MJ-4A-8g2" secondAttribute="trailing" constant="-8" id="8hb-sL-zQD"/>
                     <constraint firstAttribute="bottom" secondItem="RLb-uj-IBD" secondAttribute="bottom" id="9Zg-hV-zIi"/>

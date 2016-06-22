@@ -222,7 +222,6 @@
 
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)annotationView {
-  NSLog(@"didSelect");
   if ([annotationView.annotation isKindOfClass:[PingebAnnotation class]]) {
     PingebAnnotation *pingebAnnotation = annotationView.annotation;
     [self.mapItemDetailView displaySpotInfo:pingebAnnotation.spot];
