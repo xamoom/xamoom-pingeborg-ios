@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import MapKit
 
 class MapItemDetailView: UIView {
   
@@ -18,6 +19,7 @@ class MapItemDetailView: UIView {
   @IBOutlet weak var detailDescriptionLabel: UILabel!
   @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
   @IBOutlet weak var imageHeightConstraint: NSLayoutConstraint!
+  var shownSpot : XMMSpot?
   
   init() {
     super.init(frame: CGRectNull)
@@ -57,12 +59,20 @@ class MapItemDetailView: UIView {
   }
   
   @IBAction func didClickRouteButton(sender: AnyObject) {
-  }
-  
-  @IBAction func didClickOpenButton(sender: AnyObject) {
+    Analytics.sharedObject().sendEventWithCategorie("UX", andAction: "Click", andLabel: "Map Callout Navigation Button", andValue: nil)
+    
+    if let spot = shownSpot {
+      let placemark = MKPlacemark.init(coordinate: CLLocationCoordinate2D.init(latitude: spot.latitude, longitude: spot.longitude), addressDictionary: nil)
+      let mapItem = MKMapItem.init(placemark: placemark)
+      mapItem.name = spot.name
+      let launchOptions : [String:String] = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
+      mapItem.openInMapsWithLaunchOptions(launchOptions)
+    }
   }
   
   func displaySpotInfo(spot : XMMSpot) {
+    shownSpot = spot
+    
     if let imageUrl = spot.image {
       let url : NSURL = NSURL(string: imageUrl)!
       imageHeightConstraint.constant = 150

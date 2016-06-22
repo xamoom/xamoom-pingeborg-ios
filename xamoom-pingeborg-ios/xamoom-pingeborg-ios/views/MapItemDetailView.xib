@@ -45,18 +45,22 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E4d-Cg-0lj">
-                    <rect key="frame" x="8" y="221" width="288" height="371"/>
-                    <state key="normal" title="Route"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E4d-Cg-0lj">
+                    <rect key="frame" x="499" y="221" width="93" height="371"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.30486723539999999" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="93" id="1aa-IA-NAU"/>
+                    </constraints>
+                    <state key="normal" title="Route">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="didClickRouteButton:" destination="-1" eventType="touchUpInside" id="Fyf-AC-EBV"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aue-tN-Mtn">
-                    <rect key="frame" x="304" y="221" width="288" height="371"/>
-                    <state key="normal" title="Open"/>
-                    <connections>
-                        <action selector="didClickOpenButton:" destination="-1" eventType="touchUpInside" id="tLN-40-NEJ"/>
                     </connections>
                 </button>
             </subviews>
@@ -72,16 +76,11 @@
                 <constraint firstAttribute="trailing" secondItem="Hfq-1W-FZo" secondAttribute="trailing" constant="14" id="VLj-H5-aDu"/>
                 <constraint firstItem="Pci-HH-r7K" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="YSc-Ru-5Ss"/>
                 <constraint firstItem="o0n-Nz-Ja0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="glm-m2-HqD"/>
+                <constraint firstAttribute="trailing" secondItem="E4d-Cg-0lj" secondAttribute="trailing" constant="8" id="ioK-ZV-ObL"/>
                 <constraint firstAttribute="trailing" secondItem="Pci-HH-r7K" secondAttribute="trailing" id="k2L-ox-Qyg"/>
                 <constraint firstAttribute="trailing" secondItem="dyg-xl-srE" secondAttribute="trailing" constant="8" id="oBZ-do-rxS"/>
                 <constraint firstAttribute="bottom" secondItem="E4d-Cg-0lj" secondAttribute="bottom" constant="8" id="qTx-RC-pdy"/>
-                <constraint firstItem="aue-tN-Mtn" firstAttribute="height" secondItem="E4d-Cg-0lj" secondAttribute="height" id="qh4-M2-wsI"/>
-                <constraint firstItem="E4d-Cg-0lj" firstAttribute="width" secondItem="aue-tN-Mtn" secondAttribute="width" id="rO7-Xv-zNK"/>
                 <constraint firstItem="Hfq-1W-FZo" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="s1l-Oj-ADk"/>
-                <constraint firstAttribute="trailing" secondItem="aue-tN-Mtn" secondAttribute="trailing" constant="8" id="szM-PL-3jZ"/>
-                <constraint firstItem="aue-tN-Mtn" firstAttribute="leading" secondItem="E4d-Cg-0lj" secondAttribute="trailing" constant="8" id="ulb-zy-mbg"/>
-                <constraint firstItem="E4d-Cg-0lj" firstAttribute="bottom" secondItem="aue-tN-Mtn" secondAttribute="bottom" id="xwP-ms-6bi"/>
-                <constraint firstItem="E4d-Cg-0lj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="y89-1s-4BU"/>
             </constraints>
             <point key="canvasLocation" x="374" y="484"/>
         </view>

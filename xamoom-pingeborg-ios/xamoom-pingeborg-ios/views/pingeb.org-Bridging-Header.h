@@ -4,3 +4,5 @@
 
 #import <XamoomSDK/XamoomSDK.h>
 #import "UIImageView+WebCache.h"
+#import "Globals.h"
+#import "Analytics.h"

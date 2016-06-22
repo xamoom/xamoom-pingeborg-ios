@@ -234,12 +234,26 @@
       self.mapItemDetailView.bottomConstraint.constant += diff;
     }
     
+    PingebAnnotation *annotation = annotationView.annotation;
+    [self moveToAnnotation:annotation];
     [self showMapItemDetailView: diff];
   }
 }
 
--(void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
+- (void)moveToAnnotation:(PingebAnnotation *)annotation {
+  MKCoordinateRegion oldRegion = [self.mapView regionThatFits:MKCoordinateRegionMakeWithDistance(annotation.coordinate, 800, 800)];
+  CLLocationCoordinate2D centerPointOfOldRegion = oldRegion.center;
+  
+  //Create a new center point (I added a quarter of oldRegion's latitudinal span)
+  CLLocationCoordinate2D centerPointOfNewRegion = CLLocationCoordinate2DMake(centerPointOfOldRegion.latitude - oldRegion.span.latitudeDelta/4.0, centerPointOfOldRegion.longitude);
+  
+  //Create a new region with the new center point (same span as oldRegion)
+  MKCoordinateRegion newRegion = MKCoordinateRegionMake(centerPointOfNewRegion, oldRegion.span);
+  
+  //Set the mapView's region
+  [self.mapView setRegion:newRegion animated:YES];
 }
+
 
 #pragma mark User Interaction
 
