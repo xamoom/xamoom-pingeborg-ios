@@ -7,19 +7,25 @@
 //
 
 #import "ExtendedTabbarView.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation ExtendedTabbarView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (instancetype)initWithFrame:(CGRect)frame {
+  self = [super initWithFrame:frame];
+  [self setupView];
+  return self;
 }
-*/
 
-- (IBAction)close:(id)sender {
-  self.hidden = YES;
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+  self = [super initWithCoder:aDecoder];
+  [self setupView];
+  return self;
+}
+
+- (void)setupView {
+  self.layer.masksToBounds = YES;
+  self.layer.cornerRadius = 10;
 }
 
 @end

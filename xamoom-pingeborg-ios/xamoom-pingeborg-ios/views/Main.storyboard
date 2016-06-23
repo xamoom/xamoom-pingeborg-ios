@@ -345,70 +345,23 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="cnz-Wf-IIR">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
                             </mapView>
-                            <view hidden="YES" alpha="0.89999999999999991" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N6O-Vd-Jeg" userLabel="InstructionView">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="487"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Berühren zum Schließen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mSQ-hE-GZt">
-                                        <rect key="frame" x="241" y="467" width="118" height="12"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow-bended-down" translatesAutoresizingMaskIntoConstraints="NO" id="Fzc-9f-Kn2">
-                                        <rect key="frame" x="224" y="379" width="91" height="49"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="91" id="0c1-56-tRv"/>
-                                            <constraint firstAttribute="height" constant="49" id="b4K-L6-8wR"/>
-                                        </constraints>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Du bist in der Nähe eines pingeb.org-Stickers? Dann kannst du auch ohne QR-Code entdecken!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Guv-VM-KZR">
-                                        <rect key="frame" x="8" y="315" width="307" height="84"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="84" id="Fpt-B7-huI"/>
-                                            <constraint firstAttribute="width" constant="307" id="V8p-F7-tmb"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="mSQ-hE-GZt" secondAttribute="bottom" constant="8" id="3MF-sg-6ox"/>
-                                    <constraint firstItem="Fzc-9f-Kn2" firstAttribute="bottom" secondItem="Guv-VM-KZR" secondAttribute="bottom" constant="29" id="CKd-jW-dzx"/>
-                                    <constraint firstItem="Guv-VM-KZR" firstAttribute="leading" secondItem="N6O-Vd-Jeg" secondAttribute="leading" constant="8" id="EYc-k1-jxQ"/>
-                                    <constraint firstItem="Fzc-9f-Kn2" firstAttribute="trailing" secondItem="Guv-VM-KZR" secondAttribute="trailing" id="WtL-G1-J9c"/>
-                                    <constraint firstAttribute="centerX" secondItem="mSQ-hE-GZt" secondAttribute="centerX" id="ccr-ga-sKG"/>
-                                    <constraint firstAttribute="bottom" secondItem="Guv-VM-KZR" secondAttribute="bottom" constant="88" id="ipL-gH-Pan"/>
-                                </constraints>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="fd4-jm-cMb" appends="YES" id="DlU-R0-08B"/>
-                                </connections>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="taP-xd-o0S" firstAttribute="top" secondItem="N6O-Vd-Jeg" secondAttribute="bottom" id="OjB-wH-0r0"/>
                             <constraint firstItem="cnz-Wf-IIR" firstAttribute="leading" secondItem="8fU-ya-1Zx" secondAttribute="leading" id="Qz1-Oq-cPn"/>
-                            <constraint firstItem="N6O-Vd-Jeg" firstAttribute="leading" secondItem="cnz-Wf-IIR" secondAttribute="leading" id="Yca-VQ-ymj"/>
-                            <constraint firstItem="N6O-Vd-Jeg" firstAttribute="trailing" secondItem="cnz-Wf-IIR" secondAttribute="trailing" id="d8a-0L-qgf"/>
                             <constraint firstItem="cnz-Wf-IIR" firstAttribute="top" secondItem="r2z-g0-SZf" secondAttribute="bottom" id="qQ6-os-Pxv"/>
-                            <constraint firstItem="N6O-Vd-Jeg" firstAttribute="top" secondItem="cnz-Wf-IIR" secondAttribute="top" id="s5g-Dv-lpz"/>
                             <constraint firstAttribute="trailing" secondItem="cnz-Wf-IIR" secondAttribute="trailing" id="sBc-wL-jHg"/>
                             <constraint firstItem="taP-xd-o0S" firstAttribute="top" secondItem="cnz-Wf-IIR" secondAttribute="bottom" id="zH7-cY-Trg"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="Map" id="Tov-nI-9zY"/>
                     <connections>
-                        <outlet property="instructionView" destination="N6O-Vd-Jeg" id="jjn-bA-545"/>
                         <outlet property="mapView" destination="cnz-Wf-IIR" id="swo-6m-XGL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xcE-VJ-wGD" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="fd4-jm-cMb">
                     <connections>
-                        <action selector="closeInstructionView:" destination="WdT-Q6-mb4" id="MJ1-8H-jne"/>
                         <outlet property="delegate" destination="WdT-Q6-mb4" id="BFP-eY-2rU"/>
                     </connections>
                 </tapGestureRecognizer>
@@ -422,7 +375,6 @@
         <image name="QR" width="30" height="30"/>
         <image name="Start" width="30" height="30"/>
         <image name="arrow-bended" width="43" height="58"/>
-        <image name="arrow-bended-down" width="43" height="58"/>
         <image name="info" width="32" height="32"/>
     </resources>
 </document>

@@ -22,10 +22,6 @@
 
 #pragma mark - NavigationViewController Interface
 
-@interface NavigationViewController : UINavigationController
-
-@property (strong, readonly, nonatomic) REMenu *menu;
-
-- (void)toggleMenu;
+@interface NavigationViewController : UINavigationController <CLLocationManagerDelegate>
 
 @end

@@ -17,6 +17,7 @@ class MapItemDetailView: UIView {
   @IBOutlet weak var detailImageView: UIImageView!
   @IBOutlet weak var detailTitleLabel: UILabel!
   @IBOutlet weak var detailDescriptionLabel: UILabel!
+  @IBOutlet weak var routeButton: UIButton!
   @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
   @IBOutlet weak var imageHeightConstraint: NSLayoutConstraint!
   var shownSpot : XMMSpot?

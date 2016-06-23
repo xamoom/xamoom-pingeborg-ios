@@ -12,6 +12,7 @@
                 <outlet property="detailImageView" destination="Pci-HH-r7K" id="KZd-5n-BS8"/>
                 <outlet property="detailTitleLabel" destination="dyg-xl-srE" id="myX-rx-uR0"/>
                 <outlet property="imageHeightConstraint" destination="oyW-l7-eip" id="VcU-FN-hu5"/>
+                <outlet property="routeButton" destination="E4d-Cg-0lj" id="dIR-8o-49L"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -36,13 +37,13 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dyg-xl-srE">
                     <rect key="frame" x="8" y="158" width="584" height="26"/>
                     <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hfq-1W-FZo">
                     <rect key="frame" x="8" y="192" width="578" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E4d-Cg-0lj">
@@ -51,7 +52,7 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="93" id="1aa-IA-NAU"/>
                     </constraints>
-                    <state key="normal" title="Route">
+                    <state key="normal" title="Navigate">
                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <userDefinedRuntimeAttributes>

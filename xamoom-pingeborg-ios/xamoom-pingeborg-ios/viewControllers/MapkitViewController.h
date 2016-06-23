@@ -26,7 +26,6 @@
 
 @interface MapkitViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate>
 
-@property (weak, nonatomic) IBOutlet UIView *instructionView;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
 @end

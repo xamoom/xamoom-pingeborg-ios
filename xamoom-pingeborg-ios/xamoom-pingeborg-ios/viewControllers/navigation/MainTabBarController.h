@@ -19,7 +19,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MainTabBarController : UITabBarController <UITabBarControllerDelegate, CLLocationManagerDelegate>
+@interface MainTabBarController : UITabBarController <UITabBarControllerDelegate>
 
 @property NSString* scannedUrl;
 

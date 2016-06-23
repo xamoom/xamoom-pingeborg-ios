@@ -57,7 +57,12 @@ static int kHeaderViewHeight = 200;
   [self setupTableView];
   [self setupTextSizeDropdown];
   [self setupHeaderView];
-  [self downloadContent];
+  
+  if (self.content != nil) {
+    [self showDataWithContentId:self.content];
+  } else {
+    [self downloadContent];
+  }
 }
 
 - (void)didReceiveMemoryWarning {

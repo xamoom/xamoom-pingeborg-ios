@@ -20,20 +20,13 @@
 #import "MainTabBarController.h"
 #import "XMMEnduserApi.h"
 #import "ScanResultViewController.h"
-#import "ExtendedTabbarView.h"
 #import <QRCodeReaderViewController/QRCodeReaderViewController.h>
 
 @interface MainTabBarController () <QRCodeReaderDelegate>
 
 @property (strong, nonatomic) XMMContent *savedApiResult;
 @property (strong, nonatomic) JGProgressHUD *hud;
-@property (strong, nonatomic) ExtendedTabbarView *extendedView;
-
-@property (strong, nonatomic) CLLocationManager *locationManager;
-@property (strong, nonatomic) CLBeaconRegion *beaconRegion;
-
-@property (strong, nonatomic) CLBeacon *lastBeacon;
-@property (strong, nonatomic) XMMContent *geofence;
+@property (nonatomic) double topBarOffset;
 
 @end
 
@@ -46,9 +39,6 @@
   [super viewDidLoad];
   self.delegate = self;
   [self initTabbarItems];
-  [self initBeacons];
-  [self initGeofence];
-  [self initExtendedView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -68,36 +58,6 @@
     //"hide" the title, to have better accessibility instead of don't set the item name
     item.titlePositionAdjustment = UIOffsetMake(0, 100);
   }
-}
-
-- (void)initBeacons {
-  //create UUID with xamooms Beacon UUID
-  NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:@"de2b94ae-ed98-11e4-3432-78616d6f6f6d"];
-  
-  //create beacon region your major
-  self.beaconRegion = [[CLBeaconRegion alloc]
-                       initWithProximityUUID:uuid
-                       major:52414
-                       identifier:@"pingeborg beacons"];
-  
-  //init locationmanager
-  self.locationManager = [[CLLocationManager alloc] init];
-  self.locationManager.delegate = self;
-  
-  //request location permission
-  if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
-    [self.locationManager requestAlwaysAuthorization];
-  }
-  
-  //start monitoring beacons
-  [self.locationManager startMonitoringForRegion:self.beaconRegion];
-}
-
-- (void)initGeofence {
-  self.locationManager.distanceFilter = 100.0f; //meter
-  self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-  self.locationManager.activityType = CLActivityTypeOther;
-  [self.locationManager startUpdatingLocation];
 }
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
@@ -120,98 +80,6 @@
     return NO;
   } else {
     return YES;
-  }
-}
-
-#pragma mark - iBeacon & Geofence
-
-- (void)initExtendedView {
-  self.extendedView = [[[NSBundle mainBundle] loadNibNamed:@"ExtendedTabbarView" owner:self options:nil] firstObject];
-  self.extendedView.translatesAutoresizingMaskIntoConstraints = NO;
-  
-  self.extendedView.titleLabel.text = NSLocalizedString(@"Discovered pingeb.org", nil);
-  self.extendedView.descriptionLabel.text = NSLocalizedString(@"open artist description", nil);
-  
-  [self.view addSubview:self.extendedView];
-  self.extendedView.hidden = YES;
-  
-  [self.extendedView addConstraint:[NSLayoutConstraint constraintWithItem:self.extendedView
-                                                                attribute:NSLayoutAttributeHeight
-                                                                relatedBy:NSLayoutRelationEqual
-                                                                   toItem:nil
-                                                                attribute:NSLayoutAttributeNotAnAttribute
-                                                               multiplier:1.0f
-                                                                 constant:70]];
-  
-  [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.extendedView
-                                                        attribute:NSLayoutAttributeBottom
-                                                        relatedBy:NSLayoutRelationEqual
-                                                           toItem:self.view
-                                                        attribute:NSLayoutAttributeBottom
-                                                       multiplier:1.0f
-                                                         constant:-49]];
-  
-  [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.extendedView
-                                                        attribute:NSLayoutAttributeLeading
-                                                        relatedBy:NSLayoutRelationEqual
-                                                           toItem:self.view
-                                                        attribute:NSLayoutAttributeLeading
-                                                       multiplier:1.0f
-                                                         constant:0]];
-  
-  [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.extendedView
-                                                        attribute:NSLayoutAttributeTrailing
-                                                        relatedBy:NSLayoutRelationEqual
-                                                           toItem:self.view
-                                                        attribute:NSLayoutAttributeTrailing
-                                                       multiplier:1.0f
-                                                         constant:0]];
-  [self.view updateConstraints];
-  [self.extendedView updateConstraints];
-  
-  [self.extendedView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickedTabbarExtendedView)]];
-}
-
-- (void)openExtendedView {
-  self.extendedView.hidden = NO;
-}
-
-- (void)closeExtendedView {
-  self.extendedView.hidden = YES;
-}
-
-- (void)clickedTabbarExtendedView {
-  [self closeExtendedView];
-  
-  if (self.lastBeacon != nil) {
-    [self.hud showInView:self.view];
-    
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    ScanResultViewController *scanResultViewController = [storyboard instantiateViewControllerWithIdentifier:@"ScanResultViewController"];
-    
-    [[XMMEnduserApi sharedInstance] contentWithBeaconMajor:@52414 minor:self.lastBeacon.minor completion:^(XMMContent *content, NSError *error) {
-      [self.hud dismiss];
-      if (![[Globals sharedObject].savedArtits containsString:content.ID]) {
-        [[Globals sharedObject] addDiscoveredArtist:content.ID];
-      }
-      scanResultViewController.result = content;
-      [self.navigationController pushViewController:scanResultViewController animated:YES];
-    }];
-    
-  }
-  
-  if (self.geofence != nil) {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    ArtistDetailViewController *artistDetailViewController =
-    [storyboard instantiateViewControllerWithIdentifier:@"ArtistDetailView"];
-    
-    artistDetailViewController.contentId = self.geofence.ID;
-    
-    if (![[Globals sharedObject].savedArtits containsString:self.geofence.ID]) {
-      [[Globals sharedObject] addDiscoveredArtist:self.geofence.ID];
-    }
-    
-    [self.navigationController pushViewController:artistDetailViewController animated:YES];
   }
 }
 
@@ -297,43 +165,6 @@
     ScanResultViewController *srvc = [segue destinationViewController];
     srvc.result = self.savedApiResult;
   }
-}
-
-#pragma mark - CLLocationManagerDelegate
-
--(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-  CLLocation *location = [locations firstObject];
-  
-  [[XMMEnduserApi sharedInstance] contentsWithLocation:location pageSize:10 cursor:nil sort:0 completion:^(NSArray *contents, bool hasMore, NSString *cursor, NSError *error) {
-    if (self.lastBeacon == nil && contents.count > 0) {
-      [self openExtendedView];
-      self.geofence = [contents firstObject];
-    }
-  }];
-}
-
-- (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray<CLBeacon *> *)beacons inRegion:(CLBeaconRegion *)region {
-  if (beacons.count == 0) {
-    [self closeExtendedView];
-    return;
-  }
-  
-  [self openExtendedView];
-  
-  if (self.lastBeacon.minor != [beacons firstObject].minor) {
-    self.lastBeacon = [beacons firstObject];
-    self.geofence = nil;
-  }
-}
-
-- (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
-  [self.locationManager startRangingBeaconsInRegion:self.beaconRegion];
-}
-
-- (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region {
-  [self.locationManager stopRangingBeaconsInRegion:self.beaconRegion];
-  self.lastBeacon = nil;
-  [self closeExtendedView];
 }
 
 @end

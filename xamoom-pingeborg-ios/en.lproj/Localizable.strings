@@ -44,6 +44,10 @@
 "open artist description" = "Click here to discover";
 "%lu near spots found" = "%lu near spots found";
 
+/* MapItemDetailView */
+
+"Route" = "Route";
+
 /* Bluetooth AlertView */
 
 "bluetooth alert title" = "Bluetooth";

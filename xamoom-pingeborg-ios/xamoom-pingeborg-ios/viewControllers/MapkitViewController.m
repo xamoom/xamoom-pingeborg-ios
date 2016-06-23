@@ -55,11 +55,6 @@
   [self setupMapItemDetailView];
   
   [self zoomMapToLat:46.623791 andLon:14.308549 andDelta:0.09f];
-  
-  //check for firstTime geofencing
-  if ([[Globals sharedObject] isFirstTimeGeofencing]) {
-    self.instructionView.hidden = NO;
-  }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -296,12 +291,6 @@
   self.lastLocation = [locations firstObject];
   
   self.savedResponseContent = nil;
-}
-
-#pragma mark - UI/UX
-
-- (IBAction)closeInstructionView:(id)sender {
-  self.instructionView.hidden = YES;
 }
 
 @end
