@@ -53,6 +53,12 @@
   [self initGeofence];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+  [self.locationManager startRangingBeaconsInRegion:self.beaconRegion];
+  [self.locationManager startMonitoringSignificantLocationChanges];
+}
+
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
   // Dispose of any resources that can be recreated.
@@ -80,7 +86,6 @@
   self.locationManager.distanceFilter = 100.0f; //meter
   self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
   self.locationManager.activityType = CLActivityTypeOther;
-  [self.locationManager startUpdatingLocation];
 }
 
 #pragma mark - iBeacon & Geofence
@@ -101,15 +106,15 @@
                                                                    toItem:nil
                                                                 attribute:NSLayoutAttributeNotAnAttribute
                                                                multiplier:1.0f
-                                                                 constant:90]];
+                                                                 constant:160]];
   
   self.extendedViewTopConstraint = [NSLayoutConstraint constraintWithItem:self.extendedView
-                                                                attribute:NSLayoutAttributeTop
+                                                                attribute:NSLayoutAttributeBottom
                                                                 relatedBy:NSLayoutRelationEqual
                                                                    toItem:self.view
                                                                 attribute:NSLayoutAttributeTop
                                                                multiplier:1.0f
-                                                                 constant:-90];
+                                                                 constant:0];
   [self.view addConstraint:self.extendedViewTopConstraint];
   
   [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.extendedView
@@ -136,12 +141,7 @@
 }
 
 - (void)openExtendedView {
-  float newConstant;
-  if (self.navigationBar.translucent == NO) {
-    newConstant = 90 - self.topBarOffset;
-  } else {
-    newConstant = -24;
-  }
+  float newConstant = self.topBarOffset + 55;
   
   if (self.extendedViewTopConstraint.constant == newConstant) {
     return;
@@ -164,13 +164,13 @@
 }
 
 - (void)closeExtendedView {
-  if (self.extendedViewTopConstraint.constant == -90) {
+  if (self.extendedViewTopConstraint.constant == 0) {
     return;
   }
   
   [self.view layoutIfNeeded];
   
-  self.extendedViewTopConstraint.constant = -90;
+  self.extendedViewTopConstraint.constant = 0;
   [UIView animateWithDuration:0.3f
                         delay:0.0f
        usingSpringWithDamping:5.0f
@@ -185,8 +185,6 @@
 }
 
 - (void)clickedTabbarExtendedView {
-  [self closeExtendedView];
-
   UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
   ArtistDetailViewController *artistDetailViewController =
   [storyboard instantiateViewControllerWithIdentifier:@"ArtistDetailView"];
@@ -195,6 +193,13 @@
     [self.hud showInView:self.view animated:YES];
     [[XMMEnduserApi sharedInstance] contentWithBeaconMajor:@52414 minor:self.lastBeacon.minor completion:^(XMMContent *content, NSError *error) {
       [self.hud dismissAnimated:YES];
+      if (error != nil) {
+        [self showNetworkAlert];
+        return;
+      }
+      
+      [self closeExtendedView];
+      
       if (![[Globals sharedObject].savedArtits containsString:content.ID]) {
         [[Globals sharedObject] addDiscoveredArtist:content.ID];
       }
@@ -211,9 +216,20 @@
     }
     artistDetailViewController.contentId = self.geofence.ID;
     self.geofence = nil;
-    
+    [self closeExtendedView];
+
     [self pushViewController:artistDetailViewController animated:YES];
   }
+}
+
+- (void)showNetworkAlert {
+  UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Woops" message:@"There was a network problem" preferredStyle:UIAlertControllerStyleAlert];
+  
+  [alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    [alertController removeFromParentViewController];
+  }]];
+  
+  [self presentViewController:alertController animated:YES completion:nil];
 }
 
 #pragma mark - CLLocationManagerDelegate
@@ -231,7 +247,6 @@
 
 - (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray<CLBeacon *> *)beacons inRegion:(CLBeaconRegion *)region {
   if (beacons.count == 0) {
-    [self closeExtendedView];
     return;
   }
   
@@ -253,6 +268,5 @@
   self.lastBeacon = nil;
   [self closeExtendedView];
 }
-
 
 @end
