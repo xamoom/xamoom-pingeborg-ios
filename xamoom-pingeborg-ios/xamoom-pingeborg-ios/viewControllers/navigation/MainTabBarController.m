@@ -154,7 +154,12 @@
   [[Globals sharedObject] addDiscoveredArtist:content.ID];
   self.savedApiResult = content;
   [self.hud dismiss];
-  [self performSegueWithIdentifier:@"showScanResult" sender:self];
+  
+  UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+  ArtistDetailViewController *artistDetailViewController =
+  [storyboard instantiateViewControllerWithIdentifier:@"ArtistDetailView"];
+  artistDetailViewController.content = content;
+  [self.navigationController pushViewController:artistDetailViewController animated:YES];
 }
 
 #pragma mark - Navigation
