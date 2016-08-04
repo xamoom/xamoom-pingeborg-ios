@@ -1,1 +1,1 @@
-../../../../../../xamoom-ios-sdk/XamoomSDK/Classes/mapping/XMMRestResource.h
+../../../XamoomSDK/XamoomSDK/Classes/mapping/XMMRestResource.h

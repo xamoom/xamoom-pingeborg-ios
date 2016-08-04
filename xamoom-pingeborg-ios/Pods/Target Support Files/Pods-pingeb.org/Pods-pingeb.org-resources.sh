@@ -81,13 +81,13 @@ EOM
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "JGProgressHUD/JGProgressHUD/JGProgressHUD/JGProgressHUD Resources.bundle"
-  install_resource "../../../xamoom-ios-sdk/XamoomSDK/Assets/Images.xcassets"
+  install_resource "XamoomSDK/XamoomSDK/Assets/Images.xcassets"
   install_resource "$PODS_CONFIGURATION_BUILD_DIR/XamoomSDK/XamoomSDK.bundle"
   install_resource "$PODS_CONFIGURATION_BUILD_DIR/youtube-ios-player-helper/Assets.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "JGProgressHUD/JGProgressHUD/JGProgressHUD/JGProgressHUD Resources.bundle"
-  install_resource "../../../xamoom-ios-sdk/XamoomSDK/Assets/Images.xcassets"
+  install_resource "XamoomSDK/XamoomSDK/Assets/Images.xcassets"
   install_resource "$PODS_CONFIGURATION_BUILD_DIR/XamoomSDK/XamoomSDK.bundle"
   install_resource "$PODS_CONFIGURATION_BUILD_DIR/youtube-ios-player-helper/Assets.bundle"
 fi

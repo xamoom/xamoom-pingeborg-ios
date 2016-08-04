@@ -1,1 +1,1 @@
-../../../../../../xamoom-ios-sdk/XamoomSDK/Classes/mapping/XMMMenuItem.h
+../../../XamoomSDK/XamoomSDK/Classes/mapping/XMMMenuItem.h

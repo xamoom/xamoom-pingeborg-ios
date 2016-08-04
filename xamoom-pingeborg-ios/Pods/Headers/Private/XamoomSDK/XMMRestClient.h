@@ -1,1 +1,1 @@
-../../../../../../xamoom-ios-sdk/XamoomSDK/Classes/XMMRestClient.h
+../../../XamoomSDK/XamoomSDK/Classes/XMMRestClient.h

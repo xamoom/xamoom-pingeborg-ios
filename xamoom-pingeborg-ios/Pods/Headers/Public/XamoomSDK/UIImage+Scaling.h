@@ -1,1 +1,1 @@
-../../../../../../xamoom-ios-sdk/XamoomSDK/Classes/ContentBlocks/UIImage+Scaling.h
+../../../XamoomSDK/XamoomSDK/Classes/ContentBlocks/UIImage+Scaling.h

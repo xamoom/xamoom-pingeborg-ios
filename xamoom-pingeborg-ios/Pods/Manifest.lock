@@ -14,14 +14,14 @@ PODS:
     - GoogleSymbolUtilities (~> 1.0.0)
   - JAMSVGImage (1.6.1)
   - JGProgressHUD (1.3.1)
-  - JSONAPI (1.0.6)
+  - JSONAPI (1.0.7)
   - QRCodeReaderViewController (4.0.1)
   - REMenu (1.10)
   - SDWebImage (3.8.1):
     - SDWebImage/Core (= 3.8.1)
   - SDWebImage/Core (3.8.1)
   - SMCalloutView (2.1.2)
-  - XamoomSDK (2.0.5):
+  - XamoomSDK (2.1.0):
     - JAMSVGImage
     - JSONAPI (~> 1.0.0)
     - SDWebImage (~> 3.7)
@@ -34,12 +34,7 @@ DEPENDENCIES:
   - QRCodeReaderViewController (~> 4.0.1)
   - REMenu (~> 1.10)
   - SMCalloutView
-  - XamoomSDK (from `~/dev/xamoom-ios-sdk`)
-  - youtube-ios-player-helper (~> 0.1.1)
-
-EXTERNAL SOURCES:
-  XamoomSDK:
-    :path: ~/dev/xamoom-ios-sdk
+  - XamoomSDK (~> 2.1.0)
 
 SPEC CHECKSUMS:
   Google: 875f5a8ade86dd02e36586e4a54814843938c7f6
@@ -49,14 +44,14 @@ SPEC CHECKSUMS:
   GoogleUtilities: 8ed9134debe11719097881711464752900668f10
   JAMSVGImage: 7aa966a310ddf5f53de295d5ce5b930df8ff1eb2
   JGProgressHUD: 153053a21d81208cb5f659691996bcefce6a9885
-  JSONAPI: 9b32b11cb196ede8bf22489879fb4003c3e5e8f3
+  JSONAPI: 8fed55fcfa08ee662674cd4f1bd03c37d8b34e03
   QRCodeReaderViewController: 6538745c8f4ffa9407a26bd7f9489ea01739e7b0
   REMenu: 30dad195930adf6c5eeb8041e3257aa60bf9fa49
   SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
   SMCalloutView: 4078d89b847731e514b1a919fed33b383a24a106
-  XamoomSDK: 35e55bc75531b666ff05b1bb5fbf34a6b332eb4f
+  XamoomSDK: fdc5de69b18f6f80eb01ed45f004d3f3319588f2
   youtube-ios-player-helper: 84b1485ebb4b7c6b619c6e05edcb55186723a7c6
 
-PODFILE CHECKSUM: 5909456b8faa53e18e7416cce4450df683a5b19f
+PODFILE CHECKSUM: 3f0c073f7f9a6278da5d426be888d9dd0692af99
 
 COCOAPODS: 1.0.1
