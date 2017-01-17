@@ -46,7 +46,7 @@ static int kHeaderViewHeight = 200;
   
   //analytics
   [[Analytics sharedObject] setScreenName:@"Artist Detail"];
-    
+  
   self.hud = [[JGProgressHUD alloc] initWithStyle:JGProgressHUDStyleDark];
   [self hideNavigationBar];
   
@@ -75,8 +75,10 @@ static int kHeaderViewHeight = 200;
   self.tableView.tableHeaderView = nil;
   [self.tableView addSubview:self.headerView];
   
-  self.tableView.contentInset = UIEdgeInsetsMake(kHeaderViewHeight, 0, 0, 0);
-  self.tableView.contentOffset = CGPointMake(0, -kHeaderViewHeight);
+  if (self.tableView.contentInset.top == 0) {
+    self.tableView.contentInset = UIEdgeInsetsMake(kHeaderViewHeight, 0, 0, 0);
+    self.tableView.contentOffset = CGPointMake(0, -kHeaderViewHeight);
+  }
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
@@ -162,7 +164,7 @@ static int kHeaderViewHeight = 200;
 
 - (void)downloadContent {
   [self.hud showInView:self.view];
-
+  
   NSString* savedArtists = [[Globals sharedObject] savedArtits];
   if ([savedArtists containsString:self.contentId]) {
     
