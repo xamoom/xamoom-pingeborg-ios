@@ -30,6 +30,7 @@
 }
 
 - (void)awakeFromNib {
+  [super awakeFromNib];
   // Initialization code
   self.feedItemTitleView.firstColor = [UIColor clearColor];
   self.feedItemTitleView.secondColor = [UIColor blackColor];
