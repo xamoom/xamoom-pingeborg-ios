@@ -1,1 +1,1 @@
-../../../XamoomSDK/XamoomSDK/Classes/ContentBlocks/Blocks/XMMContentBlock4TableViewCell.h
+../../../../../../xamoom-ios-sdk/XamoomSDK/Classes/ContentBlocks/Blocks/XMMContentBlock4TableViewCell.h

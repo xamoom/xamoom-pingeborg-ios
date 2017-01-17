@@ -1,1 +1,1 @@
-../../../XamoomSDK/XamoomSDK/Classes/ContentBlocks/XMMContentBlocksCache.h
+../../../../../../xamoom-ios-sdk/XamoomSDK/Classes/ContentBlocks/XMMContentBlocksCache.h

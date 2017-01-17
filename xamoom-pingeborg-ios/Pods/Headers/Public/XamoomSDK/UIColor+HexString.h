@@ -1,1 +1,1 @@
-../../../XamoomSDK/XamoomSDK/Classes/ContentBlocks/UIColor+HexString.h
+../../../../../../xamoom-ios-sdk/XamoomSDK/Classes/ContentBlocks/UIColor+HexString.h

@@ -54,75 +54,55 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>youtube-ios-player-helper-Assets.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>youtube-ios-player-helper.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>10F8BA331B7A2D4313AF901C96E4474B</key>
+		<key>137B7EE6C6DFCD85F0C66821DD7F559E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1C6ED963043BC9B3C39239A7295FAE84</key>
+		<key>527B2EB230FF832722C5C23775785EF8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3116F685117B044E8E119EA475203BA9</key>
+		<key>548F15811CBD2F6B0E0D21986331349E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>35FD6C78799153C4EDCDC2226EC727AA</key>
+		<key>54C4EA6297F9C49C406EC4533EA45972</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3F451B5DBD7A6E4FFF70EE888A4CC58F</key>
+		<key>8C12AD2110617C341BA3C64250CDCE12</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>57433A07C85A12E3CCF336DF27AC961B</key>
+		<key>CAFE1E212EB266EC7F5190DB78A8C0E7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>57E9C5655B09A2ACB0C0339E9BC22FA4</key>
+		<key>CBB3C9DE4D2714D907135180D8D37536</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A140B33BAE44A466EF692E3E889BE21C</key>
+		<key>D19411211FF788F7C21C39D27CA97BB3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BA96974D83A5873D150E33DDFE38E24F</key>
+		<key>D6FC8A278D55AC8724793F336939490A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C76B1B91569F1E6508FAFE54DD31EFAB</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D5DF82BFD37BCC69B2C159B8B655AA3F</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E7E2BC59AD63EC00456468E79C9A6F1C</key>
+		<key>DD6EDA65ECB246FF2750A2B34045B22B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

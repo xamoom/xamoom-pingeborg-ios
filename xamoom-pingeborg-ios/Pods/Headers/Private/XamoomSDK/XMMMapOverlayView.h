@@ -1,1 +1,1 @@
-../../../XamoomSDK/XamoomSDK/Classes/ContentBlocks/MapViews/XMMMapOverlayView.h
+../../../../../../xamoom-ios-sdk/XamoomSDK/Classes/ContentBlocks/MapViews/XMMMapOverlayView.h

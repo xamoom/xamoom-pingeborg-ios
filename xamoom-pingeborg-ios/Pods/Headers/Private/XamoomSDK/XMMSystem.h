@@ -1,1 +1,1 @@
-../../../XamoomSDK/XamoomSDK/Classes/mapping/XMMSystem.h
+../../../../../../xamoom-ios-sdk/XamoomSDK/Classes/mapping/XMMSystem.h
