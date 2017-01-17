@@ -164,6 +164,10 @@
 }
 
 - (void)mapMarkerFromBase64:(NSString*)base64String {
+  if (base64String == nil) {
+    return;
+  }
+  
   if ([base64String containsString:@"data:image/svg"]) {
     //create svg need
     base64String = [base64String stringByReplacingOccurrencesOfString:@"data:image/svg+xml;base64," withString:@""];
