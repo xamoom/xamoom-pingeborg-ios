@@ -23,7 +23,7 @@ class MapItemDetailView: UIView {
   var shownSpot : XMMSpot?
   
   init() {
-    super.init(frame: CGRectNull)
+    super.init(frame: CGRect.null)
     
     nibSetup()
   }
@@ -40,44 +40,44 @@ class MapItemDetailView: UIView {
     nibSetup()
   }
   
-  private func nibSetup() {
-    backgroundColor = .clearColor()
+  fileprivate func nibSetup() {
+    backgroundColor = .clear
     
     view = loadViewFromNib()
     view.frame = bounds
-    view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+    view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     view.translatesAutoresizingMaskIntoConstraints = true
     
     addSubview(view)
   }
   
-  private func loadViewFromNib() -> UIView {
-    let bundle = NSBundle(forClass: self.dynamicType)
-    let nib = UINib(nibName: String(self.dynamicType), bundle: bundle)
-    let nibViews = nib.instantiateWithOwner(self, options: nil)
+  fileprivate func loadViewFromNib() -> UIView {
+    let bundle = Bundle(for: type(of: self))
+    let nib = UINib(nibName: String(describing: type(of: self)), bundle: bundle)
+    let nibViews = nib.instantiate(withOwner: self, options: nil)
     
     return nibViews.first as! UIView
   }
   
-  @IBAction func didClickRouteButton(sender: AnyObject) {
-    Analytics.sharedObject().sendEventWithCategorie("UX", andAction: "Click", andLabel: "Map Callout Navigation Button", andValue: nil)
+  @IBAction func didClickRouteButton(_ sender: AnyObject) {
+    Analytics.sharedObject().sendEvent(withCategorie: "UX", andAction: "Click", andLabel: "Map Callout Navigation Button", andValue: nil)
     
     if let spot = shownSpot {
       let placemark = MKPlacemark.init(coordinate: CLLocationCoordinate2D.init(latitude: spot.latitude, longitude: spot.longitude), addressDictionary: nil)
       let mapItem = MKMapItem.init(placemark: placemark)
       mapItem.name = spot.name
       let launchOptions : [String:String] = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
-      mapItem.openInMapsWithLaunchOptions(launchOptions)
+      mapItem.openInMaps(launchOptions: launchOptions)
     }
   }
   
-  func displaySpotInfo(spot : XMMSpot) {
+  func displaySpotInfo(_ spot : XMMSpot) {
     shownSpot = spot
     
     if let imageUrl = spot.image {
-      let url : NSURL = NSURL(string: imageUrl)!
+      let url : URL = URL(string: imageUrl)!
       imageHeightConstraint.constant = 150
-      detailImageView.sd_setImageWithURL(url, placeholderImage: UIImage.init(named: "placeholder"))
+      detailImageView.sd_setImage(with: url, placeholderImage: UIImage.init(named: "placeholder"))
     } else {
       detailImageView.image = nil
       imageHeightConstraint.constant = 0

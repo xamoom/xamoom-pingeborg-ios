@@ -29,34 +29,34 @@ class GradientView: UIView {
   }
   
   init() {
-    firstColor = UIColor.clearColor()
-    secondColor = UIColor.clearColor()
+    firstColor = UIColor.clear
+    secondColor = UIColor.clear
     opacity = 1.0
     
-    super.init(frame: CGRectNull)
+    super.init(frame: CGRect.null)
     
-    self.layer.insertSublayer(gradientLayer, atIndex: 0)
+    self.layer.insertSublayer(gradientLayer, at: 0)
   }
   
   required init?(coder aDecoder: NSCoder) {
-    firstColor = UIColor.clearColor()
-    secondColor = UIColor.clearColor()
+    firstColor = UIColor.clear
+    secondColor = UIColor.clear
     opacity = 1.0
     
     super.init(coder: aDecoder)
     
-    self.layer.insertSublayer(gradientLayer, atIndex: 0)
+    self.layer.insertSublayer(gradientLayer, at: 0)
   }
   
   required override init(frame: CGRect) {
-    firstColor = UIColor.clearColor()
-    secondColor = UIColor.clearColor()
+    firstColor = UIColor.clear
+    secondColor = UIColor.clear
     opacity = 1.0
     
     super.init(frame: frame)
   
     self.bounds = frame
-    self.layer.insertSublayer(gradientLayer, atIndex: 0)
+    self.layer.insertSublayer(gradientLayer, at: 0)
   }
   
   override func layoutSubviews() {
@@ -66,7 +66,7 @@ class GradientView: UIView {
   
   func updateBackgroundGradient() {
     gradientLayer.frame = self.bounds
-    gradientLayer.colors = [firstColor.CGColor, secondColor.CGColor]
+    gradientLayer.colors = [firstColor.cgColor, secondColor.cgColor]
     gradientLayer.opacity = opacity
   }
   

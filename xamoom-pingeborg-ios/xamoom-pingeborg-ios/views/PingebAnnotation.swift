@@ -22,7 +22,7 @@ class PingebAnnotation: NSObject, MKAnnotation {
     self.title = spot.name
     self.coordinate = CLLocationCoordinate2D.init(latitude: spot.latitude,
                                                   longitude: spot.longitude)
-    self.distance = userLocation.distanceFromLocation(CLLocation.init(latitude: spot.latitude,longitude: spot.longitude))
+    self.distance = userLocation.distance(from: CLLocation.init(latitude: spot.latitude,longitude: spot.longitude))
     
     if (distance < 1000.0) {
       self.subtitle = String.localizedStringWithFormat(NSLocalizedString("map.annotation.distance", comment: ""), distance, NSLocalizedString("map.annotation.meter", comment: ""))
@@ -33,8 +33,8 @@ class PingebAnnotation: NSObject, MKAnnotation {
     super.init()
   }
   
-  func calcuateDistance(pointLocation: CLLocation, userLocation: CLLocation) -> Double {
-    return userLocation.distanceFromLocation(pointLocation)
+  func calcuateDistance(_ pointLocation: CLLocation, userLocation: CLLocation) -> Double {
+    return userLocation.distance(from: pointLocation)
   }
   
 }
