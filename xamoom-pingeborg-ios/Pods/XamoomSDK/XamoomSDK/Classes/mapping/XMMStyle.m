@@ -18,6 +18,7 @@
 //
 
 #import "XMMStyle.h"
+#import "XMMCDStyle.h"
 
 @implementation XMMStyle
 
@@ -59,6 +60,33 @@ static JSONAPIResourceDescriptor *__descriptor = nil;
   });
   
   return __descriptor;
+}
+
+- (instancetype)initWithCoreDataObject:(id<XMMCDResource>)object {
+  return [self initWithCoreDataObject:object excludeRelations:NO];
+}
+
+- (instancetype)initWithCoreDataObject:(id<XMMCDResource>)object excludeRelations:(Boolean)excludeRelations {
+  self = [self init];
+  if (self && object != nil) {
+    XMMCDStyle *savedStyle = (XMMCDStyle *)object;
+    self.ID = savedStyle.jsonID;
+    self.backgroundColor = savedStyle.backgroundColor;
+    self.highlightFontColor = savedStyle.highlightFontColor;
+    self.foregroundFontColor = savedStyle.foregroundFontColor;
+    self.chromeHeaderColor = savedStyle.chromeHeaderColor;
+    self.customMarker = savedStyle.customMarker;
+    self.icon = savedStyle.icon;
+  }
+  return self;
+}
+
+- (id<XMMCDResource>)saveOffline {
+  return [XMMCDStyle insertNewObjectFrom:self];
+}
+
+- (void)deleteOfflineCopy {
+  [[XMMOfflineStorageManager sharedInstance] deleteEntity:[XMMCDStyle class] ID:self.ID];
 }
 
 @end

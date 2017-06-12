@@ -24,6 +24,7 @@
 #import "XMMContentBlock.h"
 #import "XMMStyle.h"
 #import "UIColor+HexString.h"
+#import "MovingBarsView.h"
 
 /**
  * XMMContentBlock1TableViewCell is used to display the XMMMusicPlayer for audio contentBlocks form the xamoom system.
@@ -34,8 +35,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *remainingTimeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *audioControlButton;
+@property (weak, nonatomic) IBOutlet MovingBarsView *movingBarView;
 @property (weak, nonatomic) IBOutlet XMMMusicPlayer *audioPlayerControl;
 @property (nonatomic, getter=isPlaying) BOOL playing;
+@property (strong, nonatomic) XMMOfflineFileManager *fileManager;
 
 - (IBAction)playButtonTouched:(id)sender;
 
@@ -43,6 +46,6 @@
 
 @interface XMMContentBlock1TableViewCell (XMMTableViewRepresentation)
 
-- (void)configureForCell:(XMMContentBlock *)block tableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath style:(XMMStyle *)style;
+- (void)configureForCell:(XMMContentBlock *)block tableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath style:(XMMStyle *)style offline:(BOOL)offline;
 
 @end

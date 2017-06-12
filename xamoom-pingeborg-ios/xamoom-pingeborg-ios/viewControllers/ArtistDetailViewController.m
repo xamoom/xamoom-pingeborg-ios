@@ -141,6 +141,7 @@ static int kHeaderViewHeight = 200;
   self.contentBlocks = [[XMMContentBlocks alloc] initWithTableView:self.tableView api:[XMMEnduserApi sharedInstance]];
   self.contentBlocks.delegate = self;
   self.contentBlocks.linkColor = [Globals sharedObject].pingeborgLinkColor;
+  self.contentBlocks.showAllStoreLinks = NO;
 }
 
 - (void)setupHeaderView {

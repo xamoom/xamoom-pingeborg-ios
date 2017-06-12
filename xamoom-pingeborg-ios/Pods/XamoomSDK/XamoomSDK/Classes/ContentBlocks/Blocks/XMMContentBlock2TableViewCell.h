@@ -21,7 +21,6 @@
 #import <AVKit/AVKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import <SDWebImage/UIImageView+WebCache.h>
-#import "YTPlayerView.h"
 #import "XMMContentBlock.h"
 #import "XMMStyle.h"
 #import "UIColor+HexString.h"
@@ -32,17 +31,17 @@
 @interface XMMContentBlock2TableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (nonatomic, strong) IBOutlet YTPlayerView *youtubePlayerView;
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (nonatomic, strong) AVPlayer *videoPlayer;
 @property (unsafe_unretained, nonatomic) IBOutlet UIImageView *playIconImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *thumbnailImageView;
+@property (strong, nonatomic) XMMOfflineFileManager *fileManager;
 
 @end
 
 @interface XMMContentBlock2TableViewCell (XMMTableViewRepresentation)
 
-- (void)configureForCell:(XMMContentBlock *)block tableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath style:(XMMStyle *)style;
+- (void)configureForCell:(XMMContentBlock *)block tableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath style:(XMMStyle *)style offline:(BOOL)offline;
 
 - (void)openVideo;
 

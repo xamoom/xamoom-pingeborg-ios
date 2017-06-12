@@ -16,30 +16,27 @@
 // You should have received a copy of the GNU General Public License
 // along with xamoom-ios-sdk. If not, see <http://www.gnu.org/licenses/>.
 //
+#import <UIKit/UIKit.h>
+#import "XMMContentBlock.h"
+#import "XMMStyle.h"
+#import "UIColor+HexString.h"
 
-#import "XMMMenuItem.h"
+/**
+ * XMMContentBlock0TableViewCell is used to display text contentBlocks from the xamoom cloud.
+ */
+@interface XMMContentBlock100TableViewCell : UITableViewCell
 
-@implementation XMMMenuItem
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UITextView *contentTextView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentTextViewTopConstraint;
 
++ (int)fontSize;
++ (void)setFontSize:(int)fontSize;
 
-+ (NSString *)resourceName {
-  return @"content";
-}
+@end
 
-static JSONAPIResourceDescriptor *__descriptor = nil;
+@interface XMMContentBlock100TableViewCell (XMMTableViewRepresentation)
 
-+ (JSONAPIResourceDescriptor *)descriptor {
-  static dispatch_once_t onceToken;
-  dispatch_once(&onceToken, ^{
-    __descriptor = [[JSONAPIResourceDescriptor alloc] initWithClass:[self class] forLinkedType:@"content"];
-    
-    [__descriptor setIdProperty:@"ID"];
-    
-    [__descriptor addProperty:@"contentTitle" withDescription:[[JSONAPIPropertyDescriptor alloc] initWithJsonName:@"display-name"]];
-    [__descriptor addProperty:@"category"];
-  });
-  
-  return __descriptor;
-}
+- (void)configureForCell:(XMMContentBlock *)block tableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath style:(XMMStyle *)style offline:(BOOL)offline;
 
 @end

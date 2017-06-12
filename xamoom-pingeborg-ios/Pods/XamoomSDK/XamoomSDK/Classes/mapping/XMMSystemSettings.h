@@ -23,6 +23,9 @@
 #import <JSONAPI/JSONAPIPropertyDescriptor.h>
 #import "XMMRestResource.h"
 
+/**
+ * Settings set in the xamoom cloud.
+ */
 @interface XMMSystemSettings : JSONAPIResourceBase  <XMMRestResource>
 
 @property (strong, nonatomic) NSString *googlePlayAppId;

@@ -18,6 +18,7 @@
 //
 
 #import "XMMContentBlock.h"
+#import "XMMCDContentBlock.h"
 
 @implementation XMMContentBlock
 
@@ -49,9 +50,48 @@ static JSONAPIResourceDescriptor *__descriptor = nil;
     [__descriptor addProperty:@"videoUrl" withDescription:[[JSONAPIPropertyDescriptor alloc] initWithJsonName:@"video-url"]];
     [__descriptor addProperty:@"showContent" withDescription:[[JSONAPIPropertyDescriptor alloc] initWithJsonName:@"should-show-content-on-spotmap"]];
     [__descriptor addProperty:@"altText" withDescription:[[JSONAPIPropertyDescriptor alloc] initWithJsonName:@"alt-text"]];
+    [__descriptor addProperty:@"copyright" withDescription:[[JSONAPIPropertyDescriptor alloc] initWithJsonName:@"copyright"]];
   });
   
   return __descriptor;
+}
+
+- (instancetype)initWithCoreDataObject:(id<XMMCDResource>)object excludeRelations:(Boolean)excludeRelations {
+  self = [self init];
+  if (self && object != nil) {
+    XMMCDContentBlock *savedBlock = (XMMCDContentBlock *)object;
+    self.ID = savedBlock.jsonID;
+    self.title = savedBlock.title;
+    self.publicStatus = [savedBlock.publicStatus boolValue];
+    self.blockType = [savedBlock.blockType intValue];
+    self.text = savedBlock.text;
+    self.artists = savedBlock.artists;
+    self.fileID = savedBlock.fileID;
+    self.soundcloudUrl = savedBlock.soundcloudUrl;
+    self.linkUrl = savedBlock.linkUrl;
+    self.linkType = [savedBlock.linkType intValue];
+    self.contentID = savedBlock.contentID;
+    self.downloadType = [savedBlock.downloadType intValue];
+    self.spotMapTags = savedBlock.spotMapTags;
+    self.scaleX = [savedBlock.scaleX doubleValue];
+    self.videoUrl = savedBlock.videoUrl;
+    self.showContent = [savedBlock.showContent boolValue];
+    self.altText = savedBlock.altText;
+    self.copyright = savedBlock.copyright;
+  }
+  return self;
+}
+
+- (instancetype)initWithCoreDataObject:(id<XMMCDResource>)object {
+  return [self initWithCoreDataObject:object excludeRelations:NO];
+}
+
+- (id<XMMCDResource>)saveOffline {
+  return [XMMCDContentBlock insertNewObjectFrom:self];
+}
+
+- (void)deleteOfflineCopy {
+  [[XMMOfflineStorageManager sharedInstance] deleteEntity:[XMMCDContentBlock class] ID:self.ID];
 }
 
 @end

@@ -18,6 +18,16 @@
 //
 
 #import "XMMContent.h"
+#import "XMMCDContent.h"
+
+@interface XMMContent()
+
+/**
+ * Custom meta as list of key value objects.
+ */
+@property (nonatomic) NSArray *customMetaArray;
+
+@end
 
 @implementation XMMContent
 
@@ -39,12 +49,84 @@ static JSONAPIResourceDescriptor *__descriptor = nil;
     [__descriptor addProperty:@"language"];
     [__descriptor addProperty:@"category"];
     [__descriptor addProperty:@"tags"];
+    [__descriptor addProperty:@"customMetaArray" withDescription:[[JSONAPIPropertyDescriptor alloc] initWithJsonName:@"custom-meta"]];
     [__descriptor hasOne:[XMMSystem class] withName:@"system"];
     [__descriptor hasOne:[XMMSpot class] withName:@"spot"];
     [__descriptor hasMany:[XMMContentBlock class] withName:@"contentBlocks" withJsonName:@"blocks"];
   });
   
   return __descriptor;
+}
+
+- (instancetype)initWithCoreDataObject:(id<XMMCDResource>)object {
+  return [self initWithCoreDataObject:object excludeRelations:NO];
+}
+
+- (instancetype)initWithCoreDataObject:(id<XMMCDResource>)object
+                              excludeRelations:(Boolean)excludeRelations {
+  self = [self init];
+  if (self && object != nil) {
+    XMMCDContent *savedContent = (XMMCDContent *)object;
+    self.ID = savedContent.jsonID;
+    self.title = savedContent.title;
+    self.imagePublicUrl = savedContent.imagePublicUrl;
+    self.contentDescription = savedContent.contentDescription;
+    self.language = savedContent.language;
+    self.category = [savedContent.category intValue];
+    self.tags = savedContent.tags;
+    self.customMeta = savedContent.customMeta;
+    
+    if (savedContent.contentBlocks != nil) {
+      NSMutableArray *blocks = [[NSMutableArray alloc] init];
+      for (XMMCDContentBlock *block in savedContent.contentBlocks) {
+        [blocks addObject:[[XMMContentBlock alloc] initWithCoreDataObject:block]];
+      }
+      self.contentBlocks = blocks;
+    }
+    
+    if (savedContent.system != nil && !excludeRelations) {
+      self.system = [[XMMSystem alloc] initWithCoreDataObject:savedContent.system];
+    }
+    
+  }
+  return self;
+}
+
+- (id<XMMCDResource>)saveOffline {
+  return [XMMCDContent insertNewObjectFrom:self];
+}
+
+- (id<XMMCDResource>)saveOffline:(void (^)(NSString *url, NSData *, NSError *))downloadCompletion {
+  return [XMMCDContent insertNewObjectFrom:self
+                               fileManager:[[XMMOfflineFileManager alloc] init]
+                                completion:downloadCompletion];
+}
+
+- (void)deleteOfflineCopy {
+  [[XMMOfflineStorageManager sharedInstance] deleteEntity:[XMMCDContent class] ID:self.ID];
+}
+
+- (NSDictionary *)customMeta {
+  NSMutableDictionary *customMetaDict = [[NSMutableDictionary alloc] init];
+  
+  for (NSDictionary *dict in self.customMetaArray) {
+    [customMetaDict setObject:[dict objectForKey:@"value"] forKey:[dict objectForKey:@"key"]];
+  }
+  
+  return customMetaDict;
+}
+
+- (void)setCustomMeta:(NSDictionary *)customMeta {
+  NSMutableArray *customMetaArray = [[NSMutableArray alloc] init];
+  
+  for (NSString *key in customMeta) {
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+    [dict setObject:key forKey:@"key"];
+    [dict setObject:[customMeta objectForKey:key] forKey:@"value"];
+    [customMetaArray addObject: dict];
+  }
+ 
+  self.customMetaArray = customMetaArray;
 }
 
 @end

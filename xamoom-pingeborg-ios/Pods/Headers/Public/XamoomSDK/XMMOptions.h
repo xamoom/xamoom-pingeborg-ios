@@ -1,1 +1,1 @@
-../../../../../../xamoom-ios-sdk/XamoomSDK/Classes/XMMOptions.h
+../../../XamoomSDK/XamoomSDK/Classes/XMMOptions.h

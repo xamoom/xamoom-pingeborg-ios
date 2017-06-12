@@ -19,11 +19,27 @@
 
 #import "XMMContentBlock5TableViewCell.h"
 
+@interface XMMContentBlock5TableViewCell()
+
+@property (strong, nonatomic) UIDocumentInteractionController *docController;
+
+@end
+
 @implementation XMMContentBlock5TableViewCell
 
 - (void)awakeFromNib {
   // Initialization code
-  self.ebookImageView.image = [[UIImage imageNamed:@"ebook"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+  NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+  NSURL *url = [bundle URLForResource:@"XamoomSDK" withExtension:@"bundle"];
+  NSBundle *imageBundle = nil;
+  if (url) {
+    imageBundle = [NSBundle bundleWithURL:url];
+  } else {
+    imageBundle = bundle;
+  }
+  
+  self.ebookImageView.image = [[UIImage imageNamed:@"ebook"
+                                          inBundle:imageBundle compatibleWithTraitCollection:nil] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
   self.ebookImageView.tintColor = [UIColor whiteColor];
   
   self.titleLabel.text = nil;
@@ -31,6 +47,7 @@
   
   UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openInBrowser:)];
   [self addGestureRecognizer:tapGestureRecognizer];
+  [super awakeFromNib];
 }
 
 - (void)prepareForReuse {
@@ -38,7 +55,9 @@
   self.artistLabel.text = nil;
 }
 
-- (void)configureForCell:(XMMContentBlock *)block tableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath style:(XMMStyle *)style {  
+- (void)configureForCell:(XMMContentBlock *)block tableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath style:(XMMStyle *)style offline:(BOOL)offline {
+  self.offline = offline;
+  
   //set title, artist and downloadUrl
   if(block.title != nil) {
     self.titleLabel.text = block.title;
@@ -50,7 +69,22 @@
 
 - (void)openInBrowser:(id)sender {
   //open url in safari
-  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.downloadUrl]];
+  if (self.offline) {
+    NSURL *localURL = [self.fileManager urlForSavedData:self.downloadUrl];
+    if (localURL != nil) {
+      self.docController = [UIDocumentInteractionController interactionControllerWithURL:localURL];
+      [self.docController presentOpenInMenuFromRect:CGRectZero inView:self.contentView animated:YES];
+    }
+  } else {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.downloadUrl]];
+  }
+}
+
+- (XMMOfflineFileManager *)fileManager {
+  if (_fileManager == nil) {
+    _fileManager = [[XMMOfflineFileManager alloc] init];
+  }
+  return _fileManager;
 }
 
 @end

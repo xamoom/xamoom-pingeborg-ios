@@ -28,10 +28,10 @@
 
 - (instancetype)initWithBaseUrl:(NSURL *)baseUrl session:(NSURLSession *)session;
 
-- (void)fetchResource:(Class)resourceClass completion:(void (^)(JSONAPI *result, NSError *error))completion;
+- (NSURLSessionDataTask *)fetchResource:(Class)resourceClass completion:(void (^)(JSONAPI *result, NSError *error))completion;
 
-- (void)fetchResource:(Class)resourceClass parameters:(NSDictionary *)parameters completion:(void (^)(JSONAPI *result, NSError *error))completion;
+- (NSURLSessionDataTask *)fetchResource:(Class)resourceClass parameters:(NSDictionary *)parameters completion:(void (^)(JSONAPI *result, NSError *error))completion;
 
-- (void)fetchResource:(Class)resourceClass id:(NSString *)resourceId parameters:(NSDictionary *)parameters completion:(void (^)(JSONAPI *result, NSError *error))completion;
+- (NSURLSessionDataTask *)fetchResource:(Class)resourceClass id:(NSString *)resourceId parameters:(NSDictionary *)parameters completion:(void (^)(JSONAPI *result, NSError *error))completion;
 
 @end

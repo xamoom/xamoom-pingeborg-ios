@@ -27,6 +27,7 @@
  */
 @interface XMMContentBlock8TableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIView *viewForBackground;
 @property (weak, nonatomic) IBOutlet UIImageView *icon;
 @property (weak, nonatomic) IBOutlet UILabel *contentTextLabel;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -34,8 +35,8 @@
 @property (strong, nonatomic) NSString *fileID;
 @property (strong, nonatomic) UIImage *contactImage;
 @property (strong, nonatomic) UIImage *calendarImage;
-
-- (UIImage *)iconForDownloadType:(int)downloadType;
+@property (strong, nonatomic) XMMOfflineFileManager *fileManager;
+@property (nonatomic) BOOL offline;
 
 - (void)openLink;
 
@@ -43,6 +44,6 @@
 
 @interface XMMContentBlock8TableViewCell (XMMTableViewRepresentation)
 
-- (void)configureForCell:(XMMContentBlock *)block tableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath style:(XMMStyle *)style;
+- (void)configureForCell:(XMMContentBlock *)block tableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath style:(XMMStyle *)style offline:(BOOL)offline;
 
 @end

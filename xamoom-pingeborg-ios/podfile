@@ -9,7 +9,7 @@ target 'pingeb.org' do
   pod 'REMenu', '~> 1.10'
   pod 'SMCalloutView'
   pod 'JGProgressHUD'
-  pod 'XamoomSDK', :path => '~/dev/xamoom-ios-sdk'
+  pod 'XamoomSDK', '~> 3.2.2'
   pod 'Google/Analytics'
   pod 'QRCodeReaderViewController', '~> 4.0.1'
 end

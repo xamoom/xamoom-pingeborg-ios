@@ -17,11 +17,11 @@ PODS:
   - JSONAPI (1.0.7)
   - QRCodeReaderViewController (4.0.1)
   - REMenu (1.10)
-  - SDWebImage (3.8.1):
-    - SDWebImage/Core (= 3.8.1)
-  - SDWebImage/Core (3.8.1)
+  - SDWebImage (3.8.2):
+    - SDWebImage/Core (= 3.8.2)
+  - SDWebImage/Core (3.8.2)
   - SMCalloutView (2.1.2)
-  - XamoomSDK (3.0.0):
+  - XamoomSDK (3.2.2):
     - JAMSVGImage
     - JSONAPI (~> 1.0.0)
     - SDWebImage (~> 3.7)
@@ -32,14 +32,10 @@ DEPENDENCIES:
   - QRCodeReaderViewController (~> 4.0.1)
   - REMenu (~> 1.10)
   - SMCalloutView
-  - XamoomSDK (from `~/dev/xamoom-ios-sdk`)
-
-EXTERNAL SOURCES:
-  XamoomSDK:
-    :path: "~/dev/xamoom-ios-sdk"
+  - XamoomSDK (~> 3.2.2)
 
 SPEC CHECKSUMS:
-  Google: 875f5a8ade86dd02e36586e4a54814843938c7f6
+  Google: 8be107e3b4bbb6889ebf1f64cdd92cb87dc17a62
   GoogleAnalytics: 9be1afdb8deeac4bb5f13ca7f7d3b9db2a1f43dc
   GoogleNetworkingUtilities: 292992ab31b7b4ba32809a0e8b40e324cdfb2c0c
   GoogleSymbolUtilities: 82ad9f93d3615244b3f4ce440f5ab2515e8b4f56
@@ -49,10 +45,10 @@ SPEC CHECKSUMS:
   JSONAPI: 8fed55fcfa08ee662674cd4f1bd03c37d8b34e03
   QRCodeReaderViewController: 6538745c8f4ffa9407a26bd7f9489ea01739e7b0
   REMenu: 30dad195930adf6c5eeb8041e3257aa60bf9fa49
-  SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
+  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SMCalloutView: 4078d89b847731e514b1a919fed33b383a24a106
-  XamoomSDK: 53b6e693a2acb045355c5c24ba3adb795fd1cb4a
+  XamoomSDK: 925020544d10685610b45a4c352d0b15bda9521e
 
-PODFILE CHECKSUM: 6e8b4b29ad5360f285438e99f12f3c521e72de6d
+PODFILE CHECKSUM: bad21cf464b42f1e63e52a1efa4e4194836a510b
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.1

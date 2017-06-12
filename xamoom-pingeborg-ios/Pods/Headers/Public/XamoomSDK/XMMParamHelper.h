@@ -1,1 +1,1 @@
-../../../../../../xamoom-ios-sdk/XamoomSDK/Classes/XMMParamHelper.h
+../../../XamoomSDK/XamoomSDK/Classes/XMMParamHelper.h

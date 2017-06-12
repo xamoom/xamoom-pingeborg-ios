@@ -24,6 +24,7 @@
 @property (strong, nonatomic) NSString* videoUrl;
 @property (nonatomic) float screenWidth;
 @property (nonatomic) UIImage *playImage;
+@property (weak, nonatomic) IBOutlet UIVisualEffectView *openInYoutubeView;
 
 @end
 
@@ -32,8 +33,21 @@
 - (void)awakeFromNib {
   // Initialization code
   self.videoPlayer = nil;
-  self.playImage = [UIImage imageNamed:@"videoPlay"];
+  self.fileManager = [[XMMOfflineFileManager alloc] init];
+  
+  NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+  NSURL *url = [bundle URLForResource:@"XamoomSDK" withExtension:@"bundle"];
+  NSBundle *imageBundle = nil;
+  if (url) {
+    imageBundle = [NSBundle bundleWithURL:url];
+  } else {
+    imageBundle = bundle;
+  }
+  
+  self.playImage = [UIImage imageNamed:@"videoPlay"
+                              inBundle:imageBundle compatibleWithTraitCollection:nil];
   self.webView.scrollView.scrollEnabled = false;
+  [super awakeFromNib];
 }
 
 - (void)prepareForReuse {
@@ -42,30 +56,45 @@
   self.webView.hidden = YES;
   self.thumbnailImageView.hidden = NO;
   self.playIconImageView.hidden = NO;
+  self.openInYoutubeView.hidden = YES;
 }
 
-- (void)configureForCell:(XMMContentBlock *)block tableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath style:(XMMStyle *)style {
-  self.titleLabel.textColor = [UIColor colorWithHexString:style.foregroundFontColor];
+- (void)configureForCell:(XMMContentBlock *)block tableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath style:(XMMStyle *)style offline:(BOOL)offline {
+  self.videoUrl = block.videoUrl;
+  if (style.foregroundFontColor) {
+    self.titleLabel.textColor = [UIColor colorWithHexString:style.foregroundFontColor];
+  }
   self.titleLabel.text = block.title;
-  
   self.playIconImageView.image = self.playImage;
-  [self determineVideoFromURLString:block.videoUrl];
+  
+  if (offline) {
+    [self determineVideoFromURLString:[self.fileManager urlForSavedData:self.videoUrl].absoluteString];
+  } else {
+    [self determineVideoFromURLString:self.videoUrl];
+  }
 }
 
 - (void)determineVideoFromURLString:(NSString*)videoURLString {
   NSString *youtubeVideoID = [self youtubeVideoIdFromURL:videoURLString];
   
   if (youtubeVideoID != nil) {
-    [self showYoutube];
-    [self.youtubePlayerView loadWithVideoId:youtubeVideoID];
+    self.webView.hidden = NO;
+    self.thumbnailImageView.hidden = YES;
+    self.playIconImageView.hidden = YES;
+    self.openInYoutubeView.hidden = NO;
+    
+    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openYoutubeUrl)];
+    [self.openInYoutubeView addGestureRecognizer:gestureRecognizer];
+    
+    [self showYoutubeWithId:youtubeVideoID];
   } else if ([videoURLString containsString:@"vimeo"]) {
-    [self hideYoutube];
     self.webView.hidden = NO;
     self.thumbnailImageView.hidden = YES;
     self.playIconImageView.hidden = YES;
     [self showVimeoFromUrl:videoURLString];
   } else {
-    [self hideYoutube];
+    self.thumbnailImageView.hidden = NO;
+    self.playIconImageView.hidden = NO;
     [self videoPlayerWithURL:[NSURL URLWithString:videoURLString]];
     [self thumbnailFromUrl:[NSURL URLWithString:videoURLString] completion:^(UIImage *image) {
       self.thumbnailImageView.image = image;
@@ -87,6 +116,15 @@
   } else {
     return nil;
   }
+}
+
+- (void)openYoutubeUrl {
+  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.videoUrl]];
+}
+
+- (void)showYoutubeWithId:(NSString *)videoId {
+  NSString *htmlString = [NSString stringWithFormat:@"<style>html, body {margin: 0;padding:0;}</style><iframe width=\"100%%\" height=\"100%%\" src=\"https://www.youtube.com/embed/%@\" frameborder=\"0\" allowfullscreen></iframe>", videoId];
+  [self.webView loadHTMLString:htmlString baseURL:nil];
 }
 
 - (void)showVimeoFromUrl:(NSString *)vimeoUrl {
@@ -128,18 +166,6 @@
       [playerViewController.player play];
     }];
   }
-}
-
-- (void)hideYoutube {
-  self.youtubePlayerView.hidden = YES;
-  self.playIconImageView.hidden = NO;
-  self.thumbnailImageView.hidden = NO;
-}
-
-- (void)showYoutube {
-  self.youtubePlayerView.hidden = NO;
-  self.playIconImageView.hidden = YES;
-  self.thumbnailImageView.hidden = YES;
 }
 
 @end

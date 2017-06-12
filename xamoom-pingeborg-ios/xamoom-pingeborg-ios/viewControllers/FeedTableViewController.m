@@ -63,7 +63,7 @@ NSString * const kFeedItemCellIdentifier = @"FeedItemCell";
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-  self.parentViewController.navigationItem.title = NSLocalizedString(@"pingeb.org Carinthia", nil);
+  self.parentViewController.navigationItem.title = NSLocalizedString(@"pingeb.org", nil);
 }
 
 -(void)viewDidAppear:(BOOL)animated {

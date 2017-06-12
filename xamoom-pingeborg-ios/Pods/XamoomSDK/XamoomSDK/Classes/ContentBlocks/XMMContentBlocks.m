@@ -21,7 +21,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 
 int const kHorizontalSpaceToSubview = 32;
-NSString* const kContentBlock9MapContentLinkNotification = @"com.xamoom.kContentBlock9MapContentLinkNotification";
+NSString* const kContentBlock9MapContentLinkNotification = @"com.xamoom.ios.kContentBlock9MapContentLinkNotification";
 
 #pragma mark - XMMContentBlocks Interface
 
@@ -41,6 +41,8 @@ NSString* const kContentBlock9MapContentLinkNotification = @"com.xamoom.kContent
     self.tableView = tableView;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.showAllStoreLinks = NO;
+    self.showAllBlocksWhenOffline = NO;
     
     [self setupTableView];
     [self defaultStyle];
@@ -48,14 +50,17 @@ NSString* const kContentBlock9MapContentLinkNotification = @"com.xamoom.kContent
     self.tableView.backgroundColor = [UIColor colorWithHexString:self.style.backgroundColor];
     
     [XMMContentBlock0TableViewCell setFontSize:NormalFontSize];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(clickContentNotification:)
-                                                 name:kContentBlock9MapContentLinkNotification
-                                               object:nil];
+    [XMMContentBlock100TableViewCell setFontSize:NormalFontSize + 1];
   }
   
   return self;
+}
+
+- (void)viewWillAppear {
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(clickContentNotification:)
+                                               name:kContentBlock9MapContentLinkNotification
+                                             object:nil];
 }
 
 - (void)viewWillDisappear {
@@ -79,7 +84,7 @@ NSString* const kContentBlock9MapContentLinkNotification = @"com.xamoom.kContent
 }
 
 - (void)registerNibs {
-  NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+  NSBundle *bundle = [NSBundle bundleForClass:[XMMContentBlocks class]];
   NSURL *url = [bundle URLForResource:@"XamoomSDK" withExtension:@"bundle"];
   NSBundle *nibBundle;
   if (url) {
@@ -88,7 +93,10 @@ NSString* const kContentBlock9MapContentLinkNotification = @"com.xamoom.kContent
     nibBundle = bundle;
   }
   
-  UINib *nib = [UINib nibWithNibName:@"XMMContentBlock0TableViewCell" bundle:nibBundle];
+  UINib *nib = [UINib nibWithNibName:@"XMMContentBlock100TableViewCell" bundle:nibBundle];
+  [self.tableView registerNib:nib forCellReuseIdentifier:@"XMMContentBlock100TableViewCell"];
+  
+  nib = [UINib nibWithNibName:@"XMMContentBlock0TableViewCell" bundle:nibBundle];
   [self.tableView registerNib:nib forCellReuseIdentifier:@"XMMContentBlock0TableViewCell"];
   
   nib = [UINib nibWithNibName:@"XMMContentBlock1TableViewCell" bundle:nibBundle];
@@ -130,11 +138,18 @@ NSString* const kContentBlock9MapContentLinkNotification = @"com.xamoom.kContent
     self.items = [content.contentBlocks mutableCopy];
   }
   
+  if (!self.showAllStoreLinks) {
+    self.items = [self removeStoreLinkBlocks:self.items];
+  }
+  
+  if (!self.showAllBlocksWhenOffline && self.offline) {
+    self.items = [self removeNonOfflineBlocks:self.items];
+  }
+  
   dispatch_async(dispatch_get_main_queue(), ^{
     [self.tableView reloadData];
   });
 }
-
 
 #pragma mark - Setters
 
@@ -156,7 +171,7 @@ NSString* const kContentBlock9MapContentLinkNotification = @"com.xamoom.kContent
   
   XMMContentBlock *title = [[XMMContentBlock alloc] init];
   title.publicStatus = YES;
-  title.blockType = 0;
+  title.blockType = 100;
   title.title = content.title;
   title.text = content.contentDescription;
   [contentBlocks insertObject:title atIndex:0];
@@ -172,8 +187,46 @@ NSString* const kContentBlock9MapContentLinkNotification = @"com.xamoom.kContent
   return contentBlocks;
 }
 
+- (NSMutableArray *)removeStoreLinkBlocks:(NSMutableArray *)blocks {
+  NSMutableArray *deleteBlocks = [[NSMutableArray alloc] init];
+  for (XMMContentBlock *block in blocks) {
+    if ((block.blockType == 4) && (block.linkType == 17 || block.linkType == 16)) {
+      [deleteBlocks addObject:block];
+    }
+  }
+  [blocks removeObjectsInArray:deleteBlocks];
+  return blocks;
+}
+
+- (NSMutableArray *)removeNonOfflineBlocks:(NSMutableArray *)blocks {
+  NSMutableArray *deleteBlocks = [[NSMutableArray alloc] init];
+  for (XMMContentBlock *block in blocks) {
+    if (block.blockType == 7) {
+      [deleteBlocks addObject:block];
+    }
+    
+    if (block.blockType == 9) {
+      [deleteBlocks addObject:block];
+    }
+    
+    if (block.blockType == 2) {
+      if ([block.videoUrl containsString:@"youtu"]) {
+        [deleteBlocks addObject:block];
+      }
+      
+      if ([block.videoUrl containsString:@"vimeo"]) {
+        [deleteBlocks addObject:block];
+      }
+    }
+  }
+  
+  [blocks removeObjectsInArray:deleteBlocks];
+  return blocks;
+}
+
 - (void)updateFontSizeTo:(TextFontSize)newFontSize {
   [XMMContentBlock0TableViewCell setFontSize:newFontSize];
+  [XMMContentBlock100TableViewCell setFontSize:newFontSize + 1];
   [self.tableView reloadData];
 }
 
@@ -195,19 +248,19 @@ NSString* const kContentBlock9MapContentLinkNotification = @"com.xamoom.kContent
   XMMContentBlock *block = [self.items objectAtIndex:indexPath.row];
   NSString *reuseIdentifier = [NSString stringWithFormat:@"XMMContentBlock%dTableViewCell", block.blockType];
   
-  id cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+  id cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
   if (cell) {
     UITableViewCell *tableViewCell = (UITableViewCell *)cell;
-    tableViewCell.backgroundColor = [UIColor colorWithHexString:self.style.backgroundColor];
+    tableViewCell.backgroundColor = [UIColor clearColor];
   }
   
-  if ([cell respondsToSelector:@selector(configureForCell:tableView:indexPath:style:)]) {
-    [cell configureForCell:block tableView:tableView indexPath:indexPath style:self.style];
+  if ([cell respondsToSelector:@selector(configureForCell:tableView:indexPath:style:offline:)]) {
+    [cell configureForCell:block tableView:tableView indexPath:indexPath style:self.style offline:self.offline];
     return cell;
   }
   
-  if ([cell respondsToSelector:@selector(configureForCell:tableView:indexPath:style:api:)]) {
-    [cell configureForCell:block tableView:tableView indexPath:indexPath style:self.style api:self.api];
+  if ([cell respondsToSelector:@selector(configureForCell:tableView:indexPath:style:api:offline:)]) {
+    [cell configureForCell:block tableView:tableView indexPath:indexPath style:self.style api:self.api offline:self.offline];
     return cell;
   }
   
@@ -233,7 +286,6 @@ NSString* const kContentBlock9MapContentLinkNotification = @"com.xamoom.kContent
     id cell = [tableView cellForRowAtIndexPath:indexPath];
     [cell openLink];
   }
-  
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

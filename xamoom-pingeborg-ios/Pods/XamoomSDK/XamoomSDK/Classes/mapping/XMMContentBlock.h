@@ -71,4 +71,6 @@
  */
 @property (nonatomic) NSString *altText;
 
+@property (nonatomic) NSString *copyright;
+
 @end

@@ -1,1 +1,1 @@
-../../../../../../xamoom-ios-sdk/XamoomSDK/Classes/Storage/XMMOfflinePagedResult.h
+../../../XamoomSDK/XamoomSDK/Classes/Storage/XMMOfflinePagedResult.h

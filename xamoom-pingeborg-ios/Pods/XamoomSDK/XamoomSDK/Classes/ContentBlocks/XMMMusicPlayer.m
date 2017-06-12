@@ -40,7 +40,6 @@ IB_DESIGNABLE
   return self;
 }
 
-
 - (void)initAudioPlayerWithUrlString:(NSString*)mediaUrlString {
   if (self.audioPlayer) {
     return;
@@ -50,7 +49,7 @@ IB_DESIGNABLE
   NSURL *mediaURL = [NSURL URLWithString:mediaUrlString];
   
   AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:mediaURL options:nil];
-  NSArray *keys     = [NSArray arrayWithObject:@"playable"];
+  NSArray *keys = [NSArray arrayWithObject:@"playable"];
   
   [asset loadValuesAsynchronouslyForKeys:keys completionHandler:^() {
     self.audioPlayer = [[AVPlayer alloc] initWithPlayerItem:[[AVPlayerItem alloc] initWithAsset:asset automaticallyLoadedAssetKeys:keys]];
@@ -69,6 +68,21 @@ IB_DESIGNABLE
         CGFloat currentSongTime = CMTimeGetSeconds([weakSelf.audioPlayer currentTime]);
         CGFloat remainingSongTime = songDuration - currentSongTime;
         
+        if (remainingSongTime <= 0) {
+          if ([weakSelf.delegate respondsToSelector:@selector(finishedPlayback)]) {
+            [weakSelf.delegate finishedPlayback];
+            [weakSelf reset];
+            
+            if ([weakSelf.delegate respondsToSelector:@selector(didUpdateRemainingSongTime:)]) {
+              NSString *timeString = [NSString stringWithFormat:@"%d:%02d", (int)songDuration / 60, (int)songDuration %60];
+              [weakSelf.delegate performSelector:@selector(didUpdateRemainingSongTime:)
+                                      withObject:timeString];
+            }
+            
+            return;
+          }
+        }
+        
         if (!isnan(songDuration)) {
           weakSelf.lineProgress = currentSongTime / songDuration;
           weakSelf.remainingSongTime = [NSString stringWithFormat:@"%d:%02d", (int)remainingSongTime / 60, (int)remainingSongTime %60];
@@ -85,6 +99,12 @@ IB_DESIGNABLE
   }];
 }
 
+- (void)reset {
+  [self.audioPlayer seekToTime:kCMTimeZero];
+  self.lineProgress = 0;
+  [self setNeedsDisplay];
+}
+
 #pragma mark - Drawing
 
 // Only override drawRect: if you perform custom drawing.
@@ -94,7 +114,7 @@ IB_DESIGNABLE
   self.drawingFrameSize = self.bounds.size;
   
   CGContextRef context = UIGraphicsGetCurrentContext();
-
+  
   //background of progress
   CGContextSetLineWidth(context, self.lineWidth);
   
@@ -132,6 +152,25 @@ IB_DESIGNABLE
 
 - (void)pause {
   [self.audioPlayer pause];
+}
+
+- (void)forward {
+  CMTime newTime = CMTimeMakeWithSeconds(CMTimeGetSeconds(self.audioPlayer.currentTime) + 30,
+                        self.audioPlayer.currentTime.timescale);
+  
+  if (CMTimeCompare(newTime, self.audioPlayer.currentItem.duration) >= 0) {
+    [self.delegate finishedPlayback];
+    [self.audioPlayer seekToTime:newTime];
+    [self.audioPlayer pause];
+  } else {
+    [self.audioPlayer seekToTime:newTime];
+  }
+}
+
+- (void)backward {
+  CMTime newTime = CMTimeMakeWithSeconds(CMTimeGetSeconds(self.audioPlayer.currentTime) - 30,
+                                         self.audioPlayer.currentTime.timescale);
+  [self.audioPlayer seekToTime:newTime];
 }
 
 @end

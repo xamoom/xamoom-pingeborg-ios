@@ -1,1 +1,1 @@
-../../../../../../xamoom-ios-sdk/XamoomSDK/Classes/Storage/Resources/XMMCDResource.h
+../../../XamoomSDK/XamoomSDK/Classes/Storage/Resources/XMMCDResource.h

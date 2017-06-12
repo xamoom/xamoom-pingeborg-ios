@@ -18,9 +18,37 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "XMMCDResource.h"
 
+/**
+ * Base class for every JSONApi resource.
+ */
 @protocol XMMRestResource <NSObject>
 
-+ (NSString *)resourceName;
+/**
+ * JSONApi resource name.
+ */
++ (NSString * _Null_unspecified)resourceName;
+
+/**
+ * Initialize entity with offline saved entity.
+ */
+- (instancetype _Null_unspecified)initWithCoreDataObject:(id<XMMCDResource> _Nonnull)object;
+
+/**
+ * Initialize entity with offline saved entity and don't add relations.
+ */
+- (instancetype _Null_unspecified)initWithCoreDataObject:(id<XMMCDResource> _Nonnull)object
+                              excludeRelations:(Boolean)excludeRelations;
+
+/**
+ * Save offline copy of this entity.
+ */
+- (id<XMMCDResource> _Nonnull)saveOffline;
+
+/**
+ * Delete offline saved copy of this entity.
+ */
+- (void)deleteOfflineCopy;
 
 @end

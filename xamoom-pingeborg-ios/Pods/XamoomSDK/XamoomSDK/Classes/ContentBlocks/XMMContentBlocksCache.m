@@ -37,6 +37,10 @@ static XMMContentBlocksCache *sharedInstance;
 }
 
 - (void)saveSpots:(NSArray *)spotMap key:(NSString *)key {
+  if (spotMap == nil || key == nil) {
+    return;
+  }
+  
   [self.spotMapCache setObject:spotMap forKey:key];
 }
 

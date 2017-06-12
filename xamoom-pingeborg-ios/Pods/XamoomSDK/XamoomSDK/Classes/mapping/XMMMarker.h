@@ -23,6 +23,13 @@
 #import <JSONAPI/JSONAPIPropertyDescriptor.h>
 #import "XMMRestResource.h"
 
+/**
+ * Marker from the xamoom cloud.
+ *
+ * Markers are the representation of the physical part (qr, nfc, beacon) in the
+ * xamoom cloud. 
+ * Every marker is connected to one XMMSpot.
+ */
 @interface XMMMarker : JSONAPIResourceBase  <XMMRestResource>
 
 @property (nonatomic) NSString *qr;

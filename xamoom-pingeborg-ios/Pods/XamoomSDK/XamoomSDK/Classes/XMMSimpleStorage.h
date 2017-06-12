@@ -1,5 +1,5 @@
 //
-// Copyright 2016 by xamoom GmbH <apps@xamoom.com>
+// Copyright 2017 by xamoom GmbH <apps@xamoom.com>
 //
 // This file is part of some open source application.
 //
@@ -18,24 +18,26 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <JSONAPI/JSONAPIResourceBase.h>
-#import <JSONAPI/JSONAPIResourceDescriptor.h>
-#import <JSONAPI/JSONAPIPropertyDescriptor.h>
-#import "XMMRestResource.h"
 
 /**
- * XMMMenuItem with contentTitle and category.
+ * Utility for XMMOfflineStorageTagModul to save and read tags.
  */
-@interface XMMMenuItem : JSONAPIResourceBase  <XMMRestResource>
+@interface XMMSimpleStorage : NSObject
+
+@property (strong, nonatomic) NSUserDefaults *userDefaults;
 
 /**
- * ContentTitle of the content.
+ * Save tags to NSUserDefaults.
+ *
+ * @param tags NSArray with tags as NSStrings.
  */
-@property (nonatomic, copy) NSString* contentTitle;
+- (void)saveTags:(NSArray *)tags;
 
 /**
- * Category of the content.
+ * Read tags from NSUserDefaults.
+ *
+ * @return Saved tags as NSMuteableArray.
  */
-@property (nonatomic) int category;
+- (NSMutableArray *)readTags;
 
 @end

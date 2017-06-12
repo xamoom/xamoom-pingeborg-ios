@@ -7,7 +7,7 @@ More informations about xamoom and how xamoom works? Visit our Github page [xamo
 # Getting Started
 
 * Read the ["Getting Started"](https://github.com/xamoom/xamoom-ios-sdk/wiki#getting-started) guide in the wiki
-* Check out the [XMMEnduserApi documentation](http://xamoom.github.io/xamoom-ios-sdk/2.1.0/html/index.html)
+* Check out the [XMMEnduserApi documentation](http://xamoom.github.io/xamoom-ios-sdk/3.1.0/index.html)
 * Check out our sample app: ["pingeborg App"](https://github.com/xamoom/xamoom-pingeborg-ios)
 
 # Installation
@@ -19,7 +19,7 @@ Download the XamoomSDK and add it to your project, build it and use the framewor
 
 Add in your podfile
 
-    pod 'XamoomSDK', '~> 2.1.0'
+    pod 'XamoomSDK', '~> 3.2.2'
 
 Install pods via terminal
 
@@ -39,7 +39,7 @@ Grab a contentID from your [xamoom-system](https://xamoom.net/) (open a page and
 
 ```objective-c
 //make your call
-[self.api contentWithID:contentID completion:^(XMMContent *content, NSError *error) {
+[self.api contentWithID:contentID completion:^(XMMContent \*content, NSError \*error) {
     if (error) {
       NSLog(@"Error: %@", error);
       return;
@@ -49,13 +49,7 @@ Grab a contentID from your [xamoom-system](https://xamoom.net/) (open a page and
   }];
 ```
 
-When your call is successful you will get a [`XMMContent`](http://xamoom.github.io/xamoom-ios-sdk/2.1.0/html/Classes/XMMContent.html) object.
-
-## [API Calls]((https://github.com/xamoom/xamoom-ios-sdk/wiki/API-Calls))
-
-Check out our [API Calls Wiki Page](https://github.com/xamoom/xamoom-ios-sdk/wiki/API-Calls).
-
-Every call is also on our documentation: [XMMEnduserApi documentation](http://xamoom.github.io/xamoom-ios-sdk/2.1.0/html/Classes/XMMEnduserApi.html)
+Every call is also on our documentation: [XMMEnduserApi documentation](http://xamoom.github.io/xamoom-ios-sdk/3.1.0/html/Classes/XMMEnduserApi.html)
 
 # iBeacons
 
@@ -65,6 +59,33 @@ xamoom offers support for iBeacons. We have a [small guide](https://github.com/x
 
 xamoom has a lot of different contentBlocks. With XMMContentBlocks you have a easy way to display them.
 How to use it is in our [Step by Step Guide](https://github.com/xamoom/xamoom-ios-sdk/wiki/Step-by-Step-Guide).
+
+# Offline
+
+## Save & get entities Offline
+
+You can save your entities offline and use them even if you are not connected
+to the internet.
+
+To save entities offline call its `saveOffline` method.
+For example to save a content works like this:
+
+```objective-c
+[content saveOffline];
+
+// with completionBlock for automatically downloaded files
+// XMMContent & XMMSpot will download their files
+[content saveOffline:^(NSString \*url, NSData \*data, NSError \*error) {
+  NSLog(@"Downloaded file %@", url);
+}];
+```
+
+To get offline saved entities use the `XMMEnduserApi` and set the offline property
+to true:
+```objective-c
+enduserApi.offline = YES;
+```
+All `XMMEnduserApi` calls will now return you the offline saved entities.
 
 # Requirements
 

@@ -20,6 +20,7 @@
 #import <Foundation/Foundation.h>
 #import "XMMContentBlock.h"
 #import "XMMEnduserApi.h"
+#import "XMMContentBlock100TableViewCell.h"
 #import "XMMContentBlock0TableViewCell.h"
 #import "XMMContentBlock1TableViewCell.h"
 #import "XMMContentBlock2TableViewCell.h"
@@ -47,15 +48,15 @@ typedef NS_OPTIONS(NSInteger, TextFontSize) {
   /**
    * NormalFontSize is the "standard" fontSize.
    */
-  NormalFontSize = 15,
+  NormalFontSize = 17,
   /**
    * BigFontSize is the next "bigger" fontSize.
    */
-  BigFontSize = 18,
+  BigFontSize = 20,
   /**
    * BiggerFontSize is the "biggest" fontSize.
    */
-  BiggerFontSize = 20,
+  BiggerFontSize = 22,
 };
 
 @protocol XMMContentBlocksDelegate <NSObject>
@@ -79,6 +80,8 @@ typedef NS_OPTIONS(NSInteger, TextFontSize) {
 @property (nonatomic, strong) NSMutableArray *items;
 @property (nonatomic, strong) UIColor *linkColor;
 @property (nonatomic) BOOL showAllStoreLinks;
+@property (nonatomic) BOOL showAllBlocksWhenOffline;
+@property (nonatomic, getter=isOffline) BOOL offline;
 
 /**
  * Initialize XMMContentBlocks with tableview and an api.
@@ -91,7 +94,13 @@ typedef NS_OPTIONS(NSInteger, TextFontSize) {
 - (instancetype)initWithTableView:(UITableView *)tableView api:(XMMEnduserApi *)api;
 
 /**
- * Call this method, when you view will disappear.
+ * Call this method, when your view will appear.
+ * This will show the content in the tableview.
+ */
+- (void)viewWillAppear;
+
+/**
+ * Call this method, when your view will disappear.
  * This will pause sounds and remove observer.
  */
 - (void)viewWillDisappear;

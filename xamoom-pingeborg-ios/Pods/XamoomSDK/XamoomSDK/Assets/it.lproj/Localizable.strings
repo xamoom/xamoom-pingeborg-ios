@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  XamoomSDK
+
+  Created by Raphael Seher on 17/02/16.
+  Copyright © 2016 xamoom GmbH. All rights reserved.
+*/
+
+"Distance" = "Distanza";
+"OK" = "OK";
+"Cancel" = "Cancella";
+"SaveImage" = "Salva in Foto?";
+"Open" = "Apri";

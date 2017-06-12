@@ -25,22 +25,38 @@
 
 @interface XMMContentBlock9TableViewCell()
 
+@property (nonatomic, strong) NSBundle *bundle;
 @property (nonatomic, strong) NSString *currentContentID;
 @property (nonatomic) bool showContent;
+@property (nonatomic) bool didLoadStyle;
+@property (nonatomic, strong) NSMutableArray *spots;
 
 @end
 
 @implementation XMMContentBlock9TableViewCell
 
-static UIColor *contentLinkColor;
-static NSString *contentLanguage;
+static UIColor *kContentLinkColor;
+static NSString *kContentLanguage;
+static int kPageSize = 100;
 
 - (void)awakeFromNib {
   // Initialization code
   self.clipsToBounds = YES;
+  
+  NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+  NSURL *url = [bundle URLForResource:@"XamoomSDK" withExtension:@"bundle"];
+  if (url != nil) {
+    self.bundle = [NSBundle bundleWithURL:url];
+  } else {
+    self.bundle = bundle;
+  }
+  
   [self setupLocationManager];
   [self setupMapOverlayView];
   self.mapHeightConstraint.constant = [UIScreen mainScreen].bounds.size.width - 50;
+  
+  self.didLoadStyle = NO;
+  [super awakeFromNib];
 }
 
 - (void)setupMapView {
@@ -61,15 +77,7 @@ static NSString *contentLanguage;
 }
 
 - (void)setupMapOverlayView {
-  NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-  NSURL *url = [bundle URLForResource:@"XamoomSDK" withExtension:@"bundle"];
-  if (url) {
-    NSBundle *nibBundle = [NSBundle bundleWithURL:url];
-    self.mapAdditionView = [[nibBundle loadNibNamed:@"XMMMapOverlayView" owner:self options:nil] firstObject];
-  } else {
-    //nib found in another boundle when unit testing
-    self.mapAdditionView = [[bundle loadNibNamed:@"XMMMapOverlayView" owner:self options:nil] firstObject];
-  }
+  self.mapAdditionView = [[self.bundle loadNibNamed:@"XMMMapOverlayView" owner:self options:nil] firstObject];
   
   self.mapAdditionView.translatesAutoresizingMaskIntoConstraints = NO;
   [self.contentView addSubview:self.mapAdditionView];
@@ -112,13 +120,18 @@ static NSString *contentLanguage;
   [self.mapAdditionView addConstraint:self.mapAdditionViewHeightConstraint];
 }
 
-- (void)configureForCell:(XMMContentBlock *)block tableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath style:(XMMStyle *)style api:(XMMEnduserApi *)api {
+- (void)configureForCell:(XMMContentBlock *)block tableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath style:(XMMStyle *)style api:(XMMEnduserApi *)api offline:(BOOL)offline {
+  if (offline) {
+    return;
+  }
+  
   self.titleLabel.textColor = [UIColor colorWithHexString:style.foregroundFontColor];
   
   self.titleLabel.text = block.title;
   
   if (style.customMarker != nil) {
     [self mapMarkerFromBase64:style.customMarker];
+    self.didLoadStyle = YES;
   }
   
   self.showContent = block.showContent;
@@ -133,57 +146,83 @@ static NSString *contentLanguage;
     [self.loadingIndicator stopAnimating];
     [self setupMapView];
     [self showSpotMap:spots];
+    
+    XMMSpot *spot = spots.firstObject;
+    if (self.didLoadStyle == NO) {
+      [self getStyleWithId:spot.system.ID api:api spotMapTags:spotMapTags];
+    }
+    
     return;
   }
   
-  [api spotsWithTags:spotMapTags options:XMMSpotOptionsIncludeContent|XMMSpotOptionsWithLocation completion:^(NSArray *spots, bool hasMore, NSString *cursor, NSError *error) {
-    [[XMMContentBlocksCache sharedInstance] saveSpots:spots key:[spotMapTags componentsJoinedByString:@","]];
-    
+  self.spots = [[NSMutableArray alloc] init];
+  [self downloadAllSpotsWithSpots:spotMapTags cursor:nil api:api completion:^(NSArray *spots, bool hasMore, NSString *cursor, NSError *error) {
     [self.loadingIndicator stopAnimating];
     [self setupMapView];
     [self showSpotMap:spots];
-    XMMSpot *spot = spots.firstObject;
+  }];
+}
+
+- (void)downloadAllSpotsWithSpots:(NSArray *)tags cursor:(NSString *)cursor api:(XMMEnduserApi *)api completion:(void (^)(NSArray *spots, bool hasMore, NSString *cursor, NSError *error))completion {
+  NSUInteger options = XMMSpotOptionsWithLocation;
+  if (self.showContent) {
+    options = options|XMMSpotOptionsIncludeContent;
+  }
+  
+  [api spotsWithTags:tags pageSize:kPageSize cursor:cursor options:options sort:0 completion:^(NSArray *spots, bool hasMore, NSString *cursor, NSError *error) {
+    if (error != nil) {
+      completion(nil, false, nil, error);
+    }
     
-    if (self.customMapMarker == nil) {
-      [self getStyleWithId:spot.system.ID api:api spotMapTags:spotMapTags];
+    [self.spots arrayByAddingObjectsFromArray:spots];
+    
+    if (self.didLoadStyle == NO && spots.count > 0) {
+      XMMSpot *spot = spots.firstObject;
+      [self getStyleWithId:spot.system.ID api:api spotMapTags:tags];
+    }
+    
+    if (hasMore) {
+      [self downloadAllSpotsWithSpots:tags cursor:cursor api:api completion:completion];
+    } else {
+      completion(spots, false, nil, nil);
     }
   }];
 }
 
 - (void)getStyleWithId:(NSString *)systemId api:(XMMEnduserApi *)api spotMapTags:(NSArray *)spotMapTags {
   [api styleWithID:systemId completion:^(XMMStyle *style, NSError *error) {
+    self.didLoadStyle = YES;
     [self mapMarkerFromBase64:style.customMarker];
     [self.mapView removeAnnotations:self.mapView.annotations];
-    [self getSpotMap:api spotMapTags:spotMapTags];
+    
+    [self getSpotMap:api spotMapTags:spotMapTags]; // reloads data to use custom marker
   }];
 }
 
 - (void)showSpotMap:(NSArray *)spots {
-  NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-  NSURL *url = [bundle URLForResource:@"XamoomSDK" withExtension:@"bundle"];
-  NSBundle *libBundle;
-  if (url != nil) {
-    libBundle = [NSBundle bundleWithURL:url];
-  } else {
-    libBundle = bundle;
-  }
-  
   // Add annotations
   if (self.mapView.annotations != nil) {
     [self.mapView removeAnnotations:self.mapView.annotations];
   }
   
   for (XMMSpot *spot in spots) {
-    XMMAnnotation *annotation = [[XMMAnnotation alloc] initWithName:spot.name withLocation:CLLocationCoordinate2DMake(spot.latitude, spot.longitude)];
+    NSString *annotationTitle = nil;
+    if (spot.name != nil && ![spot.name isEqualToString:@""]) {
+      annotationTitle = spot.name;
+    } else {
+      annotationTitle = @"Spot";
+    }
+    
+    XMMAnnotation *annotation = [[XMMAnnotation alloc] initWithName:annotationTitle withLocation:CLLocationCoordinate2DMake(spot.latitude, spot.longitude)];
     annotation.spot = spot;
     
     //calculate
     CLLocation *annotationLocation = [[CLLocation alloc] initWithLatitude:annotation.coordinate.latitude longitude:annotation.coordinate.longitude];
     CLLocationDistance distance = [self.locationManager.location distanceFromLocation:annotationLocation];
     if (distance < 1000) {
-      annotation.distance = [NSString stringWithFormat:@"%@: %d m", NSLocalizedStringFromTableInBundle(@"Distance", @"Localizable", libBundle, nil), (int)distance];
+      annotation.distance = [NSString stringWithFormat:@"%@: %d m", NSLocalizedStringFromTableInBundle(@"Distance", @"Localizable", self.bundle, nil), (int)distance];
     } else {
-      annotation.distance = [NSString stringWithFormat:@"%@: %0.1f km", NSLocalizedStringFromTableInBundle(@"Distance", @"Localizable", libBundle, nil), distance/1000];
+      annotation.distance = [NSString stringWithFormat:@"%@: %0.1f km", NSLocalizedStringFromTableInBundle(@"Distance", @"Localizable", self.bundle, nil), distance/1000];
     }
     
     [self.mapView addAnnotation:annotation];
@@ -227,7 +266,9 @@ static NSString *contentLanguage;
       if(self.customMapMarker) {
         annotationView.image = self.customMapMarker;
       } else {
-        annotationView.image = [UIImage imageNamed:@"mappoint"];
+        UIImage *image = [UIImage imageNamed:@"mappoint"
+                                          inBundle:self.bundle compatibleWithTraitCollection:nil];
+        annotationView.image = image;
       }
     } else {
       annotationView.annotation = annotation;

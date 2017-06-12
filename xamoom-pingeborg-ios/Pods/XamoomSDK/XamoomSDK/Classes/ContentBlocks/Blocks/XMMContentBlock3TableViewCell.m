@@ -18,6 +18,7 @@
 //
 
 #import "XMMContentBlock3TableViewCell.h"
+#import "XMMOfflineFileManager.h"
 
 @interface XMMContentBlock3TableViewCell()
 
@@ -28,8 +29,11 @@
 - (void)awakeFromNib {
   [self setupGestureRecognizers];
   [self.blockImageView setIsAccessibilityElement:YES];
+  self.fileManager = [[XMMOfflineFileManager alloc] init];
   
   self.titleLabel.text = nil;
+  self.copyrightLabel.text = nil;
+  [super awakeFromNib];
 }
 
 - (void)setupGestureRecognizers {
@@ -56,9 +60,13 @@
   [self setNeedsUpdateConstraints];
 }
 
-- (void)configureForCell:(XMMContentBlock *)block tableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath style:(XMMStyle *)style {
-  self.titleLabel.textColor = [UIColor colorWithHexString:style.foregroundFontColor];
-  
+- (void)configureForCell:(XMMContentBlock *)block tableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath style:(XMMStyle *)style offline:(BOOL)offline {
+  UIColor *textColor = [UIColor colorWithHexString:style.foregroundFontColor];
+  if (textColor != nil) {
+    self.titleLabel.textColor = textColor;
+    self.copyrightLabel.textColor = textColor;
+  }
+
   if (![block.linkUrl isEqualToString:@""]) {
     self.linkUrl = block.linkUrl;
   }
@@ -68,6 +76,10 @@
     self.horizontalSpacingImageTitleConstraint.constant = 8;
   } else {
     self.horizontalSpacingImageTitleConstraint.constant = 0;
+  }
+  
+  if (block.copyright != nil && ![block.title isEqualToString:@""]) {
+    self.copyrightLabel.text = block.copyright;
   }
   
   if (block.altText != nil && ![block.title isEqualToString:@""]){
@@ -80,7 +92,10 @@
     [self calculateImageScaling:block.scaleX];
   }
   
-  if (block.fileID != nil && ![block.fileID isEqualToString:@""]) {
+  if (offline) {
+    NSURL *filePath = [self.fileManager urlForSavedData:block.fileID];
+    [self displayImageFromURL:filePath tableView:tableView indexPath:indexPath];
+  } else if (block.fileID != nil && ![block.fileID isEqualToString:@""]) {
     [self displayImageFromURL:[NSURL URLWithString:block.fileID] tableView:tableView indexPath:indexPath];
   }
 }

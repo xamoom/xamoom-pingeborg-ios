@@ -29,30 +29,28 @@
   return self;
 }
 
-- (void)fetchResource:(Class)resourceClass completion:(void (^)(JSONAPI *result, NSError *error))completion {
+- (NSURLSessionDataTask *)fetchResource:(Class)resourceClass completion:(void (^)(JSONAPI *result, NSError *error))completion {
   NSURL *requestUrl = [self.query urlWithResource:resourceClass];
-  [self makeRestCall:requestUrl completion:completion];
+  return [self makeRestCall:requestUrl completion:completion];
 }
 
-- (void)fetchResource:(Class)resourceClass parameters:(NSDictionary *)parameters completion:(void (^)(JSONAPI *result, NSError *error))completion {
+- (NSURLSessionDataTask *)fetchResource:(Class)resourceClass parameters:(NSDictionary *)parameters completion:(void (^)(JSONAPI *result, NSError *error))completion {
   NSURL *requestUrl = [self.query urlWithResource:resourceClass];
   requestUrl = [self.query addQueryParametersToUrl:requestUrl parameters:parameters];
-  [self makeRestCall:requestUrl completion:completion];
+  return [self makeRestCall:requestUrl completion:completion];
 }
 
-- (void)fetchResource:(Class)resourceClass id:(NSString *)resourceId parameters:(NSDictionary *)parameters completion:(void (^)(JSONAPI *result, NSError *error))completion {
+- (NSURLSessionDataTask *)fetchResource:(Class)resourceClass id:(NSString *)resourceId parameters:(NSDictionary *)parameters completion:(void (^)(JSONAPI *result, NSError *error))completion {
   NSURL *requestUrl = [self.query urlWithResource:resourceClass id:resourceId];
   requestUrl = [self.query addQueryParametersToUrl:requestUrl parameters:parameters];
-  [self makeRestCall:requestUrl completion:completion];
+  return [self makeRestCall:requestUrl completion:completion];
 }
 
-- (void)makeRestCall:(NSURL *)url completion:(void (^)(JSONAPI *result, NSError *error))completion {
-  NSLog(@"RestCall with url: %@", url.absoluteString);
-  [[self.session dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+- (NSURLSessionDataTask *)makeRestCall:(NSURL *)url completion:(void (^)(JSONAPI *result, NSError *error))completion {
+  NSURLSessionDataTask *task = [self.session dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
     JSONAPI *jsonApi;
     
     if (error) {
-      NSLog(@"Error: %@", error);
       dispatch_async(dispatch_get_main_queue(), ^{
         completion(jsonApi, error);
       });
@@ -76,14 +74,17 @@
       
       dispatch_async(dispatch_get_main_queue(), ^{
         completion(jsonApi, error);
-        return;
       });
+      return;
     }
     
     dispatch_async(dispatch_get_main_queue(), ^{
       completion(jsonApi, error);
     });
-  }] resume];
+  }];
+  
+  [task resume];
+  return task;
 }
 
 - (JSONAPI *)jsonApiFromData:(NSData *)data {

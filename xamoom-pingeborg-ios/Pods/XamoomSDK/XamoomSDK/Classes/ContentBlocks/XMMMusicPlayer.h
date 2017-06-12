@@ -31,6 +31,7 @@ FOUNDATION_EXPORT const unsigned char XMMMusicPlayerVersionString[];
 @protocol XMMMusicPlayerDelegate <NSObject>
 
 - (void)didLoadAsset:(AVURLAsset *)asset;
+- (void)finishedPlayback;
 
 /**
  * Notify delegate with the actual remaining song time.
@@ -75,5 +76,15 @@ IB_DESIGNABLE
  * Audioplayer pauses playing.
  */
 - (void)pause;
+
+/**
+ * Seeks audio 30 seconds forward.
+ */
+- (void)forward;
+
+/**
+ * Seeks audio 30 seconds backward.
+ */
+- (void)backward;
 
 @end

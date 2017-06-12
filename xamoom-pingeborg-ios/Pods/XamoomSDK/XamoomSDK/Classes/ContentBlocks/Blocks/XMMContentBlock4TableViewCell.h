@@ -48,6 +48,7 @@
 @property (nonatomic) UIColor *navigationColor;
 @property (nonatomic) UIColor *androidColor;
 @property (nonatomic) UIColor *windowsColor;
+@property (nonatomic) UIColor *instagramColor;
 
 - (void)openLink;
 
@@ -55,6 +56,6 @@
 
 @interface XMMContentBlock4TableViewCell (XMMTableViewRepresentation)
 
-- (void)configureForCell:(XMMContentBlock *)block tableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath style:(XMMStyle *)style;
+- (void)configureForCell:(XMMContentBlock *)block tableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath style:(XMMStyle *)style offline:(BOOL)offline;
 
 @end

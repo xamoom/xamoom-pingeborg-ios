@@ -22,7 +22,6 @@
 #import <JSONAPI/JSONAPIResourceDescriptor.h>
 #import <JSONAPI/JSONAPIPropertyDescriptor.h>
 #import "XMMRestResource.h"
-#import "XMMMenuItem.h"
 
 /**
  * XMMMenu with the menuItems.

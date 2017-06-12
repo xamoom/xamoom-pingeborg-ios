@@ -1,1 +1,1 @@
-../../../../../../xamoom-ios-sdk/XamoomSDK/Classes/NSString+MD5.h
+../../../XamoomSDK/XamoomSDK/Classes/NSString+MD5.h

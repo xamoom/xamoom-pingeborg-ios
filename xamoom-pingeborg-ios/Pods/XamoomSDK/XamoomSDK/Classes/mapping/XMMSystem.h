@@ -29,11 +29,10 @@
 /**
  * XMMSystem with linked XMMSystemSettings, XMMStyle and XMMMenu.
  */
-@interface XMMSystem : JSONAPIResourceBase  <XMMRestResource>
+@interface XMMSystem : JSONAPIResourceBase <XMMRestResource>
 
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *url;
-@property (nonatomic, getter=isDemo) BOOL demo;
 @property (strong, nonatomic) XMMSystemSettings *setting;
 @property (strong, nonatomic) XMMStyle *style;
 @property (strong, nonatomic) XMMMenu *menu;

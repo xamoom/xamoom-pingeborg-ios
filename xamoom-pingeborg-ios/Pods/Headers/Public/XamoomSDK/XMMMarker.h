@@ -1,1 +1,1 @@
-../../../../../../xamoom-ios-sdk/XamoomSDK/Classes/mapping/XMMMarker.h
+../../../XamoomSDK/XamoomSDK/Classes/mapping/XMMMarker.h

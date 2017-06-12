@@ -34,6 +34,7 @@ static int kWebViewSoundcloudPadding = 8;
                                            selector:@selector(pauseAllSounds)
                                                name:@"pauseAllSounds"
                                              object:nil];
+  [super awakeFromNib];
 }
 
 - (void)pauseAllSounds {
@@ -45,7 +46,11 @@ static int kWebViewSoundcloudPadding = 8;
   self.titleLabel.text = nil;
 }
 
-- (void)configureForCell:(XMMContentBlock *)block tableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath style:(XMMStyle *)style {
+- (void)configureForCell:(XMMContentBlock *)block tableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath style:(XMMStyle *)style offline:(BOOL)offline {
+  if (offline) {
+    return;
+  }
+  
   self.titleLabel.textColor = [UIColor colorWithHexString:style.foregroundFontColor];
   
   [self.webView.scrollView setScrollEnabled:NO];

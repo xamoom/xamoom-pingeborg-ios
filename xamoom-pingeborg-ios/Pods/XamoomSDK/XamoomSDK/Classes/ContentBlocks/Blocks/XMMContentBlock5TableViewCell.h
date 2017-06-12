@@ -32,11 +32,15 @@
 @property (weak, nonatomic) IBOutlet UIImageView *ebookImageView;
 
 @property (strong, nonatomic) NSString *downloadUrl;
+@property (strong, nonatomic) XMMOfflineFileManager *fileManager;
+@property (nonatomic) BOOL offline;
+
+- (void)openInBrowser:(id)sender;
 
 @end
 
 @interface XMMContentBlock5TableViewCell (XMMTableViewRepresentation)
 
-- (void)configureForCell:(XMMContentBlock *)block tableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath style:(XMMStyle *)style;
+- (void)configureForCell:(XMMContentBlock *)block tableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath style:(XMMStyle *)style offline:(BOOL)offline;
 
 @end

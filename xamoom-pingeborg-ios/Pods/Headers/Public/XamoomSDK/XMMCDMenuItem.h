@@ -1,1 +1,0 @@
-../../../../../../xamoom-ios-sdk/XamoomSDK/Classes/Storage/Resources/XMMCDMenuItem.h

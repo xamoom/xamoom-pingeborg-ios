@@ -1,1 +1,1 @@
-../../../../../../xamoom-ios-sdk/XamoomSDK/Classes/XMMOfflineStorageManager.h
+../../../XamoomSDK/XamoomSDK/Classes/XMMOfflineStorageManager.h

@@ -1,1 +1,1 @@
-../../../../../../xamoom-ios-sdk/XamoomSDK/Classes/XMMOfflineStorageTagModule.h
+../../../XamoomSDK/XamoomSDK/Classes/XMMOfflineStorageTagModule.h

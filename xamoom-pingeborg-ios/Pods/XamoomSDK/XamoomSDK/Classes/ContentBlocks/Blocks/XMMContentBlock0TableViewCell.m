@@ -31,6 +31,7 @@ static UIColor *contentLinkColor;
   // Initialization code
   self.titleLabel.text = @"";
   self.contentTextView.text = @"";
+  [super awakeFromNib];
 }
 
 + (int)fontSize {
@@ -46,19 +47,18 @@ static UIColor *contentLinkColor;
   self.contentTextView.text = @"";
 }
 
-- (void)configureForCell:(XMMContentBlock *)block tableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath style:(XMMStyle *)style {
+- (void)configureForCell:(XMMContentBlock *)block tableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath style:(XMMStyle *)style offline:(BOOL)offline {
   self.titleLabel.textColor = [UIColor colorWithHexString:style.foregroundFontColor];
   [self.contentTextView setLinkTextAttributes:@{NSForegroundColorAttributeName : [UIColor colorWithHexString:style.highlightFontColor], }];
   
-  [self displayTitle:block.title];
+  [self displayTitle:block.title block:block];
   [self displayContent:block.text style:style];
 }
 
-- (void)displayTitle:(NSString *)title {
+- (void)displayTitle:(NSString *)title block:(XMMContentBlock *)block {
   if(title != nil && ![title isEqualToString:@""]) {
     self.contentTextViewTopConstraint.constant = 8;
     self.titleLabel.text = title;
-    [self.titleLabel setFont:[UIFont systemFontOfSize:[XMMContentBlock0TableViewCell fontSize]+5 weight:UIFontWeightMedium]];
   } else {
     self.contentTextViewTopConstraint.constant = 0;
   }
