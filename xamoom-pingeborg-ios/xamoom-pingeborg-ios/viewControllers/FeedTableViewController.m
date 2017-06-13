@@ -202,10 +202,13 @@ NSString * const kFeedItemCellIdentifier = @"FeedItemCell";
 #pragma mark - Bluetooth View
 
 - (void)detectBluetooth {
-  if(!self.bluetoothManager)
-  {
+  BOOL isDissmissed = [[NSUserDefaults standardUserDefaults] boolForKey:@"bluetooth-is-dismissed"];
+  if (isDissmissed) {
+    return;
+  }
+  
+  if(!self.bluetoothManager) {
     // Put on main queue so we can call UIAlertView from delegate callbacks.
-    self.bluetoothManager = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_main_queue()];
     NSDictionary *options = @{CBCentralManagerOptionShowPowerAlertKey: @NO};
     self.bluetoothManager = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_main_queue() options:options];
   }
@@ -217,13 +220,33 @@ NSString * const kFeedItemCellIdentifier = @"FeedItemCell";
     [self showBlueToothAlert];
   }
 }
+  
 - (void)showBlueToothAlert {
-  UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"bluetooth alert title", nil)
-                                                  message:NSLocalizedString(@"bluetooth alert message", nil)
-                                                 delegate:nil
-                                        cancelButtonTitle:@"Ok"
-                                        otherButtonTitles:nil, nil];
-  [alert show];
+  UIAlertController * alert = [UIAlertController
+                               alertControllerWithTitle:NSLocalizedString(@"bluetooth alert title", nil)
+                               message:NSLocalizedString(@"bluetooth alert message", nil)
+                               preferredStyle:UIAlertControllerStyleAlert];
+  
+  UIAlertAction* yesButton = [UIAlertAction
+                              actionWithTitle:NSLocalizedString(@"bluetoothalert.action.ok", nil)
+                              style:UIAlertActionStyleDefault
+                              handler:^(UIAlertAction * action) {
+                                [alert dismissViewControllerAnimated:true completion:nil];
+                              }];
+  
+  UIAlertAction* noButton = [UIAlertAction
+                             actionWithTitle:NSLocalizedString(@"bluetoothalert.action.dismiss", nil)
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                               [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"bluetooth-is-dismissed"];
+                               [[NSUserDefaults standardUserDefaults] synchronize];
+                               [alert dismissViewControllerAnimated:true completion:nil];
+                             }];
+  
+  [alert addAction:yesButton];
+  [alert addAction:noButton];
+  
+  [self presentViewController:alert animated:YES completion:nil];
 }
 
 # pragma mark - Instruction View / First Start

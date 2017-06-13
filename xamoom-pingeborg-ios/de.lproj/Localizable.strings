@@ -50,3 +50,5 @@
 
 "bluetooth alert title" = "Bluetooth";
 "bluetooth alert message" = "Wir nutzen Bluetooth um Künstler via iBeacons zu entdecken";
+"bluetoothalert.action.ok" = "OK";
+"bluetoothalert.action.dismiss" = "Nicht mehr anzeigen";
