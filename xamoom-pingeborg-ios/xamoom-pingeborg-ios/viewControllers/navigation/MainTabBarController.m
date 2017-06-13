@@ -89,6 +89,8 @@
   [reader stopScanning];
   self.scannedUrl = url;
   
+  // TODO: make a sound
+  
   //old pingeborg stickers get a redirect to the xm.gl url
   if ([url containsString:@"pingeb.org/"]) {
     //analytics
@@ -97,19 +99,26 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
     NSURLConnection *urlConntection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO];
     [urlConntection start];
-  } else if([url containsString:@"xm.gl"]) {
+  } else {
     //analytics
     [[Analytics sharedObject] sendEventWithCategorie:@"pingeb.org" andAction:@"Scan" andLabel:@"xm.gl Sticker" andValue:nil];
     
-    [[XMMEnduserApi sharedInstance] contentWithLocationIdentifier:[self getLocationIdentifierFromURL:url]
+    NSString *identifier = [self getLocationIdentifierFromURL:url];
+    if (identifier == nil) {
+      [[Analytics sharedObject] sendEventWithCategorie:@"pingeb.org" andAction:@"Scan" andLabel:@"Other QR Code" andValue:nil];
+      [self errorMessageOnScanning];
+      return;
+    }
+    
+    [[XMMEnduserApi sharedInstance] contentWithLocationIdentifier:identifier
                                                        completion:^(XMMContent *content, NSError *error) {
+                                                         if (error != nil) {
+                                                           [self errorMessageOnScanning];
+                                                         }
+                                                         
                                                          [reader dismissViewControllerAnimated:YES completion:nil];
                                                          [self didLoadDataWithLocationIdentifier:content];
                                                        }];
-  } else {
-    //analytics
-    [[Analytics sharedObject] sendEventWithCategorie:@"pingeb.org" andAction:@"Scan" andLabel:@"Other QR Code" andValue:nil];
-    [self errorMessageOnScanning];
   }
 }
 
