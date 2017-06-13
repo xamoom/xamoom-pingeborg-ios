@@ -77,7 +77,6 @@ NSString * const kFeedItemCellIdentifier = @"FeedItemCell";
   }
 }
 
-
 - (void)viewDidDisappear:(BOOL)animated {
   [super viewDidDisappear:animated];
   [self closeInstructionScreen];

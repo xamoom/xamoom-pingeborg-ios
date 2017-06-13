@@ -22,6 +22,9 @@
 
 #pragma mark - NavigationViewController Interface
 
-@interface NavigationViewController : UINavigationController <CLLocationManagerDelegate>
-
+@interface NavigationViewController : UINavigationController <CLLocationManagerDelegate, UINavigationControllerDelegate>
+  
+- (void)openExtendedView;
+- (void)closeExtendedView;
+  
 @end

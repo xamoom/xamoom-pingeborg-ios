@@ -48,6 +48,7 @@
  
   self.topBarOffset = [[UIApplication sharedApplication] statusBarFrame].size.height + (double)self.navigationBar.frame.size.height;
 
+  self.delegate = self;
   [self initExtendedView];
   [self initBeacons];
   [self initGeofence];
@@ -87,7 +88,7 @@
   self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
   self.locationManager.activityType = CLActivityTypeOther;
 }
-
+  
 #pragma mark - iBeacon & Geofence
 
 - (void)initExtendedView {
@@ -267,6 +268,14 @@
   [self.locationManager stopRangingBeaconsInRegion:self.beaconRegion];
   self.lastBeacon = nil;
   [self closeExtendedView];
+}
+ 
+#pragma mark - UINavigationControllerDelegate
+  
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+  if (viewController.class == ArtistDetailViewController.class) {
+    [self closeExtendedView];
+  }
 }
 
 @end
