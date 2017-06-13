@@ -206,6 +206,8 @@ NSString * const kFeedItemCellIdentifier = @"FeedItemCell";
   {
     // Put on main queue so we can call UIAlertView from delegate callbacks.
     self.bluetoothManager = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_main_queue()];
+    NSDictionary *options = @{CBCentralManagerOptionShowPowerAlertKey: @NO};
+    self.bluetoothManager = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_main_queue() options:options];
   }
   [self centralManagerDidUpdateState:self.bluetoothManager]; // Show initial state
 }
