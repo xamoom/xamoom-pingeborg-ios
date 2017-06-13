@@ -33,7 +33,8 @@ platform :ios do
     # match(type: "appstore") # more information: https://codesigning.guide
     gym(
     	workspace: "xamoom-pingeborg-ios/pingeb.org.xcworkspace",
-    	scheme: "pingeb.org DEBUG") # Build your app - more options available
+    	scheme: "pingeb.org DEBUG",
+    	skip_waiting_for_build_processing: true) # Build your app - more options available
     pilot
 
     # sh "your_script.sh"
