@@ -17,6 +17,7 @@
 // along with xamoom-pingeborg-ios. If not, see <http://www.gnu.org/licenses/>.
 //
 
+#import <AVFoundation/AVFoundation.h>
 #import "MainTabBarController.h"
 #import "XMMEnduserApi.h"
 #import "ScanResultViewController.h"
@@ -89,7 +90,7 @@
   [reader stopScanning];
   self.scannedUrl = url;
   
-  // TODO: make a sound
+  AudioServicesPlaySystemSound(1111);
   
   //old pingeborg stickers get a redirect to the xm.gl url
   if ([url containsString:@"pingeb.org/"]) {
