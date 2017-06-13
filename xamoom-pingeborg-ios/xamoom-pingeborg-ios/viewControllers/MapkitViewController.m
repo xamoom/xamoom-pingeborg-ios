@@ -31,7 +31,7 @@
 @property (nonatomic, strong) UIImage *mapMarker;
 @property (nonatomic, strong) XMMContent *savedResponseContent;
 
-@property (nonatomic, strong) NSArray *spots;
+@property (nonatomic, strong) NSMutableArray *spots;
 
 @end
 
