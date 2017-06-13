@@ -45,5 +45,7 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>We need your bluetooth permission to use iBeacons.</string>
 </dict>
 </plist>
