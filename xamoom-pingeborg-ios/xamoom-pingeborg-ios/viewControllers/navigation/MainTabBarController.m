@@ -93,7 +93,7 @@
   AudioServicesPlaySystemSound(1111);
   
   //old pingeborg stickers get a redirect to the xm.gl url
-  if ([url containsString:@"pingeb.org/"]) {
+  if ([url containsString:@"pingeb.org/"] && ![url containsString:@"m.pingeb.org/"]) {
     //analytics
     [[Analytics sharedObject] sendEventWithCategorie:@"pingeb.org" andAction:@"Scan" andLabel:@"pingeb.org Sticker" andValue:nil];
     
