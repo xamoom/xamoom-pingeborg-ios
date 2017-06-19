@@ -50,6 +50,8 @@
   
   self.mapMarker = [UIImage imageNamed:@"mappoint"];
   
+  self.spots = [[NSMutableArray alloc] init];
+  
   [self setupMapView];
   [self setupLocationManager];
   [self setupMapItemDetailView];
@@ -157,10 +159,11 @@
       [self.spots addObjectsFromArray:spots];
       [self downloadSpots:cursor];
     } else {
+      [self.spots addObjectsFromArray:spots];
       [[XMMEnduserApi sharedInstance] styleWithID:spot.system.ID
                                        completion:^(XMMStyle *style, NSError *error) {
                                          [self mapMarkerFromBase64:style.customMarker];
-                                         [self showSpotMap:spots];
+                                         [self showSpotMap:self.spots];
                                          [self.hud dismissAnimated:YES];
                                        }];
     }
