@@ -40,7 +40,6 @@
 		88A62C531AD561DB00EAD4C3 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88A62C521AD561DB00EAD4C3 /* MediaPlayer.framework */; };
 		88BA01F51AA859F90091A43C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA01F41AA859F90091A43C /* main.m */; };
 		88BA01F81AA859F90091A43C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA01F71AA859F90091A43C /* AppDelegate.m */; };
-		88BA02031AA859F90091A43C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88BA02011AA859F90091A43C /* LaunchScreen.xib */; };
 		88BA020F1AA859F90091A43C /* xamoom_pingeborg_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA020E1AA859F90091A43C /* xamoom_pingeborg_iosTests.m */; };
 		88CBAEE11AA9EC9E000E480A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88CBAEE01AA9EC9E000E480A /* MapKit.framework */; };
 		88DB74DC1B0217DA0064EE7E /* ScanResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88DB74DB1B0217DA0064EE7E /* ScanResultViewController.m */; };
@@ -107,7 +106,6 @@
 		8860DA801AE78D2C00DF2239 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		8860DA821AE78D3500DF2239 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		8860DA841AE78D3B00DF2239 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		887BE0321B53D40200E9D584 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		887BE0341B53D43000E9D584 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		887BE0361B53D44700E9D584 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		888E74511C18256E00233AA1 /* ExtendedTabbarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ExtendedTabbarView.xib; path = "xamoom-pingeborg-ios/views/ExtendedTabbarView.xib"; sourceTree = SOURCE_ROOT; };
@@ -127,7 +125,6 @@
 		88BA01F61AA859F90091A43C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		88BA01F71AA859F90091A43C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		88BA01FF1AA859F90091A43C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		88BA02021AA859F90091A43C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		88BA02081AA859F90091A43C /* pingeb.orgTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pingeb.orgTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		88BA020D1AA859F90091A43C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88BA020E1AA859F90091A43C /* xamoom_pingeborg_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = xamoom_pingeborg_iosTests.m; sourceTree = "<group>"; };
@@ -209,7 +206,6 @@
 			isa = PBXGroup;
 			children = (
 				8814584D1B01EE8B0024E6F4 /* Main.storyboard */,
-				88BA02011AA859F90091A43C /* LaunchScreen.xib */,
 				8814584A1B01EE8B0024E6F4 /* FeedItemCell.h */,
 				880E6C6A1D0E98BE00E8335F /* FeedItemCell.m */,
 				8814584C1B01EE8B0024E6F4 /* FeedItemCell.xib */,
@@ -436,7 +432,6 @@
 				888E74521C18256E00233AA1 /* ExtendedTabbarView.xib in Resources */,
 				88F813D11D1C15A400DA35DA /* MapItemDetailView.xib in Resources */,
 				8814585D1B01EE8B0024E6F4 /* FeedItemCell.xib in Resources */,
-				88BA02031AA859F90091A43C /* LaunchScreen.xib in Resources */,
 				88EB481C1B56390D00A6C63F /* apikey.txt in Resources */,
 				8814585E1B01EE8B0024E6F4 /* Main.storyboard in Resources */,
 			);
@@ -550,16 +545,6 @@
 				887BE0361B53D44700E9D584 /* de */,
 			);
 			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		88BA02011AA859F90091A43C /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				88BA02021AA859F90091A43C /* Base */,
-				887BE0321B53D40200E9D584 /* de */,
-			);
-			name = LaunchScreen.xib;
-			path = ..;
 			sourceTree = "<group>";
 		};
 		88F813D31D1C15A400DA35DA /* MapItemDetailView.xib */ = {
