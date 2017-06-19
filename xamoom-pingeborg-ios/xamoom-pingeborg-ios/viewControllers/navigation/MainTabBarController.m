@@ -28,6 +28,7 @@
 @property (strong, nonatomic) XMMContent *savedApiResult;
 @property (strong, nonatomic) JGProgressHUD *hud;
 @property (nonatomic) double topBarOffset;
+@property (strong, nonatomic) QRCodeReaderViewController *readerViewController;
 
 @end
 
@@ -70,13 +71,15 @@
     [[Analytics sharedObject] sendEventWithCategorie:@"UX" andAction:@"Click" andLabel:@"QR Code Reader" andValue:nil];
     
     QRCodeReader *reader = [QRCodeReader readerWithMetadataObjectTypes:@[AVMetadataObjectTypeQRCode]];
-    QRCodeReaderViewController *qrCodeReaderViewController =
-    [[QRCodeReaderViewController alloc] initWithCancelButtonTitle:NSLocalizedString(@"Cancel", nil)
-                                                       codeReader:reader startScanningAtLoad:YES];
-    qrCodeReaderViewController.modalPresentationStyle = UIModalPresentationFormSheet;
-    qrCodeReaderViewController.delegate = self;
+    self.readerViewController =
+    [[QRCodeReaderViewController alloc]
+     initWithCancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+     codeReader:reader
+     startScanningAtLoad:YES];
+    self.readerViewController.modalPresentationStyle = UIModalPresentationFormSheet;
+    self.readerViewController.delegate = self;
     
-    [self presentViewController:qrCodeReaderViewController animated:YES completion:nil];
+    [self presentViewController:self.readerViewController animated:YES completion:nil];
     
     return NO;
   } else {
@@ -111,15 +114,7 @@
       return;
     }
     
-    [[XMMEnduserApi sharedInstance] contentWithLocationIdentifier:identifier
-                                                       completion:^(XMMContent *content, NSError *error) {
-                                                         if (error != nil) {
-                                                           [self errorMessageOnScanning];
-                                                         }
-                                                         
-                                                         [reader dismissViewControllerAnimated:YES completion:nil];
-                                                         [self didLoadDataWithLocationIdentifier:content];
-                                                       }];
+    [self didLoadDataWithLocationIdentifier:identifier];
   }
 }
 
@@ -141,10 +136,7 @@
   //redirect to xm.gl
   NSURLRequest *newRequest = request;
   if (redirectResponse) {
-    [[XMMEnduserApi sharedInstance] contentWithLocationIdentifier:[self getLocationIdentifierFromURL:[newRequest URL].absoluteString] completion:^(XMMContent *content, NSError *error) {
-      [self didLoadDataWithLocationIdentifier:content];
-    }];
-    
+    [self didLoadDataWithLocationIdentifier:[newRequest URL].absoluteString];
     return nil;
   } else {
     [self errorMessageOnScanning];
@@ -160,15 +152,13 @@
   return path;
 }
 
-- (void)didLoadDataWithLocationIdentifier:(XMMContent *)content {
-  [[Globals sharedObject] addDiscoveredArtist:content.ID];
-  self.savedApiResult = content;
-  [self.hud dismiss];
+- (void)didLoadDataWithLocationIdentifier:(NSString *)locId {
+  [self.readerViewController dismissViewControllerAnimated:true completion:nil];
   
   UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
   ArtistDetailViewController *artistDetailViewController =
   [storyboard instantiateViewControllerWithIdentifier:@"ArtistDetailView"];
-  artistDetailViewController.content = content;
+  artistDetailViewController.locationIdentifier = locId;
   [self.navigationController pushViewController:artistDetailViewController animated:YES];
 }
 

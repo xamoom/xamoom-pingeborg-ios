@@ -58,10 +58,13 @@ static int kHeaderViewHeight = 200;
   [self setupTextSizeDropdown];
   [self setupHeaderView];
   
+  
   if (self.content != nil) {
     [self showDataWithContentId:self.content];
-  } else {
+  } else if (self.contentId != nil) {
     [self downloadContent];
+  } else if (self.locationIdentifier != nil) {
+    [self downloadWithLocationId];
   }
 }
 
@@ -168,7 +171,6 @@ static int kHeaderViewHeight = 200;
   
   NSString* savedArtists = [[Globals sharedObject] savedArtits];
   if ([savedArtists containsString:self.contentId]) {
-    
     [[XMMEnduserApi sharedInstance] contentWithID:self.contentId completion:^(XMMContent *content, NSError *error) {
       [self showDataWithContentId:content];
     }];
@@ -177,6 +179,21 @@ static int kHeaderViewHeight = 200;
       [self showDataWithContentId:content];
     }];
   }
+}
+
+- (void)downloadWithLocationId {
+  [self.hud showInView:self.view];
+  
+  [[XMMEnduserApi sharedInstance] contentWithLocationIdentifier:self.locationIdentifier
+                                                     completion:^(XMMContent *content, NSError *error) {
+                                                       if (error != nil) {
+                                                         return;
+                                                       }
+                                                       
+                                                       [self.hud dismiss];
+                                                       [[Globals sharedObject] addDiscoveredArtist:content.ID];
+                                                       [self showDataWithContentId: content];
+                                                     }];
 }
 
 - (void)showDataWithContentId:(XMMContent *)result {
