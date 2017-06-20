@@ -10,6 +10,7 @@
 		79DC49A6DAEB906DC669BE74 /* libPods-pingeb.org.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 661FA2D3378D47C4579F159E /* libPods-pingeb.org.a */; };
 		880246DC1B57AF2E00E585CE /* Analytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 880246DB1B57AF2E00E585CE /* Analytics.m */; };
 		880246E11B57CD9000E585CE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 880246DF1B57CCC400E585CE /* GoogleService-Info.plist */; };
+		880434331EF92435009D8077 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 880434321EF92435009D8077 /* Launch Screen.storyboard */; };
 		88052D7B1AE103C300AB433D /* Globals.m in Sources */ = {isa = PBXBuildFile; fileRef = 88052D7A1AE103C300AB433D /* Globals.m */; };
 		880E6C6B1D0E98BE00E8335F /* FeedItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 880E6C6A1D0E98BE00E8335F /* FeedItemCell.m */; };
 		880E6C741D0FDB1A00E8335F /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880E6C731D0FDB1A00E8335F /* GradientView.swift */; };
@@ -79,6 +80,7 @@
 		880246DA1B57AF2E00E585CE /* Analytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Analytics.h; sourceTree = "<group>"; };
 		880246DB1B57AF2E00E585CE /* Analytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Analytics.m; sourceTree = "<group>"; };
 		880246DF1B57CCC400E585CE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		880434321EF92435009D8077 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Launch Screen.storyboard"; path = "xamoom-pingeborg-ios/views/Launch Screen.storyboard"; sourceTree = SOURCE_ROOT; };
 		88052D791AE103C300AB433D /* Globals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Globals.h; sourceTree = "<group>"; };
 		88052D7A1AE103C300AB433D /* Globals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Globals.m; sourceTree = "<group>"; };
 		880E6C6A1D0E98BE00E8335F /* FeedItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedItemCell.m; path = "xamoom-pingeborg-ios/views/FeedItemCell.m"; sourceTree = SOURCE_ROOT; };
@@ -210,6 +212,7 @@
 		881458491B01EE8B0024E6F4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				880434321EF92435009D8077 /* Launch Screen.storyboard */,
 				8814584D1B01EE8B0024E6F4 /* Main.storyboard */,
 				8814584A1B01EE8B0024E6F4 /* FeedItemCell.h */,
 				880E6C6A1D0E98BE00E8335F /* FeedItemCell.m */,
@@ -437,6 +440,7 @@
 				880246E11B57CD9000E585CE /* GoogleService-Info.plist in Resources */,
 				88EB481D1B563C8700A6C63F /* Images.xcassets in Resources */,
 				887BE0331B53D43000E9D584 /* Localizable.strings in Resources */,
+				880434331EF92435009D8077 /* Launch Screen.storyboard in Resources */,
 				888E74521C18256E00233AA1 /* ExtendedTabbarView.xib in Resources */,
 				88F813D11D1C15A400DA35DA /* MapItemDetailView.xib in Resources */,
 				8814585D1B01EE8B0024E6F4 /* FeedItemCell.xib in Resources */,
