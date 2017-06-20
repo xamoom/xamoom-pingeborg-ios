@@ -58,31 +58,27 @@
   
   [self zoomMapToLat:46.623791 andLon:14.308549 andDelta:0.09f];
 }
-  
+
 - (void)viewWillAppear:(BOOL)animated {
   self.parentViewController.navigationItem.title = NSLocalizedString(@"Map", nil);
 }
-  
+
 -(void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
-  
-  //create userTracking button
-  MKUserTrackingBarButtonItem *buttonItem = [[MKUserTrackingBarButtonItem alloc] initWithMapView:self.mapView];
-  self.parentViewController.navigationItem.rightBarButtonItem = buttonItem;
   
   //load spotmap if there are no annotations on the map
   if (self.mapView.annotations.count <= 1) {
     [self downloadSpots:nil];
   }
 }
-  
+
 -(void)viewWillDisappear:(BOOL)animated {
   [super viewWillDisappear:animated];
   self.parentViewController.navigationItem.rightBarButtonItem = nil;
 }
-  
+
 #pragma mark - Setup
-  
+
 - (void)setupMapView {
   self.mapView.delegate = self;
   self.mapView.showsUserLocation = YES;
@@ -91,7 +87,7 @@
                                               initWithTarget:self action:@selector(hideMapItemDetailView)];
   [self.mapView addGestureRecognizer:mapTapRecognizer];
 }
-  
+
 - (void)setupLocationManager {
   //init up locationManager
   self.locationManager = [[CLLocationManager alloc] init];
@@ -103,8 +99,10 @@
   if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
     [self.locationManager requestWhenInUseAuthorization];
   }
-}
   
+  [self.locationManager startUpdatingLocation];
+}
+
 - (void)setupMapItemDetailView {
   self.mapItemDetailView = [[MapItemDetailView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
   self.mapItemDetailView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -140,9 +138,18 @@
   
   [self.view addConstraint:self.mapItemDetailViewBottomConstraint];
 }
-  
+
+- (void)addCenterUserButton {
+  UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc]
+                                 initWithImage:[UIImage imageNamed:@"location"]
+                                 style:UIBarButtonItemStylePlain
+                                 target:self
+                                 action:@selector(centerOnUser)];
+  self.parentViewController.navigationItem.rightBarButtonItem = buttonItem;
+}
+
 #pragma mark - XMMEnduser Methods
-  
+
 - (void)downloadSpots:(NSString *)cursor {
   [self.hud showInView:self.view];
   
@@ -169,8 +176,8 @@
     }
   }];
 }
-  
-  
+
+
 - (void)showSpotMap:(NSArray *)spots {
   //get the customMarker for the map
   
@@ -181,7 +188,7 @@
     [self.mapView addAnnotation:point];
   }
 }
-  
+
 - (void)mapMarkerFromBase64:(NSString*)base64String {
   if (base64String == nil) {
     return;
@@ -199,9 +206,17 @@
     self.mapMarker = [XMMImageUtility imageWithImage:[UIImage imageWithData:imageData] scaledToMaxWidth:30.0f maxHeight:30.0f];
   }
 }
-  
+
 #pragma mark - MapView Methods
-  
+
+- (void)centerOnUser {
+  if (self.lastLocation != nil) {
+  [self zoomMapToLat:self.lastLocation.coordinate.latitude
+              andLon:self.lastLocation.coordinate.longitude
+            andDelta:0.003f];
+  }
+}
+
 - (void)zoomMapToLat:(double)lat andLon:(double)lon andDelta:(float)delta {
   //map region for zooming
   MKCoordinateRegion region = { { 0.0, 0.0 }, { 0.0, 0.0 } };
@@ -211,13 +226,13 @@
   region.span.longitudeDelta = delta;
   [self.mapView setRegion:region animated:YES];
 }
-  
+
 #pragma mark - MKMapView delegate methods
-  
+
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
   //do not touch userLocation
   if ([annotation isKindOfClass:[MKUserLocation class]])
-  return nil;
+    return nil;
   
   if ([annotation isKindOfClass:[PingebAnnotation class]]) {
     static NSString *identifier = @"xamoomAnnotation";
@@ -237,8 +252,8 @@
   
   return nil;
 }
-  
-  
+
+
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)annotationView {
   if ([annotationView.annotation isKindOfClass:[PingebAnnotation class]]) {
     PingebAnnotation *pingebAnnotation = annotationView.annotation;
@@ -256,7 +271,7 @@
     [self showMapItemDetailView: diff];
   }
 }
-  
+
 - (void)moveToAnnotation:(PingebAnnotation *)annotation {
   MKCoordinateRegion oldRegion = [self.mapView regionThatFits:MKCoordinateRegionMakeWithDistance(annotation.coordinate, 800, 800)];
   CLLocationCoordinate2D centerPointOfOldRegion = oldRegion.center;
@@ -270,10 +285,10 @@
   //Set the mapView's region
   [self.mapView setRegion:newRegion animated:YES];
 }
-  
-  
+
+
 #pragma mark User Interaction
-  
+
 - (void)showMapItemDetailView:(double)diff {
   [self.view layoutIfNeeded];
   
@@ -291,7 +306,7 @@
                    }
                    completion:nil];
 }
-  
+
 - (void)hideMapItemDetailView {
   for (id<MKAnnotation> anno in self.mapView.selectedAnnotations) {
     [self.mapView deselectAnnotation:anno animated:YES];
@@ -307,13 +322,18 @@
                      [self.view layoutIfNeeded];
                    } completion:NULL];
 }
-  
+
 #pragma mark - LocationManager
-  
+
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
   self.lastLocation = [locations firstObject];
   
+  if (self.lastLocation != nil) {
+    [self addCenterUserButton];
+
+  }
+  
   self.savedResponseContent = nil;
 }
-  
-  @end
+
+@end
