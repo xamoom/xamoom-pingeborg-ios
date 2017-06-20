@@ -38,6 +38,8 @@
 		889BE43E1B3854C5002850D5 /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 889BE43D1B3854C5002850D5 /* MainTabBarController.m */; };
 		88A62C4F1AD55F2C00EAD4C3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88A62C4E1AD55F2C00EAD4C3 /* AVFoundation.framework */; };
 		88A62C531AD561DB00EAD4C3 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88A62C521AD561DB00EAD4C3 /* MediaPlayer.framework */; };
+		88B777F81EF9183B006C3A72 /* NotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B777F71EF9183B006C3A72 /* NotificationHelper.swift */; };
+		88B777FB1EF91CB4006C3A72 /* NotificationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B777FA1EF91CB4006C3A72 /* NotificationHelper.m */; };
 		88BA01F51AA859F90091A43C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA01F41AA859F90091A43C /* main.m */; };
 		88BA01F81AA859F90091A43C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA01F71AA859F90091A43C /* AppDelegate.m */; };
 		88BA020F1AA859F90091A43C /* xamoom_pingeborg_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA020E1AA859F90091A43C /* xamoom_pingeborg_iosTests.m */; };
@@ -119,6 +121,9 @@
 		889BE43D1B3854C5002850D5 /* MainTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainTabBarController.m; path = "xamoom-pingeborg-ios/viewControllers/navigation/MainTabBarController.m"; sourceTree = SOURCE_ROOT; };
 		88A62C4E1AD55F2C00EAD4C3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		88A62C521AD561DB00EAD4C3 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		88B777F71EF9183B006C3A72 /* NotificationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationHelper.swift; sourceTree = "<group>"; };
+		88B777F91EF91CB4006C3A72 /* NotificationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationHelper.h; sourceTree = "<group>"; };
+		88B777FA1EF91CB4006C3A72 /* NotificationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationHelper.m; sourceTree = "<group>"; };
 		88BA01EF1AA859F90091A43C /* pingeb.org.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pingeb.org.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88BA01F31AA859F90091A43C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88BA01F41AA859F90091A43C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -252,6 +257,9 @@
 				88052D7A1AE103C300AB433D /* Globals.m */,
 				880246DA1B57AF2E00E585CE /* Analytics.h */,
 				880246DB1B57AF2E00E585CE /* Analytics.m */,
+				88B777F71EF9183B006C3A72 /* NotificationHelper.swift */,
+				88B777F91EF91CB4006C3A72 /* NotificationHelper.h */,
+				88B777FA1EF91CB4006C3A72 /* NotificationHelper.m */,
 				8814583B1B01EE8B0024E6F4 /* ViewControllers */,
 				881458491B01EE8B0024E6F4 /* Views */,
 				88E2431A1B14507200E9E208 /* XMMImageUtility */,
@@ -499,6 +507,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88B777FB1EF91CB4006C3A72 /* NotificationHelper.m in Sources */,
 				880E6C741D0FDB1A00E8335F /* GradientView.swift in Sources */,
 				88DB74DC1B0217DA0064EE7E /* ScanResultViewController.m in Sources */,
 				88BA01F81AA859F90091A43C /* AppDelegate.m in Sources */,
@@ -511,6 +520,7 @@
 				880E6C6B1D0E98BE00E8335F /* FeedItemCell.m in Sources */,
 				888E74551C18322B00233AA1 /* ExtendedTabbarView.m in Sources */,
 				8814585B1B01EE8B0024E6F4 /* NavigationViewController.m in Sources */,
+				88B777F81EF9183B006C3A72 /* NotificationHelper.swift in Sources */,
 				881458581B01EE8B0024E6F4 /* FeedTableViewController.m in Sources */,
 				880E6C781D0FF7D700E8335F /* MapItemDetailView.swift in Sources */,
 				885F683F1D17E98800DC0B9C /* PingebAnnotation.swift in Sources */,
@@ -662,7 +672,7 @@
 				GCC_PREFIX_HEADER = "pingeb.org-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				INFOPLIST_FILE = "xamoom-pingeborg-ios/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.xamoom.xamoom-pingeborg-ios";
 				PRODUCT_NAME = pingeb.org;
@@ -691,7 +701,7 @@
 				GCC_PREFIX_HEADER = "pingeb.org-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				INFOPLIST_FILE = "xamoom-pingeborg-ios/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.xamoom.xamoom-pingeborg-ios";
 				PRODUCT_NAME = pingeb.org;

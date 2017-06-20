@@ -174,7 +174,7 @@
   if (self.extendedViewTopConstraint.constant == 0) {
     return;
   }
-    
+  
   [self.view layoutIfNeeded];
   
   self.extendedViewTopConstraint.constant = 0;

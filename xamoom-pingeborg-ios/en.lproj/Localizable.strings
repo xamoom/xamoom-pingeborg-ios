@@ -52,3 +52,8 @@
 "bluetooth alert message" = "We use bluetooth to discover artists via iBeacons.";
 "bluetoothalert.action.ok" = "OK";
 "bluetoothalert.action.dismiss" = "Don't show again";
+
+/* Notification */
+
+"notification.beacon.title"="Music & Literature from Carinthia";
+"notification.beacon.body"="Discover in your pingeb.org App";

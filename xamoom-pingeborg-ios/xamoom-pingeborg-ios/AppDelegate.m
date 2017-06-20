@@ -18,6 +18,7 @@
 //
 
 #import "AppDelegate.h"
+#import "NotificationHelper.h"
 
 @interface AppDelegate ()
 
@@ -32,9 +33,12 @@
   //set UI colors
   [[UINavigationBar appearance] setBarTintColor:[Globals sharedObject].pingeborgYellow];
   [[UITabBar appearance] setTintColor:[Globals sharedObject].pingeborgLinkColor];
-  
+
+  [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeSound categories:nil]];
+
   //setup API
   [self setupApi];
+  [self initBeacons];
     
   return YES;
 }
@@ -68,6 +72,33 @@
                                                encoding:NSUTF8StringEncoding error:NULL];
   
   [XMMEnduserApi sharedInstanceWithKey:apiKey];
+}
+
+- (void)initBeacons {
+  NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:@"de2b94ae-ed98-11e4-3432-78616d6f6f6d"];
+  
+  self.beaconRegion = [[CLBeaconRegion alloc]
+                       initWithProximityUUID:uuid
+                       major:52414
+                       identifier:@"pingeborg beacons"];
+  
+  self.locationManager = [[CLLocationManager alloc] init];
+  self.locationManager.delegate = self;
+  
+  if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
+    [self.locationManager requestAlwaysAuthorization];
+  }
+  
+  [self.locationManager startMonitoringForRegion:self.beaconRegion];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
+  [NotificationHelper showNotificationWithTitle:NSLocalizedString(@"notification.beacon.title", "")
+                                        andBody:NSLocalizedString(@"notification.beacon.body", "")];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didExitRegion:(nonnull CLRegion *)region {
+  [NotificationHelper removeAllNotifications];
 }
 
 /**

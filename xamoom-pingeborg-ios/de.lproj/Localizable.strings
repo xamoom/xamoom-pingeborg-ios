@@ -52,3 +52,8 @@
 "bluetooth alert message" = "Wir nutzen Bluetooth um Künstler via iBeacons zu entdecken";
 "bluetoothalert.action.ok" = "OK";
 "bluetoothalert.action.dismiss" = "Nicht mehr anzeigen";
+
+/* Notification */
+
+"notification.beacon.title"="Musik & Literatur aus Kärnten";
+"notification.beacon.body"="Entdecke Neues in deiner pingeb.org App";
