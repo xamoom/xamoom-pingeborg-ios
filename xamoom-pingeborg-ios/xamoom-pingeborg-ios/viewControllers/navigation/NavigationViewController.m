@@ -35,6 +35,8 @@
 
 @property (nonatomic) double topBarOffset;
 
+@property (nonatomic) BOOL extendedViewDismissed;
+
 @end
 
 @implementation NavigationViewController
@@ -92,6 +94,8 @@
 #pragma mark - iBeacon & Geofence
 
 - (void)initExtendedView {
+  self.extendedViewDismissed = NO;
+  
   self.extendedView = [[[NSBundle mainBundle] loadNibNamed:@"ExtendedTabbarView" owner:self options:nil] firstObject];
   self.extendedView.translatesAutoresizingMaskIntoConstraints = NO;
   
@@ -165,10 +169,12 @@
 }
 
 - (void)closeExtendedView {
+  self.extendedViewDismissed = self.lastBeacon != nil;
+
   if (self.extendedViewTopConstraint.constant == 0) {
     return;
   }
-  
+    
   [self.view layoutIfNeeded];
   
   self.extendedViewTopConstraint.constant = 0;
@@ -251,7 +257,9 @@
     return;
   }
   
-  [self openExtendedView];
+  if (self.extendedViewDismissed == NO) {
+    [self openExtendedView];
+  }
   
   if (self.lastBeacon.minor != [beacons firstObject].minor) {
     self.lastBeacon = [beacons firstObject];
