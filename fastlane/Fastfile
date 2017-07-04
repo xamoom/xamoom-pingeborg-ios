@@ -42,7 +42,7 @@ platform :ios do
   lane :push do
     pem(
       force: true, # create a new profile, even if the old one is still valid
-      app_identifier: "net.sunapps.9", # optional app identifier,
+      app_identifier: "com.xamoom.xamoom-pingeborg-ios", # optional app identifier,
       save_private_key: true,
       generate_p12: true,
       p12_password: "oyzRcTJeJGpeGNWmPYDZM8kx",
