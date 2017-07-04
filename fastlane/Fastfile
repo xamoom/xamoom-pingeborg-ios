@@ -45,8 +45,7 @@ platform :ios do
       app_identifier: "com.xamoom.xamoom-pingeborg-ios", # optional app identifier,
       save_private_key: true,
       generate_p12: true,
-      p12_password: "oyzRcTJeJGpeGNWmPYDZM8kx",
-      output_path: "~/Desktop")
+      p12_password: "oyzRcTJeJGpeGNWmPYDZM8kx")
     end
 
   desc "Submit a new Beta Build to Apple TestFlight"
