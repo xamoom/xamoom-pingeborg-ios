@@ -1,5 +1,6 @@
-![](https://camo.githubusercontent.com/2fad8f28e3f8712be694e55345c77469af2d75ec/68747470733a2f2f78616d6f6f6d2e636f6d2f77702d696e68616c74652f75706c6f6164732f323031352f30322f6c6f676f2d626c61636b2d636c61696d312e706e67)
-#xamoom-ios-sdk
+![](https://storage.googleapis.com/xamoom-files/cb9dcdd940f44b53baf5c27f331c4079.png)
+
+# xamoom-ios-sdk
 With the XamoomSDK we created a simple SDK to let you create apps based on our system.
 
 More informations about xamoom and how xamoom works? Visit our Github page [xamoom Github Wiki](https://github.com/xamoom/xamoom.github.io/wiki)
@@ -19,7 +20,7 @@ Download the XamoomSDK and add it to your project, build it and use the framewor
 
 Add in your podfile
 
-    pod 'XamoomSDK', '~> 3.2.2'
+    pod 'XamoomSDK', '~> 3.3.0'
 
 Install pods via terminal
 
@@ -59,6 +60,10 @@ xamoom offers support for iBeacons. We have a [small guide](https://github.com/x
 
 xamoom has a lot of different contentBlocks. With XMMContentBlocks you have a easy way to display them.
 How to use it is in our [Step by Step Guide](https://github.com/xamoom/xamoom-ios-sdk/wiki/Step-by-Step-Guide).
+
+# Push notifications
+
+To use our Push Notifications please check our [Push Notification Documentation](https://github.com/xamoom/xamoom-ios-sdk/wiki/Push-Notifications).
 
 # Offline
 

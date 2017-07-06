@@ -18,6 +18,35 @@ default_platform :ios
 platform :ios do
   before_all do
     # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
+  end
+
+  desc "Runs all the tests"
+  lane :test do
+    scan
+  end
+
+  lane :push do
+    match(
+      type: "development",
+      git_url: "https://github.com/xamoom/apple-certificates.git")
+    pem(
+      app_identifier: "com.xamoom.xamoom-pingeborg-ios", # optional app identifier,
+      save_private_key: true,
+      generate_p12: true)
+
+    match(
+      type: "appstore",
+      git_url: "https://github.com/xamoom/apple-certificates.git")
+    pem(
+      development: true,
+      app_identifier: "com.xamoom.xamoom-pingeborg-ios", # optional app identifier,
+      save_private_key: true,
+      generate_p12: true)
+    end
+
+  desc "Submit a new Beta Build to Apple TestFlight"
+  desc "This will also make sure the profile is up to date"
+  lane :beta do
 
     increment_build_number(
       xcodeproj:"./xamoom-pingeborg-ios/pingeb.org.xcodeproj"
@@ -32,33 +61,8 @@ platform :ios do
       force: true,
     )
 
-  end
+    match(type: "appstore") # more information: https://codesigning.guide
 
-  desc "Runs all the tests"
-  lane :test do
-    scan
-  end
-
-  lane :push do
-    pem(
-      force: true, # create a new profile, even if the old one is still valid
-      app_identifier: "com.xamoom.xamoom-pingeborg-ios", # optional app identifier,
-      save_private_key: true,
-      generate_p12: true
-    end
-
-  desc "Submit a new Beta Build to Apple TestFlight"
-  desc "This will also make sure the profile is up to date"
-  lane :beta do
-    # match(type: "appstore") # more information: https://codesigning.guide
-
-    pem(
-      force: true, # create a new profile, even if the old one is still valid
-      app_identifier: "net.sunapps.9", # optional app identifier,
-      save_private_key: true,
-      generate_p12: true,
-      p12_password: "oyzRcTJeJGpeGNWmPYDZM8kx",
-      output_path: "~/Desktop")
     gym(
     	workspace: "xamoom-pingeborg-ios/pingeb.org.xcworkspace",
     	scheme: "pingeb.org RELEASE") # Build your app - more options available
@@ -70,7 +74,25 @@ platform :ios do
 
   desc "Deploy a new version to the App Store"
   lane :release do
-    # match(type: "appstore")
+
+    increment_build_number(
+      xcodeproj:"./xamoom-pingeborg-ios/pingeb.org.xcodeproj"
+    )
+    commit_version_bump(
+      message: "Version Bump",
+    )
+    push_to_git_remote(
+      remote: "origin",         # optional, default: "origin"
+      local_branch: "dev",  # optional, aliased by "branch", default: "master"
+      remote_branch: "dev", # optional, default is set to local_branch
+      force: true,
+    )
+
+    match(type: "appstore")
+    pem(
+      app_identifier: "com.xamoom.xamoom-pingeborg-ios", # optional app identifier,
+      save_private_key: true,
+      generate_p12: true)
     # snapshot
     gym # Build your app - more options available
     deliver(force: true)

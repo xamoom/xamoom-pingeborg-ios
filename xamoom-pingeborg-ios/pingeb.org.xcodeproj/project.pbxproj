@@ -23,6 +23,7 @@
 		8814585D1B01EE8B0024E6F4 /* FeedItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8814584C1B01EE8B0024E6F4 /* FeedItemCell.xib */; };
 		8814585E1B01EE8B0024E6F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8814584D1B01EE8B0024E6F4 /* Main.storyboard */; };
 		883574801AB1CCF40099DF4A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8835747F1AB1CCF40099DF4A /* QuartzCore.framework */; };
+		885D17C11F0E214900A61CC8 /* NavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885D17C01F0E214900A61CC8 /* NavigationCoordinator.swift */; };
 		885F683F1D17E98800DC0B9C /* PingebAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885F683E1D17E98800DC0B9C /* PingebAnnotation.swift */; };
 		8860DA7D1AE78D0500DF2239 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8860DA7C1AE78D0500DF2239 /* CoreText.framework */; };
 		8860DA7F1AE78D0E00DF2239 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8860DA7E1AE78D0E00DF2239 /* CoreImage.framework */; };
@@ -40,7 +41,6 @@
 		88A62C4F1AD55F2C00EAD4C3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88A62C4E1AD55F2C00EAD4C3 /* AVFoundation.framework */; };
 		88A62C531AD561DB00EAD4C3 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88A62C521AD561DB00EAD4C3 /* MediaPlayer.framework */; };
 		88B777F81EF9183B006C3A72 /* NotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B777F71EF9183B006C3A72 /* NotificationHelper.swift */; };
-		88B777FB1EF91CB4006C3A72 /* NotificationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 88B777FA1EF91CB4006C3A72 /* NotificationHelper.m */; };
 		88BA01F51AA859F90091A43C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA01F41AA859F90091A43C /* main.m */; };
 		88BA01F81AA859F90091A43C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA01F71AA859F90091A43C /* AppDelegate.m */; };
 		88BA020F1AA859F90091A43C /* xamoom_pingeborg_iosTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BA020E1AA859F90091A43C /* xamoom_pingeborg_iosTests.m */; };
@@ -104,6 +104,8 @@
 		8814584C1B01EE8B0024E6F4 /* FeedItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedItemCell.xib; sourceTree = "<group>"; };
 		8814584D1B01EE8B0024E6F4 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		8835747F1AB1CCF40099DF4A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		885D17BD1F0E12DF00A61CC8 /* pingeb.org.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = pingeb.org.entitlements; sourceTree = "<group>"; };
+		885D17C01F0E214900A61CC8 /* NavigationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationCoordinator.swift; sourceTree = "<group>"; };
 		885F683E1D17E98800DC0B9C /* PingebAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PingebAnnotation.swift; path = "xamoom-pingeborg-ios/views/PingebAnnotation.swift"; sourceTree = SOURCE_ROOT; };
 		8860DA7C1AE78D0500DF2239 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		8860DA7E1AE78D0E00DF2239 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
@@ -124,8 +126,6 @@
 		88A62C4E1AD55F2C00EAD4C3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		88A62C521AD561DB00EAD4C3 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		88B777F71EF9183B006C3A72 /* NotificationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationHelper.swift; sourceTree = "<group>"; };
-		88B777F91EF91CB4006C3A72 /* NotificationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationHelper.h; sourceTree = "<group>"; };
-		88B777FA1EF91CB4006C3A72 /* NotificationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationHelper.m; sourceTree = "<group>"; };
 		88BA01EF1AA859F90091A43C /* pingeb.org.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pingeb.org.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88BA01F31AA859F90091A43C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88BA01F41AA859F90091A43C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -231,6 +231,7 @@
 		88BA01E61AA859F90091A43C = {
 			isa = PBXGroup;
 			children = (
+				885D17BD1F0E12DF00A61CC8 /* pingeb.org.entitlements */,
 				887BE0351B53D43000E9D584 /* Localizable.strings */,
 				88BA01F11AA859F90091A43C /* xamoom-pingeborg-ios */,
 				88BA020B1AA859F90091A43C /* xamoom-pingeborg-iosTests */,
@@ -260,9 +261,8 @@
 				88052D7A1AE103C300AB433D /* Globals.m */,
 				880246DA1B57AF2E00E585CE /* Analytics.h */,
 				880246DB1B57AF2E00E585CE /* Analytics.m */,
+				885D17C01F0E214900A61CC8 /* NavigationCoordinator.swift */,
 				88B777F71EF9183B006C3A72 /* NotificationHelper.swift */,
-				88B777F91EF91CB4006C3A72 /* NotificationHelper.h */,
-				88B777FA1EF91CB4006C3A72 /* NotificationHelper.m */,
 				8814583B1B01EE8B0024E6F4 /* ViewControllers */,
 				881458491B01EE8B0024E6F4 /* Views */,
 				88E2431A1B14507200E9E208 /* XMMImageUtility */,
@@ -401,7 +401,13 @@
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+							com.apple.Push = {
 								enabled = 1;
 							};
 						};
@@ -511,7 +517,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88B777FB1EF91CB4006C3A72 /* NotificationHelper.m in Sources */,
 				880E6C741D0FDB1A00E8335F /* GradientView.swift in Sources */,
 				88DB74DC1B0217DA0064EE7E /* ScanResultViewController.m in Sources */,
 				88BA01F81AA859F90091A43C /* AppDelegate.m in Sources */,
@@ -529,6 +534,7 @@
 				880E6C781D0FF7D700E8335F /* MapItemDetailView.swift in Sources */,
 				885F683F1D17E98800DC0B9C /* PingebAnnotation.swift in Sources */,
 				889BE43E1B3854C5002850D5 /* MainTabBarController.m in Sources */,
+				885D17C11F0E214900A61CC8 /* NavigationCoordinator.swift in Sources */,
 				881458571B01EE8B0024E6F4 /* ArtistDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -665,12 +671,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7A7AAAFE8FE8D63A51F10A08 /* Pods-pingeb.org.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = pingeb.org.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Bruno Hautzenberger (L86QBJXNW2)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bruno Hautzenberger (L86QBJXNW2)";
-				CURRENT_PROJECT_VERSION = 29;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = 55MDUF7392;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -696,12 +704,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3C3C2BE620C2FEB34D47145 /* Pods-pingeb.org.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = pingeb.org.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: xamoom GmbH (55MDUF7392)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: xamoom GmbH (55MDUF7392)";
-				CURRENT_PROJECT_VERSION = 29;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = 55MDUF7392;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -712,8 +722,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.xamoom.xamoom-pingeborg-ios";
 				PRODUCT_NAME = pingeb.org;
-				PROVISIONING_PROFILE = "d1e823a5-fc12-4700-ae3e-f2d7855203af";
-				PROVISIONING_PROFILE_SPECIFIER = "match AppStore com.xamoom.xamoom-pingeborg-ios";
+				PROVISIONING_PROFILE = "5383869b-02b9-428e-8229-c953b5ac250b";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.xamoom.xamoom-pingeborg-ios";
 				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "xamoom-pingeborg-ios/Views/pingeb.org-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;

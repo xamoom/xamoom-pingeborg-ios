@@ -21,6 +21,7 @@
 #import "REMenu.h"  
 #import <JGProgressHUD/JGProgressHUD.h>
 
+@class GradientView;
 
 @interface ArtistDetailViewController : UIViewController <XMMContentBlocksDelegate, UITableViewDelegate, UIScrollViewDelegate>
 

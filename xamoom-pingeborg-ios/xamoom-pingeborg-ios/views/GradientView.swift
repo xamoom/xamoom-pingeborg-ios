@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+@objc
 class GradientView: UIView {
   
   let gradientLayer : CAGradientLayer = CAGradientLayer()

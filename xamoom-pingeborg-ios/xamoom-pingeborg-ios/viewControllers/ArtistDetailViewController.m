@@ -18,6 +18,7 @@
 //
 
 #import "ArtistDetailViewController.h"
+#import "pingeb_org-Swift.h"
 
 static int kHeaderViewHeight = 200;
 

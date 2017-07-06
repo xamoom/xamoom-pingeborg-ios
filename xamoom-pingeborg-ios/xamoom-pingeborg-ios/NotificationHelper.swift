@@ -9,7 +9,8 @@
 import UIKit
 import UserNotifications
 
-class NotificationHelper {
+@objc
+class NotificationHelper : NSObject {
   
   static func removeAllNotifications() {
     if #available(iOS 10.0, *) {

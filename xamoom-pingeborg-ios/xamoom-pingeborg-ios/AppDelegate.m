@@ -18,12 +18,13 @@
 //
 
 #import "AppDelegate.h"
-#import "NotificationHelper.h"
 
-@interface AppDelegate ()
+@interface AppDelegate () <XMMPushNotificationDelegate>
 
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLBeaconRegion *beaconRegion;
+@property (strong, nonatomic) XMMPushManager *pushManager;
+@property (strong, nonatomic) NavigationCoordinator *navigationCoordinator;
 
 @end
 
@@ -39,7 +40,10 @@
   //setup API
   [self setupApi];
   [self initBeacons];
-    
+  [self setupPushManager];
+  
+  self.navigationCoordinator = [[NavigationCoordinator alloc] initWithNavigationController: (UINavigationController *) self.window.rootViewController];
+  
   return YES;
 }
 
@@ -64,6 +68,21 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
   // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+  [self.pushManager handlePushRegistration:deviceToken];
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+  [self.pushManager handlePushRegistrationFailure:error];
+  NSLog(@"handlePushRegistrationFailure %@", error);
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+  [self.pushManager handlePushReceived:userInfo];
+  completionHandler(UIBackgroundFetchResultNoData);
 }
 
 - (void)setupApi {
@@ -92,13 +111,29 @@
   [self.locationManager startMonitoringForRegion:self.beaconRegion];
 }
 
+- (void)setupPushManager {
+  self.pushManager = [[XMMPushManager alloc] init];
+  self.pushManager.delegate = self;
+}
+
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
-  [NotificationHelper showNotificationWithTitle:NSLocalizedString(@"notification.beacon.title", "")
-                                        andBody:NSLocalizedString(@"notification.beacon.body", "")];
+  [NotificationHelper showNotificationWithTitle:
+   NSLocalizedString(@"notification.beacon.title", "")
+                                        body:
+   NSLocalizedString(@"notification.beacon.body", "")];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didExitRegion:(nonnull CLRegion *)region {
   [NotificationHelper removeAllNotifications];
+}
+
+// will get called when the user clicks on the notification
+- (void)didClickPushNotification:(NSString *)contentId {
+  NSLog(@"Did click notification: %@", contentId);
+  
+  if (contentId != nil) {
+    [self.navigationCoordinator openArtistDetailWithContentId:contentId];
+  }
 }
 
 /**

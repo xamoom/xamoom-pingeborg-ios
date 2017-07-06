@@ -1,15 +1,15 @@
 //
-//  UIColor+HexString.h
-//  Class to convert hex string to UIColor
-//  Support #RGB # ARGB #RRGGBB #AARRGGBB
-//  Usage: [UIColor colorWithHexString:@"#f5e6a1"];
-//  Created by Zhu Yuzhou on 1/20/13.
+// Copyright (c) 2017 xamoom GmbH <apps@xamoom.com>
 //
+// Licensed under the MIT License (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at the root of this project.
+
 
 #import <UIKit/UIKit.h>
 
 @interface UIColor (HexString)
 
-+ (UIColor *) colorWithHexString: (NSString *) hexString;
++ (UIColor *)colorWithHexString:(NSString *)hexString;
 
 @end
