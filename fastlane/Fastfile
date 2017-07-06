@@ -91,9 +91,11 @@ platform :ios do
 
     match(type: "appstore",
       git_url: "https://github.com/xamoom/apple-certificates.git")
-      
+
     # snapshot
-    gym # Build your app - more options available
+    gym(
+      workspace: "xamoom-pingeborg-ios/pingeb.org.xcworkspace",
+      scheme: "pingeb.org RELEASE") # Build your app - more options available
     deliver(force: true)
     # frameit
   end
