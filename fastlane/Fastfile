@@ -61,7 +61,8 @@ platform :ios do
       force: true,
     )
 
-    match(type: "appstore") # more information: https://codesigning.guide
+    match(type: "appstore",
+      git_url: "https://github.com/xamoom/apple-certificates.git") # more information: https://codesigning.guide
 
     gym(
     	workspace: "xamoom-pingeborg-ios/pingeb.org.xcworkspace",
@@ -88,11 +89,9 @@ platform :ios do
       force: true,
     )
 
-    match(type: "appstore")
-    pem(
-      app_identifier: "com.xamoom.xamoom-pingeborg-ios", # optional app identifier,
-      save_private_key: true,
-      generate_p12: true)
+    match(type: "appstore",
+      git_url: "https://github.com/xamoom/apple-certificates.git")
+      
     # snapshot
     gym # Build your app - more options available
     deliver(force: true)
