@@ -203,13 +203,18 @@ static int kHeaderViewHeight = 200;
   
   [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:result.imagePublicUrl] placeholderImage:[UIImage imageNamed:@"placeholder"]];
   
+  XMMContentBlock *spacerBlock = [[XMMContentBlock alloc] init];
+  spacerBlock.blockType = 0;
+  
   XMMContentBlock *titleBlock = [[XMMContentBlock alloc] init];
-  titleBlock.blockType = 0;
+  titleBlock.blockType = 100;
   titleBlock.title = result.title;
   titleBlock.text = result.contentDescription;
   
   NSMutableArray *blocks = [result.contentBlocks mutableCopy];
-  [blocks insertObject:titleBlock atIndex:0];
+  [blocks insertObject:spacerBlock atIndex:0];
+  [blocks insertObject:titleBlock atIndex:1];
+  
   result.contentBlocks = blocks;
   
   self.savedResult = result;
