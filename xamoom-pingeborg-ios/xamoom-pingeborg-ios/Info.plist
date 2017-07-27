@@ -53,5 +53,7 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>NFCReaderUsageDescription</key>
+	<string>Yo</string>
 </dict>
 </plist>

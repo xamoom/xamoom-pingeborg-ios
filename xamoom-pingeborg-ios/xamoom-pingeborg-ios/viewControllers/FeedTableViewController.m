@@ -33,6 +33,7 @@ NSString * const kFeedItemCellIdentifier = @"FeedItemCell";
 @property CLBeacon *lastBeacon;
 @property bool hasMore;
 @property bool isApiCallingBlocked;
+@property NFCHelper *nfcHelper;
 
 @end
 
@@ -55,6 +56,39 @@ NSString * const kFeedItemCellIdentifier = @"FeedItemCell";
   [self setupTableView];
   [self setupRefreshControl];
   [self detectBluetooth];
+  
+  
+  self.nfcHelper = [[NFCHelper alloc] init];
+  __weak FeedTableViewController *weakSelf = self;
+  self.nfcHelper.onNFCResult = ^(bool hasMore, NSString *payload) {
+    if (![payload containsString:@"xm.gl"] &&
+         ![payload containsString:@"m.pingeb.org"]) {
+      return;
+    }
+    
+    NSString *urlString = [payload stringByReplacingOccurrencesOfString:@"03" withString:@""];
+    NSURL *url = [[NSURL alloc] initWithString:urlString];
+    NSString *locId = [url lastPathComponent];
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    ArtistDetailViewController *artistDetailViewController =
+    [storyboard instantiateViewControllerWithIdentifier:@"ArtistDetailView"];
+    artistDetailViewController.locationIdentifier = locId;
+    dispatch_async(dispatch_get_main_queue(), ^{
+       [weakSelf.navigationController pushViewController:artistDetailViewController animated:YES];
+    });
+  };
+  
+  UIBarButtonItem *nfcButton = [[UIBarButtonItem alloc]
+                                initWithTitle:@"NFC"
+                                style:UIBarButtonItemStylePlain
+                                target:self
+                                action:@selector(didClickNFC)];
+  [self.parentViewController.navigationItem setRightBarButtonItem: nfcButton];
+}
+
+- (void)didClickNFC {
+  [self.nfcHelper startNFCScanning];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -219,7 +253,7 @@ NSString * const kFeedItemCellIdentifier = @"FeedItemCell";
     [self showBlueToothAlert];
   }
 }
-  
+
 - (void)showBlueToothAlert {
   UIAlertController * alert = [UIAlertController
                                alertControllerWithTitle:NSLocalizedString(@"bluetooth alert title", nil)

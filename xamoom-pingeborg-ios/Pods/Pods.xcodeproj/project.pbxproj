@@ -355,7 +355,7 @@
 
 /* Begin PBXFileReference section */
 		0019B42C535B6BCC3075B46993173523 /* XMMSimpleStorage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = XMMSimpleStorage.h; path = XamoomSDK/Classes/XMMSimpleStorage.h; sourceTree = "<group>"; };
-		00C1B63F7BD9A161251B50AB2E2EB6F5 /* libPods-pingeb.org.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-pingeb.org.a"; path = "libPods-pingeb.org.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		00C1B63F7BD9A161251B50AB2E2EB6F5 /* libPods-pingeb.org.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-pingeb.org.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		012609287E6A6AE3836D7A3726622265 /* XMMContentBlock7TableViewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = XMMContentBlock7TableViewCell.h; path = XamoomSDK/Classes/ContentBlocks/Blocks/XMMContentBlock7TableViewCell.h; sourceTree = "<group>"; };
 		01F1498B8D895026E01A5964477BB017 /* JAMSVGImageView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JAMSVGImageView.h; path = "Classes/JAMSVGImage/UI and View/JAMSVGImageView.h"; sourceTree = "<group>"; };
 		0322181E54AAF300EE71290F6BA29646 /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+WebCacheOperation.h"; path = "SDWebImage/UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
@@ -384,7 +384,7 @@
 		14371A1C46E80226B96FDA33C2FA8007 /* libGTM_AddressBook.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTM_AddressBook.a; path = Libraries/libGTM_AddressBook.a; sourceTree = "<group>"; };
 		153AA261891CE901E9F8C3561B9FE055 /* SDImageCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SDImageCache.h; path = SDWebImage/SDImageCache.h; sourceTree = "<group>"; };
 		15BF912B9222CB6CC968DD45542F2FC1 /* ResourceBundle-XamoomSDK-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-XamoomSDK-Info.plist"; sourceTree = "<group>"; };
-		17DF93706CEE297FCF44896BBDA41EAB /* libSMCalloutView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libSMCalloutView.a; path = libSMCalloutView.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		17DF93706CEE297FCF44896BBDA41EAB /* libSMCalloutView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSMCalloutView.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		17F78CEDCF4484DAB9C40093D93E876C /* XMMContentBlock1TableViewCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = XMMContentBlock1TableViewCell.m; path = XamoomSDK/Classes/ContentBlocks/Blocks/XMMContentBlock1TableViewCell.m; sourceTree = "<group>"; };
 		189E0409AD65B45476BAAD2233D98E61 /* libGTM_RoundedRectPath.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTM_RoundedRectPath.a; path = Libraries/libGTM_RoundedRectPath.a; sourceTree = "<group>"; };
 		1912F896E73510BB9E376407387B1726 /* JGProgressHUD-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JGProgressHUD-prefix.pch"; sourceTree = "<group>"; };
@@ -429,7 +429,7 @@
 		3428E347557F1304E7C8B6351996DF3E /* XMMCDStyle.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = XMMCDStyle.m; path = XamoomSDK/Classes/Storage/Resources/XMMCDStyle.m; sourceTree = "<group>"; };
 		34881208BC9E26EA1C810C3FD92D7C10 /* XMMMapOverlayView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = XMMMapOverlayView.m; path = XamoomSDK/Classes/ContentBlocks/MapViews/XMMMapOverlayView.m; sourceTree = "<group>"; };
 		34B757530B8F2907011095184741D964 /* UIImage+MultiFormat.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+MultiFormat.h"; path = "SDWebImage/UIImage+MultiFormat.h"; sourceTree = "<group>"; };
-		351C71167882BC0966FA671783017414 /* it.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = it.lproj; path = XamoomSDK/Assets/it.lproj; sourceTree = "<group>"; };
+		351C71167882BC0966FA671783017414 /* it.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = it.lproj; path = XamoomSDK/Assets/it.lproj; sourceTree = "<group>"; };
 		365E5301891F72DC90238655B39236D6 /* GGLErrorCode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GGLErrorCode.h; path = Headers/GGLCore/Public/GGLErrorCode.h; sourceTree = "<group>"; };
 		365FB9F02F10E123657197287E530F6A /* XMMContentBlock100TableViewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = XMMContentBlock100TableViewCell.h; path = XamoomSDK/Classes/ContentBlocks/Blocks/XMMContentBlock100TableViewCell.h; sourceTree = "<group>"; };
 		3851F5F334317E2717C5C3BC2B6424FE /* UIImage+SVG.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+SVG.m"; path = "Classes/JAMSVGImage/SVG Image/UIImage+SVG.m"; sourceTree = "<group>"; };
@@ -482,7 +482,7 @@
 		6113BA5FA301776ADA11193857CAD5CD /* XMMContentBlock9TableViewCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = XMMContentBlock9TableViewCell.m; path = XamoomSDK/Classes/ContentBlocks/Blocks/XMMContentBlock9TableViewCell.m; sourceTree = "<group>"; };
 		61C3CD9E7FBD345EFFE35632EAED612B /* XMMMarker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = XMMMarker.h; path = XamoomSDK/Classes/mapping/XMMMarker.h; sourceTree = "<group>"; };
 		62A65D89F755A4CA3C5B62B302F13DCB /* libGTM_UIFont+LineHeight.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = "libGTM_UIFont+LineHeight.a"; path = "Libraries/libGTM_UIFont+LineHeight.a"; sourceTree = "<group>"; };
-		63649B0641A793BFA7097C340BB63CD8 /* libXamoomSDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libXamoomSDK.a; path = libXamoomSDK.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		63649B0641A793BFA7097C340BB63CD8 /* libXamoomSDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libXamoomSDK.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6594C04884B3C434EA523EFD12FA2FA5 /* NSString+MD5.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+MD5.h"; path = "XamoomSDK/Classes/NSString+MD5.h"; sourceTree = "<group>"; };
 		661222B539404B5540027497F8169700 /* EnduserOfflineDatamodel 1.0.xcdatamodel */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcdatamodel; path = "EnduserOfflineDatamodel 1.0.xcdatamodel"; sourceTree = "<group>"; };
 		66786ED5AC51AB4D6FCEC5CEF3BFA7C0 /* UIImage+Scaling.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Scaling.m"; path = "XamoomSDK/Classes/ContentBlocks/UIImage+Scaling.m"; sourceTree = "<group>"; };
@@ -498,16 +498,16 @@
 		6E53929DC23432ED9CAEF3DB1B17289C /* XMMContentBlock2TableViewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = XMMContentBlock2TableViewCell.h; path = XamoomSDK/Classes/ContentBlocks/Blocks/XMMContentBlock2TableViewCell.h; sourceTree = "<group>"; };
 		6ED0F9B15F172E211A757FF8CEA6B6D1 /* XMMContentBlock0TableViewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = XMMContentBlock0TableViewCell.h; path = XamoomSDK/Classes/ContentBlocks/Blocks/XMMContentBlock0TableViewCell.h; sourceTree = "<group>"; };
 		7034DBCC1EFC05FE9D4F85F4AFAA22AA /* UIImageView+WebCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImageView+WebCache.h"; path = "SDWebImage/UIImageView+WebCache.h"; sourceTree = "<group>"; };
-		71517277F99D8A0369855340AD04C46B /* libJAMSVGImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libJAMSVGImage.a; path = libJAMSVGImage.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		71517277F99D8A0369855340AD04C46B /* libJAMSVGImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libJAMSVGImage.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		729E2C9296B008620704D9EB89F606E1 /* XMMContentBlock4TableViewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = XMMContentBlock4TableViewCell.h; path = XamoomSDK/Classes/ContentBlocks/Blocks/XMMContentBlock4TableViewCell.h; sourceTree = "<group>"; };
 		73DE888E1169775F5009B6DABB86C32B /* XMMContentBlock1TableViewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = XMMContentBlock1TableViewCell.h; path = XamoomSDK/Classes/ContentBlocks/Blocks/XMMContentBlock1TableViewCell.h; sourceTree = "<group>"; };
 		73FBDBFC4A69169404BBD2E0ABDD67DC /* XMMPushManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = XMMPushManager.h; path = XamoomSDK/Classes/XMMPushManager.h; sourceTree = "<group>"; };
 		7494E5C1E3A3226BBE8FB30E0B37F748 /* SMClassicCalloutView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SMClassicCalloutView.m; sourceTree = "<group>"; };
 		754F067C1BE4E55A38D5BD42372E7009 /* XMMContentBlocks.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = XMMContentBlocks.m; path = XamoomSDK/Classes/ContentBlocks/XMMContentBlocks.m; sourceTree = "<group>"; };
 		75E9739A362A0D38C77EC6B2B2900E29 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/ImageIO.framework; sourceTree = DEVELOPER_DIR; };
-		761A14D9C2FBA6A5AA337F035AD7FC30 /* en.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = en.lproj; path = XamoomSDK/Assets/en.lproj; sourceTree = "<group>"; };
+		761A14D9C2FBA6A5AA337F035AD7FC30 /* en.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = en.lproj; path = XamoomSDK/Assets/en.lproj; sourceTree = "<group>"; };
 		775D010BF4F6B5DA7167B2D035BDAC74 /* JGProgressHUDRingIndicatorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDRingIndicatorView.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDRingIndicatorView.m; sourceTree = "<group>"; };
-		77BBA982AE5CDA94C6BF5692893AFD89 /* libQRCodeReaderViewController.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libQRCodeReaderViewController.a; path = libQRCodeReaderViewController.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		77BBA982AE5CDA94C6BF5692893AFD89 /* libQRCodeReaderViewController.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libQRCodeReaderViewController.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7824473462E83D35DF1E801FC5D1F9E2 /* SDWebImageCompat.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageCompat.m; path = SDWebImage/SDWebImageCompat.m; sourceTree = "<group>"; };
 		79DC4CA769EE00D2E7E1006FD6F21CF3 /* XMMMenu.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = XMMMenu.h; path = XamoomSDK/Classes/mapping/XMMMenu.h; sourceTree = "<group>"; };
 		7A864C34EEB068E459ECBF038833F167 /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GAIDictionaryBuilder.h; path = Headers/Public/GAIDictionaryBuilder.h; sourceTree = "<group>"; };
@@ -518,19 +518,19 @@
 		80FF9D2B5AD0F2268B0232B6F648D8EB /* XMMMenu.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = XMMMenu.m; path = XamoomSDK/Classes/mapping/XMMMenu.m; sourceTree = "<group>"; };
 		8226CBED16C74724A7C906F2B8DF642C /* XMMContentBlock4TableViewCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = XMMContentBlock4TableViewCell.m; path = XamoomSDK/Classes/ContentBlocks/Blocks/XMMContentBlock4TableViewCell.m; sourceTree = "<group>"; };
 		8285A9B30C3656A4AE4B20E0E53B6D35 /* XMMRestClient.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = XMMRestClient.h; path = XamoomSDK/Classes/XMMRestClient.h; sourceTree = "<group>"; };
-		8330FB48672F2DD2A5B979961AD836B9 /* de.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = de.lproj; path = XamoomSDK/Assets/de.lproj; sourceTree = "<group>"; };
+		8330FB48672F2DD2A5B979961AD836B9 /* de.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = de.lproj; path = XamoomSDK/Assets/de.lproj; sourceTree = "<group>"; };
 		83B2E991833341E48FD8928C68321BDC /* EnduserOfflineDatamodel.xcdatamodel */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcdatamodel; path = EnduserOfflineDatamodel.xcdatamodel; sourceTree = "<group>"; };
-		85076B975F4643B8625E6EE530635C6F /* libSDWebImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libSDWebImage.a; path = libSDWebImage.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		85076B975F4643B8625E6EE530635C6F /* libSDWebImage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSDWebImage.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		86136AB67137988BC9CC47111B4DFB3E /* XamoomSDK.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = XamoomSDK.xcconfig; sourceTree = "<group>"; };
 		864CAD2BBE69E9C112A468C0A943DCAA /* XMMRestClient.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = XMMRestClient.m; path = XamoomSDK/Classes/XMMRestClient.m; sourceTree = "<group>"; };
 		865959FA9A117D9C0334A03663076256 /* GAIFields.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GAIFields.h; path = Headers/Public/GAIFields.h; sourceTree = "<group>"; };
 		87857C4368987E3E41DB5FBA04A7D0DE /* SMCalloutView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SMCalloutView-dummy.m"; sourceTree = "<group>"; };
 		87E624BEA740EAE41A811A8402846A0D /* QRCodeReaderDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = QRCodeReaderDelegate.h; path = QRCodeReaderViewController/QRCodeReaderDelegate.h; sourceTree = "<group>"; };
-		88AAAB50DBA8A3A8493F6412720136CD /* libREMenu.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libREMenu.a; path = libREMenu.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		88AAAB50DBA8A3A8493F6412720136CD /* libREMenu.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libREMenu.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		892C6176CDF7252A2CF46592C599DB69 /* JSONAPIResource.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONAPIResource.h; path = Classes/JSONAPIResource.h; sourceTree = "<group>"; };
 		89E01C3AC0A380E4E1C918C5A5D47080 /* XMMOptions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = XMMOptions.h; path = XamoomSDK/Classes/XMMOptions.h; sourceTree = "<group>"; };
 		8A146E60A22112FCAB03ED0FB8DC724E /* XMMPushManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = XMMPushManager.m; path = XamoomSDK/Classes/XMMPushManager.m; sourceTree = "<group>"; };
-		8A33E212890B3797DB0CAB66A5FAC0D2 /* Base.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = Base.lproj; path = XamoomSDK/Assets/Base.lproj; sourceTree = "<group>"; };
+		8A33E212890B3797DB0CAB66A5FAC0D2 /* Base.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = Base.lproj; path = XamoomSDK/Assets/Base.lproj; sourceTree = "<group>"; };
 		8A350636D01124C1423FAAC44BC0EE8E /* JSONAPIResourceParser.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSONAPIResourceParser.m; path = Classes/JSONAPIResourceParser.m; sourceTree = "<group>"; };
 		8AF7E6AC1177F6BF45BEF7525F5AC374 /* QRCameraSwitchButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = QRCameraSwitchButton.h; path = QRCodeReaderViewController/QRCameraSwitchButton.h; sourceTree = "<group>"; };
 		8AFF17ED5C9B280ABC01F1A318704D9C /* RECommonFunctions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RECommonFunctions.m; path = REMenu/RECommonFunctions.m; sourceTree = "<group>"; };
@@ -550,7 +550,7 @@
 		931EF5D0D229554CA25F1886475A90BF /* QRCodeReaderView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = QRCodeReaderView.h; path = QRCodeReaderViewController/QRCodeReaderView.h; sourceTree = "<group>"; };
 		939A785F33073DE77989EB9A406C4A08 /* JGProgressHUDErrorIndicatorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JGProgressHUDErrorIndicatorView.h; path = JGProgressHUD/JGProgressHUD/JGProgressHUDErrorIndicatorView.h; sourceTree = "<group>"; };
 		939FCAA1725A1181318DA3E47BA58499 /* XMMStyle.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = XMMStyle.m; path = XamoomSDK/Classes/mapping/XMMStyle.m; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		942792D2F7BDE83BCC1BF67A1486ED53 /* JGProgressHUD-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "JGProgressHUD-dummy.m"; sourceTree = "<group>"; };
 		95FB333F3EA08B244ABCFF76FB2D7FBE /* XMMCDSpot.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = XMMCDSpot.h; path = XamoomSDK/Classes/Storage/Resources/XMMCDSpot.h; sourceTree = "<group>"; };
 		9683789979DA6EBD9EAFF36F27A4B912 /* NSString+MD5.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+MD5.m"; path = "XamoomSDK/Classes/NSString+MD5.m"; sourceTree = "<group>"; };
@@ -586,7 +586,7 @@
 		B171E7BA09D454DAAEA2A1C58AB5B56B /* QRCodeReader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = QRCodeReader.m; path = QRCodeReaderViewController/QRCodeReader.m; sourceTree = "<group>"; };
 		B1B1C94BC5F707BA36CA9D3FB2296C8E /* JAMSVGImageView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JAMSVGImageView.m; path = "Classes/JAMSVGImage/UI and View/JAMSVGImageView.m"; sourceTree = "<group>"; };
 		B23892FD522CC54ED1F401ACCDE73719 /* XMMCDMarker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = XMMCDMarker.m; path = XamoomSDK/Classes/Storage/Resources/XMMCDMarker.m; sourceTree = "<group>"; };
-		B41D1F3714E768F83A5D168F0618061A /* libJSONAPI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libJSONAPI.a; path = libJSONAPI.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B41D1F3714E768F83A5D168F0618061A /* libJSONAPI.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libJSONAPI.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B46F73C54644BC15E85901811563BB42 /* libGGLCore.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGGLCore.a; path = Libraries/libGGLCore.a; sourceTree = "<group>"; };
 		B4E2F13278D6F2A658E19CA7A2656A50 /* NSDateFormatter+JSONAPIDateFormatter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSDateFormatter+JSONAPIDateFormatter.m"; path = "Classes/NSDateFormatter+JSONAPIDateFormatter.m"; sourceTree = "<group>"; };
 		B4F4F4DAF33BA623A997365EC7F1A81E /* XMMOfflineDownloadManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = XMMOfflineDownloadManager.m; path = XamoomSDK/Classes/Storage/XMMOfflineDownloadManager.m; sourceTree = "<group>"; };
@@ -600,7 +600,7 @@
 		BE135BAB76C6196DC75920E83AF0B037 /* SDWebImagePrefetcher.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImagePrefetcher.m; path = SDWebImage/SDWebImagePrefetcher.m; sourceTree = "<group>"; };
 		BE2A9F5BE4CC498C68B235DF19A1AD5B /* XMMContentBlock0TableViewCell.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; name = XMMContentBlock0TableViewCell.xib; path = XamoomSDK/Classes/ContentBlocks/Blocks/XMMContentBlock0TableViewCell.xib; sourceTree = "<group>"; };
 		BF1BC39AC0EFBB4DCAF88700AE544890 /* libGTM_NSDictionary+URLArguments.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = "libGTM_NSDictionary+URLArguments.a"; path = "Libraries/libGTM_NSDictionary+URLArguments.a"; sourceTree = "<group>"; };
-		BF2D6932EDDB893F905B28EFF173043F /* XamoomSDK.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = XamoomSDK.bundle; path = XamoomSDK.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF2D6932EDDB893F905B28EFF173043F /* XamoomSDK.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XamoomSDK.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0CE3C535D956209CEA20D28A4EA52D8 /* libGTM_NSData+zlib.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = "libGTM_NSData+zlib.a"; path = "Libraries/libGTM_NSData+zlib.a"; sourceTree = "<group>"; };
 		C1961B00AED2EE50580A8D4262421258 /* XMMMarker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = XMMMarker.m; path = XamoomSDK/Classes/mapping/XMMMarker.m; sourceTree = "<group>"; };
 		C24777560C3C3771A4C2B12A64DCF658 /* UIImage+Scaling.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Scaling.h"; path = "XamoomSDK/Classes/ContentBlocks/UIImage+Scaling.h"; sourceTree = "<group>"; };
@@ -638,7 +638,7 @@
 		E273C0C3ABBA599B28C444B32AA08A7F /* libGTMSessionFetcher_core.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTMSessionFetcher_core.a; path = Libraries/libGTMSessionFetcher_core.a; sourceTree = "<group>"; };
 		E2D01250FEB142403CAD00E98CBA9515 /* JSONAPIResourceDescriptor.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JSONAPIResourceDescriptor.m; path = Classes/JSONAPIResourceDescriptor.m; sourceTree = "<group>"; };
 		E2F0AEDE7C3BEB58A7B72A58B61284B9 /* XMMOfflineStorageTagModule.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = XMMOfflineStorageTagModule.h; path = XamoomSDK/Classes/XMMOfflineStorageTagModule.h; sourceTree = "<group>"; };
-		E34F5DF4B1DDE9F34E6BF250FFA2521E /* nl.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = nl.lproj; path = XamoomSDK/Assets/nl.lproj; sourceTree = "<group>"; };
+		E34F5DF4B1DDE9F34E6BF250FFA2521E /* nl.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = nl.lproj; path = XamoomSDK/Assets/nl.lproj; sourceTree = "<group>"; };
 		E5816F37D2C7E5FC073A26F304F2AC09 /* JGProgressHUDImageIndicatorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JGProgressHUDImageIndicatorView.m; path = JGProgressHUD/JGProgressHUD/JGProgressHUDImageIndicatorView.m; sourceTree = "<group>"; };
 		E662BF32EE11DA8FA3012DA8F75A2E6F /* SDWebImageManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDWebImageManager.m; path = SDWebImage/SDWebImageManager.m; sourceTree = "<group>"; };
 		E77609CADE44941A1DCB4CF71D0FD3D1 /* Pods-pingeb.org.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-pingeb.org.debug.xcconfig"; sourceTree = "<group>"; };
@@ -657,7 +657,7 @@
 		EFB1541EC31792AB2124553D029063EE /* JSONAPI.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSONAPI.h; path = Classes/JSONAPI.h; sourceTree = "<group>"; };
 		EFF8E8EB2EAA67C646F307C91B7EFB73 /* libGoogleAnalytics.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGoogleAnalytics.a; path = Libraries/libGoogleAnalytics.a; sourceTree = "<group>"; };
 		F03E2479B594E6D7CC3BB4D19CC910EB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		F1DC9AC6BE79E8D05A3ED3930EBA9E16 /* libJGProgressHUD.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libJGProgressHUD.a; path = libJGProgressHUD.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1DC9AC6BE79E8D05A3ED3930EBA9E16 /* libJGProgressHUD.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libJGProgressHUD.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F22AD3955C7EBDD3B51C83BF8E363D53 /* libGTM_NSStringHTML.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libGTM_NSStringHTML.a; path = Libraries/libGTM_NSStringHTML.a; sourceTree = "<group>"; };
 		F39E158839F112CB765AC729EE82FB4A /* QRCodeReaderViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = QRCodeReaderViewController.m; path = QRCodeReaderViewController/QRCodeReaderViewController.m; sourceTree = "<group>"; };
 		F3FB5064C7C11D22E1658D0533570359 /* XMMContentBlock.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = XMMContentBlock.m; path = XamoomSDK/Classes/mapping/XMMContentBlock.m; sourceTree = "<group>"; };
@@ -799,7 +799,6 @@
 			children = (
 				41AC2383540154E071F04703C30121F0 /* Frameworks */,
 			);
-			name = GoogleUtilities;
 			path = GoogleUtilities;
 			sourceTree = "<group>";
 		};
@@ -840,7 +839,6 @@
 				EB58A85787CBA421B5EC401059966C2C /* Resources */,
 				F284F6DF47ACA6D725E10931B8477BE9 /* Support Files */,
 			);
-			name = JGProgressHUD;
 			path = JGProgressHUD;
 			sourceTree = "<group>";
 		};
@@ -900,7 +898,6 @@
 			children = (
 				30A40EF9A4036A63180F45F97516320B /* Frameworks */,
 			);
-			name = GoogleSymbolUtilities;
 			path = GoogleSymbolUtilities;
 			sourceTree = "<group>";
 		};
@@ -920,7 +917,6 @@
 			children = (
 				34E6DB560C0F15B38497B70EE4A3DA81 /* Frameworks */,
 			);
-			name = GoogleNetworkingUtilities;
 			path = GoogleNetworkingUtilities;
 			sourceTree = "<group>";
 		};
@@ -952,7 +948,6 @@
 				B4E2F13278D6F2A658E19CA7A2656A50 /* NSDateFormatter+JSONAPIDateFormatter.m */,
 				FF6F747F58B916A09CB6B4DB7CB09454 /* Support Files */,
 			);
-			name = JSONAPI;
 			path = JSONAPI;
 			sourceTree = "<group>";
 		};
@@ -1066,7 +1061,6 @@
 				E716332267D2094CBA6D391EDA4E1DC5 /* Resources */,
 				BC50C1F61110935F0EED39CDB8DABB03 /* Support Files */,
 			);
-			name = XamoomSDK;
 			path = XamoomSDK;
 			sourceTree = "<group>";
 		};
@@ -1151,7 +1145,6 @@
 				A60ED739D05D4330A53BE61B903461DD /* REMenuItemView.m */,
 				A2B3C367877FB34647B19BC431D0D603 /* Support Files */,
 			);
-			name = REMenu;
 			path = REMenu;
 			sourceTree = "<group>";
 		};
@@ -1172,7 +1165,6 @@
 				CB7D38E15FDCD42276C4CDB3B6288CA1 /* Core */,
 				B5FAAE55948BD22B931240A10E2D6AE9 /* Support Files */,
 			);
-			name = SDWebImage;
 			path = SDWebImage;
 			sourceTree = "<group>";
 		};
@@ -1283,7 +1275,6 @@
 				D74F4111074857BFA94A7E01BE6C0074 /* QRToggleTorchButton.m */,
 				7B9D03CFB49CD8FAD063B4CEFAAD8A54 /* Support Files */,
 			);
-			name = QRCodeReaderViewController;
 			path = QRCodeReaderViewController;
 			sourceTree = "<group>";
 		};
@@ -1302,7 +1293,6 @@
 				0DEEE027EBCEE879075AB3FEAAC3AE93 /* GAITracker.h */,
 				F53A3F0AC0D56338BE6CCF203E93B1C2 /* Frameworks */,
 			);
-			name = GoogleAnalytics;
 			path = GoogleAnalytics;
 			sourceTree = "<group>";
 		};
@@ -1329,7 +1319,6 @@
 				3851F5F334317E2717C5C3BC2B6424FE /* UIImage+SVG.m */,
 				5930028CD9B4843B5FA2625CA5DD8F46 /* Support Files */,
 			);
-			name = JAMSVGImage;
 			path = JAMSVGImage;
 			sourceTree = "<group>";
 		};
@@ -1339,7 +1328,6 @@
 				41D159FC030521017519926D55880345 /* Analytics */,
 				CBECDB41B4687E6467271B7FA3506A99 /* Core */,
 			);
-			name = Google;
 			path = Google;
 			sourceTree = "<group>";
 		};
@@ -1359,7 +1347,6 @@
 			children = (
 				677E637BB9CF54EE475732223CE156CC /* Frameworks */,
 			);
-			name = Pushwoosh;
 			path = Pushwoosh;
 			sourceTree = "<group>";
 		};
@@ -1407,7 +1394,6 @@
 				7494E5C1E3A3226BBE8FB30E0B37F748 /* SMClassicCalloutView.m */,
 				E408190464DB813C471A2634517EAB8C /* Support Files */,
 			);
-			name = SMCalloutView;
 			path = SMCalloutView;
 			sourceTree = "<group>";
 		};
@@ -1802,7 +1788,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0900;
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -2132,7 +2118,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/JGProgressHUD/JGProgressHUD-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
@@ -2156,7 +2142,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/QRCodeReaderViewController/QRCodeReaderViewController-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
@@ -2179,7 +2165,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -2187,14 +2175,20 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGNING_REQUIRED = NO;
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"POD_CONFIGURATION_RELEASE=1",
 					"$(inherited)",
@@ -2247,7 +2241,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/QRCodeReaderViewController/QRCodeReaderViewController-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
@@ -2271,7 +2265,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/REMenu/REMenu-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
@@ -2312,7 +2306,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/REMenu/REMenu-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
@@ -2336,7 +2330,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/JAMSVGImage/JAMSVGImage-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
@@ -2360,7 +2354,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/JSONAPI/JSONAPI-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
@@ -2384,7 +2378,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/SDWebImage/SDWebImage-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
@@ -2473,7 +2467,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/JSONAPI/JSONAPI-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
@@ -2496,7 +2490,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -2504,15 +2500,21 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGNING_REQUIRED = NO;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"POD_CONFIGURATION_DEBUG=1",
@@ -2568,7 +2570,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/JAMSVGImage/JAMSVGImage-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
@@ -2592,7 +2594,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/SMCalloutView/SMCalloutView-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
@@ -2616,7 +2618,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/JGProgressHUD/JGProgressHUD-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
@@ -2640,7 +2642,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/SMCalloutView/SMCalloutView-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
@@ -2664,7 +2666,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/SDWebImage/SDWebImage-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
@@ -2787,6 +2789,7 @@
 			children = (
 				4A1BF1F695F15F5BCFDBCE2723DC53ED /* EnduserModel.xcdatamodel */,
 			);
+			currentVersion = 4A1BF1F695F15F5BCFDBCE2723DC53ED /* EnduserModel.xcdatamodel */;
 			name = EnduserModel.xcdatamodeld;
 			path = XamoomSDK/Assets/EnduserModel.xcdatamodeld;
 			sourceTree = "<group>";
