@@ -9,6 +9,7 @@
 import Foundation
 import CoreNFC
 
+@available(iOS 11.0, *)
 class NFCHelper : NSObject {
   var session: NFCNDEFReaderSession!
   var onNFCResult: ((Bool, String) -> ())?
@@ -32,6 +33,7 @@ class NFCHelper : NSObject {
   }
 }
 
+@available(iOS 11.0, *)
 extension NFCHelper : NFCNDEFReaderSessionDelegate {
   func readerSession(_ session: NFCNDEFReaderSession, didInvalidateWithError error: Error) {
     guard let onNFCResult = onNFCResult else {

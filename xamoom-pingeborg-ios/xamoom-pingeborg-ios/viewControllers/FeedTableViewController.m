@@ -57,34 +57,41 @@ NSString * const kFeedItemCellIdentifier = @"FeedItemCell";
   [self setupRefreshControl];
   [self detectBluetooth];
   
-  
-  self.nfcHelper = [[NFCHelper alloc] init];
-  __weak FeedTableViewController *weakSelf = self;
-  self.nfcHelper.onNFCResult = ^(bool hasMore, NSString *payload) {
-    if (![payload containsString:@"xm.gl"] &&
-         ![payload containsString:@"m.pingeb.org"]) {
-      return;
+  if (@available(iOS 11.0, *)) {
+    if (NSClassFromString(@"NFCNDEFReaderSession") && NFCNDEFReaderSession.readingAvailable) {
+      self.nfcHelper = [[NFCHelper alloc] init];
+      
+      self.nfcHelper.onNFCResult = ^(bool hasMore, NSString *payload) {
+        if (![payload containsString:@"xm.gl"] &&
+            ![payload containsString:@"m.pingeb.org"]) {
+          return;
+        }
+        
+        NSString *urlString = [payload stringByReplacingOccurrencesOfString:@"03" withString:@""];
+        NSURL *url = [[NSURL alloc] initWithString:urlString];
+        NSString *locId = [url lastPathComponent];
+        
+        __weak FeedTableViewController *weakSelf = self;
+        
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        ArtistDetailViewController *artistDetailViewController =
+        [storyboard instantiateViewControllerWithIdentifier:@"ArtistDetailView"];
+        artistDetailViewController.locationIdentifier = locId;
+        dispatch_async(dispatch_get_main_queue(), ^{
+          [weakSelf.navigationController pushViewController:artistDetailViewController animated:YES];
+        });
+      };
+      
+      UIBarButtonItem *nfcButton = [[UIBarButtonItem alloc]
+                                    initWithTitle:@"NFC"
+                                    style:UIBarButtonItemStylePlain
+                                    target:self
+                                    action:@selector(didClickNFC)];
+      [self.parentViewController.navigationItem setRightBarButtonItem: nfcButton];
     }
-    
-    NSString *urlString = [payload stringByReplacingOccurrencesOfString:@"03" withString:@""];
-    NSURL *url = [[NSURL alloc] initWithString:urlString];
-    NSString *locId = [url lastPathComponent];
-    
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    ArtistDetailViewController *artistDetailViewController =
-    [storyboard instantiateViewControllerWithIdentifier:@"ArtistDetailView"];
-    artistDetailViewController.locationIdentifier = locId;
-    dispatch_async(dispatch_get_main_queue(), ^{
-       [weakSelf.navigationController pushViewController:artistDetailViewController animated:YES];
-    });
-  };
-  
-  UIBarButtonItem *nfcButton = [[UIBarButtonItem alloc]
-                                initWithTitle:@"NFC"
-                                style:UIBarButtonItemStylePlain
-                                target:self
-                                action:@selector(didClickNFC)];
-  [self.parentViewController.navigationItem setRightBarButtonItem: nfcButton];
+  } else {
+    // Fallback on earlier versions
+  }
 }
 
 - (void)didClickNFC {
