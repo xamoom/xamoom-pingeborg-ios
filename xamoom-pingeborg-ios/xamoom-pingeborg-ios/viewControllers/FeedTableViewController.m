@@ -61,7 +61,7 @@ NSString * const kFeedItemCellIdentifier = @"FeedItemCell";
     if (NSClassFromString(@"NFCNDEFReaderSession") && NFCNDEFReaderSession.readingAvailable) {
       self.nfcHelper = [[NFCHelper alloc] init];
       
-      self.nfcHelper.onNFCResult = ^(bool hasMore, NSString *payload) {
+      self.nfcHelper.onNFCResult = ^(BOOL hasMore, NSString *payload) {
         if (![payload containsString:@"xm.gl"] &&
             ![payload containsString:@"m.pingeb.org"]) {
           return;
