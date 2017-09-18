@@ -714,7 +714,7 @@
 				GCC_PREFIX_HEADER = "pingeb.org-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				INFOPLIST_FILE = "xamoom-pingeborg-ios/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.xamoom.xamoom-pingeborg-ios";
 				PRODUCT_NAME = pingeb.org;
@@ -747,7 +747,7 @@
 				GCC_PREFIX_HEADER = "pingeb.org-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				INFOPLIST_FILE = "xamoom-pingeborg-ios/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.xamoom.xamoom-pingeborg-ios";
 				PRODUCT_NAME = pingeb.org;
