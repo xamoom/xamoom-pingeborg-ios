@@ -20,6 +20,7 @@ xcode_select "/Applications/Xcode-beta.app"
 platform :ios do
   before_all do
     # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
+    cocoapods()
   end
 
   desc "Runs all the tests"
