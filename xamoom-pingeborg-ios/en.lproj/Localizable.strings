@@ -57,3 +57,8 @@
 
 "notification.beacon.title"="Music & Literature from Carinthia";
 "notification.beacon.body"="Discover in your pingeb.org App";
+
+/* NFC Alert */
+"nfc.alert.action.ok"="Ok";
+"nfc.alert.title"="Invalid NFC";
+"nfc.alert.text"="This NFC Sticker is invalid, please try another one.";

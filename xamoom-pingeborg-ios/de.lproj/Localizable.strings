@@ -57,3 +57,8 @@
 
 "notification.beacon.title"="Musik & Literatur aus Kärnten";
 "notification.beacon.body"="Entdecke Neues in deiner pingeb.org App";
+
+/* NFC Alert */
+"nfc.alert.action.ok"="Ok";
+"nfc.alert.title"="NFC ungültig";
+"nfc.alert.text"="Dieser NFC Sticker ist leider ungültig, bitte probieren Sie einen anderen.";

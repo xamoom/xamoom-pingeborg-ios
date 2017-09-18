@@ -61,17 +61,25 @@ NSString * const kFeedItemCellIdentifier = @"FeedItemCell";
     if (NSClassFromString(@"NFCNDEFReaderSession") && NFCNDEFReaderSession.readingAvailable) {
       self.nfcHelper = [[NFCHelper alloc] init];
       
+      FeedTableViewController __weak *weakSelf = self;
       self.nfcHelper.onNFCResult = ^(BOOL hasMore, NSString *payload) {
         if (![payload containsString:@"xm.gl"] &&
             ![payload containsString:@"m.pingeb.org"]) {
+          UIAlertController *alert = [UIAlertController
+                                      alertControllerWithTitle:NSLocalizedString(@"nfc.alert.title", @"")
+                                      message:NSLocalizedString(@"nfc.alert.text", @"")
+                                      preferredStyle:UIAlertControllerStyleAlert];
+          [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"nfc.alert.action.ok", "") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [alert dismissViewControllerAnimated:YES completion:nil];
+          }]];
+          [weakSelf presentViewController:alert animated:YES completion:nil];
+          
           return;
         }
         
         NSString *urlString = [payload stringByReplacingOccurrencesOfString:@"03" withString:@""];
         NSURL *url = [[NSURL alloc] initWithString:urlString];
         NSString *locId = [url lastPathComponent];
-        
-        __weak FeedTableViewController *weakSelf = self;
         
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         ArtistDetailViewController *artistDetailViewController =

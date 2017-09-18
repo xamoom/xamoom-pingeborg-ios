@@ -39,6 +39,11 @@ extension NFCHelper : NFCNDEFReaderSessionDelegate {
     guard let onNFCResult = onNFCResult else {
       return
     }
+    
+    if (error._code == 204) {
+      return
+    }
+    
     onNFCResult(false, error.localizedDescription)
   }
   
@@ -58,7 +63,8 @@ extension NFCHelper : NFCNDEFReaderSessionDelegate {
     }
     for message in messages {
       for record in message.records {
-        if(record.payload.count > 0) {
+        if(record.payload.count > 0 && record.typeNameFormat == .nfcWellKnown) {
+          print("Type: \(record.typeNameFormat)")
           if let payloadString = String.init(data: record.payload, encoding: .utf8) {
             let index = payloadString.index(payloadString.startIndex, offsetBy: 1)
             onNFCResult(true, payloadString.substring(from: index))
