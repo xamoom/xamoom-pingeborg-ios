@@ -130,10 +130,12 @@
   self.fontSizeDropdownMenu.textColor = [UIColor whiteColor];
   
   //create changeFontSize button
-  self.buttonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"textsize"]
+  /*
+   self.buttonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"textsize"]
                                                                  style:UIBarButtonItemStylePlain
                                                                 target:self
                                                                 action:@selector(toggleFontSizeDropdownMenu)];
+   */
 }
 
 #pragma mark - NavbarDropdown

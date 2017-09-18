@@ -13,7 +13,7 @@ PODS:
   - GoogleUtilities (1.1.0):
     - GoogleSymbolUtilities (~> 1.0.0)
   - JAMSVGImage (1.6.1)
-  - JGProgressHUD (1.3.1)
+  - JGProgressHUD (1.4)
   - JSONAPI (1.0.7)
   - Pushwoosh (5.3.6)
   - QRCodeReaderViewController (4.0.1)
@@ -33,7 +33,7 @@ PODS:
 
 DEPENDENCIES:
   - Google/Analytics
-  - JGProgressHUD
+  - JGProgressHUD (~> 1.4)
   - QRCodeReaderViewController (~> 4.0.1)
   - REMenu (~> 1.10)
   - SMCalloutView
@@ -47,7 +47,7 @@ SPEC CHECKSUMS:
   GoogleSymbolUtilities: 82ad9f93d3615244b3f4ce440f5ab2515e8b4f56
   GoogleUtilities: 8ed9134debe11719097881711464752900668f10
   JAMSVGImage: 7aa966a310ddf5f53de295d5ce5b930df8ff1eb2
-  JGProgressHUD: 153053a21d81208cb5f659691996bcefce6a9885
+  JGProgressHUD: 1617b0940cf80bb53e8f7d6f0fd69252ea45d6d4
   JSONAPI: 8fed55fcfa08ee662674cd4f1bd03c37d8b34e03
   Pushwoosh: 0a000167511efe3818747647adef8389ebd1644e
   QRCodeReaderViewController: 6538745c8f4ffa9407a26bd7f9489ea01739e7b0
@@ -56,6 +56,6 @@ SPEC CHECKSUMS:
   SMCalloutView: 4078d89b847731e514b1a919fed33b383a24a106
   XamoomSDK: 4a08d9c62a885b61ec0bb3c1df366d72e2be7db2
 
-PODFILE CHECKSUM: 405c148219d1545b73b3d0a380750d7206f8099f
+PODFILE CHECKSUM: 9e925fe56dfef0f362e285c839603c2e189f5b00
 
 COCOAPODS: 1.3.1

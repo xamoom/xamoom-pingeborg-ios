@@ -8,7 +8,7 @@ workspace 'pingeb.org'
 target 'pingeb.org' do
   pod 'REMenu', '~> 1.10'
   pod 'SMCalloutView'
-  pod 'JGProgressHUD'
+  pod 'JGProgressHUD', '~> 1.4'
   pod 'XamoomSDK', '~> 3.5.3'
   pod 'XamoomSDK/Push', '~> 3.5.3'
   pod 'Google/Analytics'
