@@ -37,6 +37,8 @@
 	<string>We need your location to use iBeacons.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>pingeb.org would like to use your location.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>We need your permission to save this image to your photo library.</string>
 	<key>Pushwoosh_APPID</key>
 	<string>694BB-4ABF9</string>
 	<key>UIBackgroundModes</key>

@@ -23,6 +23,7 @@
 		8814585B1B01EE8B0024E6F4 /* NavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 881458481B01EE8B0024E6F4 /* NavigationViewController.m */; };
 		8814585D1B01EE8B0024E6F4 /* FeedItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8814584C1B01EE8B0024E6F4 /* FeedItemCell.xib */; };
 		8814585E1B01EE8B0024E6F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8814584D1B01EE8B0024E6F4 /* Main.storyboard */; };
+		881F09681F6FC2D600F282CE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 881F096A1F6FC2D600F282CE /* InfoPlist.strings */; };
 		883574801AB1CCF40099DF4A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8835747F1AB1CCF40099DF4A /* QuartzCore.framework */; };
 		885D17C11F0E214900A61CC8 /* NavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885D17C01F0E214900A61CC8 /* NavigationCoordinator.swift */; };
 		885F683F1D17E98800DC0B9C /* PingebAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885F683E1D17E98800DC0B9C /* PingebAnnotation.swift */; };
@@ -105,6 +106,8 @@
 		8814584A1B01EE8B0024E6F4 /* FeedItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedItemCell.h; sourceTree = "<group>"; };
 		8814584C1B01EE8B0024E6F4 /* FeedItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedItemCell.xib; sourceTree = "<group>"; };
 		8814584D1B01EE8B0024E6F4 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		881F09691F6FC2D600F282CE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		881F096B1F6FC2DB00F282CE /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8835747F1AB1CCF40099DF4A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		885D17BD1F0E12DF00A61CC8 /* pingeb.org.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = pingeb.org.entitlements; sourceTree = "<group>"; };
 		885D17C01F0E214900A61CC8 /* NavigationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationCoordinator.swift; sourceTree = "<group>"; };
@@ -282,6 +285,7 @@
 				88EB481B1B56390D00A6C63F /* apikey.txt */,
 				88BA01F31AA859F90091A43C /* Info.plist */,
 				88BA01F41AA859F90091A43C /* main.m */,
+				881F096A1F6FC2D600F282CE /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -458,6 +462,7 @@
 				8814585D1B01EE8B0024E6F4 /* FeedItemCell.xib in Resources */,
 				88EB481C1B56390D00A6C63F /* apikey.txt in Resources */,
 				8814585E1B01EE8B0024E6F4 /* Main.storyboard in Resources */,
+				881F09681F6FC2D600F282CE /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,7 +500,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-pingeb.org/Pods-pingeb.org-resources.sh",
 				"${PODS_ROOT}/JGProgressHUD/JGProgressHUD/JGProgressHUD/JGProgressHUD Resources.bundle",
 				"${PODS_ROOT}/XamoomSDK/XamoomSDK/Assets/Images.xcassets",
-				"$PODS_CONFIGURATION_BUILD_DIR/XamoomSDK/XamoomSDK.bundle",
+				$PODS_CONFIGURATION_BUILD_DIR/XamoomSDK/XamoomSDK.bundle,
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -573,6 +578,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		881F096A1F6FC2D600F282CE /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				881F09691F6FC2D600F282CE /* en */,
+				881F096B1F6FC2DB00F282CE /* de */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		887BE0351B53D43000E9D584 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
