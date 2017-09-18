@@ -181,4 +181,41 @@
   return sortParameters;
 }
 
++ (NSDictionary *)addConditionsToParams:(NSDictionary *)params
+                             conditions:(NSDictionary *)conditions {
+  NSMutableDictionary *newParams = [[NSMutableDictionary alloc]
+                                    initWithDictionary:params];
+  
+  for (NSString *key in conditions) {
+    NSString *value = [self conditionToString: [conditions objectForKey:key]];
+    if (value != nil) {
+      NSString *keyString = [NSString stringWithFormat:@"condition[%@]", key];
+      [newParams setObject:value forKey:keyString];
+    }
+  }
+  
+  return newParams;
+}
+
++ (NSString *)conditionToString:(id)condition {
+  if ([condition isKindOfClass:[NSString class]]) {
+    return condition;
+  }
+  
+  if ([condition isKindOfClass:[NSNumber class]]) {
+    NSNumber *number = (NSNumber *)condition;
+    return number.stringValue;
+  }
+  
+  if ([condition isKindOfClass:[NSDate class]]) {
+    NSDate *date = (NSDate *)condition;
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
+    return [dateFormatter stringFromDate:date];
+  }
+  
+  return nil;
+}
+
 @end

@@ -154,6 +154,21 @@ extern NSString * const kApiBaseURLString;
 - (NSURLSessionDataTask *)contentWithLocationIdentifier:(NSString *)locationIdentifier options:(XMMContentOptions)options completion:(void (^)(XMMContent *content, NSError *error))completion;
 
 /**
+ * API call to get content with specific location-identifier with options
+ * and conditions.
+ *
+ * @param locationIdentifier Locationidentifier from xamoom marker
+ * @param options XMMContentOptions for call
+ * @param conditions NSDictionary with conditions to match. Allowed value types: 
+ * numbers, strings and dates.
+ * @param completion Completion block called after finishing network request
+ * - *param1* content Content from xamoom system
+ * - *param2* error NSError, can be null
+ * @return SessionDataTask used to download from the backend.
+ */
+- (NSURLSessionDataTask *)contentWithLocationIdentifier:(NSString *)locationIdentifier options:(XMMContentOptions)options conditions:(NSDictionary *)conditions completion:(void (^)(XMMContent *content, NSError *error))completion;
+
+/**
  * API call to get content with beacon.
  *
  * @param major Major of the beacon
@@ -177,6 +192,27 @@ extern NSString * const kApiBaseURLString;
  * @return SessionDataTask used to download from the backend.
  */
 - (NSURLSessionDataTask *)contentWithBeaconMajor:(NSNumber *)major minor:(NSNumber *)minor options:(XMMContentOptions)options completion:(void (^)(XMMContent *content, NSError *error))completion;
+
+/**
+ * API call to get content with beacon and condition.
+ *
+ * @warning: Does not work offline. Will return default content from spot.
+ *
+ * @param major Major of the beacon
+ * @param minor Minor of the beacon
+ * @param options XMMContentOptions for call
+ * @param conditions NSDictionary with conditions to match. Allowed value types:
+ * numbers, strings and dates.
+ * @param completion Completion block called after finishing network request
+ * - *param1* content Content from xamoom system
+ * - *param2* error NSError, can be null
+ * @return SessionDataTask used to download from the backend.
+ */
+- (NSURLSessionDataTask *)contentWithBeaconMajor:(NSNumber *)major
+                                           minor:(NSNumber *)minor
+                                         options:(XMMContentOptions)options
+                                      conditions:(NSDictionary *)conditions
+                                      completion:(void (^)(XMMContent *content, NSError *error))completion;
 
 /**
  * API call to get contents around location (40m).

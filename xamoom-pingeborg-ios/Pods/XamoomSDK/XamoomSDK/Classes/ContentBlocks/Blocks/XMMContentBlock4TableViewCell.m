@@ -43,6 +43,7 @@
   self.androidColor = [UIColor colorWithRed:0.32 green:0.42 blue:0.00 alpha:1.0];
   self.windowsColor = [UIColor colorWithRed:0.17 green:0.38 blue:0.94 alpha:1.0];
   self.instagramColor = [UIColor colorWithRed:0.74 green:0.16 blue:0.55 alpha:1.0];
+  self.phoneColor = [UIColor colorWithRed:0.24 green:0.84 blue:0.55 alpha:1.0];
 }
 
 - (void)setupBundle {
@@ -181,12 +182,12 @@
       break;
     }
     case 11: {
-      [self.viewForBackgroundColor setBackgroundColor:self.standardGreyColor];
+      [self.viewForBackgroundColor setBackgroundColor:self.phoneColor];
       [self.icon setImage:[UIImage imageNamed:@"phone" inBundle:self.bundle compatibleWithTraitCollection:nil]];
       self.icon.image = [self.icon.image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-      [self.icon setTintColor:self.standardTextColor];
-      [self.linkTextLabel setTextColor:self.standardTextColor];
-      [self.titleLabel setTextColor:self.standardTextColor];
+      [self.icon setTintColor:[UIColor blackColor]];
+      [self.linkTextLabel setTextColor:[UIColor blackColor]];
+      [self.titleLabel setTextColor:[UIColor blackColor]];
       break;
     }
     case 12: {

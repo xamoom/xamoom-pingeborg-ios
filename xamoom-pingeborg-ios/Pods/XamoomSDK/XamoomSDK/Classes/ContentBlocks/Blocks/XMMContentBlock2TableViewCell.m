@@ -74,8 +74,9 @@
     
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openYoutubeUrl)];
     [self.openInYoutubeView addGestureRecognizer:gestureRecognizer];
-    
-    [self showYoutubeWithId:youtubeVideoID];
+
+    int timeStamp = [self youtubeTimestampFromUrl:videoURLString];
+    [self showYoutubeWithId:youtubeVideoID timeStamp:timeStamp];
   } else if ([videoURLString containsString:@"vimeo"]) {
     self.webView.hidden = NO;
     self.thumbnailImageView.hidden = YES;
@@ -107,12 +108,64 @@
   }
 }
 
+- (NSInteger)youtubeTimestampFromUrl:(NSString *)url {
+  NSError *error = nil;
+  NSString *regexString = @"\(&t=\|\\\?t=\)\(\?:\(\\d\+h\)\?\(\\d\+m\)\?\(\\d\+s\)\?\(\\d\+\)\?\)";
+  NSRegularExpression *regExp = [NSRegularExpression regularExpressionWithPattern:regexString
+                                                                          options:NSRegularExpressionCaseInsensitive
+                                                                            error:&error];
+  NSArray *array = [regExp matchesInString:url options:0 range:NSMakeRange(0,url.length)];
+  
+  NSInteger startSeconds = 0;
+
+  if(array.count >= 1) {
+    NSTextCheckingResult *result = array.firstObject;
+    NSString *match = [url substringWithRange:result.range];
+    
+    NSRange range = [result rangeAtIndex:0];
+    
+    range = [result rangeAtIndex:1];
+    if (range.location != NSNotFound) {
+      NSLog(@"group1: %@", [url substringWithRange:range]);
+    }
+    
+    // hours
+    range = [result rangeAtIndex:2];
+    if (range.location != NSNotFound) {
+      int hours = [[url substringWithRange:range] intValue];
+      startSeconds += hours * 60 * 60; // to seconds
+    }
+
+    // minutes
+    range = [result rangeAtIndex:3];
+    if (range.location != NSNotFound) {
+      int minutes = [[url substringWithRange:range] intValue];
+      startSeconds += minutes * 60; // to seconds
+    }
+    
+    // seconds
+    range = [result rangeAtIndex:4];
+    if (range.location != NSNotFound) {
+      int seconds = [[url substringWithRange:range] intValue];
+      startSeconds += seconds;
+    }
+
+    // time already in seconds
+    range = [result rangeAtIndex:5];
+    if (range.location != NSNotFound) {
+      startSeconds = [[url substringWithRange:range] integerValue];
+    }
+  }
+  
+  return startSeconds;
+}
+
 - (void)openYoutubeUrl {
   [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.videoUrl]];
 }
 
-- (void)showYoutubeWithId:(NSString *)videoId {
-  NSString *htmlString = [NSString stringWithFormat:@"<style>html, body {margin: 0;padding:0;}</style><iframe width=\"100%%\" height=\"100%%\" src=\"https://www.youtube.com/embed/%@\" frameborder=\"0\" allowfullscreen></iframe>", videoId];
+- (void)showYoutubeWithId:(NSString *)videoId timeStamp:(int)seconds {
+  NSString *htmlString = [NSString stringWithFormat:@"<style>html, body {margin: 0;padding:0;}</style><iframe width=\"100%%\" height=\"100%%\" src=\"https://www.youtube.com/embed/%@?start=%d\" frameborder=\"0\" allowfullscreen></iframe>", videoId, seconds];
   [self.webView loadHTMLString:htmlString baseURL:nil];
 }
 

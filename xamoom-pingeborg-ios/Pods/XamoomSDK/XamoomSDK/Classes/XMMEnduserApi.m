@@ -151,6 +151,10 @@ static XMMEnduserApi *sharedInstance;
 }
 
 - (NSURLSessionDataTask *)contentWithLocationIdentifier:(NSString *)locationIdentifier options:(XMMContentOptions)options completion:(void (^)(XMMContent *content, NSError *error))completion {
+  return [self contentWithLocationIdentifier:locationIdentifier options:options conditions:nil completion:completion];
+}
+
+- (NSURLSessionDataTask *)contentWithLocationIdentifier:(NSString *)locationIdentifier options:(XMMContentOptions)options conditions:(NSDictionary *)conditions completion:(void (^)(XMMContent *, NSError *))completion {
   if (self.isOffline) {
     [self.offlineApi contentWithLocationIdentifier:locationIdentifier completion:completion];
     return nil;
@@ -158,6 +162,7 @@ static XMMEnduserApi *sharedInstance;
   
   NSDictionary *params = [XMMParamHelper paramsWithLanguage:self.language locationIdentifier:locationIdentifier];
   params = [XMMParamHelper addContentOptionsToParams:params options:options];
+  params = [XMMParamHelper addConditionsToParams:params conditions:conditions];
   
   return [self.restClient fetchResource:[XMMContent class] parameters:params completion:^(JSONAPI *result, NSError *error) {
     if (error && completion) {
@@ -179,6 +184,10 @@ static XMMEnduserApi *sharedInstance;
 
 - (NSURLSessionDataTask *)contentWithBeaconMajor:(NSNumber *)major minor:(NSNumber *)minor options:(XMMContentOptions)options completion:(void (^)(XMMContent *content, NSError *error))completion {
   return [self contentWithLocationIdentifier:[NSString stringWithFormat:@"%@|%@", major, minor] options:options completion:completion];
+}
+
+- (NSURLSessionDataTask *)contentWithBeaconMajor:(NSNumber *)major minor:(NSNumber *)minor options:(XMMContentOptions)options conditions:(NSDictionary *)conditions completion:(void (^)(XMMContent *, NSError *))completion {
+  return [self contentWithLocationIdentifier:[NSString stringWithFormat:@"%@|%@", major, minor] options:options conditions:conditions completion:completion];
 }
 
 #pragma mark contents calls

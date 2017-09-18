@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13168.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13147.4"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="213"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="213"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="212.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" text="Title" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NfP-Ht-jrX">
@@ -40,14 +40,14 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailingMargin" secondItem="9U5-kK-DHR" secondAttribute="trailing" id="4Nw-KS-dgs"/>
+                    <constraint firstAttribute="trailing" secondItem="9U5-kK-DHR" secondAttribute="trailing" constant="8" id="4Nw-KS-dgs"/>
                     <constraint firstAttribute="bottomMargin" secondItem="3na-Wc-qZL" secondAttribute="bottom" priority="250" constant="20" id="9dl-fh-8Bh"/>
-                    <constraint firstItem="NfP-Ht-jrX" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="DNu-HQ-71g"/>
+                    <constraint firstItem="NfP-Ht-jrX" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailing" constant="-8" id="DNu-HQ-71g"/>
                     <constraint firstItem="3na-Wc-qZL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="142" id="Err-du-34P"/>
                     <constraint firstAttribute="top" secondItem="Fvj-ka-sv0" secondAttribute="top" id="Fv8-Wi-qGN"/>
-                    <constraint firstItem="NfP-Ht-jrX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="RgF-Pv-5ZS"/>
+                    <constraint firstItem="NfP-Ht-jrX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="RgF-Pv-5ZS"/>
                     <constraint firstItem="Fvj-ka-sv0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Rzk-49-ohI"/>
-                    <constraint firstAttribute="bottom" secondItem="NfP-Ht-jrX" secondAttribute="bottom" constant="8" id="TfP-nb-E6d"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="NfP-Ht-jrX" secondAttribute="bottom" id="TfP-nb-E6d"/>
                     <constraint firstItem="NfP-Ht-jrX" firstAttribute="top" secondItem="9U5-kK-DHR" secondAttribute="bottom" id="fTB-Ns-q00"/>
                     <constraint firstItem="3na-Wc-qZL" firstAttribute="top" secondItem="Fvj-ka-sv0" secondAttribute="top" id="sbp-sN-pXP"/>
                     <constraint firstAttribute="trailingMargin" secondItem="3na-Wc-qZL" secondAttribute="trailing" constant="142" id="tpH-X5-atq"/>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13168.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13147.4"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -73,18 +73,18 @@
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="bmc-0n-lZf" secondAttribute="trailing" id="26x-Wb-g3W"/>
                     <constraint firstItem="e6b-DR-Gwh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="7zI-E4-2h0"/>
-                    <constraint firstItem="7Yr-fK-bFp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="EVe-Yb-7g6"/>
+                    <constraint firstItem="7Yr-fK-bFp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="EVe-Yb-7g6"/>
                     <constraint firstAttribute="bottom" secondItem="XAn-vb-LFy" secondAttribute="bottom" constant="8" id="GBi-Fv-g29"/>
                     <constraint firstItem="7Yr-fK-bFp" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="GO5-I2-QsL"/>
                     <constraint firstItem="7Yr-fK-bFp" firstAttribute="top" secondItem="e6b-DR-Gwh" secondAttribute="bottom" constant="8" id="IHc-F9-Nd8"/>
                     <constraint firstItem="Q9G-2x-vhn" firstAttribute="centerY" secondItem="7Yr-fK-bFp" secondAttribute="centerY" id="QOI-1n-H9A"/>
                     <constraint firstAttribute="bottom" secondItem="bmc-0n-lZf" secondAttribute="bottom" constant="8" id="TJf-GA-zpG"/>
                     <constraint firstItem="Q9G-2x-vhn" firstAttribute="centerX" secondItem="7Yr-fK-bFp" secondAttribute="centerX" id="UWI-Ob-ALY"/>
-                    <constraint firstItem="e6b-DR-Gwh" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="buH-Uf-ugk"/>
+                    <constraint firstItem="e6b-DR-Gwh" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailing" constant="-8" id="buH-Uf-ugk"/>
                     <constraint firstItem="XAn-vb-LFy" firstAttribute="top" secondItem="e6b-DR-Gwh" secondAttribute="bottom" constant="8" id="dKb-K6-0eq"/>
-                    <constraint firstItem="e6b-DR-Gwh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="djH-97-diJ"/>
+                    <constraint firstItem="e6b-DR-Gwh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="djH-97-diJ"/>
                     <constraint firstAttribute="trailing" secondItem="XAn-vb-LFy" secondAttribute="trailing" id="dk8-f9-Dev"/>
-                    <constraint firstItem="7Yr-fK-bFp" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="8" id="hsE-e5-yVO"/>
+                    <constraint firstItem="7Yr-fK-bFp" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailing" id="hsE-e5-yVO"/>
                     <constraint firstItem="XAn-vb-LFy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="y4c-d9-l85"/>
                 </constraints>
             </tableViewCellContentView>
