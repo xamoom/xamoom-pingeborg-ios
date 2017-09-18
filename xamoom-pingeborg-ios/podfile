@@ -10,6 +10,7 @@ target 'pingeb.org' do
   pod 'SMCalloutView'
   pod 'JGProgressHUD'
   pod 'XamoomSDK', '~> 3.5.3'
+  pod 'XamoomSDK/Push', '~> 3.5.3'
   pod 'Google/Analytics'
   pod 'QRCodeReaderViewController', '~> 4.0.1'
 end
