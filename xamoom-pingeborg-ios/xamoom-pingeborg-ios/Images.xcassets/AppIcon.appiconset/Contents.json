@@ -67,88 +67,101 @@
       "scale" : "3x"
     },
     {
+      "size" : "1024x1024",
+      "idiom" : "ios-marketing",
+      "filename" : "iTunesArtwork@2x.png",
+      "scale" : "1x"
+    },
+    {
       "size" : "20x20",
       "idiom" : "ipad",
       "filename" : "Icon-Spotlight-20.png",
+      "unassigned" : true,
       "scale" : "1x"
     },
     {
       "size" : "20x20",
       "idiom" : "ipad",
       "filename" : "Icon-Spotlight-20@2x.png",
+      "unassigned" : true,
       "scale" : "2x"
     },
     {
       "size" : "29x29",
       "idiom" : "ipad",
       "filename" : "Icon-Small-1.png",
+      "unassigned" : true,
       "scale" : "1x"
     },
     {
       "size" : "29x29",
       "idiom" : "ipad",
       "filename" : "Icon-Small@2x-1.png",
+      "unassigned" : true,
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "ipad",
       "filename" : "Icon-Spotlight-40.png",
+      "unassigned" : true,
       "scale" : "1x"
     },
     {
       "size" : "40x40",
       "idiom" : "ipad",
       "filename" : "Icon-Spotlight-40@2x-1.png",
+      "unassigned" : true,
       "scale" : "2x"
     },
     {
       "size" : "50x50",
       "idiom" : "ipad",
       "filename" : "Icon-Small-50.png",
+      "unassigned" : true,
       "scale" : "1x"
     },
     {
       "size" : "50x50",
       "idiom" : "ipad",
       "filename" : "Icon-Small-50@2x.png",
+      "unassigned" : true,
       "scale" : "2x"
     },
     {
       "size" : "72x72",
       "idiom" : "ipad",
       "filename" : "Icon-72.png",
+      "unassigned" : true,
       "scale" : "1x"
     },
     {
       "size" : "72x72",
       "idiom" : "ipad",
       "filename" : "Icon-72@2x.png",
+      "unassigned" : true,
       "scale" : "2x"
     },
     {
       "size" : "76x76",
       "idiom" : "ipad",
       "filename" : "Icon-76.png",
+      "unassigned" : true,
       "scale" : "1x"
     },
     {
       "size" : "76x76",
       "idiom" : "ipad",
       "filename" : "Icon-76@2x.png",
+      "unassigned" : true,
       "scale" : "2x"
     },
     {
       "size" : "83.5x83.5",
       "idiom" : "ipad",
       "filename" : "Icon-iPadPro@2x.png",
+      "unassigned" : true,
       "scale" : "2x"
-    },
-    {
-      "size" : "1024x1024",
-      "idiom" : "ios-marketing",
-      "filename" : "iTunesArtwork@2x.png",
-      "scale" : "1x"
     }
   ],
   "info" : {
