@@ -1,1 +1,1 @@
-../../../QRCodeReaderViewController/QRCodeReaderViewController/QRCodeReader.h
+../../../../../../QRCodeReaderViewController/QRCodeReaderViewController/QRCodeReader.h

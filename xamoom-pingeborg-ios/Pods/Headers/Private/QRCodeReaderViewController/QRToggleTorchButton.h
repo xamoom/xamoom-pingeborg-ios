@@ -1,1 +1,1 @@
-../../../QRCodeReaderViewController/QRCodeReaderViewController/QRToggleTorchButton.h
+../../../../../../QRCodeReaderViewController/QRCodeReaderViewController/QRToggleTorchButton.h
