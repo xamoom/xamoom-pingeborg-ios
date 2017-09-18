@@ -13,6 +13,7 @@
 		880246E11B57CD9000E585CE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 880246DF1B57CCC400E585CE /* GoogleService-Info.plist */; };
 		880434331EF92435009D8077 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 880434321EF92435009D8077 /* Launch Screen.storyboard */; };
 		88052D7B1AE103C300AB433D /* Globals.m in Sources */ = {isa = PBXBuildFile; fileRef = 88052D7A1AE103C300AB433D /* Globals.m */; };
+		880997D81F7012C100D41996 /* icon1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 880997D71F7012BA00D41996 /* icon1024.png */; };
 		880E6C6B1D0E98BE00E8335F /* FeedItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 880E6C6A1D0E98BE00E8335F /* FeedItemCell.m */; };
 		880E6C741D0FDB1A00E8335F /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880E6C731D0FDB1A00E8335F /* GradientView.swift */; };
 		880E6C781D0FF7D700E8335F /* MapItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880E6C771D0FF7D700E8335F /* MapItemDetailView.swift */; };
@@ -86,6 +87,7 @@
 		880434321EF92435009D8077 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Launch Screen.storyboard"; path = "xamoom-pingeborg-ios/views/Launch Screen.storyboard"; sourceTree = SOURCE_ROOT; };
 		88052D791AE103C300AB433D /* Globals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Globals.h; sourceTree = "<group>"; };
 		88052D7A1AE103C300AB433D /* Globals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Globals.m; sourceTree = "<group>"; };
+		880997D71F7012BA00D41996 /* icon1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon1024.png; sourceTree = "<group>"; };
 		880E6C6A1D0E98BE00E8335F /* FeedItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedItemCell.m; path = "xamoom-pingeborg-ios/views/FeedItemCell.m"; sourceTree = SOURCE_ROOT; };
 		880E6C721D0FDB1A00E8335F /* pingeb.org-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "pingeb.org-Bridging-Header.h"; path = "Views/pingeb.org-Bridging-Header.h"; sourceTree = "<group>"; };
 		880E6C731D0FDB1A00E8335F /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 				88E2431A1B14507200E9E208 /* XMMImageUtility */,
 				88BA01F21AA859F90091A43C /* Supporting Files */,
 				88BA01FF1AA859F90091A43C /* Images.xcassets */,
+				880997D71F7012BA00D41996 /* icon1024.png */,
 			);
 			path = "xamoom-pingeborg-ios";
 			sourceTree = "<group>";
@@ -453,6 +456,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				880997D81F7012C100D41996 /* icon1024.png in Resources */,
 				880246E11B57CD9000E585CE /* GoogleService-Info.plist in Resources */,
 				88EB481D1B563C8700A6C63F /* Images.xcassets in Resources */,
 				887BE0331B53D43000E9D584 /* Localizable.strings in Resources */,
