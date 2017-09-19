@@ -20,19 +20,20 @@
 #import "FeedTableViewController.h"
 
 int const kPageSize = 7;
+NSString * const kFeedItemCellIdentifier = @"FeedItemCell";
 
 @interface FeedTableViewController ()
 
 @property UIBarButtonItem *qrButtonItem;
-@property UIImage *placeholderImage;
 @property UIRefreshControl *refreshControl;
 @property JGProgressHUD *hud;
-
+@property CBCentralManager *bluetoothManager;
 @property NSMutableArray *itemsToDisplay;
-@property NSMutableDictionary *imagesToDisplay;
 @property NSString *contentListCursor;
+@property CLBeacon *lastBeacon;
 @property bool hasMore;
 @property bool isApiCallingBlocked;
+@property NFCHelper *nfcHelper;
 
 @end
 
@@ -42,22 +43,67 @@ int const kPageSize = 7;
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-
+  
   //do analytics
   [[Analytics sharedObject] setScreenName:@"Artist List"];
   [[Analytics sharedObject] sendEventWithCategorie:@"App" andAction:@"Started" andLabel:@"pingeb.org app started." andValue:nil];
-
-  self.parentViewController.navigationItem.title = NSLocalizedString(@"pingeb.org Carinthia", nil);
+  
   [self.tabBarItem setSelectedImage:[UIImage imageNamed:@"home_filled"]];
-
-  self.placeholderImage = [UIImage imageNamed:@"placeholder"];
+  
   self.itemsToDisplay = [[NSMutableArray alloc] init];
-  self.imagesToDisplay = [[NSMutableDictionary alloc] init];
   self.hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
   
   [self setupTableView];
   [self setupRefreshControl];
-  [self addNotifications];
+  [self detectBluetooth];
+  
+  if (@available(iOS 11.0, *)) {
+    if (NSClassFromString(@"NFCNDEFReaderSession") && NFCNDEFReaderSession.readingAvailable) {
+      self.nfcHelper = [[NFCHelper alloc] init];
+      
+      FeedTableViewController __weak *weakSelf = self;
+      self.nfcHelper.onNFCResult = ^(BOOL hasMore, NSString *payload) {
+        if (![payload containsString:@"xm.gl"] &&
+            ![payload containsString:@"m.pingeb.org"]) {
+          UIAlertController *alert = [UIAlertController
+                                      alertControllerWithTitle:NSLocalizedString(@"nfc.alert.title", @"")
+                                      message:NSLocalizedString(@"nfc.alert.text", @"")
+                                      preferredStyle:UIAlertControllerStyleAlert];
+          [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"nfc.alert.action.ok", "") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [alert dismissViewControllerAnimated:YES completion:nil];
+          }]];
+          [weakSelf presentViewController:alert animated:YES completion:nil];
+          
+          return;
+        }
+        
+        NSString *urlString = [payload stringByReplacingOccurrencesOfString:@"03" withString:@""];
+        NSURL *url = [[NSURL alloc] initWithString:urlString];
+        NSString *locId = [url lastPathComponent];
+        
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        ArtistDetailViewController *artistDetailViewController =
+        [storyboard instantiateViewControllerWithIdentifier:@"ArtistDetailView"];
+        artistDetailViewController.locationIdentifier = locId;
+        dispatch_async(dispatch_get_main_queue(), ^{
+          [weakSelf.navigationController pushViewController:artistDetailViewController animated:YES];
+        });
+      };
+      
+      UIBarButtonItem *nfcButton = [[UIBarButtonItem alloc]
+                                    initWithTitle:@"NFC"
+                                    style:UIBarButtonItemStylePlain
+                                    target:self
+                                    action:@selector(didClickNFC)];
+      [self.parentViewController.navigationItem setRightBarButtonItem: nfcButton];
+    }
+  } else {
+    // Fallback on earlier versions
+  }
+}
+
+- (void)didClickNFC {
+  [self.nfcHelper startNFCScanning];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -65,11 +111,18 @@ int const kPageSize = 7;
   // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+  self.parentViewController.navigationItem.title = NSLocalizedString(@"pingeb.org", nil);
+}
+
 -(void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
   //load artists, if there are none
   if (self.itemsToDisplay.count <= 0) {
-    [self loadArtists];
+    [self.hud showInView:self.view];
+    [self downloadContent];
+  } else {
+    [self.feedTableView reloadData];
   }
 }
 
@@ -83,8 +136,7 @@ int const kPageSize = 7;
 - (void)setupTableView {
   //setting up tableView
   [self.feedTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-  self.feedTableView.rowHeight = UITableViewAutomaticDimension;
-  self.feedTableView.estimatedRowHeight = 150.0;
+  self.feedTableView.rowHeight = 180.0f;
 }
 
 - (void)setupRefreshControl {
@@ -97,140 +149,43 @@ int const kPageSize = 7;
   [self.feedTableView addSubview:self.refreshControl];
 }
 
-- (void)addNotifications {
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(reloadData)
-                                               name:@"updateAllArtistLists"
-                                             object:nil];
-}
-
-#pragma mark - XMMEnduserApi
-
-- (void)loadArtists {
-  //loading hud in view
-  [self.hud showInView:self.view];
-  [[XMMEnduserApi sharedInstance] contentListWithPageSize:kPageSize withLanguage:@"" withCursor:@"null" withTags:@[@"artists"]
-                                               completion:^(XMMContentList *result) {
-                                                 [self displayContentList:result];
-                                                 [self.hud dismiss];
-                                               } error:^(XMMError *error) {
-                                                 NSLog(@"Error: %@", error.message);
-                                               }];
-}
-
-- (void)displayContentList:(XMMContentList *)result {
-  self.contentListCursor = result.cursor;
-  
+- (void)displayContentList:(NSArray *)contents {
   //check if first startup
   if ([[Globals sharedObject] isFirstStart]) {
-    [self firstStartup:result];
+    [self firstStartup:contents];
   }
   
-  //save if there are more items available over api
-  self.hasMore = result.hasMore;
-  
-  for (XMMContent *contentItem in result.items) {
-    //download image
-    [XMMImageUtility imageWithUrl:contentItem.imagePublicUrl completionBlock:^(BOOL succeeded, UIImage *image, SVGKImage *svgImage) {
-      if (image != nil) {
-        [self.imagesToDisplay setValue:image forKey:contentItem.contentId];
-      } else if (svgImage != nil) {
-        [self.imagesToDisplay setValue:svgImage forKey:contentItem.contentId];
-      } else {
-        [self.imagesToDisplay setValue:self.placeholderImage forKey:contentItem.contentId];
-      }
-      
-      [self.feedTableView reloadData];
-    }];
-    
-    //add contentItem
-    [self.itemsToDisplay addObject:contentItem];
-  }
+  [self.itemsToDisplay addObjectsFromArray:contents];
   
   self.isApiCallingBlocked = NO;
   [self reloadData];
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  // Return the number of sections.
-  return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  // Return the number of rows in the section.
-  return [self.itemsToDisplay count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  static NSString *feedItemCellIdentifier = @"FeedItemCell";
+- (void)openArtist:(XMMContent *)content {
+  UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+  ArtistDetailViewController *artistDetailViewController =
+  [storyboard instantiateViewControllerWithIdentifier:@"ArtistDetailView"];
   
-  FeedItemCell *cell = (FeedItemCell *)[self.feedTableView dequeueReusableCellWithIdentifier:feedItemCellIdentifier];
-  if (cell == nil) {
-    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FeedItemCell" owner:self options:nil];
-    cell = nib[0];
-  }
-  
-  [cell.loadingIndicator startAnimating];
-  
-  //set defaults to images
-  cell.feedItemImage.image = nil;
-  [cell.feedItemImage.subviews  makeObjectsPerformSelector: @selector(removeFromSuperview)];
-  
-  cell.loadingIndicator.hidden = NO;
-  
-  //save for out of range
-  if (indexPath.row >= [self.itemsToDisplay count]) {
-    return cell;
-  }
-  XMMContent *contentItem = (self.itemsToDisplay)[indexPath.row];
-  
-  //set title
-  cell.feedItemTitle.text = contentItem.title;
-  
-  //set image & grayscale if needed
-  if((self.imagesToDisplay)[contentItem.contentId] != nil) {
-    UIImage *image = (self.imagesToDisplay)[contentItem.contentId];
-    float imageRatio = image.size.width / image.size.height;
-    [cell.imageHeightConstraint setConstant:(self.view.frame.size.width / imageRatio)];
-    
-    if ([(self.imagesToDisplay)[contentItem.contentId] isKindOfClass:[SVGKImage class]]) {
-      SVGKImageView *svgImageView = [[SVGKFastImageView alloc] initWithSVGKImage:(self.imagesToDisplay)[contentItem.contentId]];
-      [svgImageView setFrame:CGRectMake(0, 0, self.view.frame.size.width, (self.view.frame.size.width / imageRatio))];
-      [cell.feedItemImage addSubview:svgImageView];
-    } else if (![[[Globals sharedObject] savedArtits] containsString:contentItem.contentId]) {
-      cell.feedItemImage.image = [XMMImageUtility convertImageToGrayScale:image];
-      cell.feedItemOverlayImage.backgroundColor = [UIColor whiteColor];
-    } else {
-      cell.feedItemImage.image = image;
-      cell.feedItemOverlayImage.backgroundColor = [UIColor clearColor];
-    }
-    
-    [cell.loadingIndicator stopAnimating];
-  }
-  
-  //overlay image for the first cell "discoverable"
-  if (contentItem == self.itemsToDisplay.firstObject && ![[[Globals sharedObject] savedArtits] containsString:contentItem.contentId]) {
-    cell.feedItemOverlayImage.image = [UIImage imageNamed:@"discoverable"];
-  } else {
-    cell.feedItemOverlayImage.image = nil;
-  }
-  
-  //load more contents
-  if (indexPath.row == (self.itemsToDisplay.count - 1)) {
-    [self loadMoreContent];
-  }
-  
-  return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  ArtistDetailViewController *artistDetailViewController = [[ArtistDetailViewController alloc] init];
-  XMMContent *data = (XMMContent*)(self.itemsToDisplay)[indexPath.row];
-  artistDetailViewController.contentId = data.contentId;
+  artistDetailViewController.contentId = content.ID;
   [self.navigationController pushViewController:artistDetailViewController animated:YES];
 }
+
+# pragma mark - XMMEnduserApi
+
+- (void)downloadContent {
+  [[XMMEnduserApi sharedInstance] contentsWithTags:@[@"artists"]
+                                          pageSize:kPageSize
+                                            cursor:self.contentListCursor
+                                              sort:XMMContentSortOptionsNameDesc
+                                        completion:^(NSArray *contents, bool hasMore, NSString *cursor, NSError *error) {
+                                          self.contentListCursor = cursor;
+                                          self.hasMore = hasMore;
+                                          [self displayContentList:contents];
+                                          [self.hud dismiss];
+                                        }];
+}
+
+# pragma mark - Pull to refresh
 
 - (void)pullToRefresh {
   //analytics
@@ -239,17 +194,9 @@ int const kPageSize = 7;
   [self.hud showInView:self.view];
   if(!self.isApiCallingBlocked) {
     //delete all items in arrays
-    self.itemsToDisplay = [[NSMutableArray alloc] init];
-    self.imagesToDisplay = [[NSMutableDictionary alloc] init];
-    
-    //api call
-    [[XMMEnduserApi sharedInstance] contentListWithPageSize:kPageSize withLanguage:@"" withCursor:@"null" withTags:@[@"artists"]
-                                                 completion:^(XMMContentList *result) {
-                                                   [self displayContentList:result];
-                                                   [self.hud dismiss];
-                                                 } error:^(XMMError *error) {
-                                                   NSLog(@"Error: %@", error.message);
-                                                 }];
+    [self.itemsToDisplay removeAllObjects];
+    self.contentListCursor = nil;
+    [self downloadContent];
     self.isApiCallingBlocked = YES;
   }
 }
@@ -271,21 +218,17 @@ int const kPageSize = 7;
   }
 }
 
+# pragma mark - Load more
+
 - (void)loadMoreContent {
   if (self.hasMore && !self.isApiCallingBlocked) {
     //analytics
     [[Analytics sharedObject] sendEventWithCategorie:@"UX" andAction:@"Load More" andLabel:@"Artist List load more." andValue:nil];
     
     self.isApiCallingBlocked = YES;
-    [[XMMEnduserApi sharedInstance] contentListWithPageSize:kPageSize withLanguage:@"" withCursor:self.contentListCursor withTags:@[@"artists"]
-                                                 completion:^(XMMContentList *result) {
-                                                   [self displayContentList:result];
-                                                   self.feedTableView.tableFooterView = nil;
-                                                 } error:^(XMMError *error) {
-                                                   NSLog(@"Error: %@", error.message);
-                                                 }];
     
-    //add tablefooter as loading indicator to the feedTableView
+    [self downloadContent];
+    
     [self addTableViewLoadingFooter];
   }
 }
@@ -304,9 +247,59 @@ int const kPageSize = 7;
   self.feedTableView.tableFooterView = headerView;
 }
 
+#pragma mark - Bluetooth View
+
+- (void)detectBluetooth {
+  BOOL isDissmissed = [[NSUserDefaults standardUserDefaults] boolForKey:@"bluetooth-is-dismissed"];
+  if (isDissmissed) {
+    return;
+  }
+  
+  if(!self.bluetoothManager) {
+    // Put on main queue so we can call UIAlertView from delegate callbacks.
+    NSDictionary *options = @{CBCentralManagerOptionShowPowerAlertKey: @NO};
+    self.bluetoothManager = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_main_queue() options:options];
+  }
+  [self centralManagerDidUpdateState:self.bluetoothManager]; // Show initial state
+}
+
+- (void)centralManagerDidUpdateState:(CBCentralManager *)central {
+  if (self.bluetoothManager.state == CBCentralManagerStatePoweredOff) {
+    [self showBlueToothAlert];
+  }
+}
+
+- (void)showBlueToothAlert {
+  UIAlertController * alert = [UIAlertController
+                               alertControllerWithTitle:NSLocalizedString(@"bluetooth alert title", nil)
+                               message:NSLocalizedString(@"bluetooth alert message", nil)
+                               preferredStyle:UIAlertControllerStyleAlert];
+  
+  UIAlertAction* yesButton = [UIAlertAction
+                              actionWithTitle:NSLocalizedString(@"bluetoothalert.action.ok", nil)
+                              style:UIAlertActionStyleDefault
+                              handler:^(UIAlertAction * action) {
+                                [alert dismissViewControllerAnimated:true completion:nil];
+                              }];
+  
+  UIAlertAction* noButton = [UIAlertAction
+                             actionWithTitle:NSLocalizedString(@"bluetoothalert.action.dismiss", nil)
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                               [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"bluetooth-is-dismissed"];
+                               [[NSUserDefaults standardUserDefaults] synchronize];
+                               [alert dismissViewControllerAnimated:true completion:nil];
+                             }];
+  
+  [alert addAction:yesButton];
+  [alert addAction:noButton];
+  
+  [self presentViewController:alert animated:YES completion:nil];
+}
+
 # pragma mark - Instruction View / First Start
 
-- (void)firstStartup:(XMMContentList *)result {
+- (void)firstStartup:(NSArray *)result {
   [self addFreeDiscoveredArtists:result];
   [self displayInstructionScreen];
 }
@@ -323,22 +316,57 @@ int const kPageSize = 7;
   self.instructionView.hidden = YES;
 }
 
-- (void)addFreeDiscoveredArtists:(XMMContentList *)result {
+- (void)addFreeDiscoveredArtists:(NSArray *)contents {
   //add artist 2-4 to discovered list
   int counter = 1;
   while (counter <= 3) {
-    XMMContent *contentItem = result.items[counter];
-    [[Globals sharedObject] addDiscoveredArtist:contentItem.contentId];
+    XMMContent *contentItem = contents[counter];
+    [[Globals sharedObject] addDiscoveredArtist:contentItem.ID];
     counter++;
   }
 }
 
-#pragma mark - Navigation
-/*
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- 
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+  // Return the number of sections.
+  return 1;
 }
-*/
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+  // Return the number of rows in the section.
+  return [self.itemsToDisplay count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+  FeedItemCell *cell = (FeedItemCell *)[self.feedTableView dequeueReusableCellWithIdentifier:kFeedItemCellIdentifier];
+  if (cell == nil) {
+    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"FeedItemCell" owner:self options:nil];
+    cell = nib[0];
+  }
+  
+  //save for out of range
+  if (indexPath.row >= [self.itemsToDisplay count]) {
+    return cell;
+  }
+  
+  XMMContent *contentItem = (self.itemsToDisplay)[indexPath.row];
+  Boolean isDiscoverable = (![[Globals sharedObject].savedArtits containsString:contentItem.ID] && indexPath.row == 0);
+  [cell setupCellWithContent:contentItem
+                discoverable:isDiscoverable];
+  
+  //load more contents
+  if (indexPath.row == (self.itemsToDisplay.count - 1)) {
+    [self loadMoreContent];
+  }
+  
+  return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+  XMMContent *data = (XMMContent*)(self.itemsToDisplay)[indexPath.row];
+  self.parentViewController.navigationItem.title = nil;
+  [self openArtist:data];
+}
 
 @end

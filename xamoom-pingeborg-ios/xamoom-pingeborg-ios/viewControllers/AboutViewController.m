@@ -39,26 +39,33 @@
   [[Analytics sharedObject] setScreenName:@"About View"];
   
   [self.tabBarItem setSelectedImage:[UIImage imageNamed:@"info_filled"]];
-  
   self.hud = [[JGProgressHUD alloc] initWithStyle:JGProgressHUDStyleDark];
 
-  [self setupTableView];
   [self setupContentBlocks];
+  [self setupTableView];
   [self setupTextSizeDropdown];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+  self.parentViewController.navigationItem.title = NSLocalizedString(@"About", nil);
 }
 
 -(void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
   self.parentViewController.navigationItem.rightBarButtonItem = self.buttonItem;
   
+  [self setupContentBlocks];
+  [self setupTableView];
+
   //load items if there are none
-  if ([self.contentBlocks.itemsToDisplay count] == 0) {
+  if ([self.contentBlocks.items count] == 0) {
     [self.hud showInView:self.view];
-    [[XMMEnduserApi sharedInstance] contentWithContentId:[Globals sharedObject].aboutPageId includeStyle:NO includeMenu:NO withLanguage:@"" full:YES
-                                              completion:^(XMMContentById *result) {
-                                                [self showDataWithContentId:result];
-                                              } error:^(XMMError *error) {
-                                              }];
+    
+    
+    [[XMMEnduserApi sharedInstance] contentWithID:[Globals sharedObject].aboutPageId  completion:^(XMMContent *content, NSError *error) {
+      [self showDataWithContentId:content];
+    }];
+    
   }
 }
 
@@ -76,14 +83,13 @@
 
 - (void)setupTableView {
   //setting up tableView
-  [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-  self.tableView.rowHeight = UITableViewAutomaticDimension;
-  self.tableView.estimatedRowHeight = 150.0;
+  self.tableView.dataSource = self.contentBlocks;
+  self.tableView.delegate = self.contentBlocks;
 }
 
 - (void)setupContentBlocks {
   //setting up XMMContentBlocks
-  self.contentBlocks = [[XMMContentBlocks alloc] initWithLanguage:[XMMEnduserApi sharedInstance].systemLanguage withWidth:self.view.frame.size.width];
+  self.contentBlocks = [[XMMContentBlocks alloc] initWithTableView:self.tableView api:[XMMEnduserApi sharedInstance]];
   self.contentBlocks.delegate = self;
   self.contentBlocks.linkColor = [Globals sharedObject].pingeborgLinkColor;
 }
@@ -97,6 +103,7 @@
                                                               action:^(REMenuItem *item) {
                                                                 [[Analytics sharedObject] sendEventWithCategorie:@"UX" andAction:@"Changed Fontsize" andLabel:@"Normal Font Size" andValue:nil];
                                                                 [self.contentBlocks updateFontSizeTo:NormalFontSize];
+                                                                [self.tableView reloadData];
                                                               }];
   
   REMenuItem *BigFontSizeItem = [[REMenuItem alloc] initWithTitle:NSLocalizedString(@"Big Font Size", nil)
@@ -106,6 +113,7 @@
                                                            action:^(REMenuItem *item) {
                                                              [[Analytics sharedObject] sendEventWithCategorie:@"UX" andAction:@"Changed Fontsize" andLabel:@"Big Font Size" andValue:nil];
                                                              [self.contentBlocks updateFontSizeTo:BigFontSize];
+                                                             [self.tableView reloadData];
                                                            }];
   
   REMenuItem *BiggerFontSizeItem = [[REMenuItem alloc] initWithTitle:NSLocalizedString(@"Really Big Font Size", nil)
@@ -115,16 +123,19 @@
                                                               action:^(REMenuItem *item) {
                                                                 [[Analytics sharedObject] sendEventWithCategorie:@"UX" andAction:@"Changed Fontsize" andLabel:@"Really Big Font Size" andValue:nil];
                                                                 [self.contentBlocks updateFontSizeTo:BiggerFontSize];
+                                                                [self.tableView reloadData];
                                                               }];
   
   self.fontSizeDropdownMenu = [[REMenu alloc] initWithItems:@[NormalFontSizeItem, BigFontSizeItem, BiggerFontSizeItem]];
   self.fontSizeDropdownMenu.textColor = [UIColor whiteColor];
   
   //create changeFontSize button
-  self.buttonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"textsize"]
+  /*
+   self.buttonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"textsize"]
                                                                  style:UIBarButtonItemStylePlain
                                                                 target:self
                                                                 action:@selector(toggleFontSizeDropdownMenu)];
+   */
 }
 
 #pragma mark - NavbarDropdown
@@ -139,47 +150,20 @@
 
 #pragma mark - XMMContentBlocks delegates
 
-- (void)reloadTableViewForContentBlocks {
-  [self.tableView reloadData];
+- (void)didClickContentBlock:(NSString *)contentId {
+  UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+  ArtistDetailViewController *artistDetailViewController =
+  [storyboard instantiateViewControllerWithIdentifier:@"ArtistDetailView"];
+  
+  artistDetailViewController.contentId = contentId;
+  [self.navigationController pushViewController:artistDetailViewController animated:YES];
 }
 
 #pragma mark - XMMEnduserApi delegates
 
-- (void)showDataWithContentId:(XMMContentById *)result {
-  [self.contentBlocks displayContentBlocksWithIdResult:result];
+- (void)showDataWithContentId:(XMMContent *)result {
+  [self.contentBlocks displayContent:result];
   [self.hud dismiss];
-}
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return [self.contentBlocks.itemsToDisplay count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  return (self.contentBlocks.itemsToDisplay)[indexPath.row];
-}
-
-#pragma mark - Custom Methods
-
-- (void)displayContentTitleAndImage:(XMMContentById *)result {
-  //make text and image for the title, exercpt and the display image
-  
-  XMMContentBlockType0 *contentBlock0 = [[XMMContentBlockType0 alloc] init];
-  contentBlock0.contentBlockType = 0;
-  contentBlock0.title = result.content.title;
-  contentBlock0.text = result.content.descriptionOfContent;
-  [self.contentBlocks displayContentBlock0:contentBlock0 addTitleFontOffset:0];
-  
-  if (result.content.imagePublicUrl != nil) {
-    XMMContentBlockType3 *contentBlock3 = [[XMMContentBlockType3 alloc] init];
-    contentBlock3.fileId = result.content.imagePublicUrl;
-    [self.contentBlocks displayContentBlock3:contentBlock3];
-  }
 }
 
 /*

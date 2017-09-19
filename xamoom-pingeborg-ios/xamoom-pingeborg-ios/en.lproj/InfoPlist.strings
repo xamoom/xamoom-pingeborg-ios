@@ -1,0 +1,14 @@
+/* 
+  InfoPlist.strings
+  pingeb.org
+
+  Created by Raphael Seher on 18/09/2017.
+  Copyright © 2017 xamoom GmbH. All rights reserved.
+*/
+
+"NSBluetoothPeripheralUsageDescription"="We use bluetooth to inform your about artists near you";
+"NSLocationAlwaysUsageDescription"="We use your location to show you nearby artists you can discover";
+"NSLocationWhenInUseUsageDescription"="We use your location to show you nearby artists you can discover";
+"NSPhotoLibraryAddUsageDescription"="We use your photo library to save images you selected";
+
+"NSCameraUsageDescription"="Access to your camera is needed to scan QR Codes";

@@ -39,9 +39,9 @@
   self.hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
   
   //setup
+  [self setupContentBlocks];
   [self setupTableView];
   [self setupTextSizeDropdown];
-  [self setupContentBlocks];
   
   [self.hud showInView:self.view];
 }
@@ -50,9 +50,9 @@
   [super viewDidAppear:animated];
   
   //analytics
-  [[Analytics sharedObject] sendEventWithCategorie:@"pingeb.org" andAction:@"Show content" andLabel:self.result.content.contentId andValue:nil];
+  [[Analytics sharedObject] sendEventWithCategorie:@"pingeb.org" andAction:@"Show content" andLabel:self.result.ID andValue:nil];
   
-  [self.contentBlocks displayContentBlocksWithLocationIdentifierResult:self.result];
+  [self.contentBlocks displayContent:self.result];
   [self.hud dismiss];
 }
 
@@ -61,7 +61,7 @@
   [[NSNotificationCenter defaultCenter] postNotificationName:@"pauseAllSounds" object:self];
   
   //reload tableViews, when the newest scanned artist is open (So the "discover" overlay disappears)
-  if ([self.result.content.contentId isEqualToString: [[Globals sharedObject] savedArtistsAsArray].lastObject]) {
+  if ([self.result.ID isEqualToString: [[Globals sharedObject] savedArtistsAsArray].lastObject]) {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"updateAllArtistLists" object:self];
   }
 }
@@ -73,9 +73,8 @@
 # pragma mark - Setup
 
 - (void)setupTableView {
-  [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-  self.tableView.rowHeight = UITableViewAutomaticDimension;
-  self.tableView.estimatedRowHeight = 150.0;
+  self.tableView.dataSource = self.contentBlocks;
+  self.tableView.delegate = self.contentBlocks;
 }
 
 - (void)setupTextSizeDropdown {
@@ -87,6 +86,7 @@
                                                               action:^(REMenuItem *item) {
                                                                 [[Analytics sharedObject] sendEventWithCategorie:@"UX" andAction:@"Changed Fontsize" andLabel:@"Normal Font Size" andValue:nil];
                                                                 [self.contentBlocks updateFontSizeTo:NormalFontSize];
+                                                                [self.tableView reloadData];
                                                               }];
   
   REMenuItem *BigFontSizeItem = [[REMenuItem alloc] initWithTitle:NSLocalizedString(@"Big Font Size", nil)
@@ -96,6 +96,7 @@
                                                            action:^(REMenuItem *item) {
                                                              [[Analytics sharedObject] sendEventWithCategorie:@"UX" andAction:@"Changed Fontsize" andLabel:@"Big Font Size" andValue:nil];
                                                              [self.contentBlocks updateFontSizeTo:BigFontSize];
+                                                             [self.tableView reloadData];
                                                            }];
   
   REMenuItem *BiggerFontSizeItem = [[REMenuItem alloc] initWithTitle:NSLocalizedString(@"Really Big Font Size", nil)
@@ -105,6 +106,7 @@
                                                               action:^(REMenuItem *item) {
                                                                 [[Analytics sharedObject] sendEventWithCategorie:@"UX" andAction:@"Changed Fontsize" andLabel:@"Really Big Font Size" andValue:nil];
                                                                 [self.contentBlocks updateFontSizeTo:BiggerFontSize];
+                                                                [self.tableView reloadData];
                                                               }];
   
   self.fontSizeDropdownMenu = [[REMenu alloc] initWithItems:@[NormalFontSizeItem, BigFontSizeItem, BiggerFontSizeItem]];
@@ -119,7 +121,8 @@
 }
 
 - (void)setupContentBlocks {
-  self.contentBlocks = [[XMMContentBlocks alloc] initWithLanguage:@"" withWidth:self.view.bounds.size.width];
+  self.contentBlocks = [[XMMContentBlocks alloc] initWithTableView:self.tableView api:[XMMEnduserApi sharedInstance]];
+  
   self.contentBlocks.delegate = self;
   self.contentBlocks.linkColor = [Globals sharedObject].pingeborgLinkColor;
 }
@@ -136,37 +139,10 @@
 
 #pragma mark - XMMContentBlocks delegates
 
-- (void)reloadTableViewForContentBlocks {
-  [self.tableView reloadData];
-}
-
-#pragma mark - Table view data source
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  [tableView deselectRowAtIndexPath:indexPath animated:NO];
-  
-  //open new artistDetailViewController when tap a contentBlock
-  if ([(self.contentBlocks.itemsToDisplay)[indexPath.row] isKindOfClass:[XMMContentBlock6TableViewCell class]]) {
-    XMMContentBlock6TableViewCell *cell = (self.contentBlocks.itemsToDisplay)[indexPath.row];
-    
-    ArtistDetailViewController *vc = [[ArtistDetailViewController alloc] init];
-    [vc setContentId:cell.contentId];
-    [self.navigationController pushViewController:vc animated:YES];
-  }
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  // Return the number of sections.
-  return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  // Return the number of rows in the section.
-  return [self.contentBlocks.itemsToDisplay count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  return (self.contentBlocks.itemsToDisplay)[indexPath.row];
+- (void)didClickContentBlock:(NSString *)contentId {
+  ArtistDetailViewController *vc = [[ArtistDetailViewController alloc] init];
+  [vc setContentId:contentId];
+  [self.navigationController pushViewController:vc animated:YES];
 }
 
 /*

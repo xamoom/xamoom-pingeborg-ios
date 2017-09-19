@@ -18,17 +18,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreBluetooth/CoreBluetooth.h>
 #import "NavigationViewController.h"
 #import "FeedItemCell.h"
 #import "ArtistDetailViewController.h"
 #import "ScanResultViewController.h"
 #import <JGProgressHUD/JGProgressHUD.h>
-#import <SVGKit.h>
 #import <Google/Analytics.h>
 
 extern int const kPageSize;
+extern NSString * const kFeedItemCellIdentifier;
 
-@interface FeedTableViewController : UIViewController <UINavigationControllerDelegate>
+
+@interface FeedTableViewController : UIViewController <UINavigationControllerDelegate, CLLocationManagerDelegate, CBCentralManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *feedTableView;
 @property (weak, nonatomic) IBOutlet UIView *instructionView;

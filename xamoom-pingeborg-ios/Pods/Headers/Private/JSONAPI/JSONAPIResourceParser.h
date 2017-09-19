@@ -1,0 +1,1 @@
+../../../JSONAPI/Classes/JSONAPIResourceParser.h

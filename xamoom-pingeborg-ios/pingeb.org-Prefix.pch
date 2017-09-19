@@ -11,10 +11,10 @@
 
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
-#import <xamoom-ios-sdk/XMMEnduserApi.h>
-#import <xamoom-ios-sdk/XMMContentBlocks.h>
+#import <XamoomSDK/XamoomSDK.h>
 #import "XMMImageUtility.h"
 #import "Globals.h"
 #import "Analytics.h"
+#import "pingeb_org-Swift.h"
 
 #endif

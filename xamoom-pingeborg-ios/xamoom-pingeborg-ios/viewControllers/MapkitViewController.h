@@ -19,37 +19,13 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-#import <SVGKit.h>
-#import <SVGKSourceString.h>
 #import <REMenu/REMenu.h>
-#import <xamoom-ios-sdk/XMMAnnotationView.h>
-#import <xamoom-ios-sdk/XMMCalloutView.h>
 #import "SMCalloutView.h"
 #import "FeedItemCell.h"
 #import "ArtistDetailViewController.h"
 
-@class PingeborgMapView;
+@interface MapkitViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate>
 
-@interface MapkitViewController : UIViewController <MKMapViewDelegate, SMCalloutViewDelegate, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource>
-
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHeightConstraint;
-@property (weak, nonatomic) IBOutlet UIView *geofenceView;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *geoFenceActivityIndicator;
-@property (weak, nonatomic) IBOutlet UIImageView *geoFenceIcon;
-@property (weak, nonatomic) IBOutlet UILabel *geoFenceLabel;
-@property (weak, nonatomic) IBOutlet UIView *viewForMap;
-@property (weak, nonatomic) IBOutlet UIView *instructionView;
-
-@property (nonatomic, strong) PingeborgMapView *mapKitWithSMCalloutView;
-@property (nonatomic, strong) MKPointAnnotation *annotationForSMCalloutView;
-
-@property CLLocationManager *locationManager;
-@property CLLocation *lastLocation;
-
-@property UIImage *customMapMarker;
-@property SVGKImage *customSVGMapMarker;
-@property NSMutableArray *itemsToDisplay;
-@property NSMutableDictionary *imagesToDisplay;
+@property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
 @end

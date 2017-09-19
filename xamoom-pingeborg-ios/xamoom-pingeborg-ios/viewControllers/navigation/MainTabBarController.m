@@ -17,14 +17,18 @@
 // along with xamoom-pingeborg-ios. If not, see <http://www.gnu.org/licenses/>.
 //
 
+#import <AVFoundation/AVFoundation.h>
 #import "MainTabBarController.h"
 #import "XMMEnduserApi.h"
 #import "ScanResultViewController.h"
+#import <QRCodeReaderViewController/QRCodeReaderViewController.h>
 
 @interface MainTabBarController () <QRCodeReaderDelegate>
 
-@property XMMContentByLocationIdentifier *savedApiResult;
-@property JGProgressHUD *hud;
+@property (strong, nonatomic) XMMContent *savedApiResult;
+@property (strong, nonatomic) JGProgressHUD *hud;
+@property (nonatomic) double topBarOffset;
+@property (strong, nonatomic) QRCodeReaderViewController *readerViewController;
 
 @end
 
@@ -66,46 +70,56 @@
     //analytics
     [[Analytics sharedObject] sendEventWithCategorie:@"UX" andAction:@"Click" andLabel:@"QR Code Reader" andValue:nil];
     
-    [[XMMEnduserApi sharedInstance] setQrCodeViewControllerCancelButtonTitle:NSLocalizedString(@"Cancel", nil)];
-    [[XMMEnduserApi sharedInstance] startQRCodeReaderFromViewController:self
-                                                                didLoad:^(NSString *locationIdentifier, NSString *url) {
-                                                                  [self.hud showInView:self.view];
-                                                                  [self didScanQR:locationIdentifier withCompleteUrl:url];
-                                                                }];
+    QRCodeReader *reader = [QRCodeReader readerWithMetadataObjectTypes:@[AVMetadataObjectTypeQRCode]];
+    self.readerViewController =
+    [[QRCodeReaderViewController alloc]
+     initWithCancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+     codeReader:reader
+     startScanningAtLoad:YES];
+    self.readerViewController.modalPresentationStyle = UIModalPresentationFormSheet;
+    self.readerViewController.delegate = self;
+    
+    [self presentViewController:self.readerViewController animated:YES completion:nil];
+    
     return NO;
   } else {
     return YES;
   }
 }
 
-#pragma mark - XMMEnduserApi Delegate Methods
+#pragma mark - QRCodeReaderViewController Delegate Methods
 
--(void)didScanQR:(NSString *)result withCompleteUrl:(NSString *)url{
+- (void)reader:(QRCodeReaderViewController *)reader didScanResult:(NSString *)url {
+  [reader stopScanning];
   self.scannedUrl = url;
   
+  AudioServicesPlaySystemSound(1111);
+  
   //old pingeborg stickers get a redirect to the xm.gl url
-  if ([url containsString:@"pingeb.org/"]) {
+  if ([url containsString:@"pingeb.org/"] && ![url containsString:@"m.pingeb.org/"]) {
     //analytics
     [[Analytics sharedObject] sendEventWithCategorie:@"pingeb.org" andAction:@"Scan" andLabel:@"pingeb.org Sticker" andValue:nil];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
     NSURLConnection *urlConntection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO];
     [urlConntection start];
-  } else if([url containsString:@"xm.gl"]) {
+  } else {
     //analytics
     [[Analytics sharedObject] sendEventWithCategorie:@"pingeb.org" andAction:@"Scan" andLabel:@"xm.gl Sticker" andValue:nil];
     
-    [[XMMEnduserApi sharedInstance] contentWithLocationIdentifier:result includeStyle:NO includeMenu:NO withLanguage:@""
-                                                       completion:^(XMMContentByLocationIdentifier *result) {
-                                                         [self didLoadDataWithLocationIdentifier:result];
-                                                       } error:^(XMMError *error) {
-                                                         [self errorMessageOnScanning];
-                                                       }];
-  } else {
-    //analytics
-    [[Analytics sharedObject] sendEventWithCategorie:@"pingeb.org" andAction:@"Scan" andLabel:@"Other QR Code" andValue:nil];
-    [self errorMessageOnScanning];
+    NSString *identifier = [self getLocationIdentifierFromURL:url];
+    if (identifier == nil) {
+      [[Analytics sharedObject] sendEventWithCategorie:@"pingeb.org" andAction:@"Scan" andLabel:@"Other QR Code" andValue:nil];
+      [self errorMessageOnScanning];
+      return;
+    }
+    
+    [self didLoadDataWithLocationIdentifier:identifier];
   }
+}
+
+- (void)readerDidCancel:(QRCodeReaderViewController *)reader {
+  [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (void)errorMessageOnScanning {
@@ -118,16 +132,14 @@
   [alertView show];
 }
 
--(NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)redirectResponse {
+- (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)redirectResponse {
   //redirect to xm.gl
   NSURLRequest *newRequest = request;
   if (redirectResponse) {
-    [[XMMEnduserApi sharedInstance] contentWithLocationIdentifier:[self getLocationIdentifierFromURL:[newRequest URL].absoluteString] includeStyle:NO includeMenu:NO withLanguage:@""
-                                                       completion:^(XMMContentByLocationIdentifier *result) {
-                                                         [self didLoadDataWithLocationIdentifier:result];
-                                                       } error:^(XMMError *error) {
-                                                       }];
+    [self didLoadDataWithLocationIdentifier:[newRequest URL].absoluteString];
     return nil;
+  } else {
+    [self errorMessageOnScanning];
   }
   
   return newRequest;
@@ -140,11 +152,14 @@
   return path;
 }
 
-- (void)didLoadDataWithLocationIdentifier:(XMMContentByLocationIdentifier *)apiResult{
-  [[Globals sharedObject] addDiscoveredArtist:apiResult.content.contentId];
-  self.savedApiResult = apiResult;
-  [self.hud dismiss];
-  [self performSegueWithIdentifier:@"showScanResult" sender:self];
+- (void)didLoadDataWithLocationIdentifier:(NSString *)locId {
+  [self.readerViewController dismissViewControllerAnimated:true completion:nil];
+  
+  UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+  ArtistDetailViewController *artistDetailViewController =
+  [storyboard instantiateViewControllerWithIdentifier:@"ArtistDetailView"];
+  artistDetailViewController.locationIdentifier = locId;
+  [self.navigationController pushViewController:artistDetailViewController animated:YES];
 }
 
 #pragma mark - Navigation

@@ -1,1 +1,0 @@
-../../../xamoom-ios-sdk/src/mapping/XMMContentBlockType5.h

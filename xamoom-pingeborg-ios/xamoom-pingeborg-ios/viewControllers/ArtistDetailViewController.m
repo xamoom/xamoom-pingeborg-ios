@@ -18,14 +18,23 @@
 //
 
 #import "ArtistDetailViewController.h"
+#import "pingeb_org-Swift.h"
 
-@interface ArtistDetailViewController () <XMMContentBlocksDelegate>
+static int kHeaderViewHeight = 200;
+
+@interface ArtistDetailViewController()
+
+@property UIView *headerView;
 
 @property JGProgressHUD *hud;
 @property REMenu *fontSizeDropdownMenu;
 
-@property XMMContentById *savedResult;
+@property XMMContent *savedResult;
 @property XMMContentBlocks *contentBlocks;
+
+@property CALayer *headerImageViewOverlay;
+@property double topBarOffset;
+@property double verticalVelocity;
 
 @end
 
@@ -39,19 +48,42 @@
   //analytics
   [[Analytics sharedObject] setScreenName:@"Artist Detail"];
   
-  self.navigationItem.title = NSLocalizedString(@"pingeb.org", nil);
-  
   self.hud = [[JGProgressHUD alloc] initWithStyle:JGProgressHUDStyleDark];
+  [self hideNavigationBar];
   
   //setup
+  self.topBarOffset = [[UIApplication sharedApplication] statusBarFrame].size.height + (double)self.navigationController.navigationBar.frame.size.height;
+  
+  [self setupContentBlocks];
   [self setupTableView];
   [self setupTextSizeDropdown];
-  [self setupContentBlocks];
-  [self downloadContent];
+  [self setupHeaderView];
+  
+  
+  if (self.content != nil) {
+    [self showDataWithContentId:self.content];
+  } else if (self.contentId != nil) {
+    [self downloadContent];
+  } else if (self.locationIdentifier != nil) {
+    [self downloadWithLocationId];
+  }
 }
 
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  
+  self.headerView = self.tableView.tableHeaderView;
+  self.tableView.tableHeaderView = nil;
+  [self.tableView addSubview:self.headerView];
+  
+  if (self.tableView.contentInset.top == 0) {
+    self.tableView.contentInset = UIEdgeInsetsMake(kHeaderViewHeight, 0, 0, 0);
+    self.tableView.contentOffset = CGPointMake(0, -kHeaderViewHeight);
+  }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -60,22 +92,15 @@
 
 -(void)viewWillDisappear:(BOOL)animated {
   [super viewWillDisappear:animated];
-  
-  //stop all sounds (audioBlock and soundCloudBlock)
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"pauseAllSounds" object:self];
-
-  //reload artistList, when you discovered a new one
-  if ([self.contentId isEqualToString:[[Globals sharedObject] savedArtistsAsArray].lastObject]) {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"updateAllArtistLists" object:self];
-  }
+  [self.contentBlocks viewWillDisappear];
+  [self showNavigationBar];
 }
 
 #pragma mark - Setup
 
 - (void)setupTableView {
-  [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-  self.tableView.rowHeight = UITableViewAutomaticDimension;
-  self.tableView.estimatedRowHeight = 150.0;
+  self.tableView.dataSource = self.contentBlocks;
+  self.tableView.delegate = self;
 }
 
 - (void)setupTextSizeDropdown {
@@ -87,6 +112,7 @@
                                                               action:^(REMenuItem *item) {
                                                                 [[Analytics sharedObject] sendEventWithCategorie:@"UX" andAction:@"Changed Fontsize" andLabel:@"Normal Font Size" andValue:nil];
                                                                 [self.contentBlocks updateFontSizeTo:NormalFontSize];
+                                                                [self.tableView reloadData];
                                                               }];
   
   REMenuItem *BigFontSizeItem = [[REMenuItem alloc] initWithTitle:NSLocalizedString(@"Big Font Size", nil)
@@ -96,6 +122,7 @@
                                                            action:^(REMenuItem *item) {
                                                              [[Analytics sharedObject] sendEventWithCategorie:@"UX" andAction:@"Changed Fontsize" andLabel:@"Big Font Size" andValue:nil];
                                                              [self.contentBlocks updateFontSizeTo:BigFontSize];
+                                                             [self.tableView reloadData];
                                                            }];
   
   REMenuItem *BiggerFontSizeItem = [[REMenuItem alloc] initWithTitle:NSLocalizedString(@"Really Big Font Size", nil)
@@ -105,6 +132,7 @@
                                                               action:^(REMenuItem *item) {
                                                                 [[Analytics sharedObject] sendEventWithCategorie:@"UX" andAction:@"Changed Fontsize" andLabel:@"Really Big Font Size" andValue:nil];
                                                                 [self.contentBlocks updateFontSizeTo:BiggerFontSize];
+                                                                [self.tableView reloadData];
                                                               }];
   
   self.fontSizeDropdownMenu = [[REMenu alloc] initWithItems:@[NormalFontSizeItem, BigFontSizeItem, BiggerFontSizeItem]];
@@ -115,32 +143,138 @@
                                                                  style:UIBarButtonItemStylePlain
                                                                 target:self
                                                                 action:@selector(toggleFontSizeDropdownMenu)];
-  self.navigationItem.rightBarButtonItem = buttonItem;
+  // self.navigationItem.rightBarButtonItem = buttonItem;
 }
 
 - (void)setupContentBlocks {
-  self.contentBlocks = [[XMMContentBlocks alloc] initWithLanguage:[XMMEnduserApi sharedInstance].systemLanguage withWidth:self.tableView.bounds.size.width];
+  self.contentBlocks = [[XMMContentBlocks alloc] initWithTableView:self.tableView api:[XMMEnduserApi sharedInstance]];
   self.contentBlocks.delegate = self;
   self.contentBlocks.linkColor = [Globals sharedObject].pingeborgLinkColor;
+  self.contentBlocks.showAllStoreLinks = NO;
+}
+
+- (void)setupHeaderView {
+  self.headerImageViewOverlay = [CALayer layer];
+  self.headerImageViewOverlay.frame = self.headerImageView.bounds;
+  self.headerImageViewOverlay.backgroundColor = [[Globals sharedObject].pingeborgYellow CGColor];
+  self.headerImageViewOverlay.opacity = 0.0f;
+  [self.headerImageView.layer insertSublayer:self.headerImageViewOverlay atIndex:0];
+  
+  
+  self.headerImageGradientView = [[GradientView alloc] initWithFrame:
+                                  CGRectMake(0,
+                                             0,
+                                             self.headerImageView.frame.size.width,
+                                             100)];
+  [self.headerImageView addSubview:self.headerImageGradientView];
+  self.headerImageGradientView.firstColor = [UIColor blackColor];
+  self.headerImageGradientView.secondColor = [UIColor clearColor];
+  self.headerImageGradientView.opacity = 0.3f;
 }
 
 - (void)downloadContent {
   [self.hud showInView:self.view];
-
+  
   NSString* savedArtists = [[Globals sharedObject] savedArtits];
   if ([savedArtists containsString:self.contentId]) {
-    [[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:NO includeMenu:NO withLanguage:@"" full:YES
-                                              completion:^(XMMContentById *result) {
-                                                [self showDataWithContentId:result];
-                                              } error:^(XMMError *error) {
-                                              }];
+    [[XMMEnduserApi sharedInstance] contentWithID:self.contentId completion:^(XMMContent *content, NSError *error) {
+      [self showDataWithContentId:content];
+    }];
   } else {
-    [[XMMEnduserApi sharedInstance] contentWithContentId:self.contentId includeStyle:NO includeMenu:NO withLanguage:@"" full:NO
-                                              completion:^(XMMContentById *result) {
-                                                [self showDataWithContentId:result];
-                                              } error:^(XMMError *error) {
-                                              }];
+    [[XMMEnduserApi sharedInstance] contentWithID:self.contentId options:XMMContentOptionsPrivate completion:^(XMMContent *content, NSError *error) {
+      [self showDataWithContentId:content];
+    }];
   }
+}
+
+- (void)downloadWithLocationId {
+  [self.hud showInView:self.view];
+  
+  [[XMMEnduserApi sharedInstance] contentWithLocationIdentifier:self.locationIdentifier
+                                                     completion:^(XMMContent *content, NSError *error) {
+                                                       if (error != nil) {
+                                                         return;
+                                                       }
+                                                       
+                                                       [self.hud dismiss];
+                                                       [[Globals sharedObject] addDiscoveredArtist:content.ID];
+                                                       [self showDataWithContentId: content];
+                                                     }];
+}
+
+- (void)showDataWithContentId:(XMMContent *)result {
+  //analytics
+  [[Analytics sharedObject] sendEventWithCategorie:@"pingeb.org" andAction:@"Show content" andLabel:result.ID andValue:nil];
+  
+  [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:result.imagePublicUrl] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+  
+  XMMContentBlock *spacerBlock = [[XMMContentBlock alloc] init];
+  spacerBlock.blockType = 0;
+  
+  XMMContentBlock *titleBlock = [[XMMContentBlock alloc] init];
+  titleBlock.blockType = 100;
+  titleBlock.title = result.title;
+  titleBlock.text = result.contentDescription;
+  
+  NSMutableArray *blocks = [result.contentBlocks mutableCopy];
+  [blocks insertObject:spacerBlock atIndex:0];
+  [blocks insertObject:titleBlock atIndex:1];
+  
+  result.contentBlocks = blocks;
+  
+  self.savedResult = result;
+  [self.contentBlocks displayContent:result addHeader:NO];
+  [self.hud dismiss];
+}
+
+- (void)hideNavigationBar {
+  self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+  self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+  
+  [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
+                                                forBarMetrics:UIBarMetricsDefault];
+  self.navigationController.navigationBar.shadowImage = [UIImage new];
+  self.navigationController.navigationBar.translucent = YES;
+}
+
+- (void)showNavigationBar {
+  self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+  self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+  
+  [self.navigationController.navigationBar setBackgroundImage:nil
+                                                forBarMetrics:UIBarMetricsDefault];
+  self.navigationController.navigationBar.shadowImage = nil;
+  self.navigationController.navigationBar.translucent = NO;
+}
+
+- (void)updateHeaderView {
+  CGRect headerRect = CGRectMake(0, -kHeaderViewHeight, self.tableView.bounds.size.width, kHeaderViewHeight);
+  if (self.tableView.contentOffset.y < -kHeaderViewHeight) {
+    headerRect.origin.y = self.tableView.contentOffset.y;
+    headerRect.size.height = -self.tableView.contentOffset.y;
+  }
+  
+  if (self.tableView.contentOffset.y > -self.topBarOffset && self.navigationController.navigationBar.translucent) {
+    self.tableView.contentOffset = CGPointMake(0, 0);
+    [self showNavigationBar];
+  } else if (self.tableView.contentOffset.y < 0 && !self.navigationController.navigationBar.translucent) {
+    self.tableView.contentOffset = CGPointMake(0, -self.topBarOffset);
+    [self hideNavigationBar];
+  }
+  
+  if (self.tableView.contentOffset.y < 0) {
+    if (self.verticalVelocity > 0) {
+      self.headerImageViewOverlay.opacity = 1;
+    } else if (self.verticalVelocity < 0) {
+      self.headerImageViewOverlay.opacity = 0;
+    } else {
+      self.headerImageViewOverlay.opacity = (0.8-((-self.tableView.contentOffset.y - self.topBarOffset)/136));
+    }
+  } else {
+    self.headerImageViewOverlay.opacity = 0.0f;
+  }
+  
+  self.headerView.frame = headerRect;
 }
 
 #pragma mark - NavbarDropdown
@@ -155,47 +289,33 @@
 
 #pragma mark - XMMContentBlock Delegate
 
-- (void)reloadTableViewForContentBlocks {
-  [self.tableView reloadData];
-}
-
-# pragma mark - XMMEnduser Display ContentBlocks
-
-- (void)showDataWithContentId:(XMMContentById *)result {
-  //analytics
-  [[Analytics sharedObject] sendEventWithCategorie:@"pingeb.org" andAction:@"Show content" andLabel:result.content.contentId andValue:nil];
+- (void)didClickContentBlock:(NSString *)contentId {
+  UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+  ArtistDetailViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ArtistDetailView"];
   
-  self.savedResult = result;
-  [self.contentBlocks displayContentBlocksWithIdResult:result];
-  [self.hud dismiss];
+  [[Globals sharedObject] addDiscoveredArtist:contentId];
+  [vc setContentId:contentId];
+  [self.navigationController pushViewController:vc animated:YES];
 }
 
-#pragma mark - Table view data source
+#pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  [tableView deselectRowAtIndexPath:indexPath animated:NO];
-  if ([(self.contentBlocks.itemsToDisplay)[indexPath.row] isKindOfClass:[XMMContentBlock6TableViewCell class]]) {
-    XMMContentBlock6TableViewCell *cell = (self.contentBlocks.itemsToDisplay)[indexPath.row];
-    
-    ArtistDetailViewController *vc = [[ArtistDetailViewController alloc] init];
-    [[Globals sharedObject] addDiscoveredArtist:cell.contentId];
-    [vc setContentId:cell.contentId];
-    [self.navigationController pushViewController:vc animated:YES];
-  }
+  [self.contentBlocks tableView:tableView didSelectRowAtIndexPath:indexPath];
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  // Return the number of sections.
-  return 1;
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+  [self updateHeaderView];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  // Return the number of rows in the section.
-  return [self.contentBlocks.itemsToDisplay count];
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
+  self.verticalVelocity = velocity.y;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  return self.contentBlocks.itemsToDisplay[indexPath.row];
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+  self.verticalVelocity = 0;
 }
 
 /*

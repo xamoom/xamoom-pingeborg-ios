@@ -8,9 +8,11 @@
 
 "pingeb.org" = "pingeb.org";
 
-"pingeb.org Carinthia" = "pingeb.org Carinthia";
-
 "Last update: %@" = "Last update: %@";
+
+"Map" = "Map";
+
+"About" = "About pingeb.org";
 
 /* REMenu FontSizes */
 
@@ -31,8 +33,32 @@
 /* MapkitView */
 
 "No Location" = "No Location";
-"Distance: %d meter" = "Distance: %d meter";
+"map.annotation.distance" = "Distance: %.0f %@";
+"map.annotation.meter" = "m";
+"map.annotation.kilometer" = "km";
 "Searching ..." = "Searching ...";
 "Nothing found near you" = "Nothing found near you";
-"Discovered pingeb.org" = "Discovered pingeb.org";
+"Discovered pingeb.org" = "Found new artist";
+"open artist description" = "Click here to discover";
 "%lu near spots found" = "%lu near spots found";
+
+/* MapItemDetailView */
+
+"Route" = "Route";
+
+/* Bluetooth AlertView */
+
+"bluetooth alert title" = "Bluetooth";
+"bluetooth alert message" = "We use bluetooth to discover artists via iBeacons.";
+"bluetoothalert.action.ok" = "OK";
+"bluetoothalert.action.dismiss" = "Don't show again";
+
+/* Notification */
+
+"notification.beacon.title"="Music & Literature from Carinthia";
+"notification.beacon.body"="Discover in your pingeb.org App";
+
+/* NFC Alert */
+"nfc.alert.action.ok"="Ok";
+"nfc.alert.title"="Invalid NFC";
+"nfc.alert.text"="This NFC Sticker is invalid, please try another one.";

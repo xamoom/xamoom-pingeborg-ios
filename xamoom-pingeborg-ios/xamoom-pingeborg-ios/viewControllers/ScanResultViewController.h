@@ -21,11 +21,11 @@
 #import <JGProgressHUD/JGProgressHUD.h>
 #import "ArtistDetailViewController.h"
 
-@interface ScanResultViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, XMMContentBlocksDelegate>
+@interface ScanResultViewController : UIViewController <XMMContentBlocksDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (nonatomic, strong) XMMContentByLocationIdentifier *result;
+@property (nonatomic, strong) XMMContent *result;
 @property XMMContentBlocks *contentBlocks;
 @property REMenu *fontSizeDropdownMenu;
 

@@ -20,14 +20,12 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <UIImage+animatedGIF.h>
-#import <SVGKit.h>
-#import <SVGKSourceString.h>
 
 @interface XMMImageUtility : NSObject
 
 /**
  */
-+ (void)imageWithUrl:(NSString *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image, SVGKImage *svgImage))completionBlock;
+//+ (void)imageWithUrl:(NSString *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image, SVGKImage *svgImage))completionBlock;
 
 /**
  */
@@ -39,7 +37,7 @@
 
 /**
  */
-+ (void)downloadSVGImageWithURL:(NSString *)url completionBlock:(void (^)(BOOL succeeded, SVGKImage *image))completionBlock;
+//+ (void)downloadSVGImageWithURL:(NSString *)url completionBlock:(void (^)(BOOL succeeded, SVGKImage *image))completionBlock;
 
 /**
  */

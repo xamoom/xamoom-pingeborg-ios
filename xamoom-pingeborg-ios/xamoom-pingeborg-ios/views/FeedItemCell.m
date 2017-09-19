@@ -19,20 +19,54 @@
 
 #import "FeedItemCell.h"
 
+@interface FeedItemCell()
+
+@end
+
 @implementation FeedItemCell
 
++ (BOOL)requiresConstraintBasedLayout {
+  return YES;
+}
+
 - (void)awakeFromNib {
+  [super awakeFromNib];
   // Initialization code
+  self.feedItemTitleView.firstColor = [UIColor clearColor];
+  self.feedItemTitleView.secondColor = [UIColor blackColor];
+  self.feedItemTitleView.opacity = 0.7f;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
   [super setSelected:selected animated:animated];
-  
   // Configure the view for the selected state
 }
 
-+ (BOOL)requiresConstraintBasedLayout {
-  return YES;
+- (void)prepareForReuse {
+  self.feedItemOverlayImage.hidden = NO;
+  self.feedItemOverlayImage.image = nil;
+  self.feedItemTitle.text = nil;
+  [self.feedItemTitleView setNeedsLayout];
+}
+
+- (void)setupCellWithContent:(XMMContent *)content discoverable:(Boolean)isDiscoverable {
+  self.feedItemTitle.text = content.title;
+  [self.feedItemTitleView setNeedsLayout];
+  
+  //set image
+  [self.feedItemImage sd_setImageWithURL:[NSURL URLWithString:content.imagePublicUrl]
+                        placeholderImage:[UIImage imageNamed:@"placeholder"]];
+  
+  if (![[[Globals sharedObject] savedArtits] containsString:content.ID]) {
+    self.feedItemOverlayImage.hidden = NO;
+  } else {
+    self.feedItemOverlayImage.hidden = YES;
+  }
+  
+  //overlay image for the first cell "discoverable"
+  if (isDiscoverable) {
+    self.feedItemOverlayImage.image = [UIImage imageNamed:@"discoverable"];
+  }
 }
 
 @end

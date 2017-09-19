@@ -4,12 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>AFNetworking.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>ISO8601DateFormatterValueTransformer.xcscheme</key>
+		<key>JAMSVGImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -19,7 +14,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods.xcscheme</key>
+		<key>JSONAPI.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-pingeb.org.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -34,16 +34,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>RKValueTransformers.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>RestKit.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -54,119 +44,18 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>SOCKit.xcscheme</key>
+		<key>XamoomSDK-XamoomSDK.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>TransitionKit.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>xamoom-ios-sdk-xamoom-ios-sdk.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>xamoom-ios-sdk.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>youtube-ios-player-helper-Assets.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>youtube-ios-player-helper.xcscheme</key>
+		<key>XamoomSDK.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
-	<dict>
-		<key>00E7B9D53D2FF1D28DDEC9EB1BA3DEED</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>14B80CBFE724625CE5D91B8DCA7E4B52</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>27654F123DF5D97DBCED7A01C0D13382</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>3964580FA5DD130B07B0BF78DABA85F2</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>3AACD080F1C03488277A154879B45DF3</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>411B7FA31818A8F12E56EE6136471081</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>4F4FF58DAAC9AD035BD0FEE244A48051</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>5DC6424C9393774B6D1DD81C97244D5E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>6832655303029CA8A16D58320ADE72A9</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>84793F05BDB4191BADA6A1EE4C8548F6</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>8562BC0E000301715DE95DAB73089362</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>8920A1C0C42179D3F2143BCCD8388E01</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>8A1599E2467E3C0FE576A8C4624C54A6</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>A2B505B1BBAEA20C5DF6A6DF0A050F0C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>EA0D50F9BA71AE72D5674299CA3674DE</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F7FC9AF05C828C390D6021BB1FAA7365</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-	</dict>
+	<dict/>
 </dict>
 </plist>

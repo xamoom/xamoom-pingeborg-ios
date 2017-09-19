@@ -1,0 +1,1 @@
+../../../JAMSVGImage/Classes/JAMSVGImage/SVG Image/JAMSVGImage.h

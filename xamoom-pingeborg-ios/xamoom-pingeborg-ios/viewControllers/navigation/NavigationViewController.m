@@ -18,10 +18,24 @@
 //
 
 #import "NavigationViewController.h"
+#import "ExtendedTabbarView.h"
+#import "ScanResultViewController.h"
 
 @interface NavigationViewController ()
 
-@property (strong, readwrite, nonatomic) REMenu *menu;
+@property (strong, nonatomic) JGProgressHUD *hud;
+@property (strong, nonatomic) ExtendedTabbarView *extendedView;
+@property (strong, nonatomic) NSLayoutConstraint *extendedViewTopConstraint;
+
+@property (strong, nonatomic) CLLocationManager *locationManager;
+@property (strong, nonatomic) CLBeaconRegion *beaconRegion;
+
+@property (strong, nonatomic) CLBeacon *lastBeacon;
+@property (strong, nonatomic) XMMContent *geofence;
+
+@property (nonatomic) double topBarOffset;
+
+@property (nonatomic) BOOL extendedViewDismissed;
 
 @end
 
@@ -31,45 +45,21 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  // Do any additional setup after loading the view.
   
-  //setting up REMenu "navbarDropdown"
-  REMenuItem *kaernten = [[REMenuItem alloc] initWithTitle:@"pingeborg Kärnten"
-                                                       image:nil
-                                            highlightedImage:nil
-                                                      action:^(REMenuItem *item) {
-                                                        [self changePingeborgSystemWithId:0];
-                                                      }];
-  
-  REMenuItem *salzburg = [[REMenuItem alloc] initWithTitle:@"pingeborg Salzburg"
-                                                     image:nil
-                                          highlightedImage:nil
-                                                    action:^(REMenuItem *item) {
-                                                      [self changePingeborgSystemWithId:1];
-                                                    }];
-  
-  
-  REMenuItem *vorarlberg = [[REMenuItem alloc] initWithTitle:@"pingeborg Vorarlberg"
-                                                       image:nil
-                                            highlightedImage:nil
-                                                      action:^(REMenuItem *item) {
-                                                        [self changePingeborgSystemWithId:2];
-                                                      }];
-  //set tags
-  kaernten.tag = 0;
-  salzburg.tag = 1;
-  vorarlberg.tag = 2;
-  
-  self.menu = [[REMenu alloc] initWithItems:@[kaernten, salzburg, vorarlberg]];
-  self.menu.textColor = [UIColor whiteColor];
-  
-  self.menu.separatorOffset = CGSizeMake(15.0, 0.0);
-  self.menu.imageOffset = CGSizeMake(5, -1);
-  self.menu.waitUntilAnimationIsComplete = NO;
-  self.menu.badgeLabelConfigurationBlock = ^(UILabel *badgeLabel, REMenuItem *item) {
-    badgeLabel.backgroundColor = [UIColor colorWithRed:0 green:179/255.0 blue:134/255.0 alpha:1];
-    badgeLabel.layer.borderColor = [UIColor colorWithRed:0.000 green:0.648 blue:0.507 alpha:1.000].CGColor;
-  };
+  self.hud = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+ 
+  self.topBarOffset = [[UIApplication sharedApplication] statusBarFrame].size.height + (double)self.navigationBar.frame.size.height;
+
+  self.delegate = self;
+  [self initExtendedView];
+  [self initBeacons];
+  [self initGeofence];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
+  [self.locationManager startRangingBeaconsInRegion:self.beaconRegion];
+  [self.locationManager startMonitoringSignificantLocationChanges];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -77,34 +67,223 @@
   // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - navbarDropdown toggle
-
-- (void)toggleMenu {
-  if (self.menu.isOpen)
-    return [self.menu close];
+- (void)initBeacons {
+  NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:@"de2b94ae-ed98-11e4-3432-78616d6f6f6d"];
   
-  [self.menu showFromNavigationController:self];
+  self.beaconRegion = [[CLBeaconRegion alloc]
+                       initWithProximityUUID:uuid
+                       major:52414
+                       identifier:@"pingeborg beacons"];
+  
+  self.locationManager = [[CLLocationManager alloc] init];
+  self.locationManager.delegate = self;
+  
+  if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
+    [self.locationManager requestAlwaysAuthorization];
+  }
+  
+  [self.locationManager startMonitoringForRegion:self.beaconRegion];
 }
 
-- (void)changePingeborgSystemWithId:(NSInteger)selectedId {
-  NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-  [userDefaults setInteger:selectedId
-                    forKey:@"pingeborgSystem"];
-  [userDefaults synchronize];
+- (void)initGeofence {
+  self.locationManager.distanceFilter = 100.0f; //meter
+  self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+  self.locationManager.activityType = CLActivityTypeOther;
+}
   
-  //[Globals sharedObject].globalSystemId = [Globals systemIdFromInteger:selectedId];
+#pragma mark - iBeacon & Geofence
+
+- (void)initExtendedView {
+  self.extendedViewDismissed = NO;
   
-  [[NSNotificationCenter defaultCenter] postNotificationName:@"PingeborgSystemChanged" object:self];
+  self.extendedView = [[[NSBundle mainBundle] loadNibNamed:@"ExtendedTabbarView" owner:self options:nil] firstObject];
+  self.extendedView.translatesAutoresizingMaskIntoConstraints = NO;
+  
+  self.extendedView.titleLabel.text = NSLocalizedString(@"Discovered pingeb.org", nil);
+  self.extendedView.descriptionLabel.text = NSLocalizedString(@"open artist description", nil);
+  self.extendedView.hidden = YES;
+  
+  [self.view insertSubview:self.extendedView atIndex:1];
+  
+  [self.extendedView addConstraint:[NSLayoutConstraint constraintWithItem:self.extendedView
+                                                                attribute:NSLayoutAttributeHeight
+                                                                relatedBy:NSLayoutRelationEqual
+                                                                   toItem:nil
+                                                                attribute:NSLayoutAttributeNotAnAttribute
+                                                               multiplier:1.0f
+                                                                 constant:160]];
+  
+  self.extendedViewTopConstraint = [NSLayoutConstraint constraintWithItem:self.extendedView
+                                                                attribute:NSLayoutAttributeBottom
+                                                                relatedBy:NSLayoutRelationEqual
+                                                                   toItem:self.view
+                                                                attribute:NSLayoutAttributeTop
+                                                               multiplier:1.0f
+                                                                 constant:0];
+  [self.view addConstraint:self.extendedViewTopConstraint];
+  
+  [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.extendedView
+                                                        attribute:NSLayoutAttributeLeading
+                                                        relatedBy:NSLayoutRelationEqual
+                                                           toItem:self.view
+                                                        attribute:NSLayoutAttributeLeading
+                                                       multiplier:1.0f
+                                                         constant:8]];
+  
+  [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.extendedView
+                                                        attribute:NSLayoutAttributeTrailing
+                                                        relatedBy:NSLayoutRelationEqual
+                                                           toItem:self.view
+                                                        attribute:NSLayoutAttributeTrailing
+                                                       multiplier:1.0f
+                                                         constant:-8]];
+  
+  [self.extendedView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickedTabbarExtendedView)]];
+  
+  UISwipeGestureRecognizer *swipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(closeExtendedView)];
+  swipeRecognizer.direction = UISwipeGestureRecognizerDirectionUp;
+  [self.extendedView addGestureRecognizer:swipeRecognizer];
 }
 
-/*
- #pragma mark - Navigation
+- (void)openExtendedView {
+  float newConstant = self.topBarOffset + 55;
+  
+  if (self.extendedViewTopConstraint.constant == newConstant) {
+    return;
+  }
+  
+  self.extendedView.hidden = NO;
+
+  [self.view layoutIfNeeded];
+  self.extendedViewTopConstraint.constant = newConstant;
+  [UIView animateWithDuration:0.7f
+                        delay:0.0f
+       usingSpringWithDamping:1.0f
+        initialSpringVelocity:18.0f
+                      options:UIViewAnimationOptionCurveEaseIn
+                   animations:^{
+                     [self.view layoutIfNeeded];
+                   }
+                   completion:^(BOOL completed){
+                   }];
+}
+
+- (void)closeExtendedView {
+  self.extendedViewDismissed = self.lastBeacon != nil;
+
+  if (self.extendedViewTopConstraint.constant == 0) {
+    return;
+  }
+  
+  [self.view layoutIfNeeded];
+  
+  self.extendedViewTopConstraint.constant = 0;
+  [UIView animateWithDuration:0.3f
+                        delay:0.0f
+       usingSpringWithDamping:5.0f
+        initialSpringVelocity:10.0f
+                      options:UIViewAnimationOptionCurveEaseIn
+                   animations:^{
+                     [self.view layoutIfNeeded];
+                   }
+                   completion:^(BOOL completed) {
+                     self.extendedView.hidden = YES;
+                   }];
+}
+
+- (void)clickedTabbarExtendedView {
+  UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+  ArtistDetailViewController *artistDetailViewController =
+  [storyboard instantiateViewControllerWithIdentifier:@"ArtistDetailView"];
+
+  if (self.lastBeacon != nil) {
+    [self.hud showInView:self.view animated:YES];
+    [[XMMEnduserApi sharedInstance] contentWithBeaconMajor:@52414 minor:self.lastBeacon.minor completion:^(XMMContent *content, NSError *error) {
+      [self.hud dismissAnimated:YES];
+      if (error != nil) {
+        [self showNetworkAlert];
+        return;
+      }
+      
+      [self closeExtendedView];
+      
+      if (![[Globals sharedObject].savedArtits containsString:content.ID]) {
+        [[Globals sharedObject] addDiscoveredArtist:content.ID];
+      }
+      artistDetailViewController.content = content;
+      artistDetailViewController.contentId = content.ID;
+      self.lastBeacon = nil;
+      [self pushViewController:artistDetailViewController animated:YES];
+    }];
+  }
+  
+  if (self.geofence != nil) {
+    if (![[Globals sharedObject].savedArtits containsString:self.geofence.ID]) {
+      [[Globals sharedObject] addDiscoveredArtist:self.geofence.ID];
+    }
+    artistDetailViewController.contentId = self.geofence.ID;
+    self.geofence = nil;
+    [self closeExtendedView];
+
+    [self pushViewController:artistDetailViewController animated:YES];
+  }
+}
+
+- (void)showNetworkAlert {
+  UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Woops" message:@"There was a network problem" preferredStyle:UIAlertControllerStyleAlert];
+  
+  [alertController addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    [alertController removeFromParentViewController];
+  }]];
+  
+  [self presentViewController:alertController animated:YES completion:nil];
+}
+
+#pragma mark - CLLocationManagerDelegate
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+  CLLocation *location = [locations firstObject];
+  
+  [[XMMEnduserApi sharedInstance] contentsWithLocation:location pageSize:10 cursor:nil sort:0 completion:^(NSArray *contents, bool hasMore, NSString *cursor, NSError *error) {
+    if (self.lastBeacon == nil && contents.count > 0) {
+      self.geofence = [contents firstObject];
+      [self openExtendedView];
+    }
+  }];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray<CLBeacon *> *)beacons inRegion:(CLBeaconRegion *)region {
+  if (beacons.count == 0) {
+    return;
+  }
+  
+  if (self.extendedViewDismissed == NO) {
+    [self openExtendedView];
+  }
+  
+  if (self.lastBeacon.minor != [beacons firstObject].minor) {
+    self.lastBeacon = [beacons firstObject];
+    self.geofence = nil;
+    [self.locationManager stopRangingBeaconsInRegion:self.beaconRegion];
+  }
+}
+
+- (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
+  [self.locationManager startRangingBeaconsInRegion:self.beaconRegion];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region {
+  [self.locationManager stopRangingBeaconsInRegion:self.beaconRegion];
+  self.lastBeacon = nil;
+  [self closeExtendedView];
+}
  
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
+#pragma mark - UINavigationControllerDelegate
+  
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+  if (viewController.class == ArtistDetailViewController.class) {
+    [self closeExtendedView];
+  }
+}
 
 @end

@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "B9556834361E3562FAF53130D9E5F3A8ECDAD5F2",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "B9556834361E3562FAF53130D9E5F3A8ECDAD5F2" : 0,
+    "B68B86FC1F426C9A73E48C104854B4C23F9B8838" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "59EDC499-E4AC-48A0-BED3-0A9804096DEA",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "B9556834361E3562FAF53130D9E5F3A8ECDAD5F2" : "xamoom-pingeborg-ios\/",
+    "B68B86FC1F426C9A73E48C104854B4C23F9B8838" : "xamoom-ios-sdk\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "pingeb.org",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "xamoom-pingeborg-ios\/pingeb.org.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/xamoom\/xamoom-ios-sdk.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "B68B86FC1F426C9A73E48C104854B4C23F9B8838"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/xamoom\/xamoom-pingeborg-ios.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "B9556834361E3562FAF53130D9E5F3A8ECDAD5F2"
+    }
+  ]
+}

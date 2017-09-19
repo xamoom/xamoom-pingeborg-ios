@@ -21,8 +21,14 @@
 #import "REMenu.h"  
 #import <JGProgressHUD/JGProgressHUD.h>
 
-@interface ArtistDetailViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
+@class GradientView;
 
-@property NSString *contentId;
+@interface ArtistDetailViewController : UIViewController <XMMContentBlocksDelegate, UITableViewDelegate, UIScrollViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UIImageView *headerImageView;
+@property (strong, nonatomic) GradientView *headerImageGradientView;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) NSString *contentId;
+@property (strong, nonatomic) NSString *locationIdentifier;
+@property (strong, nonatomic) XMMContent *content;
 @end

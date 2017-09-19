@@ -8,9 +8,11 @@
 
 "pingeb.org" = "pingeb.org";
 
-"pingeb.org Carinthia" = "pingeb.org Kärnten";
-
 "Last update: %@" = "Letztes Update: %@";
+
+"Map" = "Karte";
+
+"About" = "Über pingeb.org";
 
 /* REMenu FontSizes */
 
@@ -31,8 +33,32 @@
 /* MapkitView */
 
 "No Location" = "Kein Position gefunden";
-"Distance: %d meter" = "Entfernung: %d meter";
+"map.annotation.distance" = "Entfernung: %.0f %@";
+"map.annotation.meter" = "m";
+"map.annotation.kilometer" = "km";
 "Searching ..." = "Auf der Suche ...";
 "Nothing found near you" = "Nichts in der Nähe";
-"Discovered pingeb.org" = "pingeb.org entdeckt";
+"Discovered pingeb.org" = "Neuen Künstler entdeckt";
+"open artist description" = "Hier klicken und entdecken";
 "%lu near spots found" = "%lu Spots in der Nähe";
+
+/* MapItemDetailView */
+
+"Route" = "Navigieren";
+
+/* Bluetooth AlertView */
+
+"bluetooth alert title" = "Bluetooth";
+"bluetooth alert message" = "Wir nutzen Bluetooth um Künstler via iBeacons zu entdecken";
+"bluetoothalert.action.ok" = "OK";
+"bluetoothalert.action.dismiss" = "Nicht mehr anzeigen";
+
+/* Notification */
+
+"notification.beacon.title"="Musik & Literatur aus Kärnten";
+"notification.beacon.body"="Entdecke Neues in deiner pingeb.org App";
+
+/* NFC Alert */
+"nfc.alert.action.ok"="Ok";
+"nfc.alert.title"="NFC ungültig";
+"nfc.alert.text"="Dieser NFC Sticker ist leider ungültig, bitte probieren Sie einen anderen.";

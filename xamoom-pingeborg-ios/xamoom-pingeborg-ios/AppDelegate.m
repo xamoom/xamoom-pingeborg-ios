@@ -18,10 +18,14 @@
 //
 
 #import "AppDelegate.h"
-#import "XMMEnduserApi.h"
-#import "Globals.h"
+#import <XamoomSDK/XMMPushManager.h>
 
-@interface AppDelegate ()
+@interface AppDelegate () <XMMPushNotificationDelegate>
+
+@property (strong, nonatomic) CLLocationManager *locationManager;
+@property (strong, nonatomic) CLBeaconRegion *beaconRegion;
+@property (strong, nonatomic) XMMPushManager *pushManager;
+@property (strong, nonatomic) NavigationCoordinator *navigationCoordinator;
 
 @end
 
@@ -31,9 +35,15 @@
   //set UI colors
   [[UINavigationBar appearance] setBarTintColor:[Globals sharedObject].pingeborgYellow];
   [[UITabBar appearance] setTintColor:[Globals sharedObject].pingeborgLinkColor];
-  
+
+  [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeSound categories:nil]];
+
   //setup API
   [self setupApi];
+  [self initBeacons];
+  [self setupPushManager];
+  
+  self.navigationCoordinator = [[NavigationCoordinator alloc] initWithNavigationController: (UINavigationController *) self.window.rootViewController];
   
   return YES;
 }
@@ -49,8 +59,9 @@
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-  // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+
 }
+
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
   // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
@@ -60,18 +71,76 @@
   // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+  [self.pushManager handlePushRegistration:deviceToken];
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+  [self.pushManager handlePushRegistrationFailure:error];
+  NSLog(@"handlePushRegistrationFailure %@", error);
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+  [self.pushManager handlePushReceived:userInfo];
+  completionHandler(UIBackgroundFetchResultNoData);
+}
+
 - (void)setupApi {
   NSString *file = [[NSBundle mainBundle] pathForResource:@"apikey" ofType:@"txt"];
   NSString *apiKey = [NSString stringWithContentsOfFile:file
                                                encoding:NSUTF8StringEncoding error:NULL];
   
-  [[XMMEnduserApi sharedInstance] setApiKey:apiKey];
+  [XMMEnduserApi sharedInstanceWithKey:apiKey];
+}
+
+- (void)initBeacons {
+  NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:@"de2b94ae-ed98-11e4-3432-78616d6f6f6d"];
+  
+  self.beaconRegion = [[CLBeaconRegion alloc]
+                       initWithProximityUUID:uuid
+                       major:52414
+                       identifier:@"pingeborg beacons"];
+  
+  self.locationManager = [[CLLocationManager alloc] init];
+  self.locationManager.delegate = self;
+  
+  if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
+    [self.locationManager requestAlwaysAuthorization];
+  }
+  
+  [self.locationManager startMonitoringForRegion:self.beaconRegion];
+}
+
+- (void)setupPushManager {
+  self.pushManager = [[XMMPushManager alloc] init];
+  self.pushManager.delegate = self;
+}
+
+- (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
+  [NotificationHelper showNotificationWithTitle:
+   NSLocalizedString(@"notification.beacon.title", "")
+                                        body:
+   NSLocalizedString(@"notification.beacon.body", "")];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didExitRegion:(nonnull CLRegion *)region {
+  [NotificationHelper removeAllNotifications];
+}
+
+// will get called when the user clicks on the notification
+- (void)didClickPushNotification:(NSString *)contentId {
+  NSLog(@"Did click notification: %@", contentId);
+  
+  if (contentId != nil) {
+    [self.navigationCoordinator openArtistDetailWithContentId:contentId];
+  }
 }
 
 /**
  *  Allows the MPMoviePlayerViewController to display in landscape-mode, when you only support portrait mode.
  */
-- (NSUInteger) application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
   if ([[window.rootViewController presentedViewController]
        isKindOfClass:[MPMoviePlayerViewController class]] || [[window.rootViewController presentedViewController] isKindOfClass:NSClassFromString(@"MPInlineVideoFullscreenViewController")] || [[window.rootViewController presentedViewController] isKindOfClass:NSClassFromString(@"AVFullScreenViewController")]) {
     
@@ -98,5 +167,4 @@
   
   return UIInterfaceOrientationMaskPortrait;
 }
-
 @end

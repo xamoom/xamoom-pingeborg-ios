@@ -22,7 +22,7 @@
 #import "FeedItemCell.h"
 #import <JGProgressHUD/JGProgressHUD.h>
 
-@interface AboutViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, XMMContentBlocksDelegate>
+@interface AboutViewController : UIViewController <XMMContentBlocksDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property REMenu *fontSizeDropdownMenu;
