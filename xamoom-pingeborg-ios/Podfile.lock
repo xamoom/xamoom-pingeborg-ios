@@ -13,28 +13,36 @@ PODS:
   - GoogleUtilities (1.1.0):
     - GoogleSymbolUtilities (~> 1.0.0)
   - JAMSVGImage (1.6.1)
-  - JGProgressHUD (1.3.1)
+  - JGProgressHUD (1.4)
   - JSONAPI (1.0.7)
-  - Pushwoosh (5.3.2)
-  - QRCodeReaderViewController (4.0.1)
+  - Pushwoosh (5.3.6)
+  - QRCodeReaderViewController (4.0.2)
   - REMenu (1.10)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
   - SMCalloutView (2.1.2)
-  - XamoomSDK (3.3.0):
+  - XamoomSDK (3.5.3):
+    - XamoomSDK/Core (= 3.5.3)
+  - XamoomSDK/Core (3.5.3):
     - JAMSVGImage
     - JSONAPI (~> 1.0.0)
-    - Pushwoosh
     - SDWebImage (~> 3.7)
+  - XamoomSDK/Push (3.5.3):
+    - Pushwoosh
 
 DEPENDENCIES:
   - Google/Analytics
-  - JGProgressHUD
-  - QRCodeReaderViewController (~> 4.0.1)
+  - JGProgressHUD (~> 1.4)
+  - QRCodeReaderViewController (from `~/dev/QRCodeReaderViewController`)
   - REMenu (~> 1.10)
   - SMCalloutView
-  - XamoomSDK (~> 3.3.0)
+  - XamoomSDK (~> 3.5.3)
+  - XamoomSDK/Push (~> 3.5.3)
+
+EXTERNAL SOURCES:
+  QRCodeReaderViewController:
+    :path: ~/dev/QRCodeReaderViewController
 
 SPEC CHECKSUMS:
   Google: 8be107e3b4bbb6889ebf1f64cdd92cb87dc17a62
@@ -43,15 +51,15 @@ SPEC CHECKSUMS:
   GoogleSymbolUtilities: 82ad9f93d3615244b3f4ce440f5ab2515e8b4f56
   GoogleUtilities: 8ed9134debe11719097881711464752900668f10
   JAMSVGImage: 7aa966a310ddf5f53de295d5ce5b930df8ff1eb2
-  JGProgressHUD: 153053a21d81208cb5f659691996bcefce6a9885
+  JGProgressHUD: 1617b0940cf80bb53e8f7d6f0fd69252ea45d6d4
   JSONAPI: 8fed55fcfa08ee662674cd4f1bd03c37d8b34e03
-  Pushwoosh: 280a60e8b8d0ba0c0adc72d9dd40ec6a391cd1e6
-  QRCodeReaderViewController: 6538745c8f4ffa9407a26bd7f9489ea01739e7b0
+  Pushwoosh: 0a000167511efe3818747647adef8389ebd1644e
+  QRCodeReaderViewController: e8f27d035b3e72b1d4b1c61ff66458287e3be0ff
   REMenu: 30dad195930adf6c5eeb8041e3257aa60bf9fa49
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SMCalloutView: 4078d89b847731e514b1a919fed33b383a24a106
-  XamoomSDK: dedc4891e2cac9467f31a6fd95abf5ea9cf34935
+  XamoomSDK: 4a08d9c62a885b61ec0bb3c1df366d72e2be7db2
 
-PODFILE CHECKSUM: 06e1e517712aab44d2f5174cbd1f88e399c07fb7
+PODFILE CHECKSUM: 27121e82fbc25d3f190c16fd5a578e76f85510b6
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.3.1

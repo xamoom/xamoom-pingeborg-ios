@@ -11,6 +11,9 @@
 #import <UIKit/UIKit.h>
 #import "XMMOfflineFileManager.h"
 
+/**
+ * XMMOfflineStoreManager is used to fetch and delete entities from Core Data.
+ */
 @interface XMMOfflineStorageManager : NSObject
 
 extern NSString *const kManagedContextReadyNotification;

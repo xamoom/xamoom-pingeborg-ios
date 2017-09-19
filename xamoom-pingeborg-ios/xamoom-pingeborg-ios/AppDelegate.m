@@ -18,6 +18,7 @@
 //
 
 #import "AppDelegate.h"
+#import <XamoomSDK/XMMPushManager.h>
 
 @interface AppDelegate () <XMMPushNotificationDelegate>
 

@@ -33,6 +33,7 @@ NSString * const kFeedItemCellIdentifier = @"FeedItemCell";
 @property CLBeacon *lastBeacon;
 @property bool hasMore;
 @property bool isApiCallingBlocked;
+@property NFCHelper *nfcHelper;
 
 @end
 
@@ -55,6 +56,54 @@ NSString * const kFeedItemCellIdentifier = @"FeedItemCell";
   [self setupTableView];
   [self setupRefreshControl];
   [self detectBluetooth];
+  
+  if (@available(iOS 11.0, *)) {
+    if (NSClassFromString(@"NFCNDEFReaderSession") && NFCNDEFReaderSession.readingAvailable) {
+      self.nfcHelper = [[NFCHelper alloc] init];
+      
+      FeedTableViewController __weak *weakSelf = self;
+      self.nfcHelper.onNFCResult = ^(BOOL hasMore, NSString *payload) {
+        if (![payload containsString:@"xm.gl"] &&
+            ![payload containsString:@"m.pingeb.org"]) {
+          UIAlertController *alert = [UIAlertController
+                                      alertControllerWithTitle:NSLocalizedString(@"nfc.alert.title", @"")
+                                      message:NSLocalizedString(@"nfc.alert.text", @"")
+                                      preferredStyle:UIAlertControllerStyleAlert];
+          [alert addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"nfc.alert.action.ok", "") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [alert dismissViewControllerAnimated:YES completion:nil];
+          }]];
+          [weakSelf presentViewController:alert animated:YES completion:nil];
+          
+          return;
+        }
+        
+        NSString *urlString = [payload stringByReplacingOccurrencesOfString:@"03" withString:@""];
+        NSURL *url = [[NSURL alloc] initWithString:urlString];
+        NSString *locId = [url lastPathComponent];
+        
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        ArtistDetailViewController *artistDetailViewController =
+        [storyboard instantiateViewControllerWithIdentifier:@"ArtistDetailView"];
+        artistDetailViewController.locationIdentifier = locId;
+        dispatch_async(dispatch_get_main_queue(), ^{
+          [weakSelf.navigationController pushViewController:artistDetailViewController animated:YES];
+        });
+      };
+      
+      UIBarButtonItem *nfcButton = [[UIBarButtonItem alloc]
+                                    initWithTitle:@"NFC"
+                                    style:UIBarButtonItemStylePlain
+                                    target:self
+                                    action:@selector(didClickNFC)];
+      [self.parentViewController.navigationItem setRightBarButtonItem: nfcButton];
+    }
+  } else {
+    // Fallback on earlier versions
+  }
+}
+
+- (void)didClickNFC {
+  [self.nfcHelper startNFCScanning];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -219,7 +268,7 @@ NSString * const kFeedItemCellIdentifier = @"FeedItemCell";
     [self showBlueToothAlert];
   }
 }
-  
+
 - (void)showBlueToothAlert {
   UIAlertController * alert = [UIAlertController
                                alertControllerWithTitle:NSLocalizedString(@"bluetooth alert title", nil)

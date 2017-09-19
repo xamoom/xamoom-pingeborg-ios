@@ -38,6 +38,7 @@
 @property (nonatomic) UIColor *androidColor;
 @property (nonatomic) UIColor *windowsColor;
 @property (nonatomic) UIColor *instagramColor;
+@property (nonatomic) UIColor *phoneColor;
 
 - (void)openLink;
 

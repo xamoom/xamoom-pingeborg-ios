@@ -73,8 +73,9 @@ static int kHeaderViewHeight = 200;
   [super didReceiveMemoryWarning];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-  [super viewDidAppear:animated];
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  
   self.headerView = self.tableView.tableHeaderView;
   self.tableView.tableHeaderView = nil;
   [self.tableView addSubview:self.headerView];
@@ -83,6 +84,10 @@ static int kHeaderViewHeight = 200;
     self.tableView.contentInset = UIEdgeInsetsMake(kHeaderViewHeight, 0, 0, 0);
     self.tableView.contentOffset = CGPointMake(0, -kHeaderViewHeight);
   }
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
@@ -138,7 +143,7 @@ static int kHeaderViewHeight = 200;
                                                                  style:UIBarButtonItemStylePlain
                                                                 target:self
                                                                 action:@selector(toggleFontSizeDropdownMenu)];
-  self.navigationItem.rightBarButtonItem = buttonItem;
+  // self.navigationItem.rightBarButtonItem = buttonItem;
 }
 
 - (void)setupContentBlocks {

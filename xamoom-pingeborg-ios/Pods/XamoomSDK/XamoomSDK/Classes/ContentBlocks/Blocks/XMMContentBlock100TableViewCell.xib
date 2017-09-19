@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13168.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13147.4"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -16,7 +20,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="202"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="202"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="201.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" text="The Title" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YCE-yb-Hto">
@@ -35,10 +39,10 @@
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="YCE-yb-Hto" secondAttribute="trailing" constant="8" id="6f3-mg-7Ju"/>
                     <constraint firstItem="hdI-Mw-WD2" firstAttribute="top" secondItem="YCE-yb-Hto" secondAttribute="bottom" constant="8" id="9qT-fc-VXr"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="hdI-Mw-WD2" secondAttribute="trailing" id="ZSo-W8-BlY"/>
+                    <constraint firstAttribute="trailing" secondItem="hdI-Mw-WD2" secondAttribute="trailing" constant="8" id="ZSo-W8-BlY"/>
                     <constraint firstAttribute="bottom" secondItem="hdI-Mw-WD2" secondAttribute="bottom" constant="8" id="hAY-0z-P0p"/>
                     <constraint firstItem="YCE-yb-Hto" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="i4b-LX-lBM"/>
-                    <constraint firstAttribute="leadingMargin" secondItem="hdI-Mw-WD2" secondAttribute="leading" id="ucX-SN-6T6"/>
+                    <constraint firstAttribute="leading" secondItem="hdI-Mw-WD2" secondAttribute="leading" constant="-8" id="ucX-SN-6T6"/>
                     <constraint firstItem="YCE-yb-Hto" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="wkf-Th-yub"/>
                 </constraints>
             </tableViewCellContentView>

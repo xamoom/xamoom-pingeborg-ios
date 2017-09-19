@@ -1,9 +1,13 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -12,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="482" height="180"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OY2-tF-H3e" id="EiK-aS-q9u">
-                <rect key="frame" x="0.0" y="0.0" width="482" height="179"/>
+                <rect key="frame" x="0.0" y="0.0" width="482" height="179.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RLb-uj-IBD">
@@ -24,7 +28,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="1000" text="Lorem Ipsum Lorem Ipsum Lorem" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4wb-79-OqP">
                                 <rect key="frame" x="8" y="13" width="466" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -37,20 +41,20 @@
                     </view>
                     <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XeV-xf-ZXR">
                         <rect key="frame" x="0.0" y="0.0" width="482" height="179"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottomMargin" secondItem="4MJ-4A-8g2" secondAttribute="bottom" constant="-8" id="5Pj-8D-K4P"/>
+                    <constraint firstAttribute="bottom" secondItem="4MJ-4A-8g2" secondAttribute="bottom" constant="0.5" id="5Pj-8D-K4P"/>
                     <constraint firstItem="XeV-xf-ZXR" firstAttribute="top" secondItem="RLb-uj-IBD" secondAttribute="top" id="7fD-LG-20h"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="4MJ-4A-8g2" secondAttribute="trailing" constant="-8" id="8hb-sL-zQD"/>
+                    <constraint firstAttribute="trailing" secondItem="4MJ-4A-8g2" secondAttribute="trailing" id="8hb-sL-zQD"/>
                     <constraint firstAttribute="bottom" secondItem="RLb-uj-IBD" secondAttribute="bottom" id="9Zg-hV-zIi"/>
                     <constraint firstItem="RLb-uj-IBD" firstAttribute="bottom" secondItem="EiK-aS-q9u" secondAttribute="bottomMargin" constant="8" id="CRR-0m-1Ae"/>
                     <constraint firstItem="RLb-uj-IBD" firstAttribute="top" secondItem="EiK-aS-q9u" secondAttribute="top" id="Cw7-Q0-4Ll"/>
                     <constraint firstItem="XeV-xf-ZXR" firstAttribute="leading" secondItem="RLb-uj-IBD" secondAttribute="leading" id="H1X-bp-xtb"/>
                     <constraint firstAttribute="trailing" secondItem="RLb-uj-IBD" secondAttribute="trailing" id="J1e-FZ-CyI"/>
                     <constraint firstItem="XeV-xf-ZXR" firstAttribute="trailing" secondItem="RLb-uj-IBD" secondAttribute="trailing" id="gIx-jk-uyA"/>
-                    <constraint firstItem="4MJ-4A-8g2" firstAttribute="leading" secondItem="EiK-aS-q9u" secondAttribute="leadingMargin" constant="-8" id="lwq-AP-RLC"/>
+                    <constraint firstItem="4MJ-4A-8g2" firstAttribute="leading" secondItem="EiK-aS-q9u" secondAttribute="leading" id="lwq-AP-RLC"/>
                     <constraint firstItem="RLb-uj-IBD" firstAttribute="leading" secondItem="EiK-aS-q9u" secondAttribute="leading" id="mXs-PU-FUt"/>
                     <constraint firstItem="XeV-xf-ZXR" firstAttribute="bottom" secondItem="RLb-uj-IBD" secondAttribute="bottom" id="wDe-Ts-kwj"/>
                 </constraints>

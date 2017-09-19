@@ -18,4 +18,3 @@ FOUNDATION_EXPORT const unsigned char XamoomSDKVersionString[];
 
 #import <XamoomSDK/XMMEnduserApi.h>
 #import <XamoomSDK/XMMContentBlocks.h>
-#import <XamoomSDK/XMMPushManager.h>

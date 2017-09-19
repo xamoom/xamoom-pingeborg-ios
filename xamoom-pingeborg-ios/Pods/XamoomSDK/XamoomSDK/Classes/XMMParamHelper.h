@@ -14,24 +14,39 @@
 
 + (NSDictionary *)paramsWithLanguage:(NSString *)language;
 
-+ (NSDictionary *)paramsWithLanguage:(NSString *)language locationIdentifier:(NSString *)identifier;
++ (NSDictionary *)paramsWithLanguage:(NSString *)language
+                  locationIdentifier:(NSString *)identifier;
 
-+ (NSDictionary *)paramsWithLanguage:(NSString *)language location:(CLLocation *)location;
++ (NSDictionary *)paramsWithLanguage:(NSString *)language
+                            location:(CLLocation *)location;
 
-+ (NSDictionary *)paramsWithLanguage:(NSString *)language tags:(NSArray *)tags;
++ (NSDictionary *)paramsWithLanguage:(NSString *)language
+                                tags:(NSArray *)tags;
 
-+ (NSDictionary *)paramsWithLanguage:(NSString *)language name:(NSString *)name;
++ (NSDictionary *)paramsWithLanguage:(NSString *)language
+                                name:(NSString *)name;
 
-+ (NSDictionary *)paramsWithLanguage:(NSString *)language location:(CLLocation *)location radius:(int) radius;
++ (NSDictionary *)paramsWithLanguage:(NSString *)language
+                            location:(CLLocation *)location
+                              radius:(int) radius;
 
-+ (NSDictionary *)addPagingToParams:(NSDictionary *)params pageSize:(int)pageSize cursor:(NSString *)cursor;
++ (NSDictionary *)addPagingToParams:(NSDictionary *)params
+                           pageSize:(int)pageSize
+                             cursor:(NSString *)cursor;
 
-+ (NSDictionary *)addContentOptionsToParams:(NSDictionary *)params options:(XMMContentOptions)options;
++ (NSDictionary *)addContentOptionsToParams:(NSDictionary *)params
+                                    options:(XMMContentOptions)options;
 
-+ (NSDictionary *)addContentSortOptionsToParams:(NSDictionary *)params options:(XMMContentSortOptions)options;
++ (NSDictionary *)addContentSortOptionsToParams:(NSDictionary *)params
+                                        options:(XMMContentSortOptions)options;
 
-+ (NSDictionary *)addSpotOptionsToParams:(NSDictionary *)params options:(XMMSpotOptions)options;
++ (NSDictionary *)addSpotOptionsToParams:(NSDictionary *)params
+                                 options:(XMMSpotOptions)options;
 
-+ (NSDictionary *)addSpotSortOptionsToParams:(NSDictionary *)params options:(XMMSpotSortOptions)options;
++ (NSDictionary *)addSpotSortOptionsToParams:(NSDictionary *)params
+                                     options:(XMMSpotSortOptions)options;
+
++ (NSDictionary *)addConditionsToParams:(NSDictionary *)params
+                             conditions:(NSDictionary *)conditions;
 
 @end

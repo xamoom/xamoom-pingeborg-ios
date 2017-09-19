@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13168.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13147.4"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="328" height="77"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="328" height="77"/>
+                <rect key="frame" x="0.0" y="0.0" width="328" height="76.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="grh-BE-wCl">
@@ -60,8 +59,8 @@
                 <constraints>
                     <constraint firstItem="grh-BE-wCl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="GGX-C4-at4"/>
                     <constraint firstAttribute="bottom" secondItem="grh-BE-wCl" secondAttribute="bottom" constant="8" id="bXT-PT-TH2"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="grh-BE-wCl" secondAttribute="trailing" id="cFt-xO-Knu"/>
-                    <constraint firstAttribute="leadingMargin" secondItem="grh-BE-wCl" secondAttribute="leading" id="qHu-I2-qxj"/>
+                    <constraint firstAttribute="trailing" secondItem="grh-BE-wCl" secondAttribute="trailing" constant="8" id="cFt-xO-Knu"/>
+                    <constraint firstAttribute="leading" secondItem="grh-BE-wCl" secondAttribute="leading" constant="-8" id="qHu-I2-qxj"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

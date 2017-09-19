@@ -9,6 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "XMMOfflineDownloadManager.h"
 
+/**
+ * XMMOfflineFileManager is used to save downloaded data from backend.
+ * This will save the files with hashed filenames in the internal storage.
+ */
 @interface XMMOfflineFileManager : NSObject
 
 extern NSString *const kXamoomOfflineSaveFileFromUrlError;

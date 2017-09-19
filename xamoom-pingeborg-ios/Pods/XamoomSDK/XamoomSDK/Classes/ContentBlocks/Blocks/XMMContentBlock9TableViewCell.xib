@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13168.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13147.4"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -42,8 +41,8 @@
                     <constraint firstItem="Yc2-J7-ehg" firstAttribute="top" secondItem="Hk4-tD-Bjj" secondAttribute="bottom" constant="8" id="BnW-0t-u6Y"/>
                     <constraint firstItem="Yc2-J7-ehg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Cy8-7X-iov"/>
                     <constraint firstAttribute="bottom" secondItem="Yc2-J7-ehg" secondAttribute="bottom" constant="8" id="Iry-cl-yze"/>
-                    <constraint firstItem="Hk4-tD-Bjj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="oPE-rF-wg7"/>
-                    <constraint firstItem="Hk4-tD-Bjj" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="ocB-hT-T8Z"/>
+                    <constraint firstItem="Hk4-tD-Bjj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="oPE-rF-wg7"/>
+                    <constraint firstItem="Hk4-tD-Bjj" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailing" constant="-8" id="ocB-hT-T8Z"/>
                     <constraint firstItem="iQH-Us-jU4" firstAttribute="centerY" secondItem="Yc2-J7-ehg" secondAttribute="centerY" id="yfR-Di-q0h"/>
                 </constraints>
             </tableViewCellContentView>

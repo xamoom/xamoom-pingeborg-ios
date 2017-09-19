@@ -26,7 +26,6 @@ FOUNDATION_EXPORT const unsigned char XMMMusicPlayerVersionString[];
  * Notify delegate with the actual remaining song time.
  *
  * @param remainingSongTime - Remaining song time as string with format 0:00
- * @return void
  */
 - (void)didUpdateRemainingSongTime:(NSString*)remainingSongTime;
 
