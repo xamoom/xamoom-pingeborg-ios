@@ -409,4 +409,9 @@ extern NSString * const kApiBaseURLString;
  */
 - (NSURLSessionDataTask *)menuWithID:(NSString *)menuID completion:(void (^)(XMMMenu *menu, NSError *error))completion;
 
+/**
+ *
+ */
+- (NSString *)customUserAgentFrom:(NSString *)appName;
+
 @end

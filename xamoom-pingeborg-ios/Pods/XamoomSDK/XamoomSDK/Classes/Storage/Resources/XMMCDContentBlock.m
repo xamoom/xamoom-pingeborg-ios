@@ -29,6 +29,9 @@
 @dynamic showContent;
 @dynamic altText;
 @dynamic copyright;
+@dynamic contentListTags;
+@dynamic contentListPageSize;
+@dynamic contentListSortAsc;
 
 + (NSString *)coreDataEntityName {
   return NSStringFromClass([self class]);
@@ -83,6 +86,9 @@
   savedContentBlock.showContent = [NSNumber numberWithBool:contentBlock.showContent];
   savedContentBlock.altText = contentBlock.altText;
   savedContentBlock.copyright = contentBlock.copyright;
+  savedContentBlock.contentListTags = contentBlock.contentListTags;
+  savedContentBlock.contentListPageSize = [NSNumber numberWithInt:contentBlock.contentListPageSize];
+  savedContentBlock.contentListSortAsc = [NSNumber numberWithBool:contentBlock.contentListSortAsc];
   
   [[XMMOfflineStorageManager sharedInstance] save];
   

@@ -38,6 +38,7 @@
 }
 
 - (void)prepareForReuse {
+  [super prepareForReuse];
   [self.blockImageView removeConstraint:self.imageRatioConstraint];
   self.horizontalSpacingImageTitleConstraint.constant = 8;
   self.imageLeftHorizontalSpaceConstraint.constant = 0;

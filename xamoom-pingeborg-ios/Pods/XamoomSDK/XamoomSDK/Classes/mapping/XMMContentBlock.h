@@ -62,4 +62,10 @@
 
 @property (nonatomic) NSString *copyright;
 
+@property (nonatomic) NSArray *contentListTags;
+
+@property (nonatomic) int contentListPageSize;
+
+@property (nonatomic) BOOL contentListSortAsc;
+
 @end

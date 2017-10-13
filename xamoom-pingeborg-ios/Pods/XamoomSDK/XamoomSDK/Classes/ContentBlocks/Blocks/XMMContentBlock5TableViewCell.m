@@ -40,6 +40,7 @@
 }
 
 - (void)prepareForReuse {
+  [super prepareForReuse];
   self.titleLabel.text = nil;
   self.artistLabel.text = nil;
 }

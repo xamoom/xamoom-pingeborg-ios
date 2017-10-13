@@ -20,6 +20,7 @@
 #import "XMMContentBlock7TableViewCell.h"
 #import "XMMContentBlock8TableViewCell.h"
 #import "XMMContentBlock9TableViewCell.h"
+#import "XMMContentBlock11TableViewCell.h"
 #import "UIImage+animatedGIF.h"
 #import "UIColor+HexString.h"
 
@@ -65,6 +66,7 @@ typedef NS_OPTIONS(NSInteger, TextFontSize) {
 @property (nonatomic, retain) id<XMMContentBlocksDelegate> delegate;
 @property (nonatomic, strong) XMMEnduserApi *api;
 @property (nonatomic, strong) XMMStyle *style;
+@property (nonatomic, strong) XMMListManager *listManager;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *items;
 @property (nonatomic, strong) UIColor *linkColor;

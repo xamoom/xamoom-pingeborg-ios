@@ -7,6 +7,7 @@
 
 
 #import "XMMParamHelper.h"
+#import "NSDate+ISODate.h"
 
 @implementation XMMParamHelper
 
@@ -209,10 +210,7 @@
   
   if ([condition isKindOfClass:[NSDate class]]) {
     NSDate *date = (NSDate *)condition;
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
-    return [dateFormatter stringFromDate:date];
+    return [date ISO8601];
   }
   
   return nil;

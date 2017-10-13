@@ -55,11 +55,9 @@ static XMMEnduserApi *sharedInstance;
   self.offlineApi = [[XMMOfflineApi alloc] init];
   [XMMOfflineStorageManager sharedInstance];
   
-  
-  
   NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
   [config setHTTPAdditionalHeaders:@{@"Content-Type":kHTTPContentType,
-                                     @"User-Agent":[self customUserAgent],
+                                     @"User-Agent":[self customUserAgentFrom:nil],
                                      @"APIKEY":apikey,}];
   
   self.restClient = [[XMMRestClient alloc] initWithBaseUrl:[NSURL URLWithString: kApiBaseURLString]
@@ -159,6 +157,15 @@ static XMMEnduserApi *sharedInstance;
     [self.offlineApi contentWithLocationIdentifier:locationIdentifier completion:completion];
     return nil;
   }
+  NSMutableDictionary *mutableConditions = nil;
+  if (conditions == nil) {
+    mutableConditions = [[NSMutableDictionary alloc] init];
+  } else {
+    mutableConditions = [conditions mutableCopy];
+  }
+
+  [mutableConditions setObject:[[NSDate alloc] init] forKey:@"x-datetime"];
+  conditions = mutableConditions;
   
   NSDictionary *params = [XMMParamHelper paramsWithLanguage:self.language locationIdentifier:locationIdentifier];
   params = [XMMParamHelper addContentOptionsToParams:params options:options];
@@ -487,7 +494,7 @@ static XMMEnduserApi *sharedInstance;
 
 #pragma mark - Helper
 
-- (NSString *)customUserAgent {
+- (NSString *)customUserAgentFrom:(NSString *)appName {
   NSBundle *bundle = [NSBundle bundleForClass:[XMMEnduserApi class]];
   NSURL *url = [bundle URLForResource:@"XamoomSDK" withExtension:@"bundle"];
   NSBundle *nibBundle;
@@ -499,9 +506,16 @@ static XMMEnduserApi *sharedInstance;
   NSDictionary *infoDict = [nibBundle infoDictionary];
   NSString *sdkVersion = [infoDict objectForKey:@"CFBundleShortVersionString"];
   
+  if (appName == nil) {
+    appName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"];
+  }
+  NSData *asciiStringData = [appName dataUsingEncoding:NSASCIIStringEncoding
+                              allowLossyConversion:YES];
+  appName = [[NSString alloc] initWithData:asciiStringData
+                                                encoding:NSASCIIStringEncoding];
   NSString *customUserAgent = [NSString stringWithFormat:@"%@|%@|%@",
                                kHTTPUserAgent,
-                               [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleName"],
+                               appName,
                                sdkVersion];
   return customUserAgent;
 }
