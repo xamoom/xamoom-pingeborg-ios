@@ -58,6 +58,7 @@
 }
 
 - (void)prepareForReuse {
+  [super prepareForReuse];
   self.linkTextLabel.text = nil;
   self.titleLabel.text = nil;
   self.linkUrl = nil;

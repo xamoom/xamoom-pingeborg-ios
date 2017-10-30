@@ -30,5 +30,8 @@
 @property (nonatomic) NSNumber *showContent;
 @property (nonatomic) NSString *altText;
 @property (nonatomic) NSString *copyright;
+@property (nonatomic) NSArray *contentListTags;
+@property (nonatomic) NSNumber *contentListPageSize;
+@property (nonatomic) NSNumber *contentListSortAsc;
 
 @end

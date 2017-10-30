@@ -1,40 +1,31 @@
 PODS:
-  - Google/Analytics (1.0.7):
+  - FirebaseAnalytics (3.9.0):
+    - FirebaseCore (~> 3.6)
+    - FirebaseInstanceID (~> 1.0)
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - FirebaseCore (3.6.0):
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - FirebaseInstanceID (1.0.10):
+    - FirebaseCore (~> 3.6)
+  - Google/Analytics (3.1.0):
     - Google/Core
     - GoogleAnalytics (~> 3.12)
-  - Google/Core (1.0.7):
-    - GoogleNetworkingUtilities (~> 1.0)
-    - GoogleSymbolUtilities (~> 1.0)
-    - GoogleUtilities (~> 1.0)
-  - GoogleAnalytics (3.14.0)
-  - GoogleNetworkingUtilities (1.0.0):
-    - GoogleSymbolUtilities (~> 1.0)
-  - GoogleSymbolUtilities (1.0.3)
-  - GoogleUtilities (1.1.0):
-    - GoogleSymbolUtilities (~> 1.0.0)
+  - Google/Core (3.1.0):
+    - FirebaseAnalytics (~> 3.2)
+  - GoogleAnalytics (3.17.0)
+  - GoogleToolboxForMac/Defines (2.1.3)
+  - GoogleToolboxForMac/NSData+zlib (2.1.3):
+    - GoogleToolboxForMac/Defines (= 2.1.3)
   - JAMSVGImage (1.6.1)
   - JGProgressHUD (1.4)
   - JSONAPI (1.0.7)
-<<<<<<< Updated upstream
-  - Pushwoosh (5.3.6)
-=======
   - Pushwoosh (5.4.0)
->>>>>>> Stashed changes
   - QRCodeReaderViewController (4.0.2)
   - REMenu (1.10)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
-  - SMCalloutView (2.1.2)
-<<<<<<< Updated upstream
-  - XamoomSDK (3.5.3):
-    - XamoomSDK/Core (= 3.5.3)
-  - XamoomSDK/Core (3.5.3):
-    - JAMSVGImage
-    - JSONAPI (~> 1.0.0)
-    - SDWebImage (~> 3.7)
-  - XamoomSDK/Push (3.5.3):
-=======
+  - SMCalloutView (2.1.5)
   - XamoomSDK (3.7.0):
     - XamoomSDK/Core (= 3.7.0)
   - XamoomSDK/Core (3.7.0):
@@ -42,7 +33,6 @@ PODS:
     - JSONAPI (~> 1.0.0)
     - SDWebImage (~> 3.7)
   - XamoomSDK/Push (3.7.0):
->>>>>>> Stashed changes
     - Pushwoosh
 
 DEPENDENCIES:
@@ -51,44 +41,30 @@ DEPENDENCIES:
   - QRCodeReaderViewController (from `~/dev/QRCodeReaderViewController`)
   - REMenu (~> 1.10)
   - SMCalloutView
-<<<<<<< Updated upstream
-  - XamoomSDK (~> 3.5.3)
-  - XamoomSDK/Push (~> 3.5.3)
-=======
   - XamoomSDK (~> 3.7.0)
   - XamoomSDK/Push (~> 3.7.0)
->>>>>>> Stashed changes
 
 EXTERNAL SOURCES:
   QRCodeReaderViewController:
     :path: ~/dev/QRCodeReaderViewController
 
 SPEC CHECKSUMS:
-  Google: 8be107e3b4bbb6889ebf1f64cdd92cb87dc17a62
-  GoogleAnalytics: 9be1afdb8deeac4bb5f13ca7f7d3b9db2a1f43dc
-  GoogleNetworkingUtilities: 292992ab31b7b4ba32809a0e8b40e324cdfb2c0c
-  GoogleSymbolUtilities: 82ad9f93d3615244b3f4ce440f5ab2515e8b4f56
-  GoogleUtilities: 8ed9134debe11719097881711464752900668f10
+  FirebaseAnalytics: e5fe8486efc01bec33f6bf82e2fa9fce4b124052
+  FirebaseCore: 9691ee2ade70c098d7cf92440f4303f16d83ca75
+  FirebaseInstanceID: b9eedd6846fb5e1f0f7279e1deaa7a7e4cf8392e
+  Google: 98da4b1a60ed0beb80a290387a28333406a1eb90
+  GoogleAnalytics: f42cc53a87a51fe94334821868d9c8481ff47a7b
+  GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
   JAMSVGImage: 7aa966a310ddf5f53de295d5ce5b930df8ff1eb2
   JGProgressHUD: 1617b0940cf80bb53e8f7d6f0fd69252ea45d6d4
   JSONAPI: 8fed55fcfa08ee662674cd4f1bd03c37d8b34e03
-<<<<<<< Updated upstream
-  Pushwoosh: 0a000167511efe3818747647adef8389ebd1644e
-=======
   Pushwoosh: 933203afdb61f495147643b75f6dbf9c401c5f9a
->>>>>>> Stashed changes
   QRCodeReaderViewController: e8f27d035b3e72b1d4b1c61ff66458287e3be0ff
   REMenu: 30dad195930adf6c5eeb8041e3257aa60bf9fa49
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
-  SMCalloutView: 4078d89b847731e514b1a919fed33b383a24a106
-<<<<<<< Updated upstream
-  XamoomSDK: 4a08d9c62a885b61ec0bb3c1df366d72e2be7db2
-
-PODFILE CHECKSUM: 27121e82fbc25d3f190c16fd5a578e76f85510b6
-=======
+  SMCalloutView: 5c0ee363dc8e7204b2fda17dfad38c93e9e23481
   XamoomSDK: 592d1c8e86048b83e8f6720292dc3e848db324f6
 
 PODFILE CHECKSUM: c3b50b964f5087e86adac584b8bf7b09896166bf
->>>>>>> Stashed changes
 
 COCOAPODS: 1.3.1

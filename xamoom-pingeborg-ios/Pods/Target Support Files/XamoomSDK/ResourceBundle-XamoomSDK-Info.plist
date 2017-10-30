@@ -13,11 +13,7 @@
   <key>CFBundlePackageType</key>
   <string>BNDL</string>
   <key>CFBundleShortVersionString</key>
-<<<<<<< Updated upstream
-  <string>3.5.3</string>
-=======
   <string>3.7.0</string>
->>>>>>> Stashed changes
   <key>CFBundleSignature</key>
   <string>????</string>
   <key>CFBundleVersion</key>

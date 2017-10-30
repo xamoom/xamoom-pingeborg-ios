@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '548F15811CBD2F6B0E0D21986331349E'
+               BlueprintIdentifier = 'CAB910AFCAD8C639D0726FBCEC709DE4'
                BlueprintName = 'REMenu'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libREMenu.a'>

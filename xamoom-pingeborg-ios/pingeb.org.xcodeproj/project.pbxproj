@@ -711,7 +711,7 @@
 				CODE_SIGN_ENTITLEMENTS = pingeb.org.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Bruno Hautzenberger (L86QBJXNW2)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 53;
+				CURRENT_PROJECT_VERSION = 54;
 				DEVELOPMENT_TEAM = 55MDUF7392;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -744,7 +744,7 @@
 				CODE_SIGN_ENTITLEMENTS = pingeb.org.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: xamoom GmbH (55MDUF7392)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 53;
+				CURRENT_PROJECT_VERSION = 54;
 				DEVELOPMENT_TEAM = 55MDUF7392;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

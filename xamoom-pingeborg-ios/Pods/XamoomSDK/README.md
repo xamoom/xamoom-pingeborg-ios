@@ -20,11 +20,7 @@ Download the XamoomSDK and add it to your project, build it and use the framewor
 
 Add in your podfile
 
-<<<<<<< Updated upstream
-    pod 'XamoomSDK', '~> 3.5.3'
-=======
     pod 'XamoomSDK', '~> 3.7.0'
->>>>>>> Stashed changes
 
 Install pods via terminal
 
