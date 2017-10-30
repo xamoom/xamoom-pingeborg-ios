@@ -246,6 +246,8 @@ extern NSString * const kApiBaseURLString;
  */
 - (NSURLSessionDataTask *)contentsWithTags:(NSArray *)tags pageSize:(int)pageSize cursor:(NSString *)cursor sort:(XMMContentSortOptions)sortOptions completion:(void (^)(NSArray *contents, bool hasMore, NSString *cursor, NSError *error))completion;
 
+- (NSURLSessionDataTask *)contentsWithTags:(NSArray *)tags pageSize:(int)pageSize cursor:(NSString *)cursor sort:(XMMContentSortOptions)sortOptions filter:(XMMFilter *)filter completion:(void (^)(NSArray *contents, bool hasMore, NSString *cursor, NSError *error))completion;
+
 /**
  * API call to fulltext-search contents for name and tags.
  *
@@ -262,6 +264,27 @@ extern NSString * const kApiBaseURLString;
  */
 - (NSURLSessionDataTask *)contentsWithName:(NSString *)name pageSize:(int)pageSize cursor:(NSString *)cursor sort:(XMMContentSortOptions)sortOptions completion:(void (^)(NSArray *contents, bool hasMore, NSString *cursor, NSError *error))completion;
 
+- (NSURLSessionDataTask *)contentsWithName:(NSString *)name pageSize:(int)pageSize cursor:(NSString *)cursor sort:(XMMContentSortOptions)sortOptions filter:(XMMFilter *)filter completion:(void (^)(NSArray *contents, bool hasMore, NSString *cursor, NSError *error))completion;
+
+/**
+ * API call to filter contents with a special date or between to dates.
+ *
+ * fromDate or toDate must be set, if you want to query for a date.
+ *
+ * @param fromDate Start date of an event
+ * @param toDate End date of an event
+ * @param pageSize PageSize you want to get from xamoom cloud
+ * @param cursor Needed when paging, can be null
+ * @param sortOptions XMMContentSortOptions to sort result
+ * @param completion Completion block called after finishing network request
+ * - *param1* contents Contents from xamoom system
+ * - *param2* hasMore True if more items on xamoom cloud
+ * - *param3* cursor Cursor for paging
+ * - *param4* error NSError, can be null
+ * @return SessionDataTask used to download from the backend.
+ */
+- (NSURLSessionDataTask *)contentsFrom:(NSDate * _Nullable)fromDate to:(NSDate * _Nullable)toDate relatedSpot:(NSString *)relatedSpotID pageSize:(int)pageSize cursor:(NSString * _Nullable)cursor sort:(XMMContentSortOptions)sortOptions completion:(void (^_Nullable)(NSArray * _Nullable contents, bool hasMore, NSString * _Nullable cursor, NSError * _Nullable error))completion;
+
 /**
  * API call to get a spot with specific id.
  *
@@ -271,7 +294,7 @@ extern NSString * const kApiBaseURLString;
  * - *param2* error NSError, can be null
  * @return SessionDataTask used to download from the backend.
  */
-- (NSURLSessionDataTask *)spotWithID:(NSString *)spotID completion:(void(^)(XMMSpot *spot, NSError *error))completion;
+- (NSURLSessionDataTask *)spotWithID:(NSString *)spotID completion:(void(^_Nullable)(XMMSpot * _Nullable spot, NSError * _Nullable error))completion;
 
 /**
  * API call to get a spot with specific id.

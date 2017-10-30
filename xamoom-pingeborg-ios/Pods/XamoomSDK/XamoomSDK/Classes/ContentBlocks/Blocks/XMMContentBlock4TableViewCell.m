@@ -21,6 +21,7 @@
   self.linkTextLabel.text = nil;
   self.titleLabel.text = nil;
   self.linkUrl = nil;
+  self.linkType = -1;
 
   [self setupColors];
   [self setupBundle];
@@ -64,7 +65,18 @@
 
 - (void)openLink {
   //open link in safari
-  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.linkUrl]];
+  if (self.linkType == 11) {
+     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[self cleanPhoneNumber:self.linkUrl]]];
+  } else {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.linkUrl]];
+  }
+}
+
+- (NSString *)cleanPhoneNumber:(NSString *)phoneNumber {
+  phoneNumber = [phoneNumber stringByReplacingOccurrencesOfString:@"(" withString:@""];
+  phoneNumber = [phoneNumber stringByReplacingOccurrencesOfString:@")" withString:@""];
+  phoneNumber = [phoneNumber stringByReplacingOccurrencesOfString:@" " withString:@""];
+  return phoneNumber;
 }
 
 - (void)configureForCell:(XMMContentBlock *)block tableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath style:(XMMStyle *)style offline:(BOOL)offline {
@@ -76,6 +88,7 @@
   
   self.linkTextLabel.text = block.text;
   self.linkUrl = block.linkUrl;
+  self.linkType = block.linkType;
   
   [self changeStyleAccordingToLinkType:block.linkType];
 }

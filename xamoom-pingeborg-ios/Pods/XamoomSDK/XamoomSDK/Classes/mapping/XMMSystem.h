@@ -22,6 +22,7 @@
 
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *url;
+@property (strong, nonatomic) NSString *webClientUrl;
 @property (strong, nonatomic) XMMSystemSettings *setting;
 @property (strong, nonatomic) XMMStyle *style;
 @property (strong, nonatomic) XMMMenu *menu;

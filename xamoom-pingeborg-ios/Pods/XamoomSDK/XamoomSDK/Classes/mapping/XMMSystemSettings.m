@@ -26,6 +26,7 @@ static JSONAPIResourceDescriptor *__descriptor = nil;
     
     [__descriptor addProperty:@"googlePlayAppId" withDescription:[[JSONAPIPropertyDescriptor alloc] initWithJsonName:@"app-id-google-play"]];
     [__descriptor addProperty:@"itunesAppId" withDescription:[[JSONAPIPropertyDescriptor alloc] initWithJsonName:@"app-id-itunes"]];
+    [__descriptor addProperty:@"socialSharingEnabled" withDescription:[[JSONAPIPropertyDescriptor alloc] initWithJsonName:@"is-social-sharing-active"]];
   });
   
   return __descriptor;
@@ -42,6 +43,7 @@ static JSONAPIResourceDescriptor *__descriptor = nil;
     self.ID = savedSettings.jsonID;
     self.googlePlayAppId = savedSettings.googlePlayId;
     self.itunesAppId = savedSettings.itunesAppId;
+    self.socialSharingEnabled = savedSettings.socialSharingEnabled.boolValue;
   }
   
   return self;

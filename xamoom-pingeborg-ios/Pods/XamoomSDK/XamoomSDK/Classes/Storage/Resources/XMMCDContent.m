@@ -21,6 +21,10 @@
 @dynamic tags;
 @dynamic system;
 @dynamic customMeta;
+@dynamic sharingUrl;
+@dynamic toDate;
+@dynamic fromDate;
+@dynamic relatedSpot;
 
 + (NSString *)coreDataEntityName {
   return NSStringFromClass([self class]);
@@ -71,11 +75,17 @@
   if (content.imagePublicUrl) {
     [fileManager saveFileFromUrl:content.imagePublicUrl completion:completion];
   }
+  if (content.relatedSpot != nil) {
+    savedContent.relatedSpot = [XMMCDSpot insertNewObjectFrom:content.relatedSpot];
+  }
   savedContent.contentDescription = content.contentDescription;
   savedContent.language = content.language;
   savedContent.category = [NSNumber numberWithInt:content.category];
   savedContent.tags = content.tags;
   savedContent.customMeta = content.customMeta;
+  savedContent.sharingUrl = content.sharingUrl;
+  savedContent.toDate = content.toDate;
+  savedContent.fromDate = content.fromDate;
   
   [[XMMOfflineStorageManager sharedInstance] save];
   

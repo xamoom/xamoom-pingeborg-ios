@@ -176,7 +176,7 @@ NSString * const kFeedItemCellIdentifier = @"FeedItemCell";
   [[XMMEnduserApi sharedInstance] contentsWithTags:@[@"artists"]
                                           pageSize:kPageSize
                                             cursor:self.contentListCursor
-                                              sort:XMMContentSortOptionsNameDesc
+                                              sort:XMMContentSortOptionsTitleDesc
                                         completion:^(NSArray *contents, bool hasMore, NSString *cursor, NSError *error) {
                                           self.contentListCursor = cursor;
                                           self.hasMore = hasMore;

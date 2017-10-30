@@ -13,6 +13,7 @@
 @dynamic jsonID;
 @dynamic googlePlayId;
 @dynamic itunesAppId;
+@dynamic socialSharingEnabled;
 
 + (NSString *)coreDataEntityName {
   return NSStringFromClass([self class]);
@@ -44,6 +45,7 @@
   savedSettings.jsonID = settings.ID;
   savedSettings.googlePlayId = settings.googlePlayAppId;
   savedSettings.itunesAppId = settings.itunesAppId;
+  savedSettings.socialSharingEnabled = [NSNumber numberWithBool:settings.socialSharingEnabled];
   
   [[XMMOfflineStorageManager sharedInstance] save];
   

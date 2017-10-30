@@ -12,7 +12,11 @@
 #import <UserNotifications/UserNotifications.h>
 #endif
 
+<<<<<<< Updated upstream
 #define PUSHWOOSH_VERSION @"5.3.6"
+=======
+#define PUSHWOOSH_VERSION @"5.4.0"
+>>>>>>> Stashed changes
 
 
 @class PushNotificationManager;
@@ -225,12 +229,15 @@ typedef void (^PushwooshErrorHandler)(NSError *error);
  */
 - (void)unregisterForPushNotifications;
 
-- (instancetype)initWithApplicationCode:(NSString *)appCode appName:(NSString *)appName;
+/**
+ Deprecated. Use initializeWithAppCode:appName: method class
+ */
+- (instancetype)initWithApplicationCode:(NSString *)appCode appName:(NSString *)appName __attribute__((deprecated));
 
 #if TARGET_OS_IPHONE
 
 /**
- Deprecated. Use initWithApplicationCode:appName: method instead
+ Deprecated. Use initializeWithAppCode:appName: method class
  */
 - (id)initWithApplicationCode:(NSString *)appCode navController:(UIViewController *)navController appName:(NSString *)appName __attribute__((deprecated));
 

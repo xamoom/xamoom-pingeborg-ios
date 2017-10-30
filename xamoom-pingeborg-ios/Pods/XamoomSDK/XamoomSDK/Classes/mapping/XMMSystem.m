@@ -27,8 +27,8 @@ static JSONAPIResourceDescriptor *__descriptor = nil;
     
     [__descriptor setIdProperty:@"ID"];
     
-    
     [__descriptor addProperty:@"name" withDescription:[[JSONAPIPropertyDescriptor alloc] initWithJsonName:@"display-name"]];
+    [__descriptor addProperty:@"webClientUrl" withDescription:[[JSONAPIPropertyDescriptor alloc] initWithJsonName:@"web-client-url"]];
     [__descriptor addProperty:@"url"];
     [__descriptor hasOne:[XMMSystemSettings class] withName:@"setting"];
     [__descriptor hasOne:[XMMStyle class] withName:@"style"];
@@ -49,6 +49,7 @@ static JSONAPIResourceDescriptor *__descriptor = nil;
     self.ID = savedSystem.jsonID;
     self.name = savedSystem.name;
     self.url = savedSystem.url;
+    self.webClientUrl = savedSystem.webClientUrl;
     if (savedSystem.setting != nil) {
       self.setting = [[XMMSystemSettings alloc] initWithCoreDataObject:savedSystem.setting];
     }

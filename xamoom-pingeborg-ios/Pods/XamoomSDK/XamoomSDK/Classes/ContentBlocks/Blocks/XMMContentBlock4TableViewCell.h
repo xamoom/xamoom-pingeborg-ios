@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIView *viewForBackgroundColor;
 
 @property (strong, nonatomic) NSString *linkUrl;
+@property int linkType;
 
 @property (nonatomic) UIColor *standardGreyColor;
 @property (nonatomic) UIColor *standardTextColor;
