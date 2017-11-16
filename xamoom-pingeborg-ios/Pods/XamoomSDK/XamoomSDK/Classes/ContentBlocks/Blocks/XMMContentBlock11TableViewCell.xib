@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,30 +20,30 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nLR-WB-KhI">
-                        <rect key="frame" x="8" y="8" width="304" height="21"/>
+                        <rect key="frame" x="8" y="11" width="304" height="15.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" contentInsetAdjustmentBehavior="never" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PmB-EE-gjB">
-                        <rect key="frame" x="0.0" y="37" width="320" height="0.0"/>
+                        <rect key="frame" x="0.0" y="34.5" width="320" height="0.0"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" id="QNN-8b-Kwd"/>
                         </constraints>
                     </tableView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eMR-UL-A4s">
-                        <rect key="frame" x="137" y="45" width="46" height="39"/>
+                        <rect key="frame" x="123.5" y="42.5" width="73" height="39"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="39" id="sqG-yE-fSn"/>
                         </constraints>
-                        <state key="normal" title="Button"/>
+                        <state key="normal" title="Load more"/>
                         <connections>
                             <action selector="didClickLoadMore:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="G88-j1-xrP"/>
                         </connections>
                     </button>
                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="jxs-Zf-O1H">
-                        <rect key="frame" x="150" y="54.5" width="20" height="20"/>
+                        <rect key="frame" x="150" y="52" width="20" height="20"/>
                     </activityIndicatorView>
                 </subviews>
                 <constraints>
@@ -62,7 +62,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="activityIndicator" destination="jxs-Zf-O1H" id="Hnb-HP-cwK"/>
-                <outlet property="loadMoreButton" destination="eMR-UL-A4s" id="tBi-j5-Dtn"/>
+                <outlet property="loadMoreButton" destination="eMR-UL-A4s" id="xZU-AB-zEB"/>
                 <outlet property="loadMoreButtonHeightConstraint" destination="sqG-yE-fSn" id="1P8-WU-9a1"/>
                 <outlet property="loadMoreButtonTopConstraint" destination="zsD-Lm-3SN" id="Pzc-Tm-v8v"/>
                 <outlet property="tableView" destination="PmB-EE-gjB" id="z3d-Bp-LWJ"/>

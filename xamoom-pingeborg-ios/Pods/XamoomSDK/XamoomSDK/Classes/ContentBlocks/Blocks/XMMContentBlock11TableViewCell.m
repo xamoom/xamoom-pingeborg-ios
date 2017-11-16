@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *loadMoreButtonHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *loadMoreButtonTopConstraint;
+@property (nonatomic, strong) NSBundle *bundle;
 
 @end
 
@@ -27,11 +28,20 @@
 - (void)awakeFromNib {
   [super awakeFromNib];
   // Initialization code
+  NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+  NSURL *url = [bundle URLForResource:@"XamoomSDK" withExtension:@"bundle"];
+  if (url != nil) {
+    self.bundle = [NSBundle bundleWithURL:url];
+  } else {
+    self.bundle = bundle;
+  }
+  
   _tableView.contentInset = UIEdgeInsetsMake(-16, 0, 0, 0);
   _tableView.scrollEnabled = NO;
   _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
   
-  //_loadMoreButton.titleLabel.text = @"Load more";
+  [_loadMoreButton setTitle:NSLocalizedStringFromTableInBundle(@"Load more", @"Localizable", _bundle, nil)
+                   forState:UIControlStateNormal];
 }
 
 - (void)prepareForReuse {
