@@ -39,6 +39,8 @@ NSString * const kFeedItemCellIdentifier = @"FeedItemCell";
 
 @implementation FeedTableViewController
 
+BOOL nfcEnabled = NO;
+
 #pragma mark - View Lifecycle
 
 - (void)viewDidLoad {
@@ -59,6 +61,7 @@ NSString * const kFeedItemCellIdentifier = @"FeedItemCell";
   
   if (@available(iOS 11.0, *)) {
     if (NSClassFromString(@"NFCNDEFReaderSession") && NFCNDEFReaderSession.readingAvailable) {
+      nfcEnabled = YES;
       self.nfcHelper = [[NFCHelper alloc] init];
       
       FeedTableViewController __weak *weakSelf = self;
@@ -90,16 +93,20 @@ NSString * const kFeedItemCellIdentifier = @"FeedItemCell";
         });
       };
       
-      UIBarButtonItem *nfcButton = [[UIBarButtonItem alloc]
-                                    initWithTitle:@"NFC"
-                                    style:UIBarButtonItemStylePlain
-                                    target:self
-                                    action:@selector(didClickNFC)];
-      [self.parentViewController.navigationItem setRightBarButtonItem: nfcButton];
+      [self addNFCButton];
     }
   } else {
     // Fallback on earlier versions
   }
+}
+
+- (void)addNFCButton {
+  UIBarButtonItem *nfcButton = [[UIBarButtonItem alloc]
+                                initWithTitle:@"NFC"
+                                style:UIBarButtonItemStylePlain
+                                target:self
+                                action:@selector(didClickNFC)];
+  [self.parentViewController.navigationItem setRightBarButtonItem: nfcButton];
 }
 
 - (void)didClickNFC {
@@ -124,6 +131,14 @@ NSString * const kFeedItemCellIdentifier = @"FeedItemCell";
   } else {
     [self.feedTableView reloadData];
   }
+  
+  if (nfcEnabled) {
+    [self addNFCButton];
+  }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+  [self.parentViewController.navigationItem setRightBarButtonItem: nil];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
