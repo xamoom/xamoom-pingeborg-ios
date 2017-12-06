@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13168.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13147.4"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="XMMContentBlock1TableViewCell" rowHeight="298" id="KGk-i7-Jjw" customClass="XMMContentBlock1TableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="318" height="107"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="XMMContentBlock1TableViewCell" rowHeight="308" id="KGk-i7-Jjw" customClass="XMMContentBlock1TableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="318" height="117"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="318" height="106.5"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="318" height="116.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xcQ-PM-FgJ">
+                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xcQ-PM-FgJ">
                         <rect key="frame" x="0.0" y="0.0" width="318" height="91"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v0p-ky-YSc">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v0p-ky-YSc">
                                 <rect key="frame" x="8" y="8" width="256" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="FTs-zP-oKB"/>
@@ -30,7 +30,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="0:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s6P-Os-E9n">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" ambiguous="YES" text="0:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s6P-Os-E9n">
                                 <rect key="frame" x="272" y="13" width="38" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="38" id="1jp-0E-rwJ"/>
@@ -40,28 +40,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bNb-P6-22z" customClass="XMMMusicPlayer">
-                                <rect key="frame" x="0.0" y="88" width="318" height="12"/>
-                                <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="12" id="mO3-rO-Eax"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="backgroundLineColor">
-                                        <color key="value" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="foregroundLineColor">
-                                        <color key="value" red="0.30029433965682983" green="0.7383418083190918" blue="0.11211691051721573" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
-                                        <integer key="value" value="15"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="lineProgress">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="spc-5G-TLl">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="spc-5G-TLl">
                                 <rect key="frame" x="51" y="58" width="34" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="34" id="Jlb-m0-lfQ"/>
@@ -74,7 +53,7 @@
                                     <action selector="playButtonTouched:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="4xC-Rf-QCJ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="beZ-yx-Axz">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="beZ-yx-Axz">
                                 <rect key="frame" x="105" y="61" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="QOt-8d-SKp"/>
@@ -87,7 +66,7 @@
                                     <action selector="forwardButtonTouched:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="N32-bh-45I"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="09D-g9-lGe">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="09D-g9-lGe">
                                 <rect key="frame" x="8" y="61" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="5ZV-9G-1IQ"/>
@@ -100,19 +79,19 @@
                                     <action selector="backwardButtonTouched:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="8wx-1T-Jcs"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RTH-0X-FUw">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RTH-0X-FUw">
                                 <rect key="frame" x="32" y="64" width="16" height="14"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZkP-O0-O4Y">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZkP-O0-O4Y">
                                 <rect key="frame" x="88" y="64" width="16" height="14"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="252" text="Artist" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NkC-Ma-2oK">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="252" ambiguous="YES" text="Artist" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NkC-Ma-2oK">
                                 <rect key="frame" x="8" y="31" width="302" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="zja-jW-4lm"/>
@@ -121,7 +100,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P6D-Eu-ldB" customClass="MovingBarsView">
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P6D-Eu-ldB" customClass="MovingBarsView">
                                 <rect key="frame" x="280" y="61" width="30" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="OuC-cd-za8"/>
@@ -139,7 +118,6 @@
                             <constraint firstItem="NkC-Ma-2oK" firstAttribute="trailing" secondItem="s6P-Os-E9n" secondAttribute="trailing" id="ImY-hk-bES"/>
                             <constraint firstItem="09D-g9-lGe" firstAttribute="leading" secondItem="NkC-Ma-2oK" secondAttribute="leading" id="Jk5-WN-Mae"/>
                             <constraint firstItem="s6P-Os-E9n" firstAttribute="leading" secondItem="v0p-ky-YSc" secondAttribute="trailing" constant="8" id="Kl9-Bb-hK9"/>
-                            <constraint firstAttribute="bottom" secondItem="bNb-P6-22z" secondAttribute="bottom" constant="-9" id="LbE-Du-swt"/>
                             <constraint firstItem="beZ-yx-Axz" firstAttribute="centerY" secondItem="ZkP-O0-O4Y" secondAttribute="centerY" id="RmU-8C-hnX"/>
                             <constraint firstItem="v0p-ky-YSc" firstAttribute="top" secondItem="xcQ-PM-FgJ" secondAttribute="top" constant="8" id="T2F-3c-yqC"/>
                             <constraint firstItem="09D-g9-lGe" firstAttribute="top" secondItem="NkC-Ma-2oK" secondAttribute="bottom" constant="10" id="VfZ-5w-CLh"/>
@@ -148,8 +126,6 @@
                             <constraint firstItem="P6D-Eu-ldB" firstAttribute="centerY" secondItem="beZ-yx-Axz" secondAttribute="centerY" id="fx8-9x-S0c"/>
                             <constraint firstItem="RTH-0X-FUw" firstAttribute="leading" secondItem="09D-g9-lGe" secondAttribute="trailing" constant="4" id="i2u-wC-kpJ"/>
                             <constraint firstItem="RTH-0X-FUw" firstAttribute="centerY" secondItem="09D-g9-lGe" secondAttribute="centerY" id="itx-f8-GTa"/>
-                            <constraint firstItem="bNb-P6-22z" firstAttribute="leading" secondItem="xcQ-PM-FgJ" secondAttribute="leading" id="juE-bk-Yhu"/>
-                            <constraint firstAttribute="trailing" secondItem="bNb-P6-22z" secondAttribute="trailing" id="py4-9v-kbj"/>
                             <constraint firstItem="v0p-ky-YSc" firstAttribute="leading" secondItem="xcQ-PM-FgJ" secondAttribute="leading" constant="8" id="qng-BM-92x"/>
                             <constraint firstAttribute="height" constant="91" id="tgG-1u-epO"/>
                             <constraint firstAttribute="trailing" secondItem="s6P-Os-E9n" secondAttribute="trailing" constant="8" id="vec-na-sej"/>
@@ -157,23 +133,51 @@
                             <constraint firstItem="ZkP-O0-O4Y" firstAttribute="centerY" secondItem="spc-5G-TLl" secondAttribute="centerY" id="wzg-L5-xiq"/>
                         </constraints>
                     </view>
+                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bNb-P6-22z" customClass="XMMMusicPlayer">
+                        <rect key="frame" x="0.0" y="94" width="318" height="12"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="8" id="mO3-rO-Eax"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="backgroundLineColor">
+                                <color key="value" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="foregroundLineColor">
+                                <color key="value" red="0.30029433965682983" green="0.7383418083190918" blue="0.11211691051721573" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
+                                <integer key="value" value="8"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="lineProgress">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="xcQ-PM-FgJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="0Ej-xW-PVg"/>
                     <constraint firstAttribute="trailing" secondItem="xcQ-PM-FgJ" secondAttribute="trailing" id="0cw-ju-yk8"/>
+                    <constraint firstItem="bNb-P6-22z" firstAttribute="top" secondItem="xcQ-PM-FgJ" secondAttribute="bottom" id="2jD-mN-zdj"/>
                     <constraint firstItem="xcQ-PM-FgJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="6ht-qo-WcL"/>
-                    <constraint firstAttribute="bottom" secondItem="xcQ-PM-FgJ" secondAttribute="bottom" constant="15.5" id="x3F-CV-fKH"/>
+                    <constraint firstAttribute="trailing" secondItem="bNb-P6-22z" secondAttribute="trailing" id="Awl-iz-M4F"/>
+                    <constraint firstAttribute="bottom" secondItem="bNb-P6-22z" secondAttribute="bottom" constant="8" id="C3P-IW-KOQ"/>
+                    <constraint firstItem="bNb-P6-22z" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="wOb-aD-irc"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="artistLabel" destination="NkC-Ma-2oK" id="vSb-JY-RQn"/>
                 <outlet property="audioControlButton" destination="spc-5G-TLl" id="z7e-wx-rBi"/>
                 <outlet property="audioPlayerControl" destination="bNb-P6-22z" id="Sqw-Jc-F6e"/>
+                <outlet property="audioPlayerView" destination="xcQ-PM-FgJ" id="JFZ-uT-046"/>
+                <outlet property="backwardButton" destination="09D-g9-lGe" id="BBZ-xa-m3W"/>
+                <outlet property="backwardLabel" destination="RTH-0X-FUw" id="v3W-1Q-4wE"/>
+                <outlet property="forwardButton" destination="beZ-yx-Axz" id="3bz-WF-fl0"/>
+                <outlet property="forwardLabel" destination="ZkP-O0-O4Y" id="bVd-p7-I4A"/>
                 <outlet property="movingBarView" destination="P6D-Eu-ldB" id="VYL-4M-yYB"/>
                 <outlet property="remainingTimeLabel" destination="s6P-Os-E9n" id="5tz-Fw-6ng"/>
                 <outlet property="titleLabel" destination="v0p-ky-YSc" id="hqh-74-Zo5"/>
             </connections>
-            <point key="canvasLocation" x="161" y="358.5"/>
+            <point key="canvasLocation" x="161" y="363.5"/>
         </tableViewCell>
     </objects>
     <resources>

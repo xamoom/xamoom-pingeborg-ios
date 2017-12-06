@@ -19,25 +19,40 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *loadMoreButtonHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *loadMoreButtonTopConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewTopConstraint;
+@property (nonatomic, strong) NSBundle *bundle;
 
 @end
 
 @implementation XMMContentBlock11TableViewCell
 
+int tableViewTopConstant = 8;
+
 - (void)awakeFromNib {
   [super awakeFromNib];
   // Initialization code
+  NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+  NSURL *url = [bundle URLForResource:@"XamoomSDK" withExtension:@"bundle"];
+  if (url != nil) {
+    self.bundle = [NSBundle bundleWithURL:url];
+  } else {
+    self.bundle = bundle;
+  }
+  
   _tableView.contentInset = UIEdgeInsetsMake(-16, 0, 0, 0);
   _tableView.scrollEnabled = NO;
   _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
   
-  //_loadMoreButton.titleLabel.text = @"Load more";
+  [_loadMoreButton setTitle:NSLocalizedStringFromTableInBundle(@"Load more", @"Localizable", _bundle, nil)
+                   forState:UIControlStateNormal];
 }
 
 - (void)prepareForReuse {
   [super prepareForReuse];
+  _titleLabel.text = nil;
   _loadMoreButtonTopConstraint.constant = 8;
   _loadMoreButtonHeightConstraint.constant = 39;
+  _tableViewTopConstraint.constant = tableViewTopConstant;
 }
 
 - (void)configureForCell:(XMMContentBlock *)block tableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath style:(XMMStyle *)style api:(XMMEnduserApi *)api listManager:(XMMListManager *)listManager offline:(BOOL)offline delegate:(id)delegate {
@@ -55,6 +70,9 @@
   
   if (block.title != nil && ![block.title isEqualToString:@""]) {
     _titleLabel.text = block.title;
+  } else {
+    _tableViewTopConstraint.constant = 0;
+    [self setNeedsUpdateConstraints];
   }
   
   _loadMoreButton.hidden = YES;

@@ -24,7 +24,6 @@
 #import "ArtistDetailViewController.h"
 #import "ScanResultViewController.h"
 #import <JGProgressHUD/JGProgressHUD.h>
-#import <Google/Analytics.h>
 
 extern int const kPageSize;
 extern NSString * const kFeedItemCellIdentifier;

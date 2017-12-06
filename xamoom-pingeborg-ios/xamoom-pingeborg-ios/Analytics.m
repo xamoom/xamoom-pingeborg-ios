@@ -9,16 +9,8 @@
 #import "Analytics.h"
 
 static Analytics *analytics;
-#ifdef DEBUG
-static BOOL const kGaDryRun = YES;
-#else
-static BOOL const kGaDryRun = NO;
-#endif
-static int const kGaDispatchPeriod = 30;
 
 @interface Analytics ()
-
-@property id<GAITracker> tracker;
 
 @end
 
@@ -27,40 +19,18 @@ static int const kGaDispatchPeriod = 30;
 + (Analytics*)sharedObject {
   if(!analytics) {
     analytics = [[Analytics alloc] init];
-    [analytics setupAnalytics];
   }
   return analytics;
 }
 
-- (void)setupAnalytics {
-  NSError *configureError;
-  [[GGLContext sharedInstance] configureWithError:&configureError];
-  NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
-  
-  GAI *gai = [GAI sharedInstance];
-  gai.trackUncaughtExceptions = YES;
-  gai.logger.logLevel = kGAILogLevelVerbose;  // remove before app release
-  
-  [gai setDispatchInterval:kGaDispatchPeriod];
-  [gai setDryRun:kGaDryRun];
-  
-  if(kGaDryRun) {
-    NSLog(@"Analytics Dry Run enabled");
-  }
-  
-  self.tracker = [[GAI sharedInstance] defaultTracker];
-}
 
 - (void)setScreenName:(NSString*)name {
-  [self.tracker send:[[[GAIDictionaryBuilder createScreenView] set:name
-                                                            forKey:kGAIScreenName] build]];
+  [FIRAnalytics setScreenName:name screenClass:nil];
 }
 
 - (void)sendEventWithCategorie:(NSString*)categeorie andAction:(NSString*)action andLabel:(NSString*)label andValue:(NSNumber*)value {
-  [self.tracker send:[[GAIDictionaryBuilder createEventWithCategory:categeorie
-                                                             action:action
-                                                              label:label
-                                                              value:value] build]];
+  [FIRAnalytics logEventWithName:action
+                      parameters:@{kFIRParameterValue: label}];
 }
 
 @end

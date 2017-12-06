@@ -71,6 +71,7 @@ static UIColor *contentLinkColor;
 - (void)disappearTextView:(UITextView *)textView {
   [textView setFont:[UIFont systemFontOfSize:0.0f]];
   textView.textContainerInset = UIEdgeInsetsMake(0, -5, -20, -5);;
+  self.contentTextViewTopConstraint.constant = 0;
 }
 
 - (NSMutableAttributedString*)attributedStringFromHTML:(NSString*)html fontSize:(int)fontSize fontColor:(UIColor *)color {

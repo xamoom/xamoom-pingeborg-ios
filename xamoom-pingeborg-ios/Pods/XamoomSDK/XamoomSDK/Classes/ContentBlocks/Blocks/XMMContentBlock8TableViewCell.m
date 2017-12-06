@@ -12,6 +12,10 @@
 
 @property (strong, nonatomic) UIDocumentInteractionController *docController;
 @property (nonatomic) int downloadType;
+@property (nonatomic) UIColor *currentCalendarColor;
+@property (nonatomic) UIColor *currentCalendarTintColor;
+@property (nonatomic) UIColor *currentContactColor;
+@property (nonatomic) UIColor *currentContactTintColor;
 
 @end
 
@@ -35,6 +39,11 @@
                                   inBundle:imageBundle compatibleWithTraitCollection:nil] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
   self.contactImage = [[UIImage imageNamed:@"contact"
                                  inBundle:imageBundle compatibleWithTraitCollection:nil] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+  
+  _currentCalendarColor = [UIColor colorWithRed:0.23 green:0.35 blue:0.60 alpha:1.0];
+  _currentCalendarTintColor = UIColor.whiteColor;
+  _currentContactColor = [UIColor colorWithRed:0.67 green:0.25 blue:0.25 alpha:1.0];
+  _currentContactTintColor = UIColor.whiteColor;
   
   [super awakeFromNib];
 }
@@ -60,14 +69,18 @@
   switch (type) {
     case 0:
       [self.icon setImage:self.contactImage];
-      self.icon.tintColor = UIColor.whiteColor;
-      self.viewForBackground.backgroundColor = [UIColor colorWithHexString:@"#AA3F41"];
+      self.viewForBackground.backgroundColor = _currentContactColor;
+      self.icon.tintColor = _currentContactTintColor;
+      self.titleLabel.textColor = _currentContactTintColor;
+      self.contentTextLabel.textColor = _currentContactTintColor;
       break;
       
     case 1:
       [self.icon setImage:self.calendarImage];
-      self.icon.tintColor = UIColor.whiteColor;
-      self.viewForBackground.backgroundColor = [UIColor colorWithHexString:@"#3b5998"];
+      self.viewForBackground.backgroundColor = _currentCalendarColor;
+      self.icon.tintColor = _currentCalendarTintColor;
+      self.titleLabel.textColor = _currentCalendarTintColor;
+      self.contentTextLabel.textColor = _currentCalendarTintColor;
       break;
   }
 }
@@ -93,4 +106,31 @@
   return _fileManager;
 }
 
+- (UIColor *)calendarColor {
+  return _currentCalendarColor;
+}
+
+- (UIColor *)calendarTintColor {
+  return _currentCalendarColor;
+}
+
+- (void)setContactColor:(UIColor *)contactColor {
+  _currentContactColor = contactColor;
+  [self styleBlockForType:self.downloadType];
+}
+
+- (void)setContactTintColor:(UIColor *)contactTintColor {
+  _currentContactTintColor = contactTintColor;
+  [self styleBlockForType:self.downloadType];
+}
+
+- (void)setCalendarColor:(UIColor *)calendarColor {
+  _currentCalendarColor = calendarColor;
+  [self styleBlockForType:self.downloadType];
+}
+
+- (void)setCalendarTintColor:(UIColor *)calendarTintColor {
+  _currentCalendarTintColor = calendarTintColor;
+  [self styleBlockForType:self.downloadType];
+}
 @end

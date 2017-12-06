@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13168.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13147.4"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -22,15 +22,15 @@
                         <rect key="frame" x="8" y="0.0" width="318" height="68"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ebook" translatesAutoresizingMaskIntoConstraints="NO" id="Zcc-62-G5Y">
-                                <rect key="frame" x="18" y="19" width="32" height="32"/>
+                                <rect key="frame" x="18" y="18" width="32" height="32"/>
                                 <color key="tintColor" red="1" green="0.98679385549999998" blue="0.97868615140000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="62s-JU-6u8"/>
                                     <constraint firstAttribute="width" constant="32" id="uQ8-pO-7Sh"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xgy-VZ-T9c">
-                                <rect key="frame" x="68" y="12" width="242" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xgy-VZ-T9c">
+                                <rect key="frame" x="68" y="11" width="242" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="GMV-Rt-1cC"/>
                                 </constraints>
@@ -38,8 +38,8 @@
                                 <color key="textColor" red="1" green="0.98679385549999998" blue="0.97868615140000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gTf-w0-lZh">
-                                <rect key="frame" x="68" y="34" width="242" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gTf-w0-lZh">
+                                <rect key="frame" x="68" y="33" width="242" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="QMq-K4-eSc"/>
                                 </constraints>
@@ -51,11 +51,11 @@
                         <color key="backgroundColor" red="0.019607843137254902" green="0.54509803921568623" blue="0.5490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="xgy-VZ-T9c" firstAttribute="leading" secondItem="gTf-w0-lZh" secondAttribute="leading" id="3pO-sD-H6O"/>
-                            <constraint firstAttribute="centerY" secondItem="Zcc-62-G5Y" secondAttribute="centerY" constant="-1" id="4lZ-zA-xFz"/>
+                            <constraint firstAttribute="centerY" secondItem="Zcc-62-G5Y" secondAttribute="centerY" id="4lZ-zA-xFz"/>
                             <constraint firstItem="gTf-w0-lZh" firstAttribute="top" secondItem="xgy-VZ-T9c" secondAttribute="bottom" constant="1" id="KOW-qJ-lSf"/>
-                            <constraint firstAttribute="bottom" secondItem="Zcc-62-G5Y" secondAttribute="bottom" constant="17" id="Krb-c4-hOG"/>
+                            <constraint firstAttribute="bottom" secondItem="Zcc-62-G5Y" secondAttribute="bottom" constant="18" id="Krb-c4-hOG"/>
                             <constraint firstItem="Zcc-62-G5Y" firstAttribute="leading" secondItem="d3v-f8-ekS" secondAttribute="leading" constant="18" id="SGd-4X-V0c"/>
-                            <constraint firstItem="Zcc-62-G5Y" firstAttribute="top" secondItem="d3v-f8-ekS" secondAttribute="top" constant="19" id="fNk-ED-CsC"/>
+                            <constraint firstItem="Zcc-62-G5Y" firstAttribute="top" secondItem="d3v-f8-ekS" secondAttribute="top" constant="18" id="fNk-ED-CsC"/>
                             <constraint firstItem="xgy-VZ-T9c" firstAttribute="trailing" secondItem="gTf-w0-lZh" secondAttribute="trailing" id="mpb-zt-xG8"/>
                             <constraint firstAttribute="trailing" secondItem="xgy-VZ-T9c" secondAttribute="trailing" constant="8" id="ooE-Js-loM"/>
                             <constraint firstItem="xgy-VZ-T9c" firstAttribute="leading" secondItem="Zcc-62-G5Y" secondAttribute="trailing" constant="18" id="r3u-tM-JgS"/>
@@ -66,13 +66,14 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="d3v-f8-ekS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="E3F-w7-1PC"/>
+                    <constraint firstAttribute="trailing" secondItem="d3v-f8-ekS" secondAttribute="trailing" constant="8" id="XbE-iF-buW"/>
                     <constraint firstItem="d3v-f8-ekS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="g7q-l0-XMv"/>
-                    <constraint firstItem="d3v-f8-ekS" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailing" constant="-8" id="gCm-Cs-lRa"/>
                     <constraint firstAttribute="bottom" secondItem="d3v-f8-ekS" secondAttribute="bottom" constant="8" id="hZX-nq-Z05"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="artistLabel" destination="gTf-w0-lZh" id="3Jk-S1-XD9"/>
+                <outlet property="ebookBackground" destination="d3v-f8-ekS" id="Uae-IT-z4N"/>
                 <outlet property="ebookImageView" destination="Zcc-62-G5Y" id="Vgf-m1-YoL"/>
                 <outlet property="titleLabel" destination="xgy-VZ-T9c" id="79h-ov-dTf"/>
             </connections>

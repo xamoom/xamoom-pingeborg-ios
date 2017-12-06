@@ -11,6 +11,8 @@
 @interface XMMContentBlock5TableViewCell()
 
 @property (strong, nonatomic) UIDocumentInteractionController *docController;
+@property (nonatomic) UIColor *currentEbookColor;
+@property (nonatomic) UIColor *currentEbookTintColor;
 
 @end
 
@@ -29,7 +31,9 @@
   
   self.ebookImageView.image = [[UIImage imageNamed:@"ebook"
                                           inBundle:imageBundle compatibleWithTraitCollection:nil] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-  self.ebookImageView.tintColor = [UIColor whiteColor];
+  
+  _currentEbookColor = [UIColor colorWithRed:0.02 green:0.55 blue:0.55 alpha:1.0];
+  _currentEbookTintColor = [UIColor whiteColor];
   
   self.titleLabel.text = nil;
   self.artistLabel.text = nil;
@@ -55,6 +59,15 @@
   
   self.artistLabel.text = block.artists;
   self.downloadUrl = block.fileID;
+  
+  [self updateColors];
+}
+
+- (void)updateColors {
+  self.ebookBackground.backgroundColor = _currentEbookColor;
+  self.titleLabel.textColor = _currentEbookTintColor;
+  self.artistLabel.textColor = _currentEbookTintColor;
+  self.ebookImageView.tintColor = _currentEbookTintColor;
 }
 
 - (void)openInBrowser:(id)sender {
@@ -75,6 +88,26 @@
     _fileManager = [[XMMOfflineFileManager alloc] init];
   }
   return _fileManager;
+}
+
+#pragma mark - UIAppearance Getters & Setters
+
+- (void)setEbookColor:(UIColor *)ebookColor {
+  _currentEbookColor = ebookColor;
+  [self updateColors];
+}
+
+- (void)setEbookTintColor:(UIColor *)ebookTintColor {
+  _currentEbookTintColor = ebookTintColor;
+  [self updateColors];
+}
+
+- (UIColor *)ebookColor {
+  return _currentEbookColor;
+}
+
+- (UIColor *)ebookTintColor {
+  return _currentEbookTintColor;
 }
 
 @end

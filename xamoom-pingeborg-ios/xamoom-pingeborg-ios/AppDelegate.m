@@ -42,6 +42,7 @@
   [self setupApi];
   [self initBeacons];
   [self setupPushManager];
+  [FIRApp configure];
   
   self.navigationCoordinator = [[NavigationCoordinator alloc] initWithNavigationController: (UINavigationController *) self.window.rootViewController];
   

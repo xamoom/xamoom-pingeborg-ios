@@ -40,7 +40,7 @@ static JSONAPIResourceDescriptor *__descriptor = nil;
     [__descriptor addProperty:@"showContent" withDescription:[[JSONAPIPropertyDescriptor alloc] initWithJsonName:@"should-show-content-on-spotmap"]];
     [__descriptor addProperty:@"altText" withDescription:[[JSONAPIPropertyDescriptor alloc] initWithJsonName:@"alt-text"]];
     [__descriptor addProperty:@"copyright" withDescription:[[JSONAPIPropertyDescriptor alloc] initWithJsonName:@"copyright"]];
-    [__descriptor addProperty:@"contentListTags" withDescription:[[JSONAPIPropertyDescriptor alloc] initWithJsonName:@"content-list-tag"]];
+    [__descriptor addProperty:@"contentListTags" withDescription:[[JSONAPIPropertyDescriptor alloc] initWithJsonName:@"content-list-tags"]];
     [__descriptor addProperty:@"contentListPageSize" withDescription:[[JSONAPIPropertyDescriptor alloc] initWithJsonName:@"content-list-page-size"]];
     [__descriptor addProperty:@"contentListSortAsc" withDescription:[[JSONAPIPropertyDescriptor alloc] initWithJsonName:@"content-list-sort-asc"]];
   });
