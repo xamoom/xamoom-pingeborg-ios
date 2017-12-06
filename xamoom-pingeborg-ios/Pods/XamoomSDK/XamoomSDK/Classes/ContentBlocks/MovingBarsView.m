@@ -32,6 +32,7 @@
   self.spacing = 4;
   self.maxHeight = self.bounds.size.height;
   CGFloat width = self.bounds.size.width;
+  self.tintColor = UIColor.blackColor;
   
   NSNumber *position1 = [NSNumber numberWithInt: width - self.lineWidth/2];
   int positionDiff = [position1 integerValue] - self.lineWidth / 2 - self.spacing;
@@ -40,6 +41,7 @@
   NSNumber *position3 = [NSNumber numberWithInt: positionDiff];
   
   self.positions = [[NSArray alloc] initWithObjects:position1, position2, position3, nil];
+  
   [self setupLayers];
 }
 
@@ -49,7 +51,7 @@
   for (NSNumber *startPosition in self.positions) {
     CAShapeLayer *layer = [[CAShapeLayer alloc] init];
     layer.position = CGPointMake(0, 0);
-    layer.strokeColor = [UIColor blackColor].CGColor;
+    layer.strokeColor = _tintColor.CGColor;
     UIBezierPath *linePath=[UIBezierPath bezierPath];
     [linePath moveToPoint: CGPointMake([startPosition floatValue], self.maxHeight)];
     [linePath addLineToPoint:CGPointMake([startPosition floatValue], 0)];

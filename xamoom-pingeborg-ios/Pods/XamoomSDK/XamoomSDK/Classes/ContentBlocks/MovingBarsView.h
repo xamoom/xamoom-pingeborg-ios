@@ -10,6 +10,8 @@
 
 @interface MovingBarsView : UIView <CAAnimationDelegate>
 
+@property (strong, nonatomic) UIColor* tintColor;
+
 - (void)start;
 - (void)stop;
 

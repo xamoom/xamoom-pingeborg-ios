@@ -25,9 +25,24 @@
 @property (strong, nonatomic) UIImage *contactImage;
 @property (strong, nonatomic) UIImage *calendarImage;
 @property (strong, nonatomic) XMMOfflineFileManager *fileManager;
+@property (nonatomic) UIColor *calendarColor UI_APPEARANCE_SELECTOR;
+@property (nonatomic) UIColor *calendarTintColor UI_APPEARANCE_SELECTOR;
+@property (nonatomic) UIColor *contactColor UI_APPEARANCE_SELECTOR;
+@property (nonatomic) UIColor *contactTintColor UI_APPEARANCE_SELECTOR;
+
 @property (nonatomic) BOOL offline;
 
 - (void)openLink;
+
+- (UIColor *)calendarColor;
+- (UIColor *)calendarTintColor;
+- (UIColor *)contactColor;
+- (UIColor *)contactTintColor;
+
+- (void)setCalendarColor:(UIColor *)calendarColor;
+- (void)setCalendarTintColor:(UIColor *)calendarTintColor;
+- (void)setContactColor:(UIColor *)contactColor;
+- (void)setContactTintColor:(UIColor *)contactTintColor;
 
 @end
 

@@ -28,6 +28,14 @@
   
   [self.audioControlButton setImage:self.playImage
                            forState:UIControlStateNormal];
+  self.audioControlButton.tintColor = UIColor.blackColor;
+
+  [self.forwardButton setImage:[self.forwardButton.currentImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]
+                      forState:UIControlStateNormal];
+  self.forwardButton.tintColor = UIColor.blackColor;
+  [self.backwardButton setImage:[self.backwardButton.currentImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]
+                      forState:UIControlStateNormal];
+  self.backwardButton.tintColor = UIColor.blackColor;
   
   [super awakeFromNib];
 }
@@ -42,11 +50,13 @@
     imageBundle = bundle;
   }
   
-  self.playImage = [UIImage imageNamed:@"playbutton"
-                              inBundle:imageBundle compatibleWithTraitCollection:nil];
+  self.playImage = [[UIImage imageNamed:@"playbutton"
+                               inBundle:imageBundle
+          compatibleWithTraitCollection:nil] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+  self.pauseImage = [[UIImage imageNamed:@"pausebutton"
+                                inBundle:imageBundle
+           compatibleWithTraitCollection:nil] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
   
-  self.pauseImage = [UIImage imageNamed:@"pausebutton"
-                              inBundle:imageBundle compatibleWithTraitCollection:nil];
 }
 
 - (void)configureForCell:(XMMContentBlock *)block tableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath style:(XMMStyle *)style offline:(BOOL)offline {
@@ -102,8 +112,54 @@
                            forState:UIControlStateNormal];
 }
 
--(void)didUpdateRemainingSongTime:(NSString *)remainingSongTime {
+- (void)didUpdateRemainingSongTime:(NSString *)remainingSongTime {
   self.remainingTimeLabel.text = remainingSongTime;
+}
+
+- (void)changeTextColors:(UIColor *)color {
+  self.titleLabel.textColor = color;
+  self.artistLabel.textColor = color;
+  self.remainingTimeLabel.textColor = color;
+  self.forwardLabel.textColor = color;
+  self.backwardLabel.textColor = color;
+  self.forwardButton.tintColor = color;
+  self.backwardButton.tintColor = color;
+  self.movingBarView.tintColor = color;
+  self.audioControlButton.tintColor = color;
+}
+
+#pragma mark - Appearance Getters & Setters
+
+- (void)setAudioPlayerBackgroundColor:(UIColor *)audioPlayerBackgroundColor {
+  _audioPlayerView.backgroundColor = audioPlayerBackgroundColor;
+}
+
+- (UIColor *)audioPlayerBackgroundColor {
+  return _audioPlayerView.backgroundColor;
+}
+
+- (void)setAudioPlayerProgressBarBackgroundColor:(UIColor *)audioPlayerProgressBarBackgroundColor {
+  _audioPlayerControl.backgroundLineColor = audioPlayerProgressBarBackgroundColor;
+}
+
+- (UIColor *)audioPlayerProgressBarBackgroundColor {
+  return _audioPlayerControl.backgroundLineColor;
+}
+
+- (void)setAudioPlayerProgressBarColor:(UIColor *)audioPlayerProgressBarColor {
+  _audioPlayerControl.foregroundLineColor = audioPlayerProgressBarColor;
+}
+
+- (UIColor *)audioPlayerProgressBarColor {
+  return _audioPlayerControl.foregroundLineColor;
+}
+
+- (void)setAudioPlayerTintColor:(UIColor *)audioPlayerTextColors {
+  [self changeTextColors:audioPlayerTextColors];
+}
+
+- (UIColor *)audioPlayerTintColor {
+  return _titleLabel.textColor;
 }
 
 #pragma mark - Notification Handler

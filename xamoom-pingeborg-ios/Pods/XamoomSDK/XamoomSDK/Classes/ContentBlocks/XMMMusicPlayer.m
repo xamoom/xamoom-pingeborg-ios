@@ -111,8 +111,8 @@ IB_DESIGNABLE
   
   CGContextSetStrokeColorWithColor(context, color);
   
-  CGContextMoveToPoint(context, 0, self.drawingFrameSize.height);
-  CGContextAddLineToPoint(context, self.drawingFrameSize.width, self.drawingFrameSize.height);
+  CGContextMoveToPoint(context, 0, self.drawingFrameSize.height - self.lineWidth/2);
+  CGContextAddLineToPoint(context, self.drawingFrameSize.width, self.drawingFrameSize.height - self.lineWidth/2);
   
   CGContextStrokePath(context);
   
@@ -123,8 +123,8 @@ IB_DESIGNABLE
   
   CGContextSetStrokeColorWithColor(context, color2);
   
-  CGContextMoveToPoint(context, 0, self.drawingFrameSize.height);
-  CGContextAddLineToPoint(context, (self.drawingFrameSize.width * self.lineProgress), self.drawingFrameSize.height);
+  CGContextMoveToPoint(context, 0, self.drawingFrameSize.height - self.lineWidth/2);
+  CGContextAddLineToPoint(context, (self.drawingFrameSize.width * self.lineProgress), self.drawingFrameSize.height - self.lineWidth/2);
   
   CGContextStrokePath(context);
 }
