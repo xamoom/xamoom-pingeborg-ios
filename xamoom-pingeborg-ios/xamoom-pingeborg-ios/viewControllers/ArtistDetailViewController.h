@@ -31,4 +31,6 @@
 @property (strong, nonatomic) NSString *contentId;
 @property (strong, nonatomic) NSString *locationIdentifier;
 @property (strong, nonatomic) XMMContent *content;
+@property (nonatomic) bool isNotificationOpen;
+
 @end

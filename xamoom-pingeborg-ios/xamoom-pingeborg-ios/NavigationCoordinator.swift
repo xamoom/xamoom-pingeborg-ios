@@ -24,6 +24,8 @@ class NavigationCoordinator : NSObject {
         as! ArtistDetailViewController
     
     artistDetailVC.contentId = contentId
+    artistDetailVC.isNotificationOpen = true
+    
     self.navigationController.pushViewController(artistDetailVC, animated: true)
   }
 }

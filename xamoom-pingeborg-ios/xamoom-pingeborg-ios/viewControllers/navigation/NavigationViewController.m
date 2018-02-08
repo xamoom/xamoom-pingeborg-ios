@@ -198,7 +198,7 @@
 
   if (self.lastBeacon != nil) {
     [self.hud showInView:self.view animated:YES];
-    [[XMMEnduserApi sharedInstance] contentWithBeaconMajor:@52414 minor:self.lastBeacon.minor completion:^(XMMContent *content, NSError *error) {
+    [[XMMEnduserApi sharedInstance] contentWithBeaconMajor:@52414 minor:self.lastBeacon.minor options:0 conditions:nil reason:XMMContentReasonNotificationContentOpenRequest completion:^(XMMContent *content, NSError *error) {
       [self.hud dismissAnimated:YES];
       if (error != nil) {
         [self showNetworkAlert];
@@ -212,6 +212,7 @@
       }
       artistDetailViewController.content = content;
       artistDetailViewController.contentId = content.ID;
+      artistDetailViewController.isNotificationOpen = YES;
       self.lastBeacon = nil;
       [self pushViewController:artistDetailViewController animated:YES];
     }];
