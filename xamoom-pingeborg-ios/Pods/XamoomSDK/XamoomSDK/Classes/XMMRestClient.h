@@ -10,17 +10,34 @@
 #import "XMMQuery.h"
 #import <JSONAPI/JSONAPI.h>
 
+@protocol XMMRestClientDelegate<NSObject>
+
+- (void)gotEphemeralId:(NSString *)ephemeralId;
+
+@end
+
 @interface XMMRestClient : NSObject
 
 @property (strong, nonatomic) NSURLSession *session;
 @property (strong, nonatomic) XMMQuery *query;
+@property (nonatomic) id<XMMRestClientDelegate> delegate;
 
-- (instancetype)initWithBaseUrl:(NSURL *)baseUrl session:(NSURLSession *)session;
+- (instancetype)initWithBaseUrl:(NSURL *)baseUrl
+                        session:(NSURLSession *)session;
 
-- (NSURLSessionDataTask *)fetchResource:(Class)resourceClass completion:(void (^)(JSONAPI *result, NSError *error))completion;
+- (NSURLSessionDataTask *)fetchResource:(Class)resourceClass
+                                headers:(NSDictionary *)headers
+                             completion:(void (^)(JSONAPI *result, NSError *error))completion;
 
-- (NSURLSessionDataTask *)fetchResource:(Class)resourceClass parameters:(NSDictionary *)parameters completion:(void (^)(JSONAPI *result, NSError *error))completion;
+- (NSURLSessionDataTask *)fetchResource:(Class)resourceClass
+                             parameters:(NSDictionary *)parameters
+                                headers:(NSDictionary *)headers
+                             completion:(void (^)(JSONAPI *result, NSError *error))completion;
 
-- (NSURLSessionDataTask *)fetchResource:(Class)resourceClass id:(NSString *)resourceId parameters:(NSDictionary *)parameters completion:(void (^)(JSONAPI *result, NSError *error))completion;
+- (NSURLSessionDataTask *)fetchResource:(Class)resourceClass
+                                     id:(NSString *)resourceId
+                             parameters:(NSDictionary *)parameters
+                                headers:(NSDictionary *)headers
+                             completion:(void (^)(JSONAPI *result, NSError *error))completion;
 
 @end

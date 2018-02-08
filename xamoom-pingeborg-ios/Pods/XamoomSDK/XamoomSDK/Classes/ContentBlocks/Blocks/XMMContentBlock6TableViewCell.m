@@ -80,7 +80,10 @@ static NSString *contentLanguage;
     return;
   }
   
-  self.dataTask = [api contentWithID:self.contentID options:XMMContentOptionsPreview completion:^(XMMContent *content, NSError *error) {
+  self.dataTask = [api contentWithID:self.contentID
+                             options:XMMContentOptionsPreview
+                              reason:XMMContentReasonLinkedContent
+                          completion:^(XMMContent *content, NSError *error) {
     if (error) {
       return;
     }

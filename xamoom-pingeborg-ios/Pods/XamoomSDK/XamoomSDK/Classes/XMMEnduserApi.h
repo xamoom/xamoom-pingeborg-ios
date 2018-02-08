@@ -11,6 +11,7 @@
 #import <JSONAPI/JSONAPIResourceDescriptor.h>
 #import "XMMRestClient.h"
 #import "XMMOptions.h"
+#import "XMMReasons.h"
 #import "XMMParamHelper.h"
 #import "XMMOfflineApi.h"
 #import "XMMSpot.h"
@@ -61,6 +62,11 @@ extern NSString * const kApiBaseURLString;
  * Indicator to use the XMMOfflineApi.
  */
 @property (getter=isOffline, nonatomic) BOOL offline;
+
+/**
+ * Lazy initialized userDefaults.
+ */
+@property (strong, nonatomic) NSUserDefaults *userDefaults;
 
 /// @name Singleton
 
@@ -131,6 +137,23 @@ extern NSString * const kApiBaseURLString;
 - (NSURLSessionDataTask *)contentWithID:(NSString *)contentID options:(XMMContentOptions)options completion:(void (^)(XMMContent *content, NSError *error))completion;
 
 /**
+ * API call to get content with specific ID, options and reason.
+ *
+ * @param contentID ContentID of xamoom content
+ * @param options XMMContentOptions for call
+ * @param reason Reason for providing better statistics in xamoom dashboard
+ * @param completion Completion block called after finishing network request
+ * - *param1* content Content from xamoom system
+ * - *param2* error NSError, can be null
+ * @return SessionDataTask used to download from the backend.
+ */
+- (NSURLSessionDataTask *)contentWithID:(NSString *)contentID
+                                options:(XMMContentOptions)options
+                                 reason:(XMMContentReason)reason
+                             completion:(void (^)(XMMContent *content,
+                                                  NSError *error))completion;
+
+/**
  * API call to get content with specific location-identifier.
  *
  * @param locationIdentifier Locationidentifier from xamoom marker
@@ -167,6 +190,27 @@ extern NSString * const kApiBaseURLString;
  * @return SessionDataTask used to download from the backend.
  */
 - (NSURLSessionDataTask *)contentWithLocationIdentifier:(NSString *)locationIdentifier options:(XMMContentOptions)options conditions:(NSDictionary *)conditions completion:(void (^)(XMMContent *content, NSError *error))completion;
+
+/**
+ * API call to get content with specific location-identifier with options
+ * , conditions and reason.
+ *
+ * @param locationIdentifier Locationidentifier from xamoom marker
+ * @param options XMMContentOptions for call
+ * @param conditions NSDictionary with conditions to match. Allowed value types:
+ * numbers, strings and dates.
+ * @param reason Reason for providing better statistics in xamoom dashboard
+ * @param completion Completion block called after finishing network request
+ * - *param1* content Content from xamoom system
+ * - *param2* error NSError, can be null
+ * @return SessionDataTask used to download from the backend.
+ */
+- (NSURLSessionDataTask *)contentWithLocationIdentifier:(NSString *)locationIdentifier
+                                                options:(XMMContentOptions)options
+                                             conditions:(NSDictionary *)conditions
+                                                 reason:(XMMContentReason)reason
+                                             completion:(void (^)(XMMContent *content,
+                                                                  NSError *error))completion;
 
 /**
  * API call to get content with beacon.
@@ -212,6 +256,29 @@ extern NSString * const kApiBaseURLString;
                                            minor:(NSNumber *)minor
                                          options:(XMMContentOptions)options
                                       conditions:(NSDictionary *)conditions
+                                      completion:(void (^)(XMMContent *content, NSError *error))completion;
+
+/**
+ * API call to get content with beacon, condition and reason.
+ *
+ * @warning: Does not work offline. Will return default content from spot.
+ *
+ * @param major Major of the beacon
+ * @param minor Minor of the beacon
+ * @param options XMMContentOptions for call
+ * @param conditions NSDictionary with conditions to match. Allowed value types:
+ * numbers, strings and dates.
+ * @param reason Reason for providing better statistics in xamoom dashboard
+ * @param completion Completion block called after finishing network request
+ * - *param1* content Content from xamoom system
+ * - *param2* error NSError, can be null
+ * @return SessionDataTask used to download from the backend.
+ */
+- (NSURLSessionDataTask *)contentWithBeaconMajor:(NSNumber *)major
+                                           minor:(NSNumber *)minor
+                                         options:(XMMContentOptions)options
+                                      conditions:(NSDictionary *)conditions
+                                          reason:(XMMContentReason)reason
                                       completion:(void (^)(XMMContent *content, NSError *error))completion;
 
 /**
