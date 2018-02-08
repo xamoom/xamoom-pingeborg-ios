@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '137B7EE6C6DFCD85F0C66821DD7F559E'
-               BlueprintName = 'JAMSVGImage'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libJAMSVGImage.a'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "137B7EE6C6DFCD85F0C66821DD7F559E"
+               BlueprintName = "JAMSVGImage"
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "libJAMSVGImage.a">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

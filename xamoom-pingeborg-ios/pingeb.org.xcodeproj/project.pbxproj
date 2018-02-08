@@ -504,11 +504,13 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-pingeb.org/Pods-pingeb.org-resources.sh",
 				"${PODS_ROOT}/JGProgressHUD/JGProgressHUD/JGProgressHUD/JGProgressHUD Resources.bundle",
 				"${PODS_ROOT}/XamoomSDK/XamoomSDK/Assets/Images.xcassets",
-				$PODS_CONFIGURATION_BUILD_DIR/XamoomSDK/XamoomSDK.bundle,
+				"${PODS_CONFIGURATION_BUILD_DIR}/XamoomSDK/XamoomSDK.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/JGProgressHUD Resources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Images.xcassets",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/XamoomSDK.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -711,7 +713,7 @@
 				CODE_SIGN_ENTITLEMENTS = pingeb.org.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Bruno Hautzenberger (L86QBJXNW2)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 61;
+				CURRENT_PROJECT_VERSION = 62;
 				DEVELOPMENT_TEAM = 55MDUF7392;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -744,7 +746,7 @@
 				CODE_SIGN_ENTITLEMENTS = pingeb.org.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: xamoom GmbH (55MDUF7392)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 61;
+				CURRENT_PROJECT_VERSION = 62;
 				DEVELOPMENT_TEAM = 55MDUF7392;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

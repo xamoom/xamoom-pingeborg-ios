@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '79CFF8F5896F7EF6540F29A086DA873F'
-               BlueprintName = 'Pods-pingeb.org'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libPods-pingeb.org.a'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "79CFF8F5896F7EF6540F29A086DA873F"
+               BlueprintName = "Pods-pingeb.org"
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "libPods-pingeb.org.a">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
