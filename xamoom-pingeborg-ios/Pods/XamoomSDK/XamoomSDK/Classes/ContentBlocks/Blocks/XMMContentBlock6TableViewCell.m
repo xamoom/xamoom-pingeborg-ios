@@ -37,8 +37,26 @@ static NSString *contentLanguage;
   self.contentImageView.image = nil;
   self.contentTitleLabel.text = nil;
   self.contentExcerptLabel.text = nil;
+  
   self.angleImage = [UIImage imageNamed:@"angleRight"
-                               inBundle:imageBundle compatibleWithTraitCollection:nil];
+                                inBundle:imageBundle compatibleWithTraitCollection:nil];
+  if (@available(iOS 9.0, *)) {
+    if ([UIView userInterfaceLayoutDirectionForSemanticContentAttribute:
+         self.angleImageView.semanticContentAttribute] == UIUserInterfaceLayoutDirectionRightToLeft) {
+      self.angleImage = [[UIImage imageNamed:@"angleRight"
+                                    inBundle:imageBundle compatibleWithTraitCollection:nil]
+                         imageFlippedForRightToLeftLayoutDirection];
+    }
+  } else {
+    if ([UIApplication sharedApplication].userInterfaceLayoutDirection == UIUserInterfaceLayoutDirectionRightToLeft) {
+      self.angleImage = [UIImage imageWithCGImage:self.angleImage.CGImage
+                                            scale:1.0
+                                      orientation: UIImageOrientationUpMirrored];
+    }
+  }
+  
+  
+  
   [super awakeFromNib];
 }
 

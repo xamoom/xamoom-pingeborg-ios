@@ -29,13 +29,13 @@ PODS:
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
   - SMCalloutView (2.1.5)
-  - XamoomSDK (3.9.0):
-    - XamoomSDK/Core (= 3.9.0)
-  - XamoomSDK/Core (3.9.0):
+  - XamoomSDK (3.10.1):
+    - XamoomSDK/Core (= 3.10.1)
+  - XamoomSDK/Core (3.10.1):
     - JAMSVGImage
     - JSONAPI (~> 1.0.0)
     - SDWebImage (~> 3.7)
-  - XamoomSDK/Push (3.9.0):
+  - XamoomSDK/Push (3.10.1):
     - Pushwoosh
 
 DEPENDENCIES:
@@ -44,8 +44,8 @@ DEPENDENCIES:
   - QRCodeReaderViewController (from `~/dev/QRCodeReaderViewController`)
   - REMenu (~> 1.10)
   - SMCalloutView
-  - XamoomSDK (~> 3.9.0)
-  - XamoomSDK/Push (~> 3.9.0)
+  - XamoomSDK (~> 3.10.1)
+  - XamoomSDK/Push (~> 3.10.1)
 
 EXTERNAL SOURCES:
   QRCodeReaderViewController:
@@ -66,8 +66,8 @@ SPEC CHECKSUMS:
   REMenu: 30dad195930adf6c5eeb8041e3257aa60bf9fa49
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SMCalloutView: 5c0ee363dc8e7204b2fda17dfad38c93e9e23481
-  XamoomSDK: 1dab161871770e3288aacbbacede9f4c56aa3518
+  XamoomSDK: a9215a3036e48a9667aff54ba8860b9bfe5c69f0
 
-PODFILE CHECKSUM: 7638103f0deffa3a88d152eecb02169d907a1b5e
+PODFILE CHECKSUM: f657c514b44569dc004aa2213acbb055cd595edd
 
 COCOAPODS: 1.4.0

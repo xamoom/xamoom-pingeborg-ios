@@ -63,7 +63,7 @@ static XMMEnduserApi *sharedInstance;
   
   NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
   [config setHTTPAdditionalHeaders:@{@"Content-Type":kHTTPContentType,
-                                     @"User-Agent":[self customUserAgentFrom:nil],
+                                     @"User-Agent":[self customUserAgentFrom:@""],
                                      @"APIKEY":apikey,}];
   
   self.restClient = [[XMMRestClient alloc] initWithBaseUrl:[NSURL URLWithString: kApiBaseURLString]

@@ -123,7 +123,7 @@ static int kPageSize = 100;
   for (XMMCDSpot *spot in spotsToDelete) {
     // get all spots with that content
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"content.jsonID == %@", spot.content.jsonID];
-    NSArray *spotsWithThatContent = [self.storeManager fetch:[XMMCDSpot coreDataEntityName] predicates:predicate];
+    NSArray *spotsWithThatContent = [self.storeManager fetch:[XMMCDSpot coreDataEntityName] predicates:@[predicate]];
     
     BOOL deleteableContent = YES;
     for (XMMCDSpot *queriedSpot in spotsWithThatContent) {

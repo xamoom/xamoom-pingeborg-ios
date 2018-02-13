@@ -83,16 +83,25 @@ static UIColor *contentLinkColor;
   html = [html stringByReplacingOccurrencesOfString:@"<p></p>" withString:@""];
   html = [NSString stringWithFormat:@"%@%@", style, html];
   
-  NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithData: [html dataUsingEncoding:NSUTF8StringEncoding]
-                                                                                        options: @{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
-                                                                                                    NSCharacterEncodingDocumentAttribute: @(NSUTF8StringEncoding)}
-                                                                             documentAttributes: nil
-                                                                                          error: &err];
+  NSMutableAttributedString *attributedString =
+  [[NSMutableAttributedString alloc] initWithData: [html dataUsingEncoding:NSUTF8StringEncoding]
+                                          options: @{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
+                                                      NSCharacterEncodingDocumentAttribute: @(NSUTF8StringEncoding)}
+                               documentAttributes: nil
+                                            error: &err];
+  
   if(err) {
     NSLog(@"Unable to parse label text: %@", err);
   }
   
-  [attributedString addAttribute:NSForegroundColorAttributeName value:color range:NSMakeRange(0, attributedString.length)];
+  NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+  [paragraphStyle setBaseWritingDirection:NSWritingDirectionNatural];
+  [attributedString addAttribute:NSParagraphStyleAttributeName
+                           value:paragraphStyle
+                           range:NSMakeRange(0, [attributedString length])];
+  [attributedString addAttribute:NSForegroundColorAttributeName
+                           value:color
+                           range:NSMakeRange(0, attributedString.length)];
   
   return attributedString;
 }

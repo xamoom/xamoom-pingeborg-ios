@@ -152,10 +152,6 @@
                            forState:UIControlStateNormal];
 }
 
-- (void)didUpdateRemainingSongTime:(NSString *)remainingSongTime {
-  self.remainingTimeLabel.text = remainingSongTime;
-}
-
 - (void)changeTextColors:(UIColor *)color {
   self.titleLabel.textColor = color;
   self.artistLabel.textColor = color;

@@ -22,19 +22,19 @@
  */
 @interface XMMContentBlock1TableViewCell : UITableViewCell <UIAppearanceContainer>
 
-@property (weak, nonatomic) IBOutlet UIView *audioPlayerView;
-@property (weak, nonatomic) IBOutlet UILabel *artistLabel;
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *remainingTimeLabel;
-@property (weak, nonatomic) IBOutlet UIButton *audioControlButton;
-@property (weak, nonatomic) IBOutlet UIButton *forwardButton;
-@property (weak, nonatomic) IBOutlet UIButton *backwardButton;
-@property (weak, nonatomic) IBOutlet UILabel *backwardLabel;
-@property (weak, nonatomic) IBOutlet UILabel *forwardLabel;
-@property (weak, nonatomic) IBOutlet XMMMovingBarsView *movingBarView;
-@property (weak, nonatomic) IBOutlet XMMProgressBar *progressBar;
+@property (weak, nonatomic) IBOutlet UIView * _Nullable audioPlayerView;
+@property (weak, nonatomic) IBOutlet UILabel * _Nullable artistLabel;
+@property (weak, nonatomic) IBOutlet UILabel * _Nullable titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel * _Nullable remainingTimeLabel;
+@property (weak, nonatomic) IBOutlet UIButton * _Nullable audioControlButton;
+@property (weak, nonatomic) IBOutlet UIButton * _Nullable forwardButton;
+@property (weak, nonatomic) IBOutlet UIButton * _Nullable backwardButton;
+@property (weak, nonatomic) IBOutlet UILabel * _Nullable backwardLabel;
+@property (weak, nonatomic) IBOutlet UILabel * _Nullable forwardLabel;
+@property (weak, nonatomic) IBOutlet XMMMovingBarsView * _Nullable movingBarView;
+@property (weak, nonatomic) IBOutlet XMMProgressBar * _Nullable progressBar;
 @property (nonatomic, getter=isPlaying) BOOL playing;
-@property (strong, nonatomic) XMMOfflineFileManager *fileManager;
+@property (strong, nonatomic) XMMOfflineFileManager * _Nullable fileManager;
 @property (strong, nonnull) UIColor *audioPlayerBackgroundColor UI_APPEARANCE_SELECTOR;
 @property (strong, nonnull) UIColor *audioPlayerProgressBarColor UI_APPEARANCE_SELECTOR;
 @property (strong, nonnull) UIColor *audioPlayerProgressBarBackgroundColor UI_APPEARANCE_SELECTOR;
