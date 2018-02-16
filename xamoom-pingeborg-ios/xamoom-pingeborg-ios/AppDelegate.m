@@ -35,14 +35,14 @@
   //set UI colors
   [[UINavigationBar appearance] setBarTintColor:[Globals sharedObject].pingeborgYellow];
   [[UITabBar appearance] setTintColor:[Globals sharedObject].pingeborgLinkColor];
-
+  
   [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeSound categories:nil]];
-
-  //setup API
+  
+  [FIRApp configure];
   [self setupApi];
   [self initBeacons];
   [self setupPushManager];
-  [FIRApp configure];
+  [self changeColors];
   
   self.navigationCoordinator = [[NavigationCoordinator alloc] initWithNavigationController: (UINavigationController *) self.window.rootViewController];
   
@@ -60,7 +60,7 @@
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-
+  
 }
 
 
@@ -121,7 +121,7 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
   [NotificationHelper showNotificationWithTitle:
    NSLocalizedString(@"notification.beacon.title", "")
-                                        body:
+                                           body:
    NSLocalizedString(@"notification.beacon.body", "")];
 }
 
@@ -168,4 +168,59 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
   
   return UIInterfaceOrientationMaskPortrait;
 }
+
+- (void)changeColors {
+  [XMMContentBlock1TableViewCell appearance].audioPlayerBackgroundColor = [Globals sharedObject].pingeborgYellow;
+  [XMMContentBlock1TableViewCell appearance].audioPlayerTintColor = UIColor.blackColor;
+  
+  [XMMContentBlock4TableViewCell appearance].facebookColor = [Globals sharedObject].pingeborgYellow;
+  [XMMContentBlock4TableViewCell appearance].facebookTintColor = UIColor.blackColor;
+  [XMMContentBlock4TableViewCell appearance].fallbackColor = [Globals sharedObject].pingeborgYellow;
+  [XMMContentBlock4TableViewCell appearance].fallbackTintColor = UIColor.blackColor;
+  [XMMContentBlock4TableViewCell appearance].webColor = [Globals sharedObject].pingeborgYellow;
+  [XMMContentBlock4TableViewCell appearance].webTintColor = UIColor.blackColor;
+  [XMMContentBlock4TableViewCell appearance].mailColor = [Globals sharedObject].pingeborgYellow;
+  [XMMContentBlock4TableViewCell appearance].mailTintColor = UIColor.blackColor;
+  [XMMContentBlock4TableViewCell appearance].wikipediaColor = [Globals sharedObject].pingeborgYellow;
+  [XMMContentBlock4TableViewCell appearance].wikipediaTintColor = UIColor.blackColor;
+  [XMMContentBlock4TableViewCell appearance].itunesColor = [Globals sharedObject].pingeborgYellow;
+  [XMMContentBlock4TableViewCell appearance].itunesTintColor = UIColor.blackColor;
+  [XMMContentBlock4TableViewCell appearance].appleColor = [Globals sharedObject].pingeborgYellow;
+  [XMMContentBlock4TableViewCell appearance].appleTintColor = UIColor.blackColor;
+  [XMMContentBlock4TableViewCell appearance].twitterColor = [Globals sharedObject].pingeborgYellow;
+  [XMMContentBlock4TableViewCell appearance].twitterTintColor = UIColor.blackColor;
+  [XMMContentBlock4TableViewCell appearance].shopColor = [Globals sharedObject].pingeborgYellow;
+  [XMMContentBlock4TableViewCell appearance].shopTintColor = UIColor.blackColor;
+  [XMMContentBlock4TableViewCell appearance].linkedInColor = [Globals sharedObject].pingeborgYellow;
+  [XMMContentBlock4TableViewCell appearance].linkedInTintColor = UIColor.blackColor;
+  [XMMContentBlock4TableViewCell appearance].flickrColor = [Globals sharedObject].pingeborgYellow;
+  [XMMContentBlock4TableViewCell appearance].flickrTintColor = UIColor.blackColor;
+  [XMMContentBlock4TableViewCell appearance].soundcloudColor = [Globals sharedObject].pingeborgYellow;
+  [XMMContentBlock4TableViewCell appearance].soundcloudTintColor = UIColor.blackColor;
+  [XMMContentBlock4TableViewCell appearance].youtubeColor = [Globals sharedObject].pingeborgYellow;
+  [XMMContentBlock4TableViewCell appearance].youtubeTintColor = UIColor.blackColor;
+  [XMMContentBlock4TableViewCell appearance].googleColor = [Globals sharedObject].pingeborgYellow;
+  [XMMContentBlock4TableViewCell appearance].googleTintColor = UIColor.blackColor;
+  [XMMContentBlock4TableViewCell appearance].spotifyColor = [Globals sharedObject].pingeborgYellow;
+  [XMMContentBlock4TableViewCell appearance].spotifyTintColor = UIColor.blackColor;
+  [XMMContentBlock4TableViewCell appearance].navigationColor = [Globals sharedObject].pingeborgYellow;
+  [XMMContentBlock4TableViewCell appearance].navigationTintColor = UIColor.blackColor;
+  [XMMContentBlock4TableViewCell appearance].androidColor = [Globals sharedObject].pingeborgYellow;
+  [XMMContentBlock4TableViewCell appearance].androidTintColor = UIColor.blackColor;
+  [XMMContentBlock4TableViewCell appearance].windowsColor = [Globals sharedObject].pingeborgYellow;
+  [XMMContentBlock4TableViewCell appearance].windowsTintColor = UIColor.blackColor;
+  [XMMContentBlock4TableViewCell appearance].instagramColor = [Globals sharedObject].pingeborgYellow;
+  [XMMContentBlock4TableViewCell appearance].instagramTintColor = UIColor.blackColor;
+  [XMMContentBlock4TableViewCell appearance].phoneColor = [Globals sharedObject].pingeborgYellow;
+  [XMMContentBlock4TableViewCell appearance].phoneTintColor = UIColor.blackColor;
+  
+  [XMMContentBlock5TableViewCell appearance].ebookTintColor = UIColor.blueColor;
+  [XMMContentBlock5TableViewCell appearance].ebookColor = UIColor.blackColor;
+  
+  [XMMContentBlock8TableViewCell appearance].calendarColor = [Globals sharedObject].pingeborgYellow;
+  [XMMContentBlock8TableViewCell appearance].calendarTintColor = UIColor.blackColor;
+  [XMMContentBlock8TableViewCell appearance].contactColor = [Globals sharedObject].pingeborgYellow;
+  [XMMContentBlock8TableViewCell appearance].contactTintColor = UIColor.blackColor;
+}
+
 @end
