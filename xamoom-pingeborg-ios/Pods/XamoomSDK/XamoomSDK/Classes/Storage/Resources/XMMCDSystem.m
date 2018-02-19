@@ -16,6 +16,7 @@
 @dynamic setting;
 @dynamic style;
 @dynamic menu;
+@dynamic webClientUrl;
 
 + (NSString *)coreDataEntityName {
   return NSStringFromClass([self class]);
@@ -48,6 +49,7 @@
   savedSystem.jsonID = system.ID;
   savedSystem.name = system.name;
   savedSystem.url = system.url;
+  savedSystem.webClientUrl = system.webClientUrl;
   
   if (system.setting != nil) {
     savedSystem.setting = [XMMCDSystemSettings insertNewObjectFrom:system.setting];

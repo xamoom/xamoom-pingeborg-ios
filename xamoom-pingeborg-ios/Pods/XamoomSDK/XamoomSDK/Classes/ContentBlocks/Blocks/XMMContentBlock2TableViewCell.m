@@ -76,7 +76,7 @@
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openYoutubeUrl)];
     [self.openInYoutubeView addGestureRecognizer:gestureRecognizer];
 
-    int timeStamp = [self youtubeTimestampFromUrl:videoURLString];
+    NSInteger timeStamp = [self youtubeTimestampFromUrl:videoURLString];
     [self showYoutubeWithId:youtubeVideoID timeStamp:timeStamp];
   } else if ([videoURLString containsString:@"vimeo"]) {
     self.webView.hidden = NO;
@@ -111,7 +111,7 @@
 
 - (NSInteger)youtubeTimestampFromUrl:(NSString *)url {
   NSError *error = nil;
-  NSString *regexString = @"\(&t=\|\\\?t=\)\(\?:\(\\d\+h\)\?\(\\d\+m\)\?\(\\d\+s\)\?\(\\d\+\)\?\)";
+  NSString *regexString = @"\(&t=|\\\?t=)\(\?:\(\\d+h)\?\(\\d+m)\?\(\\d+s)\?\(\\d+)\?)";
   NSRegularExpression *regExp = [NSRegularExpression regularExpressionWithPattern:regexString
                                                                           options:NSRegularExpressionCaseInsensitive
                                                                             error:&error];
@@ -121,7 +121,6 @@
 
   if(array.count >= 1) {
     NSTextCheckingResult *result = array.firstObject;
-    NSString *match = [url substringWithRange:result.range];
     
     NSRange range = [result rangeAtIndex:0];
     
@@ -165,8 +164,8 @@
   [[UIApplication sharedApplication] openURL:[NSURL URLWithString:self.videoUrl]];
 }
 
-- (void)showYoutubeWithId:(NSString *)videoId timeStamp:(int)seconds {
-  NSString *htmlString = [NSString stringWithFormat:@"<style>html, body {margin: 0;padding:0;}</style><iframe width=\"100%%\" height=\"100%%\" src=\"https://www.youtube.com/embed/%@?start=%d\" frameborder=\"0\" allowfullscreen></iframe>", videoId, seconds];
+- (void)showYoutubeWithId:(NSString *)videoId timeStamp:(NSInteger)seconds {
+  NSString *htmlString = [NSString stringWithFormat:@"<style>html, body {margin: 0;padding:0;}</style><iframe width=\"100%%\" height=\"100%%\" src=\"https://www.youtube.com/embed/%@?start=%ld\" frameborder=\"0\" allowfullscreen></iframe>", videoId, (long)seconds];
   [self.webView loadHTMLString:htmlString baseURL:nil];
 }
 

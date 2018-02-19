@@ -45,9 +45,11 @@ extern NSString *const kManagedContextReadyNotification;
  * Fetches all entities of an entityType with a predicate.
  *
  * @param entityType Type of the entity.
- * @param predicate NSPredicate to filter results.
+ * @param predicates NSPredicate to filter results.
  */
-- (NSArray *)fetch:(NSString *)entityType predicate:(NSPredicate *)predicate;
+- (NSArray *)fetch:(NSString *)entityType predicates:(NSArray *)predicates;
+
+- (NSArray *)fetch:(NSString *)entityType predicates:(NSArray *)predicates sortDescriptors:(NSArray *)sortDescriptor;
 
 /**
  * Fetches all entities with a given jsonID.

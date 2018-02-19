@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13240" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="XMMCDContent" syncable="YES">
+        <attribute name="category" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="contentDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="customMeta" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="fromDate" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="imagePublicUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="jsonID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="language" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sharingUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tags" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="toDate" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <relationship name="contentBlocks" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="XMMCDContentBlock" syncable="YES"/>
+        <relationship name="relatedSpot" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="XMMCDSpot" syncable="YES"/>
+        <relationship name="system" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="XMMCDSystem" syncable="YES"/>
+    </entity>
+    <entity name="XMMCDContentBlock" syncable="YES">
+        <attribute name="altText" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="artists" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="blockType" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="contentID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="contentListPageSize" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="contentListSortAsc" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="contentListTags" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="copyright" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="downloadType" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="fileID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="jsonID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="linkType" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="linkUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="publicStatus" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="scaleX" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="showContent" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="soundcloudUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="spotMapTags" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="videoUrl" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="XMMCDMarker" syncable="YES">
+        <attribute name="beaconMajor" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="beaconMinor" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="beaconUUID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="eddyStoneUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="jsonID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nfc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="qr" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="XMMCDMenu" representedClassName="XMMCDMenu" syncable="YES">
+        <attribute name="jsonID" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="items" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="XMMCDContent" syncable="YES"/>
+    </entity>
+    <entity name="XMMCDSpot" syncable="YES">
+        <attribute name="category" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="customMeta" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="jsonID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="locationDictionary" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="spotDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tags" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <relationship name="content" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="XMMCDContent" syncable="YES"/>
+        <relationship name="markers" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="XMMCDMarker" syncable="YES"/>
+        <relationship name="system" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="XMMCDSystem" syncable="YES"/>
+    </entity>
+    <entity name="XMMCDStyle" syncable="YES">
+        <attribute name="backgroundColor" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="chromeHeaderColor" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="customMarker" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="foregroundFontColor" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="highlightFontColor" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="icon" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="jsonID" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="XMMCDSystem" syncable="YES">
+        <attribute name="jsonID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="webClientUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="menu" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="XMMCDMenu" syncable="YES"/>
+        <relationship name="setting" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="XMMCDSystemSettings" syncable="YES"/>
+        <relationship name="style" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="XMMCDStyle" syncable="YES"/>
+    </entity>
+    <entity name="XMMCDSystemSettings" representedClassName=".XMMCDSystemSettings" syncable="YES">
+        <attribute name="googlePlayId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="itunesAppId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="jsonID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="socialSharingEnabled" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="XMMCDContent" positionX="0" positionY="162" width="128" height="255"/>
+        <element name="XMMCDContentBlock" positionX="-9" positionY="90" width="128" height="360"/>
+        <element name="XMMCDMarker" positionX="-27" positionY="54" width="128" height="150"/>
+        <element name="XMMCDMenu" positionX="-18" positionY="81" width="128" height="75"/>
+        <element name="XMMCDSpot" positionX="9" positionY="171" width="128" height="210"/>
+        <element name="XMMCDStyle" positionX="-36" positionY="27" width="128" height="150"/>
+        <element name="XMMCDSystem" positionX="-18" positionY="72" width="128" height="150"/>
+        <element name="XMMCDSystemSettings" positionX="-63" positionY="-18" width="128" height="105"/>
+    </elements>
+</model>

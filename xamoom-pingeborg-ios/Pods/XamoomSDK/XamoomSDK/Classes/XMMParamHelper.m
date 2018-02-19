@@ -31,25 +31,12 @@
   return params;
 }
 
-+ (NSDictionary *)paramsWithLanguage:(NSString *)language tags:(NSArray *)tags {
-  NSMutableDictionary *params = [[self paramsWithLanguage:language] mutableCopy];
-  NSString *tagsAsParameter = [NSString stringWithFormat:@"[\"%@\"]", [tags componentsJoinedByString:@"\",\""]];
-  [params setValue:tagsAsParameter forKey:@"filter[tags]"];
-  return params;
-}
-
-+ (NSDictionary *)paramsWithLanguage:(NSString *)language name:(NSString *)name {
-  NSMutableDictionary *params = [[self paramsWithLanguage:language] mutableCopy];
-  [params setValue:name forKey:@"filter[name]"];
-  return params;
-}
-
 + (NSDictionary *)paramsWithLanguage:(NSString *)language location:(CLLocation *)location radius:(int) radius {
   NSMutableDictionary *params = [[self paramsWithLanguage:language] mutableCopy];
   [params setValue:[@(location.coordinate.latitude) stringValue] forKey:@"filter[lat]"];
   [params setValue:[@(location.coordinate.longitude) stringValue] forKey:@"filter[lon]"];
   [params setValue:[@(radius) stringValue] forKey:@"filter[radius]"];
-
+  
   return params;
 }
 
@@ -67,9 +54,33 @@
   return mutableParams;
 }
 
++ (NSDictionary *)addFiltersToParams:(NSDictionary *)params
+                             filters:(XMMFilter *)filters {
+  NSMutableDictionary *mutableParams = [params mutableCopy];
+  
+  if (filters.fromDate != nil) {
+    [mutableParams setValue:[filters.fromDate ISO8601] forKey:@"filter[meta-datetime-from]"];
+  }
+  if (filters.toDate != nil) {
+    [mutableParams setValue:[filters.toDate ISO8601] forKey:@"filter[meta-datetime-to]"];
+  }
+  if (filters.relatedSpotID != nil) {
+    [mutableParams setValue:filters.relatedSpotID forKey:@"filter[related-spot]"];
+  }
+  if (filters.name != nil) {
+    [mutableParams setValue:filters.name forKey:@"filter[name]"];
+  }
+  if (filters.tags != nil) {
+    NSString *tagsAsParameter = [NSString stringWithFormat:@"[\"%@\"]", [filters.tags componentsJoinedByString:@"\",\""]];
+    [mutableParams setValue:tagsAsParameter forKey:@"filter[tags]"];
+  }
+  
+  return mutableParams;
+}
+
 + (NSDictionary *)addContentOptionsToParams:(NSDictionary *)params options:(XMMContentOptions)options {
   NSMutableDictionary *mutableParams = [params mutableCopy];
- 
+  
   if (options != XMMContentOptionsNone) {
     NSDictionary *optionsDict = [self contentOptionsToDictionary:options];
     [mutableParams addEntriesFromDictionary:optionsDict];
@@ -134,8 +145,24 @@
     [sortParameters addObject:@"name"];
   }
   
-  if (sortOptions & XMMContentSortOptionsNameDesc) {
+  if (sortOptions & XMMContentSortOptionsTitleDesc) {
     [sortParameters addObject:@"-name"];
+  }
+  
+  if (sortOptions & XMMContentSortOptionsFromDate) {
+    [sortParameters addObject:@"meta-datetime-from"];
+  }
+  
+  if (sortOptions & XMMContentSortOptionsFromDateDesc) {
+    [sortParameters addObject:@"-meta-datetime-from"];
+  }
+  
+  if (sortOptions & XMMContentSortOptionsToDate) {
+    [sortParameters addObject:@"meta-datetime-to"];
+  }
+  
+  if (sortOptions & XMMContentSortOptionsToDateDesc) {
+    [sortParameters addObject:@"-meta-datetime-to"];
   }
   
   return sortParameters;

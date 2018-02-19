@@ -12,6 +12,7 @@
 #import "XMMCDContentBlock.h"
 #import "XMMCDSystem.h"
 #import "XMMContent.h"
+#import "XMMCDSpot.h"
 
 @interface XMMCDContent : NSManagedObject <XMMCDResource>
 
@@ -23,6 +24,10 @@
 @property (nonatomic) NSNumber *category;
 @property (nonatomic) NSArray *tags;
 @property (nonatomic) NSDictionary *customMeta;
+@property (nonatomic) NSString *sharingUrl;
+@property (nonatomic) NSDate *toDate;
+@property (nonatomic) NSDate *fromDate;
 @property (nonatomic) XMMCDSystem *system;
+@property (nonatomic) XMMCDSpot *relatedSpot;
 
 @end

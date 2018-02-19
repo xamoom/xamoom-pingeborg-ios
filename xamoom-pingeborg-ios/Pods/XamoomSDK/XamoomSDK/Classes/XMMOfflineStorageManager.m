@@ -101,16 +101,28 @@ static dispatch_once_t onceToken;
   return [self.managedObjectContext executeFetchRequest:request error:&error];
 }
 
-- (NSArray *)fetch:(NSString *)entityType predicate:(NSPredicate *)predicate {
+- (NSArray *)fetch:(NSString *)entityType predicates:(NSArray *)predicates {
   NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entityType];
-  request.predicate = predicate;
+  request.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:predicates];
+  NSError *error = nil;
+  return [self.managedObjectContext executeFetchRequest:request error:&error];
+}
+
+- (NSArray *)fetch:(NSString *)entityType predicates:(NSArray *)predicates sortDescriptors:(NSArray *)sortDescriptor {
+  NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entityType];
+  request.predicate = [NSCompoundPredicate andPredicateWithSubpredicates:predicates];
+  
+  if (sortDescriptor != nil) {
+    request.sortDescriptors = sortDescriptor;
+  }
+  
   NSError *error = nil;
   return [self.managedObjectContext executeFetchRequest:request error:&error];
 }
 
 - (NSArray *)fetch:(NSString *)entityType jsonID:(NSString *)jsonID {
   return [self fetch:entityType
-           predicate:[NSPredicate predicateWithFormat:@"jsonID == %@", jsonID]];
+           predicates:@[[NSPredicate predicateWithFormat:@"jsonID == %@", jsonID]]];
 }
 
 - (void)deleteEntity:(Class)entityClass ID:(NSString *)ID {
@@ -193,19 +205,19 @@ static dispatch_once_t onceToken;
 - (void)deleteLocalFilesWithSafetyCheck {
   for (NSString *urlString in self.saveDeletionFiles) {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"imagePublicUrl == %@", urlString];
-    NSArray *results = [self fetch:[XMMCDContent coreDataEntityName] predicate:predicate];
+    NSArray *results = [self fetch:[XMMCDContent coreDataEntityName] predicates:@[predicate]];
     if (results.count > 0) {
       continue;
     }
     
     predicate = [NSPredicate predicateWithFormat:@"image == %@", urlString];
-    results = [self fetch:[XMMCDSpot coreDataEntityName] predicate:predicate];
+    results = [self fetch:[XMMCDSpot coreDataEntityName] predicates:@[predicate]];
     if (results.count > 0) {
       continue;
     }
     
     predicate = [NSPredicate predicateWithFormat:@"fileID == %@ OR videoUrl == %@", urlString, urlString];
-    results = [self fetch:[XMMCDContentBlock coreDataEntityName] predicate:predicate];
+    results = [self fetch:[XMMCDContentBlock coreDataEntityName] predicates:@[predicate]];
     if (results.count > 0) {
       continue;
     }

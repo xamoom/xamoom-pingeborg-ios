@@ -16,6 +16,7 @@
  */
 @interface XMMContentBlock5TableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIView *ebookBackground;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *artistLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *ebookImageView;
@@ -24,7 +25,14 @@
 @property (strong, nonatomic) XMMOfflineFileManager *fileManager;
 @property (nonatomic) BOOL offline;
 
+@property (nonatomic) UIColor *ebookColor UI_APPEARANCE_SELECTOR;
+@property (nonatomic) UIColor *ebookTintColor UI_APPEARANCE_SELECTOR;
+
 - (void)openInBrowser:(id)sender;
+- (void)setEbookColor:(UIColor *)ebookColor;
+- (void)setEbookTintColor:(UIColor *)ebookTintColor;
+- (UIColor *)ebookColor;
+- (UIColor *)ebookTintColor;
 
 @end
 

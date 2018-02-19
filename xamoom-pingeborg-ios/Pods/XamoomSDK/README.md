@@ -8,7 +8,7 @@ More informations about xamoom and how xamoom works? Visit our Github page [xamo
 # Getting Started
 
 * Read the ["Getting Started"](https://github.com/xamoom/xamoom-ios-sdk/wiki#getting-started) guide in the wiki
-* Check out the [XMMEnduserApi documentation](http://xamoom.github.io/xamoom-ios-sdk/3.4.0/index.html)
+* Check out the [XMMEnduserApi documentation](http://xamoom.github.io/xamoom-ios-sdk/3.7.0/index.html)
 * Check out our sample app: ["pingeborg App"](https://github.com/xamoom/xamoom-pingeborg-ios)
 
 # Installation
@@ -20,7 +20,7 @@ Download the XamoomSDK and add it to your project, build it and use the framewor
 
 Add in your podfile
 
-    pod 'XamoomSDK', '~> 3.6.0'
+    pod 'XamoomSDK', '~> 3.10.1'
 
 Install pods via terminal
 

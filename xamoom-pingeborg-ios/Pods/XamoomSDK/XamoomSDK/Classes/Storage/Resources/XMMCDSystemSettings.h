@@ -15,5 +15,6 @@
 
 @property (strong, nonatomic) NSString *itunesAppId;
 @property (strong, nonatomic) NSString *googlePlayId;
+@property (strong, nonatomic) NSNumber *socialSharingEnabled;
 
 @end

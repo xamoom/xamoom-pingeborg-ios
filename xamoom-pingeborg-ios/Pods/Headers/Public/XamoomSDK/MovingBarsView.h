@@ -1,1 +1,0 @@
-../../../XamoomSDK/XamoomSDK/Classes/ContentBlocks/MovingBarsView.h

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '8C12AD2110617C341BA3C64250CDCE12'
-               BlueprintName = 'QRCodeReaderViewController'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libQRCodeReaderViewController.a'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E95DD6A70FC39229397F85B72F1D7E93"
+               BlueprintName = "QRCodeReaderViewController"
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "libQRCodeReaderViewController.a">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

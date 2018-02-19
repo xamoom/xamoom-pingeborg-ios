@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <Google/Analytics.h>
+@import Firebase;
 
 @interface Analytics : NSObject
 

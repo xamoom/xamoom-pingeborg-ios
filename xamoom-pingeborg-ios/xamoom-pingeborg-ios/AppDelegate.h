@@ -18,7 +18,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <Google/Analytics.h>
+
+@import Firebase;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate>
 

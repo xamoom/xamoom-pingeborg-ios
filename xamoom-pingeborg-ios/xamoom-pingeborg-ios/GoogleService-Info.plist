@@ -1,12 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>TRACKING_ID</key>
-	<string>UA-57427460-6</string>
-	<key>PLIST_VERSION</key>
-	<string>1</string>
-	<key>BUNDLE_ID</key>
-	<string>com.xamoom.xamoom-pingeborg-ios</string>
-</dict>
+  <dict>
+    <key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+    <string>ca-app-pub-3940256099942544/2934735716</string>
+    <key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+    <string>ca-app-pub-3940256099942544/4411468910</string>
+    <key>CLIENT_ID</key>
+    <string>640368099251-0u45cletb9udj00uha3u2gp7bg37l5u5.apps.googleusercontent.com</string>
+    <key>REVERSED_CLIENT_ID</key>
+    <string>com.googleusercontent.apps.640368099251-0u45cletb9udj00uha3u2gp7bg37l5u5</string>
+    <key>API_KEY</key>
+    <string>AIzaSyBPpRNZum7ml2tpvTX-F7SW7TQkEmIeC4s</string>
+    <key>GCM_SENDER_ID</key>
+    <string>640368099251</string>
+    <key>PLIST_VERSION</key>
+    <string>1</string>
+    <key>BUNDLE_ID</key>
+    <string>com.xamoom.xamoom-pingeborg-ios</string>
+    <key>PROJECT_ID</key>
+    <string>pingeb-org</string>
+    <key>STORAGE_BUCKET</key>
+    <string>pingeb-org.appspot.com</string>
+    <key>IS_ADS_ENABLED</key>
+    <true></true>
+    <key>IS_ANALYTICS_ENABLED</key>
+    <false></false>
+    <key>IS_APPINVITE_ENABLED</key>
+    <false></false>
+    <key>IS_GCM_ENABLED</key>
+    <true></true>
+    <key>IS_SIGNIN_ENABLED</key>
+    <true></true>
+    <key>GOOGLE_APP_ID</key>
+    <string>1:640368099251:ios:678b1fac8ef4fa77</string>
+    <key>DATABASE_URL</key>
+    <string>https://pingeb-org.firebaseio.com</string>
+  </dict>
 </plist>

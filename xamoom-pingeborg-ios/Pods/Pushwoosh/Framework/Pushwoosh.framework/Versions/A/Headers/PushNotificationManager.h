@@ -12,7 +12,7 @@
 #import <UserNotifications/UserNotifications.h>
 #endif
 
-#define PUSHWOOSH_VERSION @"5.3.7"
+#define PUSHWOOSH_VERSION @"5.5.3"
 
 
 @class PushNotificationManager;
@@ -233,12 +233,15 @@ typedef void (^PushwooshErrorHandler)(NSError *error);
  */
 - (void)unregisterForPushNotifications;
 
-- (instancetype)initWithApplicationCode:(NSString *)appCode appName:(NSString *)appName;
+/**
+ Deprecated. Use initializeWithAppCode:appName: method class
+ */
+- (instancetype)initWithApplicationCode:(NSString *)appCode appName:(NSString *)appName __attribute__((deprecated));
 
 #if TARGET_OS_IPHONE
 
 /**
- Deprecated. Use initWithApplicationCode:appName: method instead
+ Deprecated. Use initializeWithAppCode:appName: method class
  */
 - (id)initWithApplicationCode:(NSString *)appCode navController:(UIViewController *)navController appName:(NSString *)appName __attribute__((deprecated));
 
@@ -317,6 +320,8 @@ typedef void (^PushwooshErrorHandler)(NSError *error);
  */
 - (void)sendBadges:(NSInteger)badge;
 
++ (NSString *)pushwooshVersion;
+
 #if TARGET_OS_IPHONE
 /**
  Sends in-app purchases to Pushwoosh. Use in paymentQueue:updatedTransactions: payment queue method (see example).
@@ -360,10 +365,9 @@ typedef void (^PushwooshErrorHandler)(NSError *error);
 - (void)handlePushRegistration:(NSData *)devToken;
 - (void)handlePushRegistrationString:(NSString *)deviceID;
 
-//internal
 - (void)handlePushRegistrationFailure:(NSError *)error;
 
-//if the push is received while the app is running. internal
+//if the push is received while the app is running.
 - (BOOL)handlePushReceived:(NSDictionary *)userInfo;
 
 /**

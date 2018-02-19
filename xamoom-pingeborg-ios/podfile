@@ -9,9 +9,9 @@ target 'pingeb.org' do
   pod 'REMenu', '~> 1.10'
   pod 'SMCalloutView'
   pod 'JGProgressHUD', '~> 1.4'
-  pod 'XamoomSDK', '~> 3.6.0'
-  pod 'XamoomSDK/Push', '~> 3.6.0'
-  pod 'Google/Analytics'
+  pod 'XamoomSDK', '~> 3.10.1'
+  pod 'XamoomSDK/Push', '~> 3.10.1'
+  pod 'Firebase/Core'
   pod 'QRCodeReaderViewController', :path => '~/dev/QRCodeReaderViewController'
 end
 

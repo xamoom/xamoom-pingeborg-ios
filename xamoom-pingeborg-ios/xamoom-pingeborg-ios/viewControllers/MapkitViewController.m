@@ -37,6 +37,8 @@
 
 @implementation MapkitViewController
 
+BOOL viewControllerDisplayed = NO;
+
 #pragma mark - View Lifecycle
 
 - (void)viewDidLoad {
@@ -65,6 +67,8 @@
 
 -(void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
+  viewControllerDisplayed = YES;
+  [self showCenterButton];
   
   //load spotmap if there are no annotations on the map
   if (self.mapView.annotations.count <= 1) {
@@ -74,6 +78,7 @@
 
 -(void)viewWillDisappear:(BOOL)animated {
   [super viewWillDisappear:animated];
+  viewControllerDisplayed = NO;
   self.parentViewController.navigationItem.rightBarButtonItem = nil;
 }
 
@@ -325,13 +330,18 @@
 
 #pragma mark - LocationManager
 
--(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+- (void)showCenterButton {
+  if (self.lastLocation != nil) {
+    if (viewControllerDisplayed) {
+      [self addCenterUserButton];
+    }
+  }
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
   self.lastLocation = [locations firstObject];
   
-  if (self.lastLocation != nil) {
-    [self addCenterUserButton];
-
-  }
+  [self showCenterButton];
   
   self.savedResponseContent = nil;
 }

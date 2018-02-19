@@ -8,6 +8,7 @@
 
 #import "XMMContent.h"
 #import "XMMCDContent.h"
+#import "NSDateFormatter+ISODate.h"
 
 @interface XMMContent()
 
@@ -39,8 +40,12 @@ static JSONAPIResourceDescriptor *__descriptor = nil;
     [__descriptor addProperty:@"category"];
     [__descriptor addProperty:@"tags"];
     [__descriptor addProperty:@"customMetaArray" withDescription:[[JSONAPIPropertyDescriptor alloc] initWithJsonName:@"custom-meta"]];
+    [__descriptor addProperty:@"sharingUrl" withDescription:[[JSONAPIPropertyDescriptor alloc] initWithJsonName:@"social-sharing-url"]];
+    [__descriptor addProperty:@"toDate" withDescription:[[JSONAPIPropertyDescriptor alloc] initWithJsonName:@"meta-datetime-to" withFormat:[NSDateFormatter ISO8601Formatter]]];
+    [__descriptor addProperty:@"fromDate" withDescription:[[JSONAPIPropertyDescriptor alloc] initWithJsonName:@"meta-datetime-from" withFormat:[NSDateFormatter ISO8601Formatter]]];
     [__descriptor hasOne:[XMMSystem class] withName:@"system"];
     [__descriptor hasOne:[XMMSpot class] withName:@"spot"];
+    [__descriptor hasOne:[XMMSpot class] withName:@"relatedSpot" withJsonName:@"related-spot"];
     [__descriptor hasMany:[XMMContentBlock class] withName:@"contentBlocks" withJsonName:@"blocks"];
   });
   
@@ -64,6 +69,12 @@ static JSONAPIResourceDescriptor *__descriptor = nil;
     self.category = [savedContent.category intValue];
     self.tags = savedContent.tags;
     self.customMeta = savedContent.customMeta;
+    self.sharingUrl = savedContent.sharingUrl;
+    if (savedContent.relatedSpot != nil) {
+      self.relatedSpot = [[XMMSpot alloc] initWithCoreDataObject:savedContent.relatedSpot];
+    }
+    self.toDate = savedContent.toDate;
+    self.fromDate = savedContent.fromDate;
     
     if (savedContent.contentBlocks != nil) {
       NSMutableArray *blocks = [[NSMutableArray alloc] init];

@@ -175,9 +175,18 @@ static int kHeaderViewHeight = 200;
 - (void)downloadContent {
   [self.hud showInView:self.view];
   
+  XMMContentReason reason = XMMContentReasonUnknown;
+  if (_isNotificationOpen) {
+    reason = XMMContentReasonNotificationContentOpenRequest;
+  }
+  
   NSString* savedArtists = [[Globals sharedObject] savedArtits];
   if ([savedArtists containsString:self.contentId]) {
-    [[XMMEnduserApi sharedInstance] contentWithID:self.contentId completion:^(XMMContent *content, NSError *error) {
+    [[XMMEnduserApi sharedInstance]
+     contentWithID:self.contentId
+     options:0
+     reason:reason
+     completion:^(XMMContent *content, NSError *error) {
       [self showDataWithContentId:content];
     }];
   } else {

@@ -19,25 +19,58 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *loadMoreButtonHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *loadMoreButtonTopConstraint;
+<<<<<<< HEAD
+=======
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewTopConstraint;
+@property (nonatomic, strong) NSBundle *bundle;
+>>>>>>> dev
 
 @end
 
 @implementation XMMContentBlock11TableViewCell
 
+<<<<<<< HEAD
 - (void)awakeFromNib {
   [super awakeFromNib];
   // Initialization code
+=======
+int tableViewTopConstant = 8;
+
+- (void)awakeFromNib {
+  [super awakeFromNib];
+  // Initialization code
+  NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+  NSURL *url = [bundle URLForResource:@"XamoomSDK" withExtension:@"bundle"];
+  if (url != nil) {
+    self.bundle = [NSBundle bundleWithURL:url];
+  } else {
+    self.bundle = bundle;
+  }
+  
+>>>>>>> dev
   _tableView.contentInset = UIEdgeInsetsMake(-16, 0, 0, 0);
   _tableView.scrollEnabled = NO;
   _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
   
+<<<<<<< HEAD
   //_loadMoreButton.titleLabel.text = @"Load more";
+=======
+  [_loadMoreButton setTitle:NSLocalizedStringFromTableInBundle(@"Load more", @"Localizable", _bundle, nil)
+                   forState:UIControlStateNormal];
+>>>>>>> dev
 }
 
 - (void)prepareForReuse {
   [super prepareForReuse];
+<<<<<<< HEAD
   _loadMoreButtonTopConstraint.constant = 8;
   _loadMoreButtonHeightConstraint.constant = 39;
+=======
+  _titleLabel.text = nil;
+  _loadMoreButtonTopConstraint.constant = 8;
+  _loadMoreButtonHeightConstraint.constant = 39;
+  _tableViewTopConstraint.constant = tableViewTopConstant;
+>>>>>>> dev
 }
 
 - (void)configureForCell:(XMMContentBlock *)block tableView:(UITableView *)tableView indexPath:(NSIndexPath *)indexPath style:(XMMStyle *)style api:(XMMEnduserApi *)api listManager:(XMMListManager *)listManager offline:(BOOL)offline delegate:(id)delegate {
@@ -55,6 +88,12 @@
   
   if (block.title != nil && ![block.title isEqualToString:@""]) {
     _titleLabel.text = block.title;
+<<<<<<< HEAD
+=======
+  } else {
+    _tableViewTopConstraint.constant = 0;
+    [self setNeedsUpdateConstraints];
+>>>>>>> dev
   }
   
   _loadMoreButton.hidden = YES;

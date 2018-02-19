@@ -11,6 +11,8 @@
 
 @implementation XMMRestClient
 
+static const NSString *EPHEMERAL_ID_HEADER = @"X-Ephemeral-Id";
+
 - (instancetype)initWithBaseUrl:(NSURL *)baseUrl session:(NSURLSession *)session {
   self = [super init];
   self.query = [[XMMQuery alloc] initWithBaseUrl:baseUrl];
@@ -18,62 +20,96 @@
   return self;
 }
 
-- (NSURLSessionDataTask *)fetchResource:(Class)resourceClass completion:(void (^)(JSONAPI *result, NSError *error))completion {
+- (NSURLSessionDataTask *)fetchResource:(Class)resourceClass
+                                headers:(NSDictionary *)headers
+                             completion:(void (^)(JSONAPI *result, NSError *error))completion {
   NSURL *requestUrl = [self.query urlWithResource:resourceClass];
-  return [self makeRestCall:requestUrl completion:completion];
+  return [self makeRestCall:requestUrl
+                    headers:headers
+                 completion:completion];
 }
 
-- (NSURLSessionDataTask *)fetchResource:(Class)resourceClass parameters:(NSDictionary *)parameters completion:(void (^)(JSONAPI *result, NSError *error))completion {
+- (NSURLSessionDataTask *)fetchResource:(Class)resourceClass
+                             parameters:(NSDictionary *)parameters
+                                headers:(NSDictionary *)headers
+                             completion:(void (^)(JSONAPI *result, NSError *error))completion {
   NSURL *requestUrl = [self.query urlWithResource:resourceClass];
   requestUrl = [self.query addQueryParametersToUrl:requestUrl parameters:parameters];
-  return [self makeRestCall:requestUrl completion:completion];
+  return [self makeRestCall:requestUrl
+                    headers:headers
+                 completion:completion];
 }
 
-- (NSURLSessionDataTask *)fetchResource:(Class)resourceClass id:(NSString *)resourceId parameters:(NSDictionary *)parameters completion:(void (^)(JSONAPI *result, NSError *error))completion {
+- (NSURLSessionDataTask *)fetchResource:(Class)resourceClass
+                                     id:(NSString *)resourceId
+                             parameters:(NSDictionary *)parameters
+                                headers:(NSDictionary *)headers
+                             completion:(void (^)(JSONAPI *result, NSError *error))completion {
   NSURL *requestUrl = [self.query urlWithResource:resourceClass id:resourceId];
   requestUrl = [self.query addQueryParametersToUrl:requestUrl parameters:parameters];
-  return [self makeRestCall:requestUrl completion:completion];
+  return [self makeRestCall:requestUrl
+                    headers:headers
+                 completion:completion];
 }
 
-- (NSURLSessionDataTask *)makeRestCall:(NSURL *)url completion:(void (^)(JSONAPI *result, NSError *error))completion {
-  NSURLSessionDataTask *task = [self.session dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-    JSONAPI *jsonApi;
-    
-    if (error) {
-      dispatch_async(dispatch_get_main_queue(), ^{
-        completion(jsonApi, error);
-      });
-      
-      return;
-    }
-    
-    jsonApi = [self jsonApiFromData:data];
-    
-    if (jsonApi.errors != nil) {
-      NSLog(@"JSONAPI Error: %@", jsonApi.errors);
-      JSONAPIErrorResource *apierror = jsonApi.errors.firstObject;
-      
-      NSDictionary *userInfo = @{@"code":apierror.code,
-                                 @"status":apierror.status,
-                                 @"title":apierror.title,
-                                 @"detail":apierror.detail,};
-      NSError *error = [NSError errorWithDomain:@"com.xamoom"
-                                           code:[apierror.code intValue]
-                                       userInfo:userInfo];
-      
-      dispatch_async(dispatch_get_main_queue(), ^{
-        completion(jsonApi, error);
-      });
-      return;
-    }
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-      completion(jsonApi, error);
-    });
-  }];
+- (NSURLSessionDataTask *)makeRestCall:(NSURL *)url
+                               headers:(NSDictionary *)headers
+                            completion:(void (^)(JSONAPI *result, NSError *error))completion {
+  NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: url];
+  [request setAllHTTPHeaderFields:headers];
   
+  NSURLSessionDataTask *task =
+  [self.session
+   dataTaskWithRequest:request
+   completionHandler:^(NSData * _Nullable data,
+                       NSURLResponse * _Nullable response,
+                       NSError * _Nullable error) {
+     JSONAPI *jsonApi;
+     
+     NSHTTPURLResponse *urlResponse = ((NSHTTPURLResponse *)response);
+     [self checkHeaders:[urlResponse allHeaderFields]];
+     
+     if (error) {
+       dispatch_async(dispatch_get_main_queue(), ^{
+         completion(jsonApi, error);
+       });
+       
+       return;
+     }
+     
+     jsonApi = [self jsonApiFromData:data];
+     
+     if (jsonApi.errors != nil) {
+       NSLog(@"JSONAPI Error: %@", jsonApi.errors);
+       JSONAPIErrorResource *apierror = jsonApi.errors.firstObject;
+       
+       NSDictionary *userInfo = @{@"code":apierror.code,
+                                  @"status":apierror.status,
+                                  @"title":apierror.title,
+                                  @"detail":apierror.detail,};
+       NSError *error = [NSError errorWithDomain:@"com.xamoom"
+                                            code:[apierror.code intValue]
+                                        userInfo:userInfo];
+       
+       dispatch_async(dispatch_get_main_queue(), ^{
+         completion(jsonApi, error);
+       });
+       return;
+     }
+     
+     dispatch_async(dispatch_get_main_queue(), ^{
+       completion(jsonApi, error);
+     });
+   }];
   [task resume];
   return task;
+}
+
+- (void)checkHeaders:(NSDictionary *)headers {
+  NSString *ephemeralId = [headers objectForKey:EPHEMERAL_ID_HEADER];
+  if (ephemeralId != nil && _delegate != nil) {
+    [_delegate gotEphemeralId:ephemeralId];
+  }
 }
 
 - (JSONAPI *)jsonApiFromData:(NSData *)data {
